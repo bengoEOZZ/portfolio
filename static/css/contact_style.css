@@ -1,0 +1,55 @@
+/* * * * * * * * * * Contact Styling * * * * * * * * * */
+#contact-info {
+    margin-top: 25px;
+	display: flex;
+    justify-content: space-around;
+}
+
+.contact-icon {
+    display: flex;
+    width: 40px;
+}
+
+.contact-link-text {
+    font-family: "Open Sans", sans-serif;
+
+    align-items: center;
+}
+
+.contact-link {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 1.15em;
+}
+
+#contact-form {
+    display: flex;
+    flex-direction: column;
+
+}
+
+#contact-form > label {
+    font-family: var(--paragraph-font);
+    font-size: var(--paragraph-font-size);
+	margin: auto;
+	width: 50%;
+}
+
+#contact-form > input, #contact-form > textarea {
+    padding: 15px;
+    font-family: var(--paragraph-font);
+    font-size: var(--paragraph-font-size);
+    margin-bottom: 15px;
+    border-radius: 0;
+    border-width: 1px;
+	width: 50%;
+	margin: auto;
+}
+
+#contact-form > button {
+	margin: auto;
+	font-size: 1em;
+	padding: 10px 20px;
+	width: 150px;
+}

@@ -1,0 +1,1 @@
+1.  Edit Error link in .htacess

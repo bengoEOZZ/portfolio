@@ -1,0 +1,34 @@
+/* * * * * * * * * * Error Styling * * * * * * * * * */
+.Error {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#Error-Header {
+    font-size: 10rem;
+    color: black;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+#Error-SubHeader {
+    font-size: 2rem;
+    color: black;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+#Error-paragraph {
+    font-size: 1.5rem;
+    color: black;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}

@@ -1,0 +1,6 @@
+/* * * * * * * * * * Project Styling * * * * * * * * * */
+.project-card-image {
+	display: block;
+    margin: auto;
+	width: 20%;
+}

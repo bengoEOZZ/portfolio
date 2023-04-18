@@ -1,0 +1,146 @@
+/* Applies the CSS box-sizing property to all HTML elements on the page */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+	background-color: white;
+}
+
+/* * * * * * * * * * Navigation header * * * * * * * * * */
+
+#navbar {
+    position: fixed;
+	display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    top: 0;
+    left: 0;
+    width: 100%;
+    backdrop-filter: blur(20px) brightness(20%);
+	padding: 15px 20px;
+	margin-bottom: 100px;
+}
+
+#navbar-links-desktop {
+    display: none;
+    flex-direction: row;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+	align-items: stretch;
+}
+
+#navtitle {
+    float: left;
+    padding-left: 5px;
+    color: white;
+    font-family: "Open Sans", sans-serif;
+    font-size: 2em;
+}
+
+#navtitle-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    color: white;
+    text-decoration: none;
+}
+
+.navitem {
+	display: flex;
+    align-items: stretch;
+    float: left;
+}
+
+.navlink {
+    padding-left: 15px;
+    padding-right: 15px;
+    color: white;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+	font-family: "Open Sans", sans-serif;
+    font-size: 1.25em;
+}
+
+.navlink:hover, .navlink-mobile:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+	transition: 0.4s;
+}
+
+.bold-navlink {
+    font-weight: bold;
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+}
+
+/* * * * * * * * * * Main Content * * * * * * * * * */
+
+#main-content {
+    margin: 10px;
+	color: black;
+}
+
+.page-title {
+    margin-top: 140px;
+    display: flex;
+    font-family: "Open Sans", sans-serif;
+    font-size: 3em;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-description {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.5em;
+    margin-bottom: 200px;	
+}
+
+.paragraph {
+    font-family: "Open Sans", sans-serif;
+    text-align: justify;
+    font-size: 1.5em;
+    line-height: 1.7em;
+    margin: auto;
+    max-width: 800px;
+}
+	
+/*
+ * Screen width guide
+ *
+ * 600px and smaller - phones
+ * 600px - 768px - larger phones and smaller tablets
+ * 768px - 992px - landscape tablets
+ * 992px - 1200px - laptop and desktop screens
+ * 1200px and larger - larger laptop and desktop screens
+ */
+ 
+/* Mobile only (IN DEVELOPMENT) --------------
+
+@media only screen and (max-width: 992px) {
+	WELL...
+}
+*/
+
+/* Desktop only */
+@media only screen and (min-width: 992px) {
+	
+	#navbar-links-desktop {
+        display: flex;
+    }
+
+    #mobile-nav-menu {
+        display: none;
+    }
+
+    #nav-icon {
+        display: none;
+    }
+}
