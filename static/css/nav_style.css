@@ -3,6 +3,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
 	background-color: white;
@@ -10,17 +14,22 @@ body {
 
 /* * * * * * * * * * Navigation header * * * * * * * * * */
 
+.fixed-nav #navbar {
+    transform: translateY(-100%);
+    transition: all 0.3s ease-in-out;
+}
+
 #navbar {
+    z-index: 1;
     position: fixed;
 	display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: stretch;
     top: 0;
     left: 0;
     width: 100%;
-    backdrop-filter: blur(20px) brightness(20%);
-	padding: 15px 20px;
-	margin-bottom: 100px;
+    background-color: rgb(256,252,244);
+	padding: 50px 20px;
 }
 
 #navbar-links-desktop {
@@ -32,21 +41,21 @@ body {
 	align-items: stretch;
 }
 
+#navbar-links-desktop li {
+    position: relative;
+}
+
+#nav-logo {
+    width: 300px;
+}
+
 #navtitle {
-    float: left;
-    padding-left: 5px;
-    color: white;
-    font-family: "Open Sans", sans-serif;
-    font-size: 2em;
+    padding-right: 50px;
 }
 
 #navtitle-link {
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 15px;
-    color: white;
-    text-decoration: none;
 }
 
 .navitem {
@@ -58,15 +67,59 @@ body {
 .navlink {
     padding-left: 15px;
     padding-right: 15px;
-    color: white;
+    color: grey;
 	display: flex;
     justify-content: center;
     align-items: center;
     text-decoration: none;
-	font-family: "Open Sans", sans-serif;
     font-size: 1.25em;
+    font-family: 'Lora', serif;
 }
 
+.navlink:hover, .navlink-mobile:hover {
+    color: rgba(256, 196, 180);
+}
+
+/* Add a sub-menu to each navlink */
+.sub-menu {
+    position: absolute;
+    top: 100%; /* Position the sub-menu below the navlink */
+    left: 0;
+    display: none; /* Hide the sub-menu by default */
+    background-color: rgba(256, 196, 180);
+    padding: 5px;
+    white-space: nowrap;
+    width: auto;
+    font-family: 'Lora', serif;
+}
+
+/* Display the sub-menu when the navlink is hovered over */
+.navitem:hover .sub-menu {
+    display: block;
+}
+
+/* Style the sub-menu links */
+.sub-menu a {
+    padding-left: 15px;
+    padding-right: 15px;
+    display: block;
+    text-decoration: none;
+    color: black;
+    font-family: 'Lora', serif;
+    font-size: 1.1em;
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+
+.sub-menu a:hover {
+    color: grey;
+}
+
+.sub-menu a:active {
+    color: white;
+}
+
+/*
 .navlink:hover, .navlink-mobile:hover {
     background-color: rgba(255, 255, 255, 0.3);
 	transition: 0.4s;
@@ -76,7 +129,7 @@ body {
     font-weight: bold;
     text-decoration: underline;
     text-decoration-thickness: 3px;
-}
+}*/
 
 /* * * * * * * * * * Main Content * * * * * * * * * */
 

@@ -1,0 +1,15 @@
+/* * * * * * * * * * Project Styling * * * * * * * * * */
+.footer {
+	background-color: rgb(256,252,244);
+	padding-top: 50px;
+	display: flex;
+    justify-content: center;
+	flex-direction: column; /* Add this line */
+	align-items: center; /* Optional, to center the logo horizontally */
+	bottom: 0;
+	width: 100%;
+}
+
+#foot-logo {
+	width: 12%;
+}

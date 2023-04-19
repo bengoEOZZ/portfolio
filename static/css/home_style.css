@@ -1,21 +1,126 @@
 /* * * * * * * * * * Home Styling * * * * * * * * * */
-.about-container {
+#slideshow-container {
+    background-color: rgba(248, 220, 212, 0.5);
+    margin-top: 155px;
+    position: relative;
+    width: 100%; /* set the width of the container to the desired size */
+    height: 100%;
+}
+  
+.slideshow-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* make the image fill the container horizontally */
+    height: 100%; /* make the image fill the container vertically */
+    object-fit: contain; /* crop the image if necessary to fit the container */
+    opacity: 0;
+    transition: opacity 3s;
+}
+
+.container {
+    margin-top: 40px;
+    margin-right: 150px;
+    margin-left: 150px;
+    margin-bottom: 50px;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 450px;
+}
+
+.box {
+    position: relative;
+    width: calc(25% - 20px);
+    margin-left: 50px;
+    margin-right: 50px;
+    height: 100%;
+    background-color: rgba(197, 162, 93, 0.3);
+    transition: transform 0.3s ease-in-out;
+}
+
+.box-image {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    width: 100px;
+    height: 100px;
+}
+
+.box:hover {
+    transform: scale(1.1);
+}
+
+.box-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(248, 164, 140, 0.8);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.box:hover .box-overlay {
+    opacity: 1;
+}
+
+.box-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin-left: 15px;
+    margin-right: 15px;
+    padding: 10px;
+    color: black;
+    font-family: 'Lora', serif;
+    font-size: 0.9em;
+    transition: transform 0.3s ease-in-out;
+    text-align: center;
+}
+
+.box:hover .box-content {
+    transform: scale(1.005);
+}
+
+.about-container {
+    position: relative;
+    width: 100%;
+    height: 850px;
+    background-color: rgb(240, 236, 236);
+}
+
+.about-blank {
+    position: absolute;
+    top: 30%;
+    right: 5%;
+    width: 60%;
+    height: 60%;
+    background-color: rgba(248, 180, 180, 0.3);
 }
 
 .about-text {
-    flex: 1;
-    padding-left: 50px;
-    margin-right: 300px;
-    font-size: 20px;
-    line-height: 2.4;
+    position: absolute;
+    top: 5%;
+    left: 8%;
+    width: 60%;
+    height: 80%;
+    background-color: rgba(248, 244, 236, 0.8);
+    text-align: center;
+    font-family: 'Lora', serif;
+    font-size: 1em;
 }
-  
+
 .about-card {
+    position: absolute;
+    top: 8%;
+    right: 0;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     max-width: 300px;
-    max-height: 650px;
-    margin-left: 300px;
+    max-height: 625px;
+    margin-right: 10%;
     text-align: center;
 }
 
@@ -30,19 +135,22 @@
     display: inline-block;
     padding: 8px;
     color: white;
-    background-color: #000;
+    background-color: rgb(248, 164, 149);
     text-align: center;
     cursor: pointer;
     width: 80%;
     font-size: 18px;
+    font-family: 'Lora', serif;
+    transition: background-color 0.5s ease;
 }
 
 #contact-button a {
     text-decoration: none;
     font-size: 22px;
-    color: black;
 }
 
 #contact-button button:hover, #other a:hover {
-    opacity: 0.7;
+    background-color: rgba(233, 226, 224, 255);
+    color: rgba(195, 149, 138, 255);
+    border: 1px solid blue;
 }
