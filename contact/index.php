@@ -1,5 +1,5 @@
 <head>
-    <h1 class="page-title">Let's Connect</h1>
+    <h1 class="page-title">Contact Me</h1>
     <link rel="stylesheet" type="text/css" href="/static/css/nav_style.css">
     <link rel="stylesheet" type="text/css" href="/static/css/footer_style.css">
     <link rel="stylesheet" type="text/css" href="/static/css/contact_style.css">
@@ -10,8 +10,20 @@
 		require __DIR__ . '../../navbar.php';
 	?>
     
+    <div class="header-container">
+        <h3>Let's Contact</h3>
+        <h1>Contact</h1>
+        <p>Would you like to get in touch with me?<br>
+        Whether you have a question, feedback, or simply want to say hello,<br>
+        please feel free to reach out to me through any of the following methods<br>
+            demonstrated below.
+        </p>
+    </div>
+    
+    <div class="contact-wrapper">
     <!-- *********************** Contact Section *********************** -->
     <div id="contact-info">
+        <h2 class="contact-left">Contact Me</h3><br>
         <div class="contact-info-section">
             <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
             <svg id="linkedin-icon" class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -20,7 +32,7 @@
             <p class="contact-link-text">
                 <a class="contact-link" href="https://www.linkedin.com/in/benjamin-tiong-493aa7232/" target="_blank">linkedin.com/in/benjamin-tiong/</a>
             </p>
-        </div>
+        </div><br>
         <div class="contact-info-section">
             <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
             <svg id="email-icon" class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -29,7 +41,7 @@
             <p class="contact-link-text">
                 <a class="contact-link" href="mailto:benjamintiong2019@gmail.com" target="_blank">benjamintiong2019@gmail.com</a>
             </p>
-        </div>
+        </div><br>
         <div class="contact-info-section">
             <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
             <svg id="phone icon" class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -39,31 +51,28 @@
             <p class="contact-link-text">
                 <a class="contact-link" href="tel:437-771-8035" target="_blank">(437) 771-8035</a>
             </p>
-        </div>
+        </div><br>
     </div>
     <!-- ***************************** END ***************************** -->
-
-
-    <br>
-    <div style="text-align:center; font-size: 24px;"><b>OR</b></div>
-
 
     <!-- *********************** Contact Form *********************** -->
     <form id="contact-form" class="section" method="POST" action="https://api.web3forms.com/submit" target="_blank">
         <input type="hidden" name="access_key" value="b04a14fc-2e89-4a9c-a6e2-040689b7321e">
         <br>
-        <label for="name">Name</label>
+        <label for="name">Name</label><br>
         <input type="text" name="name">
-        <br>
-        <label for="email">Email</label>
+        <br><br>
+        <label for="email">Email *</label><br>
         <input type="email" name="email" required>
-        <br>
-        <label for="message">Message</label>
-        <textarea name="message" rows="5" required></textarea>
-        <br>
+        <br><br>
+        <label for="message">Message</label><br>
+        <textarea name="message" rows="5" required></textarea><br>
+        <br><br>
         <button type="submit">Send</button>
     </form>
     <!-- *************************** END *************************** -->
+
+    </div>
 
     <?php
         require __DIR__ . '../../footer.php';

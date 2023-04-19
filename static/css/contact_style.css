@@ -1,9 +1,32 @@
 /* * * * * * * * * * Contact Styling * * * * * * * * * */
-#contact-info {
-    margin-top: 25px;
-	display: flex;
-    justify-content: space-around;
+.header-container {
+    font-family: 'Lora', 'serif';
+    font-size: 1.5em;
+    background-color: rgba(248, 220, 212, 0.5);
+    padding-top: 50px;
+    margin-top: 95px;
+    position: relative;
+    width: 100%; /* set the width of the container to the desired size */
+    height: auto;
+    text-align: center;
+    padding-bottom: 50px;
 }
+
+.contact-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+#contact-info {
+    padding-left: 12%;
+    margin-top: 50px;
+    width: 40%;
+    background-color: rgb(256, 252, 244);
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
 
 .contact-icon {
     display: flex;
@@ -18,38 +41,56 @@
 
 .contact-link {
     text-decoration: none;
-    color: black;
+    color: rgba(256, 196, 180);
     font-weight: bold;
     font-size: 1.15em;
 }
 
 #contact-form {
-    display: flex;
-    flex-direction: column;
-
+    padding-top: 1%;
+    padding-left: 10%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 40%;
+    background-color: rgba(248, 220, 212, 0.5);
 }
 
 #contact-form > label {
-    font-family: var(--paragraph-font);
-    font-size: var(--paragraph-font-size);
+    font-family: 'Lora', serif;
+    font-size: 1.1em;
 	margin: auto;
 	width: 50%;
 }
 
 #contact-form > input, #contact-form > textarea {
+    font-family: 'Lora', serif;
+    font-size: 1.1em;
     padding: 15px;
-    font-family: var(--paragraph-font);
-    font-size: var(--paragraph-font-size);
-    margin-bottom: 15px;
     border-radius: 0;
     border-width: 1px;
-	width: 50%;
-	margin: auto;
+	width: 70%;
 }
 
 #contact-form > button {
-	margin: auto;
+	margin-bottom: 50px;
+    font-family: 'Lora', serif;
 	font-size: 1em;
+    color: rgba(256, 196, 180);
+    background-color: white;
 	padding: 10px 20px;
-	width: 150px;
+    width: 70%;
+    transition: background-color 0.5s ease;
+    transition: border-color 0.5s ease;
+}
+
+#contact-form > button:hover {
+    background-color: rgb(256, 252, 228);
+    border-color: white;
+}
+
+.contact-left {
+    display: flex;
+    font-family: 'Lora', serif;
+    font-size: 3em;
+    color: rgba(256, 196, 180);
 }
