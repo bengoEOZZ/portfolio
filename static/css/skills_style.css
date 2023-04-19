@@ -1,5 +1,6 @@
 /* * * * * * * * * * Skills Styling * * * * * * * * * */
 .header-container {
+    z-index: 0;
     position: relative;
     margin-top: 90px;
     width: 100%;

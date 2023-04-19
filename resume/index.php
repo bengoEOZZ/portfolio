@@ -11,15 +11,12 @@
     <div class="header-container">
 		<div class="page-background"></div>
 		<div class="page-container">
-			<h1 class="page-title" id="page-title">PROFESSIONAL SKILLS AND EXPERIENCE</h1>
+			<h1 class="page-title" id="page-title">RESUME</h1>
 			<p class="page-description">
-				Welcome to my skills section, where you can learn more about my expertise and
-				experience. In this section, I'll showcase my technical skills, industry knowledge,
-				and professional achievements that have helped me become a well-rounded and
-				knowledgeable individual. I have a diverse set of skills that I've developed
-				over the years, whether you're a potential employer or just curious about what
-				I can bring to the table, I invite you to explore this section and get to know
-				me a little better.
+                This resume is a comprehensive representation of my skills,
+                achievements, and experiences that I have accumulated throughout my career.
+                I believe that my diverse skillset, coupled with my passion for coding
+                and dedication to continuous learning, make me a strong candidate for any role.
 			</p>
 		</div>
 	</div>

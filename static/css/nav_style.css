@@ -82,6 +82,7 @@ body {
 
 /* Add a sub-menu to each navlink */
 .sub-menu {
+    z-index: 4;
     position: absolute;
     top: 100%; /* Position the sub-menu below the navlink */
     left: 0;
