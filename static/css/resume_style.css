@@ -1,5 +1,6 @@
 /* * * * * * * * * * Resume Styling * * * * * * * * * */
 .header-container {
+    z-index: 0;
     position: relative;
     margin-top: 90px;
     width: 100%;
@@ -17,7 +18,6 @@
 }
 
 .page-container {
-    z-index: 1;
     top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
