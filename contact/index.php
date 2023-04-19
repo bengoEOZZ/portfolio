@@ -1,6 +1,7 @@
 <head>
     <h1 class="page-title">Let's Connect</h1>
     <link rel="stylesheet" type="text/css" href="/static/css/nav_style.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/footer_style.css">
     <link rel="stylesheet" type="text/css" href="/static/css/contact_style.css">
 </head>
 
@@ -63,4 +64,8 @@
         <button type="submit">Send</button>
     </form>
     <!-- *************************** END *************************** -->
+
+    <?php
+        require __DIR__ . '../../footer.php';
+	?>
 </body>

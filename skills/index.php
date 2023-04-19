@@ -1,6 +1,9 @@
 <head>
-	<h1 class="page-title" id="page-title">Skills</h1>
+	<div id = page-container>
+		<h1 class="page-title" id="page-title">Skills</h1>
+	</div>
 	<link rel="stylesheet" type="text/css" href="/static/css/nav_style.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/footer_style.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/skills_style.css">
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
@@ -9,18 +12,32 @@
 	<?php
 		require __DIR__ . '../../navbar.php';
 	?>
-
-  	<div class="skills-container">
-		
-		<aside class="left">
+	<div class="header-container">
+		<div class="page-background"></div>
+		<div class="page-container">
+			<h1 class="page-title" id="page-title">PROFESSIONAL SKILLS AND EXPERIENCE</h1>
+			<p class="page-description">
+				Welcome to my skills section, where you can learn more about my expertise and
+				experience. In this section, I'll showcase my technical skills, industry knowledge,
+				and professional achievements that have helped me become a well-rounded and
+				knowledgeable individual. I have a diverse set of skills that I've developed
+				over the years, whether you're a potential employer or just curious about what
+				I can bring to the table, I invite you to explore this section and get to know
+				me a little better.
+			</p>
+		</div>
+	</div>
+  	
+	<div class="skills-container">	
+		<aside id="fixed-left" class="left">
 			<ul>
-				<li><a class="active" href="#page-title">Python</a></li>
-				<li><a href="#Python">HTML</a></li>
-				<li><a href="#HTML">Java</a></li>
-				<li><a href="#Java">C</a></li>
-				<li><a href="#C">C++</a></li>
-				<li><a href="#C++">Linux</a></li>
-				<li><a href="#Linux">SQL</a></li>
+				<li><a href="#Python">Python</a></li>
+				<li><a href="#HTML">HTML</a></li>
+				<li><a href="#Java">Java</a></li>
+				<li><a href="#C">C</a></li>
+				<li><a href="#C++">C++</a></li>
+				<li><a href="#Linux">Linux</a></li>
+				<li><a href="#SQL">SQL</a></li>
 			</ul>
 		</aside>
 
@@ -29,10 +46,10 @@
 			<ul>
 				<li>A high-level, general-purpose programming language that has gained immense popularity due to its its simplicity and ease of use</li>
 				<li>Its syntax is straightforward and readable</li>
-				<li>Using Python, I implement most of my algorithms to get a base structure and understaning of the structure</li>
+				<li>Using Python, I implement most of my algorithms to get a base structure and understanding of the structure</li>
 			</ul></td><td>
 			<ul>
-				<li>I've taken courses in Python, ususally introductory courses due to its simplicity</li>
+				<li>I've taken courses in Python, usually introductory courses due to its simplicity</li>
 				<li>I've developed a game in Python using PyGame, I designed gameplay based on mouse and keyboard inputs given by the player of the game to control movement, decisions, and game states</li>
 			</ul></td></tr><tr>
 		</table>
@@ -41,7 +58,7 @@
 	  	<table id="HTML"><tr><th>HTML</th><th>Experience</th></tr><tr><td>
 			<ul>
 				<li>HTML (Hypertext Markup Language) is a standard markup language used for creating web pages and web applications</li>
-				<li>I've used HTML is in conjunction with other web technologies such as CSS (Cascading Style Sheets) for styling and layout, and JavaScript for interactivity and dynamic behavior</li>
+				<li>I've used HTML in conjunction with other web technologies such as CSS (Cascading Style Sheets) for styling and layout, and JavaScript for interactivity and dynamic behavior</li>
 			</ul></td><td>
 			<ul>
 				<li>I've created multiple websites through HTML and CSS styling (with JavaScript functionality)</li>
@@ -55,7 +72,7 @@
 				<li>An object-oriented language, emphasizing the use of objects to represent data and perform operations</li>
 				<li>It has automatic memory management, so the user won't have to mangage it themselves</li>
 				<li>
-					Using Java, I recognize it as by far the best language to design data stuctures and implement their functionality
+					Using Java, I recognize it as the best language to design data stuctures and implement their functionality
 				</li>
 			</ul></td><td>
 			<ul>
@@ -84,7 +101,7 @@
 				<li>C++ is widely used in the development of operating systems, game development, and scientific applications</li>
 			</ul></td><td>
 			<ul>
-				<li>I've taken a course in C++, creating a Trivia Quiz Game with a functional buzzer system and interactive GUI
+				<li>I've taken a course in C++, creating a Trivia Quiz Game with a functional buzzer system and and interactive GUI
 				</li>
 			</ul></td></tr><tr>
 		</table>
@@ -108,7 +125,7 @@
 				<li>It performs tasks such as creating databases, tables, and views, as well as querying, inserting, updating and deleting data from databases</li>
 			</ul></td><td>
 			<ul>
-				<li>I've taken a course in Database Management Systems, workig with SQL and querying and creating tables, later developed into a final prototype website</li>
+				<li>I've taken a course in Database Management Systems, working with SQL and querying and creating tables, later developed into a final prototype for a website application</li>
 			</ul></td></tr><tr>
 		</table>
 
@@ -155,8 +172,32 @@
 				}
 				}
 			});
+
+			// ************************** Scroll left**************************
+			// get the element to make fixed
+			var fixedElement = document.getElementById("fixed-left");
+
+			// get the offset of the element from the top of the page
+			var fixedElementOffsetTop = fixedElement.offsetTop;
+
+			// listen for scroll events
+			window.addEventListener("scroll", function() {
+				// check if the user has scrolled past the offset of the fixed element
+				if (window.pageYOffset >= fixedElementOffsetTop) {
+				// apply the fixed position
+				fixedElement.style.position = "fixed";
+				fixedElement.style.top = "0";
+				} else {
+				// remove the fixed position
+				fixedElement.style.position = "static";
+				}
+ 			});
+</script>
 	</script>
 
 	</main>
 	</div>
+	<?php
+        require __DIR__ . '../../footer.php';
+	?>
 </body>

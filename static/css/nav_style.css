@@ -139,21 +139,23 @@ body {
 }
 
 .page-title {
-    margin-top: 140px;
     display: flex;
-    font-family: "Open Sans", sans-serif;
+    font-family: 'Lora', serif;;
     font-size: 3em;
     justify-content: center;
-    align-items: center;
+    color: rgba(256, 196, 180);
+    text-align: center;
 }
 
 .page-description {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: "Open Sans", sans-serif;
-    font-size: 1.5em;
-    margin-bottom: 200px;	
+    font-family: "Lora", sans-serif;
+    font-size: 1.75em;	
+    line-height: 2;
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 .paragraph {

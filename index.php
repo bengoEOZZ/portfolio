@@ -32,6 +32,15 @@
                 </li>
                 <li class="navitem">
                     <a class="navlink" href='/skills'>SKILLS</a>
+                    <div class="sub-menu">
+                        <a href="/skills/#Python">Python</a>
+                        <a href="/skills/#HTML">HTML</a>
+                        <a href="/skills/#Java">Java</a>
+                        <a href="/skills/#C">C</a>
+                        <a href="/skills/#C++">C++</a>
+                        <a href="/skills/#Linux">Linux</a>
+                        <a href="/skills/#SQL">SQL</a>
+                    </div>
                 </li>
                 <li class="navitem">
                     <a class="navlink" href='/resume'>RESUME</a>
@@ -173,10 +182,5 @@
         }
         window.addEventListener('scroll', fixNav);
         // * * * * * * * * * * Navbar END * * * * * * * * * *
-        
-        function scrollToSection(selector) {
-            const target = document.querySelector(selector);
-            target.scrollIntoView({ behavior: 'smooth' });
-        }
     </script>
 </body>
