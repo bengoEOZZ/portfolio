@@ -1,5 +1,6 @@
 <head>
   <link rel="stylesheet" type="text/css" href="/static/css/nav_style.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/footer_style.css">
   <link rel="stylesheet" type="text/css" href="/static/css/error_style.css">
 </head>
 
@@ -13,4 +14,7 @@
     <p id = "Error-paragraph">The page you are looking for does not exist.</p>
     <p><a href="/">Visit Homepage</a></p>
   </div>
+  <?php
+		require __DIR__ . '../footer.php';
+	?>
 </body>
