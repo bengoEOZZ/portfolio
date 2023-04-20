@@ -1,4 +1,5 @@
 <head>
+    <h1 class="page-title">Home</h1>
     <link rel="stylesheet" type="text/css" href="/static/css/nav_style.css">
     <link rel="stylesheet" type="text/css" href="/static/css/footer_style.css">
     <link rel="stylesheet" type="text/css" href="/static/css/home_style.css">
@@ -14,46 +15,9 @@
 
 <body>
     <!-- RE-DEFINED JUST FOR INDEX PAGE (NEEDED FOR HOSTING) -->
-    <nav id="navigation-header">
-        <div id="navbar">
-            <div id="navtitle">
-                <a id="navtitle-link" href="<?= '/' ?>">
-                    <img id="nav-logo" src="/static/images/Logo.png">
-                </a>
-            </div>
-            <ul id="navbar-links-desktop">
-                <li class="navitem">
-                    <a class="navlink" href="<?= '/' ?>">HOME</a>
-                    <div class="sub-menu">
-                        <a href="#slideshow-container">Discover Who I Am</a>
-                        <a href="#card-container">More About Me</a>
-                        <a href="#about-container">Profile Card</a>
-                    </div>
-                </li>
-                <li class="navitem">
-                    <a class="navlink" href='/skills'>SKILLS</a>
-                    <div class="sub-menu">
-                        <a href="/skills/#Python">Python</a>
-                        <a href="/skills/#HTML">HTML</a>
-                        <a href="/skills/#Java">Java</a>
-                        <a href="/skills/#C">C</a>
-                        <a href="/skills/#C++">C++</a>
-                        <a href="/skills/#Linux">Linux</a>
-                        <a href="/skills/#SQL">SQL</a>
-                    </div>
-                </li>
-                <li class="navitem">
-                    <a class="navlink" href='/resume'>RESUME</a>
-                </li>
-                <li class="navitem">
-                    <a class="navlink" href='/projects'>PROJECTS</a>
-                </li>
-                <li class="navitem">
-                    <a class="navlink" href='/contact'>CONTACT ME</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <?php
+		require __DIR__ . '/navbar.php';
+	?>
     <!-- * * * * * END * * * * * -->
 
     <!-- Slideshow -->
@@ -68,7 +32,6 @@
     <!-- CARDS FOR ABOUT ME!!! -->
     <div id="card-container" class="container">
         <div class="box">
-            <div class="box-overlay"></div>
             <img class="box-image" src="/static/images/comp.png">
             <div class="box-content">
             <h3>About Me</h3>
@@ -79,7 +42,6 @@
             </div>
         </div>
         <div class="box">
-            <div class="box-overlay"></div>
             <img class="box-image" src="/static/images/work.png">
             <div class="box-content">
             <h3>Experience</h3>
@@ -90,7 +52,6 @@
             </div>
         </div>
         <div class="box">
-            <div class="box-overlay"></div>
             <img class="box-image" src="/static/images/gym.png">
             <div class="box-content">
             <h3>Health</h3>
@@ -101,7 +62,6 @@
             </div>
         </div>
         <div class="box">
-            <div class="box-overlay"></div>
             <img class="box-image" src="/static/images/media.png">
             <div class="box-content">
             <h3>Media</h3>
@@ -141,12 +101,9 @@
     <!-- Card END -->
 
     <!-- REDEFINING FOOTER FOR WEBHOSTING PURPOSES -->
-    <footer>
-        <div class="footer">
-            <img id="foot-logo" src="/static/images/Logo.png">
-            <p>&copy; 2023 Benjamin Tiong. All rights reserved.</p>
-        </div>
-    </footer>
+    <?php
+        require __DIR__ . '/footer.php';
+	?>
     <!-- FOOTER END -->
 
     <script>
@@ -169,18 +126,5 @@
         // call the showNextImage function every 8 seconds
         setInterval(showNextImage, 8000);
         // * * * * * * * * * * Slidshow END * * * * * * * * * *
-
-        // * * * * * * * * * * Navbar Transition * * * * * * * * * *
-        const nav = document.querySelector('#navigation-header');
-        const navTop = nav.offsetTop;
-        function fixNav() {
-            if (window.scrollY >= navTop) {
-                document.body.classList.add('fixed-nav');
-            } else {
-                document.body.classList.remove('fixed-nav');
-            }
-        }
-        window.addEventListener('scroll', fixNav);
-        // * * * * * * * * * * Navbar END * * * * * * * * * *
     </script>
 </body>
