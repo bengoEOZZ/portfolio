@@ -38,6 +38,11 @@
     align-items: center;
 }
 
+.slideshow-button-left:hover,
+.slideshow-button-right:hover {
+    background-color: grey;
+}
+
 .slideshow-button-left {
     left: 10%;
 }
