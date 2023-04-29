@@ -1,4 +1,4 @@
-<head>
+<head> <!-- EDIT NO HEAD AND BODY-->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
@@ -44,18 +44,4 @@
             </ul>
         </div>
     </nav>
-    <script>
-        // * * * * * * * * * * Navbar Transition * * * * * * * * * *
-        const nav = document.querySelector('#navigation-header');
-        const navTop = nav.offsetTop;
-        function fixNav() {
-            if (window.scrollY >= navTop) {
-                document.body.classList.add('fixed-nav');
-            } else {
-                document.body.classList.remove('fixed-nav');
-            }
-        }
-        window.addEventListener('scroll', fixNav);
-        // * * * * * * * * * * Navbar END * * * * * * * * * *
-    </script>
 </body>

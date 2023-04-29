@@ -1,13 +1,18 @@
 <head>
     <h1 class="page-title">My Resume</h1>
+    <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="/static/css/nav_style.css">
     <link rel="stylesheet" type="text/css" href="/static/css/footer_style.css">
     <link rel="stylesheet" type="text/css" href="/static/css/resume_style.css">
 </head>
 <body>
+    <!-- NAVBAR -->
     <?php
 		require __DIR__ . '../../navbar.php';
 	?>
+    <!-- NAVBAR END -->
+
+    <!-- RESUME HEADER -->
     <div class="header-container">
 		<div class="page-background"></div>
 		<div class="page-container">
@@ -20,8 +25,19 @@
 			</p>
 		</div>
 	</div>
+    <!-- RESUME HEADER END -->
+
+    <!-- RESUME -->
     <iframe id="resume-pdf" src="/static/documents/resume.pdf"></iframe>
+    <!-- RESUME END -->
+    
+    <!-- FOOTER -->
     <?php
         require __DIR__ . '../../footer.php';
 	?>
+    <!-- FOOTER END -->
+
+    <!-- SCRIPTS -->
+    <script src="/static/javascript/navbar_transition.js"></script>
+    <!-- SCRIPTS END -->
 </body>

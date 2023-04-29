@@ -1,13 +1,18 @@
 <head>
     <h1 class="page-title">My Projects</h1>
+    <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="/static/css/nav_style.css">
     <link rel="stylesheet" type="text/css" href="/static/css/footer_style.css">
     <link rel="stylesheet" type="text/css" href="/static/css/project_style.css">
 </head>
 <body>
+    <!-- NAVBAR -->
     <?php
 		require __DIR__ . '../../navbar.php';
 	?>
+    <!-- NAVBAR END -->
+
+    <!-- PROFILE HEADER -->
     <div class="header-container">
 		<div class="page-background"></div>
 		<div class="page-container">
@@ -21,8 +26,17 @@
 			</p>
 		</div>
 	</div>
+    <!-- PROFILE HEADER END -->
+
     <img class="project-card-image" src="/static/images/not_done.jpg">
+
+    <!-- FOOTER -->
     <?php
         require __DIR__ . '../../footer.php';
 	?>
+    <!-- FOOTER END -->
+
+    <!-- SCRIPTS -->
+    <script src="/static/javascript/navbar_transition.js"></script>
+    <!-- SCRIPTS END -->
 </body>

@@ -1,5 +1,6 @@
 <head>
     <h1 class="page-title">Home</h1>
+    <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="/static/css/nav_style.css">
     <link rel="stylesheet" type="text/css" href="/static/css/footer_style.css">
     <link rel="stylesheet" type="text/css" href="/static/css/home_style.css">
@@ -14,22 +15,22 @@
 </head>
 
 <body>
-    <!-- RE-DEFINED JUST FOR INDEX PAGE (NEEDED FOR HOSTING) -->
+    <!-- NAVBAR -->
     <?php
 		require __DIR__ . '/navbar.php';
 	?>
-    <!-- * * * * * END * * * * * -->
+    <!-- NAVBAR END -->
 
-    <!-- Slideshow -->
+    <!-- SLIDESHOW -->
     <div id="slideshow-container">
         <img class="slideshow-image" src="/static/images/slideshow-1.jpeg">
         <img class="slideshow-image" src="/static/images/slideshow-2.jpeg">
         <img class="slideshow-image" src="/static/images/slideshow-3.jpeg">
         <img class="slideshow-image" src="/static/images/slideshow-4.jpeg">
     </div>
-    <!-- END -->
+    <!-- SLIDESHOW END -->
 
-    <!-- CARDS FOR ABOUT ME!!! -->
+    <!-- CARDS -->
     <div id="card-container" class="container">
         <div class="box">
             <img class="box-image" src="/static/images/comp.png">
@@ -72,7 +73,7 @@
     </div>
     <!-- CARDS END -->
 
-    <!-- Card -->
+    <!-- PROFILE CARD -->
 	<div id="about-container" class="about-container">
         <div class="about-blank"></div>
         <div class="about-text"><br><br><br>
@@ -98,33 +99,16 @@
             <p><a href='/contact' id="contact-button"><button>CONTACT</button></a></p>
         </div>
 	</div>
-    <!-- Card END -->
+    <!-- PROFILE CARD END -->
 
-    <!-- REDEFINING FOOTER FOR WEBHOSTING PURPOSES -->
+    <!-- FOOTER -->
     <?php
         require __DIR__ . '/footer.php';
 	?>
     <!-- FOOTER END -->
 
-    <script>
-        // * * * * * * * * * * Slidshow Transition * * * * * * * * * *
-        // get references to the container and all images
-        const container = $("#slideshow-container");
-        const images = container.find(".slideshow-image");
-        // set initial image index and display the first image
-        let currentIndex = 0;
-        images.eq(currentIndex).css("opacity", "1");
-        // create a function to show the next image
-        function showNextImage() {
-            // hide the current image
-            images.eq(currentIndex).css("opacity", "0");
-            // increment the index, wrapping around if necessary
-            currentIndex = (currentIndex + 1) % images.length;
-            // show the next image
-            images.eq(currentIndex).css("opacity", "1");
-        }
-        // call the showNextImage function every 8 seconds
-        setInterval(showNextImage, 8000);
-        // * * * * * * * * * * Slidshow END * * * * * * * * * *
-    </script>
+    <!-- SCRIPTS -->
+    <script src="/static/javascript/navbar_transition.js"></script>
+    <script src="/static/javascript/slideshow_transition.js"></script>
+    <!-- SCRIPTS END -->
 </body>
