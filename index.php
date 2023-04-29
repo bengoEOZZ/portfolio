@@ -32,6 +32,8 @@
         <img class="slideshow-image" src="/static/images/slideshow-2.jpeg">
         <img class="slideshow-image" src="/static/images/slideshow-3.jpeg">
         <img class="slideshow-image" src="/static/images/slideshow-4.jpeg">
+        <div class="slideshow-button-left">&#10094;</div>
+        <div class="slideshow-button-right">&#10095;</div>
     </div>
     <!-- SLIDESHOW END -->
 

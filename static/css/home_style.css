@@ -15,6 +15,35 @@
     object-fit: contain; /* crop the image if necessary to fit the container */
     opacity: 0;
     transition: opacity 3s;
+    padding-top: 5%;
+    padding-bottom: 2%;
+}
+
+.slideshow-button-left,
+.slideshow-button-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 75px;
+    height: 75px;
+    font-size: 32px;
+    color: white;
+    background-color: rgba(0,0,0,0.7);
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slideshow-button-left {
+    left: 10%;
+}
+
+.slideshow-button-right {
+    right: 10%;
 }
 
 .container {

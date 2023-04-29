@@ -13,7 +13,7 @@
             <li class="navitem">
                 <a class="navlink" href="<?= '/' ?>">HOME</a>
                 <div class="sub-menu">
-                    <a href="/#slideshow-container">Discover Who I Am</a>
+                    <a href="/#slideshow-container">Gallery</a>
                     <a href="/#card-container">More About Me</a>
                     <a href="/#about-container">Profile Card</a>
                 </div>
