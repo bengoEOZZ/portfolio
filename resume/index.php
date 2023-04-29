@@ -1,5 +1,10 @@
 <head>
-    <h1 class="page-title">My Resume</h1>
+    <!-- Title -->
+    <h1 class="page-title">Resume</h1>
+    <!-- Navbar Styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="/static/css/nav_style.css">
     <link rel="stylesheet" type="text/css" href="/static/css/footer_style.css">
