@@ -9,7 +9,8 @@ html {
 
 body {
     margin: 0;
-	background-color: white;
+    z-index: -2;
+	background-color: lightgray;
 }
 
 /* * * * * * * * * * Navigation header * * * * * * * * * */
@@ -28,7 +29,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgb(256,252,244);
+    background-color: darkgray;
 	padding: 50px 20px;
 }
 
@@ -67,7 +68,7 @@ body {
 .navlink {
     padding-left: 15px;
     padding-right: 15px;
-    color: grey;
+    color: white;
 	display: flex;
     justify-content: center;
     align-items: center;
@@ -77,7 +78,7 @@ body {
 }
 
 .navlink:hover, .navlink-mobile:hover {
-    color: rgba(256, 196, 180);
+    color: yellowgreen;
 }
 
 /* Add a sub-menu to each navlink */
@@ -87,7 +88,7 @@ body {
     top: 100%; /* Position the sub-menu below the navlink */
     left: 0;
     display: none; /* Hide the sub-menu by default */
-    background-color: rgba(256, 196, 180);
+    background-color: yellowgreen;
     padding: 5px;
     white-space: nowrap;
     width: auto;
@@ -113,24 +114,12 @@ body {
 }
 
 .sub-menu a:hover {
-    color: grey;
+    color: gray;
 }
 
 .sub-menu a:active {
     color: white;
 }
-
-/*
-.navlink:hover, .navlink-mobile:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-	transition: 0.4s;
-}
-
-.bold-navlink {
-    font-weight: bold;
-    text-decoration: underline;
-    text-decoration-thickness: 3px;
-}*/
 
 /* * * * * * * * * * Main Content * * * * * * * * * */
 
