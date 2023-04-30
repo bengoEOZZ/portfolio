@@ -86,7 +86,7 @@ body {
     height: 450px;
 }
 
-#cards-background {
+.cards-background {
     background-color: rgba(56,56,56,255);
     padding-top: 40px;
     padding-bottom: 50px;

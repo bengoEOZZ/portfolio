@@ -40,8 +40,8 @@
   	
 	<div class="skills-container">
 		<!-- SKILLS MENU -->
-		<aside id="fixed-left" class="left hidden">
-			<ul>
+		<aside id="fixed-left" class="left">
+			<ul><br>
 				<li><a href="#PL">Programming Languages</a></li>
 				<li><a href="#SD">Software Development</a></li>
 				<li><a href="#DM">Database Management</a></li>
@@ -54,7 +54,8 @@
 
 		<!-- SKILLS TABLE -->
 		<main class="content">
-			<table id="PL" class="hidden"><tr><th>Programming Languages</th><th>Experience</th></tr><tr><td>
+			<br id="PL">
+			<table class="hidden"><tr><th>Programming Languages</th><th>Experience</th></tr><tr><td>
 				<ul>
 					<li><b>Proficient in Python:</b> A high-level, general-purpose programming language that has gained immense popularity due to its its simplicity and ease of use, with experience in data analysis, web development, and automation tasks</li><br><br>
 					<li><b>Skilled in Java:</b> An object-oriented language, emphasizing the use of objects to represent data and perform operations with experience building</li><br><br>
@@ -73,8 +74,8 @@
 					<li>Comfortable working with a variety of software development tools, such as IDEs, compilers, and debugging tools, across multiple platforms</li>
 				</ul></td></tr><tr>
 			</table>
-			<br><br>
-			<table id="SD" class="hidden"><tr><th>Software Development</th><th>Experience</th></tr><tr><td>
+			<br><br id="SD">
+			<table class="hidden"><tr><th>Software Development</th><th>Experience</th></tr><tr><td>
 				<ul>
 					<li>Proficiency in one or more programming languages, such as Python, Java, C++, etc.</li>
 					<li>Knowledge of software development principles and best practices</li>
@@ -90,8 +91,8 @@
 					<li>Gained expertise in software quality assurance, including testing, debugging, and quality control, to ensure the delivery of high-quality software products that meet user expectations</li>
 				</ul></td></tr><tr>
 			</table>
-			<br><br>
-			<table id="DM" class="hidden"><tr><th>Database Management</th><th>Experience</th></tr><tr><td>
+			<br><br id="DM">
+			<table class="hidden"><tr><th>Database Management</th><th>Experience</th></tr><tr><td>
 				<ul>
 					<li>Proficiency in <b>Database Management Systems (DBMS)</b>, including installation, configuration, and maintenance</li><br><br>
 					<li>Knowledge of database modeling, design, and normalization principles, to ensure the efficient storage and retrieval of data in software applications</li><br><br>
@@ -107,8 +108,8 @@
 					<li>Knowledge of database security best practices, including access control, user authentication, and data encryption, to ensure the security and integrity of sensitive data</li>
 				</ul></td></tr><tr>
 			</table>
-			<br><br>
-			<table id="WD" class="hidden"><tr><th>Web Development</th><th>Experience</th></tr><tr><td>
+			<br><br id="WD">
+			<table class="hidden"><tr><th>Web Development</th><th>Experience</th></tr><tr><td>
 				<ul>
 					<li><b>Proficiency in HTML (Hypertext Markup Language):</b> including the ability to create and structure web pages</li>
 					<li><b>Knowledge of CSS (Cascading Style Sheets):</b> including the ability to create visually appealing and responsive web page layouts</li>
@@ -123,8 +124,8 @@
 					<li>Deployed the website on <b>DockerHub</b>, a cloud-based container registry service, making it accessible to a wide range of users</li>
 				</ul></td></tr><tr>
 			</table>
-			<br><br>
-			<table id="OS" class="hidden"><tr><th>Operating Systems</th><th>Experience</th></tr><tr><td>
+			<br><br id="OS">
+			<table class="hidden"><tr><th>Operating Systems</th><th>Experience</th></tr><tr><td>
 				<ul>
 					<li>Strong knowledge of operating system fundamentals, including process management, memory management, file systems, and networking</li>
 					<li>Proficiency in using command-line interfaces and scripting languages, such as <b>Bash</b>, to automate tasks and improve productivity</li>
@@ -139,8 +140,8 @@
 					<li>Gained knowledge of Linux file systems and their structures, including the root file system and different file permissions and ownerships</li>
 				</ul></td></tr><tr>
 			</table>
-			<br><br>
-			<table id="ADS" class="hidden"><tr><th>Algorithms</th><th>Data Structures</th></tr><tr><td>
+			<br><br id="ADS" >
+			<table class="hidden"><tr><th>Algorithms</th><th>Data Structures</th></tr><tr><td>
 				<ul>
 					<li><b>Sorting algorithms:</b> These algorithms are used to sort a list of elements in a specific order, such as ascending or descending</li>
 					<li><b>Search algorithms:</b> These algorithms are used to search for a particular element in a list or array of elements</li>
@@ -159,10 +160,6 @@
 					<li><b>Hash Tables:</b> A hash table is a data structure that uses a hash function to map keys to values. Hash tables are useful for implementing dictionaries and for solving problems that require constant-time access to elements</li>
 				</ul></td></tr><tr>
 			</table>
-			<!-- SKILLS SCRIPTS -->
-			<script src="/static/javascript/skills_active.js"></script>
-			<script src="/static/javascript/skills_menu_scroll.js"></script>
-			<!-- SKILLS SCRIPTS END -->
 		</main>
 		<!-- SKILLS TABLE END -->
 	</div>
@@ -175,35 +172,9 @@
 
 	<!-- SCRIPTS-->
 	<script src="/static/javascript/navbar_transition.js"></script>
-	<script>
-		// * * * * * * * * * * Fade In Transition * * * * * * * * * *
-function isElementInViewport(el) {
-    var rect = el.getBoundingClientRect();
-    return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
-}
-
-function handleVisibility() {
-    var boxes = document.querySelectorAll('.hidden');
-    for (var i = 0; i < boxes.length; i++) {
-        if (isElementInViewport(boxes[i])) {
-            boxes[i].classList.add('table-show');
-            boxes[i].classList.remove('table-hidden');
-        } else {
-            boxes[i].classList.remove('table-show');
-            boxes[i].classList.add('table-hidden');
-        }
-    }
-}
-
-window.addEventListener('scroll', handleVisibility);
-window.addEventListener('resize', handleVisibility);
-window.addEventListener('load', handleVisibility);
-// * * * * * * * * * * END * * * * * * * * * *
-</script>
+	<script src="/static/javascript/skills_active.js"></script>
+	<script src="/static/javascript/skills_menu_scroll.js"></script>
+	<script src="/static/javascript/skills_table_fade.js"></script>
+	<script src="/static/javascript/skills_left_fade.js"></script>
 	<!-- SCRIPTS END -->
 </body>

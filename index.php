@@ -38,8 +38,8 @@
     <!-- SLIDESHOW END -->
 
     <!-- CARDS -->
-    <div id="cards-background">
-        <div id="card-container" class="container">
+    <div class="cards-background" id="card-container" >
+        <div class="container">
             <div class="box box-hidden">
                 <img class="box-image" src="/static/images/comp.png">
                 <div class="box-content">

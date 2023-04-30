@@ -60,6 +60,11 @@ aside.left {
     transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
+.left-show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .left.fixed {
     position: fixed;
     top: 300px; /* set this to match the height of your navbar */
