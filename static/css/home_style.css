@@ -2,16 +2,16 @@
 
 body {
     margin: 0;
-	background-color: rgba(56,56,56,255);
+	background-color: rgb(112,108,108);
 }
 
-.profile {
+.title-text {
     background-color: rgb(112,108,108);
-    margin-top: 90px;
-    padding-top: 10px;
+    margin-top: 100px;
+    padding-top: 2%;
     color: white;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 2em;
+    font-family: 'Cinzel', serif;
+    font-size: 4em;
     text-align: center;
 }
 
@@ -35,14 +35,12 @@ body {
   
 .slideshow-image {
     position: absolute;
-    top: 0;
-    left: 0;
     width: 100%; /* make the image fill the container horizontally */
     height: 100%; /* make the image fill the container vertically */
     object-fit: contain; /* crop the image if necessary to fit the container */
     opacity: 0;
     transition: opacity 3s;
-    padding-bottom: 2%;
+    padding-bottom: 5%;
 }
 
 .slideshow-button-left,
@@ -88,6 +86,12 @@ body {
     height: 450px;
 }
 
+#cards-background {
+    background-color: rgba(56,56,56,255);
+    padding-top: 40px;
+    padding-bottom: 50px;
+}
+
 .box {
     position: relative;
     width: calc(25% - 20px);
@@ -128,7 +132,7 @@ body {
 .box:hover {
     transform: scale(1.1);
     background-color: yellowgreen;
-    transition: transform 0.05s ease-in-out, background-color 0.05s ease-in-out;
+    transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
 
 .box:hover {

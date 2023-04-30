@@ -4,7 +4,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Lora&display=swap" rel="stylesheet">
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="/static/css/nav_style.css">
     <link rel="stylesheet" type="text/css" href="/static/css/footer_style.css">
@@ -22,9 +22,9 @@
 	?>
     <!-- NAVBAR END -->
 
-    <div class="profile">
-        <h1>THE SHOWCASE COLLECTION</h1><br>
-    </div>
+    <!-- TITLE -->
+    <h1 class="title-text">THE SHOWCASE COLLECTION</h1><br>
+    <!-- TITLE END -->
 
     <!-- SLIDESHOW -->
     <div id="slideshow-container">
@@ -38,43 +38,45 @@
     <!-- SLIDESHOW END -->
 
     <!-- CARDS -->
-    <div id="card-container" class="container">
-        <div class="box box-hidden">
-            <img class="box-image" src="/static/images/comp.png">
-            <div class="box-content">
-            <h3>About Me</h3>
-            <p>I'm Benjamin Tiong, a programming professional with a passion for coding.
-                Being a 3rd year student pursuing a Bachelor's Degree in Computer Science
-                has enabled me to gain an in-depth understanding of the field, and I am
-                excited to put my knowledge into practice.</p>
+    <div id="cards-background">
+        <div id="card-container" class="container">
+            <div class="box box-hidden">
+                <img class="box-image" src="/static/images/comp.png">
+                <div class="box-content">
+                <h3>About Me</h3>
+                <p>I'm Benjamin Tiong, a programming professional with a passion for coding.
+                    Being a 3rd year student pursuing a Bachelor's Degree in Computer Science
+                    has enabled me to gain an in-depth understanding of the field, and I am
+                    excited to put my knowledge into practice.</p>
+                </div>
             </div>
-        </div>
-        <div class="box box-hidden">
-            <img class="box-image" src="/static/images/work.png">
-            <div class="box-content">
-            <h3>Experience</h3>
-            <p>
-				I have honed my skills by working on various projects, ranging from professional
-                websites to user-targeted applications, I am always looking for opportunities to professionally develop my skills further and help others achieve their goals in the process.
-				I believe that sharing knowledge and skills is crucial in achieving success in any field.</p>
+            <div class="box box-hidden">
+                <img class="box-image" src="/static/images/work.png">
+                <div class="box-content">
+                <h3>Experience</h3>
+                <p>
+                    I have honed my skills by working on various projects, ranging from professional
+                    websites to user-targeted applications, I am always looking for opportunities to professionally develop my skills further and help others achieve their goals in the process.
+                    I believe that sharing knowledge and skills is crucial in achieving success in any field.</p>
+                </div>
             </div>
-        </div>
-        <div class="box box-hidden">
-            <img class="box-image" src="/static/images/gym.png">
-            <div class="box-content">
-            <h3>Health</h3>
-            <p>
-				In my spare time, I have developed a keen interest in fitness and nutrition. I hit the gym on a regular basis
-				and maintain a well-balanced diet consisting of protein and vegetables. This has helped me stay healthy and energized,
-				which is essential for performing well in my academic and professional endeavors.</p>
+            <div class="box box-hidden">
+                <img class="box-image" src="/static/images/gym.png">
+                <div class="box-content">
+                <h3>Health</h3>
+                <p>
+                    In my spare time, I have developed a keen interest in fitness and nutrition. I hit the gym on a regular basis
+                    and maintain a well-balanced diet consisting of protein and vegetables. This has helped me stay healthy and energized,
+                    which is essential for performing well in my academic and professional endeavors.</p>
+                </div>
             </div>
-        </div>
-        <div class="box box-hidden">
-            <img class="box-image" src="/static/images/media.png">
-            <div class="box-content">
-            <h3>Media</h3>
-            <p>Besides fitness and nutrition, I also enjoy watching mainstream TV shows, as they offer a great way to
-				stay up-to-date with current trends and popular culture.</p>
+            <div class="box box-hidden">
+                <img class="box-image" src="/static/images/media.png">
+                <div class="box-content">
+                <h3>Media</h3>
+                <p>Besides fitness and nutrition, I also enjoy watching mainstream TV shows, as they offer a great way to
+                    stay up-to-date with current trends and popular culture.</p>
+                </div>
             </div>
         </div>
     </div>

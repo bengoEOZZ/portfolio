@@ -21,13 +21,12 @@
             <li class="navitem">
                 <a class="navlink" href='/skills'>SKILLS</a>
                 <div class="sub-menu">
-                    <a href="/skills/#Python">Python</a>
-                    <a href="/skills/#HTML">HTML</a>
-                    <a href="/skills/#Java">Java</a>
-                    <a href="/skills/#C">C</a>
-                    <a href="/skills/#C++">C++</a>
-                    <a href="/skills/#Linux">Linux</a>
-                    <a href="/skills/#SQL">SQL</a>
+                    <a href="/skills/#PL">Programming Languages</a>
+                    <a href="/skills/#SD">Software Development</a>
+                    <a href="/skills/#DM">Database Management</a>
+                    <a href="/skills/#WD">Web Development</a>
+                    <a href="/skills/#OS">Operating Systems</a>
+                    <a href="/skills/#ADS">Algorithms & Data Structures</a>
                 </div>
             </li>
             <li class="navitem">
