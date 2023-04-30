@@ -33,8 +33,6 @@
 	</div>
     <!-- PROFILE HEADER END -->
 
-    <img class="project-card-image" src="/static/images/not_done.jpg">
-
     <!-- FOOTER -->
     <?php
         require __DIR__ . '../../footer.php';

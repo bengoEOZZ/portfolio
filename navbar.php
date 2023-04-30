@@ -31,10 +31,10 @@
                 </div>
             </li>
             <li class="navitem">
-                <a class="navlink" href='/resume'>RESUME</a>
+                <a class="navlink" href='/projects'>PROJECTS</a>
             </li>
             <li class="navitem">
-                <a class="navlink" href='/projects'>PROJECTS</a>
+                <a class="navlink" href='/resume'>RESUME</a>
             </li>
             <li class="navitem">
                 <a class="navlink" href='/contact'>CONTACT ME</a>
