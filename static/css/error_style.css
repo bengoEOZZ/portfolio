@@ -1,4 +1,9 @@
 /* * * * * * * * * * Error Styling * * * * * * * * * */
+body {
+    margin: 0;
+	background-color: rgba(56,56,56,255);
+}
+
 .Error {
     height: 80vh;
     display: flex;
@@ -6,7 +11,7 @@
     align-items: center;
     flex-direction: column;
     background-size: cover;
-    background-color: rgb(256, 252, 244);
+	background-color: rgb(112,108,108);
 }
 
 #Error-Header {
