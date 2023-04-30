@@ -1,7 +1,7 @@
 <head>
 	<!-- Title -->
 	<h1 class="page-title" id="page-title">Skills</h1>
-	<!-- Navbar Styles -->
+	<!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">

@@ -5,6 +5,16 @@ body {
 	background-color: rgba(56,56,56,255);
 }
 
+.profile {
+    background-color: rgb(112,108,108);
+    margin-top: 90px;
+    padding-top: 10px;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 2em;
+    text-align: center;
+}
+
 .slideshow-hidden {
     opacity: 0;
     transform: translateY(50px);
@@ -32,7 +42,6 @@ body {
     object-fit: contain; /* crop the image if necessary to fit the container */
     opacity: 0;
     transition: opacity 3s;
-    padding-top: 5%;
     padding-bottom: 2%;
 }
 

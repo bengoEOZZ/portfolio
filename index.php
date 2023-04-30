@@ -1,20 +1,16 @@
 <head>
     <!-- Title -->
     <h1 class="page-title">Home</h1>
-    <!-- Navbar Styles -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora&family=Press+Start+2P&display=swap" rel="stylesheet">
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="/static/css/nav_style.css">
     <link rel="stylesheet" type="text/css" href="/static/css/footer_style.css">
     <link rel="stylesheet" type="text/css" href="/static/css/home_style.css">
     <!-- Font for Project Card -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Google Fonts: Lora -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
@@ -25,6 +21,10 @@
 		require __DIR__ . '/navbar.php';
 	?>
     <!-- NAVBAR END -->
+
+    <div class="profile">
+        <h1>THE SHOWCASE COLLECTION</h1><br>
+    </div>
 
     <!-- SLIDESHOW -->
     <div id="slideshow-container">
@@ -118,7 +118,6 @@
     <script src="/static/javascript/navbar_transition.js"></script>
     <script src="/static/javascript/slideshow_transition.js"></script>
     <script src="/static/javascript/home_cards_fade.js"></script>
-    <script src="/static/javascript/home_about_fade.js">
-    </script>
+    <script src="/static/javascript/home_about_fade.js"></script>
     <!-- SCRIPTS END -->
 </body>

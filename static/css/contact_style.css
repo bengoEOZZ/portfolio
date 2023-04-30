@@ -96,5 +96,13 @@ body {
     display: flex;
     font-family: 'Open-sans', serif;
     font-size: 3em;
-    color: yellowgreen;
+    color: white;
+}
+
+#or {
+    display: flex;
+    font-family: 'Open-sans', serif;
+    font-size: 3em;
+    color: white;
+    margin-top: 15%
 }

@@ -1,7 +1,7 @@
 <head>
     <!-- Title -->
     <h1 class="page-title">Contact</h1>
-    <!-- Navbar Styles -->
+    <!-- Navbar Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
@@ -72,6 +72,8 @@
             </div><br>
         </div>
         <!-- CONTACT SECTION END -->
+
+        <h2 id="or">OR</h2>
 
         <!-- CONTACT FORM -->
         <form id="contact-form" class="section" method="POST" action="https://api.web3forms.com/submit" target="_blank">
