@@ -39,7 +39,7 @@
 
     <!-- CARDS -->
     <div id="card-container" class="container">
-        <div class="box">
+        <div class="box box-hidden">
             <img class="box-image" src="/static/images/comp.png">
             <div class="box-content">
             <h3>About Me</h3>
@@ -49,7 +49,7 @@
                 excited to put my knowledge into practice.</p>
             </div>
         </div>
-        <div class="box">
+        <div class="box box-hidden">
             <img class="box-image" src="/static/images/work.png">
             <div class="box-content">
             <h3>Experience</h3>
@@ -59,7 +59,7 @@
 				I believe that sharing knowledge and skills is crucial in achieving success in any field.</p>
             </div>
         </div>
-        <div class="box">
+        <div class="box box-hidden">
             <img class="box-image" src="/static/images/gym.png">
             <div class="box-content">
             <h3>Health</h3>
@@ -69,7 +69,7 @@
 				which is essential for performing well in my academic and professional endeavors.</p>
             </div>
         </div>
-        <div class="box">
+        <div class="box box-hidden">
             <img class="box-image" src="/static/images/media.png">
             <div class="box-content">
             <h3>Media</h3>
@@ -82,9 +82,9 @@
 
     <!-- PROFILE CARD -->
 	<div id="about-container" class="about-container">
-        <div class="about-blank"></div>
-        <div class="about-text"><br><br><br>
-        <h1>Looking for help<br>on a project or position?</h1><br>
+        <div class="about about-hidden" id="about-blank"></div>
+        <div class="about about-hidden" id="about-text"><br><br><br>
+            <h1>Looking for help<br>on a project or position?</h1><br>
             <p>I'm here to help you. As a skilled developer, I have a wealth of experience<br><br><br>
             and knowledge that can be leveraged to help you achieve your goals.<br><br><br>
             Whether you're working on a web development project or creating and maintaining<br><br><br>
@@ -95,7 +95,7 @@
             I believe I can make you goals a reality.
             </p>
         </div>
-        <div class="about-card">
+        <div class="about about-hidden" id="about-card">
             <img src="/static/images/ben.png" alt="John" style="width:100%">
             <h1>Benjamin Tiong</h1>
             <p class="card-title">Student, Computer Science</p>
@@ -117,5 +117,8 @@
     <!-- SCRIPTS -->
     <script src="/static/javascript/navbar_transition.js"></script>
     <script src="/static/javascript/slideshow_transition.js"></script>
+    <script src="/static/javascript/home_cards_fade.js"></script>
+    <script src="/static/javascript/home_about_fade.js">
+    </script>
     <!-- SCRIPTS END -->
 </body>

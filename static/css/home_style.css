@@ -1,6 +1,23 @@
 /* * * * * * * * * * Home Styling * * * * * * * * * */
+
+body {
+    margin: 0;
+	background-color: rgba(56,56,56,255);
+}
+
+.slideshow-hidden {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+  
+.slideshow-show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 #slideshow-container {
-    background-color: rgba(248, 220, 212, 0.5);
+    background-color: rgb(112,108,108);
     position: relative;
     width: 100%; /* set the width of the container to the desired size */
     height: 100%;
@@ -40,7 +57,7 @@
 
 .slideshow-button-left:hover,
 .slideshow-button-right:hover {
-    background-color: green;
+    background-color: grey;
 }
 
 .slideshow-button-left {
@@ -68,8 +85,27 @@
     margin-left: 3%;
     margin-right: 3%;
     height: 100%;
-    background-color: rgba(197, 162, 93, 0.3);
-    transition: transform 0.3s ease-in-out;
+    background-color: rgb(94, 144, 77);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.box-show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.about {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.about-show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .box-image {
@@ -82,8 +118,8 @@
 
 .box:hover {
     transform: scale(1.1);
-    background-color: rgba(248, 164, 140, 0.8);
-    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    background-color: yellowgreen;
+    transition: transform 0.05s ease-in-out, background-color 0.05s ease-in-out;
 }
 
 .box:hover {
@@ -109,39 +145,41 @@
     position: relative;
     width: 100%;
     height: 850px;
-    background-color: rgb(240, 236, 236);
+    background-color: rgb(112,108,108);    
 }
 
-.about-blank {
+#about-blank {
     position: absolute;
     top: 30%;
     right: 5%;
     width: 60%;
     height: 60%;
-    background-color: rgba(248, 180, 180, 0.3);
+    background-color: rgba(185, 187, 181, 0.2);
 }
 
-.about-text {
+#about-text {
     position: absolute;
     top: 5%;
     left: 8%;
     width: 60%;
     height: 80%;
-    background-color: rgba(248, 244, 236, 0.8);
+    background-color: rgba(94, 144, 77, 0.7);
     text-align: center;
     font-family: 'Lora', serif;
     font-size: 1em;
 }
 
-.about-card {
+#about-card {
     position: absolute;
     top: 8%;
     right: 0;
+    background-color: rgba(56,56,56,255);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     max-width: 300px;
     max-height: 625px;
     margin-right: 10%;
     text-align: center;
+    color: white;
 }
 
 .card-title {
@@ -155,7 +193,7 @@
     display: inline-block;
     padding: 8px;
     color: white;
-    background-color: rgb(248, 164, 149);
+    background-color: yellowgreen;
     text-align: center;
     cursor: pointer;
     width: 80%;
@@ -170,7 +208,6 @@
 }
 
 #contact-button button:hover, #other a:hover {
-    background-color: rgba(233, 226, 224, 255);
-    color: rgba(195, 149, 138, 255);
-    border: 1px solid blue;
+    background-color: white;
+    color: black;
 }
