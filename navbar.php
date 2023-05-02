@@ -31,6 +31,11 @@
             </li>
             <li class="navitem">
                 <a class="navlink" href='/projects'>PROJECTS</a>
+                <div class="sub-menu">
+                    <a href="/projects/#QBB">QB&B</a>
+                    <a href="/projects/#QBUZZ">QBUZZ</a>
+                    <a href="/projects/#SE">Stressful Escape</a>
+                </div>
             </li>
             <li class="navitem">
                 <a class="navlink" href='/resume'>RESUME</a>
