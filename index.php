@@ -75,7 +75,9 @@
                 <div class="box-content">
                 <h3>Media</h3>
                 <p>Besides fitness and nutrition, I also enjoy watching mainstream TV shows, as they offer a great way to
-                    stay up-to-date with current trends and popular culture.</p>
+                    stay up-to-date with current trends and popular culture. Whether it's through the themes explored in the show,
+                    the characters portrayed, or the plot lines, mainstream media often reflects the current societal values and
+                    attitudes.</p>
                 </div>
             </div>
         </div>
@@ -85,8 +87,8 @@
     <!-- PROFILE CARD -->
 	<div id="about-container" class="about-container">
         <div class="about about-hidden" id="about-blank"></div>
-        <div class="about about-hidden" id="about-text"><br><br><br>
-            <h1>Looking for help<br>on a project or position?</h1><br>
+        <div class="about about-hidden" id="about-text"><br>
+            <h1>Looking for help<br>on a project or position?</h1>
             <p>I'm here to help you. As a skilled developer, I have a wealth of experience<br><br><br>
             and knowledge that can be leveraged to help you achieve your goals.<br><br><br>
             Whether you're working on a web development project or creating and maintaining<br><br><br>
