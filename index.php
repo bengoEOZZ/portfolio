@@ -94,7 +94,7 @@
             Whether you're working on a web development project or creating and maintaining<br><br><br>
             an application in the tech industry, I can provide you with guidance and support<br><br><br>
             to help you succeed. Next to this is a profile card, where you can<br><br><br>
-            learn more about what I have to offer and get in touch with me directly by clicking
+            learn more about what I have to offer and get in touch with by clicking
             the button to the right.<br><br><br>
             I believe I can make you goals a reality.
             </p>
