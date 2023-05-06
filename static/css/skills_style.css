@@ -133,3 +133,20 @@ tr td i.fas {
     font-size: 35px;
     text-align: center;
 }
+
+.scroll-prompt {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 16px;
+    color: white;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    display: flex;
+    align-items: center;
+}
+
+.scroll-icon {
+    margin-left: 5px;
+    font-size: 20px;
+}

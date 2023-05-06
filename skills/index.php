@@ -20,6 +20,13 @@
 	?>
 	<!-- NAVBAR END -->
 
+	<!-- SCROLL PROMPT -->
+    <div class="scroll-prompt">
+		<p>Scroll down</p>
+		<div class="scroll-icon">⬇️</div>
+	</div>
+    <!-- SCROLL PROMPT END -->
+
 	<!-- SKILLS HEADER -->
 	<div class="header-container">
 		<div class="page-background"></div>
