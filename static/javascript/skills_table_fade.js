@@ -10,14 +10,15 @@ function isElementInViewport(el) {
 }
 
 function handleVisibility() {
+    var yPos = window.scrollY;
     var boxes = document.querySelectorAll('.hidden');
     for (var i = 0; i < boxes.length; i++) {
-        if (isElementInViewport(boxes[i])) {
-            boxes[i].classList.add('table-show');
+        if (yPos > 500) {
+            boxes[i].classList.add('left-show');
             boxes[i].classList.remove('table-hidden');
         } else {
-            boxes[i].classList.remove('table-show');
-            boxes[i].classList.add('table-hidden');
+            boxes[i].classList.remove('left-show');
+            boxes[i].classList.add('left-hidden');
         }
     }
 }

@@ -125,7 +125,7 @@ html {
 .page-title {
     display: flex;
     font-family: 'Lora', serif;;
-    font-size: 3em;
+    font-size: 2em;
     justify-content: center;
     color: yellowgreen;
     text-align: center;
@@ -136,7 +136,7 @@ html {
     justify-content: center;
     align-items: center;
     font-family: "Lora", sans-serif;
-    font-size: 1.75em;	
+    font-size: 1.2em;	
     line-height: 2;
     margin-left: 50px;
     margin-right: 50px;

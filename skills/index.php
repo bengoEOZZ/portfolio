@@ -37,7 +37,7 @@
 		</div>
 	</div>
 	<!-- SKILLS HEADER END -->
-  	
+	
 	<div class="skills-container">
 		<!-- SKILLS MENU -->
 		<aside id="fixed-left" class="left">
@@ -53,7 +53,7 @@
 		<!-- SKILLS MENU END -->
 
 		<!-- SKILLS TABLE -->
-		<main class="content">
+		<main id="content">
 			<br id="PL">
 			<table class="hidden"><tr><th>Programming Languages</th><th>Experience</th></tr><tr><td>
 				<ul>
@@ -163,7 +163,7 @@
 		</main>
 		<!-- SKILLS TABLE END -->
 	</div>
-
+	
 	<!-- FOOTER -->
 	<?php
         require __DIR__ . '../../footer.php';
