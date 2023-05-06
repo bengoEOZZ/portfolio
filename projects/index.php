@@ -41,7 +41,7 @@
             <div class="project-card-text">
                 <div class="project-card-line">
                     <h2 class="project-card-title">QB&B - Housing Web Application</h2>
-                    <a href="https://github.com/bengoEOZZ/qbnb" target="_blank"><svg class="export-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V288H216c-13.3 0-24 10.7-24 24s10.7 24 24 24H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zM384 336V288H494.1l-39-39c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l80 80c9.4 9.4 9.4 24.6 0 33.9l-80 80c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l39-39H384zm0-208H256V0L384 128z"/></svg></a><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                    <a href="https://github.com/bengoEOZZ/qbnb" target="_blank"><svg class="export-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/></svg></a>
                 </div>
                 <p class="project-card-description">
                     <ul>
@@ -49,7 +49,7 @@
                         <li>The application allows registered users to create listings for vacation house/apartment rentals, which can be booked by other users through the platform.</li><br>
                         <li>Transactions represent successful bookings, and verified guests can leave reviews. User payments are made directly through their balance on the application, and users can add money to their account through online banking.</li><br>
                         <li>Regarding security testing, SQL injection testing was conducted, which would be tested with pytest test cases using backend unit testing. To test for SQL injection, we would run a fuzzy test against the backend APIs to check for SQL injections.</li><br>
-                        <li>For deployment, web application was deployed using Docker containers, which allows the bundling of all dependencies into a single image. Finally, the web application container was published to DockerHub, which allows others to run the application on their own machines using Docker.</li><br>
+                        <li>For deployment, web application was deployed using Docker containers, which allows the bundling of all dependencies into a single image. Finally, the web application container was published to DockerHub, which allows others to run the application on their own machines using Docker.</li>
                     </ul>
                 </p>
             </div>
@@ -80,7 +80,7 @@
             <div class="project-card-text">
                 <div class="project-card-line">
                     <h2 class="project-card-title">Stressful Escape - 2D Game</h2>
-                    <a href="https://github.com/bengoEOZZ/stressful_escape" target="_blank"><svg class="export-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V288H216c-13.3 0-24 10.7-24 24s10.7 24 24 24H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zM384 336V288H494.1l-39-39c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l80 80c9.4 9.4 9.4 24.6 0 33.9l-80 80c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l39-39H384zm0-208H256V0L384 128z"/></svg></a><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                    <a href="https://github.com/bengoEOZZ/stressful_escape" target="_blank"><svg class="export-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/></svg></a>
                 </div>
                 <p class="project-card-description">
                     <ul>

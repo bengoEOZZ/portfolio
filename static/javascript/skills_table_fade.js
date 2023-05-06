@@ -18,7 +18,7 @@ function handleVisibility() {
             boxes[i].classList.remove('table-hidden');
         } else {
             boxes[i].classList.remove('left-show');
-            boxes[i].classList.add('left-hidden');
+            boxes[i].classList.add('table-hidden');
         }
     }
 }
