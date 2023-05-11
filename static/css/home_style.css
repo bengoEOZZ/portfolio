@@ -181,10 +181,10 @@ body {
 #about-card {
     position: absolute;
     top: 8%;
-    right: 8%;
+    right: 7%;
     background-color: rgba(56,56,56,255);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 225px;
+    width: 225px;
     max-height: auto;
     margin-right: 10%;
     text-align: center;
