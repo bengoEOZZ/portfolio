@@ -100,7 +100,7 @@
             </p>
         </div>
         <div class="about about-hidden" id="about-card">
-            <img src="/static/images/bengo.jpg" alt="John" style="width:100%">
+            <img src="/static/images/bengo.jpg" alt="Benjamin Tiong" style="width:100%">
             <h1>Benjamin Tiong</h1>
             <p class="card-title">Student, Computer Science</p>
             <p>Queen's University</p>
