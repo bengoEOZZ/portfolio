@@ -5,6 +5,7 @@
     <title>My Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <script src="/static/javascript/circle-navbar.js"></script>
+    <script src="/static/javascript/circle-animation.js"></script>
     <style>
         body {
             margin: 0;
@@ -15,10 +16,27 @@
             text-align: center;
         }
 
+        /* Center the container and text */
         .container {
-            padding: 5rem 2rem;
+            position: relative;
+            height: 100vh; /* Full viewport height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
 
+        .center-content {
+            position: absolute;
+            z-index: 10; /* Ensure the text is above the buttons */
+        }
+
+        .center-text {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 0;
+        }
+        
         h1 {
             font-size: 4rem;
             font-weight: 600;
@@ -29,23 +47,22 @@
 
         .intro {
             max-width: 600px;
-            margin: 0 auto;
+            margin: 1rem auto 0;
             font-size: 1.2rem;
             line-height: 1.8;
+            color: #555;
         }
 
         .buttons {
             margin: 3rem 0;
         }
 
+        /* Circular layout for buttons */
         .buttons-wrapper {
             position: relative;
             height: 300px;
             width: 300px;
-            margin: 3rem auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            margin: 0 auto; /* Center the buttons-wrapper */
             transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
@@ -60,11 +77,19 @@
             text-decoration: none;
             color: #111;
             transition: all 0.3s ease;
+            cursor: grab; /* Show grab cursor */
         }
 
+        /* Hover effect for buttons */
         .btn:hover {
             background: #111;
             color: #fff;
+            transform: scale(1.2); /* Slight zoom */
+        box-shadow: 0 0 15px rgba(0, 123, 255, 0.6); /* Glow effect */
+        }
+
+        .btn:active {
+            cursor: grabbing; /* Show grabbing cursor when dragging */
         }
 
         .socials {
@@ -80,20 +105,6 @@
 
         .socials a:hover {
             color: #007bff;
-        }
-
-        /* Position buttons in a circular layout */
-        .btn:nth-child(1) {
-            transform: rotate(0deg) translate(120px) rotate(0deg);
-        }
-        .btn:nth-child(2) {
-            transform: rotate(90deg) translate(120px) rotate(-90deg);
-        }
-        .btn:nth-child(3) {
-            transform: rotate(180deg) translate(120px) rotate(-180deg);
-        }
-        .btn:nth-child(4) {
-            transform: rotate(270deg) translate(120px) rotate(-270deg);
         }
 
         /* Hidden navigation bar */
@@ -145,9 +156,10 @@
 <body>
     
     <div class="container">
-        <h1>Hello World...</h1>
-
-        <p class="intro">I'm <strong>Benjamin Tiong</strong>, a web developer passionate about crafting beautiful and functional digital experiences. Explore my work and get to know me!</p>
+        <div class="center-content">
+            <h1 class="center-text">Hello World...</h1>
+            <p class="intro">I'm <strong>Benjamin Tiong</strong>, a web developer passionate about crafting beautiful and functional digital experiences. Explore my work and get to know me!</p>
+        </div>
 
         <!-- Buttons that will circle around -->
         <div class="buttons-wrapper">
