@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <script src="/static/javascript/circle-navbar.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #fff;
+            color: #111;
+            text-align: center;
+        }
+
+        .container {
+            padding: 5rem 2rem;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 600;
+            display: inline-block;
+            border-bottom: 10px solid #007bff;
+            margin-bottom: 2rem;
+        }
+
+        .intro {
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .buttons {
+            margin: 3rem 0;
+        }
+
+        .buttons-wrapper {
+            position: relative;
+            height: 300px;
+            width: 300px;
+            margin: 3rem auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .btn {
+            position: absolute;
+            width: 100px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            border: 2px solid #111;
+            border-radius: 20px;
+            text-decoration: none;
+            color: #111;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #111;
+            color: #fff;
+        }
+
+        .socials {
+            margin-top: 4rem;
+        }
+
+        .socials a {
+            margin: 0 1rem;
+            font-size: 2rem;
+            text-decoration: none;
+            color: #111;
+        }
+
+        .socials a:hover {
+            color: #007bff;
+        }
+
+        /* Position buttons in a circular layout */
+        .btn:nth-child(1) {
+            transform: rotate(0deg) translate(120px) rotate(0deg);
+        }
+        .btn:nth-child(2) {
+            transform: rotate(90deg) translate(120px) rotate(-90deg);
+        }
+        .btn:nth-child(3) {
+            transform: rotate(180deg) translate(120px) rotate(-180deg);
+        }
+        .btn:nth-child(4) {
+            transform: rotate(270deg) translate(120px) rotate(-270deg);
+        }
+
+        /* Hidden navigation bar */
+        .navbar {
+            display: none; /* Initially hidden */
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 1rem 2rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: #111;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .navbar ul li a:hover {
+            background: #007bff;
+            color: #fff;
+            border-color: #007bff;
+        }
+
+        /* Show navigation bar when active */
+        .navbar.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <h1>Hello World...</h1>
+
+        <p class="intro">I'm <strong>Benjamin Tiong</strong>, a web developer passionate about crafting beautiful and functional digital experiences. Explore my work and get to know me!</p>
+
+        <!-- Buttons that will circle around -->
+        <div class="buttons-wrapper">
+            <a href="#about" class="btn">About</a>
+            <a href="#coding" class="btn">Coding</a>
+            <a href="#projects" class="btn">Projects</a>
+            <a href="#contact" class="btn">Contact</a>
+        </div>
+
+        <!-- Placeholder for the navigation bar -->
+        <nav class="navbar hidden">
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#coding">Coding</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</body>
+</html>
