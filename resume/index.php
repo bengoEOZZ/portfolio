@@ -40,7 +40,7 @@
     <!-- RESUME HEADER END -->
 
     <!-- RESUME -->
-    <iframe id="resume-pdf" src="/static/documents/resume.pdf"></iframe>
+    <iframe id="resume-pdf" src="/static/documents/Resume.pdf"></iframe>
     <!-- RESUME END -->
     
     <!-- FOOTER -->
