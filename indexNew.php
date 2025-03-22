@@ -11,9 +11,13 @@
             margin: 0;
             padding: 0;
             font-family: 'Poppins', sans-serif;
-            background: #fff;
-            color: #111;
+            background: #1a1a2e; /* Dark background */
+            color: #e0e0e0; /* Light text for better contrast */
             text-align: center;
+        }
+
+        body:active {
+            cursor: grabbing; /* Cursor when dragging */
         }
 
         /* Center the container and text */
@@ -26,13 +30,15 @@
             text-align: center;
         }
 
+
         .center-content {
             position: absolute;
             z-index: 10; /* Ensure the text is above the buttons */
+            width: 300px; /* Adjusted width to make it skinnier */
         }
 
         .center-text {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: bold;
             margin: 0;
         }
@@ -41,8 +47,9 @@
             font-size: 4rem;
             font-weight: 600;
             display: inline-block;
-            border-bottom: 10px solid #007bff;
+            border-bottom: 10px solid #007bff; /* Bright blue underline */
             margin-bottom: 2rem;
+            color: #ffffff; /* White text for the heading */
         }
 
         .intro {
@@ -50,11 +57,7 @@
             margin: 1rem auto 0;
             font-size: 1.2rem;
             line-height: 1.8;
-            color: #555;
-        }
-
-        .buttons {
-            margin: 3rem 0;
+            color: #b0b0b0; /* Softer light gray for paragraph text */
         }
 
         /* Circular layout for buttons */
@@ -72,20 +75,21 @@
             height: 40px;
             text-align: center;
             line-height: 40px;
-            border: 2px solid #111;
+            border: 2px solid #007bff; /* Bright blue border */
             border-radius: 20px;
             text-decoration: none;
-            color: #111;
+            color: #007bff; /* Bright blue text */
+            background: transparent; /* Transparent background */
             transition: all 0.3s ease;
             cursor: grab; /* Show grab cursor */
         }
 
         /* Hover effect for buttons */
         .btn:hover {
-            background: #111;
-            color: #fff;
+            background: #007bff; /* Bright blue background on hover */
+            color: #ffffff; /* White text on hover */
             transform: scale(1.2); /* Slight zoom */
-        box-shadow: 0 0 15px rgba(0, 123, 255, 0.6); /* Glow effect */
+            box-shadow: 0 0 15px rgba(0, 123, 255, 0.6); /* Glow effect */
         }
 
         .btn:active {
@@ -110,7 +114,7 @@
         /* Hidden navigation bar */
         .navbar {
             display: none; /* Initially hidden */
-            background-color: #fff;
+            background-color: #1a1a2e; /* Match the background */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 1rem 2rem;
             position: fixed;
@@ -132,7 +136,7 @@
 
         .navbar ul li a {
             text-decoration: none;
-            color: #111;
+            color: #007bff; /* Bright blue text */
             font-weight: bold;
             padding: 0.5rem 1rem;
             border: 2px solid transparent;
@@ -140,8 +144,8 @@
         }
 
         .navbar ul li a:hover {
-            background: #007bff;
-            color: #fff;
+            background: #007bff; /* Bright blue background on hover */
+            color: #ffffff; /* White text on hover */
             border-color: #007bff;
         }
 
@@ -155,11 +159,18 @@
 </head>
 <body>
     
-    <div class="container">
+    <div class="container" id="mydiv">
         <div class="center-content">
             <h1 class="center-text">Hello World...</h1>
-            <p class="intro">I'm <strong>Benjamin Tiong</strong>, a web developer passionate about crafting beautiful and functional digital experiences. Explore my work and get to know me!</p>
+            <p class="intro">I'm <strong>Benjamin Tiong</strong>, a software developer passionate about crafting beautiful and functional digital experiences. Explore my work and get to know me!</p>
         </div>
+
+        <!--<div id="mydiv">
+            <div id="mydivheader">Click here to move</div>
+            <p>Move</p>
+            <p>this</p>
+            <p>DIV</p>
+        </div>-->
 
         <!-- Buttons that will circle around -->
         <div class="buttons-wrapper">
@@ -179,5 +190,6 @@
             </ul>
         </nav>
     </div>
+    <script src="/static/javascript/drag.js"></script>
 </body>
 </html>
