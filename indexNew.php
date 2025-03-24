@@ -16,6 +16,17 @@
             text-align: center;
         }
 
+        .circle-background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px; /* Adjust the size of the circle */
+            height: 400px; /* Make it a perfect circle */
+            background: rgba(0, 123, 255, 0.1); /* Light blue with transparency */
+            border-radius: 50%; /* Makes it a circle */
+            z-index: 5; /* Ensure it is behind the text */
+        }
         body:active {
             cursor: grabbing; /* Cursor when dragging */
         }
@@ -159,7 +170,9 @@
 </head>
 <body>
     
-    <div class="container" id="mydiv">
+    <div class="container" id="draggable">
+        
+        <div class="circle-background"></div>
         <div class="center-content">
             <h1 class="center-text">Hello World...</h1>
             <p class="intro">I'm <strong>Benjamin Tiong</strong>, a software developer passionate about crafting beautiful and functional digital experiences. Explore my work and get to know me!</p>

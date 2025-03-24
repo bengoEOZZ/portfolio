@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const buttonsWrapper = document.querySelector(".buttons-wrapper");
     const buttons = document.querySelectorAll(".btn");
-    const radius = 500; // Radius of the circular path
+    const radius = 600; // Radius of the circular path
     const centerX = buttonsWrapper.offsetWidth / 2; // Center of the wrapper (horizontal)
     const centerY = buttonsWrapper.offsetHeight / 2; // Center of the wrapper (vertical)
     let angle = 0; // Starting angle
