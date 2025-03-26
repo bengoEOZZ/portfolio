@@ -6,6 +6,7 @@ window.onload = () => {
     const centerX = buttonsWrapper.offsetWidth / 2; // Center of the wrapper (horizontal)
     const centerY = buttonsWrapper.offsetHeight / 2; // Center of the wrapper (vertical)
     let angle = 0; // Starting angle
+    let forceZIndex = true; // Flag to force z-index for the first 2.5 seconds
 
     // Initial positions: Start at the center
     buttons.forEach((button) => {
@@ -30,6 +31,11 @@ window.onload = () => {
         animateButtons();
     }, 1000); // Delay before animating outward
 
+    // Stop forcing z-index after 2.5 seconds
+    setTimeout(() => {
+        forceZIndex = false;
+    }, 3500);
+
     // Circular motion animation
     function animateButtons() {
         buttons.forEach((button, index) => {
@@ -39,7 +45,11 @@ window.onload = () => {
 
             button.style.left = `${x}px`;
             button.style.top = `${y}px`;
-            button.style.zIndex = y < centerY ? 4 : 15; // Adjust z-index based on vertical position
+            
+            if (!forceZIndex) {
+                const tolerance = 15; // Adjust this value to delay the switch
+                button.style.zIndex = y < centerY - tolerance ? 4 : 15; // Adjust z-index based on vertical position with tolerance
+            }
         });
 
         angle += 0.01; // Adjust speed of rotation

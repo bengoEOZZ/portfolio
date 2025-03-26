@@ -2,6 +2,7 @@
     <meta charset="UTF-8">
     <title>My Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <script src="/static/javascript/circle-navbar.js"></script>
     <script src="/static/javascript/circle-animation.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/css/index_style.css">
@@ -22,14 +23,32 @@
             <p>DIV</p>
         </div>-->
 
-        <!-- Buttons that will circle around -->
+        <!-- Buttons that will circle around 
         <div class="buttons-wrapper">
             <a href="#about" class="btn">About</a>
             <a href="#coding" class="btn">Coding</a>
             <a href="#projects" class="btn">Projects</a>
             <a href="#contact" class="btn">Contact</a>
-        </div>
+        </div>-->
 
+        <div class="buttons-wrapper">
+            <a href="#about" class="btn">
+                <img src="/static/images/Shield.svg" alt="About Shield" class="btn-shield">
+                <span class="btn-text">About</span>
+            </a>
+            <a href="#coding" class="btn">
+                <img src="/static/images/Shield.svg" alt="Coding Shield" class="btn-shield">
+                <span class="btn-text">Coding</span>
+            </a>
+            <a href="#projects" class="btn">
+                <img src="/static/images/Shield.svg" alt="Projects Shield" class="btn-shield">
+                <span class="btn-text">Projects</span>
+            </a>
+            <a href="#contact" class="btn">
+                <img src="/static/images/Shield.svg" alt="Contact Shield" class="btn-shield">
+                <span class="btn-text">Contact</span>
+            </a>
+        </div>
         <!-- Placeholder for the navigation bar 
         <nav class="navbar hidden">
             <ul>
