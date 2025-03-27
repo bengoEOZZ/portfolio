@@ -1,44 +1,32 @@
-        /* Hidden navigation bar */
-        .navbar {
-            display: none; /* Initially hidden */
-            background-color: #1a1a2e; /* Match the background */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 1rem 2rem;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
+.navbar {
+    display: block; /* Ensure the navbar is always visible */
+    position: fixed; /* Keep it fixed on the screen */
+    top: 0;
+    width: 100%; /* Full width */
+    background-color: #333; /* Adjust background color */
+    z-index: 1000; /* Ensure it appears above other elements */
+    padding: 10px 0;
+}
 
-        .navbar ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-        }
+.navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Center the navigation items */
+    gap: 20px; /* Add spacing between items */
+}
 
-        .navbar ul li a {
-            text-decoration: none;
-            color: #007bff; /* Bright blue text */
-            font-weight: bold;
-            padding: 0.5rem 1rem;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-        }
+.navbar ul li a {
+    text-decoration: none;
+    color: white; /* Adjust text color */
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
+}
 
-        .navbar ul li a:hover {
-            background: #007bff; /* Bright blue background on hover */
-            color: #ffffff; /* White text on hover */
-            border-color: #007bff;
-        }
-
-        /* Show navigation bar when active */
-        .navbar.active {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
+.navbar ul li a:hover {
+    background-color: #555; /* Add hover effect */
+    border-radius: 5px;
+}

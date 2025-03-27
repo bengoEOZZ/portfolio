@@ -1,1 +1,4 @@
-Nothing for now
+- Add sun: Alternating rays
+- Add daylight/night-time changes
+- Add seasonal changes
+- Add adjustable time clock

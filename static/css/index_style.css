@@ -43,7 +43,8 @@
         .left-content {
             position: absolute;
             z-index: 10; /* Ensure the text is above the buttons */
-            left: 8%;
+            bottom: 12%;
+            left: 5%;
             width: 350px; /* Adjusted width to make it skinnier */
             animation: fadeIn 2s ease-in-out; /* Subtle fade-in animation */
         }
@@ -132,7 +133,14 @@
             filter: drop-shadow(0 0 20px rgba(135, 206, 250, 0.8)) /* Soft sky blue glow */
                     drop-shadow(0 0 30px rgba(70, 130, 180, 0.6)); /* Deeper blue for depth */
         }
-
+        .earth-svg {
+            position: fixed;
+            bottom: 0px; /* Adjust spacing from the bottom */
+            right: 0px;  /* Adjust spacing from the right */
+            width: 450px; /* Adjust size as needed */
+            height: auto;
+            z-index: 10;  /* Ensure it appears above other elements */
+        }
         /* Add subtle animations */
         @keyframes fadeIn {
             from {
