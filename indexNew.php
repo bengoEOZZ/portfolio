@@ -6,6 +6,7 @@
     <script src="/static/javascript/circle-navbar.js"></script>
     <script src="/static/javascript/circle-animation.js"></script>
     <script src="/static/javascript/sun-rays.js"></script>
+    <!--<script src="/static/javascript/light-alternate.js"></script>-->
     <link rel="stylesheet" type="text/css" href="/static/css/index_style.css">
     <link rel="stylesheet" type="text/css" href="/static/css/navbar_new.css">
 </head>
@@ -15,12 +16,17 @@
         <img src="/static/images/Ben.svg" alt="Benjamin Tiong SVG" class="planet" id="draggable"></img>
         <div class="left-content">
             <h1 class="left-text">Hello World...</h1>
-            <p class="intro">I'm <strong>Benjamin Tiong</strong>, a passionate software developer whose creativity orbits around the endless possibilities of code and innovation. Dive into my universe, where I bring my most and explore the stories behind the pixels that bring my projects to life. Let's embark on a journey of discovery and inspiration together!</p>
+            <p class="intro">I'm <strong>Benjamin Tiong</strong>, 
+            a software developer whose work orbits around the possibilities of code and innovation.
+            Dive into my universe, and discover more about me.</p>
         </div>
 
         <img src="/static/images/earth.svg" alt="Earth" class="earth-svg">
-        <div class="sun-rays"></div>
-        <img src="/static/images/sun.svg" alt="Sun" class="sun-svg">
+        <!--<div class="sun-rays"></div>-->
+        <img src="/static/images/sun.svg" alt="Earth" class="sun-svg">
+        <div class="sun-svg">
+            <?php include 'static/images/sun-rays.svg'; ?>
+        </div>
         <!--<div id="mydiv">
             <div id="mydivheader">Click here to move</div>
             <p>Move</p>
@@ -65,5 +71,6 @@
         </nav>-->
     </div>
     <!--<script src="/static/javascript/drag.js"></script>-->
+    
 </body>
 </html>

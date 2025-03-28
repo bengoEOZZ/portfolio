@@ -43,8 +43,8 @@
         .left-content {
             position: absolute;
             z-index: 10; /* Ensure the text is above the buttons */
-            bottom: 12%;
-            left: 5%;
+            bottom: 15%;
+            left: 6%;
             width: 350px; /* Adjusted width to make it skinnier */
             animation: fadeIn 2s ease-in-out; /* Subtle fade-in animation */
         }
@@ -144,19 +144,29 @@
 
         .sun-svg {
             position: fixed;
-            top: -25px; /* Adjust spacing from the bottom */
-            left: -50px;  /* Adjust spacing from the right */
-            width: 400px; /* Adjust size as needed */
+            top: -10px; /* Adjust spacing from the bottom */
+            left: -10px;  /* Adjust spacing from the right */
+            width: 300px; /* Adjust size as needed */
             height: auto;
             z-index: 10;  /* Ensure it appears above other elements */
             transform-origin: top left; /* Set the rotation origin to the top-left corner */
-            animation: fadeInUp 2s ease-in-out, rotate-back-forth 10s ease-in-out infinite;
-            filter: drop-shadow(0 0 50px rgba(255, 165, 0, 0.8)) drop-shadow(0 0 80px rgba(255, 69, 0, 0.6));
+            /*animation: fadeInUp 2s ease-in-out, rotate-back-forth 5s ease-in-out infinite;*/
+            /*filter: drop-shadow(0 0 50px rgba(255, 165, 0, 0.8)) drop-shadow(0 0 80px rgba(255, 69, 0, 0.6));*/
+            filter: drop-shadow(0 0 15px rgba(255, 165, 0, 0.8)) 
+            drop-shadow(0 0 30px rgba(255, 69, 0, 0.6)); /* Add depth with multiple shadows */
+            display: inline-block; /* Ensure it behaves like an inline element */
         }
+
+        .sun-svg svg {
+            width: 100%; /* Scale the SVG to fit the parent container */
+            height: 100%; /* Maintain aspect ratio */
+            display: block; /* Remove any extra spacing caused by inline SVG */
+        }
+
         .sun-rays {
             position: absolute;
-            top: -250px; /* Adjust to center the glow around the sun */
-            left: -250px; /* Adjust to center the glow around the sun */
+            top: -300px; /* Adjust to center the glow around the sun */
+            left: -300px; /* Adjust to center the glow around the sun */
             width: 700px; /* Increase size of the glow */
             height: 700px;
             background: radial-gradient(circle, rgba(255, 165, 0, 0.4), transparent 80%);
@@ -167,13 +177,19 @@
 
         @keyframes rotate-back-forth {
             0% {
-                transform: rotate(1.5deg);
+                transform: rotate(0deg);
+            }
+            25% {
+                transform: rotate(0.5deg); /* Back to original position */
             }
             50% {
-                transform: rotate(-1.5deg); /* Back to original position */
+                transform: rotate(-0.5deg); /* Back to original position */
+            }
+            75% {
+                transform: rotate(0.5deg); /* Back to original position */
             }
             100% {
-                transform: rotate(1.5deg); /* Back to original position */
+                transform: rotate(0deg); /* Back to original position */
             }
         }
         

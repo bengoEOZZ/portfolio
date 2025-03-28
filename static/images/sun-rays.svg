@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="583" height="620" viewBox="0 0 583 620" enable-background="new 0 0 583 620" xml:space="preserve">
+<g>
+    <!-- Ray 1 -->
+    <polygon id="ray1" points="411,54 395,71 420,87" style="fill:#F1B39D;stroke:#F1B39D;opacity:0;"/>
+    <polygon id="ray2" points="435,86 411,54 420,87" style="fill:#F6BA99;stroke:#F6BA99;opacity:0;"/>
+    <polygon id="ray3" points="445,46 411,54 435,86" style="fill:#EACDBD;stroke:#EACDBD;opacity:0;"/>
+    
+    <polygon id="ray4" points="472,90 445,46 435,86" style="fill:#F0D6C4;stroke:#F0D6C4;opacity:0;"/>
+    <polygon id="ray5" points="463,103 472,90 435,86" style="fill:#FBCBA9;stroke:#FBCBA9;opacity:0;"/>
+    <polygon id="ray6" points="480,82 445,46 472,90" style="fill:#EED3C2;stroke:#EED3C2;opacity:0;"/>
+    <polygon id="ray7" points="484,71 445,46 480,82" style="fill:#EADCD7;stroke:#EADCD7;opacity:0;"/>
+
+    <polygon id="ray8" points="472,90 463,103 497,84" style="fill:#F5CAB5;stroke:#F5CAB5;opacity:0;"/>
+    <polygon id="ray9" points="497,84 484,71 483,80" style="fill:#F4B091;stroke:#F4B091;opacity:0;"/>
+    <polygon id="ray10" points="483,80 481,84 497,84" style="fill:#EEB596;stroke:#EEB596;opacity:0;"/>
+    <polygon id="ray11" points="481,84 472,90 497,84" style="fill:#F2BAA0;stroke:#F2BAA0;opacity:0;"/>
+    <polygon id="ray12" points="483,80 484,71 480,82" style="fill:#F9A98A;stroke:#F9A98A;opacity:0;"/>
+    <polygon id="ray13" points="481,84 480,82 472,90" style="fill:#F8B490;stroke:#F8B490;opacity:0;"/>
+    <polygon id="ray14" points="483,80 480,82 481,84" style="fill:#F5B28E;stroke:#F5B28E;opacity:0;"/>
+
+    <polygon id="ray15" points="497,84 526,72 484,71" style="fill:#F1D0B5;stroke:#F1D0B5;opacity:0;"/>
+
+</g></svg>
