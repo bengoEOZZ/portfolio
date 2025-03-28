@@ -5,6 +5,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <script src="/static/javascript/circle-navbar.js"></script>
     <script src="/static/javascript/circle-animation.js"></script>
+    <script src="/static/javascript/sun-rays.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/css/index_style.css">
     <link rel="stylesheet" type="text/css" href="/static/css/navbar_new.css">
 </head>
@@ -18,6 +19,8 @@
         </div>
 
         <img src="/static/images/earth.svg" alt="Earth" class="earth-svg">
+        <div class="sun-rays"></div>
+        <img src="/static/images/sun.svg" alt="Sun" class="sun-svg">
         <!--<div id="mydiv">
             <div id="mydivheader">Click here to move</div>
             <p>Move</p>
@@ -52,14 +55,14 @@
             </a>
         </div>
 
-        <nav class="navbar">
+        <!--<nav class="navbar">
             <ul>
                 <li><a href="#about">About</a></li>
                 <li><a href="#coding">Coding</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-        </nav>
+        </nav>-->
     </div>
     <!--<script src="/static/javascript/drag.js"></script>-->
 </body>
