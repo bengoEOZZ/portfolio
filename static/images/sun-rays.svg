@@ -2,23 +2,101 @@
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="583" height="620" viewBox="0 0 583 620" enable-background="new 0 0 583 620" xml:space="preserve">
 <g>
     <!-- Ray 1 -->
+
     <polygon id="ray1" points="411,54 395,71 420,87" style="fill:#F1B39D;stroke:#F1B39D;opacity:0;"/>
-    <polygon id="ray2" points="435,86 411,54 420,87" style="fill:#F6BA99;stroke:#F6BA99;opacity:0;"/>
-    <polygon id="ray3" points="445,46 411,54 435,86" style="fill:#EACDBD;stroke:#EACDBD;opacity:0;"/>
+    <polygon id="ray1" points="435,86 411,54 420,87" style="fill:#F6BA99;stroke:#F6BA99;opacity:0;"/>
+    <polygon id="ray1" points="445,46 411,54 435,86" style="fill:#EACDBD;stroke:#EACDBD;opacity:0;"/>
     
-    <polygon id="ray4" points="472,90 445,46 435,86" style="fill:#F0D6C4;stroke:#F0D6C4;opacity:0;"/>
-    <polygon id="ray5" points="463,103 472,90 435,86" style="fill:#FBCBA9;stroke:#FBCBA9;opacity:0;"/>
-    <polygon id="ray6" points="480,82 445,46 472,90" style="fill:#EED3C2;stroke:#EED3C2;opacity:0;"/>
-    <polygon id="ray7" points="484,71 445,46 480,82" style="fill:#EADCD7;stroke:#EADCD7;opacity:0;"/>
+    <polygon id="ray1" points="472,90 445,46 435,86" style="fill:#F0D6C4;stroke:#F0D6C4;opacity:0;"/>
+    <polygon id="ray1" points="463,103 472,90 435,86" style="fill:#FBCBA9;stroke:#FBCBA9;opacity:0;"/>
+    <polygon id="ray1" points="480,82 445,46 472,90" style="fill:#EED3C2;stroke:#EED3C2;opacity:0;"/>
+    <polygon id="ray1" points="484,71 445,46 480,82" style="fill:#EADCD7;stroke:#EADCD7;opacity:0;"/>
 
-    <polygon id="ray8" points="472,90 463,103 497,84" style="fill:#F5CAB5;stroke:#F5CAB5;opacity:0;"/>
-    <polygon id="ray9" points="497,84 484,71 483,80" style="fill:#F4B091;stroke:#F4B091;opacity:0;"/>
-    <polygon id="ray10" points="483,80 481,84 497,84" style="fill:#EEB596;stroke:#EEB596;opacity:0;"/>
-    <polygon id="ray11" points="481,84 472,90 497,84" style="fill:#F2BAA0;stroke:#F2BAA0;opacity:0;"/>
-    <polygon id="ray12" points="483,80 484,71 480,82" style="fill:#F9A98A;stroke:#F9A98A;opacity:0;"/>
-    <polygon id="ray13" points="481,84 480,82 472,90" style="fill:#F8B490;stroke:#F8B490;opacity:0;"/>
-    <polygon id="ray14" points="483,80 480,82 481,84" style="fill:#F5B28E;stroke:#F5B28E;opacity:0;"/>
+    <polygon id="ray1" points="472,90 463,103 497,84" style="fill:#F5CAB5;stroke:#F5CAB5;opacity:0;"/>
+    <polygon id="ray1" points="497,84 484,71 483,80" style="fill:#F4B091;stroke:#F4B091;opacity:0;"/>
+    <polygon id="ray1" points="483,80 481,84 497,84" style="fill:#EEB596;stroke:#EEB596;opacity:0;"/>
+    <polygon id="ray1" points="481,84 472,90 497,84" style="fill:#F2BAA0;stroke:#F2BAA0;opacity:0;"/>
+    <polygon id="ray1" points="483,80 484,71 480,82" style="fill:#F9A98A;stroke:#F9A98A;opacity:0;"/>
+    <polygon id="ray1" points="481,84 480,82 472,90" style="fill:#F8B490;stroke:#F8B490;opacity:0;"/>
+    <polygon id="ray1" points="483,80 480,82 481,84" style="fill:#F5B28E;stroke:#F5B28E;opacity:0;"/>
 
-    <polygon id="ray15" points="497,84 526,72 484,71" style="fill:#F1D0B5;stroke:#F1D0B5;opacity:0;"/>
+    <polygon id="ray1" points="497,84 526,72 484,71" style="fill:#F1D0B5;stroke:#F1D0B5;opacity:0;"/>
 
+
+    <!-- Ray 2 -->
+    <polygon id="ray2" points="375,127 353,137 365,142" style="fill:#D16742;stroke:#D16742;opacity:0;"/>
+    <polygon id="ray2" points="365,142 353,137 346,171" style="fill:#C56B48;stroke:#C56B48;opacity:0;"/>
+    <polygon id="ray2" points="389,107 362,104 375,127" style="fill:#ECA882;stroke:#ECA882;opacity:0;"/>
+    <polygon id="g2ray1" points="389,107 383,91 362,104" style="fill:#EC9478;stroke:#EC9478;opacity:0;"/>
+
+    <polygon id="ray2" points="365,142 346,171 367,172" style="fill:#E28B60;stroke:#E28B60;opacity:0;"/>
+    <polygon id="ray2" points="381,154 365,142 367,172" style="fill:#D57650;stroke:#D57650;opacity:0;"/>
+    <polygon id="ray2" points="368,185 367,172 346,171" style="fill:#E7773C;stroke:#E7773C;opacity:0;"/>
+    <polygon id="ray2" points="346,171 340,185 368,185" style="fill:#E2773F;stroke:#E2773F;opacity:0;"/>
+    <polygon id="ray2" points="375,127 365,142 381,154" style="fill:#EB9A6F;stroke:#EB9A6F;opacity:0;"/>
+    <polygon id="ray2" points="368,185 340,185 348,211" style="fill:#E58252;stroke:#E58252;opacity:0;"/>
+    <polygon id="ray2" points="408,133 375,127 381,154" style="fill:#F1B08A;stroke:#F1B08A;opacity:0;"/>
+    <polygon id="ray2" points="348,211 340,185 325,201" style="fill:#E58B5E;stroke:#E58B5E;opacity:0;"/>
+    <polygon id="ray2" points="408,133 389,107 375,127" style="fill:#F3BF9F;stroke:#F3BF9F;opacity:0;"/>
+    <polygon id="ray2" points="348,211 325,201 323,211" style="fill:#E89061;stroke:#E89061;opacity:0;"/>
+
+    <polygon id="ray2" points="384,163 381,154 367,172" style="fill:#D98B68;stroke:#D98B68;opacity:0;"/>
+    <polygon id="ray2" points="384,163 367,172 368,185" style="fill:#EC9C70;stroke:#EC9C70;opacity:0;"/>
+    <polygon id="ray2" points="384,163 368,185 405,172" style="fill:#F0B48E;stroke:#F0B48E;opacity:0;"/>
+    <polygon id="ray2" points="405,172 381,154 384,163" style="fill:#E0865C;stroke:#E0865C;opacity:0;"/>
+    <polygon id="ray2" points="408,133 381,154 405,172" style="fill:#EFAB7F;stroke:#EFAB7F;opacity:0;"/>
+
+    <polygon id="ray2" points="440,162 408,133 405,172" style="fill:#F4C7A1;stroke:#F4C7A1;opacity:0;"/>
+    <polygon id="ray2" points="425,199 405,172 368,185" style="fill:#F3A96C;stroke:#F3A96C;opacity:0;"/>
+    <polygon id="ray2" points="368,185 348,211 379,234" style="fill:#E99D6F;stroke:#E99D6F;opacity:0;"/>
+    <polygon id="ray2" points="425,199 440,162 405,172" style="fill:#F7C58E;stroke:#F7C58E;opacity:0;"/>
+    <polygon id="ray2" points="425,199 368,185 379,234" style="fill:#ECA268;stroke:#ECA268;opacity:0;"/>
+    <polygon id="ray2" points="425,199 379,234 421,252" style="fill:#DF8959;stroke:#DF8959;opacity:0;"/>
+    <polygon id="ray2" points="411,272 421,252 379,234" style="fill:#DA6A39;stroke:#DA6A39;opacity:0;"/>
+
+    <polygon id="ray2" points="438,218 425,199 421,252" style="fill:#F4C183;stroke:#F4C183;opacity:0;"/>
+    <polygon id="ray2" points="457,205 440,162 425,199" style="fill:#F6C286;stroke:#F6C286;opacity:0;"/>
+    <polygon id="ray2" points="438,218 457,205 425,199" style="fill:#F9C27F;stroke:#F9C27F;opacity:0;"/>
+    <polygon id="ray2" points="461,166 440,162 457,205" style="fill:#F9D5AE;stroke:#F9D5AE;opacity:0;"/>
+    <polygon id="ray2" points="473,208 461,166 457,205" style="fill:#F8D39E;stroke:#F8D39E;opacity:0;"/>
+    <polygon id="ray2" points="471,233 473,208 457,205" style="fill:#F9C174;stroke:#F9C174;opacity:0;"/>
+    <polygon id="ray2" points="444,229 457,205 438,218" style="fill:#F8C882;stroke:#F8C882;opacity:0;"/>
+    <polygon id="ray2" points="444,229 438,218 421,252" style="fill:#F5C386;stroke:#F5C386;opacity:0;"/>
+    <polygon id="ray2" points="444,229 421,252 448,237" style="fill:#F6C28B;stroke:#F6C28B;opacity:0;"/>
+    <polygon id="ray2" points="471,233 457,205 444,229" style="fill:#F7C986;stroke:#F7C986;opacity:0;"/>
+    <polygon id="ray2" points="471,233 444,229 448,237" style="fill:#F6CB87;stroke:#F6CB87;opacity:0;"/>
+    <polygon id="ray2" points="426,259 421,252 411,272" style="fill:#EB8D50;stroke:#EB8D50;opacity:0;"/>
+    <polygon id="ray2" points="448,237 421,252 445,254" style="fill:#F1BA80;stroke:#F1BA80;opacity:0;"/>
+    <polygon id="ray2" points="426,259 445,254 421,252" style="fill:#EE9B5A;stroke:#EE9B5A;opacity:0;"/>
+    <polygon id="ray2" points="456,252 448,237 445,254" style="fill:#F3D19C;stroke:#F3D19C;opacity:0;"/>
+    <polygon id="ray2" points="483,226 473,208 471,233" style="fill:#F7CF8B;stroke:#F7CF8B;opacity:0;"/>
+    <polygon id="ray2" points="471,233 448,237 456,252" style="fill:#F5CA88;stroke:#F5CA88;opacity:0;"/>
+    <polygon id="ray2" points="481,246 471,233 456,252" style="fill:#F4CB85;stroke:#F4CB85;opacity:0;"/>
+    <polygon id="ray2" points="481,246 483,226 471,233" style="fill:#F7D497;stroke:#F7D497;opacity:0;"/>
+
+    <polygon id="ray2" points="451,259 456,252 445,254" style="fill:#F5D1A5;stroke:#F5D1A5;opacity:0;"/>
+    <polygon id="ray2" points="480,252 481,246 456,252" style="fill:#F6D28C;stroke:#F6D28C;opacity:0;"/>
+    <polygon id="ray2" points="451,259 445,254 426,259" style="fill:#F6D28C;stroke:#F3B57B;opacity:0;"/>
+    <polygon id="ray2" points="455,289 451,259 426,259" style="fill:#F2AD71;stroke:#F2AD71;opacity:0;"/>
+    <polygon id="ray2" points="466,278 456,252 451,259" style="fill:#F3C27B;stroke:#F3C27B;opacity:0;"/>
+    <polygon id="ray2" points="466,278 451,259 455,289" style="fill:#F3C27B;stroke:#F7C37B;opacity:0;"/>
+    <polygon id="ray2" points="456,252 466,278 480,252" style="fill:#F5C372;stroke:#F5C372;opacity:0;"/>
+    <polygon id="ray2" points="455,289 426,259 411,272" style="fill:#EE9A5B;stroke:#EE9A5B;opacity:0;"/>
+    <polygon id="ray2" points="455,289 411,272 427,308" style="fill:#ED8B45;stroke:#ED8B45;opacity:0;"/>
+    <polygon id="ray2" points="414,312 427,308 411,272" style="fill:#E79967;stroke:#E79967;opacity:0;"/>
+    <polygon id="ray2" points="453,301 455,289 427,308" style="fill:#EE9B56;stroke:#EE9B56;opacity:0;"/>
+    <polygon id="ray2" points="475,289 466,278 455,289" style="fill:#F5D29D;stroke:#F5D29D;opacity:0;"/>
+    <polygon id="ray2" points="465,300 475,289 455,289" style="fill:#FAE5C1;stroke:#FAE5C1;opacity:0;"/>
+    <polygon id="ray2" points="453,301 465,300 455,289" style="fill:#F6D197;stroke:#F6D197;opacity:0;"/>
+    <polygon id="ray2" points="460,319 465,300 453,301" style="fill:#FBDAAD;stroke:#FBDAAD;opacity:0;"/>
+    <polygon id="ray2" points="453,301 427,308 433,313" style="fill:#EB823B;stroke:#EB823B;opacity:0;"/>
+    <polygon id="ray2" points="433,313 427,308 414,312" style="fill:#E78F5A;stroke:#E78F5A;opacity:0;"/>
+    <polygon id="ray2" points="460,319 453,301 433,313" style="fill:#EB9752;stroke:#EB9752;opacity:0;"/>
+    <polygon id="ray2" points="433,313 414,312 436,349" style="fill:#EABD9C;stroke:#EABD9C;opacity:0;"/>
+    <polygon id="ray2" points="436,349 460,319 433,313" style="fill:#ED8B3D;stroke:#ED8B3D;opacity:0;"/>
+    <polygon id="ray2" points="436,349 465,349 460,319" style="fill:#E98533;stroke:#E98533;opacity:0;"/>
+    <polygon id="ray2" points="470,354 465,349 436,349" style="fill:#EE8928;stroke:#EE8928;opacity:0;"/>
+    <polygon id="ray2" points="470,354 436,349 480,372" style="fill:#EE8928;stroke:#F29130;opacity:0;"/>
+    <polygon id="ray2" points="480,372 436,349 482,378" style="fill:#EE8928;stroke:#F49D38;opacity:0;"/>
+    <polygon id="ray2" points="482,378 519,366 480,372" style="fill:#EE8928;stroke:#F8CEA4;opacity:0;"/>
 </g></svg>
