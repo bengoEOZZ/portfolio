@@ -8,6 +8,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // Select polygons for Group 3
     const raysGroup3 = Array.from(document.querySelectorAll("polygon[id^='ray3']"));
 
+    // Select polygons for Group 3
+    const raysGroup4 = Array.from(document.querySelectorAll("polygon[id^='ray4']"));
+
+    // Select polygons for Group 3
+    const raysGroup5 = Array.from(document.querySelectorAll("polygon[id^='ray5']"));
+
     // Store interval IDs for each ray
     const intervalMap = new Map();
 
@@ -40,34 +46,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Calculate the total duration for each group so they finish together
     const totalDuration = 10000; // Total duration for all groups to complete (in milliseconds)
-    const group1Duration = totalDuration; // Slow opacity change for Group 1
-    const group2Duration = totalDuration; // Slow opacity change for Group 2
-    const group3Duration = totalDuration; // Slow opacity change for Group 3
 
     // Loop through each polygon in Group 1 and apply the fade-in/out effect
     raysGroup1.forEach((ray, index) => {
         setTimeout(() => {
-            changeOpacityLoop(ray, 0, 1, group1Duration); // Slow opacity change
+            changeOpacityLoop(ray, 0, 1, totalDuration); // Slow opacity change
         }, index * 50); // Fast appearance
     });
 
     // Loop through each polygon in Group 2 and apply the fade-in/out effect
     raysGroup2.forEach((ray, index) => {
         setTimeout(() => {
-            changeOpacityLoop(ray, 0, 1, group2Duration); // Slow opacity change
+            changeOpacityLoop(ray, 0, 1, totalDuration); // Slow opacity change
         }, index * 50); // Fast appearance
     });
 
     // Loop through each polygon in Group 3 and apply the fade-in/out effect
     raysGroup3.forEach((ray, index) => {
         setTimeout(() => {
-            changeOpacityLoop(ray, 0, 1, group3Duration); // Slow opacity change
+            changeOpacityLoop(ray, 0, 1, totalDuration); // Slow opacity change
+        }, index * 25); // Fast appearance
+    });
+
+    // Loop through each polygon in Group 3 and apply the fade-in/out effect
+    raysGroup4.forEach((ray, index) => {
+        setTimeout(() => {
+            changeOpacityLoop(ray, 0, 1, totalDuration); // Slow opacity change
+        }, index * 50); // Fast appearance
+    });
+
+    // Loop through each polygon in Group 3 and apply the fade-in/out effect
+    raysGroup5.forEach((ray, index) => {
+        setTimeout(() => {
+            changeOpacityLoop(ray, 0, 1, totalDuration); // Slow opacity change
         }, index * 50); // Fast appearance
     });
 
     // After 10,000ms, switch to faster flickering with 1000ms duration and random delays
     setTimeout(() => {
-        const allRays = [...raysGroup1, ...raysGroup2, ...raysGroup3];
+        const allRays = [...raysGroup1, ...raysGroup2, ...raysGroup3, ...raysGroup4, ...raysGroup5];
         allRays.forEach((ray) => {
             const randomDelay = Math.random() * 1000; // Random delay between 0 and 1000ms
             setTimeout(() => {

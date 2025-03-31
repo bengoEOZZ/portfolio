@@ -150,7 +150,7 @@ body {
             height: auto;
             z-index: 10;  /* Ensure it appears above other elements */
             transform-origin: top left; /* Set the rotation origin to the top-left corner */
-            /*animation: fadeInUp 2s ease-in-out, rotate-back-forth 5s ease-in-out infinite;*/
+            animation: fadeInUp 2s ease-in-out, rotate-back-forth 5s ease-in-out infinite;
             /*filter: drop-shadow(0 0 50px rgba(255, 165, 0, 0.8)) drop-shadow(0 0 80px rgba(255, 69, 0, 0.6));*/
             filter: drop-shadow(0 0 15px rgba(255, 165, 0, 0.8)) 
             drop-shadow(0 0 30px rgba(255, 69, 0, 0.6)); /* Add depth with multiple shadows */
