@@ -1,8 +1,8 @@
 window.onload = () => {
     const buttonsWrapper = document.querySelector(".buttons-wrapper");
     const buttons = document.querySelectorAll(".btn");
-    const horizontalRadius = 800; // Horizontal radius for the oval path
-    const verticalRadius = 400; // Vertical radius for the oval path
+    const horizontalRadius = 1000; // Horizontal radius for the oval path
+    const verticalRadius = 600; // Vertical radius for the oval path
     const centerX = buttonsWrapper.offsetWidth / 2; // Center of the wrapper (horizontal)
     const centerY = buttonsWrapper.offsetHeight / 2; // Center of the wrapper (vertical)
     let angle = 0; // Starting angle

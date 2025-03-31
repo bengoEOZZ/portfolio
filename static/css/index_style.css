@@ -1,4 +1,4 @@
-        body {
+body {
             margin: 0;
             font-family: 'Poppins', sans-serif;
             background: radial-gradient(circle at 50% 50%, #0d1b2a, #1a1a2e, #000000); /* Space-like gradient */
@@ -25,6 +25,7 @@
             z-index: 5;
             animation: float 6s ease-in-out infinite; /* Floating effect */
             filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.5)); /* Add a glowing effect */
+            width: 600px; /* Adjust size as needed */
             transform: translate(-50%, -50%);
         }
 
@@ -43,8 +44,8 @@
         .left-content {
             position: absolute;
             z-index: 10; /* Ensure the text is above the buttons */
-            bottom: 15%;
-            left: 6%;
+            bottom: 10%;
+            left: 5%;
             width: 350px; /* Adjusted width to make it skinnier */
             animation: fadeIn 2s ease-in-out; /* Subtle fade-in animation */
         }
@@ -79,7 +80,6 @@
         .buttons-wrapper {
             position: relative;
             height: auto;
-            width: 100px;
             margin: 0 auto; /* Center the buttons-wrapper */
             transition: opacity 0.5s ease, transform 0.5s ease;
         }
@@ -109,7 +109,7 @@
 }
         
         .btn-shield {
-            width: 250px; /* Adjust size of the shield */
+            width: 350px; /* Adjust size of the shield */
             height: auto; /* Maintain aspect ratio */
             transition: transform 0.3s ease, filter 0.3s ease;
             cursor: pointer; /* Ensure the shield is clickable */
@@ -119,7 +119,7 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 0.8rem;
+            font-size: 1rem;
             font-weight: bold;
             font-family: 'Orbitron', sans-serif; /* Cool futuristic font */
             color: #ffffff; /* White text */
@@ -146,7 +146,7 @@
             position: fixed;
             top: -10px; /* Adjust spacing from the bottom */
             left: -10px;  /* Adjust spacing from the right */
-            width: 300px; /* Adjust size as needed */
+            width: 400px; /* Adjust size as needed */
             height: auto;
             z-index: 10;  /* Ensure it appears above other elements */
             transform-origin: top left; /* Set the rotation origin to the top-left corner */

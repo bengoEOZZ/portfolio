@@ -6,7 +6,7 @@
     <script src="/static/javascript/circle-navbar.js"></script>
     <script src="/static/javascript/circle-animation.js"></script>
     <script src="/static/javascript/sun-rays.js"></script>
-    <!--<script src="/static/javascript/light-alternate.js"></script>-->
+    <!--script src="/static/javascript/light-alternate.js"></script>-->
     <link rel="stylesheet" type="text/css" href="/static/css/index_style.css">
     <link rel="stylesheet" type="text/css" href="/static/css/navbar_new.css">
 </head>
