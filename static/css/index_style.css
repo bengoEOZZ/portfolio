@@ -134,19 +134,19 @@ body {
         }
         .earth-svg {
             position: fixed;
-            bottom: 0px; /* Adjust spacing from the bottom */
-            right: 0px;  /* Adjust spacing from the right */
-            width: 450px; /* Adjust size as needed */
+            bottom: -50%; /* Adjust spacing from the bottom */
+            right: -10%;  /* Adjust spacing from the right */
+            width: 800px; /* Adjust size as needed */
             height: auto;
             z-index: 10;  /* Ensure it appears above other elements */
-            animation: fadeIn 2s ease-in-out;
+            animation: fadeIn 2s ease-in-out, float-and-rotate 200s linear infinite;
         }
 
         .sun-svg {
             position: fixed;
             top: -10px; /* Adjust spacing from the bottom */
             left: -10px;  /* Adjust spacing from the right */
-            width: 400px; /* Adjust size as needed */
+            width: 350px; /* Adjust size as needed */
             height: auto;
             z-index: 10;  /* Ensure it appears above other elements */
             transform-origin: top left; /* Set the rotation origin to the top-left corner */
@@ -242,6 +242,15 @@ body {
             }
         }
 
+        @keyframes float2 {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-50px);
+            }
+        }
+
 /* Jiggle animation for the first two buttons */
 @keyframes jiggle-left {
     0%, 100% {
@@ -265,5 +274,14 @@ body {
     }
     75% {
         transform: rotate(-10deg); /* Rotate slightly to the left */
+    }
+}
+
+@keyframes float-and-rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
     }
 }

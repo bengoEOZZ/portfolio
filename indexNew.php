@@ -5,8 +5,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <script src="/static/javascript/circle-navbar.js"></script>
     <script src="/static/javascript/circle-animation.js"></script>
-    <script src="/static/javascript/sun-rays.js"></script>
-    <script src="/static/javascript/light-alternate.js"></script>
+    <!--script src="/static/javascript/light-alternate.js"></script>-->
     <link rel="stylesheet" type="text/css" href="/static/css/index_style.css">
     <link rel="stylesheet" type="text/css" href="/static/css/navbar_new.css">
 </head>
@@ -21,26 +20,12 @@
             Dive into my universe, and discover more about me.</p>
         </div>
 
-        <img src="/static/images/earth.svg" alt="Earth" class="earth-svg">
+        <img src="/static/images/earth2.svg" alt="Earth" class="earth-svg">
         <!--<div class="sun-rays"></div>-->
         <img src="/static/images/sun.svg" alt="Earth" class="sun-svg">
         <div class="sun-svg">
             <?php include 'static/images/sun-rays.svg'; ?>
         </div>
-        <!--<div id="mydiv">
-            <div id="mydivheader">Click here to move</div>
-            <p>Move</p>
-            <p>this</p>
-            <p>DIV</p>
-        </div>-->
-
-        <!-- Buttons that will circle around 
-        <div class="buttons-wrapper">
-            <a href="#about" class="btn">About</a>
-            <a href="#coding" class="btn">Coding</a>
-            <a href="#projects" class="btn">Projects</a>
-            <a href="#contact" class="btn">Contact</a>
-        </div>-->
 
         <div class="buttons-wrapper">
             <a href="#about" class="btn">
