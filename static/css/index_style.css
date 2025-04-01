@@ -24,7 +24,8 @@ body {
             position: absolute;
             z-index: 5;
             animation: float 6s ease-in-out infinite; /* Floating effect */
-            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.5)); /* Add a glowing effect */
+            filter: drop-shadow(0 0 50px rgba(255, 255, 255, 0.5)) /* Add a glowing effect */
+            drop-shadow(0 0 100px rgba(135, 206, 250, 0.4));
             width: 600px; /* Adjust size as needed */
             transform: translate(-50%, -50%);
         }
@@ -109,7 +110,7 @@ body {
 }
         
         .btn-shield {
-            width: 350px; /* Adjust size of the shield */
+            width: 300px; /* Adjust size of the shield */
             height: auto; /* Maintain aspect ratio */
             transition: transform 0.3s ease, filter 0.3s ease;
             cursor: pointer; /* Ensure the shield is clickable */
@@ -140,17 +141,19 @@ body {
             height: auto;
             z-index: 10;  /* Ensure it appears above other elements */
             animation: fadeIn 2s ease-in-out, float-and-rotate 200s linear infinite;
+            filter: drop-shadow(0 0 20px rgba(135, 206, 250, 0.5)) /* Faint blue glow */
+            drop-shadow(0 0 40px rgba(70, 130, 180, 0.3));
         }
 
         .sun-svg {
             position: fixed;
             top: -10px; /* Adjust spacing from the bottom */
             left: -10px;  /* Adjust spacing from the right */
-            width: 350px; /* Adjust size as needed */
+            width: 365px; /* Adjust size as needed */
             height: auto;
             z-index: 10;  /* Ensure it appears above other elements */
             transform-origin: top left; /* Set the rotation origin to the top-left corner */
-            animation: fadeInUp 2s ease-in-out, rotate-back-forth 5s ease-in-out infinite;
+            animation: fadeInUp 2s ease-in-out, rotate-back-forth 3s ease-in-out infinite;
             /*filter: drop-shadow(0 0 50px rgba(255, 165, 0, 0.8)) drop-shadow(0 0 80px rgba(255, 69, 0, 0.6));*/
             filter: drop-shadow(0 0 15px rgba(255, 165, 0, 0.8)) 
             drop-shadow(0 0 30px rgba(255, 69, 0, 0.6)); /* Add depth with multiple shadows */
@@ -173,6 +176,65 @@ body {
             z-index: 9;
             animation: rotate-rays 10s linear infinite;
             pointer-events: none; /* Prevent interaction */
+        }
+
+        .floating-remarks {
+            pointer-events: none; /* Prevent interaction */
+            z-index: 20;
+        }
+        
+        .remark {
+            position: absolute;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 40px rgba(255, 255, 255, 0.9); /* Brighter glow */
+            white-space: nowrap;
+            animation: twinkle infinite alternate ease-in-out;
+            opacity: 0;
+        }
+        
+        .remark:nth-child(1) {
+            top: 20%; /* Near the top-left */
+            left: 20%;
+            animation-duration: 6.12s;
+            animation-delay: 0.5s; /* Randomized delay */
+        }
+        
+        .remark:nth-child(2) {
+            top: 60%; /* Near the top-right */
+            left: 65%;
+            animation-duration: 7.48s;
+            animation-delay: 1.8s; /* Randomized delay */
+        }
+        
+        .remark:nth-child(3) {
+            top: 75%; /* Near the bottom-left */
+            left: 30%;
+            animation-duration: 5.44s;
+            animation-delay: 2.3s; /* Randomized delay */
+        }
+
+        .remark:nth-child(4) {
+            top: 18%; /* Near the bottom-left */
+            left: 50%;
+            animation-duration: 6.8s;
+            animation-delay: 0.9s; /* Randomized delay */
+        }
+
+        .remark:nth-child(5) {
+            top: 50%; /* Near the bottom-left */
+            left: 10%;
+            animation-duration: 4.76s;
+            animation-delay: 1.5s; /* Randomized delay */
+        }
+
+        @keyframes twinkle {
+            0% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.8); opacity: 0; }
+            20% { text-shadow: 0 0 15px rgba(255, 255, 255, 1); opacity: 1; }
+            40% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.8); opacity: 0; }
+            60% { text-shadow: 0 0 15px rgba(255, 255, 255, 1); opacity: 1; }
+            80% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.8); opacity: 0; }
         }
 
         @keyframes rotate-back-forth {

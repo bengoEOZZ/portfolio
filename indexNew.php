@@ -11,7 +11,7 @@
 </head>
 <body>
     
-    <div class="container" id="draggable">
+    <div class="container">
         <img src="/static/images/Ben.svg" alt="Benjamin Tiong SVG" class="planet" id="draggable"></img>
         <div class="left-content">
             <h1 class="left-text">Hello World...</h1>
@@ -46,6 +46,14 @@
             </a>
         </div>
 
+        <div class="floating-remarks">
+            <div class="remark">if (user.isCurious) { explore(); }</div>
+            <div class="remark">try { learn(); } catch (failure) { grow(); }</div>
+            <div class="remark">if (world.needsChange) { buildSolution(); }</div>
+            <div class="remark">do { expandPerspective(); } while (truth.isVast);</div>
+            <div class="remark">for (idea in ideas) { innovate(idea); }</div>
+        </div>
+
         <!--<nav class="navbar">
             <ul>
                 <li><a href="#about">About</a></li>
@@ -55,7 +63,6 @@
             </ul>
         </nav>-->
     </div>
-    <!--<script src="/static/javascript/drag.js"></script>-->
     
 </body>
 </html>
