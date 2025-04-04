@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="726" height="620" viewBox="0 0 726 620" enable-background="new 0 0 726 620" xml:space="preserve">
+    <g>
+        <!-- Outer polygons (fully opaque) -->
+        <polygon points="451,239 475,232 357,160" style="fill:#E1F4FA;stroke:#E1F4FA;opacity:1;" />
+        <polygon points="475,232 356,132 357,160" style="fill:#E2F5F8;stroke:#E2F5F8;opacity:1;" />
+        <polygon points="238,230 259,241 357,160" style="fill:#DEF5FB;stroke:#DEF5FB;opacity:1;" />
+        <polygon points="356,132 238,230 357,160" style="fill:#DCF2F4;stroke:#DCF2F4;opacity:1;" />
+        <polygon points="451,239 456,416 475,232" style="fill:#DBF4FB;stroke:#DBF4FB;opacity:1;" />
+        <polygon points="456,416 477,429 475,232" style="fill:#D7EAF0;stroke:#D7EAF0;opacity:1;" />
+        <polygon points="238,425 260,416 259,241" style="fill:#E0F5FA;stroke:#E0F5FA;opacity:1;" />
+        <polygon points="456,416 357,499 477,429" style="fill:#DBF3FB;stroke:#DBF3FB;opacity:1;" />
+        <polygon points="238,230 238,425 259,241" style="fill:#E3F6F9;stroke:#E3F6F9;opacity:1;" />
+        <polygon points="238,425 357,499 260,416" style="fill:#DBF5FA;stroke:#DBF5FA;opacity:1;" />
+        <polygon points="238,425 357,524 357,499" style="fill:#E1F6FA;stroke:#E1F6FA;opacity:1;" />
+        <polygon points="357,499 357,524 477,429" style="fill:#DEEFF6;stroke:#DEEFF6;opacity:1;" />
+
+        <!-- Inner polygons (semi-transparent) -->
+        <polygon points="357,160 259,241 451,239" style="fill:#AEC6E3;stroke:#AEC6E3;opacity:0.7;" />
+        <polygon points="260,416 451,239 259,241" style="fill:#B0CDE5;stroke:#B0CDE5;opacity:0.7;" />
+        <polygon points="260,416 456,416 451,239" style="fill:#A6C6E5;stroke:#A6C6E5;opacity:0.7;" />
+        <polygon points="260,416 357,499 456,416" style="fill:#A5C6E3;stroke:#A5C6E3;opacity:0.7;" />
+    </g>
+</svg>

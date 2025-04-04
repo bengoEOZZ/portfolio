@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+/* Circular layout for buttons */
+.buttonsWrapper {
+    position: relative;
+    height: auto;
+    margin: 0 auto; /* Center the buttons-wrapper */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.btn {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    background: none; /* Remove background */
+    border: none; /* Remove border */
+    padding: 0; /* Remove any padding */
+    transition: all 0.3s ease;
+}
+
+/* Assign animations to specific buttons */
+.btn:nth-child(1),
+.btn:nth-child(3) {
+animation: jiggle-left 3s infinite; /* First two buttons jiggle left */
+}
+
+.btn:nth-child(2),
+.btn:nth-child(4) {
+animation: jiggle-right 3s infinite; /* Last two buttons jiggle right */
+}
+
+.btnShield {
+    width: 300px; /* Adjust size of the shield */
+    height: auto; /* Maintain aspect ratio */
+    transition: transform 0.3s ease, filter 0.3s ease;
+    cursor: pointer; /* Ensure the shield is clickable */
+}
+
+.btnText {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif; /* Cool futuristic font */
+    color: #ffffff; /* White text */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Glowing text */
+    pointer-events: none; /* Ensure text doesn't interfere with clicks */
+}
+
+.btn:hover .btnShield {
+    transform: scale(1.1); /* Slight zoom on hover */
+    filter: drop-shadow(0 0 20px rgba(135, 206, 250, 0.8)) /* Soft sky blue glow */
+            drop-shadow(0 0 30px rgba(70, 130, 180, 0.6)); /* Deeper blue for depth */
+}
+
+/* Jiggle animation for the first two buttons */
+@keyframes jiggle-left {
+    0%, 100% {
+    transform: translateX(-100%) rotate(0deg); /* Start and end at the original position */
+    }
+    25% {
+    transform: translateX(-100%) rotate(-10deg); /* Rotate slightly to the left */
+    }
+    75% {
+    transform: translateX(-100%) rotate(10deg); /* Rotate slightly to the right */
+    }
+    }
+    
+    /* Jiggle animation for the other two buttons */
+    @keyframes jiggle-right {
+    0%, 100% {
+    transform: translateX(-100%) rotate(0deg); /* Start and end at the original position */
+    }
+    25% {
+    transform: translateX(-100%) rotate(10deg); /* Rotate slightly to the right */
+    }
+    75% {
+    transform: translateX(-100%) rotate(-10deg); /* Rotate slightly to the left */
+    }
+    }

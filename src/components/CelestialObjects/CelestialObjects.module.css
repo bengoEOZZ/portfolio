@@ -1,0 +1,114 @@
+.planet {
+    position: relative;
+    z-index: 5;
+    left: 50%;
+    animation: float 6s ease-in-out infinite; /* Floating effect */
+    filter: drop-shadow(0 0 50px rgba(255, 255, 255, 0.5)) /* Add a glowing effect */
+    drop-shadow(0 0 100px rgba(135, 206, 250, 0.4));
+    width: 600px; /* Adjust size as needed */
+}
+
+.earth {
+    position: fixed;
+    bottom: -50%; /* Adjust spacing from the bottom */
+    right: -10%;  /* Adjust spacing from the right */
+    width: 800px; /* Adjust size as needed */
+    height: auto;
+    z-index: 10;  /* Ensure it appears above other elements */
+    animation: fadeIn 2s ease-in-out, rotate 200s linear infinite;
+    filter: drop-shadow(0 0 20px rgba(135, 206, 250, 0.5)) /* Faint blue glow */
+    drop-shadow(0 0 40px rgba(70, 130, 180, 0.3));
+}
+
+.sun {
+    position: fixed;
+    top: -10px; /* Adjust spacing from the bottom */
+    left: -10px;  /* Adjust spacing from the right */
+    width: 365px; /* Adjust size as needed */
+    height: auto;
+    z-index: 10;  /* Ensure it appears above other elements */
+    transform-origin: top left; /* Set the rotation origin to the top-left corner */
+    animation: fadeInUp 2s ease-in-out, rotate-back-forth 3s ease-in-out infinite;
+    /*filter: drop-shadow(0 0 50px rgba(255, 165, 0, 0.8)) drop-shadow(0 0 80px rgba(255, 69, 0, 0.6));*/
+    filter: drop-shadow(0 0 15px rgba(255, 165, 0, 0.8)) 
+    drop-shadow(0 0 30px rgba(255, 69, 0, 0.6)); /* Add depth with multiple shadows */
+    display: inline-block; /* Ensure it behaves like an inline element */
+}
+
+.sunrays {
+    position: fixed;
+    top: -10px; /* Adjust spacing from the bottom */
+    left: -10px;  /* Adjust spacing from the right */
+    width: 365px; /* Adjust size as needed */
+    height: auto;
+    z-index: 10;  /* Ensure it appears above other elements */
+    transform-origin: top left; /* Set the rotation origin to the top-left corner */
+    animation: rotate-back-forth 3s ease-in-out infinite;
+    /*filter: drop-shadow(0 0 50px rgba(255, 165, 0, 0.8)) drop-shadow(0 0 80px rgba(255, 69, 0, 0.6));*/
+    filter: drop-shadow(0 0 15px rgba(255, 165, 0, 0.8)) 
+    drop-shadow(0 0 30px rgba(255, 69, 0, 0.6)); /* Add depth with multiple shadows */
+    display: inline-block; /* Ensure it behaves like an inline element */
+    animation-delay: 1s;
+}
+
+
+@keyframes rotate-back-forth {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(0.5deg); /* Back to original position */
+    }
+    50% {
+        transform: rotate(-0.5deg); /* Back to original position */
+    }
+    75% {
+        transform: rotate(0.5deg); /* Back to original position */
+    }
+    100% {
+        transform: rotate(0deg); /* Back to original position */
+    }
+}
+
+
+/* Add subtle animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-20px);
+    }
+}
+
+
+@keyframes rotate {
+0% {
+transform: rotate(0deg);
+}
+100% {
+transform: rotate(360deg);
+}
+}

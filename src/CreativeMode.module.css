@@ -1,0 +1,16 @@
+.body {
+    background: radial-gradient(circle at 50% 50%, #0d1b2a, #1a1a2e, #000000); /* Space-like gradient */
+    overflow: hidden; /* Prevent scrollbars */
+}
+
+/* Center the container and text */
+.container {
+    position: relative;
+    height: 100vh; /* Full viewport height */
+    width: 100vw;
+    background: url('https://www.transparenttextures.com/patterns/stardust.png'); /* Starry texture */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}

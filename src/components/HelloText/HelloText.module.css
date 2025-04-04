@@ -1,0 +1,26 @@
+.leftContent {
+    position: absolute;
+    z-index: 10; /* Ensure the text is above the buttons */
+    bottom: 10%;
+    left: 5%;
+    width: 350px; /* Adjusted width to make it skinnier */
+    animation: fadeIn 2s ease-in-out; /* Subtle fade-in animation */
+}
+
+.leftText {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 0;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(0, 123, 255, 0.6); /* Glowing text */
+    display: inline-block;
+    border-bottom: 10px solid #007bff; /* Bright blue underline */
+}
+
+.intro {
+    max-width: 600px;
+    margin: 1rem auto 0;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #b0b0b0; /* Softer light gray for paragraph text */
+}

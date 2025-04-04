@@ -1,0 +1,58 @@
+.floatingRemarks {
+    pointer-events: none; /* Prevent interaction */
+    z-index: 20;
+}
+
+.remark {
+    position: absolute;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    color: #ffffff;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 40px rgba(255, 255, 255, 0.9); /* Brighter glow */
+    white-space: nowrap;
+    animation: twinkle infinite alternate ease-in-out;
+    opacity: 0;
+}
+
+.remark:nth-child(1) {
+    top: 20%; /* Near the top-left */
+    left: 20%;
+    animation-duration: 6.12s;
+    animation-delay: 0.5s; /* Randomized delay */
+}
+
+.remark:nth-child(2) {
+    top: 60%; /* Near the top-right */
+    left: 65%;
+    animation-duration: 7.48s;
+    animation-delay: 1.8s; /* Randomized delay */
+}
+
+.remark:nth-child(3) {
+    top: 75%; /* Near the bottom-left */
+    left: 30%;
+    animation-duration: 5.44s;
+    animation-delay: 2.3s; /* Randomized delay */
+}
+
+.remark:nth-child(4) {
+    top: 18%; /* Near the bottom-left */
+    left: 50%;
+    animation-duration: 6.8s;
+    animation-delay: 0.9s; /* Randomized delay */
+}
+
+.remark:nth-child(5) {
+    top: 50%; /* Near the bottom-left */
+    left: 10%;
+    animation-duration: 4.76s;
+    animation-delay: 1.5s; /* Randomized delay */
+}
+
+@keyframes twinkle {
+    0% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.8); opacity: 0; }
+    20% { text-shadow: 0 0 15px rgba(255, 255, 255, 1); opacity: 1; }
+    40% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.8); opacity: 0; }
+    60% { text-shadow: 0 0 15px rgba(255, 255, 255, 1); opacity: 1; }
+    80% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.8); opacity: 0; }
+}

@@ -1,0 +1,22 @@
+.body {
+  display: flex;
+  justify-content: center;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #1a1a2e;
+}
+
+
+.header {
+  color: white;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
