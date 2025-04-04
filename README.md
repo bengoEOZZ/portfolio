@@ -1,4 +1,4 @@
-Migrate Portfolio to React
+Migrated Portfolio to React
 
 - Migrated the project from static files (HTML, PHP, CSS) to a React-based structure.
 - Set up Vite as the build tool for fast development.
@@ -17,3 +17,4 @@ Migrate Portfolio to React
 - Added routing using `react-router-dom`:
   - Created a landing page with `ButtonClassic` and `ButtonCreative` for navigation.
   - Added routes for `/classic` and `/creative` modes.
+  
