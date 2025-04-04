@@ -1,7 +1,7 @@
 Migrated Portfolio to React
 
 - Migrated the project from static files (HTML, PHP, CSS) to a React-based structure.
-  - Set new default branch to REACT-MIGRATION
+  - Set new default branch to REACT-MIGRATION 
 - Set up Vite as the build tool for fast development.
 - Excluded all php components, and refactored their function
   - Updated `SunRays.jsx`: Changed layout
