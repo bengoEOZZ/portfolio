@@ -6,14 +6,24 @@ import EarthImage from '../../assets/earth2.svg';
 import SunImage from '../../assets/sun.svg';
 
 function CelestialObjects() {
+    const snowflakes = Array.from({ length: 25 })
+
     return (
         <>
-            <img src={BenImage} alt="Benjamin Tiong SVG" className={classes.planet} />
+            {/*<img src={BenImage} alt="Benjamin Tiong SVG" className={classes.planet} />*/}
+            <div className={classes.seasonalChanges}>
+                <div className={classes.snowflakes}>
+                    {snowflakes.map((_, index) => (
+                        <i key={index} className={classes.snowflake}></i>
+                    ))}
+                </div>
+            </div>
+
             <img src={EarthImage} alt="Earth" className={classes.earth} />
-            <img src={SunImage} alt="Sun" className={classes.sun} />
+            {/*<img src={SunImage} alt="Sun" className={classes.sun} />
             <div className={classes.sunrays}>
                 <SunRays />
-            </div>
+            </div>*/}
         </>
     );
 }
