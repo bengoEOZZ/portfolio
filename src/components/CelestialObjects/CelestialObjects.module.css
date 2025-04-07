@@ -20,6 +20,17 @@
     drop-shadow(0 0 40px rgba(70, 130, 180, 0.3));
 }
 
+.earthSeason {
+    position: fixed;
+    bottom: -50%; /* Adjust spacing from the bottom */
+    right: -10%;  /* Adjust spacing from the right */
+    width: 800px; /* Adjust size as needed */
+    height: auto;
+    z-index: 10;  /* Ensure it appears above other elements */
+    animation: fadeInSoft 2s ease-in-out, rotate 200s linear infinite;
+    opacity: 0.5; /* Make it semi-transparent */
+}
+
 .seasonalChanges {
     position: absolute; /* Position it relative to the parent container */
     bottom: 10%; /* Adjust to position it above the Earth */
@@ -27,7 +38,7 @@
     width: 500px; /* Adjust width as needed */
     height: 300px; /* Adjust height as needed */
     z-index: 15; /* Ensure it is layered above the Earth */
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    
 }
 
 .snowflakes {
@@ -48,6 +59,63 @@
     background: white;
     border-radius: 50%;
     will-change: transform, opacity;
+}
+
+.mapleLeaves {
+    position: absolute; /* Position relative to the seasonalChanges container */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Prevent interaction with snowflakes */
+    z-index: 20; /* Ensure snowflakes are above other elements inside the container */
+    overflow: hidden; /* Prevent snowflakes from overflowing the container */
+}
+
+.mapleLeaves i {
+    position: absolute;
+    display: block;
+    background: #e74c3c;
+    clip-path: polygon(
+        50% 0%,      /* Top point */
+        40% 15%,     /* Top-left indent */
+        20% 15%,     /* Left lobe top */
+        28% 30%,     /* Left lobe inner */
+        15% 45%,     /* Left lobe point */
+        30% 50%,     /* Left indent */
+        5% 65%,      /* Bottom-left lobe top */
+        15% 75%,     /* Bottom-left lobe inner */
+        30% 85%,     /* Bottom-left lobe point */
+        50% 100%,    /* Bottom point */
+        70% 85%,     /* Bottom-right lobe point */
+        85% 75%,     /* Bottom-right lobe inner */
+        95% 65%,     /* Bottom-right lobe top */
+        70% 50%,     /* Right indent */
+        85% 45%,     /* Right lobe point */
+        72% 30%,     /* Right lobe inner */
+        80% 15%,     /* Right lobe top */
+        60% 15%      /* Top-right indent */
+    ); /* Proper maple leaf shape with lobes */
+    border-radius: 80%;
+    will-change: transform, opacity;
+}
+
+/* Add color variations to maple leaves */
+.mapleLeaves i:nth-child(2n) {
+    background: #e74c3c; /* Red - original color */
+}
+
+.mapleLeaves i:nth-child(2n+1) {
+    background: #d35400; /* Dark orange */
+}
+
+.mapleLeaves i:nth-child(2n+2) {
+    background: #e67e22; /* Orange */
+}
+
+/* Add a few brown leaves (every 11th leaf) */
+.mapleLeaves i:nth-child(5n) {
+    background: #795548; /* Brown */
 }
 
 /* Replace random() with specific selectors for snowflakes */
@@ -76,6 +144,32 @@
 .snowflakes i:nth-child(23) { left: 53%; top: -23%; width: 6px; height: 6px; animation: fall 12.7s linear infinite, sway 4.1s ease-in-out infinite; animation-delay: 3.7s, 3.7s; }
 .snowflakes i:nth-child(24) { left: 63%; top: -13%; width: 5px; height: 5px; animation: fall 9.4s linear infinite, sway 3.3s ease-in-out infinite; animation-delay: 0.6s, 0.6s; }
 .snowflakes i:nth-child(25) { left: 73%; top: -27%; width: 7px; height: 7px; animation: fall 13.8s linear infinite, sway 2.8s ease-in-out infinite; animation-delay: 2.5s, 2.5s; }
+
+.mapleLeaves i:nth-child(1) { left: 10%; top: -5%; width: 15px; height: 11px; animation: fall 9s linear infinite, swayAndSpin 3s ease-in-out infinite; animation-delay: 0.2s, 0.2s, 0.5s; }
+.mapleLeaves i:nth-child(2) { left: 20%; top: -15%; width: 18px; height: 14px; animation: fall 12s linear infinite, swayAndSpin 4s ease-in-out infinite; animation-delay: 1.5s, 1.5s, 1s; }
+.mapleLeaves i:nth-child(3) { left: 30%; top: -20%; width: 14px; height: 11px; animation: fall 8s linear infinite, swayAndSpin 2.5s ease-in-out infinite; animation-delay: 2.8s, 2.8s, 2s; }
+.mapleLeaves i:nth-child(4) { left: 40%; top: -10%; width: 19px; height: 14px; animation: fall 14s linear infinite, swayAndSpin 3.5s ease-in-out infinite; animation-delay: 0.7s, 0.7s, 1.5s; }
+.mapleLeaves i:nth-child(5) { left: 50%; top: -25%; width: 11px; height: 8px; animation: fall 10s linear infinite, swayAndSpin 2s ease-in-out infinite; animation-delay: 3.2s, 3.2s, 2.5s; }
+.mapleLeaves i:nth-child(6) { left: 60%; top: -15%; width: 17px; height: 13px; animation: fall 13s linear infinite, swayAndSpin 4.5s ease-in-out infinite; animation-delay: 2.1s, 2.1s, 0.3s; }
+.mapleLeaves i:nth-child(7) { left: 70%; top: -5%; width: 13px; height: 10px; animation: fall 11s linear infinite, swayAndSpin 3.2s ease-in-out infinite; animation-delay: 0.5s, 0.5s, 1.8s; }
+.mapleLeaves i:nth-child(8) { left: 80%; top: -18%; width: 17px; height: 13px; animation: fall 9.5s linear infinite, swayAndSpin 2.8s ease-in-out infinite; animation-delay: 1.9s, 1.9s, 2.7s; }
+.mapleLeaves i:nth-child(9) { left: 90%; top: -22%; width: 14px; height: 11px; animation: fall 12.5s linear infinite, swayAndSpin 3.7s ease-in-out infinite; animation-delay: 3.5s, 3.5s, 1.2s; }
+.mapleLeaves i:nth-child(10) { left: 15%; top: -8%; width: 16px; height: 12px; animation: fall 10.2s linear infinite, swayAndSpin 2.2s ease-in-out infinite; animation-delay: 2.4s, 2.4s, 3s; }
+.mapleLeaves i:nth-child(11) { left: 25%; top: -12%; width: 12px; height: 9px; animation: fall 8.5s linear infinite, swayAndSpin 3.8s ease-in-out infinite; animation-delay: 1.1s, 1.1s, 0.8s; }
+.mapleLeaves i:nth-child(12) { left: 35%; top: -28%; width: 18px; height: 14px; animation: fall 11.8s linear infinite, swayAndSpin 4.2s ease-in-out infinite; animation-delay: 0.3s, 0.3s, 2.3s; }
+.mapleLeaves i:nth-child(13) { left: 45%; top: -17%; width: 14px; height: 11px; animation: fall 13.2s linear infinite, swayAndSpin 2.6s ease-in-out infinite; animation-delay: 2.7s, 2.7s, 1.6s; }
+.mapleLeaves i:nth-child(14) { left: 55%; top: -9%; width: 17px; height: 13px; animation: fall 9.8s linear infinite, swayAndSpin 3.4s ease-in-out infinite; animation-delay: 1.4s, 1.4s, 2.9s; }
+.mapleLeaves i:nth-child(15) { left: 65%; top: -21%; width: 13px; height: 10px; animation: fall 12.3s linear infinite, swayAndSpin 2.9s ease-in-out infinite; animation-delay: 3.8s, 3.8s, 0.6s; }
+.mapleLeaves i:nth-child(16) { left: 75%; top: -14%; width: 15px; height: 11px; animation: fall 10.7s linear infinite, swayAndSpin 4.3s ease-in-out infinite; animation-delay: 0.8s, 0.8s, 2s; }
+.mapleLeaves i:nth-child(17) { left: 85%; top: -24%; width: 11px; height: 8px; animation: fall 11.5s linear infinite, swayAndSpin 3.1s ease-in-out infinite; animation-delay: 2.2s, 2.2s, 3.3s; }
+.mapleLeaves i:nth-child(18) { left: 95%; top: -19%; width: 14px; height: 11px; animation: fall 8.8s linear infinite, swayAndSpin 2.7s ease-in-out infinite; animation-delay: 3.1s, 3.1s, 1.3s; }
+.mapleLeaves i:nth-child(19) { left: 5%; top: -11%; width: 19px; height: 14px; animation: fall 13.5s linear infinite, swayAndSpin 3.9s ease-in-out infinite; animation-delay: 1.7s, 1.7s, 2.6s; }
+.mapleLeaves i:nth-child(20) { left: 23%; top: -26%; width: 12px; height: 9px; animation: fall 9.2s linear infinite, swayAndSpin 2.4s ease-in-out infinite; animation-delay: 0.4s, 0.4s, 1.1s; }
+.mapleLeaves i:nth-child(21) { left: 33%; top: -7%; width: 16px; height: 12px; animation: fall 11.1s linear infinite, swayAndSpin 3.6s ease-in-out infinite; animation-delay: 2.9s, 2.9s, 0.9s; }
+.mapleLeaves i:nth-child(22) { left: 43%; top: -16%; width: 17px; height: 13px; animation: fall 10.4s linear infinite, swayAndSpin 2.3s ease-in-out infinite; animation-delay: 1.3s, 1.3s, 3.4s; }
+.mapleLeaves i:nth-child(23) { left: 53%; top: -23%; width: 14px; height: 11px; animation: fall 12.7s linear infinite, swayAndSpin 4.1s ease-in-out infinite; animation-delay: 3.7s, 3.7s, 1.8s; }
+.mapleLeaves i:nth-child(24) { left: 63%; top: -13%; width: 11px; height: 8px; animation: fall 9.4s linear infinite, swayAndSpin 3.3s ease-in-out infinite; animation-delay: 0.6s, 0.6s, 2.4s; }
+.mapleLeaves i:nth-child(25) { left: 73%; top: -27%; width: 15px; height: 11px; animation: fall 13.8s linear infinite, swayAndSpin 2.8s ease-in-out infinite; animation-delay: 2.5s, 2.5s, 0.5s; }
 
 .sun {
     position: fixed;
@@ -140,6 +234,18 @@
     }
 }
 
+/* Add subtle animations */
+@keyframes fadeInSoft {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 0.5;
+        transform: translateY(0);
+    }
+}
+
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -198,5 +304,29 @@ transform: rotate(360deg);
     }
     100% {
         transform: translateX(-8px);
+    }
+}
+
+@keyframes sway {
+    0% {
+        transform: translateX(-8px);
+    }
+    50% {
+        transform: translateX(8px);
+    }
+    100% {
+        transform: translateX(-8px);
+    }
+}
+
+@keyframes swayAndSpin {
+    0% {
+        transform: translateX(-16px) rotate(-20deg);
+    }
+    50% {
+        transform: translateX(16px) rotate(20deg);
+    }
+    100% {
+        transform: translateX(-16px) rotate(-20deg);
     }
 }
