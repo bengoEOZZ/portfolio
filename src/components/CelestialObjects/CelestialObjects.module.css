@@ -20,6 +20,194 @@
     drop-shadow(0 0 40px rgba(70, 130, 180, 0.3));
 }
 
+/* Add rainbow arc over Earth */
+.rainbowArc {
+    position: fixed;
+    bottom: 10%; 
+    right: 2%;
+    width: 600px;
+    height: 300px;
+    z-index: 9;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 0, 0, 0.6),
+        rgba(255, 165, 0, 0.6),
+        rgba(255, 255, 0, 0.6),
+        rgba(0, 128, 0, 0.6),
+        rgba(0, 0, 255, 0.6),
+        rgba(75, 0, 130, 0.6),
+        rgba(238, 130, 238, 0.3)
+    );
+    border-radius: 300px 300px 0 0;
+    transform: rotate(-17deg);
+    pointer-events: none;
+    filter: blur(20px);
+    animation: pulsate 20s ease-in-out infinite;
+    
+}
+/* Firefly container */
+.fireflies {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 20;
+    overflow: hidden;
+}
+
+/* Base firefly style */
+.fireflies i {
+    position: absolute;
+    display: block;
+    width: 5px;
+    height: 5px;
+    background: #ffff66;
+    border-radius: 50%;
+    box-shadow: 0 0 6px 2px rgba(255, 120, 0, 0.8);
+    will-change: transform, opacity;
+}
+.fireflies i:nth-child(3n) {
+    animation: drift1 18s linear infinite;
+}
+
+.fireflies i:nth-child(3n+1) {
+    animation: drift2 22s linear infinite;
+}
+
+.fireflies i:nth-child(3n+2) {
+    animation: drift3 20s linear infinite;
+}
+
+.fireflies i:nth-child(1) { left: 65%; top: 30%; animation-delay: 2.1s, 0.3s; }
+.fireflies i:nth-child(2) { left: 15%; top: 45%; animation-delay: 1.8s, 1.3s; }
+.fireflies i:nth-child(3) { left: 90%; top: 60%; animation-delay: 1.5s, 1.0s; }
+.fireflies i:nth-child(4) { left: 45%; top: 80%; animation-delay: 2.5s, 1.9s; }
+.fireflies i:nth-child(5) { left: 30%; top: 35%; animation-delay: 1.6s, 3.0s; }
+.fireflies i:nth-child(6) { left: 58%; top: 75%; animation-delay: 2.0s, 1.4s; }
+.fireflies i:nth-child(7) { left: 75%; top: 55%; animation-delay: 2.3s, 1.8s; }
+.fireflies i:nth-child(8) { left: 25%; top: 65%; animation-delay: 1.2s, 0.7s; }
+.fireflies i:nth-child(9) { left: 85%; top: 40%; animation-delay: 0.8s, 2.2s; }
+.fireflies i:nth-child(10) { left: 40%; top: 50%; animation-delay: 1.7s, 1.5s; }
+.fireflies i:nth-child(11) { left: 55%; top: 20%; animation-delay: 2.8s, 0.4s; }
+.fireflies i:nth-child(12) { left: 10%; top: 25%; animation-delay: 0.6s, 1.9s; }
+.fireflies i:nth-child(13) { left: 78%; top: 15%; animation-delay: 1.9s, 2.7s; }
+.fireflies i:nth-child(14) { left: 35%; top: 15%; animation-delay: 0.9s, 1.0s; }
+.fireflies i:nth-child(15) { left: 68%; top: 70%; animation-delay: 2.4s, 0.5s; }
+
+.heatDistortion {
+    position: fixed;
+    bottom: 0%;
+    right: 0%;
+    width: 770px;
+    height: 330px;
+    z-index: 11;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+/* Multiple distortion layers with increased visibility */
+.heatDistortion::before, 
+.heatDistortion::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 165, 0, 0.15); /* More visible orange tint */
+    border-radius: 50% 50% 0 0;
+    filter: blur(12px);
+}
+
+.heatDistortion::before {
+    animation: distortWave1 7s ease-in-out infinite;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 165, 0, 0) 0%,
+        rgba(255, 120, 0, 0.3) 50%, /* Increased opacity */
+        rgba(255, 165, 0, 0) 100%
+    );
+}
+
+.heatDistortion::after {
+    animation: distortWave2 5s ease-in-out infinite;
+    animation-delay: 0.5s;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 200, 100, 0.25) 50%, /* More visible yellow-orange */
+        rgba(255, 255, 255, 0) 100%
+    );
+}
+@keyframes distortWave1 {
+    0%, 100% { transform: scaleX(1.2) scaleY(0.8) translateY(0); }
+    50% { transform: scaleX(1.3) scaleY(1.1) translateY(-10px); }
+}
+
+@keyframes distortWave2 {
+    0%, 100% { transform: scaleX(1.1) scaleY(1) translateY(5px); }
+    50% { transform: scaleX(1.4) scaleY(0.9) translateY(-5px); }
+}
+@keyframes heatRipple {
+    0% { 
+        opacity: 0.5;
+        transform: translateY(0) scaleX(1.2) scaleY(1);
+    }
+    50% { 
+        opacity: 0.7;
+        transform: translateY(-10px) scaleX(1.2) scaleY(1.1);
+    }
+    100% { 
+        opacity: 0.5;
+        transform: translateY(0) scaleX(1.2) scaleY(1);
+    }
+}
+
+/* Firefly animations */
+@keyframes drift1 {
+    0% { transform: translate(0, 0); }
+    15% { transform: translate(12px, -20px); }
+    30% { transform: translate(25px, -8px); }
+    45% { transform: translate(18px, 12px); }
+    60% { transform: translate(-5px, 22px); }
+    75% { transform: translate(-15px, 10px); }
+    90% { transform: translate(-8px, -10px); }
+    100% { transform: translate(0, 0); }
+}
+
+@keyframes drift2 {
+    0% { transform: translate(0, 0); }
+    20% { transform: translate(-18px, -12px); }
+    40% { transform: translate(-10px, 18px); }
+    60% { transform: translate(8px, 25px); }
+    80% { transform: translate(20px, 5px); }
+    100% { transform: translate(0, 0); }
+}
+
+@keyframes drift3 {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(22px, 5px); }
+    50% { transform: translate(10px, -22px); }
+    75% { transform: translate(-12px, -15px); }
+    100% { transform: translate(0, 0); }
+}
+
+@keyframes blink {
+    0%, 20%, 40% { opacity: 0; }
+    30%, 60%, 100% { opacity: 1; }
+}
+
+/* Pulsate animation for the rainbow */
+@keyframes pulsate {
+    0% { opacity: 0; }
+    10% { opacity: 0; }  /* Stay invisible for first 10% */
+    20% { opacity: 0.8; } /* Fade in */
+    30% { opacity: 0.5; }
+    45% { opacity: 0.8; }
+    60% { opacity: 0; }  /* Fade out */
+    100% { opacity: 0; } /* Stay invisible until next cycle */
+}
+
 .earthSeason {
     position: fixed;
     bottom: -50%; /* Adjust spacing from the bottom */
@@ -28,8 +216,9 @@
     height: auto;
     z-index: 10;  /* Ensure it appears above other elements */
     animation: fadeInSoft 2s ease-in-out, rotate 200s linear infinite;
-    opacity: 0.5; /* Make it semi-transparent */
+    opacity: 0.6; /* Fall: 0.5 / Winter: 0.6 */
 }
+
 
 .seasonalChanges {
     position: absolute; /* Position it relative to the parent container */
@@ -39,6 +228,75 @@
     height: 300px; /* Adjust height as needed */
     z-index: 15; /* Ensure it is layered above the Earth */
     
+}
+
+/* Raindrop container */
+.raindrops {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 20;
+    overflow: hidden;
+}
+
+/* Base raindrop style with slant */
+.raindrops i {
+    position: absolute;
+    display: block;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.2), rgba(150,205,255,1));
+    width: 3px; /* Already increased from 1px to 2px */
+    border-radius: 0;
+    will-change: transform, opacity;
+    transform: rotate(-20deg); /* Add a slant to the right */
+    transform-origin: top center; /* Make them rotate from the top */
+}
+
+
+/* Individual raindrop styles */
+.raindrops i:nth-child(1) { left: 10%; height: 30px; animation: rain 2.0s linear infinite; animation-delay: 0.2s; }
+.raindrops i:nth-child(2) { left: 15%; height: 20px; animation: rain 1.8s linear infinite; animation-delay: 0.5s; }
+.raindrops i:nth-child(3) { left: 20%; height: 25px; animation: rain 2.2s linear infinite; animation-delay: 0.1s; }
+.raindrops i:nth-child(4) { left: 25%; height: 18px; animation: rain 2.0s linear infinite; animation-delay: 0.7s; }
+.raindrops i:nth-child(5) { left: 30%; height: 22px; animation: rain 1.9s linear infinite; animation-delay: 0.3s; }
+.raindrops i:nth-child(6) { left: 35%; height: 26px; animation: rain 2.1s linear infinite; animation-delay: 0.6s; }
+.raindrops i:nth-child(7) { left: 40%; height: 19px; animation: rain 1.7s linear infinite; animation-delay: 0.4s; }
+.raindrops i:nth-child(8) { left: 45%; height: 23px; animation: rain 2.3s linear infinite; animation-delay: 0.2s; }
+.raindrops i:nth-child(9) { left: 50%; height: 28px; animation: rain 1.6s linear infinite; animation-delay: 0.5s; }
+.raindrops i:nth-child(10) { left: 55%; height: 21px; animation: rain 2.0s linear infinite; animation-delay: 0.3s; }
+.raindrops i:nth-child(11) { left: 60%; height: 27px; animation: rain 1.9s linear infinite; animation-delay: 0.7s; }
+.raindrops i:nth-child(12) { left: 65%; height: 24px; animation: rain 2.2s linear infinite; animation-delay: 0.1s; }
+.raindrops i:nth-child(13) { left: 70%; height: 19px; animation: rain 1.8s linear infinite; animation-delay: 0.6s; }
+.raindrops i:nth-child(14) { left: 75%; height: 26px; animation: rain 2.1s linear infinite; animation-delay: 0.4s; }
+.raindrops i:nth-child(15) { left: 80%; height: 22px; animation: rain 1.7s linear infinite; animation-delay: 0.2s; }
+.raindrops i:nth-child(16) { left: 85%; height: 25px; animation: rain 2.3s linear infinite; animation-delay: 0.5s; }
+.raindrops i:nth-child(17) { left: 90%; height: 20px; animation: rain 1.8s linear infinite; animation-delay: 0.3s; }
+.raindrops i:nth-child(18) { left: 95%; height: 26px; animation: rain 2.0s linear infinite; animation-delay: 0.1s; }
+.raindrops i:nth-child(19) { left: 98%; height: 21px; animation: rain 1.9s linear infinite; animation-delay: 0.4s; }
+.raindrops i:nth-child(20) { left: 62%; height: 24px; animation: rain 2.2s linear infinite; animation-delay: 0.7s; }
+
+/* Raindrop animation */
+@keyframes rain {
+    0% {
+        top: 0%;
+        transform: translateY(0) translateX(0) rotate(-20deg);
+        opacity: 0;
+    }
+    5% {
+        transform: translateY(5%) translateX(5px) rotate(-20deg); /* Increased from 2px to 5px */
+        opacity: 1;
+    }
+    75% {
+        transform: translateY(75%) translateX(20px) rotate(-20deg); /* Increased from 15px to 30px */
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100%) translateX(30px) rotate(-20deg); /* Increased from 20px to 40px */
+        opacity: 0;
+        top: 100%;
+    }
 }
 
 .snowflakes {
