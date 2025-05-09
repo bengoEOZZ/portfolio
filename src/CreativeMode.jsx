@@ -9,9 +9,9 @@ function CreativeMode() {
         <div className={classes.body}>
             <div className={classes.container}>
                 <CelestialObjects />
-                {/*<HelloText />
+                <HelloText />
                 <NavigationButtons />
-                <CodeRemarks />*/}
+                <CodeRemarks />
             </div>
         </div>
     );

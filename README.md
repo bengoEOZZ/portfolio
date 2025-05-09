@@ -18,3 +18,5 @@ Migrated Portfolio to React
 - Added routing using `react-router-dom`:
   - Created a landing page with `ButtonClassic` and `ButtonCreative` for navigation.
   - Added routes for `/classic` and `/creative` modes.
+
+Clock design based on Genshin Impact © miHoYo/HoYoverse | Modified/shared by susanoo-sama
