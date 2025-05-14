@@ -38,6 +38,7 @@ function CelestialObjects() {
 
     return (
         <div>
+            
             {activeControl === 'season' && (
                 <div className={classes.seasonalChanges}>
                     {/* Keep your existing seasonal rendering logic */}
@@ -133,6 +134,10 @@ function CelestialObjects() {
 
             {/* Slider for Seasons */}
             
+            <div className={classes.timeDisplay}>
+                {String(((12+Math.floor((rotation % 360) / 15)) % 24)).padStart(2, '0')}:00
+            </div>
+            
             <div className={classes.sliderContainer}>
                 <label htmlFor="seasonSlider">Season:</label>
                 <input
@@ -189,6 +194,9 @@ function CelestialObjects() {
                 />
             </div>
 
+            <div className={classes.sunrays}>
+                <SunRays rotation={rotation} />
+            </div>
             
             {/*
             <div className={classes.sunrays}>

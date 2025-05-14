@@ -1,7 +1,7 @@
 import useSunRaysAnimation from './useSunRaysAnimation';
 
-function SunRays() {
-    useSunRaysAnimation();
+function SunRays({ rotation }) {
+    useSunRaysAnimation(rotation);
     
     return (
         <svg 

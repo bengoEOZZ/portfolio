@@ -10,7 +10,7 @@ function useOrbitAnimation(buttonsRef, buttonClassName) {
 
         // Use the scoped class name
         const buttons = buttonsWrapper.querySelectorAll(`.${buttonClassName}`);
-        const horizontalRadius = 1000;
+        const horizontalRadius = 900;
         const verticalRadius = 600;
         const centerX = buttonsWrapper.offsetWidth / 2;
         const centerY = buttonsWrapper.offsetHeight / 2;

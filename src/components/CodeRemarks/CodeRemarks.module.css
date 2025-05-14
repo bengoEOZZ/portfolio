@@ -8,51 +8,64 @@
     font-family: 'Orbitron', sans-serif;
     font-size: 1.2rem;
     color: #ffffff;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 40px rgba(255, 255, 255, 0.9); /* Brighter glow */
+    text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 40px rgba(255, 255, 255, 0.9);
     white-space: nowrap;
-    animation: twinkle infinite alternate ease-in-out;
+    animation: 
+        twinkle infinite alternate ease-in-out,
+        drift 15s infinite alternate ease-in-out; /* Doubled from 15s to 30s */
     opacity: 0;
+    transform-origin: center;
 }
 
 .remark:nth-child(1) {
     top: 20%; /* Near the top-left */
     left: 20%;
-    animation-duration: 6.12s;
+    animation-duration: 12.24s; /* Doubled from 6.12s */
     animation-delay: 0.5s; /* Randomized delay */
 }
 
 .remark:nth-child(2) {
     top: 60%; /* Near the top-right */
     left: 65%;
-    animation-duration: 7.48s;
+    animation-duration: 14.96s; /* Doubled from 7.48s */
     animation-delay: 1.8s; /* Randomized delay */
 }
 
 .remark:nth-child(3) {
     top: 75%; /* Near the bottom-left */
     left: 30%;
-    animation-duration: 5.44s;
+    animation-duration: 10.88s; /* Doubled from 5.44s */
     animation-delay: 2.3s; /* Randomized delay */
 }
 
 .remark:nth-child(4) {
     top: 18%; /* Near the bottom-left */
     left: 50%;
-    animation-duration: 6.8s;
+    animation-duration: 13.6s; /* Doubled from 6.8s */
     animation-delay: 0.9s; /* Randomized delay */
 }
 
 .remark:nth-child(5) {
     top: 50%; /* Near the bottom-left */
     left: 10%;
-    animation-duration: 4.76s;
+    animation-duration: 9.52s; /* Doubled from 4.76s */
     animation-delay: 1.5s; /* Randomized delay */
 }
 
+/* Modified twinkle animation - just for opacity and glow */
 @keyframes twinkle {
     0% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.8); opacity: 0; }
     20% { text-shadow: 0 0 15px rgba(255, 255, 255, 1); opacity: 1; }
     40% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.8); opacity: 0; }
     60% { text-shadow: 0 0 15px rgba(255, 255, 255, 1); opacity: 1; }
     80% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.8); opacity: 0; }
+}
+
+/* New gentle floating movement */
+@keyframes drift {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(15px, -10px); }
+    50% { transform: translate(0px, -15px); }
+    75% { transform: translate(-15px, -5px); }
+    100% { transform: translate(0, 0); }
 }
