@@ -3,7 +3,10 @@ import SunRays from './SunRays';
 import classes from './CelestialObjects.module.css';
 import useClockHandRotation from './useClockHandRotation';
 
+import MercuryImage from '../../assets/mercury.svg';
+import VenusImage from '../../assets/venus.svg';
 import BenImage from '../../assets/Ben.svg';
+import BenMoonImage from '../../assets/BenMoon.svg';
 import EarthImage from '../../assets/earth2.svg';
 import EarthFallImage from '../../assets/earthFall.svg';
 import EarthWinterImage from '../../assets/earthWinter.svg';
@@ -28,7 +31,7 @@ function CelestialObjects() {
         setActiveControl('season'); // Season slider is now active
     };
 
-    const [weather, setWeather] = useState(1);
+    const [weather, setWeather] = useState(0);
     const handleWeatherChange = (e) => {
         setWeather(parseInt(e.target.value));
         setActiveControl('weather'); // Weather slider is now active
@@ -36,95 +39,226 @@ function CelestialObjects() {
 
     const [activeControl, setActiveControl] = useState('season');
 
+    const currentHour = ((12 + Math.floor((rotation % 360) / 15)) % 24);
+    const isNightTime = (currentHour >= 21 || currentHour < 3);
+    
+    const nightFireflies = Array.from({ length: 25 });
+
     return (
         <div>
             
             {activeControl === 'season' && (
                 <div className={classes.seasonalChanges}>
-                    {/* Keep your existing seasonal rendering logic */}
-                    {season === 0 && (
-                        <>
-                            <div className={classes.rainbowArc}></div>
-                            <div className={classes.raindrops}>
-                            {raindrops.map((_, index) => (
-                                <i key={index}></i>
-                            ))}
-                            </div>
-                            <div className={classes.clouds}>
-                                {clouds.map((_, index) => (
-                                    <i key={index}></i>
-                                ))}
-                            </div>
-                        </>
-                    )}
-                    
-                    {/* Keep your existing seasonal conditionals */}
-                    {season === 1 && (
-                        <>
-                            <div className={classes.heatDistortion}></div>
-                            <div className={classes.fireflies}>
-                                {fireflies.map((_, index) => (
-                                    <i key={index}></i>
-                                ))}
-                            </div>
-                        </>
-                    )}
-                    
-                    {/* Keep other season conditions */}
+                    {/* Show seasonal Earth images regardless of time (always visible) */}
                     {season === 2 && (
-                        <>
-                            {season === 2 && <img src={EarthFallImage} alt="Earth" className={classes.earthSeason}/>}
-                            <div className={classes.mapleLeaves}>
-                            {mapleleaves.map((_, index) => (
-                                <i key={index}></i>
-                            ))}
-                            </div>
+                        <img 
+                            src={EarthFallImage} 
+                            alt="Earth" 
+                            className={classes.earthSeason}
+                            style={{
+                                filter: `brightness(${
+                                    (() => {
+                                        if (currentHour >= 7 && currentHour <= 17) {
+                                            return 1;
+                                        } else if (currentHour >= 18 && currentHour <= 23) {
+                                            return 1 - ((currentHour - 18) * 0.8 / 6);
+                                        } else {
+                                            return 0.2 + ((currentHour + (currentHour < 7 ? 0 : -24)) * 0.8 / 7);
+                                        }
+                                    })()
+                                })`,
+                                transition: 'filter 1.5s ease-in-out'
+                            }}
+                        />
+                    )}
 
-                            <div className={classes.windLines}>
-                            {windLines.map((_, index) => (
-                                <div key={index} className={classes.windLine}></div>
-                            ))}
-                            </div>
+                    {season === 3 && (
+                        <img 
+                            src={EarthWinterImage} 
+                            alt="Earth" 
+                            className={classes.earthSeason}
+                            style={{
+                                filter: `brightness(${
+                                    (() => {
+                                        if (currentHour >= 7 && currentHour <= 17) {
+                                            return 1;
+                                        } else if (currentHour >= 18 && currentHour <= 23) {
+                                            return 1 - ((currentHour - 18) * 0.8 / 6);
+                                        } else {
+                                            return 0.2 + ((currentHour + (currentHour < 7 ? 0 : -24)) * 0.8 / 7);
+                                        }
+                                    })()
+                                })`,
+                                transition: 'filter 1.5s ease-in-out'
+                            }}
+                        />
+                    )}
+
+                    {/* Show seasonal effects only during day */}
+                    {!isNightTime && (
+                        <>
+                            {season === 0 && (
+                                <>
+                                    <div className={classes.rainbowArc}></div>
+                                    <div className={classes.raindrops}>
+                                        {raindrops.map((_, index) => (
+                                            <i key={index}></i>
+                                        ))}
+                                    </div>
+                                    <div className={classes.clouds}>
+                                        {clouds.map((_, index) => (
+                                            <i key={index}></i>
+                                        ))}
+                                    </div>
+                                </>
+                            )}
+                            
+                            {season === 1 && (
+                                <>
+                                    <div className={classes.heatDistortion}></div>
+                                    <div className={classes.fireflies}>
+                                        {fireflies.map((_, index) => (
+                                            <i key={index}></i>
+                                        ))}
+                                    </div>
+                                </>
+                            )}
+                            
+                            {season === 2 && (
+                                <>
+                                    <div className={classes.mapleLeaves}>
+                                    {mapleleaves.map((_, index) => (
+                                        <i key={index}></i>
+                                    ))}
+                                    </div>
+
+                                    <div className={classes.windLines}>
+                                    {windLines.map((_, index) => (
+                                        <div key={index} className={classes.windLine}></div>
+                                    ))}
+                                    </div>
+                                </>
+                            )}
+                            
+                            {season === 3 && (
+                                <>
+                                    <div className={classes.snowflakes}>
+                                    {snowflakes.map((_, index) => (
+                                        <i key={index} className={classes.snowflake}></i>
+                                    ))}
+                                    </div>
+                                </>
+                            )}
                         </>
                     )}
-                    {season === 3 && (
-                        <>
-                            {season === 3 && <img src={EarthWinterImage} alt="Earth" className={classes.earthSeason}/>}
-                            <img src={EarthWinterImage} alt="Earth" className={classes.earthSeason}/>
-                            <div className={classes.snowflakes}>
-                            {snowflakes.map((_, index) => (
-                                <i key={index} className={classes.snowflake}></i>
+                    
+                    {/* Always show night fireflies during night */}
+                    {isNightTime && (
+                        <div className={classes.nightFireflies}>
+                            {nightFireflies.map((_, index) => (
+                                <i key={index}></i>
                             ))}
-                            </div>
-                        </>
+                        </div>
                     )}
                 </div>
             )}
 
+    
             {/* Add new weather effects container */}
             {activeControl === 'weather' && (
                 <div className={classes.seasonalChanges}>
-                    {weather === 0}
-                    
-                    {weather === 1 && (
-                        <div className={classes.raindrops}>
-                            {raindrops.map((_, index) => (
-                                <i key={index}></i>
-                            ))}
-                        </div>
+                    {!isNightTime && (
+                        <>
+                            {/* Show season-appropriate weather when weather=0 (Season) */}
+                            {weather === 0 && (
+                                <>
+                                    {/* Spring weather */}
+                                    {season === 0 && (
+                                        <>
+                                            <div className={classes.rainbowArc}></div>
+                                            <div className={classes.raindrops}>
+                                                {raindrops.map((_, index) => (
+                                                    <i key={index}></i>
+                                                ))}
+                                            </div>
+                                            <div className={classes.clouds}>
+                                                {clouds.map((_, index) => (
+                                                    <i key={index}></i>
+                                                ))}
+                                            </div>
+                                        </>
+                                    )}
+                                    
+                                    {/* Summer weather */}
+                                    {season === 1 && (
+                                        <>
+                                            <div className={classes.heatDistortion}></div>
+                                            <div className={classes.fireflies}>
+                                                {fireflies.map((_, index) => (
+                                                    <i key={index}></i>
+                                                ))}
+                                            </div>
+                                        </>
+                                    )}
+                                    
+                                    {/* Fall weather */}
+                                    {season === 2 && (
+                                        <>
+                                            <div className={classes.mapleLeaves}>
+                                                {mapleleaves.map((_, index) => (
+                                                    <i key={index}></i>
+                                                ))}
+                                            </div>
+                                            <div className={classes.windLines}>
+                                                {windLines.map((_, index) => (
+                                                    <div key={index} className={classes.windLine}></div>
+                                                ))}
+                                            </div>
+                                        </>
+                                    )}
+                                    
+                                    {/* Winter weather */}
+                                    {season === 3 && (
+                                        <div className={classes.snowflakes}>
+                                            {snowflakes.map((_, index) => (
+                                                <i key={index} className={classes.snowflake}></i>
+                                            ))}
+                                        </div>
+                                    )}
+                                </>
+                            )}
+                            
+                            {/* Regular weather options */}
+                            {weather === 2 && (
+                                <div className={classes.raindrops}>
+                                    {raindrops.map((_, index) => (
+                                        <i key={index}></i>
+                                    ))}
+                                </div>
+                            )}
+                            
+                            {weather === 3 && (
+                                <div className={classes.windLines}>
+                                    {windLines.map((_, index) => (
+                                        <div key={index} className={classes.windLine}></div>
+                                    ))}
+                                </div>
+                            )}
+                            
+                            {weather === 4 && (
+                                <div className={classes.clouds}>
+                                    {clouds.map((_, index) => (
+                                        <i key={index}></i>
+                                    ))}
+                                </div>
+                            )}
+                        </>
                     )}
                     
-                    {weather === 2 && (
-                        <div className={classes.windLines}>
-                            {windLines.map((_, index) => (
-                                <div key={index} className={classes.windLine}></div>
-                            ))}
-                        </div>
-                    )}
-                    
-                    {weather === 3 && (
-                        <div className={classes.clouds}>
-                            {clouds.map((_, index) => (
+                    {/* Always show night fireflies during night */}
+                    {isNightTime && (
+                        <div className={classes.nightFireflies}>
+                            {nightFireflies.map((_, index) => (
                                 <i key={index}></i>
                             ))}
                         </div>
@@ -164,12 +298,13 @@ function CelestialObjects() {
                     id="weatherSlider"
                     type="range"
                     min="0"
-                    max="3"
+                    max="4"
                     value={weather}
                     onChange={handleWeatherChange}
                     className={classes.slider}
                 />
                 <div className={classes.sliderLabels}>
+                    <span>Season</span>
                     <span>Clear</span>
                     <span>Rainy</span>
                     <span>Windy</span>
@@ -178,8 +313,70 @@ function CelestialObjects() {
             </div>
 
             {/* Placeholder Earth Image */}
-            <img src={EarthImage} alt="Earth" className={classes.earth} />
-            <img src={BenImage} alt="Benjamin Tiong SVG" className={classes.planet} />
+            <img 
+                src={EarthImage} 
+                alt="Earth" 
+                className={classes.earth} 
+                style={{
+                    filter: `brightness(${
+                        // Calculate brightness based on time of day
+                        (() => {
+                            if (currentHour >= 7 && currentHour <= 17) {
+                                // Daytime: full brightness
+                                return 1;
+                            } else if (currentHour >= 18 && currentHour <= 23) {
+                                // Evening: gradual darkening
+                                // 1.0 at 18:00 to 0.2 at 00:00
+                                return 1 - ((currentHour - 18) * 0.8 / 6);
+                            } else {
+                                // Early morning: gradual brightening
+                                // 0.2 at 00:00 to 1.0 at 07:00
+                                return 0.2 + ((currentHour + (currentHour < 7 ? 0 : -24)) * 0.8 / 7);
+                            }
+                        })()
+                    }) drop-shadow(0 0 30px rgba(${
+                        // Dynamic glow color based on time of day
+                        currentHour >= 7 && currentHour <= 17
+                            ? "135, 206, 250, 0.8"  // Day: bright blue glow
+                            : currentHour >= 21 || currentHour <= 3
+                                ? "60, 60, 150, 0.4"  // Night: lighter blue glow (50% lighter)
+                                : currentHour >= 18 && currentHour <= 20
+                                    ? `${135 - ((currentHour - 18) * 75 / 3)}, ${206 - ((currentHour - 18) * 146 / 3)}, ${250 - ((currentHour - 18) * 100 / 3)}, ${0.8 - ((currentHour - 18) * 0.4 / 3)}`  // Dusk: transition color & opacity
+                                    : `${60 + ((currentHour - 4) * 75 / 3)}, ${60 + ((currentHour - 4) * 146 / 3)}, ${150 + ((currentHour - 4) * 100 / 3)}, ${0.4 + ((currentHour - 4) * 0.4 / 3)}`  // Dawn: transition color & opacity
+                    })) drop-shadow(0 0 70px rgba(${
+                        // Secondary outer glow that changes color with time
+                        currentHour >= 7 && currentHour <= 17
+                            ? "70, 130, 180, 0.6"  // Day: steel blue
+                            : currentHour >= 21 || currentHour <= 3
+                                ? "30, 30, 120, 0.25"  // Night: lighter deeper blue (50% lighter)
+                                : currentHour >= 18 && currentHour <= 20
+                                    ? `${70 - ((currentHour - 18) * 40 / 3)}, ${130 - ((currentHour - 18) * 100 / 3)}, ${180 - ((currentHour - 18) * 60 / 3)}, ${0.6 - ((currentHour - 18) * 0.35 / 3)}`  // Dusk transition
+                                    : `${30 + ((currentHour - 4) * 40 / 3)}, ${30 + ((currentHour - 4) * 100 / 3)}, ${120 + ((currentHour - 4) * 60 / 3)}, ${0.25 + ((currentHour - 4) * 0.35 / 3)}`  // Dawn transition
+                    }))`,
+                    transition: 'filter 1.5s ease-in-out'
+                }}
+            />
+            <img 
+                src={BenImage} 
+                alt="Benjamin Tiong SVG" 
+                className={classes.planet} 
+                style={{ 
+                    opacity: isNightTime ? 0 : 1,
+                    transition: 'opacity 1s ease-in-out',
+                    position: 'relative'  // Both elements in same position
+                }} 
+            />
+            <img 
+                src={BenMoonImage} 
+                alt="Benjamin Tiong Moon" 
+                className={classes.moon} 
+                style={{ 
+                    opacity: isNightTime ? 1 : 0,
+                    transition: 'opacity 1s ease-in-out',
+                    position: 'absolute'  // Both elements in same position
+                }} 
+            />
+
             <img src={SunImage} alt="Sun" className={classes.sun} />
             <div className={classes.clockContainer}>
                 <img src={ClockImage} alt="Clock" className={classes.clock} />
@@ -197,46 +394,9 @@ function CelestialObjects() {
             <div className={classes.sunrays}>
                 <SunRays rotation={rotation} />
             </div>
-            
-            {/*
-            <div className={classes.sunrays}>
-                <SunRays />
-            </div>
-            <img src={BenImage} alt="Benjamin Tiong SVG" className={classes.planet} />
-                        <div className={classes.seasonalChanges}>
-                <div className={classes.fireflies}>
-                    {fireflies.map((_, index) => (
-                        <i key={index}></i>
-                    ))}
-                </div>
-            div className={classes.heatDistortion}></div>     
-            </div>*/}
 
-            
-            
-            
-
-            {/*
-            <div className={classes.rainbowArc}></div>
-            <div className={classes.seasonalChanges}>
-                <div className={classes.snowflakes}>
-                    {snowflakes.map((_, index) => (
-                        <i key={index} className={classes.snowflake}></i>
-                    ))}
-                </div>
-            </div>
-
-            <div className={classes.mapleLeaves}>
-                {mapleleaves.map((_, index) => (
-                    <i key={index} className={classes.mapleLeaves}></i>
-                ))}
-            </div>
-            
-            <img src={EarthFallImage} alt="Earth" className={classes.earthSeason}/>
-            <img src={SunImage} alt="Sun" className={classes.sun} />
-            <div className={classes.sunrays}>
-                <SunRays />
-            </div>*/}
+            <img src={MercuryImage} alt="Mercury" className={classes.mercury} />
+            <img src={VenusImage} alt="Venus" className={classes.venus} />
         </div>
     );
 }

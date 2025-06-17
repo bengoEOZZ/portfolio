@@ -19,7 +19,7 @@ function useOrbitAnimation(buttonsRef, buttonClassName) {
         // Initial positions
         buttons.forEach((button) => {
             button.style.position = "absolute";
-            button.style.left = `${centerX - button.offsetWidth / 2}px`;
+            button.style.left = `${(centerX - button.offsetWidth / 2)}px`;
             button.style.top = `${centerY - button.offsetHeight / 2}px`;
         });
 
@@ -46,8 +46,17 @@ function useOrbitAnimation(buttonsRef, buttonClassName) {
                     button.style.top = `${y}px`;
 
                     if (!forceZIndex) {
-                        const tolerance = 15;
-                        button.style.zIndex = y < centerY - tolerance ? 4 : 15;
+                        const tolerance = 300;
+
+                        if (y < centerY - tolerance) {
+                            // Button is in upper half (behind)
+                            button.style.boxShadow = "none";
+                            button.style.zIndex = 4;
+                        } else if (y > centerY + tolerance) {
+                            // Button is in lower half (in front)
+                            button.style.boxShadow = "0 0 15px rgba(0, 255, 255, 0.7)";
+                            button.style.zIndex = 15;
+                        }
                     }
                 });
 
