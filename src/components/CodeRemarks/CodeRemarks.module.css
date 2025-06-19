@@ -46,7 +46,7 @@
 }
 
 .remark:nth-child(5) {
-    top: 50%; /* Near the bottom-left */
+    top: 45%; /* Near the bottom-left */
     left: 10%;
     animation-duration: 9.52s; /* Doubled from 4.76s */
     animation-delay: 1.5s; /* Randomized delay */

@@ -25,12 +25,24 @@ function CelestialObjects() {
 
     const { rotation, handleMouseDown, handleMouseUp } = useClockHandRotation();
 
-    const [season, setSeason] = useState(0);
+    // Calculate initial season based on current date
+    const getCurrentSeason = () => {
+        const now = new Date();
+        const month = now.getMonth(); // 0-11 (January = 0, December = 11)
+        
+        if (month >= 2 && month <= 4) return 0; // Spring: March (2), April (3), May (4)
+        if (month >= 5 && month <= 7) return 1; // Summer: June (5), July (6), August (7)
+        if (month >= 8 && month <= 10) return 2; // Fall: September (8), October (9), November (10)
+        return 3; // Winter: December (11), January (0), February (1)
+    };
+
+    const [season, setSeason] = useState(getCurrentSeason());
     const handleSeasonChange = (e) => {
         setSeason(parseInt(e.target.value));
         setActiveControl('season'); // Season slider is now active
     };
 
+    // Initialize weather to "Season" (0) to match current season
     const [weather, setWeather] = useState(0);
     const handleWeatherChange = (e) => {
         setWeather(parseInt(e.target.value));

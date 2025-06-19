@@ -1,7 +1,14 @@
 import { useState, useRef, useEffect } from 'react';
 
 const useClockHandRotation = () => {
-    const [rotation, setRotation] = useState(0);
+    // Calculate initial rotation based on current time
+    const getInitialRotation = () => {
+        const now = new Date();
+        const hours = now.getHours();
+        return (hours * 15) % 360; // Each hour = 15 degrees (360/24 hours)
+    };
+
+    const [rotation, setRotation] = useState(getInitialRotation());
     const [isHolding, setIsHolding] = useState(false);
     const rotationIntervalRef = useRef(null);
     
