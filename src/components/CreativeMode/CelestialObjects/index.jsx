@@ -3,16 +3,16 @@ import SunRays from './SunRays';
 import classes from './CelestialObjects.module.css';
 import useClockHandRotation from './useClockHandRotation';
 
-import MercuryImage from '../../assets/mercury.svg';
-import VenusImage from '../../assets/venus.svg';
-import BenImage from '../../assets/Ben.svg';
-import BenMoonImage from '../../assets/BenMoon.svg';
-import EarthImage from '../../assets/earth2.svg';
-import EarthFallImage from '../../assets/earthFall.svg';
-import EarthWinterImage from '../../assets/earthWinter.svg';
-import SunImage from '../../assets/sun.svg';
-import ClockImage from '../../assets/clockSusan.png';
-import ClockHand from '../../assets/clockhand.png';
+import MercuryImage from '../../../assets/mercury.svg';
+import VenusImage from '../../../assets/venus.svg';
+import BenImage from '../../../assets/Ben.svg';
+import BenMoonImage from '../../../assets/BenMoon.svg';
+import EarthImage from '../../../assets/earth2.svg';
+import EarthFallImage from '../../../assets/earthFall.svg';
+import EarthWinterImage from '../../../assets/earthWinter.svg';
+import SunImage from '../../../assets/sun.svg';
+import ClockImage from '../../../assets/clockSusan.png';
+import ClockHand from '../../../assets/clockhand.png';
 
 function CelestialObjects() {
     

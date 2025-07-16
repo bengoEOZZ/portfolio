@@ -1,0 +1,108 @@
+/**
+ * BUTTONCREATIVE COMPONENT STYLES
+ * ================================
+ * 
+ * This file contains the styling for the Creative button component used in the portfolio landing page.
+ * The button is designed with a celestial/sun theme featuring golden colors, floating animation,
+ * and glowing effects to represent the "creative" mode of the portfolio.
+ * 
+ * Key Features:
+ * - Golden sun-like gradient background
+ * - Floating animation that mimics celestial movement
+ */
+
+/**
+ * BASE BUTTON STYLES (.btn)
+ * =========================
+ * Main styling for the Creative button in its default state
+ */
+.btn {
+  /* LAYOUT & SPACING */
+  padding: 25px 60px;              /* Internal spacing: 25px top/bottom, 60px left/right */
+  font-size: 2rem;                 /* Large text size */
+  
+  /* APPEARANCE */
+  color: white;                  /* White text */
+  border-radius: 50px;             /* Rounded pill shape (50px for full roundness) */
+  cursor: pointer;                 /* Hand cursor on hover to indicate clickability */
+  
+  /* BEHAVIOR */
+  transition: all 0.3s ease;       /* Smooth transitions for all property changes */
+  
+  /* VISUAL EFFECTS */
+  background: radial-gradient(circle, #ffd700 0%, #ffb347 50%, #ff8c00 100%); /* Creates sun-like golden gradient */
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.4); /* Golden glow effect around button */
+  
+  /* ANIMATION */
+  animation: celestialFloat 4s ease-in-out infinite;
+  /* Applies floating animation:
+     - Duration: 4 seconds
+     - Easing: Smooth in and out
+     - Repeats forever */
+  
+  /* TEXT EFFECTS */
+  font-weight: bold;               /* Bold text for better visibility */
+}
+
+/**
+ * HOVER STATE STYLES (.btn:hover)
+ * ===============================
+ * Enhanced styling when user hovers over the button
+ */
+.btn:hover {
+  /* ENHANCED BACKGROUND */
+  background: radial-gradient(circle, #ffed4e 0%, #ffc107 50%, #ff9800 100%); /* Brighter golden gradient on hover */
+  
+  /* ENHANCED GLOW */
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.6); /* Stronger glow effect */
+  
+  /* SCALING EFFECT */
+  transform: scale(1.05);          /* Slightly enlarges button by 5% */
+  
+  /* FASTER ANIMATION */
+  animation: celestialFloatHover 2s ease-in-out infinite;
+  /* Switches to faster hover animation:
+     - Duration: 2 seconds (from 4 seconds)
+     - More dynamic floating effect */
+  
+  /* TEXT COLOUR */
+  color: white;                 /* Force white color (overrides any inheritance) */
+}
+
+/**
+ * CELESTIAL FLOATING ANIMATION (celestialFloat)
+ * =============================================
+ * Creates gentle up-and-down floating movement like a celestial body with glow
+ */
+@keyframes celestialFloat {
+  /* START & END STATE (0% and 100%) */
+  0%, 100% {
+    transform: translateY(0px);    /* Button at original vertical position */
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);  /* Standard glow intensity */
+  }
+  
+  /* MIDDLE STATE (50%) */
+  50% {
+    transform: translateY(-4px) scale(1.02);  /* Move up 4px and slightly enlarge */
+    box-shadow: 0 5px 25px rgba(255, 215, 0, 0.5); /* Enhanced standard glow intensity */
+  }
+}
+
+/**
+ * ENHANCED HOVER FLOATING ANIMATION (celestialFloatHover)
+ * =======================================================
+ * More dynamic and intensive floating/glowing animation on hover
+ */
+@keyframes celestialFloatHover {
+  /* START & END STATE */
+  0%, 100% {
+    transform: translateY(0px) scale(1.05);  /* Greater scale on hover */
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);  /* Hover glow intensity */
+  }
+  
+  /* MIDDLE STATE */
+  50% {
+    transform: translateY(-6px) scale(1.07);  /* Higher float (-6px) and more scale */
+    box-shadow: 0 8px 35px rgba(255, 215, 0, 0.7); /* Enhanced hover glow intensity */
+  }
+}

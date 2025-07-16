@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import useOrbitAnimation from './useOrbitAnimation';
 import classes from './NavigationButtons.module.css';
 
-import Shield from '../../assets/Shield.svg';
+import Shield from '../../../assets/Shield.svg';
 
 function NavigationButtons() {
     const buttonsWrapperRef = useRef(null);

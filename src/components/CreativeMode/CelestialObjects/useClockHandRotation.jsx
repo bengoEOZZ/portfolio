@@ -5,7 +5,10 @@ const useClockHandRotation = () => {
     const getInitialRotation = () => {
         const now = new Date();
         const hours = now.getHours();
-        return (hours * 15) % 360; // Each hour = 15 degrees (360/24 hours)
+        // Account for the +12 offset used in time display calculation
+        // We need to reverse the calculation: if display = (12 + rotation/15) % 24
+        // Then rotation = (hours - 12) * 15
+        return ((hours - 12 + 24) % 24) * 15; // +24 to handle negative numbers
     };
 
     const [rotation, setRotation] = useState(getInitialRotation());
