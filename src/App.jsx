@@ -23,7 +23,7 @@ import ButtonCreative from './components/Home/ButtonCreative';
 /**
  * APP COMPONENT
  * =============
- * Root application component that manages routing and mode selection interface
+ * Root application component that displays and manages routing and mode selection interface
  */
 function App() {
     return (

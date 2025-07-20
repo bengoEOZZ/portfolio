@@ -1,16 +1,39 @@
+/**
+ * CREATIVEMODE COMPONENT STYLES
+ * ==============================
+ * 
+ * This file contains the main styling for the CreativeMode background component.
+ */
+
+ /**
+ * MAIN BODY CONTAINER (.body)
+ * ===========================
+ */
 .body {
-    background: radial-gradient(circle at 50% 50%, #0d1b2a, #1a1a2e, #000000); /* Space-like gradient */
-    overflow: hidden; /* Prevent scrollbars */
+    /* BACKGROUND STYLING */
+    background: radial-gradient(circle at 50% 50%,
+        #0d1b2a, #1a1a2e, #000000); /* Creates deep space gradient */
+    
+    /* LAYOUT CONTROL */
+    overflow: hidden; /* Prevents scrollbars and maintains immersive full-screen experience */
 }
 
-/* Center the container and text */
-.container {
-    position: relative;
-    height: 100vh; /* Full viewport height */
-    width: 100vw;
-    background: url('https://www.transparenttextures.com/patterns/stardust.png'); /* Starry texture */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+/**
+ * CONTENT CONTAINER (.container)
+ * ==============================
+ * Container for all celestial components and also displays the starry atmosphere background overlay
+ */
+.container {  
+    /* VIEWPORT DIMENSIONS */
+    height: 100vh;                   /* Full viewport height */
+    width: 100vw;                    /* Full viewport width */
+    
+    /* STARRY BACKGROUND TEXTURE: https://www.transparenttextures.com/patterns/stardust.png */
+    background: url('../../assets/stardust.png');   /* Stored in assets */
+
+    /* FLEXBOX LAYOUT */
+    display: flex;                   /* Flexbox container */
+    justify-content: center;         /* Horizontally center all celestial content */
+    align-items: center;             /* Vertically center all celestial content */
+    text-align: center;              /* Center-align text content */
 }

@@ -2,13 +2,12 @@
  * INDEX.CSS - GLOBAL APPLICATION STYLES
  * =====================================
  * 
- * This file contains the global styling and CSS reset for the entire portfolio application.
+ * Global styling for the entire portfolio application.
  */
 
 /**
  * ROOT ELEMENT STYLES (:root)
  * ===========================
- * Defines global CSS custom properties and base typography for the entire application
  */
 :root {
   /* TYPOGRAPHY FOUNDATION */
@@ -16,21 +15,11 @@
 }
 
 /**
- * UNIVERSAL BOX SIZING (*, *::before, *::after)
- * =============================================
- * Modern CSS reset for predictable box model behavior
- */
-*, *::before, *::after {
-  box-sizing: border-box;          /* Include padding and border in element's total width/height */
-}
-
-/**
  * LINK ELEMENT STYLES (a)
  * =======================
- * Global styling for all anchor elements to maintain consistent navigation appearance
  */
 a {
-  /* TEXT DECORATION */
+  /* TEXT DECORATION INHERITANCE */
   text-decoration: inherit;        /* Inherits decoration from parent instead of default underline */
 
   /* COLOR INHERITANCE */
@@ -40,9 +29,8 @@ a {
 /**
  * BODY ELEMENT STYLES (body)
  * ==========================
- * Base body styling that removes browser defaults and enables full viewport control
  */
 body {
   /* LAYOUT RESET */
-  margin: 0;                       /* Removes default browser margin (typically 8px) */
+  margin: 0;                       /* Removes default browser margin */
 }

@@ -12,7 +12,6 @@ import classes from './ButtonCreative.module.css';
 /**
  * BUTTONCREATIVE COMPONENT
  * ========================
- * Functional React component that renders a styled navigation button link to Creative mode
  */
 function ButtonCreative({ to, children }) {
   return (

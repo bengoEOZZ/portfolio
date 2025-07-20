@@ -4,11 +4,7 @@ function SunRays({ rotation }) {
     useSunRaysAnimation(rotation);
     
     return (
-        <svg 
-            version="1.1" 
-            xmlns="http://www.w3.org/2000/svg" 
-            viewBox="0 0 583 620"
-        >
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 583 620">
             <g>
                 {/* Ray 1 */}
                 <polygon id="ray1-1" points="411,54 395,71 420,87" style={{fill:"#F1B39D", stroke:"#F1B39D", opacity:0}}/>
