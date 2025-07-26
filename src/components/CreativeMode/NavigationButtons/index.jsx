@@ -48,7 +48,13 @@ function NavigationButtons() {
 
     /**
      * COMPONENT OUTPUT
-     * ======================
+     * ================
+     * Renders the orbital navigation system with animated buttons.
+     * 
+     * STRUCTURE:
+     * - Container (buttonsWrapper): Defines the orbital animation space
+     * - Navigation links: 4 anchor elements with futuristic SVG icons and text labels
+     * - Each button: Icon + text combination for About, Coding, Projects, Contact sections
      */
     return (
         <div ref={buttonsWrapperRef} className={classes.buttonsWrapper}>

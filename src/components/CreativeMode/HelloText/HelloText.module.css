@@ -1,25 +1,62 @@
-.leftContent {
+/**
+ * HELLOTEXT COMPONENT STYLES - CELESTIAL INTRODUCTION PANEL
+ * ==========================================================
+ * This file contains the styling for the HelloText introductory text panel component used in CreativeMode.
+ */
+ 
+/**
+ * MAIN CONTAINER STYLES (.container)
+ * ==================================
+ * 
+ * Primary container for the HelloText component content.
+ */
+.container {
+    /* LAYOUT & POSITIONING */
     position: absolute;
-    z-index: 10; /* Ensure the text is above the buttons */
-    bottom: 10%;
-    left: 5%;
-    width: 400px; /* Adjusted width to make it skinnier */
-    animation: fadeIn 2s ease-in-out; /* Subtle fade-in animation */
+    z-index: 10;                        /* Ensure the text is above the buttons */
+    bottom: 5%;
+    left: 4%;
+    width: 400px;                       /* Fixed width */
+    
+    /* ANIMATIONS */
+    animation: fadeIn 2s ease-in-out;
+    /* Applies Subtle fade-in animation:
+       - Duration: 2 seconds
+       - Executed Once */
 }
 
-.leftText {
+/**
+ * MAIN HEADER TEXT STYLES (.header)
+ * =================================
+ */
+.header {
+    /* TYPOGRAPHY */
     font-size: 3rem;
     font-weight: bold;
-    margin: 0;
+    margin: 0;                                  /* Remove default margins */
+    
+    /* APPEARANCE */
     color: #ffffff;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(0, 123, 255, 0.6); /* Glowing text */
-    display: inline-block;
-    border-bottom: 10px solid #007bff; /* Bright blue underline */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+            0 0 20px rgba(0, 123, 255, 0.6); /* Glowing text */
+    
+    /* UNDERLINE */
+    display: inline-block;                    /* Allows underline to fit text width */
+    border-bottom: 10px solid #007bff;      /* Bright blue underline accent */
 }
 
-.intro {
-    margin: 1rem auto 0;
+/**
+ * BODY TEXT CONTENT STYLES (.text)
+ * ================================
+ */
+.text {
+    /* SPACING */
+    margin: 1rem;                       /* Margin from header */
+    
+    /* TYPOGRAPHY */
     font-size: 1.2rem;
-    line-height: 1.8;
-    color: #b0b0b0; /* Softer light gray for paragraph text */
+    line-height: 1.8;                   /* Line spacing */
+    
+    /* APPEARANCE */
+    color: #b0b0b0;                   /* Soft light gray */
 }

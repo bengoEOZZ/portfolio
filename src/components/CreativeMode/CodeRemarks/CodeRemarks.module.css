@@ -1,67 +1,132 @@
-.floatingRemarks {
-    pointer-events: none; /* Prevent interaction */
-    z-index: 20;
+/**
+ * CODEREMARKS COMPONENT STYLES
+ * ============================
+ * 
+ * This file contains the styling for the CodeRemarks component used in the creative portfolio mode.
+ * Features floating philosophical code snippets with twinkle animations, drift effects, positioning,
+ * and celestial-themed visual effects that complement the overall Creative Mode experience.
+ */
+
+/**
+ * MAIN CONTAINER STYLES (.container)
+ * ==================================
+ * 
+ * Wrapper container for all floating code remark elements. Configured to prevent
+ * user interaction while maintaining high z-index for proper layering above other elements.
+ */
+.container {
+    /* INTERACTIONS */
+    pointer-events: none;               /* Prevent interaction with floating remarks */
+    
+    /* LAYOUT */
+    z-index: 20;                        /* High z-index to ensure visibility above other components */
 }
 
+/**
+ * BASE REMARK STYLES (.remark)
+ * ============================
+ */
 .remark {
+    /* LAYOUT & POSITIONING */
     position: absolute;
-    font-family: 'Orbitron', sans-serif;
+    
+    /* TYPOGRAPHY */
+    font-family: 'Orbitron', sans-serif;    /* Futuristic font */
     font-size: 1.2rem;
+    
+    /* APPEARANCE */
     color: #ffffff;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 40px rgba(255, 255, 255, 0.9);
-    white-space: nowrap;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 1),
+            0 0 40px rgba(255, 255, 255, 0.9); /* Glowing effect */
+    white-space: nowrap;                    /* Prevent text wrapping */
+    
+    /* ANIMATIONS */
     animation: 
         twinkle infinite alternate ease-in-out,
-        drift 15s infinite alternate ease-in-out; /* Doubled from 15s to 30s */
-    opacity: 0;
-    transform-origin: center;
+        /* Star-like twinkle shine and glow
+           - Repeats forever */
+        drift 15s infinite alternate ease-in-out;
+        /* Gentle celestial drifting movement
+           - Duration: 15 seconds
+           - Repeats forever */
+    
+    /* INITIAL STATE */
+    opacity: 0;                             /* Start invisible for initial twinkle animation */
 }
 
-.remark:nth-child(1) {
-    top: 20%; /* Near the top-left */
+/**
+ * ANIMATION TIMING STRATEGY
+ * ========================
+ * 
+ * Creates sequential appearance followed by randomized star-like twinkling:
+ * 
+ * SEQUENTIAL LOADING (0-3 seconds):
+ * - Remark 1: Appears at 0.5s (top-left)
+ * - Remark 2: Appears at 0.9s (top-right) 
+ * - Remark 3: Appears at 1.5s (middle-left)
+ * - Remark 4: Appears at 1.8s (middle-right)
+ * - Remark 5: Appears at 2.3s (bottom-middle)
+ * 
+ * CONTINUOUS TWINKLING (after 3 seconds):
+ * - Different durations prevent synchronization
+ * - Creates natural, random star-like blinking patterns
+ * - Each remark follows its own twinkle/drift cycle
+ */
+.remark:nth-child(1) {  /* Near the top-left */
+    top: 20%;
     left: 20%;
-    animation-duration: 12.24s; /* Doubled from 6.12s */
+    animation-duration: 12.24s;
     animation-delay: 0.5s; /* Randomized delay */
 }
 
-.remark:nth-child(2) {
-    top: 60%; /* Near the top-right */
-    left: 65%;
-    animation-duration: 14.96s; /* Doubled from 7.48s */
-    animation-delay: 1.8s; /* Randomized delay */
-}
-
-.remark:nth-child(3) {
-    top: 75%; /* Near the bottom-left */
-    left: 30%;
-    animation-duration: 10.88s; /* Doubled from 5.44s */
-    animation-delay: 2.3s; /* Randomized delay */
-}
-
-.remark:nth-child(4) {
-    top: 18%; /* Near the bottom-left */
+.remark:nth-child(2) {  /* Near the top-right */
+    top: 18%;
     left: 50%;
-    animation-duration: 13.6s; /* Doubled from 6.8s */
+    animation-duration: 13.6s;
     animation-delay: 0.9s; /* Randomized delay */
 }
 
-.remark:nth-child(5) {
-    top: 45%; /* Near the bottom-left */
+.remark:nth-child(3) {  /* Near the middle-left */
+    top: 45%;
     left: 10%;
-    animation-duration: 9.52s; /* Doubled from 4.76s */
+    animation-duration: 9.52s;
     animation-delay: 1.5s; /* Randomized delay */
 }
 
-/* Modified twinkle animation - just for opacity and glow */
-@keyframes twinkle {
-    0% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.8); opacity: 0; }
-    20% { text-shadow: 0 0 15px rgba(255, 255, 255, 1); opacity: 1; }
-    40% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.8); opacity: 0; }
-    60% { text-shadow: 0 0 15px rgba(255, 255, 255, 1); opacity: 1; }
-    80% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.8); opacity: 0; }
+.remark:nth-child(4) { /* Near the middle-right */
+    top: 60%;
+    left: 65%;
+    animation-duration: 14.96s;
+    animation-delay: 1.8s; /* Randomized delay */
 }
 
-/* New gentle floating movement */
+.remark:nth-child(5) {  /* Near the bottom-middle */
+    top: 75%;
+    left: 30%;
+    animation-duration: 10.88s;
+    animation-delay: 2.3s; /* Randomized delay */
+}
+
+/**
+ * TWINKLE ANIMATION - STAR-LIKE OPACITY & GLOW CYCLING
+ * ====================================================
+ * Creates celestial star-like twinkling effect through opacity blinking variations.
+ * Simulates code snippets appearing and fading like distant stars in the night sky.
+ * Multiple brightness states create realistic twinkling patterns.
+ */
+@keyframes twinkle {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    40% { opacity: 0; }
+    60% { opacity: 1; }
+    80% { opacity: 0; }
+}
+
+/**
+ * DRIFT ANIMATION - GENTLE CELESTIAL DRIFTING MOVEMENT
+ * ====================================================
+ * Creates subtle drifting motion that simulates code snippets drifting gently through space.
+ */
 @keyframes drift {
     0% { transform: translate(0, 0); }
     25% { transform: translate(15px, -10px); }

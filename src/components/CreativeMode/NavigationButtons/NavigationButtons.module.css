@@ -106,9 +106,10 @@
 }
 
 /**
- * WOBBLE ANIMATION - LEFT ROTATION (wobble-left)
+ * WOBBLE ANIMATION - SUBTLE LEFT AND RIGHT ROTATION
  * ==============================================
- * Subtle rotation animation for first and third buttons
+ * Subtle wobble rotation animation for first and third buttons.
+ * Opposite wobble for second and fourth buttons to create synchronized movement.
  *
  * IMPORTANT: translateX(-100%) EXPLANATION
  * =======================================
@@ -139,17 +140,6 @@
     }
 }
 
-/**
- * WOBBLE ANIMATION - RIGHT ROTATION (wobble-right)
- * ================================================
- * Subtle rotation animation for second and fourth buttons
- *
- * IMPORTANT: translateX(-100%) EXPLANATION
- * =======================================
- * 1. CSS animations apply transform ON TOP OF the left/top positioning
- * 2. Without translateX(-100%): Button appears TOO FAR RIGHT (left edge at orbital point)
- * 3. With translateX(-100%): Button shifts LEFT by its own width, centering it properly
- */
 @keyframes wobble-right {
     /* START & END STATE (0% and 100%) */
     0%, 100% {

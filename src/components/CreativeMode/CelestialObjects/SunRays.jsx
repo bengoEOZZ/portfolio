@@ -1,3 +1,24 @@
+/**
+ * SUNRAYS COMPONENT
+ * =================
+ * 
+ * Interactive SVG component that renders dynamic sun ray animations for the celestial interface.
+ *
+ * RAY SYSTEM STRUCTURE:
+ * --------------------
+ * • Ray Group 1 (ray1-1 to ray1-15): 15 elements
+ * • Ray Group 2 (ray2-1 to ray2-70): 70 elements
+ * • Ray Group 3 (ray3-1 to ray3-105): 105 elements
+ * • Ray Group 4 (ray4-1 to ray4-76): 76 elements
+ * • Ray Group 5 (ray5-1 to ray5-57): 57 elements
+ * TOTAL: 323 individual polygon elements for maximum visual complexity
+ * 
+ * ANIMATION INTEGRATION:
+ * ---------------------
+ * - All ray elements initialize with opacity:0 for smooth fade-in animations
+ * - Element IDs follow strict naming convention: "ray{group}-{index}"
+ * - useSunRaysAnimation hook targets elements by ID
+ */
 import useSunRaysAnimation from './useSunRaysAnimation';
 
 function SunRays({ rotation }) {
