@@ -19,7 +19,7 @@
  * - Element IDs follow strict naming convention: "ray{group}-{index}"
  * - useSunRaysAnimation hook targets elements by ID
  */
-import useSunRaysAnimation from './useSunRaysAnimation';
+import useSunRaysAnimation from '../useSunRaysAnimation'; // Updated to correct path
 
 function SunRays({ rotation }) {
     useSunRaysAnimation(rotation);

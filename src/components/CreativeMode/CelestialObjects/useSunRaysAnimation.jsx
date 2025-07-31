@@ -25,7 +25,7 @@
  * - Time period determines which rays are active and their opacity animation patterns
  * 
  * PERFORMANCE FEATURES:
- * - Single DOM cache eliminates 750+ queries per transition
+ * - Single DOM cache eliminates 750+ queries per transitionsrc/components/CreativeMode/CelestialObjects/WeatherEffects.jsx
  * - Hardware-accelerated transforms for performance improvement
  * - Single requestAnimationFrame loop for all animations (vs individual timers)
  * - Memoized time detection prevents unnecessary recalculations

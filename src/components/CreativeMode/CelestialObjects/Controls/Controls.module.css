@@ -1,0 +1,101 @@
+.timeDisplay {
+    position: fixed;
+    top: 310px;
+    right: 360px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #00d4ff;
+    text-shadow: 0 0 15px rgba(0, 212, 255, 0.9);
+    background: rgba(10, 20, 40, 0.6);
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 2px solid rgba(0, 212, 255, 0.4);
+    box-shadow: 
+        0 0 20px rgba(0, 212, 255, 0.4),
+        inset 0 0 15px rgba(0, 212, 255, 0.2);
+    z-index: 100;
+    backdrop-filter: blur(3px);
+    width: 60px;
+    animation: timePulse 3s infinite alternate ease-in-out;
+}
+
+/* Slider Container - 25% smaller */
+.sliderContainer {
+    position: fixed;
+    right: 20px;
+    margin: 0;
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    color: #00d4ff;
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
+    width: 450px;
+    z-index: 20;
+}
+
+/* Weather slider - second slider container */
+.sliderContainer:nth-of-type(4) {
+    top: 350px;
+}
+
+/* Weather slider - second slider container */
+.sliderContainer:nth-of-type(3) {
+    top: 425px;
+}
+
+/* Slider - smaller height */
+.slider {
+    width: 97.5%; 
+    margin: 10px auto;
+    display: block;
+    appearance: none;
+    height: 10px;
+    background: linear-gradient(90deg, #1a1a2e, #0f3460);
+    border-radius: 10px;
+    outline: none;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 212, 255, 0.5);
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+.slider:hover {
+    background: linear-gradient(90deg, #0f3460, #16213e);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
+}
+
+/* Slider Thumb - smaller size */
+.slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: radial-gradient(circle, #00d4ff, #007bff);
+    border: 1.5px solid #00d4ff;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.8);
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 25px rgba(0, 212, 255, 1);
+}
+
+/* Slider Labels - smaller text */
+.sliderLabels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    font-size: 0.75rem;
+    color: #00d4ff;
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
+}
+
+.sliderLabels span {
+    padding: 0 8px;
+    text-align: center;
+}
+
+@keyframes timePulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+}
