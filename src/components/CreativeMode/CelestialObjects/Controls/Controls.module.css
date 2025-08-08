@@ -1,101 +1,356 @@
+/**
+ * CONTROLS COMPONENT STYLES
+ * =========================
+ * 
+ * Styling for the unified controls panel including interactive clock,
+ * time display, and environmental control sliders.
+ */
+
+/* Import Orbitron font for futuristic aesthetic */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+/**
+ * CLOCK CONTAINER (.clockContainer)
+ * =================================
+ * Main container for the analog clock positioned at top right of viewport.
+ */
+.clockContainer {
+    /* LAYOUT & POSITIONING */
+    position: fixed;
+    top: 25px;
+    right: 50px;
+    width: 400px;
+    height: auto;
+    z-index: 17;
+    
+    /* ANIMATIONS */
+    animation: spaceClockFloat 25s ease-in-out infinite;
+    /* Applies gentle floating animation */
+}
+
+/**
+ * CLOCK BASE IMAGE (.clock)
+ * =========================
+ * The background clock image with golden glow effects.
+ */
+.clock {
+    /* SIZING */
+    width: 300px;
+    height: auto;
+    
+    /* LAYOUT & POSITIONING */
+    position: relative;
+    
+    /* APPEARANCE */
+    filter: drop-shadow(0 0 25px rgba(255, 223, 0, 0.7))
+            drop-shadow(0 0 50px rgba(255, 69, 0, 0.3));
+}
+
+/**
+ * INTERACTIVE CLOCK HAND (.clockHand)
+ * ===================================
+ * Clickable clock hand for time manipulation with hover effects and animations.
+ */
+.clockHand {
+    /* SIZING */
+    width: 40px;
+    height: auto;
+    
+    /* LAYOUT & POSITIONING */
+    position: absolute;
+    top: 74px;
+    left: 176px;
+    z-index: 16;
+    transform-origin: 50% 75%; /* Sets rotation point at visual base of clock hand */
+    
+    /* INTERACTIONS */
+    cursor: pointer;
+    
+    /* APPEARANCE */
+    filter: drop-shadow(0 0 15px rgba(255, 223, 0, 0.8)) 
+            drop-shadow(0 0 5px rgba(255, 255, 255, 0.9));
+}
+
+/**
+ * CLOCK HAND HOVER EFFECTS (.clockHand:hover)
+ * ===========================================
+ */
+.clockHand:hover {
+    /* ENHANCED GLOW EFFECTS */
+    filter: drop-shadow(0 0 30px rgba(255, 223, 0, 1))
+            drop-shadow(0 0 15px rgba(255, 255, 255, 1))
+            drop-shadow(0 0 45px rgba(255, 165, 0, 0.8));
+    
+    /* LAYERING */
+    z-index: 18;
+    /* Brings clock hand to front during hover */
+    
+    /* ANIMATIONS */
+    animation: spaceClockHandGlow 1.5s ease-in-out infinite;
+    /* Applies pulsing glow animation during hover */
+}
+
+/**
+ * DIGITAL TIME DISPLAY (.timeDisplay)
+ * ===================================
+ */
 .timeDisplay {
+    /* LAYOUT & POSITIONING */
     position: fixed;
     top: 310px;
     right: 360px;
+    z-index: 100;
+    
+    /* SIZING */
+    width: 60px;
+    height: auto;
+
+    /* TYPOGRAPHY */
     font-family: 'Orbitron', sans-serif;
     font-size: 1rem;
     font-weight: 700;
+    text-align: center;
+    
+    /* APPEARANCE */
     color: #00d4ff;
-    text-shadow: 0 0 15px rgba(0, 212, 255, 0.9);
-    background: rgba(10, 20, 40, 0.6);
+    text-shadow: 0 0 15px rgba(0, 212, 255, 0.9); /* Bright cyan glow effect for futuristic look */
+    background: rgba(10, 20, 40, 0.6); /* Semi-transparent dark background for contrast */
     padding: 10px 20px;
     border-radius: 10px;
     border: 2px solid rgba(0, 212, 255, 0.4);
     box-shadow: 
-        0 0 20px rgba(0, 212, 255, 0.4),
-        inset 0 0 15px rgba(0, 212, 255, 0.2);
-    z-index: 100;
-    backdrop-filter: blur(3px);
-    width: 60px;
-    animation: timePulse 3s infinite alternate ease-in-out;
+        0 0 20px rgba(0, 212, 255, 0.4),       /* Outer glow: Creates halo effect around the element */
+        inset 0 0 15px rgba(0, 212, 255, 0.2); /* Inner glow (inset): Creates internal lighting effect */
+    
+    /* ANIMATIONS */
+    animation: timeDisplayPulse 3s infinite alternate ease-in-out;
+    /* Gentle pulsing opacity animation */
 }
 
-/* Slider Container - 25% smaller */
+/**
+ * SLIDER CONTAINER BASE (.sliderContainer)
+ * ========================================
+ * Base container for all slider controls with shared positioning and styling.
+ */
 .sliderContainer {
+    /* LAYOUT & POSITIONING */
     position: fixed;
     right: 20px;
-    margin: 0;
-    text-align: center;
+    z-index: 20;
+    
+    /* SIZING */
+    width: 450px;
+    height: auto;
+    
+    /* TYPOGRAPHY */
     font-family: 'Orbitron', sans-serif;
     color: #00d4ff;
     text-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
-    width: 450px;
-    z-index: 20;
+    text-align: center;
 }
 
-/* Weather slider - second slider container */
-.sliderContainer:nth-of-type(4) {
+/* Weather slider positioning */
+.weatherSlider {
     top: 350px;
 }
 
-/* Weather slider - second slider container */
-.sliderContainer:nth-of-type(3) {
+
+/* Season slider positioning */
+.seasonSlider {
     top: 425px;
 }
 
-/* Slider - smaller height */
+/**
+ * SLIDER INPUT STYLING (.slider)
+ * ==============================
+ */
 .slider {
+    /* SIZING */
     width: 97.5%; 
+    height: 12px;
+    
+    /* LAYOUT & POSITIONING */
     margin: 10px auto;
     display: block;
+    
+    /* APPEARANCE RESET */
     appearance: none;
-    height: 10px;
-    background: linear-gradient(90deg, #1a1a2e, #0f3460);
-    border-radius: 10px;
     outline: none;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 212, 255, 0.5);
+    
+    /* APPEARANCE */
+    background: linear-gradient(90deg, #1a1a2e, #0f3460); /* Dark gradient background */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+    
+    /* INTERACTIONS */
     transition: background 0.3s, box-shadow 0.3s;
 }
 
+/**
+ * SLIDER HOVER EFFECTS (.slider:hover)
+ * ====================================
+ */
 .slider:hover {
+    /* ENHANCED BACKGROUND */
     background: linear-gradient(90deg, #0f3460, #16213e);
+    /* Brighter gradient on hover */
+    
+    /* ENHANCED GLOW */
     box-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
+    /* Increased cyan glow intensity */
 }
 
-/* Slider Thumb - smaller size */
+/**
+ * SLIDER THUMB STYLING (.slider::-webkit-slider-thumb)
+ * ===================================================
+ * PRECISION POSITIONING SYSTEM:
+ * Uses CSS custom properties to calculate exact thumb position for centering on labels
+ */
 .slider::-webkit-slider-thumb {
+    /* APPEARANCE RESET */
     appearance: none;
+    
+    /* SIZING */
     width: 15px;
     height: 15px;
+    
+    /* APPEARANCE */
     background: radial-gradient(circle, #00d4ff, #007bff);
     border: 1.5px solid #00d4ff;
     border-radius: 50%;
-    cursor: pointer;
     box-shadow: 0 0 15px rgba(0, 212, 255, 0.8);
+    
+    /* INTERACTIONS */
+    cursor: pointer;
     transition: transform 0.2s, box-shadow 0.3s;
+    
+    /* PRECISION POSITIONING: Override default thumb positioning to center on labels */
+    position: relative;
+    margin-left: var(--thumb-offset, 0px);
 }
 
+/**
+ * SEASON SLIDER THUMB POSITIONING
+ * ===============================
+ * 4 positions: Spring(0), Summer(1), Fall(2), Winter(3)
+ * Each position centers thumb on corresponding word label
+ */
+.seasonSlider .slider[data-value="0"]::-webkit-slider-thumb { --thumb-offset: calc(0%); }   /* Spring */
+.seasonSlider .slider[data-value="1"]::-webkit-slider-thumb { --thumb-offset: calc(3%); }   /* Summer */
+.seasonSlider .slider[data-value="2"]::-webkit-slider-thumb { --thumb-offset: calc(0%); }   /* Fall */
+.seasonSlider .slider[data-value="3"]::-webkit-slider-thumb { --thumb-offset: calc(0%); }   /* Winter */
+
+/**
+ * WEATHER SLIDER THUMB POSITIONING
+ * ================================
+ * 5 positions: Season(0), Clear(1), Rainy(2), Windy(3), Cloudy(4)
+ * Each position centers thumb on corresponding word label
+ */
+.weatherSlider .slider[data-value="0"]::-webkit-slider-thumb { --thumb-offset: calc(0%); }    /* Season */
+.weatherSlider .slider[data-value="1"]::-webkit-slider-thumb { --thumb-offset: calc(2.5%); }  /* Clear */
+.weatherSlider .slider[data-value="2"]::-webkit-slider-thumb { --thumb-offset: calc(0%); }    /* Rainy */
+.weatherSlider .slider[data-value="3"]::-webkit-slider-thumb { --thumb-offset: calc(-3%); }   /* Windy */
+.weatherSlider .slider[data-value="4"]::-webkit-slider-thumb { --thumb-offset: calc(0%); }    /* Cloudy */
+
+/**
+ * SLIDER THUMB HOVER EFFECTS (.slider::-webkit-slider-thumb:hover)
+ * ================================================================
+ */
 .slider::-webkit-slider-thumb:hover {
+    /* SCALING EFFECT */
     transform: scale(1.2);
+    /* Enlarges thumb by 20% for better interaction feedback */
+    
+    /* ENHANCED GLOW */
     box-shadow: 0 0 25px rgba(0, 212, 255, 1);
+    /* Full opacity cyan glow on hover */
 }
 
-/* Slider Labels - smaller text */
+/**
+ * SLIDER LABELS (.sliderLabels)
+ * =============================
+ */
 .sliderLabels {
+    /* LAYOUT & POSITIONING */
     display: flex;
     justify-content: space-between;
     margin-top: 5px;
+    
+    /* TYPOGRAPHY */
     font-size: 0.75rem;
     color: #00d4ff;
-    text-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
 }
 
+/**
+ * INDIVIDUAL LABEL STYLING (.sliderLabels span)
+ * =============================================
+ * Spacing and alignment for individual slider label text.
+ */
 .sliderLabels span {
+    /* LAYOUT & POSITIONING */
     padding: 0 8px;
     text-align: center;
 }
 
-@keyframes timePulse {
-    0%, 100% { opacity: 0.8; }
-    50% { opacity: 1; }
+/**
+ * SPACE FLOAT ANIMATION - GENTLE FLOATING MOTION FOR CLOCK
+ * ========================================================
+ * Creates realistic floating motion with rotation and translation.
+ */
+@keyframes spaceClockFloat {
+    0% { 
+        transform: translateX(0) translateY(0) rotate(0deg); 
+    }
+    20% { 
+        transform: translateX(-10px) translateY(5px) rotate(-4deg); 
+    }
+    40% { 
+        transform: translateX(8px) translateY(-7px) rotate(6deg); 
+    }
+    60% { 
+        transform: translateX(12px) translateY(3px) rotate(-5deg); 
+    }
+    80% { 
+        transform: translateX(-5px) translateY(-4px) rotate(3deg); 
+    }
+    100% { 
+        transform: translateX(0) translateY(0) rotate(0deg); 
+    }
+}
+
+/**
+ * HAND GLOW ANIMATION - PULSING GLOW EFFECT FOR CLOCK HAND HOVER
+ * =============================================================
+ * Creates pulsing glow effect with varying intensity and color layers.
+ */
+@keyframes spaceClockHandGlow {
+    /* Base glow state */
+    0%, 100% {
+        filter: drop-shadow(0 0 30px rgba(255, 223, 0, 1))
+                drop-shadow(0 0 15px rgba(255, 255, 255, 1));
+    }
+    
+    /* Intensified glow state */
+    50% {
+        filter: drop-shadow(0 0 30px rgba(255, 223, 0, 1))
+                drop-shadow(0 0 25px rgba(255, 255, 255, 1))
+                drop-shadow(0 0 40px rgba(255, 140, 0, 0.9));
+    }
+}
+
+/**
+ * TIME PULSE ANIMATION - GENTLE PULSING FOR DIGITAL TIME DISPLAY
+ * =============================================================
+ * Creates subtle opacity pulsing for the digital time readout.
+ */
+@keyframes timeDisplayPulse {
+    /* Dimmed state */
+    0%, 100% { 
+        opacity: 0.8; 
+    }
+    
+    /* Brightened state */
+    50% { 
+        opacity: 1; 
+    }
 }

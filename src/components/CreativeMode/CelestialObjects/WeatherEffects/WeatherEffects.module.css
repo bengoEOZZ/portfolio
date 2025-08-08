@@ -1,602 +1,336 @@
-/* Add these to your CelestialObjects.module.css */
+/**
+ * WEATHEREFFECTS COMPONENT STYLES
+ * ===============================
+ * 
+ * This file contains the styling for the WeatherEffects component used in the creative celestial objects.
+ * Features seasonal and weather-based particle animations including night fireflies, clouds, wind lines, 
+ * raindrops, snowflakes, maple leaves, summer fireflies, heat distortion, and rainbow effects.
+ */
 
-/* Night firefly container */
-.nightFireflies {
-    position: absolute;
-    top: -50px; /* Move up to prevent bottom cutoff */
-    left: -50px; /* Move left to prevent right cutoff */
-    width: calc(100% + 100px); /* Expand width to compensate */
-    height: calc(100% + 100px); /* Expand height to compensate */
+/**
+ * SEASONAL CHANGES CONTAINER (.seasonalChanges)
+ * =============================================
+ */
+.seasonalChanges {
+    /* LAYOUT & POSITIONING */
+    position: fixed;
+    bottom: 5%;
+    right: 1%;
+    width: 500px;
+    height: 325px;
+    z-index: 15;
+    
+    /* INTERACTIONS */
     pointer-events: none;
-    z-index: 25;
+}
+
+/**
+ * PARTICLE CONTAINER BASE (.particleContainer)
+ * ============================================
+ * Base container for all particle effect systems.
+ * Uses negative positioning and calc() sizing to prevent cutoff at edges.
+ */
+.particleContainer {
+    /* LAYOUT & POSITIONING */
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: calc(100% + 100px);
+    height: calc(100% + 100px);
+    
+    /* INTERACTIONS */
+    pointer-events: none;
     overflow: hidden;
-  }
-  
-  /* Night firefly style */
-  .nightFireflies i {
+}
+
+/**
+ * PARTICLE CONTAINER ASSIGNMENTS
+ * ==============================
+ * CSS Modules using composes to extend base particle container.
+ * Different z-index values for proper layering of weather effects.
+ */
+
+/* Night fireflies container - highest priority */
+.nightFireflies { 
+    composes: particleContainer; 
+    z-index: 25; 
+}
+
+/* Clouds container - high priority for background effect */
+.clouds { 
+    composes: particleContainer; 
+    z-index: 21; 
+}
+
+/* Other weather effects - standard priority */
+.windLines,
+.summerFireflies,
+.raindrops,
+.snowflakes,
+.mapleLeaves { 
+    composes: particleContainer; 
+    z-index: 20; 
+}
+
+/**
+ * NIGHT FIREFLIES PARTICLE STYLES (.nightFireflies i)
+ * ===================================================
+ * Creates glowing firefly particles with pulsing animation and drift movement.
+ */
+.nightFireflies i {
+    /* LAYOUT & POSITIONING */
     position: absolute;
     display: block;
+    
+    /* SIZING */
     width: 4px;
     height: 4px;
-    background: #ffdd33; /* Warmer yellow for night */
-    border-radius: 50%;
-    box-shadow: 0 0 8px 3px rgba(255, 190, 60, 0.7),
-                0 0 12px 6px rgba(255, 150, 30, 0.3);
-    opacity: 0;
-    animation: nightGlow 4s infinite alternate ease-in-out,
-               nightDrift 15s linear infinite;
-  }
-  
-  /* Position and timing variations for each firefly */
-  .nightFireflies i:nth-child(1) { left: 10%; top: 15%; animation-delay: 0.2s, 0s, 0.2s; }
-  .nightFireflies i:nth-child(2) { left: 85%; top: 25%; animation-delay: 1.1s, 2s, 0.4s; }
-  .nightFireflies i:nth-child(3) { left: 20%; top: 40%; animation-delay: 3.2s, 4s, 0.6s; }
-  .nightFireflies i:nth-child(4) { left: 75%; top: 60%; animation-delay: 2.3s, 6s, 0.8s; }
-  .nightFireflies i:nth-child(5) { left: 40%; top: 80%; animation-delay: 0.4s, 8s, 1.0s; }
-  .nightFireflies i:nth-child(6) { left: 60%; top: 20%; animation-delay: 1.5s, 10s, 1.2s; }
-  .nightFireflies i:nth-child(7) { left: 30%; top: 65%; animation-delay: 2.6s, 12s, 1.4s; }
-  .nightFireflies i:nth-child(8) { left: 90%; top: 45%; animation-delay: 3.7s, 14s, 1.6s; }
-  .nightFireflies i:nth-child(9) { left: 15%; top: 90%; animation-delay: 0.8s, 16s, 1.8s; }
-  .nightFireflies i:nth-child(10) { left: 70%; top: 10%; animation-delay: 1.9s, 18s, 2.0s; }
-  .nightFireflies i:nth-child(11) { left: 25%; top: 50%; animation-delay: 3.0s, 1s, 2.2s; }
-  .nightFireflies i:nth-child(12) { left: 80%; top: 70%; animation-delay: 2.1s, 3s, 2.4s; }
-  .nightFireflies i:nth-child(13) { left: 50%; top: 30%; animation-delay: 1.2s, 5s, 2.6s; }
-  .nightFireflies i:nth-child(14) { left: 35%; top: 75%; animation-delay: 0.3s, 7s, 2.8s; }
-  .nightFireflies i:nth-child(15) { left: 95%; top: 55%; animation-delay: 2.4s, 9s, 3.0s; }
-  .nightFireflies i:nth-child(16) { left: 5%; top: 35%; animation-delay: 1.5s, 11s, 0.1s; }
-  .nightFireflies i:nth-child(17) { left: 65%; top: 85%; animation-delay: 0.6s, 13s, 0.3s; }
-  .nightFireflies i:nth-child(18) { left: 45%; top: 5%; animation-delay: 2.7s, 15s, 0.5s; }
-  .nightFireflies i:nth-child(19) { left: 55%; top: 95%; animation-delay: 3.8s, 17s, 0.7s; }
-  .nightFireflies i:nth-child(20) { left: 12%; top: 65%; animation-delay: 1.9s, 19s, 0.9s; }
-  .nightFireflies i:nth-child(21) { left: 88%; top: 35%; animation-delay: 0.0s, 2.5s, 1.1s; }
-  .nightFireflies i:nth-child(22) { left: 28%; top: 18%; animation-delay: 2.1s, 6.5s, 1.3s; }
-  .nightFireflies i:nth-child(23) { left: 72%; top: 44%; animation-delay: 3.2s, 10.5s, 1.5s; }
-  .nightFireflies i:nth-child(24) { left: 42%; top: 58%; animation-delay: 1.3s, 14.5s, 1.7s; }
-  .nightFireflies i:nth-child(25) { left: 62%; top: 38%; animation-delay: 0.4s, 18.5s, 1.9s; }
-  
-  /* Night firefly glow animation */
-  @keyframes nightGlow {
-    0%, 5%, 12%, 17%, 22%, 90%, 100% { 
-      opacity: 0.2;
-      box-shadow: 0 0 4px 1px rgba(255, 190, 60, 0.4);
-    }
-    9%, 15%, 20%, 30%, 70% { 
-      opacity: 0.8;
-      box-shadow: 0 0 8px 3px rgba(255, 190, 60, 0.7),
-                  0 0 12px 6px rgba(255, 150, 30, 0.3);
-    }
-  }
-  
-  /* Night firefly movement pattern */
-  @keyframes nightDrift {
-    0% { transform: translate(0, 0); }
-    12% { transform: translate(15px, -35px); } /* More upward (-y) movement */
-    25% { transform: translate(30px, -45px); } /* More upward (-y) movement */
-    37% { transform: translate(20px, -15px); } /* Still going upward but less */
-    50% { transform: translate(5px, -5px); } /* Small upward drift */
-    62% { transform: translate(-10px, -20px); } /* More upward (-y) movement */
-    75% { transform: translate(-25px, -30px); } /* More upward (-y) movement */
-    87% { transform: translate(-15px, -15px); } /* Still drifting upward */
-    100% { transform: translate(0, 0); } /* Return to start position */
-  }
-
-
-
-
-/* Cloud Container */
-.clouds {
-    position: absolute;
-    top: -50px; /* Move up to prevent bottom cutoff */
-    left: -50px; /* Move left to prevent right cutoff */
-    width: calc(100% + 100px); /* Expand width to compensate */
-    height: calc(100% + 100px); /* Expand height to compensate */
-    pointer-events: none;
-    z-index: 21;
-    /* Remove overflow: visible */
-}
-
-/* Single cloud vibration animation */
-@keyframes cloudVibration {
-    0% { transform: translateX(0); }
-    30% { transform: translateX(-3%); }
-    60% { transform: translateX(2%); }
-    100% { transform: translateX(0); }
-}
-
-/* Slightly reduced cloud opacity */
-.clouds i {
-    position: absolute;
-    display: block;
-    width: 250px;
-    height: 120px;
-    background: radial-gradient(circle, #ffffff 60%, #d9d9d9 100%);
-    border-radius: 50%;
-    opacity: 0.7; /* Reduced for subtler clouds */
-    filter: blur(8px);
-    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.25),
-                0 5px 15px rgba(0, 0, 0, 0.08);
-    animation: cloudVibration 20s ease-in-out infinite,
-    cloudFadeIn 1.5s ease-in-out forwards; /* Same animation for all clouds */
-    opacity: 0;
-}
-@keyframes cloudFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-5px) scale(0.95);
-    }
-    to {
-        opacity: 0.7;
-        transform: translateY(0) scale(1);
-    }
-}
-/* Add cloud fluffiness with pseudo-elements */
-.clouds i::before,
-.clouds i::after {
-    content: '';
-    position: absolute;
-    background: radial-gradient(circle, #ffffff 60%, #d9d9d9 100%);
-    border-radius: 50%;
-    filter: blur(8px);
-}
-
-.clouds i::before {
-    width: 60%;
-    height: 60%;
-    top: -20%;
-    left: 20%;
-}
-
-.clouds i::after {
-    width: 70%;
-    height: 70%;
-    top: 20%;
-    left: -10%;
-}
-
-/* Original 5 clouds with staggered animation delays */
-/* Adjusted cloud positions - moved down by ~7-8% */
-.clouds i:nth-child(1) {
-    top: 20%; /* Was 12% */
-    left: 15%;
-    width: 235px;
-    height: 115px;
-    animation-delay: 0s, 0s;
-}
-
-.clouds i:nth-child(2) {
-    top: 38%; /* Was 30% */
-    left: 25%;
-    width: 190px;
-    height: 90px;
-    filter: blur(6px);
-    animation-delay: 3s, 0.9s;
-}
-
-.clouds i:nth-child(3) {
-    top: 18%; /* Was 10% */
-    left: 45%;
-    width: 250px;
-    height: 130px;
-    filter: blur(8px);
-    animation-delay: 6s, 0.2s;
-}
-
-.clouds i:nth-child(4) {
-    top: 46%; /* Was 38% */
-    left: 65%;
-    width: 220px;
-    height: 110px;
-    animation-delay: 9s, 0.4s;
-}
-
-.clouds i:nth-child(5) {
-    top: 30%; /* Was 22% */
-    left: 85%;
-    width: 185px;
-    height: 85px;
-    animation-delay: 12s, 0.5s;
-}
-
-/* Lower clouds also moved down */
-.clouds i:nth-child(6) {
-    top: 42%; /* Was 35% */
-    left: 10%;
-    width: 290px;
-    height: 150px;
-    filter: blur(9px);
-    animation-delay: 2s, 0.7s;
-}
-
-.clouds i:nth-child(7) {
-    top: 48%; /* Was 40% */
-    left: 32%;
-    width: 240px;
-    height: 115px;
-    filter: blur(7px);
-    animation-delay: 5s, 0.3s;
-}
-
-.clouds i:nth-child(8) {
-    top: 45%; /* Was 38% */
-    left: 55%;
-    width: 310px;
-    height: 165px;
-    animation-delay: 8s, 1s;
-}
-
-.clouds i:nth-child(9) {
-    top: 50%; /* Was 42% */
-    left: 75%;
-    width: 220px;
-    height: 105px;
-    filter: blur(6px);
-    animation-delay: 11s, 0.2s;
-}
-
-.clouds i:nth-child(10) {
-    top: 44%; /* Was 37% */
-    left: 92%;
-    width: 270px;
-    height: 130px;
-    filter: blur(8px);
-    animation-delay: 14s, 0.4s;
-}
-
-/* Wind Lines Container */
-.windLines {
-    position: absolute;
-    top: -50px;
-    left: -50px;
-    width: calc(100% + 100px);
-    height: calc(100% + 100px);
-    pointer-events: none;
-    z-index: 20;
-    overflow: hidden;
-}
-
-/* Individual Wind Line */
-.windLine {
-    position: absolute;
-    width: 75px; /* Length of the wind line */
-    height: 5px; /* Thickness of the wind line */
-    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0)); /* Fading effect */
-    border-radius: 50px; /* Rounded edges for a smooth look */
-    opacity: 0;
-    animation: windLineMove linear infinite;
-}
-
-/* Randomized Positions and Animation Delays for Each Wind Line */
-.windLine:nth-child(1) {
-    top: 45%;
-    left: -10%;
-    animation-delay: 5s;
-    animation-duration: 10s; /* Increased from 4s */
-}
-
-.windLine:nth-child(2) {
-    top: 30%;
-    left: -20%;
-    animation-delay: 5.5s;
-    animation-duration: 8.75s; /* Increased from 3.5s */
-}
-
-.windLine:nth-child(3) {
-    top: 50%;
-    left: -15%;
-    animation-delay: 6s;
-    animation-duration: 10.5s; /* Increased from 4.2s */
-}
-
-.windLine:nth-child(4) {
-    top: 70%;
-    left: -25%;
-    animation-delay: 6.5s;
-    animation-duration: 9.5s; /* Increased from 3.8s */
-}
-
-.windLine:nth-child(5) {
-    top: 20%;
-    left: -30%;
-    animation-delay: 7s;
-    animation-duration: 11.25s; /* Increased from 4.5s */
-}
-
-.windLine:nth-child(6) {
-    top: 40%;
-    left: -5%;
-    animation-delay: 7.5s;
-    animation-duration: 9.25s; /* Increased from 3.7s */
-}
-
-.windLine:nth-child(7) {
-    top: 60%;
-    left: -35%;
-    animation-delay: 8s;
-    animation-duration: 10.75s; /* Increased from 4.3s */
-}
-
-.windLine:nth-child(8) {
-    top: 80%;
-    left: -10%;
-    animation-delay: 8.5s;
-    animation-duration: 10s; /* Increased from 4s */
-}
-
-.windLine:nth-child(9) {
-    top: 15%;
-    left: -40%;
-    animation-delay: 9s;
-    animation-duration: 9s; /* Increased from 3.6s */
-}
-
-.windLine:nth-child(10) {
-    top: 65%;
-    left: -20%;
-    animation-delay: 9.5s;
-    animation-duration: 10.25s; /* Increased from 4.1s */
-}
-
-/* Animation for Wind Lines */
-@keyframes windLineMove {
-    0% {
-        transform: translateX(0) scale(1);
-        opacity: 0;
-    }
-    15% {
-        opacity: 0.8;
-    }
-    50% {
-        transform: translateX(50vw) scale(1.2); /* Move and slightly enlarge */
-        opacity: 1;
-    }
-    85% {
-        opacity: 0.8;
-    }
-    100% {
-        transform: translateX(100vw) scale(1);
-        opacity: 0;
-    }
-}
-
-
-
-.seasonalChanges {
-    position: fixed; /* Changed from absolute to fixed */
-    bottom: 5%; 
-    right: 1%;
-    width: 500px; 
-    height: 325px; 
-    z-index: 15; 
-    /* Remove overflow: hidden */
-    pointer-events: none; /* Ensure weather effects don't interfere with interactions */
-}
-
-/* Add rainbow arc over Earth */
-.rainbowArc {
-    position: fixed;
-    bottom: 10%; 
-    right: 2%;
-    width: 600px;
-    height: 300px;
-    z-index: 9;
-    background: linear-gradient(
-        to bottom,
-        rgba(255, 0, 0, 0.6),
-        rgba(255, 165, 0, 0.6),
-        rgba(255, 255, 0, 0.6),
-        rgba(0, 128, 0, 0.6),
-        rgba(0, 0, 255, 0.6),
-        rgba(75, 0, 130, 0.6),
-        rgba(238, 130, 238, 0.3)
-    );
-    border-radius: 300px 300px 0 0;
-    transform: rotate(-17deg);
-    pointer-events: none;
-    filter: blur(20px);
-    animation: pulsate 20s ease-in-out infinite;
     
-}
-/* Firefly container */
-.fireflies {
-    position: absolute;
-    top: -50px;
-    left: -50px;
-    width: calc(100% + 100px);
-    height: calc(100% + 100px);
-    pointer-events: none;
-    z-index: 20;
-    overflow: hidden;
+    /* APPEARANCE */
+    background: #ffdd33;
+    border-radius: 50%;
+    box-shadow: 0 0 8px 3px rgba(255, 190, 60, 0.7), 0 0 12px 6px rgba(255, 150, 30, 0.3);
+    opacity: 0;
+    
+    /* ANIMATIONS */
+    animation: nightGlow 4s infinite alternate ease-in-out, nightDrift 15s linear infinite;
+    /* Applies dual animations:
+       - nightGlow: Pulsing brightness effect (4s cycle)
+       - nightDrift: Gentle floating movement (15s cycle) */
+    
+    /* PERFORMANCE OPTIMIZATION */
+    will-change: transform, opacity, box-shadow;
 }
 
-/* Base firefly style */
-.fireflies i {
+/* Night firefly positioning patterns */
+.nightFireflies i:nth-child(1) { left: 10%; top: 15%; animation-delay: 0.2s, 0s; }
+.nightFireflies i:nth-child(2) { left: 85%; top: 25%; animation-delay: 1.1s, 2s; }
+.nightFireflies i:nth-child(3) { left: 20%; top: 40%; animation-delay: 3.2s, 4s; }
+.nightFireflies i:nth-child(4) { left: 75%; top: 60%; animation-delay: 2.3s, 6s; }
+.nightFireflies i:nth-child(5) { left: 40%; top: 80%; animation-delay: 0.4s, 8s; }
+.nightFireflies i:nth-child(6) { left: 60%; top: 20%; animation-delay: 1.5s, 10s; }
+.nightFireflies i:nth-child(7) { left: 30%; top: 65%; animation-delay: 2.6s, 12s; }
+.nightFireflies i:nth-child(8) { left: 90%; top: 45%; animation-delay: 3.7s, 14s; }
+.nightFireflies i:nth-child(9) { left: 15%; top: 90%; animation-delay: 0.8s, 16s; }
+.nightFireflies i:nth-child(10) { left: 70%; top: 10%; animation-delay: 1.9s, 18s; }
+.nightFireflies i:nth-child(11) { left: 25%; top: 50%; animation-delay: 3.0s, 1s; }
+.nightFireflies i:nth-child(12) { left: 80%; top: 70%; animation-delay: 2.1s, 3s; }
+.nightFireflies i:nth-child(13) { left: 50%; top: 30%; animation-delay: 1.2s, 5s; }
+.nightFireflies i:nth-child(14) { left: 35%; top: 75%; animation-delay: 0.3s, 7s; }
+.nightFireflies i:nth-child(15) { left: 95%; top: 55%; animation-delay: 2.4s, 9s; }
+.nightFireflies i:nth-child(16) { left: 5%; top: 35%; animation-delay: 1.5s, 11s; }
+.nightFireflies i:nth-child(17) { left: 65%; top: 85%; animation-delay: 0.6s, 13s; }
+.nightFireflies i:nth-child(18) { left: 45%; top: 5%; animation-delay: 2.7s, 15s; }
+.nightFireflies i:nth-child(19) { left: 55%; top: 95%; animation-delay: 3.8s, 17s; }
+.nightFireflies i:nth-child(20) { left: 12%; top: 65%; animation-delay: 1.9s, 19s; }
+.nightFireflies i:nth-child(21) { left: 88%; top: 35%; animation-delay: 0.0s, 2.5s; }
+.nightFireflies i:nth-child(22) { left: 28%; top: 18%; animation-delay: 2.1s, 6.5s; }
+.nightFireflies i:nth-child(23) { left: 72%; top: 44%; animation-delay: 3.2s, 10.5s; }
+.nightFireflies i:nth-child(24) { left: 42%; top: 58%; animation-delay: 1.3s, 14.5s; }
+.nightFireflies i:nth-child(25) { left: 62%; top: 38%; animation-delay: 0.4s, 18.5s; }
+
+/**
+ * SUMMER FIREFLIES PARTICLE STYLES (.summerFireflies i)
+ * ================================================
+ * Brighter, more vibrant fireflies for summer scenes with varied drift patterns.
+ */
+.summerFireflies i {
+    /* LAYOUT & POSITIONING */
     position: absolute;
     display: block;
+    
+    /* SIZING */
     width: 5px;
     height: 5px;
+    
+    /* APPEARANCE */
     background: #ffff66;
     border-radius: 50%;
     box-shadow: 0 0 6px 2px rgba(255, 120, 0, 0.8);
-    will-change: transform, opacity;
-}
-.fireflies i:nth-child(3n) {
-    animation: drift1 18s linear infinite, fadeInRegular 1s ease-in-out;
-}
-
-.fireflies i:nth-child(3n+1) {
-    animation: drift2 22s linear infinite, fadeInRegular 1s ease-in-out;
+    
+    /* PERFORMANCE OPTIMIZATION */
+    will-change: transform, opacity, box-shadow;
 }
 
-.fireflies i:nth-child(3n+2) {
-    animation: drift3 20s linear infinite, fadeInRegular 1s ease-in-out;
-}
-/*.fireflies i:nth-child(3n) {
-    animation: fireflyPulse 4s ease-in-out infinite;
-}
+/**
+ * SUMMER FIREFLY ANIMATION ASSIGNMENTS
+ * ====================================
+ * Alternating drift patterns based on nth-child selectors for varied movement.
+ */
 
-.fireflies i:nth-child(3n+1) {
-    animation: fireflyPulse 4s ease-in-out infinite;
-}
-
-.fireflies i:nth-child(3n+2) {
-    animation: fireflyPulse 4s ease-in-out infinite;
-}*/
-
-.fireflies i:nth-child(1) { left: 65%; top: 30%; animation-delay: 2.1s, 0s; }
-.fireflies i:nth-child(2) { left: 15%; top: 45%; animation-delay: 1.8s, 0s; }
-.fireflies i:nth-child(3) { left: 90%; top: 60%; animation-delay: 1.5s, 0s; }
-.fireflies i:nth-child(4) { left: 45%; top: 80%; animation-delay: 2.5s, 0s; }
-.fireflies i:nth-child(5) { left: 30%; top: 35%; animation-delay: 1.6s, 0s; }
-.fireflies i:nth-child(6) { left: 58%; top: 75%; animation-delay: 2.0s, 0s; }
-.fireflies i:nth-child(7) { left: 75%; top: 55%; animation-delay: 2.3s, 0s; }
-.fireflies i:nth-child(8) { left: 25%; top: 65%; animation-delay: 1.2s, 0s; }
-.fireflies i:nth-child(9) { left: 85%; top: 40%; animation-delay: 0.8s, 0s; }
-.fireflies i:nth-child(10) { left: 40%; top: 50%; animation-delay: 1.7s, 0s; }
-.fireflies i:nth-child(11) { left: 55%; top: 20%; animation-delay: 2.8s, 0s; }
-.fireflies i:nth-child(12) { left: 10%; top: 25%; animation-delay: 0.6s, 0s; }
-.fireflies i:nth-child(13) { left: 78%; top: 15%; animation-delay: 1.9s, 0s; }
-.fireflies i:nth-child(14) { left: 35%; top: 15%; animation-delay: 0.9s, 0s; }
-.fireflies i:nth-child(15) { left: 68%; top: 70%; animation-delay: 2.4s, 0s; }
-
-.heatDistortion {
-    position: fixed;
-    bottom: 0%;
-    right: 0%;
-    width: 800px;
-    height: 330px;
-    z-index: 11;
-    pointer-events: none;
-    overflow: hidden;
+/* Every third firefly - drift pattern 1 */
+.summerFireflies i:nth-child(3n) { 
+    animation: summerDrift1 18s linear infinite, summerFireflyFadeIn 1s ease-in-out; 
 }
 
-/* Multiple distortion layers with increased visibility */
-.heatDistortion::before, 
-.heatDistortion::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 165, 0, 0.15); /* More visible orange tint */
-    border-radius: 50% 50% 0 0;
-    filter: blur(12px);
+/* Every third firefly + 1 - drift pattern 2 */
+.summerFireflies i:nth-child(3n+1) { 
+    animation: summerDrift2 22s linear infinite, summerFireflyFadeIn 1s ease-in-out; 
 }
 
-.heatDistortion::before {
-    animation: distortWave1 7s ease-in-out infinite;
-    background: linear-gradient(
-        to bottom,
-        rgba(255, 165, 0, 0) 0%,
-        rgba(255, 120, 0, 0.3) 50%, /* Increased opacity */
-        rgba(255, 165, 0, 0) 100%
-    );
+/* Every third firefly + 2 - drift pattern 3 */
+.summerFireflies i:nth-child(3n+2) { 
+    animation: summerDrift3 20s linear infinite, summerFireflyFadeIn 1s ease-in-out; 
 }
 
-.heatDistortion::after {
-    animation: distortWave2 5s ease-in-out infinite;
-    animation-delay: 0.5s;
-    background: linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 200, 100, 0.25) 50%, /* More visible yellow-orange */
-        rgba(255, 255, 255, 0) 100%
-    );
-}
-@keyframes distortWave1 {
-    0%, 100% { transform: scaleX(1.2) scaleY(0.8) translateY(0); }
-    50% { transform: scaleX(1.3) scaleY(1.1) translateY(-10px); }
-}
+/* Summer firefly positioning patterns */
+.summerFireflies i:nth-child(1) { left: 65%; top: 30%; animation-delay: 2.1s, 0s; }
+.summerFireflies i:nth-child(2) { left: 15%; top: 45%; animation-delay: 1.8s, 0s; }
+.summerFireflies i:nth-child(3) { left: 90%; top: 60%; animation-delay: 1.5s, 0s; }
+.summerFireflies i:nth-child(4) { left: 45%; top: 80%; animation-delay: 2.5s, 0s; }
+.summerFireflies i:nth-child(5) { left: 30%; top: 35%; animation-delay: 1.6s, 0s; }
+.summerFireflies i:nth-child(6) { left: 58%; top: 75%; animation-delay: 2.0s, 0s; }
+.summerFireflies i:nth-child(7) { left: 75%; top: 55%; animation-delay: 2.3s, 0s; }
+.summerFireflies i:nth-child(8) { left: 25%; top: 65%; animation-delay: 1.2s, 0s; }
+.summerFireflies i:nth-child(9) { left: 85%; top: 40%; animation-delay: 0.8s, 0s; }
+.summerFireflies i:nth-child(10) { left: 40%; top: 50%; animation-delay: 1.7s, 0s; }
+.summerFireflies i:nth-child(11) { left: 55%; top: 20%; animation-delay: 2.8s, 0s; }
+.summerFireflies i:nth-child(12) { left: 10%; top: 25%; animation-delay: 0.6s, 0s; }
+.summerFireflies i:nth-child(13) { left: 78%; top: 15%; animation-delay: 1.9s, 0s; }
+.summerFireflies i:nth-child(14) { left: 35%; top: 15%; animation-delay: 0.9s, 0s; }
+.summerFireflies i:nth-child(15) { left: 68%; top: 70%; animation-delay: 2.4s, 0s; }
 
-@keyframes distortWave2 {
-    0%, 100% { transform: scaleX(1.1) scaleY(1) translateY(5px); }
-    50% { transform: scaleX(1.4) scaleY(0.9) translateY(-5px); }
-}
-@keyframes heatRipple {
-    0% { 
-        opacity: 0.5;
-        transform: translateY(0) scaleX(1.2) scaleY(1);
-    }
-    50% { 
-        opacity: 0.7;
-        transform: translateY(-10px) scaleX(1.2) scaleY(1.1);
-    }
-    100% { 
-        opacity: 0.5;
-        transform: translateY(0) scaleX(1.2) scaleY(1);
-    }
-}
-
-/* Firefly animations */
-@keyframes drift1 {
-    0% { transform: translate(0, 0); }
-    15% { transform: translate(12px, -20px); }
-    30% { transform: translate(25px, -8px); }
-    45% { transform: translate(18px, 12px); }
-    60% { transform: translate(-5px, 22px); }
-    75% { transform: translate(-15px, 10px); }
-    90% { transform: translate(-8px, -10px); }
-    100% { transform: translate(0, 0); }
-}
-
-@keyframes drift2 {
-    0% { transform: translate(0, 0); }
-    20% { transform: translate(-18px, -12px); }
-    40% { transform: translate(-10px, 18px); }
-    60% { transform: translate(8px, 25px); }
-    80% { transform: translate(20px, 5px); }
-    100% { transform: translate(0, 0); }
-}
-
-@keyframes drift3 {
-    0% { transform: translate(0, 0); }
-    25% { transform: translate(22px, 5px); }
-    50% { transform: translate(10px, -22px); }
-    75% { transform: translate(-12px, -15px); }
-    100% { transform: translate(0, 0); }
-}
-
-@keyframes blink {
-    0%, 20%, 40% { opacity: 0; }
-    30%, 60%, 100% { opacity: 1; }
-}
-
-/* Pulsate animation for the rainbow */
-@keyframes pulsate {
-    0% { opacity: 0; }
-    10% { opacity: 0; }  /* Stay invisible for first 10% */
-    20% { opacity: 0.8; } /* Fade in */
-    30% { opacity: 0.5; }
-    45% { opacity: 0.8; }
-    60% { opacity: 0; }  /* Fade out */
-    100% { opacity: 0; } /* Stay invisible until next cycle */
-}
-
-
-/* Raindrop container */
-.raindrops {
-    position: absolute;
-    top: -50px;
-    left: -50px;
-    width: calc(100% + 100px);
-    height: calc(100% + 100px);
-    pointer-events: none;
-    z-index: 20;
-}
-
-/* Base raindrop style with slant */
-.raindrops i {
+/**
+ * CLOUD PARTICLE STYLES (.clouds i)
+ * ==================================
+ * Soft, fluffy cloud particles.
+ */
+.clouds i {
+    /* LAYOUT & POSITIONING */
     position: absolute;
     display: block;
-    background: linear-gradient(to bottom, rgba(255,255,255,0.2), rgba(150,205,255,1));
-    width: 3px; /* Already increased from 1px to 2px */
-    border-radius: 0;
-    will-change: transform, opacity;
-    transform: rotate(-20deg); /* Add a slant to the right */
-    transform-origin: top center; /* Make them rotate from the top */
+    
+    /* SIZING */
+    width: 250px;
+    height: 120px;
+    
+    /* APPEARANCE */
+    background: radial-gradient(circle, #ffffff 60%, #d9d9d9 100%);
+    border-radius: 50%;
     opacity: 0;
+    filter: blur(8px);
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.25), 0 5px 15px rgba(0, 0, 0, 0.08);
+    
+    /* ANIMATIONS */
+    animation: cloudSway 20s ease-in-out infinite, cloudFadeIn 1.5s ease-in-out forwards;
+    /* Applies dual animations:
+       - cloudSway: Gentle horizontal oscillation (20s cycle)
+       - cloudFadeIn: Initial fade-in effect (1.5s once) */
+    
+    /* PERFORMANCE OPTIMIZATION */
+    will-change: transform, opacity, filter;
 }
 
+/**
+ * CLOUD PSEUDO-ELEMENT STYLES (::before, ::after)
+ * ===============================================
+ * Creates layered cloud effect with additional circular elements for realism.
+ */
+.clouds i::before,
+.clouds i::after {
+    /* PSEUDO-ELEMENT SETUP */
+    content: '';
+    position: absolute;
+    
+    /* APPEARANCE */
+    background: radial-gradient(circle, #ffffff 60%, #d9d9d9 100%);
+    border-radius: 50%;
+    filter: blur(8px);
+}
 
-/* Individual raindrop styles */
+/* Front cloud layer - smaller, positioned to upper right */
+.clouds i::before { 
+    width: 60%; 
+    height: 60%; 
+    top: -20%; 
+    left: 20%; 
+}
+
+/* Back cloud layer - larger, positioned to lower left */
+.clouds i::after { 
+    width: 70%; 
+    height: 70%; 
+    top: 20%; 
+    left: -10%; 
+}
+
+/* Cloud positioning patterns with size and blur variations */
+.clouds i:nth-child(1) { top: 20%; left: 15%; width: 235px; height: 115px; animation-delay: 0s, 0s; }
+.clouds i:nth-child(2) { top: 38%; left: 25%; width: 190px; height: 90px; filter: blur(6px); animation-delay: 3s, 0.9s; }
+.clouds i:nth-child(3) { top: 18%; left: 45%; width: 250px; height: 130px; filter: blur(8px); animation-delay: 6s, 0.2s; }
+.clouds i:nth-child(4) { top: 46%; left: 65%; width: 220px; height: 110px; animation-delay: 9s, 0.4s; }
+.clouds i:nth-child(5) { top: 30%; left: 85%; width: 185px; height: 85px; animation-delay: 12s, 0.5s; }
+.clouds i:nth-child(6) { top: 42%; left: 10%; width: 290px; height: 150px; filter: blur(9px); animation-delay: 2s, 0.7s; }
+.clouds i:nth-child(7) { top: 48%; left: 32%; width: 240px; height: 115px; filter: blur(7px); animation-delay: 5s, 0.3s; }
+.clouds i:nth-child(8) { top: 45%; left: 55%; width: 310px; height: 165px; animation-delay: 8s, 1s; }
+.clouds i:nth-child(9) { top: 50%; left: 75%; width: 220px; height: 105px; filter: blur(6px); animation-delay: 11s, 0.2s; }
+.clouds i:nth-child(10) { top: 44%; left: 92%; width: 270px; height: 130px; filter: blur(8px); animation-delay: 14s, 0.4s; }
+
+/**
+ * WIND LINE PARTICLE STYLES (.windLine)
+ * =====================================
+ * Animated lines that simulate wind movement with horizontal gradient effect.
+ */
+.windLine {
+    /* LAYOUT & POSITIONING */
+    position: absolute;
+    
+    /* SIZING */
+    width: 75px;
+    height: 5px;
+    
+    /* APPEARANCE */
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+    border-radius: 50px;
+    opacity: 0;
+    
+    /* ANIMATIONS */
+    animation: windLineBlow linear infinite;
+    /* Applies horizontal movement animation with variable duration per line */
+    
+    /* PERFORMANCE OPTIMIZATION */
+    will-change: transform, opacity;
+}
+
+/* Wind line positioning with varied timing and duration */
+.windLine:nth-child(1) { top: 45%; left: -10%; animation-delay: 5s; animation-duration: 10s; }
+.windLine:nth-child(2) { top: 30%; left: -20%; animation-delay: 5.5s; animation-duration: 8.75s; }
+.windLine:nth-child(3) { top: 50%; left: -15%; animation-delay: 6s; animation-duration: 10.5s; }
+.windLine:nth-child(4) { top: 70%; left: -25%; animation-delay: 6.5s; animation-duration: 9.5s; }
+.windLine:nth-child(5) { top: 20%; left: -30%; animation-delay: 7s; animation-duration: 11.25s; }
+.windLine:nth-child(6) { top: 40%; left: -5%; animation-delay: 7.5s; animation-duration: 9.25s; }
+.windLine:nth-child(7) { top: 60%; left: -35%; animation-delay: 8s; animation-duration: 10.75s; }
+.windLine:nth-child(8) { top: 80%; left: -10%; animation-delay: 8.5s; animation-duration: 10s; }
+.windLine:nth-child(9) { top: 15%; left: -40%; animation-delay: 9s; animation-duration: 9s; }
+.windLine:nth-child(10) { top: 65%; left: -20%; animation-delay: 9.5s; animation-duration: 10.25s; }
+
+/**
+ * RAINDROP PARTICLE STYLES (.raindrops i)
+ * =======================================
+ * Individual raindrop particles with gradient effect and diagonal falling motion.
+ * Performance optimized with will-change property for GPU acceleration.
+ */
+.raindrops i {
+    /* LAYOUT & POSITIONING */
+    position: absolute;
+    display: block;
+    
+    /* SIZING */
+    width: 3px;
+    /* Height varies per raindrop - set in positioning rules */
+    
+    /* APPEARANCE */
+    border-radius: 0;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.2), rgba(150,205,255,1));
+    opacity: 0;
+    transform: rotate(-20deg);
+    transform-origin: top center;
+    
+    /* PERFORMANCE OPTIMIZATION */
+    will-change: transform, opacity;
+}
+
+/* Raindrop positioning with varied heights and timing */
 .raindrops i:nth-child(1) { left: 10%; height: 30px; animation: rain 2.0s linear infinite; animation-delay: 3.2s; }
 .raindrops i:nth-child(2) { left: 15%; height: 20px; animation: rain 1.8s linear infinite; animation-delay: 3.5s; }
 .raindrops i:nth-child(3) { left: 20%; height: 25px; animation: rain 2.2s linear infinite; animation-delay: 3.1s; }
@@ -618,106 +352,26 @@
 .raindrops i:nth-child(19) { left: 98%; height: 21px; animation: rain 1.9s linear infinite; animation-delay: 3.4s; }
 .raindrops i:nth-child(20) { left: 62%; height: 24px; animation: rain 2.2s linear infinite; animation-delay: 3.7s; }
 
-/* Raindrop animation */
-@keyframes rain {
-    0% {
-        top: 0%;
-        transform: translateY(0) translateX(0) rotate(-20deg);
-        opacity: 0;
-    }
-    35% {
-        transform: translateY(5%) translateX(5px) rotate(-20deg); /* Increased from 2px to 5px */
-        opacity: 1;
-    }
-    75% {
-        transform: translateY(75%) translateX(20px) rotate(-20deg); /* Increased from 15px to 30px */
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(100%) translateX(30px) rotate(-20deg); /* Increased from 20px to 40px */
-        opacity: 0;
-        top: 100%;
-    }
-}
-
-.snowflakes {
-    position: absolute; /* Position relative to the seasonalChanges container */
-    top: -50px;
-    left: -50px;
-    width: calc(100% + 100px);
-    height: calc(100% + 100px);
-    pointer-events: none; /* Prevent interaction with snowflakes */
-    z-index: 20; /* Ensure snowflakes are above other elements inside the container */
-    overflow: hidden; /* Prevent snowflakes from overflowing the container */
-}
-
-/* Update the base snowflake styles */
+/**
+ * SNOWFLAKE PARTICLE STYLES (.snowflakes i)
+ * =========================================
+ * Individual snowflake particles with gentle swaying fall animation.
+ */
 .snowflakes i {
+    /* LAYOUT & POSITIONING */
     position: absolute;
     display: block;
+    
+    /* APPEARANCE */
     background: white;
     border-radius: 50%;
+    /* Size varies per snowflake - set in positioning rules */
+    
+    /* PERFORMANCE OPTIMIZATION */
     will-change: transform, opacity;
 }
 
-.mapleLeaves {
-    position: absolute; /* Position relative to the seasonalChanges container */
-    top: -50px;
-    left: -50px;
-    width: calc(100% + 100px);
-    height: calc(100% + 100px);
-    pointer-events: none; /* Prevent interaction with snowflakes */
-    z-index: 20; /* Ensure snowflakes are above other elements inside the container */
-    overflow: hidden; /* Prevent snowflakes from overflowing the container */
-}
-
-.mapleLeaves i {
-    position: absolute;
-    display: block;
-    background: #e74c3c;
-    clip-path: polygon(
-        50% 0%,      /* Top point */
-        40% 15%,     /* Top-left indent */
-        20% 15%,     /* Left lobe top */
-        28% 30%,     /* Left lobe inner */
-        15% 45%,     /* Left lobe point */
-        30% 50%,     /* Left indent */
-        5% 65%,      /* Bottom-left lobe top */
-        15% 75%,     /* Bottom-left lobe inner */
-        30% 85%,     /* Bottom-left lobe point */
-        50% 100%,    /* Bottom point */
-        70% 85%,     /* Bottom-right lobe point */
-        85% 75%,     /* Bottom-right lobe inner */
-        95% 65%,     /* Bottom-right lobe top */
-        70% 50%,     /* Right indent */
-        85% 45%,     /* Right lobe point */
-        72% 30%,     /* Right lobe inner */
-        80% 15%,     /* Right lobe top */
-        60% 15%      /* Top-right indent */
-    ); /* Proper maple leaf shape with lobes */
-    border-radius: 80%;
-    will-change: transform, opacity;
-}
-
-/* Add color variations to maple leaves */
-.mapleLeaves i:nth-child(2n) {
-    background: #e74c3c; /* Red - original color */
-}
-
-.mapleLeaves i:nth-child(2n+1) {
-    background: #d35400; /* Dark orange */
-}
-
-.mapleLeaves i:nth-child(2n+2) {
-    background: #e67e22; /* Orange */
-}
-
-/* Add a few brown leaves (every 11th leaf) */
-.mapleLeaves i:nth-child(5n) {
-    background: #795548; /* Brown */
-}
-
-/* Replace random() with specific selectors for snowflakes */
+/* Snowflake positioning with varied sizes and dual animations */
 .snowflakes i:nth-child(1) { left: 10%; top: -5%; width: 6px; height: 6px; animation: fall 9s linear infinite, sway 3s ease-in-out infinite; animation-delay: 0.2s, 0.2s; }
 .snowflakes i:nth-child(2) { left: 20%; top: -15%; width: 8px; height: 8px; animation: fall 12s linear infinite, sway 4s ease-in-out infinite; animation-delay: 1.5s, 1.5s; }
 .snowflakes i:nth-child(3) { left: 30%; top: -20%; width: 5px; height: 5px; animation: fall 8s linear infinite, sway 2.5s ease-in-out infinite; animation-delay: 2.8s, 2.8s; }
@@ -743,97 +397,430 @@
 .snowflakes i:nth-child(24) { left: 63%; top: -13%; width: 5px; height: 5px; animation: fall 9.4s linear infinite, sway 3.3s ease-in-out infinite; animation-delay: 0.6s, 0.6s; }
 .snowflakes i:nth-child(25) { left: 73%; top: -27%; width: 7px; height: 7px; animation: fall 13.8s linear infinite, sway 2.8s ease-in-out infinite; animation-delay: 2.5s, 2.5s; }
 
-.mapleLeaves i:nth-child(1) { left: 10%; top: -5%; width: 15px; height: 11px; animation: fall 9s linear infinite, swayAndSpin 3s ease-in-out infinite; animation-delay: 0.2s, 0.2s, 0.5s; }
-.mapleLeaves i:nth-child(2) { left: 20%; top: -15%; width: 18px; height: 14px; animation: fall 12s linear infinite, swayAndSpin 4s ease-in-out infinite; animation-delay: 1.5s, 1.5s, 1s; }
-.mapleLeaves i:nth-child(3) { left: 30%; top: -20%; width: 14px; height: 11px; animation: fall 8s linear infinite, swayAndSpin 2.5s ease-in-out infinite; animation-delay: 2.8s, 2.8s, 2s; }
-.mapleLeaves i:nth-child(4) { left: 40%; top: -10%; width: 19px; height: 14px; animation: fall 14s linear infinite, swayAndSpin 3.5s ease-in-out infinite; animation-delay: 0.7s, 0.7s, 1.5s; }
-.mapleLeaves i:nth-child(5) { left: 50%; top: -25%; width: 11px; height: 8px; animation: fall 10s linear infinite, swayAndSpin 2s ease-in-out infinite; animation-delay: 3.2s, 3.2s, 2.5s; }
-.mapleLeaves i:nth-child(6) { left: 60%; top: -15%; width: 17px; height: 13px; animation: fall 13s linear infinite, swayAndSpin 4.5s ease-in-out infinite; animation-delay: 2.1s, 2.1s, 0.3s; }
-.mapleLeaves i:nth-child(7) { left: 70%; top: -5%; width: 13px; height: 10px; animation: fall 11s linear infinite, swayAndSpin 3.2s ease-in-out infinite; animation-delay: 0.5s, 0.5s, 1.8s; }
-.mapleLeaves i:nth-child(8) { left: 80%; top: -18%; width: 17px; height: 13px; animation: fall 9.5s linear infinite, swayAndSpin 2.8s ease-in-out infinite; animation-delay: 1.9s, 1.9s, 2.7s; }
-.mapleLeaves i:nth-child(9) { left: 90%; top: -22%; width: 14px; height: 11px; animation: fall 12.5s linear infinite, swayAndSpin 3.7s ease-in-out infinite; animation-delay: 3.5s, 3.5s, 1.2s; }
-.mapleLeaves i:nth-child(10) { left: 15%; top: -8%; width: 16px; height: 12px; animation: fall 10.2s linear infinite, swayAndSpin 2.2s ease-in-out infinite; animation-delay: 2.4s, 2.4s, 3s; }
-.mapleLeaves i:nth-child(11) { left: 25%; top: -12%; width: 12px; height: 9px; animation: fall 8.5s linear infinite, swayAndSpin 3.8s ease-in-out infinite; animation-delay: 1.1s, 1.1s, 0.8s; }
-.mapleLeaves i:nth-child(12) { left: 35%; top: -28%; width: 18px; height: 14px; animation: fall 11.8s linear infinite, swayAndSpin 4.2s ease-in-out infinite; animation-delay: 0.3s, 0.3s, 2.3s; }
-.mapleLeaves i:nth-child(13) { left: 45%; top: -17%; width: 14px; height: 11px; animation: fall 13.2s linear infinite, swayAndSpin 2.6s ease-in-out infinite; animation-delay: 2.7s, 2.7s, 1.6s; }
-.mapleLeaves i:nth-child(14) { left: 55%; top: -9%; width: 17px; height: 13px; animation: fall 9.8s linear infinite, swayAndSpin 3.4s ease-in-out infinite; animation-delay: 1.4s, 1.4s, 2.9s; }
-.mapleLeaves i:nth-child(15) { left: 65%; top: -21%; width: 13px; height: 10px; animation: fall 12.3s linear infinite, swayAndSpin 2.9s ease-in-out infinite; animation-delay: 3.8s, 3.8s, 0.6s; }
-.mapleLeaves i:nth-child(16) { left: 75%; top: -14%; width: 15px; height: 11px; animation: fall 10.7s linear infinite, swayAndSpin 4.3s ease-in-out infinite; animation-delay: 0.8s, 0.8s, 2s; }
-.mapleLeaves i:nth-child(17) { left: 85%; top: -24%; width: 11px; height: 8px; animation: fall 11.5s linear infinite, swayAndSpin 3.1s ease-in-out infinite; animation-delay: 2.2s, 2.2s, 3.3s; }
-.mapleLeaves i:nth-child(18) { left: 95%; top: -19%; width: 14px; height: 11px; animation: fall 8.8s linear infinite, swayAndSpin 2.7s ease-in-out infinite; animation-delay: 3.1s, 3.1s, 1.3s; }
-.mapleLeaves i:nth-child(19) { left: 5%; top: -11%; width: 19px; height: 14px; animation: fall 13.5s linear infinite, swayAndSpin 3.9s ease-in-out infinite; animation-delay: 1.7s, 1.7s, 2.6s; }
-.mapleLeaves i:nth-child(20) { left: 23%; top: -26%; width: 12px; height: 9px; animation: fall 9.2s linear infinite, swayAndSpin 2.4s ease-in-out infinite; animation-delay: 0.4s, 0.4s, 1.1s; }
-.mapleLeaves i:nth-child(21) { left: 33%; top: -7%; width: 16px; height: 12px; animation: fall 11.1s linear infinite, swayAndSpin 3.6s ease-in-out infinite; animation-delay: 2.9s, 2.9s, 0.9s; }
-.mapleLeaves i:nth-child(22) { left: 43%; top: -16%; width: 17px; height: 13px; animation: fall 10.4s linear infinite, swayAndSpin 2.3s ease-in-out infinite; animation-delay: 1.3s, 1.3s, 3.4s; }
-.mapleLeaves i:nth-child(23) { left: 53%; top: -23%; width: 14px; height: 11px; animation: fall 12.7s linear infinite, swayAndSpin 4.1s ease-in-out infinite; animation-delay: 3.7s, 3.7s, 1.8s; }
-.mapleLeaves i:nth-child(24) { left: 63%; top: -13%; width: 11px; height: 8px; animation: fall 9.4s linear infinite, swayAndSpin 3.3s ease-in-out infinite; animation-delay: 0.6s, 0.6s, 2.4s; }
-.mapleLeaves i:nth-child(25) { left: 73%; top: -27%; width: 15px; height: 11px; animation: fall 13.8s linear infinite, swayAndSpin 2.8s ease-in-out infinite; animation-delay: 2.5s, 2.5s, 0.5s; }
+/**
+ * MAPLE LEAF PARTICLE STYLES (.mapleLeaves i)
+ * ===========================================
+ * Individual maple leaf particles with clip-path shape and color variations.
+ */
+.mapleLeaves i {
+    /* LAYOUT & POSITIONING */
+    position: absolute;
+    display: block;
+    
+    /* APPEARANCE */
+    background: #e74c3c;
+    clip-path: polygon(50% 0%, 40% 15%, 20% 15%, 28% 30%, 15% 45%, 30% 50%, 5% 65%, 15% 75%, 30% 85%, 50% 100%, 70% 85%, 85% 75%, 95% 65%, 70% 50%, 85% 45%, 72% 30%, 80% 15%, 60% 15%);
+    border-radius: 80%;
+    /* Size varies per leaf - set in positioning rules */
+    
+    /* PERFORMANCE OPTIMIZATION */
+    will-change: transform, opacity;
+}
 
+/**
+ * MAPLE LEAF COLOR VARIATIONS
+ * ===========================
+ * Different color patterns based on nth-child selectors for autumn variety.
+ */
 
+/* Even leaves - red */
+.mapleLeaves i:nth-child(2n) { 
+    background: #e74c3c; 
+}
 
+/* Odd leaves - orange */
+.mapleLeaves i:nth-child(2n+1) { 
+    background: #d35400; 
+}
 
-@keyframes fadeInRegular {
-    from {
-        opacity: 0;
+/* Every second odd leaf - lighter orange */
+.mapleLeaves i:nth-child(2n+2) { 
+    background: #e67e22; 
+}
+
+/* Every fifth leaf - brown */
+.mapleLeaves i:nth-child(5n) { 
+    background: #795548; 
+}
+
+/* Maple leaf positioning with varied sizes and dual animations */
+.mapleLeaves i:nth-child(1) { left: 10%; top: -5%; width: 15px; height: 11px; animation: fall 9s linear infinite, swayAndSpin 3s ease-in-out infinite; animation-delay: 0.2s, 0.2s; }
+.mapleLeaves i:nth-child(2) { left: 20%; top: -15%; width: 18px; height: 14px; animation: fall 12s linear infinite, swayAndSpin 4s ease-in-out infinite; animation-delay: 1.5s, 1.5s; }
+.mapleLeaves i:nth-child(3) { left: 30%; top: -20%; width: 14px; height: 11px; animation: fall 8s linear infinite, swayAndSpin 2.5s ease-in-out infinite; animation-delay: 2.8s, 2.8s; }
+.mapleLeaves i:nth-child(4) { left: 40%; top: -10%; width: 19px; height: 14px; animation: fall 14s linear infinite, swayAndSpin 3.5s ease-in-out infinite; animation-delay: 0.7s, 0.7s; }
+.mapleLeaves i:nth-child(5) { left: 50%; top: -25%; width: 11px; height: 8px; animation: fall 10s linear infinite, swayAndSpin 2s ease-in-out infinite; animation-delay: 3.2s, 3.2s; }
+.mapleLeaves i:nth-child(6) { left: 60%; top: -15%; width: 17px; height: 13px; animation: fall 13s linear infinite, swayAndSpin 4.5s ease-in-out infinite; animation-delay: 2.1s, 2.1s; }
+.mapleLeaves i:nth-child(7) { left: 70%; top: -5%; width: 13px; height: 10px; animation: fall 11s linear infinite, swayAndSpin 3.2s ease-in-out infinite; animation-delay: 0.5s, 0.5s; }
+.mapleLeaves i:nth-child(8) { left: 80%; top: -18%; width: 17px; height: 13px; animation: fall 9.5s linear infinite, swayAndSpin 2.8s ease-in-out infinite; animation-delay: 1.9s, 1.9s; }
+.mapleLeaves i:nth-child(9) { left: 90%; top: -22%; width: 14px; height: 11px; animation: fall 12.5s linear infinite, swayAndSpin 3.7s ease-in-out infinite; animation-delay: 3.5s, 3.5s; }
+.mapleLeaves i:nth-child(10) { left: 15%; top: -8%; width: 16px; height: 12px; animation: fall 10.2s linear infinite, swayAndSpin 2.2s ease-in-out infinite; animation-delay: 2.4s, 2.4s; }
+.mapleLeaves i:nth-child(11) { left: 25%; top: -12%; width: 12px; height: 9px; animation: fall 8.5s linear infinite, swayAndSpin 3.8s ease-in-out infinite; animation-delay: 1.1s, 1.1s; }
+.mapleLeaves i:nth-child(12) { left: 35%; top: -28%; width: 18px; height: 14px; animation: fall 11.8s linear infinite, swayAndSpin 4.2s ease-in-out infinite; animation-delay: 0.3s, 0.3s; }
+.mapleLeaves i:nth-child(13) { left: 45%; top: -17%; width: 14px; height: 11px; animation: fall 13.2s linear infinite, swayAndSpin 2.6s ease-in-out infinite; animation-delay: 2.7s, 2.7s; }
+.mapleLeaves i:nth-child(14) { left: 55%; top: -9%; width: 17px; height: 13px; animation: fall 9.8s linear infinite, swayAndSpin 3.4s ease-in-out infinite; animation-delay: 1.4s, 1.4s; }
+.mapleLeaves i:nth-child(15) { left: 65%; top: -21%; width: 13px; height: 10px; animation: fall 12.3s linear infinite, swayAndSpin 2.9s ease-in-out infinite; animation-delay: 3.8s, 3.8s; }
+.mapleLeaves i:nth-child(16) { left: 75%; top: -14%; width: 15px; height: 11px; animation: fall 10.7s linear infinite, swayAndSpin 4.3s ease-in-out infinite; animation-delay: 0.8s, 0.8s; }
+.mapleLeaves i:nth-child(17) { left: 85%; top: -24%; width: 11px; height: 8px; animation: fall 11.5s linear infinite, swayAndSpin 3.1s ease-in-out infinite; animation-delay: 2.2s, 2.2s; }
+.mapleLeaves i:nth-child(18) { left: 95%; top: -19%; width: 14px; height: 11px; animation: fall 8.8s linear infinite, swayAndSpin 2.7s ease-in-out infinite; animation-delay: 3.1s, 3.1s; }
+.mapleLeaves i:nth-child(19) { left: 5%; top: -11%; width: 19px; height: 14px; animation: fall 13.5s linear infinite, swayAndSpin 3.9s ease-in-out infinite; animation-delay: 1.7s, 1.7s; }
+.mapleLeaves i:nth-child(20) { left: 23%; top: -26%; width: 12px; height: 9px; animation: fall 9.2s linear infinite, swayAndSpin 2.4s ease-in-out infinite; animation-delay: 0.4s, 0.4s; }
+.mapleLeaves i:nth-child(21) { left: 33%; top: -7%; width: 16px; height: 12px; animation: fall 11.1s linear infinite, swayAndSpin 3.6s ease-in-out infinite; animation-delay: 2.9s, 2.9s; }
+.mapleLeaves i:nth-child(22) { left: 43%; top: -16%; width: 17px; height: 13px; animation: fall 10.4s linear infinite, swayAndSpin 2.3s ease-in-out infinite; animation-delay: 1.3s, 1.3s; }
+.mapleLeaves i:nth-child(23) { left: 53%; top: -23%; width: 14px; height: 11px; animation: fall 12.7s linear infinite, swayAndSpin 4.1s ease-in-out infinite; animation-delay: 3.7s, 3.7s; }
+.mapleLeaves i:nth-child(24) { left: 63%; top: -13%; width: 11px; height: 8px; animation: fall 9.4s linear infinite, swayAndSpin 3.3s ease-in-out infinite; animation-delay: 0.6s, 0.6s; }
+.mapleLeaves i:nth-child(25) { left: 73%; top: -27%; width: 15px; height: 11px; animation: fall 13.8s linear infinite, swayAndSpin 2.8s ease-in-out infinite; animation-delay: 2.5s, 2.5s; }
+
+/**
+ * RAINBOW ARC SPECIAL EFFECT (.rainbowArc)
+ * ========================================
+ * Creates rainbow effect with gradient colors and pulsing animation.
+ */
+.rainbowArc {
+    /* LAYOUT & POSITIONING */
+    position: fixed;
+    bottom: 10%;
+    right: 2%;
+    z-index: 9;
+    
+    /* SIZING */
+    width: 600px;
+    height: 300px;
+    
+    /* APPEARANCE */
+    background: linear-gradient(to bottom, 
+        rgba(255, 0, 0, 0.6),      /* Red */
+        rgba(255, 165, 0, 0.6),    /* Orange */
+        rgba(255, 255, 0, 0.6),    /* Yellow */
+        rgba(0, 128, 0, 0.6),      /* Green */
+        rgba(0, 0, 255, 0.6),      /* Blue */
+        rgba(75, 0, 130, 0.6),     /* Indigo */
+        rgba(238, 130, 238, 0.3)   /* Violet */
+    );
+    border-radius: 300px 300px 0 0;
+    transform: rotate(-17deg);
+    filter: blur(20px);
+    
+    /* INTERACTIONS */
+    pointer-events: none;
+    
+    /* ANIMATIONS */
+    animation: pulsate 20s ease-in-out infinite;
+    /* Applies gentle pulsing opacity effect (20s cycle) */
+    
+    /* PERFORMANCE OPTIMIZATION */
+    will-change: opacity;
+}
+
+/**
+ * HEAT DISTORTION SPECIAL EFFECT (.heatDistortion)
+ * ================================================
+ * Creates heat wave effect with dual pseudo-elements for layered distortion.
+ */
+.heatDistortion {
+    /* LAYOUT & POSITIONING */
+    position: fixed;
+    bottom: 0%;
+    right: 0%;
+    z-index: 11;
+    
+    /* SIZING */
+    width: 800px;
+    height: 330px;
+    
+    /* INTERACTIONS */
+    pointer-events: none;
+    overflow: hidden;
+}
+
+/**
+ * HEAT DISTORTION PSEUDO-ELEMENTS (::before, ::after)
+ * ===================================================
+ * Creates layered heat wave effect with different wave patterns and timing.
+ */
+.heatDistortion::before, 
+.heatDistortion::after {
+    /* PSEUDO-ELEMENT SETUP */
+    content: '';
+    position: absolute;
+    
+    /* SIZING */
+    width: 100%;
+    height: 100%;
+    
+    /* APPEARANCE */
+    background: rgba(255, 165, 0, 0.15);
+    border-radius: 50% 50% 0 0;
+    filter: blur(12px);
+    
+    /* PERFORMANCE OPTIMIZATION */
+    will-change: transform, filter;
+}
+
+/* First heat wave layer */
+.heatDistortion::before {
+    animation: heatdistortWave1 7s ease-in-out infinite;
+    background: linear-gradient(to bottom, 
+        rgba(255, 165, 0, 0) 0%, 
+        rgba(255, 120, 0, 0.3) 50%, 
+        rgba(255, 165, 0, 0) 100%
+    );
+}
+
+/* Second heat wave layer - offset timing and different gradient */
+.heatDistortion::after {
+    animation: heatdistortWave2 5s ease-in-out infinite;
+    animation-delay: 0.5s;
+    background: linear-gradient(to bottom, 
+        rgba(255, 255, 255, 0) 0%, 
+        rgba(255, 200, 100, 0.25) 50%, 
+        rgba(255, 255, 255, 0) 100%
+    );
+}
+
+/**
+ * NIGHT GLOW ANIMATION - FIREFLY BRIGHTNESS PULSING
+ * =================================================
+ * Creates realistic firefly blinking patterns with varied intensity levels.
+ */
+@keyframes nightGlow {
+    /* Dim phases */
+    0%, 5%, 12%, 17%, 22%, 90%, 100% { 
+        opacity: 0.2; 
+        box-shadow: 0 0 4px 1px rgba(255, 190, 60, 0.4); 
     }
-    to {
-        opacity: 1;
+    
+    /* Bright phases */
+    9%, 15%, 20%, 30%, 70% { 
+        opacity: 0.8; 
+        box-shadow: 0 0 8px 3px rgba(255, 190, 60, 0.7), 0 0 12px 6px rgba(255, 150, 30, 0.3); 
     }
 }
 
+/**
+ * NIGHT DRIFT ANIMATION - FIREFLY FLOATING MOVEMENT
+ * =================================================
+ * Creates gentle floating motion patterns for night fireflies.
+ */
+@keyframes nightDrift {
+    0% { transform: translate(0, 0); }
+    12% { transform: translate(15px, -35px); }
+    25% { transform: translate(30px, -45px); }
+    37% { transform: translate(20px, -15px); }
+    50% { transform: translate(5px, -5px); }
+    62% { transform: translate(-10px, -20px); }
+    75% { transform: translate(-25px, -30px); }
+    87% { transform: translate(-15px, -15px); }
+    100% { transform: translate(0, 0); }
+}
 
-/* Update the fall animation */
+/**
+ * FADE IN REGULAR ANIMATION - STANDARD FADE-IN EFFECT
+ * ===================================================
+ * Simple fade-in animation for summer fireflies.
+ */
+@keyframes summerFireflyFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/**
+ * DRIFT ANIMATION VARIATIONS - SUMMER FIREFLY MOVEMENT PATTERNS
+ * =============================================================
+ * Three different drift patterns for varied summer firefly movement.
+ */
+
+/* Drift pattern 1 - Gentle circular motion */
+@keyframes summerDrift1 {
+    0% { transform: translate(0, 0); }
+    15% { transform: translate(12px, -20px); }
+    30% { transform: translate(25px, -8px); }
+    45% { transform: translate(18px, 12px); }
+    60% { transform: translate(-5px, 22px); }
+    75% { transform: translate(-15px, 10px); }
+    90% { transform: translate(-8px, -10px); }
+    100% { transform: translate(0, 0); }
+}
+
+/* Drift pattern 2 - Loose figure-eight motion */
+@keyframes summerDrift2 {
+    0% { transform: translate(0, 0); }
+    20% { transform: translate(-18px, -12px); }
+    40% { transform: translate(-10px, 18px); }
+    60% { transform: translate(8px, 25px); }
+    80% { transform: translate(20px, 5px); }
+    100% { transform: translate(0, 0); }
+}
+
+/* Drift pattern 3 - Angular movement path */
+@keyframes summerDrift3 {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(22px, 5px); }
+    50% { transform: translate(10px, -22px); }
+    75% { transform: translate(-12px, -15px); }
+    100% { transform: translate(0, 0); }
+}
+
+/**
+ * CLOUD SWAY ANIMATION - GENTLE HORIZONTAL OSCILLATION
+ * ====================================================
+ * Creates subtle cloud movement for realistic cloud behavior.
+ */
+@keyframes cloudSway {
+    0% { transform: translateX(0); }
+    30% { transform: translateX(-3%); }
+    60% { transform: translateX(2%); }
+    100% { transform: translateX(0); }
+}
+
+/**
+ * CLOUD FADE IN ANIMATION - INITIAL CLOUD APPEARANCE
+ * ==================================================
+ * Creates smooth fade-in effect for clouds with slight scaling.
+ */
+@keyframes cloudFadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(-5px) scale(0.95); 
+    }
+    to { 
+        opacity: 0.7; 
+        transform: translateY(0) scale(1); 
+    }
+}
+
+/**
+ * WIND LINE MOVE ANIMATION - HORIZONTAL WIND MOVEMENT
+ * ===================================================
+ * Creates wind lines that move across screen with scaling effect.
+ */
+@keyframes windLineBlow {
+    0% { 
+        transform: translateX(0) scale(1); 
+        opacity: 0; 
+    }
+    15% { 
+        opacity: 0.8; 
+    }
+    50% { 
+        transform: translateX(50vw) scale(1.2); 
+        opacity: 1; 
+    }
+    85% { 
+        opacity: 0.8; 
+    }
+    100% { 
+        transform: translateX(100vw) scale(1); 
+        opacity: 0; 
+    }
+}
+
+/**
+ * RAIN ANIMATION - DIAGONAL FALLING RAINDROP MOTION
+ * =================================================
+ * Creates realistic raindrop falling pattern with rotation and opacity changes.
+ */
+@keyframes rain {
+    0%, 20% { 
+        top: 0%; 
+        transform: translateY(0) translateX(0) rotate(-20deg); 
+        opacity: 0; 
+    }
+    45% { 
+        transform: translateY(5%) translateX(5px) rotate(-20deg); 
+        opacity: 0.8; 
+    }
+    55% { 
+        transform: translateY(75%) translateX(20px) rotate(-20deg); 
+        opacity: 0.8; 
+    }
+    80%, 100% { 
+        transform: translateY(100%) translateX(30px) rotate(-20deg); 
+        opacity: 0; 
+        top: 100%; 
+    }
+}
+
+/**
+ * FALL ANIMATION - STANDARD VERTICAL FALLING MOTION
+ * =================================================
+ * Standard falling animation for snowflakes and maple leaves.
+ */
 @keyframes fall {
-    0% {
-        top: 0%;
-        opacity: 0;
+    0% { 
+        top: 0%; 
+        opacity: 0; 
     }
-    10% {
-        opacity: 0.8;
+    10% { 
+        opacity: 0.8; 
     }
-    90% {
-        opacity: 0.8;
+    90% { 
+        opacity: 0.8; 
     }
-    100% {
-        top: 100%;
-        opacity: 0;
+    100% { 
+        top: 100%; 
+        opacity: 0; 
     }
 }
 
-/* Swaying animation for horizontal movement */
+/**
+ * SWAY ANIMATION - GENTLE HORIZONTAL SWAYING
+ * ==========================================
+ * Creates gentle side-to-side swaying motion for snowflakes.
+ */
 @keyframes sway {
-    0% {
-        transform: translateX(-8px);
-    }
-    50% {
-        transform: translateX(8px);
-    }
-    100% {
-        transform: translateX(-8px);
-    }
+    0% { transform: translateX(-8px); }
+    50% { transform: translateX(8px); }
+    100% { transform: translateX(-8px); }
 }
 
-@keyframes sway {
-    0% {
-        transform: translateX(-8px);
-    }
-    50% {
-        transform: translateX(8px);
-    }
-    100% {
-        transform: translateX(-8px);
-    }
-}
-
+/**
+ * SWAY AND SPIN ANIMATION - COMPLEX LEAF MOTION
+ * =============================================
+ * Combines swaying and spinning motion for realistic leaf falling effect.
+ */
 @keyframes swayAndSpin {
-    0% {
-        transform: translateX(-16px) rotate(-20deg);
+    0% { transform: translateX(-16px) rotate(-20deg); }
+    50% { transform: translateX(16px) rotate(20deg); }
+    100% { transform: translateX(-16px) rotate(-20deg); }
+}
+
+/**
+ * PULSATE ANIMATION - RAINBOW EFFECT PULSING
+ * ==========================================
+ * Creates gentle pulsing effect for rainbow arc visibility.
+ */
+@keyframes pulsate {
+    0% { opacity: 0; }
+    10% { opacity: 0; }
+    20% { opacity: 0.8; }
+    30% { opacity: 0.5; }
+    45% { opacity: 0.8; }
+    60% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+/**
+ * DISTORT WAVE ANIMATIONS - HEAT DISTORTION EFFECTS
+ * =================================================
+ * Creates layered heat wave distortion effects with different wave patterns.
+ */
+
+/* First heat wave pattern */
+@keyframes heatdistortWave1 {
+    0%, 100% { 
+        transform: scaleX(1.2) scaleY(0.8) translateY(0); 
     }
-    50% {
-        transform: translateX(16px) rotate(20deg);
-    }
-    100% {
-        transform: translateX(-16px) rotate(-20deg);
+    50% { 
+        transform: scaleX(1.3) scaleY(1.1) translateY(-10px); 
     }
 }
 
+/* Second heat wave pattern - different timing and scaling */
+@keyframes heatdistortWave2 {
+    0%, 100% { 
+        transform: scaleX(1.1) scaleY(1) translateY(5px); 
+    }
+    50% { 
+        transform: scaleX(1.4) scaleY(0.9) translateY(-5px); 
+    }
+}

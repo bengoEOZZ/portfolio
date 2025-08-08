@@ -53,7 +53,7 @@ function NavigationButtons() {
      * 
      * STRUCTURE:
      * - Container (buttonsWrapper): Defines the orbital animation space
-     * - Navigation links: 4 anchor elements with futuristic SVG icons and text labels
+     * - Navigation links: anchor elements with futuristic SVG icons and text labels
      * - Each button: Icon + text combination for About, Coding, Projects, Contact sections
      */
     return (

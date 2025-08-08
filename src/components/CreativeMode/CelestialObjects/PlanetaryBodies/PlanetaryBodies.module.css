@@ -1,288 +1,398 @@
-/* Earth Styles */
+/**
+ * PLANETARYBODIES COMPONENT STYLES
+ * ================================
+ * 
+ * This file contains the styling for the PlanetaryBodies component used in the creative celestial objects.
+ * Features celestial bodies including Earth with seasonal overlays, animated sun with pulsating rays,
+ * personal moon representations for day and night modes, and orbital planets (Mercury and Venus).
+ */
+
+/**
+ * BASE EARTH STYLES (.earth)
+ * ==========================
+ */
 .earth {
+    /* LAYOUT & POSITIONING */
     position: fixed;
     bottom: -50%;
     right: -10%;
+    
+    /* SIZING */
     width: 800px;
     height: auto;
+    
+    /* LAYERING */
     z-index: 10;
-    animation: fadeIn 2s ease-in-out, rotate 200s linear infinite;
+    
+    /* PERFORMANCE OPTIMIZATION */
+    will-change: transform;
+    
+    /* ANIMATIONS */
+    animation: celestialFadeIn 2s ease-in-out, earthRotation 200s linear infinite;
+    /* Applies dual animations:
+       - celestialFadeIn: 2s smooth entry with upward movement
+       - earthRotation: 200s continuous planetary rotation cycle */
 }
 
+/**
+ * SEASONAL EARTH OVERLAY (.earthSeason)
+ * =====================================
+ */
 .earthSeason {
+    composes: earth;         /* Inherits all base earth properties and animations */
+    
+    /* APPEARANCE */
+    opacity: 0.5;           /* Semi-transparent overlay for seasonal atmospheric effects */
+    
+    /* ANIMATIONS */
+    animation: seasonalEarthFadeIn 2s ease-in-out, earthRotation 200s linear infinite;
+    /* Applies dual animations:
+       - seasonalEarthFadeIn: 2s fade to 50% opacity for subtle seasonal layer
+       - earthRotation: Synchronized rotation with base earth for unified motion */
+}
+
+/**
+ * BASE SUN CONTAINER (.sunContainer)
+ * ==================================
+ */
+.sunContainer {
+    /* LAYOUT & POSITIONING */
     position: fixed;
-    bottom: -50%;
-    right: -10%;
-    width: 800px;
+    top: -10px;
+    left: -10px;
+    
+    /* SIZING */
+    width: 375px;
     height: auto;
+    
+    /* LAYERING */
     z-index: 10;
-    animation: fadeInSoft 2s ease-in-out, rotate 200s linear infinite;
-    opacity: 0.5;
+
+    /* PERFORMANCE OPTIMIZATION */
+    will-change: transform;
+
+    /* TRANSFORM SETUP */
+    transform-origin: top left; /* Sets rotation point for realistic rotational movement */
 }
 
-/* Ben Planet/Moon */
-.planet {
-    position: relative;
-    z-index: 5;
-    left: 52vw;
-    transform: translateX(-50%);
-    animation: float 6s ease-in-out infinite;
-    filter: drop-shadow(0 0 50px rgba(255, 255, 255, 0.5)) 
-            drop-shadow(0 0 100px rgba(135, 206, 250, 0.4));
-    width: 650px;
-}
-
-.moon {
-    position: absolute;
-    z-index: 5;
-    left: 48vw;
-    transform: translateX(-50%);
-    animation: 
-        moonRock 6s ease-in-out infinite,
-        moonGlow 10s infinite alternate ease-in-out;
-    transform-origin: center center;
-    filter: drop-shadow(0 0 40px rgba(220, 225, 235, 0.6)) 
-            drop-shadow(0 0 80px rgba(200, 215, 235, 0.5))
-            drop-shadow(0 0 120px rgba(180, 200, 220, 0.4))
-            drop-shadow(0 0 160px rgba(160, 180, 210, 0.25));
-    width: 850px;
-}
-
-/* Sun */
+/**
+ * ANIMATED SUN (.sun)
+ * ==================
+ */
 .sun {
-    position: fixed;
-    top: -10px;
-    left: -10px;
-    width: 375px;
-    height: auto;
-    z-index: 10;
-    transform-origin: top left;
+    composes: sunContainer;  /* Inherits all base sun container properties */
+    
+    /* PERFORMANCE OPTIMIZATION */
+    will-change: transform, filter; /* Optimizes for rotation, vibration, and filter changes */
+    
+    /* ANIMATIONS */
     animation: 
-        fadeInUp 2s ease-in-out, 
-        rotate-back-forth 5s ease-in-out infinite,
-        pulsateSun 4s ease-in-out infinite;
+        celestialFadeIn 2s ease-in-out,
+        sunVibrate 5s ease-in-out infinite,
+        sunPulsate 4s ease-in-out infinite;
+    /* Applies triple animations:
+       - celestialFadeIn: 2s smooth downward entry fade
+       - sunVibrate: 5s continuous subtle vibration for solar activity
+       - sunPulsate: 4s alternating brightness with blur and glow effects */
 }
 
+/**
+ * SUN RAYS OVERLAY (.sunrays)
+ * ===========================
+ */
 .sunrays {
-    position: fixed;
-    top: -10px;
-    left: -10px;
-    width: 375px;
-    height: auto;
-    z-index: 10;
-    transform-origin: top left;
-    animation: rotate-back-forth 5s ease-in-out infinite;
-    filter: drop-shadow(0 0 15px rgba(255, 165, 0, 0.8)) 
-            drop-shadow(0 0 30px rgba(255, 69, 0, 0.6));
-    display: inline-block;
-    animation-delay: 2.5s;
+    composes: sunContainer;  /* Inherits all base sun container properties */
+    
+    /* DISPLAY */
+    display: inline-block;   /* Required for proper transform application on rays */
+    
+    /* ANIMATIONS */
+    animation: sunVibrate 5s ease-in-out infinite;
+    animation-delay: 2.5s;   /* Offset timing creates dynamic ray movement */
+    
+    /* APPEARANCE EFFECTS */
+    filter: 
+        drop-shadow(0 0 15px rgba(255, 165, 0, 0.8))  /* Inner warm orange glow */
+        drop-shadow(0 0 30px rgba(255, 69, 0, 0.6));  /* Outer intense red-orange glow */
 }
 
-/* Clock Container */
-.clockContainer {
-    position: fixed;
-    top: 25px;
-    right: 50px;
-    width: 400px;
-    height: auto;
-    z-index: 17;
-    animation: spaceFloat 25s ease-in-out infinite;
-}
-
-.clock {
-    width: 300px;
-    height: auto;
+/**
+ * DAY MOON REPRESENTATION (.dayMoon)
+ * ==================================
+ * Represents me as a moon during daytime with gentle floating animation.
+ */
+.dayMoon {
+    /* LAYOUT & POSITIONING */
     position: relative;
-    filter: drop-shadow(0 0 25px rgba(255, 223, 0, 0.7)) 
-            drop-shadow(0 0 50px rgba(255, 69, 0, 0.3));
-    transition: transform 0.5s ease-out;
+    left: 52vw;
+    
+    /* LAYERING */
+    z-index: 5;
+    
+    /* SIZING */
+    width: 650px;
+    
+    /* PERFORMANCE OPTIMIZATION */
+    will-change: transform;
+    
+    /* TRANSFORM SETUP */
+    transform: translate3d(-50%, 0, 0);
+    
+    /* ANIMATIONS */
+    animation: moonFloat 6s ease-in-out infinite;
+    /* Applies gentle vertical floating motion (6s cycle) for life-like movement */
+    
+    /* APPEARANCE EFFECTS */
+    filter: 
+        drop-shadow(0 0 50px rgba(255, 255, 255, 0.5))   /* Inner pure white glow */
+        drop-shadow(0 0 100px rgba(135, 206, 250, 0.4)); /* Outer sky blue atmosphere */
 }
 
-.clockHand {
-    width: 40px;
-    height: auto;
+/**
+ * NIGHT MOON REPRESENTATION (.nightMoon)
+ * ======================================
+ * Represents me as a moon during nighttime with enhanced glow and crescent shape.
+ */
+.nightMoon {
+    /* LAYOUT & POSITIONING */
     position: absolute;
-    top: 74px;
-    left: 176px;
-    z-index: 16;
-    transform-origin: 50% 75%;
-    cursor: pointer;
-    transition: filter 0.3s ease-out, transform 0.2s ease-out;
-    filter: drop-shadow(0 0 15px rgba(255, 223, 0, 0.8)) 
-            drop-shadow(0 0 5px rgba(255, 255, 255, 0.9));
+    left: 48vw;
+    
+    /* LAYERING */
+    z-index: 5;
+
+    /* SIZING */
+    width: 850px;
+    
+    /* PERFORMANCE OPTIMIZATION */
+    will-change: transform, filter;
+    
+    /* TRANSFORM SETUP */
+    transform: translate3d(-50%, 0, 0);
+    transform-origin: center center;     /* Sets rotation point for rocking motion */
+    
+    /* ANIMATIONS */
+    animation: 
+        moonRockingMotion 6s ease-in-out infinite,
+        moonGlow 10s infinite alternate ease-in-out;
+    /* Applies dual animations:
+       - moonRockingMotion: 6s gentle rocking rotation for character expression
+       - moonGlow: 10s alternating glow intensity for nighttime ambiance */
+    
+    /* APPEARANCE EFFECTS */
+    filter: 
+        drop-shadow(0 0 40px rgba(220, 225, 235, 0.6))   /* Inner cool white glow */
+        drop-shadow(0 0 80px rgba(200, 215, 235, 0.5))   /* Mid cool blue glow */
+        drop-shadow(0 0 120px rgba(180, 200, 220, 0.4))  /* Outer blue atmosphere */
+        drop-shadow(0 0 160px rgba(160, 180, 210, 0.25)); /* Extended night atmosphere */
 }
 
-.clockHand:hover {
-    transform: scale(1.5);
-    filter: drop-shadow(0 0 30px rgba(255, 223, 0, 1))
-            drop-shadow(0 0 15px rgba(255, 255, 255, 1))
-            drop-shadow(0 0 45px rgba(255, 165, 0, 0.8));
-    z-index: 18;
-    animation: handGlow 1.5s ease-in-out infinite;
-}
-
-/* Other Planets */
+/**
+ * MERCURY PLANET (.mercury)
+ * =========================
+ */
 .mercury {
+    /* LAYOUT & POSITIONING */
     position: fixed;
     top: 225px;
     left: 400px;
+    
+    /* SIZING */
     width: 20px;
     height: 20px;
     border-radius: 50%;
+    
+    /* LAYERING */
     z-index: 4;
-    filter: drop-shadow(0 0 8px rgba(180, 180, 180, 0.7))
-            drop-shadow(0 0 15px rgba(120, 130, 140, 0.5))
-            drop-shadow(0 0 25px rgba(70, 80, 90, 0.3));
-    animation: orbit-mercury 18s linear infinite, fadeInUp 1s ease-in-out;
+    
+    /* PERFORMANCE OPTIMIZATION */
+    will-change: transform;
+    
+    /* ANIMATIONS */
+    animation: 
+        mercuryOrbit 18s linear infinite,
+        celestialFadeIn 1s ease-in-out;
+    /* Applies dual animations:
+       - mercuryOrbit: 18s rapid orbital path reflecting Mercury's speed
+       - celestialFadeIn: 1s smooth downward entry fade */
+    
+    /* APPEARANCE EFFECTS */
+    filter: 
+        drop-shadow(0 0 8px rgba(180, 180, 180, 0.7))   /* Inner metallic silver glow */
+        drop-shadow(0 0 15px rgba(120, 130, 140, 0.5))  /* Mid steel blue glow */
+        drop-shadow(0 0 25px rgba(70, 80, 90, 0.3));    /* Outer dark metallic shadow */
 }
 
+/**
+ * VENUS PLANET (.venus)
+ * ====================
+ */
 .venus {
+    /* LAYOUT & POSITIONING */
     position: fixed;
     top: 260px;
     left: 510px;
+    
+    /* SIZING */
     width: 35px;
     height: 35px;
     border-radius: 50%;
+    
+    /* LAYERING */
     z-index: 4;
-    filter: drop-shadow(0 0 10px rgba(255, 220, 175, 0.8))
-            drop-shadow(0 0 20px rgba(255, 190, 100, 0.6))
-            drop-shadow(0 0 30px rgba(255, 160, 60, 0.4))
-            drop-shadow(0 0 40px rgba(255, 130, 30, 0.2));
-    animation: orbit-venus 28s linear infinite, fadeInUp 1.5s ease-in-out;
+    
+    /* PERFORMANCE OPTIMIZATION */
+    will-change: transform;
+    
+    /* ANIMATIONS */
+    animation: 
+        venusOrbit 28s linear infinite,
+        celestialFadeIn 1.5s ease-in-out;
+    /* Applies dual animations:
+       - venusOrbit: 28s orbital path reflecting Venus's moderate speed
+       - celestialFadeIn: 1.5s smooth downward entry with slight delay */
+    
+    /* APPEARANCE EFFECTS */
+    filter: 
+        drop-shadow(0 0 10px rgba(255, 220, 175, 0.8))  /* Inner warm cream glow */
+        drop-shadow(0 0 20px rgba(255, 190, 100, 0.6))  /* Mid golden yellow glow */
+        drop-shadow(0 0 30px rgba(255, 160, 60, 0.4))   /* Outer warm orange glow */
+        drop-shadow(0 0 40px rgba(255, 130, 30, 0.2));  /* Extended hot atmosphere */
 }
 
-/* Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
+/**
+ * CELESTIAL ENTRY ANIMATION
+ * =========================
+ */
+@keyframes celestialFadeIn {
+    from { 
+        opacity: 0;                    /* Starts completely transparent */
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeInSoft {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 0.5;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    to { 
+        opacity: 1;                    /* Ends fully visible */
     }
 }
 
-@keyframes float {
-    0%, 100% {
-        transform: translateX(-50%) translateY(0);
+/**
+ * SEASONAL EARTH ENTRY ANIMATION - OVERLAY FADE-IN
+ * ================================================
+ */
+@keyframes seasonalEarthFadeIn {
+    from { 
+        opacity: 0;                    /* Starts completely transparent */
+        transform: translateY(20px);   /* Starts 20px below final position */
     }
-    50% {
-        transform: translateX(-50%) translateY(-20px);
-    }
-}
-
-@keyframes moonRock {
-    0%, 100% {
-        transform: translateX(-50%) rotate(0deg);
-    }
-    25% {
-        transform: translateX(-50%) rotate(2deg);
-    }
-    75% {
-        transform: translateX(-50%) rotate(-2deg);
+    to { 
+        opacity: 0.5;                  /* Ends at 50% opacity for overlay effect */
+        transform: translateY(0);      /* Ends at natural position */
     }
 }
 
+/**
+ * EARTH ROTATION ANIMATION - CONTINUOUS PLANETARY SPIN
+ * ====================================================
+ */
+@keyframes earthRotation {
+    0% { transform: rotate(0deg); }     /* Starts at natural rotation */
+    100% { transform: rotate(360deg); } /* Completes full planetary rotation */
+}
+
+/**
+ * MOON FLOATING ANIMATION
+ * =======================
+ */
+@keyframes moonFloat {
+    0%, 100% { transform: translate3d(-50%, 0, 0); }      /* Base centered position */
+    50% { transform: translate3d(-50%, -20px, 0); }       /* Floats up 20px at midpoint */
+}
+
+/**
+ * MOON ROCKING ANIMATION
+ * ======================
+ * Gentle rocking motion for night moon character expression and personality.
+ */
+@keyframes moonRockingMotion {
+    0%, 100% { transform: translate3d(-50%, 0, 0) rotate(0deg); }   /* Neutral centered position */
+    25% { transform: translate3d(-50%, 0, 0) rotate(2deg); }        /* Rocks 2 degrees clockwise */
+    75% { transform: translate3d(-50%, 0, 0) rotate(-2deg); }       /* Rocks 2 degrees counter-clockwise */
+}
+
+/**
+ * MOON GLOW ANIMATION
+ * ===================
+ */
 @keyframes moonGlow {
     0% {
-        filter: drop-shadow(0 0 40px rgba(220, 225, 235, 0.6)) 
-               drop-shadow(0 0 80px rgba(200, 215, 235, 0.5))
-               drop-shadow(0 0 120px rgba(180, 200, 220, 0.4));
+        filter: 
+            drop-shadow(0 0 40px rgba(220, 225, 235, 0.6))   /* Base cool white glow */
+            drop-shadow(0 0 80px rgba(200, 215, 235, 0.5))   /* Base cool blue glow */
+            drop-shadow(0 0 120px rgba(180, 200, 220, 0.4)); /* Base outer blue atmosphere */
     }
     100% {
-        filter: drop-shadow(0 0 60px rgba(240, 245, 255, 0.7)) 
-               drop-shadow(0 0 100px rgba(220, 235, 255, 0.6))
-               drop-shadow(0 0 140px rgba(200, 220, 240, 0.5))
-               drop-shadow(0 0 200px rgba(180, 200, 230, 0.3));
+        filter: 
+            drop-shadow(0 0 60px rgba(240, 245, 255, 0.7))   /* Enhanced bright white glow */
+            drop-shadow(0 0 100px rgba(220, 235, 255, 0.6))  /* Enhanced bright blue glow */
+            drop-shadow(0 0 140px rgba(200, 220, 240, 0.5))  /* Enhanced outer atmosphere */
+            drop-shadow(0 0 200px rgba(180, 200, 230, 0.3)); /* Extended breathing atmosphere */
     }
 }
 
-@keyframes rotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+/**
+ * SUN VIBRATION ANIMATION
+ * =======================
+ */
+@keyframes sunVibrate {
+    0% { transform: rotate(0deg); }     /* Neutral position */
+    25% { transform: rotate(0.5deg); }  /* Slight clockwise vibration */
+    50% { transform: rotate(-0.5deg); } /* Slight counter-clockwise vibration */
+    75% { transform: rotate(0.5deg); }  /* Return to clockwise */
+    100% { transform: rotate(0deg); }   /* Return to neutral position */
 }
 
-@keyframes rotate-back-forth {
-    0% { transform: rotate(0deg); }
-    25% { transform: rotate(0.5deg); }
-    50% { transform: rotate(-0.5deg); }
-    75% { transform: rotate(0.5deg); }
-    100% { transform: rotate(0deg); }
-}
-
-@keyframes pulsateSun {
+/**
+ * SUN PULSATION ANIMATION
+ * =======================
+ * Alternating brightness levels with blur and layered glow effects for solar activity.
+ */
+@keyframes sunPulsate {
     0%, 100% {
-        filter: blur(0px)
-                drop-shadow(0 0 50px rgba(255, 165, 0, 0.9)) 
-                drop-shadow(0 0 100px rgba(255, 69, 0, 0.7))
-                drop-shadow(0 0 150px rgba(255, 0, 0, 0.5))
-                drop-shadow(0 0 200px rgba(255, 100, 0, 0.3));
+        filter: 
+            blur(0px)                                        /* Sharp focus at base intensity */
+            drop-shadow(0 0 50px rgba(255, 165, 0, 0.9))    /* Inner warm orange glow */
+            drop-shadow(0 0 100px rgba(255, 69, 0, 0.7))    /* Mid red-orange glow */
+            drop-shadow(0 0 150px rgba(255, 0, 0, 0.5))     /* Outer red intensity */
+            drop-shadow(0 0 200px rgba(255, 100, 0, 0.3));  /* Extended orange atmosphere */
     }
     50% {
-        filter: blur(2px)
-                drop-shadow(0 0 80px rgba(255, 225, 0, 1)) 
-                drop-shadow(0 0 150px rgba(255, 69, 0, 0.9))
-                drop-shadow(0 0 250px rgba(255, 0, 0, 0.7))
-                drop-shadow(0 0 350px rgba(255, 100, 0, 0.4));
+        filter: 
+            blur(2px)                                        /* Slight blur at peak intensity */
+            drop-shadow(0 0 80px rgba(255, 225, 0, 1))      /* Enhanced bright yellow glow */
+            drop-shadow(0 0 150px rgba(255, 69, 0, 0.9))    /* Intensified red-orange glow */
+            drop-shadow(0 0 250px rgba(255, 0, 0, 0.7))     /* Expanded red intensity */
+            drop-shadow(0 0 350px rgba(255, 100, 0, 0.4));  /* Extended intense atmosphere */
     }
 }
 
-@keyframes spaceFloat {
-    0% { transform: translateX(0) translateY(0) rotate(0deg); }
-    20% { transform: translateX(-10px) translateY(5px) rotate(-4deg); }
-    40% { transform: translateX(8px) translateY(-7px) rotate(6deg); }
-    60% { transform: translateX(12px) translateY(3px) rotate(-5deg); }
-    80% { transform: translateX(-5px) translateY(-4px) rotate(3deg); }
-    100% { transform: translateX(0) translateY(0) rotate(0deg); }
+/**
+ * MERCURY ORBITAL ANIMATION
+ * =========================
+ */
+@keyframes mercuryOrbit {
+    0% { transform: translate3d(0, 0, 0) rotate(0deg); }          /* Starting orbital position */
+    25% { transform: translate3d(-20px, -15px, 0) rotate(90deg); } /* Quarter orbit with rotation */
+    50% { transform: translate3d(-30px, 25px, 0) rotate(180deg); } /* Half orbit with rotation */
+    75% { transform: translate3d(15px, 30px, 0) rotate(270deg); }  /* Three-quarter orbit */
+    100% { transform: translate3d(0, 0, 0) rotate(360deg); }       /* Complete orbital cycle */
 }
 
-@keyframes handGlow {
-    0%, 100% {
-        filter: drop-shadow(0 0 30px rgba(255, 223, 0, 1))
-                drop-shadow(0 0 15px rgba(255, 255, 255, 1));
-    }
-    50% {
-        filter: drop-shadow(0 0 30px rgba(255, 223, 0, 1))
-                drop-shadow(0 0 25px rgba(255, 255, 255, 1))
-                drop-shadow(0 0 40px rgba(255, 140, 0, 0.9));
-    }
-}
-
-@keyframes orbit-mercury {
-    0% { transform: translate(0, 0) rotate(0deg); }
-    25% { transform: translate(-20px, -15px) rotate(90deg); }
-    50% { transform: translate(-30px, 25px) rotate(180deg); }
-    75% { transform: translate(15px, 30px) rotate(270deg); }
-    100% { transform: translate(0, 0) rotate(360deg); }
-}
-
-@keyframes orbit-venus {
-    0% { transform: translate(0, 0) rotate(0deg); }
-    25% { transform: translate(-20px, -15px) rotate(90deg); }
-    50% { transform: translate(-30px, 25px) rotate(180deg); }
-    75% { transform: translate(15px, 30px) rotate(270deg); }
-    100% { transform: translate(0, 0) rotate(360deg); }
+/**
+ * VENUS ORBITAL ANIMATION
+ * =======================
+ */
+@keyframes venusOrbit {
+    0% { transform: translate3d(0, 0, 0) rotate(0deg); }          /* Starting orbital position */
+    25% { transform: translate3d(-20px, -15px, 0) rotate(90deg); } /* Quarter orbit with rotation */
+    50% { transform: translate3d(-30px, 25px, 0) rotate(180deg); } /* Half orbit with rotation */
+    75% { transform: translate3d(15px, 30px, 0) rotate(270deg); }  /* Three-quarter orbit */
+    100% { transform: translate3d(0, 0, 0) rotate(360deg); }       /* Complete orbital cycle */
 }
