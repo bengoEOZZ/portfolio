@@ -30,7 +30,7 @@
 
 ---
 
-# Complete Technical Documentation
+# Technical Documentation
 
 ## Table of Contents
 - [Project Overview](#project-overview)
@@ -174,9 +174,9 @@ Portfolio Application/
 
 ### Component Architecture Mastery
 - **Modular Design**: Clean understandable modular component hierarchy shown across 12+ components
-- **Custom Hook Integration**: Multiple heavy math-based custom hooks created for speical animations
+- **Custom Hook Integration**: Multiple heavy math-based custom hooks created for special animations
 - **State Management**: Clean coordination between multiple interactive systems
-- **Performance Optimization**: React.memo, useMemo, pre-rendered arrays, GPU acceleation, etc.
+- **Performance Optimization**: React.memo, useMemo, pre-rendered arrays, GPU acceleration, etc.
 
 ### Advanced Animation & CSS Creativity
 - **Complex Particle Systems**: Simulated 100+ animated elements with realistic physics and motion patterns
@@ -185,7 +185,7 @@ Portfolio Application/
 - **Creative Animation Engineering**: Advanced animation sequences with precisely choreographed movements
 - **Interactive Visual Feedback**: Real-time animations responding to user interactions
 - **Artistic CSS Innovation**: Creative use of gradients, shadows, transforms, and filters
-- **Performance-Optimized Animations**: Hardware-accelerated effects ensuring smooth 60fps experiences
+- **Performance-Optimized Animations**: Hardware-accelerated effects ensures a smooth experience
 
 ### Project Organization
 - **Asset Management**: Organized directory structure
