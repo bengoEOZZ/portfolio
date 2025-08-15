@@ -30,7 +30,7 @@
 
 ---
 
-# Portfolio Component - Complete Technical Documentation
+# Complete Technical Documentation
 
 ## Table of Contents
 - [Project Overview](#project-overview)
