@@ -42,13 +42,13 @@
 
 ## Project Overview
 
-**Portfolio Application** is a modern frontend React application project built as a Single Page Application (SPA) that transforms the traditional portfolio concept into an interactive digital experience. The project runs entirely in the browser using client-side JavaScript, with no backend server required.
+**Portfolio Application** is a modern frontend React application project I built as a Single Page Application (SPA) that transforms the traditional portfolio concept into an interactive digital experience. The project runs entirely in the browser using client-side JavaScript, with no backend server required.
 
 **Landing Page** provides a split-screen dual-mode selection interface with contrasting themes - a professional gray gradient on the left leading to Classic mode, and a celestial blue gradient on the right leading to Creative mode.
 
 **Classic Mode** is currently under construction.
 
-**CreativeMode** is an immersive, interactive celestial-themed portfolio experience that showcases my creativity, innovation, and technical expertise through a dynamic planetary system interface. This comprehensive showcase demonstrates my modern React development expertise through advanced component architecture, mathematical animations, and performance optimizations- all wrapped in extensive technical documentation. This mode was made to invite users to explore and discover interactive features in an interactive, engaging, and hands-on experience.
+**CreativeMode** is an immersive, interactive celestial-themed portfolio experience that showcases my creativity, innovation, and technical expertise through a creative planetary system interface. This comprehensive showcase demonstrates my modern React development expertise through advanced component architecture, custom complex mathematical hook animations, and performance optimizations- all wrapped in extensive technical documentation. This mode was made to invite users to explore and discover my skills in an interactive, engaging, and hands-on experience.
 
 ### Core Philosophy
 - **Interactive Experience**: Invites exploration and encourages hands-on discovery
@@ -158,8 +158,8 @@ Portfolio Application/
 #### **Celestial Object Interactions**
 - **Moon Day/Night Cycling**: Smooth moon avatar transitions between day and night representations
 - **Seasonal Overlays**: Dynamic Earth variants (orange-brown fall overlay, pale white snow overlay)
-- **Sun Ray Animation**: Dynamic ray movements that have different intensities based on time progression
-- **Atmospheric Earth Glow Effect**: Dynamic time-based color aura glow effects emitting off Earth's atmosphere
+- **Sun Ray Animation**: Dynamic ray movements that have different intensities based on time period
+- **Atmospheric Earth Glow Effect**: Dynamic color aura glow effects emitting off Earth's atmosphere
 
 ---
 
@@ -173,17 +173,16 @@ Portfolio Application/
 - **Inline documentation** for simple logic explanations
 
 ### Component Architecture Mastery
-- **Modular Design**: Clean separation across 8+ components
-- **Custom Hook Integration**: useClockHandRotation with mathematical time calculations
-- **State Management**: Sophisticated coordination between multiple interactive systems
-- **Performance Optimization**: React.memo, useMemo, and pre-rendered arrays
+- **Modular Design**: Clean understandable modular component hierarchy shown across 12+ components
+- **Custom Hook Integration**: Multiple heavy math-based custom hooks created for speical animations
+- **State Management**: Clean coordination between multiple interactive systems
+- **Performance Optimization**: React.memo, useMemo, pre-rendered arrays, GPU acceleation, etc.
 
 ### Advanced Animation & CSS Creativity
-- **Complex Particle Systems**: Orchestrated 100+ animated elements with realistic physics and motion patterns
-- **Celestial Animation Networks**: Multi-layered planetary movements, orbital mechanics, and atmospheric effects
-- **Dynamic Weather Simulations**: Immersive seasonal animations bringing rain, snow, wind, and fireflies to life
-- **Time-Responsive Visual Effects**: Sophisticated day/night transitions with adaptive changes
-- **Creative Animation Engineering**: Advanced keyframe sequences with precisely choreographed multi-stage movements
+- **Complex Particle Systems**: Simulated 100+ animated elements with realistic physics and motion patterns
+- **Dynamic Weather Simulations**: Immersive seasonal-specific animations brings weather effects to life
+- **Time-Responsive Visual Effects**: Smooth time transitions with adaptive changes
+- **Creative Animation Engineering**: Advanced animation sequences with precisely choreographed movements
 - **Interactive Visual Feedback**: Real-time animations responding to user interactions
 - **Artistic CSS Innovation**: Creative use of gradients, shadows, transforms, and filters
 - **Performance-Optimized Animations**: Hardware-accelerated effects ensuring smooth 60fps experiences
@@ -191,13 +190,4 @@ Portfolio Application/
 ### Project Organization
 - **Asset Management**: Organized directory structure
 - **Component Naming**: Consistent naming conventions across entire architecture
-- **File Structure**: Logical hierarchy supporting scalability and maintainability
-
----
-
-## Technical Specifications Summary
-
-- **Total Components**: 8+ modular React components
-- **CSS Documentation**: 1,300+ lines of comprehensive styling
-- **Performance**: Optimized with React.memo, useMemo, and pre-rendering
-- **Accessibility**: Proper labeling, keyboard navigation, and semantic HTML
+- **File Structure**: Hierarchy supporting scalability and maintainability
