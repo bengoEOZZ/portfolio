@@ -1,0 +1,85 @@
+/**
+ * EARTH COMPONENT STYLES
+ * ======================
+ */
+
+/**
+ * BASE EARTH STYLES (.earth)
+ * ==========================
+ */
+.earth {
+    /* LAYOUT & POSITIONING */
+    position: fixed;
+    bottom: -50%;
+    right: -10%;
+    
+    /* SIZING */
+    width: 800px;
+    height: auto;
+    
+    /* LAYERING */
+    z-index: 10;
+    
+    /* PERFORMANCE OPTIMIZATION */
+    will-change: transform;
+    
+    /* ANIMATIONS */
+    animation: celestialFadeIn 2s ease-in-out, earthRotation 200s linear infinite;
+    /* Applies dual animations:
+       - celestialFadeIn: 2s smooth entry with upward movement
+       - earthRotation: 200s continuous planetary rotation cycle */
+}
+
+/**
+ * SEASONAL EARTH OVERLAY (.earthSeason)
+ * =====================================
+ */
+.earthSeason {
+    composes: earth;         /* Inherits all base earth properties and animations */
+    
+    /* APPEARANCE */
+    opacity: 0.5;           /* Semi-transparent overlay for seasonal atmospheric effects */
+    
+    /* ANIMATIONS */
+    animation: seasonalEarthFadeIn 2s ease-in-out, earthRotation 200s linear infinite;
+    /* Applies dual animations:
+       - seasonalEarthFadeIn: 2s fade to 50% opacity for subtle seasonal layer
+       - earthRotation: Synchronized rotation with base earth for unified motion */
+}
+
+/**
+ * CELESTIAL ENTRY ANIMATION
+ * =========================
+ */
+@keyframes celestialFadeIn {
+    from { 
+        opacity: 0;                    /* Starts completely transparent */
+    }
+    to { 
+        opacity: 1;                    /* Ends fully visible */
+    }
+}
+
+/**
+ * SEASONAL EARTH ENTRY ANIMATION - OVERLAY FADE-IN
+ * ================================================
+ */
+@keyframes seasonalEarthFadeIn {
+    from { 
+        opacity: 0;                    /* Starts completely transparent */
+        transform: translateY(20px);   /* Starts 20px below final position */
+    }
+    to { 
+        opacity: 0.5;                  /* Ends at 50% opacity for overlay effect */
+        transform: translateY(0);      /* Ends at natural position */
+    }
+}
+
+/**
+ * EARTH ROTATION ANIMATION - CONTINUOUS PLANETARY SPIN
+ * ====================================================
+ */
+@keyframes earthRotation {
+    0% { transform: rotate(0deg); }     /* Starts at natural rotation */
+    100% { transform: rotate(360deg); } /* Completes full planetary rotation */
+}

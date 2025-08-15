@@ -1,0 +1,115 @@
+/**
+ * MOON COMPONENT STYLES
+ * =====================
+ */
+
+/**
+ * DAY MOON REPRESENTATION (.dayMoon)
+ * ==================================
+ * Represents me as a moon during daytime with gentle floating animation.
+ */
+.dayMoon {
+    /* LAYOUT & POSITIONING */
+    position: relative;
+    left: 52vw;
+    
+    /* LAYERING */
+    z-index: 5;
+    
+    /* SIZING */
+    width: 650px;
+    
+    /* PERFORMANCE OPTIMIZATION */
+    will-change: transform;
+    
+    /* TRANSFORM SETUP */
+    transform: translate3d(-50%, 0, 0);
+    
+    /* ANIMATIONS */
+    animation: moonFloat 6s ease-in-out infinite;
+    /* Applies gentle vertical floating motion (6s cycle) for life-like movement */
+    
+    /* APPEARANCE EFFECTS */
+    filter: 
+        drop-shadow(0 0 50px rgba(255, 255, 255, 0.5))   /* Inner pure white glow */
+        drop-shadow(0 0 100px rgba(135, 206, 250, 0.4)); /* Outer sky blue atmosphere */
+}
+
+/**
+ * NIGHT MOON REPRESENTATION (.nightMoon)
+ * ======================================
+ * Represents me as a moon during nighttime with enhanced glow and crescent shape.
+ */
+.nightMoon {
+    /* LAYOUT & POSITIONING */
+    position: absolute;
+    left: 48vw;
+    
+    /* LAYERING */
+    z-index: 5;
+
+    /* SIZING */
+    width: 850px;
+    
+    /* PERFORMANCE OPTIMIZATION */
+    will-change: transform, filter;
+    
+    /* TRANSFORM SETUP */
+    transform: translate3d(-50%, 0, 0);
+    transform-origin: center center;     /* Sets rotation point for rocking motion */
+    
+    /* ANIMATIONS */
+    animation: 
+        moonRockingMotion 6s ease-in-out infinite,
+        moonGlow 10s infinite alternate ease-in-out;
+    /* Applies dual animations:
+       - moonRockingMotion: 6s gentle rocking rotation for character expression
+       - moonGlow: 10s alternating glow intensity for nighttime ambiance */
+    
+    /* APPEARANCE EFFECTS */
+    filter: 
+        drop-shadow(0 0 40px rgba(220, 225, 235, 0.6))   /* Inner cool white glow */
+        drop-shadow(0 0 80px rgba(200, 215, 235, 0.5))   /* Mid cool blue glow */
+        drop-shadow(0 0 120px rgba(180, 200, 220, 0.4))  /* Outer blue atmosphere */
+        drop-shadow(0 0 160px rgba(160, 180, 210, 0.25)); /* Extended night atmosphere */
+}
+
+/**
+ * MOON FLOATING ANIMATION
+ * =======================
+ */
+@keyframes moonFloat {
+    0%, 100% { transform: translate3d(-50%, 0, 0); }      /* Base centered position */
+    50% { transform: translate3d(-50%, -20px, 0); }       /* Floats up 20px at midpoint */
+}
+
+/**
+ * MOON ROCKING ANIMATION
+ * ======================
+ * Gentle rocking motion for night moon character expression and personality.
+ */
+@keyframes moonRockingMotion {
+    0%, 100% { transform: translate3d(-50%, 0, 0) rotate(0deg); }   /* Neutral centered position */
+    25% { transform: translate3d(-50%, 0, 0) rotate(2deg); }        /* Rocks 2 degrees clockwise */
+    75% { transform: translate3d(-50%, 0, 0) rotate(-2deg); }       /* Rocks 2 degrees counter-clockwise */
+}
+
+/**
+ * MOON GLOW ANIMATION
+ * ===================
+ */
+@keyframes moonGlow {
+    0% {
+        filter: 
+            drop-shadow(0 0 40px rgba(220, 225, 235, 0.6))   /* Base cool white glow */
+            drop-shadow(0 0 80px rgba(200, 215, 235, 0.5))   /* Base cool blue glow */
+            drop-shadow(0 0 120px rgba(180, 200, 220, 0.4)); /* Base outer blue atmosphere */
+    }
+    100% {
+        filter: 
+            drop-shadow(0 0 60px rgba(240, 245, 255, 0.7))   /* Enhanced bright white glow */
+            drop-shadow(0 0 100px rgba(220, 235, 255, 0.6))  /* Enhanced bright blue glow */
+            drop-shadow(0 0 140px rgba(200, 220, 240, 0.5))  /* Enhanced outer atmosphere */
+            drop-shadow(0 0 200px rgba(180, 200, 230, 0.3)); /* Extended breathing atmosphere */
+    }
+}

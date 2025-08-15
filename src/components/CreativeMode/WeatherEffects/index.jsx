@@ -2,10 +2,10 @@
  * WEATHEREFFECTS COMPONENT
  * ========================
  * 
- * Manages dynamic seasonal and weather-based visual effects for the celestial objects
- * interface. Renders animated particles including snow, rain, fireflies, clouds, and
- * other atmospheric elements based on current season, weather conditions, and time period.
- * 
+ * Manages dynamic seasonal and weather-based visual effects for the celestial objects interface.
+ * Renders animated particles including snow, rain, fireflies, clouds, and other atmospheric elements
+ * based on current season, weather conditions, and time period.
+ *
  * VISUAL EFFECTS SYSTEM:
  * - Seasonal Effects: Spring (rain/clouds), Summer (fireflies), Fall (leaves/wind), Winter (snow)
  * - Weather Override: Manual weather controls (rainy, windy, cloudy) 
@@ -156,7 +156,6 @@ function WeatherEffects({ season, weather, activeControl, isNightTime }) {
      */
     return (
         <div className={classes.seasonalChanges}>
-
             {/* Conditional weather/seasonal rendering based on activeControl state */}
             {activeControl === 'season' && renderSeasonalEffects()}
             {activeControl === 'weather' && renderWeatherEffects()}

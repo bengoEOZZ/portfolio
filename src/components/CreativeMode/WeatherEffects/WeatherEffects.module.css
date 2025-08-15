@@ -33,8 +33,8 @@
 .particleContainer {
     /* LAYOUT & POSITIONING */
     position: absolute;
-    top: -50px;
-    left: -50px;
+    top: -50px;             /* Starts above visible area */
+    left: -50px;            /* Starts left of visible area */
     width: calc(100% + 100px);
     height: calc(100% + 100px);
     
@@ -93,11 +93,11 @@
     opacity: 0;
     
     /* ANIMATIONS */
-    animation: nightGlow 4s infinite alternate ease-in-out, nightDrift 15s linear infinite;
+    animation: nightFireflyGlow 4s infinite alternate ease-in-out, nightFireflyDrift 15s linear infinite;
     /* Applies dual animations:
        - nightGlow: Pulsing brightness effect (4s cycle)
-       - nightDrift: Gentle floating movement (15s cycle) */
-    
+       - nightFireflyDrift: Gentle floating movement (15s cycle) */
+
     /* PERFORMANCE OPTIMIZATION */
     will-change: transform, opacity, box-shadow;
 }
@@ -160,17 +160,17 @@
 
 /* Every third firefly - drift pattern 1 */
 .summerFireflies i:nth-child(3n) { 
-    animation: summerDrift1 18s linear infinite, summerFireflyFadeIn 1s ease-in-out; 
+    animation: summerFireflyDrift1 18s linear infinite, summerFireflyFadeIn 1s ease-in-out; 
 }
 
 /* Every third firefly + 1 - drift pattern 2 */
 .summerFireflies i:nth-child(3n+1) { 
-    animation: summerDrift2 22s linear infinite, summerFireflyFadeIn 1s ease-in-out; 
+    animation: summerFireflyDrift2 22s linear infinite, summerFireflyFadeIn 1s ease-in-out; 
 }
 
 /* Every third firefly + 2 - drift pattern 3 */
 .summerFireflies i:nth-child(3n+2) { 
-    animation: summerDrift3 20s linear infinite, summerFireflyFadeIn 1s ease-in-out; 
+    animation: summerFireflyDrift3 20s linear infinite, summerFireflyFadeIn 1s ease-in-out; 
 }
 
 /* Summer firefly positioning patterns */
@@ -331,26 +331,26 @@
 }
 
 /* Raindrop positioning with varied heights and timing */
-.raindrops i:nth-child(1) { left: 10%; height: 30px; animation: rain 2.0s linear infinite; animation-delay: 3.2s; }
-.raindrops i:nth-child(2) { left: 15%; height: 20px; animation: rain 1.8s linear infinite; animation-delay: 3.5s; }
-.raindrops i:nth-child(3) { left: 20%; height: 25px; animation: rain 2.2s linear infinite; animation-delay: 3.1s; }
-.raindrops i:nth-child(4) { left: 25%; height: 18px; animation: rain 2.0s linear infinite; animation-delay: 3.7s; }
-.raindrops i:nth-child(5) { left: 30%; height: 22px; animation: rain 1.9s linear infinite; animation-delay: 3.3s; }
-.raindrops i:nth-child(6) { left: 35%; height: 26px; animation: rain 2.1s linear infinite; animation-delay: 3.6s; }
-.raindrops i:nth-child(7) { left: 40%; height: 19px; animation: rain 1.7s linear infinite; animation-delay: 3.4s; }
-.raindrops i:nth-child(8) { left: 45%; height: 23px; animation: rain 2.3s linear infinite; animation-delay: 3.2s; }
-.raindrops i:nth-child(9) { left: 50%; height: 28px; animation: rain 1.6s linear infinite; animation-delay: 3.5s; }
-.raindrops i:nth-child(10) { left: 55%; height: 21px; animation: rain 2.0s linear infinite; animation-delay: 3.3s; }
-.raindrops i:nth-child(11) { left: 60%; height: 27px; animation: rain 1.9s linear infinite; animation-delay: 3.7s; }
-.raindrops i:nth-child(12) { left: 65%; height: 24px; animation: rain 2.2s linear infinite; animation-delay: 3.1s; }
-.raindrops i:nth-child(13) { left: 70%; height: 19px; animation: rain 1.8s linear infinite; animation-delay: 3.6s; }
-.raindrops i:nth-child(14) { left: 75%; height: 26px; animation: rain 2.1s linear infinite; animation-delay: 3.4s; }
-.raindrops i:nth-child(15) { left: 80%; height: 22px; animation: rain 1.7s linear infinite; animation-delay: 3.2s; }
-.raindrops i:nth-child(16) { left: 85%; height: 25px; animation: rain 2.3s linear infinite; animation-delay: 3.5s; }
-.raindrops i:nth-child(17) { left: 90%; height: 20px; animation: rain 1.8s linear infinite; animation-delay: 3.3s; }
-.raindrops i:nth-child(18) { left: 95%; height: 26px; animation: rain 2.0s linear infinite; animation-delay: 3.1s; }
-.raindrops i:nth-child(19) { left: 98%; height: 21px; animation: rain 1.9s linear infinite; animation-delay: 3.4s; }
-.raindrops i:nth-child(20) { left: 62%; height: 24px; animation: rain 2.2s linear infinite; animation-delay: 3.7s; }
+.raindrops i:nth-child(1) { left: 10%; height: 30px; animation: rainFall 2.0s linear infinite; animation-delay: 3.2s; }
+.raindrops i:nth-child(2) { left: 15%; height: 20px; animation: rainFall 1.8s linear infinite; animation-delay: 3.5s; }
+.raindrops i:nth-child(3) { left: 20%; height: 25px; animation: rainFall 2.2s linear infinite; animation-delay: 3.1s; }
+.raindrops i:nth-child(4) { left: 25%; height: 18px; animation: rainFall 2.0s linear infinite; animation-delay: 3.7s; }
+.raindrops i:nth-child(5) { left: 30%; height: 22px; animation: rainFall 1.9s linear infinite; animation-delay: 3.3s; }
+.raindrops i:nth-child(6) { left: 35%; height: 26px; animation: rainFall 2.1s linear infinite; animation-delay: 3.6s; }
+.raindrops i:nth-child(7) { left: 40%; height: 19px; animation: rainFall 1.7s linear infinite; animation-delay: 3.4s; }
+.raindrops i:nth-child(8) { left: 45%; height: 23px; animation: rainFall 2.3s linear infinite; animation-delay: 3.2s; }
+.raindrops i:nth-child(9) { left: 50%; height: 28px; animation: rainFall 1.6s linear infinite; animation-delay: 3.5s; }
+.raindrops i:nth-child(10) { left: 55%; height: 21px; animation: rainFall 2.0s linear infinite; animation-delay: 3.3s; }
+.raindrops i:nth-child(11) { left: 60%; height: 27px; animation: rainFall 1.9s linear infinite; animation-delay: 3.7s; }
+.raindrops i:nth-child(12) { left: 65%; height: 24px; animation: rainFall 2.2s linear infinite; animation-delay: 3.1s; }
+.raindrops i:nth-child(13) { left: 70%; height: 19px; animation: rainFall 1.8s linear infinite; animation-delay: 3.6s; }
+.raindrops i:nth-child(14) { left: 75%; height: 26px; animation: rainFall 2.1s linear infinite; animation-delay: 3.4s; }
+.raindrops i:nth-child(15) { left: 80%; height: 22px; animation: rainFall 1.7s linear infinite; animation-delay: 3.2s; }
+.raindrops i:nth-child(16) { left: 85%; height: 25px; animation: rainFall 2.3s linear infinite; animation-delay: 3.5s; }
+.raindrops i:nth-child(17) { left: 90%; height: 20px; animation: rainFall 1.8s linear infinite; animation-delay: 3.3s; }
+.raindrops i:nth-child(18) { left: 95%; height: 26px; animation: rainFall 2.0s linear infinite; animation-delay: 3.1s; }
+.raindrops i:nth-child(19) { left: 98%; height: 21px; animation: rainFall 1.9s linear infinite; animation-delay: 3.4s; }
+.raindrops i:nth-child(20) { left: 62%; height: 24px; animation: rainFall 2.2s linear infinite; animation-delay: 3.7s; }
 
 /**
  * SNOWFLAKE PARTICLE STYLES (.snowflakes i)
@@ -504,7 +504,7 @@
     pointer-events: none;
     
     /* ANIMATIONS */
-    animation: pulsate 20s ease-in-out infinite;
+    animation: rainbowPulsate 20s ease-in-out infinite;
     /* Applies gentle pulsing opacity effect (20s cycle) */
     
     /* PERFORMANCE OPTIMIZATION */
@@ -582,7 +582,7 @@
  * =================================================
  * Creates realistic firefly blinking patterns with varied intensity levels.
  */
-@keyframes nightGlow {
+@keyframes nightFireflyGlow {
     /* Dim phases */
     0%, 5%, 12%, 17%, 22%, 90%, 100% { 
         opacity: 0.2; 
@@ -601,7 +601,7 @@
  * =================================================
  * Creates gentle floating motion patterns for night fireflies.
  */
-@keyframes nightDrift {
+@keyframes nightFireflyDrift {
     0% { transform: translate(0, 0); }
     12% { transform: translate(15px, -35px); }
     25% { transform: translate(30px, -45px); }
@@ -630,7 +630,7 @@
  */
 
 /* Drift pattern 1 - Gentle circular motion */
-@keyframes summerDrift1 {
+@keyframes summerFireflyDrift1 {
     0% { transform: translate(0, 0); }
     15% { transform: translate(12px, -20px); }
     30% { transform: translate(25px, -8px); }
@@ -642,7 +642,7 @@
 }
 
 /* Drift pattern 2 - Loose figure-eight motion */
-@keyframes summerDrift2 {
+@keyframes summerFireflyDrift2 {
     0% { transform: translate(0, 0); }
     20% { transform: translate(-18px, -12px); }
     40% { transform: translate(-10px, 18px); }
@@ -652,7 +652,7 @@
 }
 
 /* Drift pattern 3 - Angular movement path */
-@keyframes summerDrift3 {
+@keyframes summerFireflyDrift3 {
     0% { transform: translate(0, 0); }
     25% { transform: translate(22px, 5px); }
     50% { transform: translate(10px, -22px); }
@@ -719,7 +719,7 @@
  * =================================================
  * Creates realistic raindrop falling pattern with rotation and opacity changes.
  */
-@keyframes rain {
+@keyframes rainFall {
     0%, 20% { 
         top: 0%; 
         transform: translateY(0) translateX(0) rotate(-20deg); 
@@ -789,7 +789,7 @@
  * ==========================================
  * Creates gentle pulsing effect for rainbow arc visibility.
  */
-@keyframes pulsate {
+@keyframes rainbowPulsate {
     0% { opacity: 0; }
     10% { opacity: 0; }
     20% { opacity: 0.8; }

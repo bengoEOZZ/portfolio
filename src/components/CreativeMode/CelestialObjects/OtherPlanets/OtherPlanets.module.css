@@ -1,0 +1,113 @@
+/* OTHER PLANETS COMPONENT STYLES
+ * ==============================
+ */
+
+/**
+ * MERCURY PLANET (.mercury)
+ * =========================
+ */
+.mercury {
+    /* LAYOUT & POSITIONING */
+    position: fixed;
+    top: 225px;
+    left: 400px;
+    
+    /* SIZING */
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    
+    /* LAYERING */
+    z-index: 4;
+    
+    /* PERFORMANCE OPTIMIZATION */
+    will-change: transform;
+    
+    /* ANIMATIONS */
+    animation: 
+        mercuryOrbit 18s linear infinite,
+        celestialFadeIn 1s ease-in-out;
+    /* Applies dual animations:
+       - mercuryOrbit: 18s rapid orbital path reflecting Mercury's speed
+       - celestialFadeIn: 1s smooth downward entry fade */
+    
+    /* APPEARANCE EFFECTS */
+    filter: 
+        drop-shadow(0 0 8px rgba(180, 180, 180, 0.7))   /* Inner metallic silver glow */
+        drop-shadow(0 0 15px rgba(120, 130, 140, 0.5))  /* Mid steel blue glow */
+        drop-shadow(0 0 25px rgba(70, 80, 90, 0.3));    /* Outer dark metallic shadow */
+}
+
+/**
+ * VENUS PLANET (.venus)
+ * ====================
+ */
+.venus {
+    /* LAYOUT & POSITIONING */
+    position: fixed;
+    top: 260px;
+    left: 510px;
+    
+    /* SIZING */
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    
+    /* LAYERING */
+    z-index: 4;
+    
+    /* PERFORMANCE OPTIMIZATION */
+    will-change: transform;
+    
+    /* ANIMATIONS */
+    animation: 
+        venusOrbit 28s linear infinite,
+        celestialFadeIn 1.5s ease-in-out;
+    /* Applies dual animations:
+       - venusOrbit: 28s orbital path reflecting Venus's moderate speed
+       - celestialFadeIn: 1.5s smooth downward entry with slight delay */
+    
+    /* APPEARANCE EFFECTS */
+    filter: 
+        drop-shadow(0 0 10px rgba(255, 220, 175, 0.8))  /* Inner warm cream glow */
+        drop-shadow(0 0 20px rgba(255, 190, 100, 0.6))  /* Mid golden yellow glow */
+        drop-shadow(0 0 30px rgba(255, 160, 60, 0.4))   /* Outer warm orange glow */
+        drop-shadow(0 0 40px rgba(255, 130, 30, 0.2));  /* Extended hot atmosphere */
+}
+
+/**
+ * CELESTIAL ENTRY ANIMATION
+ * =========================
+ */
+@keyframes celestialFadeIn {
+    from { 
+        opacity: 0;                    /* Starts completely transparent */
+    }
+    to { 
+        opacity: 1;                    /* Ends fully visible */
+    }
+}
+
+/**
+ * MERCURY ORBITAL ANIMATION
+ * =========================
+ */
+@keyframes mercuryOrbit {
+    0% { transform: translate3d(0, 0, 0) rotate(0deg); }           /* Starting orbital position */
+    25% { transform: translate3d(-20px, -15px, 0) rotate(90deg); } /* Quarter orbit with rotation */
+    50% { transform: translate3d(-30px, 25px, 0) rotate(180deg); } /* Half orbit with rotation */
+    75% { transform: translate3d(15px, 30px, 0) rotate(270deg); }  /* Three-quarter orbit */
+    100% { transform: translate3d(0, 0, 0) rotate(360deg); }       /* Complete orbital cycle */
+}
+
+/**
+ * VENUS ORBITAL ANIMATION
+ * =======================
+ */
+@keyframes venusOrbit {
+    0% { transform: translate3d(0, 0, 0) rotate(0deg); }           /* Starting orbital position */
+    25% { transform: translate3d(-20px, -15px, 0) rotate(90deg); } /* Quarter orbit with rotation */
+    50% { transform: translate3d(-30px, 25px, 0) rotate(180deg); } /* Half orbit with rotation */
+    75% { transform: translate3d(15px, 30px, 0) rotate(270deg); }  /* Three-quarter orbit */
+    100% { transform: translate3d(0, 0, 0) rotate(360deg); }       /* Complete orbital cycle */
+}

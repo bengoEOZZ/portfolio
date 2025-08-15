@@ -4,11 +4,6 @@
  * 
  * This component renders floating code-style remarks that display philosophical
  * and inspirational messages written as JavaScript code snippets.
- * 
- * Key Features:
- * - Collection of philosophical code snippets as floating text elements
- * - JavaScript syntax used as a creative medium for expressing ideas
- * - Subtle animations and effects that enhance the starry night celestial atmosphere
  */
 
 // DEPENDENCIES
@@ -22,11 +17,6 @@ function CodeRemarks() {
     /**
      * Philosophical Code Snippets
      * ============================
-     * 
-     * Collection of JavaScript-style code snippets that express philosophical
-     * ideas about development, learning, and innovation. Each remark combines
-     * technical syntax with inspirational messaging.
-     * 
      * Content Philosophy:
      * - Curiosity and exploration: "if (user.isCurious) { explore(); }"
      * - Growth through failure: "try { learn(); } catch (failure) { grow(); }"

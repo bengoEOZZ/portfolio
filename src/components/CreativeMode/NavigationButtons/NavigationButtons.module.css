@@ -28,6 +28,12 @@
     position: absolute;                 /* Required for orbital positioning via JavaScript */
     display: flex;                      /* Flexbox for centering content */
     justify-content: center;            /* Center content vertically */
+    
+    /* PERFORMANCE OPTIMIZATION */
+    will-change: transform, left, top;  /* Optimize for orbital motion and wobble animations */
+
+    /* OUTWARD TRANSITION */
+    transition: left 1.5s ease, top 1.5s ease;  /* Smooth movement to orbital positions */
 }
 
 /**
@@ -42,6 +48,9 @@
     
     /* INTERACTIONS */
     cursor: pointer;                    /* Indicate clickable element */
+    
+    /* PERFORMANCE OPTIMIZATION */
+    will-change: transform, filter;     /* Optimize for hover scaling and glow effects */
 }
 
 /**
@@ -111,11 +120,13 @@
  * Subtle wobble rotation animation for first and third buttons.
  * Opposite wobble for second and fourth buttons to create synchronized movement.
  *
- * IMPORTANT: translateX(-100%) EXPLANATION
- * =======================================
- * 1. CSS animations apply transform ON TOP OF the left/top positioning
- * 2. Without translateX(-100%): Button appears TOO FAR RIGHT (left edge at orbital point)
- * 3. With translateX(-100%): Button shifts LEFT by its own width, centering it properly
+ * TRANSLATEX(-100%) CENTERING EXPLANATION
+ * ======================================
+ * TWO-STEP COORDINATION SYSTEM:
+ * 1. Hook calculates orbital positions using complex trigonometry
+ *    - useOrbitAnimation Hook: Handles complex orbital math (cos, sin, elliptical motion)
+ * 2. CSS applies simple centering offset to perfect the alignment
+ *    - CSS translateX(-100%): Handles simple centering offset (move left by button width)
  */
 @keyframes wobble-left {
     /* START & END STATE (0% and 100%) */

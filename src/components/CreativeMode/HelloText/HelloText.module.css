@@ -7,8 +7,6 @@
 /**
  * MAIN CONTAINER STYLES (.container)
  * ==================================
- * 
- * Primary container for the HelloText component content.
  */
 .container {
     /* LAYOUT & POSITIONING */
@@ -16,7 +14,10 @@
     z-index: 10;                        /* Ensure the text is above the buttons */
     bottom: 5%;
     left: 4%;
+
+    /* SIZING */
     width: 400px;                       /* Fixed width */
+    height: auto;
     
     /* ANIMATIONS */
     animation: fadeIn 2s ease-in-out;
@@ -41,8 +42,8 @@
             0 0 20px rgba(0, 123, 255, 0.6); /* Glowing text */
     
     /* UNDERLINE */
-    display: inline-block;                    /* Allows underline to fit text width */
     border-bottom: 10px solid #007bff;      /* Bright blue underline accent */
+    display: inline-block;                    /* Allows underline to fit text width */
 }
 
 /**

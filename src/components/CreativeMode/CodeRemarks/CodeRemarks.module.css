@@ -3,16 +3,11 @@
  * ============================
  * 
  * This file contains the styling for the CodeRemarks component used in the creative portfolio mode.
- * Features floating philosophical code snippets with twinkle animations, drift effects, positioning,
- * and celestial-themed visual effects that complement the overall Creative Mode experience.
  */
 
 /**
  * MAIN CONTAINER STYLES (.container)
  * ==================================
- * 
- * Wrapper container for all floating code remark elements. Configured to prevent
- * user interaction while maintaining high z-index for proper layering above other elements.
  */
 .container {
     /* INTERACTIONS */
@@ -111,8 +106,6 @@
  * TWINKLE ANIMATION - STAR-LIKE OPACITY & GLOW CYCLING
  * ====================================================
  * Creates celestial star-like twinkling effect through opacity blinking variations.
- * Simulates code snippets appearing and fading like distant stars in the night sky.
- * Multiple brightness states create realistic twinkling patterns.
  */
 @keyframes twinkle {
     0% { opacity: 0; }

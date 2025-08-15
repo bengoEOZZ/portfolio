@@ -7,19 +7,9 @@
  * 
  * ANIMATION PHASES:
  * 1. Initial Positioning: Center all buttons in the very center of the container
- * 2. Outward Transition: Smooth movement to orbital positions (1.5s)
+ * 2. Outward Transition: Smooth movement to orbital positions
  * 3. Orbital Motion: Continuous elliptical rotation
  * 4. Depth Effects: Dynamic z-index based on position, giving illusion of depth
- * 
- * COORDINATE SYSTEM:
- * - Uses elliptical orbit (900px horizontal × 600px vertical radius)
- * - Center calculated from container dimensions
- * 
- * PERFORMANCE FEATURES:
- * - requestAnimationFrame for smooth 60fps animation
- * - Extensively pre-calculated values for maximum per-frame performance
- * - Batched z-index updates to prevent unnecessary DOM writes
- * - Centralized configuration for easy tuning and better performance
  */
 
 import { useEffect, useRef } from 'react';
@@ -34,13 +24,13 @@ const CONFIG = {
     VERTICAL_RADIUS: 600,
     
     // Animation timing
-    ROTATION_SPEED: 0.01,                   /* Rotations per frame (radians) */
-    INITIAL_DELAY: 1000,                    /* Delay before outward transition (milliseconds) */
-    INITIAL_TRANSITION_DURATION: 1500,      /* Outward transition duration (milliseconds) */
-    Z_INDEX_DELAY: 3500,                    /* Delay before enabling depth effects (milliseconds) */
+    ROTATION_SPEED: 0.01,                           /* Rotations per frame (radians) */
+    INITIAL_DELAY: 1000,                            /* Delay before outward transition (milliseconds) */
+    Z_INDEX_DELAY: 3500,                            /* Delay before enabling depth effects (milliseconds) */
     
-    // Depth effects
-    DEPTH_TOLERANCE: 300,          /* Y-axis threshold for depth detection to prevent clipping */
+    // Depth effects - DELAYED BEHIND ZONE
+    BEHIND_TOLERANCE: 725,              /* Behind threshold adjustment */
+    FRONT_TOLERANCE: 200,               /* Front threshold adjustment */
     Z_INDEX: {
         BEHIND: 4,
         FRONT: 15
@@ -60,20 +50,22 @@ function useOrbitAnimation(buttonsRef, buttonClassName) {
      * ====================
      */
     useEffect(() => {
-        const buttonsWrapper = buttonsRef.current;
-        if (!buttonsWrapper) return;
+        const buttonsWrapper = buttonsRef.current;  // Extract DOM element from React ref
+        if (!buttonsWrapper) return;                // Exit early if element doesn't exist yet
 
         /* INITIALIZATION & SETUP */
-        const buttons = buttonsWrapper.querySelectorAll(`.${buttonClassName}`);
+        const buttons = buttonsWrapper.querySelectorAll(`.${buttonClassName}`); // Select all buttons
         const buttonsArray = Array.from(buttons); // Convert NodeList to Array for easier manipulation
-        const centerX = buttonsWrapper.offsetWidth / 2;
-        const centerY = buttonsWrapper.offsetHeight / 2;
+
+        const centerX = buttonsWrapper.offsetWidth / 2; // Center X position
+        const centerY = buttonsWrapper.offsetHeight / 2; // Center Y position
+
         const currentZIndex = buttonsArray.map(() => null); // Track current z-index state for each button
-        let forceZIndex = true; // Flag to force current z-index (behind) before initial transitions
+        let forceZIndex = true; // Flag to force current z-index (behind) for initial outward transition
 
         /**
          * PERFORMANCE OPTIMIZATION: EXTENSIVELY PRE-CALCULATED VALUES
-         * =================================================
+         * ===========================================================
          * Pre-calculate EVERYTHING possible to minimize per-frame calculations
          */
         
@@ -105,6 +97,7 @@ function useOrbitAnimation(buttonsRef, buttonClassName) {
          * INITIAL CENTERED POSITIONS (Pre-calculated)
          * ===============================================
          * Starting position for each button (center of container).
+         * Also serves as the base point for orbital motion calculations.
          */
         const initialPositions = buttonsArray.map((_, index) => ({
             x: centerX - buttonHalfWidths[index],
@@ -115,32 +108,24 @@ function useOrbitAnimation(buttonsRef, buttonClassName) {
          * ORBITAL POSITIONS (Pre-calculated)
          * ======================================
          * Positions for each button around the orbital ellipse.
-         * Formula: center + (radius × cos/sin(angle)) - buttonHalf
+         * Uses initialPositions as the centered base point.
+         * 
+         * FORMULA: pos: center + (radius × cos/sin(angle))
          */
         const orbitalPositions = buttonsArray.map((_, index) => ({
-            x: centerX + CONFIG.HORIZONTAL_RADIUS * Math.cos(buttonOffsets[index]) - buttonHalfWidths[index],
-            y: centerY + CONFIG.VERTICAL_RADIUS * Math.sin(buttonOffsets[index]) - buttonHalfHeights[index]
-        }));
-        
-        /**
-         * ORBITAL CONSTANTS (Pre-calculated)
-         * ======================================
-         * Constants used in the animation loop for position calculation.
-         */
-        const orbitalConstants = buttonsArray.map((_, index) => ({
-            baseX: centerX - buttonHalfWidths[index],      // Pre-calculated X origin for this button
-            baseY: centerY - buttonHalfHeights[index]      // Pre-calculated Y origin for this button
+            x: initialPositions[index].x + CONFIG.HORIZONTAL_RADIUS * Math.cos(buttonOffsets[index]),
+            y: initialPositions[index].y + CONFIG.VERTICAL_RADIUS * Math.sin(buttonOffsets[index])
         }));
         
         /**
          * DEPTH EFFECT THRESHOLDS (Pre-calculated)
          * ============================================
          * Y-axis boundaries for determining when buttons appear "behind" or "in front".
-         * Used for z-index changes that create 3D depth illusion.
+         * Behind zone starts later (more restrictive), front zone starts earlier.
          */
         const depthThresholds = {
-            behind: centerY - CONFIG.DEPTH_TOLERANCE,
-            front: centerY + CONFIG.DEPTH_TOLERANCE
+            behind: centerY - CONFIG.BEHIND_TOLERANCE,     // Top threshold (starts later/higher up)
+            front: centerY + CONFIG.FRONT_TOLERANCE   // Bottom threshold (starts earlier)
         };
 
         /**
@@ -149,8 +134,6 @@ function useOrbitAnimation(buttonsRef, buttonClassName) {
          * Center all buttons using pre-calculated positions
          */
         buttonsArray.forEach((button, index) => {
-            button.style.position = "absolute";
-            
             /* Use pre-calculated initial positions */
             button.style.left = `${initialPositions[index].x}px`;
             button.style.top = `${initialPositions[index].y}px`;
@@ -166,9 +149,6 @@ function useOrbitAnimation(buttonsRef, buttonClassName) {
                 /* Use pre-calculated orbital positions */
                 button.style.left = `${orbitalPositions[index].x}px`;
                 button.style.top = `${orbitalPositions[index].y}px`;
-
-                /* Smooth transitions to ease into orbital positions */
-                button.style.transition = `all ${CONFIG.INITIAL_TRANSITION_DURATION}ms ease`;
             });
 
             /**
@@ -180,20 +160,28 @@ function useOrbitAnimation(buttonsRef, buttonClassName) {
                 const currentAngle = angleRef.current; // Cache angle once per frame
                 
                 buttonsArray.forEach((button, index) => {
+                    /**
+                     * ANGLE CALCULATION: Combine fixed button offset with current rotation
+                     * FORMULA: totalAngle = currentAngle + buttonOffset
+                     */
                     const totalAngle = currentAngle + buttonOffsets[index];     // Calculated Angle
-                    
-                    // Minimal per-frame calculations using pre-calculated values
-                    const x = orbitalConstants[index].baseX + CONFIG.HORIZONTAL_RADIUS * Math.cos(totalAngle);
-                    const y = orbitalConstants[index].baseY + CONFIG.VERTICAL_RADIUS * Math.sin(totalAngle);
-                    
+
+                    /**
+                     * POSITION CALCULATION: Convert angle to screen coordinates using trigonometry
+                     * FORMULA: position = centerPoint + (radius × cos/sin(angle))
+                     */
+                    const x = initialPositions[index].x + CONFIG.HORIZONTAL_RADIUS * Math.cos(totalAngle);
+                    const y = initialPositions[index].y + CONFIG.VERTICAL_RADIUS * Math.sin(totalAngle);
+
+                    // Set button position
                     button.style.left = `${x}px`;
                     button.style.top = `${y}px`;
 
                     /**
-                     * PHASE 4: OPTIMIZED DEPTH PERCEPTION EFFECTS
-                     * ===========================================
-                     * Using pre-calculated thresholds and centralized z-index values.
-                     * Only force z-index changes after initial outward transition.
+                     * PHASE 4: DEPTH PERCEPTION EFFECTS
+                     * =================================
+                     * Use pre-calculated thresholds and z-index values to force depth perception.
+                     * Only force z-index changes after an initial delay (3.5s), see zIndexTimeout below.
                      */
                     if (!forceZIndex) {
                         let newZIndex = null;
@@ -201,9 +189,11 @@ function useOrbitAnimation(buttonsRef, buttonClassName) {
                         if (y < depthThresholds.behind) {
                             /* Button is in upper orbital region - appears behind other elements */
                             newZIndex = CONFIG.Z_INDEX.BEHIND;
+                            button.style.backgroundColor = 'rgba(255, 0, 0, 0.3)'; // RED = BEHIND
                         } else if (y > depthThresholds.front) {
                             /* Button is in lower orbital region - appears in front of other elements */
                             newZIndex = CONFIG.Z_INDEX.FRONT;
+                            button.style.backgroundColor = 'rgba(0, 255, 0, 0.3)'; // GREEN = FRONT
                         }
 
                         /* Only update z-index if a change is detected */
@@ -214,24 +204,27 @@ function useOrbitAnimation(buttonsRef, buttonClassName) {
                     }
                 });
 
-                /* Increments the orbital rotation angle per frame */
+                /* Increments the orbital rotation angle by rotation speed per frame */
                 angleRef.current += CONFIG.ROTATION_SPEED;
 
                 /* requestAnimationFrame syncs with browser's refresh rate (usually 60fps) */
                 animationRef.current = requestAnimationFrame(animateButtons);
             }
 
-            animateButtons();   // Start the entire animation after an intial delay
+            animateButtons();   // Start the entire animation after an intial delay (1s)
         }, CONFIG.INITIAL_DELAY);
         
         const zIndexTimeout = setTimeout(() => {
-            forceZIndex = false;    // Allow z-index changes after well into starting orbital motion
+            forceZIndex = false;    // Only allow z-index changes after well after starting orbital motion
         }, CONFIG.Z_INDEX_DELAY);
 
-        /* CLEANUP FUNCTION */
+        /* 
+         * CLEANUP FUNCTION
+         * ================
+         */
         return () => {
             clearTimeout(timeoutId);            // Cancel outward transition if still pending
-            clearTimeout(zIndexTimeout);        // Cancel depth effects activation if still pending
+            clearTimeout(zIndexTimeout);        // Cancel depth effects timeout if still pending
             if (animationRef.current) {
                 cancelAnimationFrame(animationRef.current);     // Stop orbital animation loop
             }

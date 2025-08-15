@@ -21,7 +21,7 @@
 import { useRef } from 'react';
 import useOrbitAnimation from './useOrbitAnimation';
 import classes from './NavigationButtons.module.css';
-import NavButton from '../../../assets/NavButton.svg';
+import NavButton from '../../../assets/CreativeMode/navButton.svg';
 
 /**
  * NavigationButtons Component
@@ -49,12 +49,6 @@ function NavigationButtons() {
     /**
      * COMPONENT OUTPUT
      * ================
-     * Renders the orbital navigation system with animated buttons.
-     * 
-     * STRUCTURE:
-     * - Container (buttonsWrapper): Defines the orbital animation space
-     * - Navigation links: anchor elements with futuristic SVG icons and text labels
-     * - Each button: Icon + text combination for About, Coding, Projects, Contact sections
      */
     return (
         <div ref={buttonsWrapperRef} className={classes.buttonsWrapper}>

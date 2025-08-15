@@ -29,7 +29,7 @@
     width: 100vw;                    /* Full viewport width */
     
     /* STARRY BACKGROUND TEXTURE: https://www.transparenttextures.com/patterns/stardust.png */
-    background: url('../../assets/stardust.png');   /* Stored in assets */
+    background: url('../../assets/CreativeMode/stardust.png');   /* Stored in assets */
 
     /* FLEXBOX LAYOUT */
     display: flex;                   /* Flexbox container */

@@ -1,0 +1,190 @@
+/**
+ * CLOCK COMPONENT STYLES
+ * ======================
+ * 
+ * Styling for the interactive clock and time display.
+ */
+
+/* Import Orbitron font for futuristic aesthetic */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+/**
+ * CLOCK CONTAINER (.clockContainer)
+ * =================================
+ * Main container for the analog clock positioned at top right of viewport.
+ */
+.clockContainer {
+    /* LAYOUT & POSITIONING */
+    position: fixed;
+    top: 25px;
+    right: 50px;
+    width: 400px;
+    height: auto;
+    z-index: 17;
+    
+    /* ANIMATIONS */
+    animation: clockFloat 25s ease-in-out infinite;
+    /* Applies gentle floating animation */
+}
+
+/**
+ * CLOCK BASE IMAGE (.clock)
+ * =========================
+ * The background clock image with golden glow effects.
+ */
+.clock {
+    /* SIZING */
+    width: 300px;
+    height: auto;
+    
+    /* LAYOUT & POSITIONING */
+    position: relative;
+    
+    /* APPEARANCE */
+    filter: drop-shadow(0 0 25px rgba(255, 223, 0, 0.7))
+            drop-shadow(0 0 50px rgba(255, 69, 0, 0.3));
+}
+
+/**
+ * INTERACTIVE CLOCK HAND (.clockHand)
+ * ===================================
+ * Clickable clock hand for time manipulation with hover effects and animations.
+ */
+.clockHand {
+    /* SIZING */
+    width: 40px;
+    height: auto;
+    
+    /* LAYOUT & POSITIONING */
+    position: absolute;
+    top: 74px;
+    left: 176px;
+    z-index: 16;
+    transform-origin: 50% 75%; /* Sets rotation point at visual base of clock hand */
+    
+    /* INTERACTIONS */
+    cursor: pointer;
+    
+    /* APPEARANCE */
+    filter: drop-shadow(0 0 15px rgba(255, 223, 0, 0.8)) 
+            drop-shadow(0 0 5px rgba(255, 255, 255, 0.9));
+}
+
+/**
+ * CLOCK HAND HOVER EFFECTS (.clockHand:hover)
+ * ===========================================
+ */
+.clockHand:hover {
+    /* ENHANCED GLOW EFFECTS */
+    filter: drop-shadow(0 0 30px rgba(255, 223, 0, 1))
+            drop-shadow(0 0 15px rgba(255, 255, 255, 1))
+            drop-shadow(0 0 45px rgba(255, 165, 0, 0.8));
+    
+    /* LAYERING */
+    z-index: 18;
+    /* Brings clock hand to front during hover */
+    
+    /* ANIMATIONS */
+    animation: clockHandGlow 1.5s ease-in-out infinite;
+    /* Applies pulsing glow animation during hover */
+}
+
+/**
+ * DIGITAL TIME DISPLAY (.timeDisplay)
+ * ===================================
+ */
+.timeDisplay {
+    /* LAYOUT & POSITIONING */
+    position: fixed;
+    top: 310px;
+    right: 360px;
+    z-index: 100;
+    
+    /* SIZING */
+    width: 60px;
+    height: auto;
+
+    /* TYPOGRAPHY */
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+    
+    /* APPEARANCE */
+    color: #00d4ff;
+    text-shadow: 0 0 15px rgba(0, 212, 255, 0.9); /* Bright cyan glow effect for futuristic look */
+    background: rgba(10, 20, 40, 0.6); /* Semi-transparent dark background for contrast */
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 2px solid rgba(0, 212, 255, 0.4);
+    box-shadow: 
+        0 0 20px rgba(0, 212, 255, 0.4),       /* Outer glow: Creates halo effect around the element */
+        inset 0 0 15px rgba(0, 212, 255, 0.2); /* Inner glow (inset): Creates internal lighting effect */
+    
+    /* ANIMATIONS */
+    animation: timeDisplayPulse 3s infinite alternate ease-in-out;
+    /* Gentle pulsing opacity animation */
+}
+
+/**
+ * SPACE FLOAT ANIMATION - GENTLE FLOATING MOTION FOR CLOCK
+ * ========================================================
+ * Creates realistic floating motion with rotation and translation.
+ */
+@keyframes clockFloat {
+    0% { 
+        transform: translateX(0) translateY(0) rotate(0deg); 
+    }
+    20% { 
+        transform: translateX(-10px) translateY(5px) rotate(-4deg); 
+    }
+    40% { 
+        transform: translateX(8px) translateY(-7px) rotate(6deg); 
+    }
+    60% { 
+        transform: translateX(12px) translateY(3px) rotate(-5deg); 
+    }
+    80% { 
+        transform: translateX(-5px) translateY(-4px) rotate(3deg); 
+    }
+    100% { 
+        transform: translateX(0) translateY(0) rotate(0deg); 
+    }
+}
+
+/**
+ * HAND GLOW ANIMATION - PULSING GLOW EFFECT FOR CLOCK HAND HOVER
+ * =============================================================
+ * Creates pulsing glow effect with varying intensity and color layers.
+ */
+@keyframes clockHandGlow {
+    /* Base glow state */
+    0%, 100% {
+        filter: drop-shadow(0 0 30px rgba(255, 223, 0, 1))
+                drop-shadow(0 0 15px rgba(255, 255, 255, 1));
+    }
+    
+    /* Intensified glow state */
+    50% {
+        filter: drop-shadow(0 0 30px rgba(255, 223, 0, 1))
+                drop-shadow(0 0 25px rgba(255, 255, 255, 1))
+                drop-shadow(0 0 40px rgba(255, 140, 0, 0.9));
+    }
+}
+
+/**
+ * TIME PULSE ANIMATION - GENTLE PULSING FOR DIGITAL TIME DISPLAY
+ * =============================================================
+ * Creates subtle opacity pulsing for the digital time readout.
+ */
+@keyframes timeDisplayPulse {
+    /* Dimmed state */
+    0%, 100% { 
+        opacity: 0.8; 
+    }
+    
+    /* Brightened state */
+    50% { 
+        opacity: 1; 
+    }
+}

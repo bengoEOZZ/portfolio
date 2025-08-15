@@ -1,10 +1,10 @@
 /**
- * USECLOCKHANDROTATION HOOK
- * =========================
+ * USECELESTIALTIME HOOK
+ * =====================
  * 
  * Custom React hook that manages interactive clock hand rotation mechanics for the celestial
- * time interface. Provides system time synchronization at component initialization,
- * and then continuous rotation during user interaction.
+ * clock time interface. Provides system time synchronization at component initialization,
+ * and then tracks continuous rotation during user interaction.
  *
  * ROTATION PHASES:
  * 1. Time Initialization: Calculate initial rotation based on current system time
@@ -13,7 +13,7 @@
  * 
  * PERFORMANCE FEATURES:
  * - Smooth 33fps rotation updates (30ms intervals) for fluid motion
- * - Efficient single interval management (for rotation mechanics) to prevent memory leaks
+ * - Proper timer cleanup to avoid multiple timers running at once
  */
 
 import { useState, useRef, useEffect } from 'react';
@@ -22,18 +22,16 @@ import { useState, useRef, useEffect } from 'react';
  * CENTRALIZED CONFIGURATIONS
  * =========================
  */
-
-/* Rotation timing constants */
 const ROTATION_CONFIG = {
     ROTATION_STEP: 2,                  /* 2° increment per rotation step */
-    ROTATION_INTERVAL: 30,             /* 30ms between rotation updates (33fps) */
-    HOURS_PER_ROTATION: 24,            /* 24-hour cycle per full rotation */
+    ROTATION_INTERVAL: 30,             /* 30ms intervals (1000ms ÷ 30ms = ~33fps) */
+    HOURS_PER_DAY: 24,                 /* 24-hour cycle per full day rotation */
     DEGREES_PER_HOUR: 15               /* 15° per hour (360° ÷ 24h = 15°) */
 };
 
 /**
  * useClockHandRotation Hook Implementation
- * =======================================
+ * ========================================
  */
 const useClockHandRotation = () => {
     /* REFERENCES */
@@ -46,24 +44,24 @@ const useClockHandRotation = () => {
      * 
      * MATHEMATICAL BREAKDOWN:
      * - Current hour from system time (0-23)
-     * - Subtract 12 to center rotation around celestial clock (0:00 at bottom, 12:00 at top)
+     * - Add 12 to visually align with celestial time display (0:00 at bottom, 12:00 at top)
      * - Multiply by 15° per hour to convert to rotation angle
      * - Use modulo (%) to ensure angle is within 0-23 (0-360°)
-     *   - Add 24 to allow modulo to handle negative numbers correctly
      * 
      * EXAMPLE CALCULATIONS:
-     * - 6 AM: ((6 - 12 + 24) % 24) * 15 = (18 % 24) * 15 = 18 * 15 = 270°
-     * - 12 PM: ((12 - 12 + 24) % 24) * 15 = (24 % 24) * 15 = 0 * 15 = 0°
-     * - 6 PM: ((18 - 12 + 24) % 24) * 15 = (30 % 24) * 15 = 6 * 15 = 90°
+     * - 00:00: ((0 + 12) % 24) * 15 = 12 * 15 = 180°
+     * - 06:00: ((6 + 12) % 24) * 15 = 18 * 15 = 270°
+     * - 12:00: ((12 + 12) % 24) * 15 = 0 * 15 = 0°
+     * - 18:00: ((18 + 12) % 24) * 15 = 6 * 15 = 90°
      * 
-     * Initial Rotation: rotation = ((hours - 12 + 24) % 24) * 15
+     * FORMULA: Initial rotation = ((hours + 12) % 24) * 15
      */
     const getInitialRotation = () => {
         const now = new Date();
         const hours = now.getHours();
-        
-        /* Apply mathematical transformation to convert system time to rotation angle */
-        return ((hours - 12 + ROTATION_CONFIG.HOURS_PER_ROTATION) % ROTATION_CONFIG.HOURS_PER_ROTATION) * ROTATION_CONFIG.DEGREES_PER_HOUR;
+
+        /* Apply Initial Rotation */
+        return ((hours + 12) % ROTATION_CONFIG.HOURS_PER_DAY) * ROTATION_CONFIG.DEGREES_PER_HOUR;
     };
 
     /* STATE MANAGEMENT */
@@ -107,19 +105,23 @@ const useClockHandRotation = () => {
         if (isHolding) {
             /* START CONTINUOUS ROTATION */
             rotationIntervalRef.current = setInterval(() => {
-                setRotation(prev => prev + ROTATION_CONFIG.ROTATION_STEP);
-            }, ROTATION_CONFIG.ROTATION_INTERVAL);
-        } else if (rotationIntervalRef.current) {
+                setRotation(prev => prev + ROTATION_CONFIG.ROTATION_STEP);  // Add 2° to current rotation
+            }, ROTATION_CONFIG.ROTATION_INTERVAL);                          // Every 30ms
+        }
+        else if (rotationIntervalRef.current) {   // If not holding and interval exists
             /* STOP CONTINUOUS ROTATION */
-            clearInterval(rotationIntervalRef.current);
-            rotationIntervalRef.current = null;
+            clearInterval(rotationIntervalRef.current);                     // Stop the timer
+            rotationIntervalRef.current = null;                             // Clear the reference
         }
 
-        /* Prevents memory leaks by clearing active intervals */
+        /* 
+         * CLEANUP FUNCTION
+         * ================
+         */
         return () => {
             if (rotationIntervalRef.current) {
-                clearInterval(rotationIntervalRef.current);
-                rotationIntervalRef.current = null;
+                clearInterval(rotationIntervalRef.current);     // Stop any running timer
+                rotationIntervalRef.current = null;             // Clear the reference
             }
         };
     }, [isHolding]); /* Only re-run when interaction state actually changes */

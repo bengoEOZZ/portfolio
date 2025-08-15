@@ -1,0 +1,175 @@
+/**
+ * CONTROLS COMPONENT STYLES
+ * =========================
+ * 
+ * Styling for the unified controls panel including interactive clock,
+ * time display, and environmental control sliders.
+ */
+
+/* Import Orbitron font for futuristic aesthetic */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+/**
+ * SLIDER CONTAINER BASE (.sliderContainer)
+ * ========================================
+ * Base container for all slider controls with shared positioning and styling.
+ */
+.sliderContainer {
+    /* LAYOUT & POSITIONING */
+    position: fixed;
+    right: 20px;
+    z-index: 20;
+    
+    /* SIZING */
+    width: 450px;
+    height: auto;
+    
+    /* TYPOGRAPHY */
+    font-family: 'Orbitron', sans-serif;
+    color: #00d4ff;
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
+    text-align: center;
+}
+
+/* Weather slider positioning */
+.weatherSlider {
+    top: 350px;
+}
+
+
+/* Season slider positioning */
+.seasonSlider {
+    top: 425px;
+}
+
+/**
+ * SLIDER RANGE STYLING (.slider)
+ * ==============================
+ */
+.slider {
+    /* SIZING */
+    width: 97.5%; 
+    height: 12px;
+    
+    /* LAYOUT & POSITIONING */
+    margin: 10px auto;
+    display: block;
+    
+    /* APPEARANCE RESET */
+    appearance: none;
+    outline: none;
+    
+    /* APPEARANCE */
+    background: linear-gradient(90deg, #1a1a2e, #0f3460); /* Dark gradient background */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+    
+    /* INTERACTIONS */
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+/**
+ * SLIDER HOVER EFFECTS (.slider:hover)
+ * ====================================
+ */
+.slider:hover {
+    /* ENHANCED BACKGROUND */
+    background: linear-gradient(90deg, #0f3460, #16213e);
+    /* Brighter gradient on hover */
+    
+    /* ENHANCED GLOW */
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
+    /* Increased cyan glow intensity */
+}
+
+/**
+ * SLIDER THUMB STYLING (.slider::-webkit-slider-thumb)
+ * ===================================================
+ * PRECISION POSITIONING SYSTEM:
+ * Uses CSS custom properties to calculate exact thumb position for centering on labels
+ */
+.slider::-webkit-slider-thumb {
+    /* APPEARANCE RESET */
+    appearance: none;
+    
+    /* SIZING */
+    width: 15px;
+    height: 15px;
+    
+    /* APPEARANCE */
+    background: radial-gradient(circle, #00d4ff, #007bff);
+    border: 1.5px solid #00d4ff;
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.8);
+    
+    /* INTERACTIONS */
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.3s;
+    
+    /* PRECISION POSITIONING: Override default thumb positioning to center on labels */
+    position: relative;
+    margin-left: var(--thumb-offset, 0px);
+}
+
+/**
+ * SEASON SLIDER THUMB POSITIONING
+ * ===============================
+ * 4 positions: Spring(0), Summer(1), Fall(2), Winter(3)
+ * Each position centers thumb on corresponding word label
+ */
+.seasonSlider .slider[data-value="0"]::-webkit-slider-thumb { --thumb-offset: calc(0%); }   /* Spring */
+.seasonSlider .slider[data-value="1"]::-webkit-slider-thumb { --thumb-offset: calc(3%); }   /* Summer */
+.seasonSlider .slider[data-value="2"]::-webkit-slider-thumb { --thumb-offset: calc(0%); }   /* Fall */
+.seasonSlider .slider[data-value="3"]::-webkit-slider-thumb { --thumb-offset: calc(0%); }   /* Winter */
+
+/**
+ * WEATHER SLIDER THUMB POSITIONING
+ * ================================
+ * 5 positions: Season(0), Clear(1), Rainy(2), Windy(3), Cloudy(4)
+ * Each position centers thumb on corresponding word label
+ */
+.weatherSlider .slider[data-value="0"]::-webkit-slider-thumb { --thumb-offset: calc(0%); }    /* Season */
+.weatherSlider .slider[data-value="1"]::-webkit-slider-thumb { --thumb-offset: calc(2.5%); }  /* Clear */
+.weatherSlider .slider[data-value="2"]::-webkit-slider-thumb { --thumb-offset: calc(0%); }    /* Rainy */
+.weatherSlider .slider[data-value="3"]::-webkit-slider-thumb { --thumb-offset: calc(-2.5%); }   /* Windy */
+.weatherSlider .slider[data-value="4"]::-webkit-slider-thumb { --thumb-offset: calc(0%); }    /* Cloudy */
+
+/**
+ * SLIDER THUMB HOVER EFFECTS (.slider::-webkit-slider-thumb:hover)
+ * ================================================================
+ */
+.slider::-webkit-slider-thumb:hover {
+    /* SCALING EFFECT */
+    transform: scale(1.2);
+    /* Enlarges thumb by 20% for better interaction feedback */
+    
+    /* ENHANCED GLOW */
+    box-shadow: 0 0 25px rgba(0, 212, 255, 1);
+    /* Full opacity cyan glow on hover */
+}
+
+/**
+ * SLIDER LABELS (.sliderLabels)
+ * =============================
+ */
+.sliderLabels {
+    /* LAYOUT & POSITIONING */
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    
+    /* TYPOGRAPHY */
+    font-size: 0.75rem;
+    color: #00d4ff;
+}
+
+/**
+ * INDIVIDUAL LABEL STYLING (.sliderLabels span)
+ * =============================================
+ * Spacing and alignment for individual slider label text.
+ */
+.sliderLabels span {
+    /* LAYOUT & POSITIONING */
+    padding: 0 8px;
+    text-align: center;
+}

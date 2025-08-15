@@ -1,0 +1,125 @@
+/**
+ * SUN COMPONENT STYLES
+ * ===================
+ * Unified styles for sun image and integrated ray animations
+ */
+
+/**
+ * BASE SUN CONTAINER (.sunContainer)
+ * ==================================
+ */
+.sunContainer {
+    /* LAYOUT & POSITIONING */
+    position: fixed;
+    top: -10px;
+    left: -10px;
+    
+    /* SIZING */
+    width: 375px;
+    height: auto;
+    
+    /* LAYERING */
+    z-index: 10;
+
+    /* PERFORMANCE OPTIMIZATION */
+    will-change: transform;
+
+    /* TRANSFORM SETUP */
+    transform-origin: top left; /* Sets rotation point for realistic rotational movement */
+}
+
+/**
+ * ANIMATED SUN (.sun)
+ * ==================
+ */
+.sun {
+    composes: sunContainer;  /* Inherits all base sun container properties */
+    
+    /* PERFORMANCE OPTIMIZATION */
+    will-change: transform, filter; /* Optimizes for rotation, vibration, and filter changes */
+    
+    /* ANIMATIONS */
+    animation: 
+        sunFadeIn 2s ease-in-out,
+        sunVibrate 5s ease-in-out infinite,
+        sunPulsate 4s ease-in-out infinite;
+    /* Applies triple animations:
+       - sunFadeIn: 2s smooth downward entry fade
+       - sunVibrate: 5s continuous subtle vibration for solar activity
+       - sunPulsate: 4s alternating brightness with blur and glow effects */
+}
+
+/**
+ * SUN RAYS OVERLAY (.sunrays)
+ * ===========================
+ */
+.sunrays {
+    composes: sunContainer;  /* Inherits all base sun container properties */
+    
+    /* DISPLAY */
+    display: inline-block;   /* Required for proper transform application on rays */
+    
+    /* ANIMATIONS */
+    animation: sunVibrate 5s ease-in-out infinite;
+    animation-delay: 2.5s;   /* Offset timing creates dynamic ray movement */
+    
+    /* APPEARANCE EFFECTS */
+    filter: 
+        drop-shadow(0 0 15px rgba(255, 165, 0, 0.8))  /* Inner warm orange glow */
+        drop-shadow(0 0 30px rgba(255, 69, 0, 0.6));  /* Outer intense red-orange glow */
+}
+
+polygon[id^="ray"] {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  opacity: 0;
+}
+
+/**
+ * SUN ENTRY ANIMATION
+ * ===================
+ */
+@keyframes sunFadeIn {
+    from { 
+        opacity: 0;                    /* Starts completely transparent */
+    }
+    to { 
+        opacity: 1;                    /* Ends fully visible */
+    }
+}
+
+/**
+ * SUN VIBRATION ANIMATION
+ * =======================
+ */
+@keyframes sunVibrate {
+    0% { transform: rotate(0deg); }     /* Neutral position */
+    25% { transform: rotate(0.5deg); }  /* Slight clockwise vibration */
+    50% { transform: rotate(-0.5deg); } /* Slight counter-clockwise vibration */
+    75% { transform: rotate(0.5deg); }  /* Return to clockwise */
+    100% { transform: rotate(0deg); }   /* Return to neutral position */
+}
+
+/**
+ * SUN PULSATION ANIMATION
+ * =======================
+ * Alternating brightness levels with blur and layered glow effects for solar activity.
+ */
+@keyframes sunPulsate {
+    0%, 100% {
+        filter: 
+            blur(0px)                                        /* Sharp focus at base intensity */
+            drop-shadow(0 0 50px rgba(255, 165, 0, 0.9))    /* Inner warm orange glow */
+            drop-shadow(0 0 100px rgba(255, 69, 0, 0.7))    /* Mid red-orange glow */
+            drop-shadow(0 0 150px rgba(255, 0, 0, 0.5))     /* Outer red intensity */
+            drop-shadow(0 0 200px rgba(255, 100, 0, 0.3));  /* Extended orange atmosphere */
+    }
+    50% {
+        filter: 
+            blur(2px)                                        /* Slight blur at peak intensity */
+            drop-shadow(0 0 80px rgba(255, 225, 0, 1))      /* Enhanced bright yellow glow */
+            drop-shadow(0 0 150px rgba(255, 69, 0, 0.9))    /* Intensified red-orange glow */
+            drop-shadow(0 0 250px rgba(255, 0, 0, 0.7))     /* Expanded red intensity */
+            drop-shadow(0 0 350px rgba(255, 100, 0, 0.4));  /* Extended intense atmosphere */
+    }
+}
