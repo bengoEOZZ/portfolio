@@ -1,8 +1,6 @@
 /**
  * BUTTONCREATIVE COMPONENT STYLES
- * ================================
- * 
- * This file contains the styling for the Creative button component used in the portfolio landing page.
+ * ===============================
  */
 
 /**
@@ -11,77 +9,236 @@
  */
 .btn {
   /* LAYOUT & SPACING */
-  padding: 25px 60px;              /* Internal spacing: 25px top/bottom, 60px left/right */
-  font-size: 2rem;                 /* Large text size */
-  font-weight: bold;               /* Bold text for better visibility */
+  padding: 20px 45px;              /* Refined padding */
+  font-size: 1.8rem;               /* Size */
+  font-weight: 600;                /* Semi-bold */
+  
+  /* TYPOGRAPHY */
+  font-family: 'Georgia', 'Times New Roman', serif;
+  text-transform: uppercase;       /* Uppercase */
+  letter-spacing: 2px;             /* A bit of letter spacing */
   
   /* APPEARANCE */
-  color: white;                  /* White text */
-  border-radius: 50px;             /* Rounded pill shape (50px for full roundness) */
-  background: radial-gradient(circle,                  
-      #ffd700 0%, #ffb347 50%, #ff8c00 100%);   /* Creates sun-like background */
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);      /* Golden glow effect around button */
+  color: #ffffff;                  /* Pure white text */
+  border-radius: 8px;                /* Subtle rounded corners */
+  border: 3px solid #d1d5db;       /* Softer light gray border */
+
+  /* ADVANCED COSMIC BACKGROUND */
+  background: 
+    /* Star field overlay */
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.8) 1px, transparent 1px),
+    radial-gradient(circle at 60% 80%, rgba(255, 255, 255, 0.6) 1px, transparent 1px),
+    radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.7) 1px, transparent 1px),
+    /* Cosmic gradient */
+    linear-gradient(135deg, 
+      #0a0f1c 0%,                  /* Deep space blue */
+      #1a237e 25%,                 /* Dark blue */
+      #355a91 50%,                 /* Spacey blue */
+      #1a237e 75%,                 /* Dark blue */
+      #0a0f1c 100%                 /* Deep space blue */
+    );
   
-  /* ANIMATION */
-  animation: celestialFloat 4s ease-in-out infinite;
-  /* Applies floating animation:
-     - Duration: 4 seconds
-     - Easing: Smooth in and out
-     - Repeats forever */
+  /* POSITIONING & EFFECTS */
+  position: relative;              /* For pseudo-element effects */
+  overflow: hidden;                /* Hide overflow for animations */
+  cursor: pointer;                 /* Pointer cursor */;
+  
+  /* SMOOTH TRANSITIONS */
+  transition: all 0.4s;
+  
+  /* COSMIC FLOATING ANIMATION */
+  animation: celestialFloat 6s ease-in-out infinite;
+  /* Applies gentle celestial floating animation:
+   - Duration: 6 seconds
+   - Easing: Smooth in and out for natural floating motion
+   - Repeats forever
+   - Creates subtle floating movement like a celestial body */
 }
 
 /**
- * BUTTON HOVER STATE STYLES (.btn:hover)
- * ===============================
+ * BUTTON TEXT POSITIONING (.btn > *)
+ * ==================================
+ * Ensures button text and content appear above all background animations.
+ * Ensure elements remain visible and clickable while the star particle animation
+ * (::before pseudo-element) plays underneath.
+ */
+.btn > * {
+  position: relative;
+  z-index: 2;                     /* Above all background effects */
+}
+
+/**
+ * COSMIC SHIMMER EFFECT (.btn::before)
+ * ====================================
+ * Creates moving star shimmer across the button surface
+ */
+.btn::before {
+  content: '';                    /* Required for pseudo-element to render */
+  position: absolute;             /* Position relative to .btn container */
+  top: 0px;
+  left: -100%;                    /* Start completely off-screen to the left */
+  width: 100%;                    /* Full width of button */
+  height: 100%;
+  
+  /* COSMIC SHIMMER GRADIENT */
+  background: linear-gradient(
+    90deg,                          /* Horizontal gradient direction */
+    transparent 0%,                 /* Invisible at start */
+    rgba(255, 255, 255, 0.1) 20%, /* Faint white shimmer begins */
+    rgba(255, 255, 255, 0.3) 50%, /* Peak shimmer intensity at center */
+    rgba(255, 255, 255, 0.1) 80%, /* Shimmer fades out */
+    transparent 100%                /* Invisible at end */
+  );
+  
+  /* SHIMMER ANIMATION */
+  animation: cosmicShimmer 3s ease-in-out infinite; /* Continuous shimmer sweep across button */
+  /* Continuous shimmer sweep across button:
+    - Duration: 3 seconds
+    - Easing: Smooth in and out
+    - Repeats forever
+    - Creates traveling light effect */
+  z-index: 1;                     /* Above button background, below text */
+}
+
+/**
+ * STELLAR PARTICLES EFFECT (.btn::after)
+ * ======================================
+ * Creates floating particles orbiting in the button background
+ */
+.btn::after {
+  content: '';                    /* Required for pseudo-element to render */
+  position: absolute;             /* Position relative to .btn container */
+  top: -50%;                      /* Extend 50% above button for particle overflow */
+  left: -50%;                     /* Extend 50% left of button for particle overflow */
+  width: 200%;                    /* Double width to create rotation around button */
+  height: 200%;                   /* Double height to create rotation around button */
+
+  /* PARTICLE FIELD */
+  background: 
+    radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.5) 1px, transparent 2px),
+    radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.4) 1px, transparent 2px);
+  
+  /* PARTICLE ROTATION */
+  animation: stellarRotation 12s linear infinite; /* Slow constant rotation of particle field */
+  /* Slow constant rotation of particle field:
+    - Duration: 12 seconds
+    - Easing: Linear for consistent rotation
+    - Repeats forever
+    - Creates orbiting cosmic star particle effect */
+  pointer-events: none;           /* Prevents particles from blocking button clicks */
+  z-index: 0;                     /* Behind all other elements */
+  opacity: 0.6;                   /* Semi-transparent for subtle effect */
+}
+
+/**
+ * HOVER STATE - TRANSFORMATION (.btn:hover)
+ * =========================================
  */
 .btn:hover {
-  /* ENHANCED BACKGROUND, GLOW, AND SCALE */
-  background: radial-gradient(circle,
-      #ffed4e 0%, #ffc107 50%, #ff9800 100%);   /* Brighter golden gradient on hover */
-  box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);      /* Stronger glow effect */
-  transform: scale(1.05);                             /* Slightly enlarges button by 5% */
+  /* ENHANCED COSMIC APPEARANCE */
+  border-color: #e5e7eb;           /* Slightly brighter gray on hover */
   
-  /* FASTER ANIMATION */
-  animation: celestialFloatHover 2s ease-in-out infinite;
-  /* Switches to faster hover animation:
-     - Duration: 2 seconds (from 4 seconds)
-     - More dynamic and intense floating effect */
+  /* INTENSIFIED BACKGROUND */
+  background: 
+    /* Enhanced star field (more prominent) */
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 1) 1.5px, transparent 1.5px),
+    radial-gradient(circle at 60% 80%, rgba(255, 255, 255, 0.8) 1.5px, transparent 1.5px),
+    radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.9) 1.5px, transparent 1.5px),
+    /* Enhanced cosmic gradient */
+    linear-gradient(135deg, 
+      #0f172a 0%,
+      #1e3a8a 25%,
+      #3b82f6 50%,
+      #1e3a8a 75%,
+      #0f172a 100%
+    );
+  
+  /* ENHANCED GLOW */
+  box-shadow:
+    0 0 100px rgba(159, 168, 218, 0.3);
+  
+  /* ENHANCED ELEVATION */
+  transform: translateY(-8px) scale(1.03);
+
+  /* FASTER FLOATING ANIMATION */
+  animation: celestialFloatHover 3s ease-in-out infinite;
+  /* Enhanced hover float animation:
+    - Duration: 3 seconds (faster than base)
+    - Easing: Smooth in and out
+    - Repeats forever
+    - Creates intensified floating on hover */
 }
 
 /**
- * CELESTIAL FLOATING ANIMATION (celestialFloat)
- * =============================================
- * Creates gentle up-and-down floating movement like a celestial body with glow
+ * CELESTIAL FLOAT - GENTLE FLOATING (.celestialFloat)
+ * ===================================================
  */
 @keyframes celestialFloat {
-  /* START & END STATE (0% and 100%) */
   0%, 100% {
-    transform: translateY(0px);                       /* Button at original vertical position */
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);    /* Standard glow intensity */
+    transform: translateY(0px) rotate(0deg);        /* Rest position - no lift, no rotation */
   }
   
-  /* MIDDLE STATE (50%) */
+  25% {
+    transform: translateY(-3px) rotate(0.5deg);     /* Quarter lift with slight right tilt */
+  }
+  
   50% {
-    transform: translateY(-4px) scale(1.02);          /* Move up 4px and slightly enlarge */
-    box-shadow: 0 5px 25px rgba(255, 215, 0, 0.5);  /* Enhanced standard glow intensity */
+    transform: translateY(-6px) rotate(0deg) scale(1.01); /* Peak lift with subtle scale */
+  }
+  
+  75% {
+    transform: translateY(-3px) rotate(-0.5deg);    /* Quarter lift with slight left tilt */
   }
 }
 
 /**
- * ENHANCED HOVER CELESTIAL FLOATING ANIMATION (celestialFloatHover)
- * =======================================================
- * More dynamic and intensive floating/glowing animation on hover
+ * ENHANCED HOVER FLOAT (.celestialFloatHover)
+ * ===========================================
  */
 @keyframes celestialFloatHover {
-  /* START & END STATE */
   0%, 100% {
-    transform: translateY(0px) scale(1.05);           /* Greater scale on hover */
-    box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);    /* Hover glow intensity */
+    transform: translateY(-8px) scale(1.03) rotate(0deg); /* Elevated rest position with scale */
   }
   
-  /* MIDDLE STATE */
+  33% {
+    transform: translateY(-12px) scale(1.04) rotate(1deg); /* Higher lift with right tilt */
+  }
+  
+  66% {
+    transform: translateY(-10px) scale(1.035) rotate(-1deg); /* Mid-lift with left tilt */
+  }
+}
+
+/**
+ * COSMIC SHIMMER (.cosmicShimmer)
+ * ===============================
+ */
+@keyframes cosmicShimmer {
+  0% {
+    left: -100%;                  /* Shimmer starts completely off-screen left */
+    opacity: 0;                   /* Invisible at start */
+  }
+  
   50% {
-    transform: translateY(-6px) scale(1.07);          /* Higher float (-6px) and more scale */
-    box-shadow: 0 8px 35px rgba(255, 215, 0, 0.7);  /* Enhanced hover glow intensity */
+    left: 0%;                     /* Shimmer reaches center of button */
+    opacity: 1;                   /* Full visibility at center */
+  }
+  
+  100% {
+    left: 100%;                   /* Shimmer exits completely off-screen right */
+    opacity: 0;                   /* Invisible at end */
+  }
+}
+
+/**
+ * STELLAR ROTATION (.stellarRotation)
+ * ===================================
+ */
+@keyframes stellarRotation {
+  from {
+    transform: rotate(0deg);      /* Start rotation - no turn */
+  }
+  to {
+    transform: rotate(360deg);    /* Complete full rotation - one full circle */
   }
 }

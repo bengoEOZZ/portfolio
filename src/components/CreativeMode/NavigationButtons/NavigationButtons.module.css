@@ -1,13 +1,7 @@
 /**
  * NAVIGATIONBUTTONS COMPONENT STYLES
  * ==================================
- * 
- * This file contains the styling for the NavigationButtons component used in the creative portfolio mode.
- * Features futuristic-based navigation buttons with wobble animations, hover effects, typography, etc.
  */
-
- /* Import ORBITRON Font */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
 /**
  * BUTTONS WRAPPER STYLES (.buttonsWrapper)
@@ -43,14 +37,14 @@
  */
 .btnIcon {
     /* SIZING */
-    width: 315px;                       /* Fixed width */
+    width: 350px;                       /* Fixed width */
     height: auto;                       /* Maintain aspect ratio */
     
     /* INTERACTIONS */
     cursor: pointer;                    /* Indicate clickable element */
     
     /* PERFORMANCE OPTIMIZATION */
-    will-change: transform, filter;     /* Optimize for hover scaling and glow effects */
+    will-change: transform, filter, opacity;     /* Optimize for hover scaling and glow effects */
 }
 
 /**
@@ -64,7 +58,7 @@
     transform: translateY(-50%);        /* Shift up by half of its own height for true centering */
     
     /* TYPOGRAPHY */
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: bold; 
     font-family: 'Orbitron', sans-serif;
     
@@ -82,36 +76,42 @@
  * assigning wobble patterns between odd/even buttons for opposite synchronized movement.
  */
 
-/* First and third buttons - wobble left */
-.btn:nth-child(1),
-.btn:nth-child(3) {
-    animation: wobble-left 3s infinite;
-    /* Applies left wobble animation:
-       - Duration: 3 seconds
-       - Repeats forever */
+/* BUTTON 1 (ABOUT) - Wobble left with hologram flicker */
+.btn:nth-child(1) {
+    animation: wobble-left 3s infinite, hologramFlicker 20s infinite 8s;
 }
 
-/* Second and fourth buttons - wobble right */
-.btn:nth-child(2),
+/* BUTTON 2 (CODING) - Wobble right with hologram flicker */
+.btn:nth-child(2) {
+    animation: wobble-right 3s infinite, hologramFlicker 20s infinite 8.5s;
+}
+
+/* BUTTON 3 (PROJECTS) - Wobble left with hologram flicker */
+.btn:nth-child(3) {
+    animation: wobble-left 3s infinite, hologramFlicker 20s infinite 8.25s;
+}
+
+/* BUTTON 4 (CONTACT) - Wobble right with hologram flicker */
 .btn:nth-child(4) {
-    animation: wobble-right 3s infinite;
-    /* Applies right wobble animation:
-       - Duration: 3 seconds
-       - Repeats forever
-       - Creates alternating movement pattern */
+    animation: wobble-right 3s infinite, hologramFlicker 20s infinite 8.75s;
 }
 
 /**
- * HOVER STATE EFFECTS (.btn:hover .btnIcon)
- * =========================================
+ * ENHANCED HOVER STATE (.btn:hover .btnIcon)
+ * ==========================================
  */
 .btn:hover .btnIcon {
     /* SCALING EFFECT */
-    transform: scale(1.1);              /* Slight zoom on hover - enlarges by 10% */
+    transform: scale(1.1);
     
-    /* GLOW EFFECTS */
-    filter: drop-shadow(0 0 20px rgba(135, 206, 250, 0.8))      /* Light blue glow */
-            drop-shadow(0 0 30px rgba(70, 130, 180, 0.6));      /* Deeper blue glow */
+    /* ENHANCED GLOW EFFECT */
+    filter: 
+        drop-shadow(0 0 20px rgba(135, 206, 250, 0.8))
+        drop-shadow(0 0 30px rgba(70, 130, 180, 0.6))
+        drop-shadow(0 0 40px rgba(0, 255, 255, 0.4));
+    
+    /* GLITCH ON HOVER */
+    animation: colourGlitch 3s infinite;
 }
 
 /**
@@ -172,4 +172,71 @@
         /* Rotate slightly to the left:
            - Creates opposite oscillating motion to wobble-left */
     }
+}
+
+/**
+ * HOLOGRAM FLICKER ANIMATION
+ * ==========================
+ * Subtle and brief holographic flicker with long quiet periods
+ */
+@keyframes hologramFlicker {
+    /* LONG NORMAL STATE - Most of the time */
+    0%, 10%, 30%, 50%, 70%, 90%, 100% { 
+        opacity: 1;
+        filter: none;
+    }
+    /* QUICK FLICKER 1 - Brief interference */
+    5% { opacity: 0.7; filter: blur(1px) brightness(1.8) saturate(2.5); }
+    7% { opacity: 0.9; filter: blur(0.5px) contrast(1.6) brightness(1.3); }
+    8% { opacity: 0.6; filter: blur(2px) saturate(3) brightness(1.5); }
+    
+    /* QUICK FLICKER 2 - Another brief glitch */
+    35% { opacity: 0.8; filter: blur(0.8px) brightness(2) saturate(2); }
+    37% { opacity: 0.5; filter: blur(1.5px) contrast(2.5) brightness(0.9); }
+    38% { opacity: 0.9; filter: blur(0.3px) saturate(4) brightness(1.6); }
+    
+    /* QUICK FLICKER 3 - Final brief interference */
+    75% { opacity: 0.4; filter: blur(2.5px) brightness(2.5) saturate(1.5); }
+    77% { opacity: 0.8; filter: blur(1px) contrast(3) brightness(0.8); }
+    78% { opacity: 0.7; filter: blur(1.2px) saturate(5) brightness(1.8); }
+}
+
+/**
+ * COLOUR GLITCH ANIMATION
+ * =======================
+ * This animation creates an intensive dynamic color-shifting effect on hover
+ */
+@keyframes colourGlitch {
+    /* BASELINE STATE - Cool Blue Holographic Glow */
+    0% { filter: drop-shadow(0 0 20px rgba(135, 206, 250, 0.8)) drop-shadow(0 0 30px rgba(70, 130, 180, 0.6)) drop-shadow(0 0 40px rgba(0, 255, 255, 0.4)); }
+    
+    /* PHASE 1 - RED/CYAN CONTRAST */
+    10% { filter: drop-shadow(0 0 25px rgba(255, 50, 50, 0.8)) drop-shadow(0 0 35px rgba(50, 200, 255, 0.7)) contrast(1.4) saturate(2); }
+    
+    /* PHASE 2 - YELLOW/PURPLE CONTRAST */
+    20% { filter: drop-shadow(0 0 28px rgba(255, 200, 0, 0.8)) drop-shadow(0 0 38px rgba(180, 50, 255, 0.7)) saturate(2.2) brightness(1.2); }
+
+    /* PHASE 3 - GREEN/MAGENTA CONTRAST */
+    30% { filter: drop-shadow(0 0 30px rgba(50, 255, 100, 0.8)) drop-shadow(0 0 40px rgba(255, 50, 200, 0.7)) brightness(1.3) saturate(2.5); }
+
+    /* PHASE 4 - ORANGE/BLUE CONTRAST */
+    40% { filter: drop-shadow(0 0 32px rgba(255, 140, 0, 0.8)) drop-shadow(0 0 42px rgba(0, 100, 255, 0.8)) contrast(1.6) brightness(1.2) saturate(2.3); }
+
+    /* PHASE 5 - PINK/LIME CONTRAST */
+    50% { filter: drop-shadow(0 0 35px rgba(255, 20, 147, 0.8)) drop-shadow(0 0 45px rgba(100, 255, 100, 0.8)) hue-rotate(15deg) saturate(2.8); }
+
+    /* PHASE 6 - VIOLET/GOLD CONTRAST */
+    60% { filter: drop-shadow(0 0 30px rgba(150, 50, 255, 0.8)) drop-shadow(0 0 40px rgba(255, 215, 0, 0.8)) brightness(1.3) contrast(1.5) saturate(2.4); }
+
+    /* PHASE 7 - GREEN/BROWN CONTRAST */
+    70% { filter: drop-shadow(0 0 33px rgba(0, 255, 200, 0.8)) drop-shadow(0 0 43px rgba(255, 100, 80, 0.8)) saturate(2.6) brightness(1.2); }
+
+    /* PHASE 8 - GREEN/PURPLE/PINK CONTRAST */
+    80% { filter: drop-shadow(0 0 28px rgba(100, 255, 150, 0.8)) drop-shadow(0 0 38px rgba(255, 100, 150, 0.8)); }
+
+    /* PHASE 9 - BLUE/ORANGE/BROWN CONTRAST */
+    90% { filter: drop-shadow(0 0 31px rgba(100, 200, 255, 0.8)) drop-shadow(0 0 41px rgba(255, 100, 50, 0.8)) brightness(1.3) saturate(2.6); }
+
+    /* RETURN TO BASELINE - Cycle Completion */
+    100% { filter: drop-shadow(0 0 20px rgba(135, 206, 250, 0.8)) drop-shadow(0 0 30px rgba(70, 130, 180, 0.6)) drop-shadow(0 0 40px rgba(0, 255, 255, 0.4)); }
 }

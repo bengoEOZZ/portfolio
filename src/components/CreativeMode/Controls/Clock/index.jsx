@@ -1,7 +1,6 @@
 /**
  * CLOCK COMPONENT
  * ===============
- *
  * Interactive analog clock with digital time display.
  * Handles time manipulation through click-and-hold clock hand.
  *

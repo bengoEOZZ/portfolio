@@ -1,7 +1,6 @@
 /**
  * SUN COMPONENT
  * =============
- * 
  * Sun component that renders both the sun image and its dynamic ray animations.
  */
 

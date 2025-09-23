@@ -1,0 +1,102 @@
+/**
+ * LUXURYBUTTON COMPONENT STYLES
+ * =============================
+ * 
+ * Sophisticated button styling with golden theme and elegant animations.
+ * Features slide-in background effects and premium hover interactions.
+ */
+
+/**
+ * MAIN BUTTON STYLES (.btn)
+ * =========================
+ * Core styling for the luxury button with golden theme.
+ */
+.btn {
+  /* TYPOGRAPHY */
+  font-family: 'Georgia', 'Times New Roman', serif; /* Elegant serif font */
+  font-size: 1.2rem;                  /* Readable size */
+  font-weight: 600;                   /* Semi-bold weight */
+  text-transform: uppercase;          /* Uppercase styling */
+  letter-spacing: 2px;                /* Spaced letters */
+  
+  /* LAYOUT */
+  display: inline-block;              /* Inline block positioning */
+  vertical-align: -10px;              /* Baseline alignment */
+  padding: 0px 10px;                  /* Internal spacing */
+  
+  /* APPEARANCE */
+  color: #d4af37;                     /* Golden text */
+  background: linear-gradient(135deg, #1a1a1a, #2c2c2c); /* Dark background */
+  border: 3px solid #d4af37;          /* Golden border */
+  border-radius: 6px;                 /* Rounded corners */
+  
+  /* INTERACTIONS */
+  position: relative;                 /* For pseudo-elements */
+  overflow: hidden;                   /* Hide slide effect */
+  cursor: pointer;                    /* Interactive cursor */
+  text-decoration: none;              /* Remove underline */
+  transition: all 0.4s;               /* Smooth transitions */
+  
+  /* ACCESSIBILITY */
+  user-select: none;                  /* Prevent text selection */
+}
+
+/**
+ * BUTTON SLIDE BACKGROUND (.btn::before)
+ * ======================================
+ * Golden background that slides in from left on hover
+ * creating an elegant fill effect.
+ */
+.btn::before {
+  content: '';                        /* Required for pseudo-element */
+  position: absolute;                 /* Absolute positioning */
+  top: 0;                            /* Full coverage */
+  left: -100%;                       /* Start off-screen */
+  width: 100%;                       /* Full width */
+  height: 100%;                      /* Full height */
+  
+  /* GOLDEN BACKGROUND */
+  background: linear-gradient(135deg, #d4af37, #b8941f); /* Golden gradient */
+  
+  /* ANIMATION */
+  transition: left 0.4s ease;        /* Smooth slide transition */
+  z-index: -1;                       /* Behind text */
+}
+
+/**
+ * BUTTON SLIDE ACTIVATION
+ * =======================
+ */
+.btn:hover::before {
+  left: 0;                           /* Slide in to fill button */
+}
+
+/**
+ * BUTTON HOVER EFFECTS
+ * ====================
+ * Text color change, scaling, and enhanced letter spacing on hover.
+ */
+.btn:hover {
+  color: #1a1a1a;                    /* Dark text over golden background */
+  transform: translateY(-5px) scale(1.03); /* Lift and scale */
+  letter-spacing: 3px;               /* Increased letter spacing */
+}
+
+/**
+ * FOCUS STYLES
+ * ============
+ * Accessibility styling for keyboard navigation.
+ */
+.btn:focus {
+  outline: 2px solid #d4af37;        /* Golden focus outline */
+  outline-offset: 2px;               /* Offset from element */
+}
+
+/**
+ * ACTIVE STATE
+ * ============
+ * Styling when button is being pressed.
+ */
+.btn:active {
+  transform: translateY(-2px) scale(1.01); /* Reduced movement when pressed */
+}

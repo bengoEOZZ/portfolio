@@ -1,7 +1,6 @@
 /**
  * USEORBITANIMATION HOOK
  * ======================
- * 
  * Custom React hook that manages the complex orbital animation for navigation buttons.
  * Creates smooth elliptical motion with z-index changes and dynamic positioning.
  * 
@@ -20,17 +19,17 @@ import { useEffect, useRef } from 'react';
  */
 const CONFIG = {
     // Orbital dimensions
-    HORIZONTAL_RADIUS: 900,
+    HORIZONTAL_RADIUS: 850,
     VERTICAL_RADIUS: 600,
     
     // Animation timing
     ROTATION_SPEED: 0.01,                           /* Rotations per frame (radians) */
-    INITIAL_DELAY: 1000,                            /* Delay before outward transition (milliseconds) */
-    Z_INDEX_DELAY: 3500,                            /* Delay before enabling depth effects (milliseconds) */
+    INITIAL_DELAY: 8000,                            /* Delay before outward transition (milliseconds) */
+    Z_INDEX_DELAY: 11000,                           /* Delay before enabling depth effects (milliseconds) */
     
     // Depth effects - DELAYED BEHIND ZONE
     BEHIND_TOLERANCE: 725,              /* Behind threshold adjustment */
-    FRONT_TOLERANCE: 200,               /* Front threshold adjustment */
+    FRONT_TOLERANCE: 275,               /* Front threshold adjustment */
     Z_INDEX: {
         BEHIND: 4,
         FRONT: 15
@@ -189,11 +188,11 @@ function useOrbitAnimation(buttonsRef, buttonClassName) {
                         if (y < depthThresholds.behind) {
                             /* Button is in upper orbital region - appears behind other elements */
                             newZIndex = CONFIG.Z_INDEX.BEHIND;
-                            button.style.backgroundColor = 'rgba(255, 0, 0, 0.3)'; // RED = BEHIND
+                            //button.style.backgroundColor = 'rgba(255, 0, 0, 0.3)'; // RED = BEHIND
                         } else if (y > depthThresholds.front) {
                             /* Button is in lower orbital region - appears in front of other elements */
                             newZIndex = CONFIG.Z_INDEX.FRONT;
-                            button.style.backgroundColor = 'rgba(0, 255, 0, 0.3)'; // GREEN = FRONT
+                            //button.style.backgroundColor = 'rgba(0, 255, 0, 0.3)'; // GREEN = FRONT
                         }
 
                         /* Only update z-index if a change is detected */
@@ -211,11 +210,11 @@ function useOrbitAnimation(buttonsRef, buttonClassName) {
                 animationRef.current = requestAnimationFrame(animateButtons);
             }
 
-            animateButtons();   // Start the entire animation after an intial delay (1s)
+            animateButtons();   // Start the entire animation after an intial delay (8s)
         }, CONFIG.INITIAL_DELAY);
         
         const zIndexTimeout = setTimeout(() => {
-            forceZIndex = false;    // Only allow z-index changes after well after starting orbital motion
+            forceZIndex = false;    // Only allow z-index changes after well after initial motion (11s)
         }, CONFIG.Z_INDEX_DELAY);
 
         /* 

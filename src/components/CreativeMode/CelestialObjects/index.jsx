@@ -1,15 +1,14 @@
 /**
  * CELESTIALOBJECTS COMPONENT
  * ==========================
- * 
  * Direct orchestrator for all celestial visual elements.
  * Contains Earth, Moon, Sun, and other planets.
  * 
  * COMPONENT ARCHITECTURE:
  * - Earth: Main Earth with seasonal overlays and atmospheric effects
  * - Moon: Day/night versions of personal moon representation
- * - Sun: Sun rendering with potential for future enhancements
- * - OtherPlanets: Mercury and Venus positioning
+ * - Sun: Sun and Sun Rays rendering
+ * - OtherPlanets: Mercury and Venus
  */
 
 // DEPENDENCIES
@@ -25,8 +24,7 @@ import OtherPlanets from './OtherPlanets';
  */
 const CelestialObjects = memo(({ 
     currentHour, 
-    isNightTime, 
-    rotation,
+    isNightTime,
     season,
     activeControl
 }) => {
@@ -41,7 +39,7 @@ const CelestialObjects = memo(({
             
             {/* PERSONAL MOON REPRESENTATION */}
             <Moon isNightTime={isNightTime} />
-            
+
             {/* SUN WITH INTEGRATED RAYS */}
             <Sun currentHour={currentHour} />
             

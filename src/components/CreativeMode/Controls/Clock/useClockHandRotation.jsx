@@ -1,7 +1,6 @@
 /**
  * USECELESTIALTIME HOOK
  * =====================
- * 
  * Custom React hook that manages interactive clock hand rotation mechanics for the celestial
  * clock time interface. Provides system time synchronization at component initialization,
  * and then tracks continuous rotation during user interaction.

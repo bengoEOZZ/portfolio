@@ -1,7 +1,6 @@
 /**
  * APP.JSX - ROOT APPLICATION COMPONENT
  * ====================================
- * 
  * This is the main entry point and routing controller for the portfolio application.
  * It provides a landing page where users can choose between different portfolio viewing modes
  * and handles navigation between these modes using React Router.
@@ -17,8 +16,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import classes from './App.module.css';
 import CreativeMode from './components/CreativeMode';
+import ClassicMode from './components/ClassicMode';
 import ButtonClassic from './components/Home/ButtonClassic';
 import ButtonCreative from './components/Home/ButtonCreative';
+import CodeRemarks from './components/Home/CodeRemarks';
 
 /**
  * APP COMPONENT
@@ -36,10 +37,11 @@ function App() {
                             <ButtonClassic to="/classic">Classic</ButtonClassic>
                             <ButtonCreative to="/creative">Creative</ButtonCreative>
                         </div>
+                        <CodeRemarks />
                     </div>
                 } />
                 <Route path="/creative" element={<CreativeMode />} />
-                <Route path="/classic" element={<div>Classic Mode Coming Soon</div>} />
+                <Route path="/classic" element={<ClassicMode />} />
             </Routes>
         </Router>
     );

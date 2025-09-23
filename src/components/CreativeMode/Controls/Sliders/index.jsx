@@ -1,7 +1,6 @@
 /**
  * SLIDERS COMPONENT
  * =================
- *
  * Control sliders for season and weather manipulation.
  *
  * FEATURES:

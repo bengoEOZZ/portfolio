@@ -1,7 +1,6 @@
 /**
  * USESUNRAYSANIMATION HOOK - OPTIMIZED VERSION
  * ============================================
- * 
  * Custom React hook that manages complex time-based sun ray animations that change throughout
  * the celestial day cycle. Creates dynamic, staggered ray patterns corresponding to morning,
  * afternoon, and evening periods based on the sun's rotation.
@@ -12,9 +11,10 @@
  * 4. Reset Animation: Reset animation when time periods change (morning→afternoon→evening)
  * 
  * TIME PERIOD SYSTEM:
- * - MORNING (0-12h): Gentle, short patterns with linear progression (104 total rays)
+ * - MORNING (6-12h): Gentle, short patterns with linear progression (104 total rays)
  * - AFTERNOON (13-18h): Dense, vibrant patterns for peak intensity (323 total rays)
  * - EVENING (19-23h): Dramatic spacing with 3x gaps for sunset effect (107 rays, spaced)
+ * - DAWN (0-5h): Minimal starlight effect (11 total rays)
  * 
  * COORDINATE SYSTEM:
  * - Uses SVG polygon elements with IDs formatted as "ray{1-5}-{1-150}"
@@ -31,6 +31,13 @@ import { useEffect, useRef, useMemo } from 'react';
 
 /* Ray pattern configurations for each time period */
 const RAY_CONFIGURATIONS = {
+    DAWN: {    // Minimal starlight effect
+        ray1: { length: 1, pattern: i => 8 },
+        ray2: { length: 3, pattern: i => i * 20 + 5 }, 
+        ray3: { length: 5, pattern: i => i * 15 + 10 },
+        ray4: { length: 4, pattern: i => i * 18 + 3 },
+        ray5: { length: 2, pattern: i => i * 25 + 12 }
+    },
     MORNING: {    // Gentle glow patterns
         ray1: { length: 4, pattern: i => i + 1 },
         ray2: { length: 15, pattern: i => i + 1 },
@@ -71,20 +78,20 @@ const ANIMATION_CONFIG = {
  * ANIMATION STEP
  * ==============
  * ANIMATION_STEP = 1 / (FADE_DURATION / (1000 / ANIMATION_FPS))
- * - FADE_DURATION: total fade time in ms (e.g., 1000ms)
- * - ANIMATION_FPS: frames per second (e.g., 60)
- * - (1000 / ANIMATION_FPS): ms per frame
- * - (FADE_DURATION / ms per frame): total frames in fade
  * - 1 / total frames: opacity increment per frame
+ *      - (FADE_DURATION / ms per frame): total frames in fade
+ *          - FADE_DURATION: total fade time in ms (e.g., 1000ms)
+ *          - (1000 / ANIMATION_FPS): ms per frame
+ *              - ANIMATION_FPS: frames per second (e.g., 60)
  */
 const ANIMATION_STEP = 1 / (ANIMATION_CONFIG.FADE_DURATION / (1000 / ANIMATION_CONFIG.ANIMATION_FPS));
 
 /* Time period lookup table */
 const TIME_PERIODS = {
-    0: 'MORNING', 1: 'MORNING', 2: 'MORNING', 3: 'MORNING', 4: 'MORNING', 5: 'MORNING',
-    6: 'MORNING', 7: 'MORNING', 8: 'MORNING', 9: 'MORNING', 10: 'MORNING', 11: 'MORNING', 12: 'MORNING',
-    13: 'AFTERNOON', 14: 'AFTERNOON', 15: 'AFTERNOON', 16: 'AFTERNOON', 17: 'AFTERNOON', 18: 'AFTERNOON',
-    19: 'EVENING', 20: 'EVENING', 21: 'EVENING', 22: 'EVENING', 23: 'EVENING'
+    0: 'DAWN', 1: 'DAWN', 2: 'DAWN', 3: 'DAWN', 4: 'DAWN', 5: 'DAWN',
+    6: 'MORNING', 7: 'MORNING', 8: 'MORNING', 9: 'MORNING', 10: 'MORNING', 11: 'MORNING',
+    12: 'AFTERNOON', 13: 'AFTERNOON', 14: 'AFTERNOON', 15: 'AFTERNOON', 16: 'AFTERNOON', 17: 'AFTERNOON',
+    18: 'EVENING', 19: 'EVENING', 20: 'EVENING', 21: 'EVENING', 22: 'EVENING', 23: 'EVENING'
 };
 
 /* Pre-computed ray patterns */
@@ -112,6 +119,7 @@ function useSunRaysAnimation(currentHour) {
     const prevTimePeriodRef = useRef(null);             // Previous time period tracker
     const rafRef = useRef(null);                        // RequestAnimationFrame ID
     const isAnimatingRef = useRef(false);               // Animation loop status flag
+    const hasInitializedRef = useRef(false);            // Track if hook has been initialized
 
     /**
      * OPTIMIZED TIME PERIOD DETECTION
@@ -340,14 +348,23 @@ function useSunRaysAnimation(currentHour) {
             resetAnimations();
         }
         
-        /* Setup animations using optimized caching and pre-computed patterns */
-        setupAnimations(currentTimePeriod);
+        /* Determine if this is the initial load or a boundary crossing */
+        const isInitialLoad = !hasInitializedRef.current;
+        const delay = isInitialLoad ? 4800 : 0; // 4.8s delay (300ms after CSS animation ends)
+
+        /* Setup animations with conditional delay */
+        const delayTimeout = setTimeout(() => {
+            setupAnimations(currentTimePeriod);
+            /* Mark as initialized AFTER first animation setup */
+            hasInitializedRef.current = true;
+        }, delay);
 
         /* 
          * CLEANUP FUNCTION
          * ================
          */
         return () => {
+            clearTimeout(delayTimeout); // Clear the delay timeout
             if (rafRef.current) {
                 cancelAnimationFrame(rafRef.current);   // Stop animation loop
             }

@@ -1,13 +1,19 @@
 /**
  * EARTH COMPONENT STYLES
  * ======================
+ *
+ * This file contains the styling for the Earth component used in the creative celestial objects:
+ * - Meteor-style entrance sequence with cool blazing colors
+ * - Continuous planetary rotation and floating motion
  */
 
 /**
- * BASE EARTH STYLES (.earth)
- * ==========================
+ * FLOATING CONTAINER (.earthFloatContainer)
+ * =========================================
+ * Primary container for Earth component positioning and entrance animation.
+ * Handles meteor strike trajectory and ongoing floating motion.
  */
-.earth {
+.earthFloatContainer {
     /* LAYOUT & POSITIONING */
     position: fixed;
     bottom: -50%;
@@ -18,16 +24,44 @@
     height: auto;
     
     /* LAYERING */
-    z-index: 10;
-    
-    /* PERFORMANCE OPTIMIZATION */
-    will-change: transform;
+    z-index: 10;            /* Above background, below navigation elements */
     
     /* ANIMATIONS */
-    animation: celestialFadeIn 2s ease-in-out, earthRotation 200s linear infinite;
+    animation: 
+        earthMeteorEntry 3.5s forwards, 
+        earthFloat 6s ease-in-out infinite 3.5s;
     /* Applies dual animations:
-       - celestialFadeIn: 2s smooth entry with upward movement
-       - earthRotation: 200s continuous planetary rotation cycle */
+     * - earthMeteorEntry: Blazing meteor entrance with trajectory and visual effects (3.5s forwards)
+     * - earthFloat: Gentle floating motion starting after meteor entry completes (6s infinite, 3.5s delay) */
+    
+    /* PERFORMANCE OPTIMIZATION */
+    will-change: transform, filter;
+}
+
+/**
+ * BASE EARTH STYLES (.earth)
+ * ==========================
+ * Direct Earth svg image component.
+ * Handles spin entry animation and ongoing rotation.
+ */
+.earth {
+    /* LAYOUT & POSITIONING */
+    position: relative;
+    
+    /* SIZING */
+    width: 100%;
+    height: auto;
+    
+    /* PERFORMANCE OPTIMIZATION */
+    will-change: transform, filter;
+
+    /* ANIMATIONS */
+    animation: 
+        earthSpinEntry 2s,
+        earthRotation 200s linear infinite 2s;
+    /* Applies dual animations:
+     * - earthSpinEntry: Planet formation with scaling and cooling effects (2s)
+     * - earthRotation: Continuous planetary rotation starting after formation (200s infinite, 2s delay) */
 }
 
 /**
@@ -35,51 +69,153 @@
  * =====================================
  */
 .earthSeason {
-    composes: earth;         /* Inherits all base earth properties and animations */
+    /* LAYOUT & POSITIONING */
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    /* SIZING */
+    width: 100%;
+    height: auto;
     
     /* APPEARANCE */
-    opacity: 0.5;           /* Semi-transparent overlay for seasonal atmospheric effects */
+    opacity: 0.5;
+    
+    /* PERFORMANCE OPTIMIZATION */
+    will-change: transform, filter;
     
     /* ANIMATIONS */
-    animation: seasonalEarthFadeIn 2s ease-in-out, earthRotation 200s linear infinite;
+    animation:
+        earthSeasonFadeIn 2s forwards,
+        earthRotation 200s linear infinite;
     /* Applies dual animations:
-       - seasonalEarthFadeIn: 2s fade to 50% opacity for subtle seasonal layer
-       - earthRotation: Synchronized rotation with base earth for unified motion */
+     * - earthSeasonFadeIn: Fades in seasonal overlay (0.5s)
+     * - earthRotation: Continuous rotation (200s infinite) */
 }
 
 /**
- * CELESTIAL ENTRY ANIMATION
- * =========================
+ * EARTH METEOR STRIKE ENTRANCE
+ * ============================
+ * Earth appears like a blazing meteor with cool colors.
+ * Simulates a sort of cooling from scorching hot to regular planet colours.
  */
-@keyframes celestialFadeIn {
-    from { 
-        opacity: 0;                    /* Starts completely transparent */
+@keyframes earthMeteorEntry {
+
+    /* ENTRY ANIMATION */
+    0% {          /* Starts off-screen - very bright */
+        opacity: 0.9;
+        transform: translateX(-150vw) translateY(-75vh) rotate(-30deg) scale(0.5);
+        filter: 
+            brightness(17.5) blur(90px) hue-rotate(150deg) saturate(10)
+            drop-shadow(0 0 120px #ff6500)
+            drop-shadow(0 0 250px #ff8000);
     }
-    to { 
-        opacity: 1;                    /* Ends fully visible */
+    35% {          /* Midway through entry - bright */
+        opacity: 1;
+        transform: translateX(-50vw) translateY(-25vh) rotate(-10deg) scale(0.8);
+        filter: brightness(12) blur(60px) hue-rotate(120deg) saturate(6)
+            drop-shadow(0 0 100px #ff8500)
+            drop-shadow(0 0 200px #ffa000);
+    }
+    55% {        /* Just before settling - slightly overshoot position */
+        transform: translateX(20px) translateY(40px) rotate(5deg) scale(1.15);
+        filter: brightness(5) blur(30px) hue-rotate(60deg) saturate(2.7)
+            drop-shadow(0 0 80px #ffaa00)
+            drop-shadow(0 0 150px #ffcc00);
+    }
+
+    /* REBOUND & SETTLE */
+    70% {       /* Settling into position - slight rebound effect */
+        transform: translateX(-15px) translateY(-20px) rotate(-2deg) scale(1.05);
+        filter: brightness(3) blur(15px) hue-rotate(30deg) saturate(1.56)
+            drop-shadow(0 0 60px #ffcc33)
+            drop-shadow(0 0 100px #ffdd66);
+    }
+    85% {       /* Another slight rebound effect */
+        transform: translateX(8px) translateY(10px) rotate(1deg) scale(1.02);
+        filter: brightness(1.8) blur(8px) hue-rotate(10deg) saturate(1.21)
+            drop-shadow(0 0 40px #ffdd99)
+            drop-shadow(0 0 70px #ffeeaa);
+    }
+    100% {      /* Final position - settle into normal Earth appearance */
+        transform: translateX(0) translateY(0) rotate(0deg) scale(1);
+        filter: brightness(1) blur(0px) hue-rotate(0deg) saturate(1)
+            drop-shadow(0 0 0px transparent);
     }
 }
 
 /**
- * SEASONAL EARTH ENTRY ANIMATION - OVERLAY FADE-IN
- * ================================================
+ * EARTH ENTRY ANIMATION
+ * =====================
+ * Handles the scale and rotation of the Earth (along with a bit of contrast and blur) during entry.
  */
-@keyframes seasonalEarthFadeIn {
-    from { 
-        opacity: 0;                    /* Starts completely transparent */
-        transform: translateY(20px);   /* Starts 20px below final position */
+@keyframes earthSpinEntry {
+    0% {        /* Tiny molten seed (0.1x scale, 0° rotation) */
+        transform: rotate(0deg) scale(0.1);
+        filter: 
+            blur(200px) 
+            hue-rotate(180deg)
+            contrast(2);
+        opacity: 0.3;
     }
-    to { 
-        opacity: 0.5;                  /* Ends at 50% opacity for overlay effect */
-        transform: translateY(0);      /* Ends at natural position */
+    10% {       /* Small growth (0.3x scale, 180° - half rotation) */
+        transform: rotate(180deg) scale(0.3);
+        filter: blur(150px) hue-rotate(150deg) contrast(1.8);
+        opacity: 0.5;
+    }
+    25% {       /* Rapid expansion (0.6x scale, 540° - 1.5 rotations) */
+    transform: rotate(540deg) scale(0.6);
+        filter: blur(100px) hue-rotate(90deg) contrast(1.5);
+        opacity: 0.8;
+    }
+    45% {       /* Near full size (0.85x scale, 1080° - 3 full rotations) */
+        transform: rotate(1080deg) scale(0.85);
+        filter: blur(60px) hue-rotate(45deg) contrast(1.3);
+        opacity: 0.95;
+    }
+    65% {       /* Slight overshoot (1.05x scale, 1440° - 4 rotations) */
+        transform: rotate(1440deg) scale(1.05);
+        filter: blur(30px) hue-rotate(20deg) contrast(1.1);
+        opacity: 1;
+    }
+    80% {       /* Small rebound (1.02x scale, 1620° - 4.5 rotations) */
+        transform: rotate(1620deg) scale(1.02);
+        filter: blur(15px) hue-rotate(10deg) contrast(1.05);
+    }
+    90% {       /* Fine adjustment (1.01x scale, 1710° - 4.75 rotations) */
+        transform: rotate(1710deg) scale(1.01);
+        filter: blur(5px) hue-rotate(5deg) contrast(1.02);
+    }
+    100% {      /* Perfect size & position (1x scale, 1800° - 5 full rotations) */
+        transform: rotate(1800deg) scale(1);
+        filter: blur(0px) hue-rotate(0deg) contrast(1);
     }
 }
 
 /**
- * EARTH ROTATION ANIMATION - CONTINUOUS PLANETARY SPIN
- * ====================================================
+ * EARTH ROTATION ANIMATION
+ * ========================
  */
 @keyframes earthRotation {
     0% { transform: rotate(0deg); }     /* Starts at natural rotation */
     100% { transform: rotate(360deg); } /* Completes full planetary rotation */
+}
+
+/**
+ * EARTH FLOATING ANIMATION
+ * ========================
+ * Applied only to the container for clean separation
+ */
+@keyframes earthFloat {
+    0%, 100% { transform: translateY(0px); }      /* Base position */
+    50% { transform: translateY(-15px); }         /* Floats up 15px at midpoint */
+}
+
+/**
+ * EARTH SEASON FADE IN
+ * ====================
+ */
+@keyframes earthSeasonFadeIn {
+    0% { opacity: 0; }                    /* Fully transparent */
+    100% { opacity: 0.5; }                  /* Fully opaque */
 }

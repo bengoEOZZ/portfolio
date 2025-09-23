@@ -1,39 +1,108 @@
 /**
  * CREATIVEMODE COMPONENT STYLES
- * ==============================
- * 
- * This file contains the main styling for the CreativeMode background component.
+ * =============================
+ * This file contains the styling for the CreativeMode background component.
+ * Features cosmic gradients, multi-layer 3D stardust particle systems, atmospheric depth effects, etc.,
  */
 
- /**
+/* Import ORBITRON Font */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+/**
  * MAIN BODY CONTAINER (.body)
  * ===========================
+ * Primary background container with layered cosmic gradients and deep space atmosphere.
  */
 .body {
-    /* BACKGROUND STYLING */
-    background: radial-gradient(circle at 50% 50%,
-        #0d1b2a, #1a1a2e, #000000); /* Creates deep space gradient */
-    
-    /* LAYOUT CONTROL */
-    overflow: hidden; /* Prevents scrollbars and maintains immersive full-screen experience */
+    /* BACKGROUND COMPOSITION */
+    background:
+        /* Base darkening overlay */
+        linear-gradient(rgba(0, 0, 0, 0.5) 0%,
+            rgba(0, 0, 0, 0.5) 100%),
+        /* Corner darkening radial gradient - focuses attention on center */
+        radial-gradient(ellipse at center, 
+            transparent 0%, 
+            transparent 30%, 
+            rgba(0, 0, 0, 0.4) 60%, 
+            rgba(0, 0, 0, 0.4) 100%),
+        /* Base gradient with prominent blue streak in middle */
+        linear-gradient(315deg, #1a0a2e 0%, #2d1b3d 20%, #3c1361 25%, 
+            #3b82ff 40%, #5b9cff 50%, #3b82ff 60%, #3c1361 75%, #1f0b2e 85%, #0a0a0f 100%);
+
+    /* LAYOUT & PERFORMANCE */
+    overflow: hidden;                    /* Prevents content spillover */
+    transform: translateZ(0);            /* GPU acceleration */
+    backface-visibility: hidden;         /* Optimizes 3D transforms */
 }
 
 /**
- * CONTENT CONTAINER (.container)
- * ==============================
- * Container for all celestial components and also displays the starry atmosphere background overlay
+ * CONTENT CONTAINER WITH ANIMATED STARDUST (.container)
+ * =====================================================
+ * Main content container featuring multi-layer animated stardust particle system.
+ * Uses two overlapping stardust layers with different sizes and drift patterns to create
+ * realistic depth and atmospheric movement.
  */
 .container {  
-    /* VIEWPORT DIMENSIONS */
-    height: 100vh;                   /* Full viewport height */
-    width: 100vw;                    /* Full viewport width */
+    /* LAYOUT & SIZING */
+    height: 100vh;                       /* Full viewport height */
+    width: 100vw;                        /* Full viewport width */
     
-    /* STARRY BACKGROUND TEXTURE: https://www.transparenttextures.com/patterns/stardust.png */
-    background: url('../../assets/CreativeMode/stardust.png');   /* Stored in assets */
+    /* MULTI-LAYER STARDUST BACKGROUND SYSTEM */
+    background: 
+        url('../../assets/CreativeMode/stardust.png'),     /* Layer 1: Primary stardust field */
+        url('../../assets/CreativeMode/stardust.png');     /* Layer 2: Secondary stardust field */
+    
+    /* STARDUST LAYER SIZING */
+    background-size: 
+        400px 400px,                     /* Layer 1: Medium-density particles */
+        200px 200px;                     /* Layer 2: High-density particles */
+    
+    /* STARDUST LAYER POSITIONING */
+    background-position: 
+        0 0,                             /* Layer 1: Origin position */
+        100px 50px;                      /* Layer 2: Offset for depth variation */
+    
+    /* MIXED SPEED ATMOSPHERIC ANIMATIONS */
+    animation: 
+        stardustDrift1 60s linear infinite,        /* Horizontal drift animation (1 minute cycle) */
+        stardustDrift2 40s linear infinite;        /* Diagonal drift animation (40 second cycle) */
+    /* Applies double animations for atmospheric background movement*/
 
-    /* FLEXBOX LAYOUT */
-    display: flex;                   /* Flexbox container */
-    justify-content: center;         /* Horizontally center all celestial content */
-    align-items: center;             /* Vertically center all celestial content */
-    text-align: center;              /* Center-align text content */
+    /* LAYOUT PROPERTIES */
+    display: flex;                       /* Flexbox for content centering */
+    justify-content: center;             /* Horizontal centering */
+    align-items: center;                 /* Vertical centering */
+    text-align: center;                  /* Center text inside container */
+    position: relative;                  /* Positioning context for child elements */
+    
+    /* GPU OPTIMIZATION */
+    will-change: background-position, filter, opacity;  /* Hints for browser optimization */
+    transform: translateZ(0);            /* GPU layer creation */
+    backface-visibility: hidden;         /* 3D optimization */
+}
+
+/**
+ * HORIZONTAL DRIFT ANIMATION (stardustDrift1)
+ * ===========================================
+ */
+@keyframes stardustDrift1 {
+    from { 
+        background-position: 0 0, 100px 50px, -50px -25px;
+    }
+    to { 
+        background-position: 400px 0, 500px 50px, 350px -25px;
+    }
+}
+
+/**
+ * DIAGONAL DRIFT ANIMATION (stardustDrift2)
+ * =========================================
+ */
+@keyframes stardustDrift2 {
+    from { 
+        background-position: 0 0, 100px 50px, -50px -25px;
+    }
+    to { 
+        background-position: 200px 200px, 300px 250px, 150px 175px;
+    }
 }

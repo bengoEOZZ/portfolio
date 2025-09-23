@@ -1,6 +1,6 @@
 /**
- * HELLOTEXT COMPONENT STYLES - CELESTIAL INTRODUCTION PANEL
- * ==========================================================
+ * HELLOTEXT COMPONENT STYLES
+ * ==========================
  * This file contains the styling for the HelloText introductory text panel component used in CreativeMode.
  */
  
@@ -19,11 +19,14 @@
     width: 400px;                       /* Fixed width */
     height: auto;
     
+    /* INITIAL STATE FOR ANIMATION */
+    opacity: 0;
+    
     /* ANIMATIONS */
-    animation: fadeIn 2s ease-in-out;
-    /* Applies Subtle fade-in animation:
-       - Duration: 2 seconds
-       - Executed Once */
+    animation: 
+        textEntry 2.5s 3s forwards,
+        textFloat 20s ease-in-out infinite 5.5s;
+    /* Cosmic-themed entrance to match the celestial environment, then gentle floating */
 }
 
 /**
@@ -44,6 +47,9 @@
     /* UNDERLINE */
     border-bottom: 10px solid #007bff;      /* Bright blue underline accent */
     display: inline-block;                    /* Allows underline to fit text width */
+    
+    /* ENHANCED ANIMATION */
+    animation: textGlow 3s ease-in-out infinite 5.5s;
 }
 
 /**
@@ -60,4 +66,87 @@
     
     /* APPEARANCE */
     color: #b0b0b0;                   /* Soft light gray */
+}
+
+/**
+ * TEXT ENTRY ANIMATION
+ * ====================
+ * Creates a dynamic spacey entrance effect for the introductory text.
+ */
+@keyframes textEntry {
+    0% {
+        opacity: 0;
+        transform: translateY(-80px) translateX(-30px) scale(0.7) rotate(-5deg);
+        filter: blur(15px) brightness(0.3);
+    }
+    30% {
+        opacity: 0.4;
+        transform: translateY(-40px) translateX(-15px) scale(0.85) rotate(-2deg);
+        filter: blur(8px) brightness(0.6);
+    }
+    70% {
+        opacity: 0.8;
+        transform: translateY(-10px) translateX(-3px) scale(1.05) rotate(1deg);
+        filter: blur(3px) brightness(1.1);
+    }
+    90% {
+        opacity: 1;
+        transform: translateY(5px) translateX(2px) scale(1.02) rotate(0deg);
+        filter: blur(1px) brightness(1.05);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) translateX(0) scale(1) rotate(0deg);
+        filter: blur(0px) brightness(1);
+    }
+}
+
+/**
+ * TEXT FLOATING ANIMATION - GENTLE ONGOING MOTION
+ * ===============================================
+ * Creates subtle floating motion similar to a star or planet.
+ */
+@keyframes textFloat {
+    0% { 
+        transform: translateY(0) translateX(0) rotate(0deg); 
+    }
+    15% { 
+        transform: translateY(-8px) translateX(-5px) rotate(-1deg); 
+    }
+    30% { 
+        transform: translateY(-12px) translateX(3px) rotate(1.5deg); 
+    }
+    45% { 
+        transform: translateY(-5px) translateX(8px) rotate(-0.5deg); 
+    }
+    60% { 
+        transform: translateY(2px) translateX(6px) rotate(1deg); 
+    }
+    75% { 
+        transform: translateY(8px) translateX(-2px) rotate(-1.5deg); 
+    }
+    90% { 
+        transform: translateY(3px) translateX(-6px) rotate(0.5deg); 
+    }
+    100% { 
+        transform: translateY(0) translateX(0) rotate(0deg); 
+    }
+}
+
+/**
+ * TEXT GLOW ANIMATION
+ * ===================
+ */
+@keyframes textGlow {
+    0%, 100% {
+        text-shadow: 
+            0 0 10px rgba(255, 255, 255, 0.8),
+            0 0 20px rgba(0, 123, 255, 0.6);
+    }
+    50% {
+        text-shadow: 
+            0 0 15px rgba(255, 255, 255, 1),
+            0 0 30px rgba(0, 123, 255, 0.8),
+            0 0 40px rgba(100, 200, 255, 0.4);
+    }
 }

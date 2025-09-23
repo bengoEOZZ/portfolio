@@ -1,7 +1,6 @@
 /**
  * INDEX.CSS - GLOBAL APPLICATION STYLES
  * =====================================
- * 
  * Global styling for the entire portfolio application.
  */
 
@@ -23,7 +22,7 @@ a {
   text-decoration: inherit;        /* Inherits decoration from parent instead of default underline */
 
   /* COLOR INHERITANCE */
-  color: inherit;                  /* Inherit color from parent (removes default blue) */
+  color: inherit;                  /* Inherit color from parent (removes default blue on hover) */
 }
 
 /**

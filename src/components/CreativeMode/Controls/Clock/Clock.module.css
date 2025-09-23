@@ -5,9 +5,6 @@
  * Styling for the interactive clock and time display.
  */
 
-/* Import Orbitron font for futuristic aesthetic */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
-
 /**
  * CLOCK CONTAINER (.clockContainer)
  * =================================
@@ -22,9 +19,14 @@
     height: auto;
     z-index: 17;
     
+    /* INITIAL STATE FOR ANIMATION */
+    opacity: 0;
+    
     /* ANIMATIONS */
-    animation: clockFloat 25s ease-in-out infinite;
-    /* Applies gentle floating animation */
+    animation: 
+        clockEntry 3s 1.5s forwards,
+        clockFloat 25s ease-in-out 4.5s infinite;
+    /* Applies bouncy materialization first, then continuous floating */
 }
 
 /**
@@ -112,18 +114,51 @@
     
     /* APPEARANCE */
     color: #00d4ff;
-    text-shadow: 0 0 15px rgba(0, 212, 255, 0.9); /* Bright cyan glow effect for futuristic look */
-    background: rgba(10, 20, 40, 0.6); /* Semi-transparent dark background for contrast */
+    text-shadow: 0 0 15px rgba(0, 212, 255, 0.9);
+    background: rgba(10, 20, 40, 0.6);
     padding: 10px 20px;
     border-radius: 10px;
     border: 2px solid rgba(0, 212, 255, 0.4);
     box-shadow: 
-        0 0 20px rgba(0, 212, 255, 0.4),       /* Outer glow: Creates halo effect around the element */
-        inset 0 0 15px rgba(0, 212, 255, 0.2); /* Inner glow (inset): Creates internal lighting effect */
+        0 0 20px rgba(0, 212, 255, 0.4),
+        inset 0 0 15px rgba(0, 212, 255, 0.2);
     
+    /* INITIAL STATE FOR ANIMATION */
+    opacity: 0;
+
     /* ANIMATIONS */
-    animation: timeDisplayPulse 3s infinite alternate ease-in-out;
-    /* Gentle pulsing opacity animation */
+    animation: 
+        timeDisplayEntry 2.5s cubic-bezier(0.34, 1.56, 0.64, 1) 2.2s forwards,
+        timeDisplayPulse 3s infinite alternate ease-in-out 9.7s;
+    /* Applies holographic entry first, then continuous pulsing */
+}
+
+/**
+ * CLOCK MATERIALIZATION ANIMATION
+ * ===============================
+ * Creates a dramatic entrance with scaling, rotation, and bouncing.
+ */
+@keyframes clockEntry {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(180deg);
+        filter: blur(10px) brightness(0.3);
+    }
+    40% {
+        opacity: 0.8;
+        transform: scale(1.1) rotate(-10deg);
+        filter: blur(2px) brightness(1.2);
+    }
+    60% {
+        opacity: 1;
+        transform: scale(0.95) rotate(5deg);
+        filter: blur(0px) brightness(1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+        filter: blur(0px) brightness(1);
+    }
 }
 
 /**
@@ -169,6 +204,46 @@
         filter: drop-shadow(0 0 30px rgba(255, 223, 0, 1))
                 drop-shadow(0 0 25px rgba(255, 255, 255, 1))
                 drop-shadow(0 0 40px rgba(255, 140, 0, 0.9));
+    }
+}
+
+/**
+ * TIME DISPLAY HOLOGRAPHIC ENTRY ANIMATION
+ * ========================================
+ * Creates a holographic emergence effect with scaling and color shifting.
+ */
+@keyframes timeDisplayEntry {
+    0% {
+        opacity: 0;
+        transform: scaleY(0.1) scaleX(1.5);
+        filter: blur(20px) hue-rotate(180deg);
+        box-shadow: 
+            0 0 50px rgba(0, 212, 255, 0),
+            inset 0 0 30px rgba(0, 212, 255, 0);
+    }
+    30% {
+        opacity: 0.4;
+        transform: scaleY(0.6) scaleX(1.2);
+        filter: blur(10px) hue-rotate(90deg);
+        box-shadow: 
+            0 0 40px rgba(0, 212, 255, 0.6),
+            inset 0 0 25px rgba(0, 212, 255, 0.3);
+    }
+    70% {
+        opacity: 0.8;
+        transform: scaleY(1.1) scaleX(0.9);
+        filter: blur(3px) hue-rotate(0deg);
+        box-shadow: 
+            0 0 30px rgba(0, 212, 255, 0.8),
+            inset 0 0 20px rgba(0, 212, 255, 0.4);
+    }
+    100% {
+        opacity: 0.8; /* Matches the dimmed state in timeDisplayPulse */
+        transform: scaleY(1) scaleX(1);
+        filter: blur(0px) hue-rotate(0deg);
+        box-shadow: 
+            0 0 20px rgba(0, 212, 255, 0.4),
+            inset 0 0 15px rgba(0, 212, 255, 0.2);
     }
 }
 

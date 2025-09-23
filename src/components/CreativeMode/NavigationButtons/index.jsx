@@ -1,9 +1,8 @@
 /**
  * NAVIGATIONBUTTONS COMPONENT
  * ===========================
- * 
- * Main navigation component for the creative portfolio mode featuring orbital button animation,
- * renders interactive futiristic-based navigation buttons that orbit around a central point.
+ * Main navigation component for the creative portfolio mode featuring orbital button animation, meaning
+ * it renders interactive futuristic-based navigation buttons that orbit around a central point.
  * 
  * COMPONENT ARCHITECTURE:
  * - Uses custom hook (useOrbitAnimation) for elliptical orbital motion
@@ -37,14 +36,23 @@ function NavigationButtons() {
     /**
      * NAVIGATION DATA CONFIGURATION
      * ============================
-     * Static array defining navigation sections and their properties
      */
     const navItems = [
-        { id: 'about', text: 'About' },
-        { id: 'coding', text: 'Coding' },
-        { id: 'projects', text: 'Projects' },
-        { id: 'contact', text: 'Contact' }
+        { id: 'about', text: 'ABOUT' },
+        { id: 'coding', text: 'CODING' },
+        { id: 'projects', text: 'PROJECT' },
+        { id: 'contact', text: 'CONTACT' }
     ];
+
+    /**
+     * HANDLE NAVIGATION CLICK (DELETE LATER)
+     * ================================================================
+     * Shows "Under Construction" alert when navigation buttons are clicked
+     */
+    const handleNavClick = (e, sectionName) => {
+        e.preventDefault(); // Prevent default anchor behavior
+        alert(`🚧 ${sectionName} Section - Under Construction 🚧\n\nThis section is currently being developed. Please check back soon!`);
+    };
 
     /**
      * COMPONENT OUTPUT
@@ -53,7 +61,8 @@ function NavigationButtons() {
     return (
         <div ref={buttonsWrapperRef} className={classes.buttonsWrapper}>
             {navItems.map(item => (
-                <a key={item.id} href={`#${item.id}`} className={classes.btn}>
+                <a key={item.id} href={`#${item.id}`} className={classes.btn}
+                onClick={(e) => handleNavClick(e, item.text)}> {/* Temporary alert handler */}
                     <img src={NavButton} className={classes.btnIcon} />
                     <span className={classes.btnText}>{item.text}</span>
                 </a>

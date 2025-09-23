@@ -1,0 +1,531 @@
+/**
+ * CLASSIC NAVIGATION BAR COMPONENT STYLES
+ * =======================================
+ * 
+ * This file contains the styling for the NavigationBar component used in the ClassicMode interface.
+ * Features luxury craftmanship aesthetics with golden accents and briefcase hover interactions.
+ */
+
+/**
+ * HEADER CONTAINER
+ * ================
+ */
+.header {
+  /* LAYOUT & POSITIONING */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  z-index: 1000;
+  margin: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  
+  /* LAYOUT STRUCTURE */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 64px;
+  
+  /* SMOOTH PROGRESSING GRADIENT */
+  background: linear-gradient(135deg, 
+    #1a1a1a 0%,     /* Dark charcoal start */
+    #2c2c2c 15%,    /* Medium charcoal */
+    #3a3a3a 30%,    /* Light charcoal */
+    #4a4a4a 45%,    /* Lighter charcoal */
+    #3a3a3a 60%,    /* Back to light charcoal */
+    #2c2c2c 75%,    /* Medium charcoal */
+    #1a1a1a 90%,    /* Back to dark */
+    #0f0f0f 100%    /* Deep black end */
+  );
+  backdrop-filter: blur(15px) saturate(1.2);
+  
+  /* ENHANCED BORDER WITH GOLDEN GRADIENT */
+  border-bottom: 3px solid;
+  border-image: linear-gradient(90deg, #b8860b 0%, #d4af37 25%, #ffd700 50%,
+                  #d4af37 75%, #b8860b 100%) 1;
+  
+  /* SOPHISTICATED SHADOW WITH GOLDEN GLOW */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(212, 175, 55, 0.25), 
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  
+  /* ANIMATIONS */
+  animation: fadeIn 1.2s ease-out;
+  transition: all 0.4s ease;
+  /* Elegant entrance with fade and slide motion */
+}
+
+/**
+ * HEADER HOVER EFFECTS
+ * ====================
+ * Enhanced elevation and glow effects on interaction with enhanced border gradient.
+ */
+.header:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15), 0 4px 15px rgba(212, 175, 55, 0.25), 
+              inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 0 25px rgba(255, 215, 0, 0.2);
+  border-image: linear-gradient(90deg, #d4af37 0%, #ffd700 25%, #fff 50%,
+                  #ffd700 75%, #d4af37 100%) 1;
+  transition: all 0.3s ease;
+}
+
+/**
+ * LOGO SECTION (.logo)
+ * ====================
+ */
+.logo {
+  /* LAYOUT & POSITIONING */
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  
+  /* INTERACTIONS */
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+
+/* Logo hover effect */
+.logo:hover {
+  transform: scale(1.03) translateX(5px);
+}
+
+/**
+ * LOGO TEXT HOVER EFFECT (.logo:hover .logoText)
+ * ==============================================
+ */
+.logo:hover .logoText {
+  color: #ffd700;                   /* Brighter gold on hover */
+  text-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+  letter-spacing: 3px;
+}
+
+/**
+ * CRAFTSMAN LOGO (.craftsmanLogo)
+ * ===============================
+ */
+.craftsmanLogo {
+  /* LAYOUT & POSITIONING */
+  position: relative;
+  width: 50px;
+  height: 50px;
+  align-self: center;
+  margin-top: -10px;
+  
+  /* INTERACTIONS */
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.craftsmanLogo:hover {
+  transform: scale(1.1) rotate(5deg) translateY(-3px);
+}
+
+/**
+ * OUTER CREST RING (.outerCrest)
+ * ==============================
+ */
+.outerCrest {
+  /* LAYOUT & POSITIONING */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  
+  /* DARK PROJECT THEME APPEARANCE */
+  background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 25%, #000000 50%,
+              #1a1a1a 75%, #2c2c2c 100%);
+  border: 2px solid #d4af37;
+  border-radius: 50%;
+  
+  /* SOPHISTICATED SHADOW EFFECTS */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6), inset 0 2px 0 rgba(255, 215, 0, 0.2), 
+              inset 0 -2px 0 rgba(0, 0, 0, 0.8);
+  transition: all 0.4s ease;
+}
+
+.craftsmanLogo:hover .outerCrest {
+  background: linear-gradient(135deg, #3a3a3a 0%, #2c2c2c 25%, #1a1a1a 50%,
+              #2c2c2c 75%, #3a3a3a 100%);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8), inset 0 2px 0 rgba(255, 215, 0, 0.3), 
+              inset 0 -2px 0 rgba(0, 0, 0, 0.9);
+  border-color: #ffd700;
+}
+
+/**
+ * INNER CREST (.innerCrest)
+ * =========================
+ */
+.innerCrest {
+  /* LAYOUT & POSITIONING */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  height: 70%;
+  
+  /* DARK PROJECT THEME APPEARANCE */
+  background: radial-gradient(circle, #1a1a1a 0%, #000000 40%, #2c2c2c 80%);
+  border: 1px solid #d4af37;
+  border-radius: 50%;
+  
+  /* ENHANCED DEPTH SHADOWS */
+  box-shadow: inset 0 1px 0 rgba(255, 215, 0, 0.3), inset 0 -1px 0 rgba(0, 0, 0, 0.8), 
+              0 0 8px rgba(212, 175, 55, 0.4);
+  transition: all 0.4s ease;
+}
+
+.craftsmanLogo:hover .innerCrest {
+  background: radial-gradient(circle, #2c2c2c 0%, #1a1a1a 30%, #000000 70%);
+  border-color: #ffd700;
+}
+
+/**
+ * CRAFT SYMBOL (.craftSymbol)
+ * ===========================
+ */
+.craftSymbol {
+  /* LAYOUT & POSITIONING */
+  position: absolute;
+  top: 45%;
+  left: 52%;
+  transform: translate(-50%, -50%);
+  
+  /* TYPOGRAPHY */
+  font: bold 24px 'Times New Roman', serif;
+  color: #d4af37;
+  
+  /* SOPHISTICATED TEXT EFFECTS */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8), 0 0 8px rgba(212, 175, 55, 0.6);
+  
+  /* ANIMATIONS */
+  transition: all 0.4s ease;
+}
+
+.craftsmanLogo:hover .craftSymbol {
+  color: #ffd700;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9), 0 0 12px rgba(255, 215, 0, 0.8);
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+/**
+ * LOGO TEXT STYLING (.logoText)
+ * =============================
+ */
+.logoText {
+  /* TYPOGRAPHY */
+  font: 600 18px/1.2 'Georgia', 'Times New Roman', serif;
+  text-transform: lowercase;
+  letter-spacing: 2px;
+  
+  /* APPEARANCE - GOLDEN THEME */
+  color: #d4af37;
+  
+  /* LAYOUT */
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  
+  /* INTERACTIONS */
+  transition: all 0.3s ease;
+}
+
+/**
+ * LUXURY BRIEFCASE SYSTEM (.briefcase)
+ * ====================================
+ * Interactive briefcase menu with 3D opening animation and portfolio papers reveal.
+ */
+.briefcase {
+  /* LAYOUT & POSITIONING */
+  position: relative;
+  width: 70px;
+  height: 45px;
+  
+  /* 3D TRANSFORM SETUP */
+  cursor: pointer;
+  transition: all 0.5s ease;
+  transform-style: preserve-3d;
+  perspective: 200px;
+  /* Enables realistic 3D briefcase opening effect */
+}
+
+.briefcase:hover {
+  transform: scale(1.08) translateY(-3px);
+}
+
+/**
+ * BRIEFCASE HANDLE (.briefcaseHandle)
+ * ===================================
+ */
+.briefcaseHandle {
+  /* LAYOUT & POSITIONING */
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  /* SIZING */
+  width: 32px;
+  height: 5px;
+  
+  /* LEATHER APPEARANCE */
+  background: linear-gradient(180deg, #8b4513 0%, #a0522d 50%, #8b4513 100%);
+  border: 1px solid #d4af37;
+  border-radius: 6px;
+  
+  /* REALISTIC SHADOWS */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.4s ease;
+}
+
+.briefcase:hover .briefcaseHandle {
+  transform: translateX(-50%) translateY(-1px);
+}
+
+/**
+ * BRIEFCASE BODY (.briefcaseBody)
+ * ===============================
+ */
+.briefcaseBody {
+  /* LAYOUT & POSITIONING */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  
+  /* LEATHER GRADIENT APPEARANCE */
+  background: linear-gradient(135deg, #8b4513 0%, #a0522d 20%, #cd853f 40%, #a0522d 60%, #8b4513 100%);
+  border: 2px solid #d4af37;
+  border-radius: 3px;
+  
+  /* SOPHISTICATED SHADOWS */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4), inset 0 2px 0 rgba(255, 255, 255, 0.2), 
+              inset 0 -2px 0 rgba(0, 0, 0, 0.3);
+  
+  /* 3D TRANSFORM SETUP */
+  transition: all 0.4s ease;
+  transform-origin: bottom center;
+  overflow: hidden;
+}
+
+.briefcase:hover .briefcaseBody {
+  transform: rotateX(-15deg);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6), inset 0 2px 0 rgba(255, 255, 255, 0.3), 
+              inset 0 -2px 0 rgba(0, 0, 0, 0.4), 0 0 30px rgba(212, 175, 55, 0.5);
+}
+
+/**
+ * BRIEFCASE TOP SECTION (.briefcaseTop)
+ * =====================================
+ */
+.briefcaseTop {
+  /* LAYOUT & POSITIONING */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 65%;
+  
+  /* LAYOUT STRUCTURE */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1px;
+  
+  /* INTERACTIONS */
+  transition: all 0.4s ease;
+}
+
+.briefcase:hover .briefcaseTop {
+  transform: translateY(-2px);
+}
+
+/**
+ * BRIEFCASE LOCK & LABEL STYLING
+ * ==============================
+ * Golden lock symbol and portfolio text with hover glow effects.
+ */
+.briefcaseLock,
+.briefcaseLabel {
+  /* SHARED APPEARANCE */
+  color: #d4af37;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+/* BRIEFCASE LOCK SYMBOL */
+.briefcaseLock {
+  /* TYPOGRAPHY */
+  font-size: 14px;
+  
+  /* ENHANCED GLOW */
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3), 0 0 8px rgba(212, 175, 55, 0.6);
+}
+
+/* BRIEFCASE LABEL TEXT */
+.briefcaseLabel {
+  /* TYPOGRAPHY */
+  font: bold 9px 'Times New Roman', serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.briefcase:hover .briefcaseLock {
+  color: #ffd700;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4), 0 0 15px rgba(255, 215, 0, 0.9);
+  transform: scale(1.15);
+}
+
+.briefcase:hover .briefcaseLabel {
+  color: #ffd700;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/**
+ * BRIEFCASE BOTTOM SECTION (.briefcaseBottom)
+ * ===========================================
+ */
+.briefcaseBottom {
+  /* LAYOUT & POSITIONING */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 35%;
+  
+  /* SUBTLE GRADIENT OVERLAY */
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
+}
+
+/**
+ * BRIEFCASE CORNER ACCENTS (.briefcaseCorners)
+ * ============================================
+ * Golden corner studs with glow effects on hove.
+ */
+.briefcaseCorners {
+  /* LAYOUT & POSITIONING */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.briefcaseCorners::before,
+.briefcaseCorners::after {
+  /* PSEUDO-ELEMENT SETUP */
+  content: '';
+  position: absolute;
+  bottom: 3px;
+  
+  /* SIZING */
+  width: 5px;
+  height: 5px;
+  
+  /* GOLDEN APPEARANCE */
+  background: radial-gradient(circle, #ffd700 0%, #d4af37 70%);
+  border-radius: 1px;
+  
+  /* LUXURY GLOW EFFECTS */
+  box-shadow: 0 0 4px rgba(212, 175, 55, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.briefcaseCorners::before { left: 4px; }
+.briefcaseCorners::after { right: 4px; }
+
+.briefcase:hover .briefcaseCorners::before,
+.briefcase:hover .briefcaseCorners::after {
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/**
+ * PORTFOLIO PAPERS (.portfolioPaper)
+ * ==================================
+ * Animated portfolio documents that reveal on briefcase hover.
+ */
+.portfolioPaper {
+  /* LAYOUT & POSITIONING */
+  position: absolute;
+  top: -3px;
+  left: calc(50% - 16px + var(--paper-offset, 0px));
+  
+  /* SIZING */
+  width: 32px;
+  height: 22px;
+  
+  /* PAPER APPEARANCE */
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 1px 1px 0 0;
+  
+  /* REALISTIC PAPER SHADOWS */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 1);
+  
+  /* INITIAL HIDDEN STATE */
+  opacity: 0;
+  transform: translateY(20px) scale(0.6) rotate(var(--paper-angle, 0deg));
+  
+  /* STAGGERED ANIMATION SETUP */
+  transition: all 0.4s ease;
+  z-index: 5;
+  /* Uses CSS custom properties for individual paper positioning and rotation */
+}
+
+/**
+ * PORTFOLIO PAPER HOVER ANIMATION
+ * ===============================
+ */
+.briefcase:hover .portfolioPaper {
+  /* REVEALED STATE */
+  opacity: 1;
+  transform: translateY(-3px) scale(1) rotate(var(--paper-angle, 0deg));
+  z-index: var(--z-index, 10);
+  
+  /* STAGGERED TIMING */
+  transition: all 0.6s ease;
+  transition-delay: calc(0.1s + var(--paper-index) * 0.1s);
+  /* Creates realistic cascade effect with individual paper delays */
+}
+
+/**
+ * PAPER CONTENT LINES
+ * ===================
+ */
+.portfolioPaper::before,
+.portfolioPaper::after {
+  /* PSEUDO-ELEMENT SETUP */
+  content: '';
+  position: absolute;
+  left: 2px;
+  right: 2px;
+  height: 1px;
+}
+
+/* First text line */
+.portfolioPaper::before {
+  top: 5px;
+  background: #333333;
+  opacity: 0.6;
+}
+
+/* Second text line */
+.portfolioPaper::after {
+  top: 8px;
+  right: 6px;
+  background: #666666;
+  opacity: 0.4;
+}
+
+/**
+ * FADE-IN ANIMATION
+ * =================
+ */
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(-30px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}

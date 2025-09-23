@@ -1,13 +1,7 @@
 /**
- * CONTROLS COMPONENT STYLES
- * =========================
- * 
- * Styling for the unified controls panel including interactive clock,
- * time display, and environmental control sliders.
+ * SLIDERS COMPONENT STYLES
+ * ========================
  */
-
-/* Import Orbitron font for futuristic aesthetic */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
 /**
  * SLIDER CONTAINER BASE (.sliderContainer)
@@ -29,17 +23,25 @@
     color: #00d4ff;
     text-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
     text-align: center;
+    
+    /* INITIAL STATE FOR ANIMATION */
+    opacity: 0;
+    
+    /* ANIMATIONS */
+    animation: sliderSlideInEntry 2.2s forwards;
 }
 
-/* Weather slider positioning */
+/* Weather slider positioning and delay */
 .weatherSlider {
     top: 350px;
+    animation-delay: 2.5s; /* Starts after clock materializes */
 }
 
 
-/* Season slider positioning */
+/* Season slider positioning and delay */
 .seasonSlider {
     top: 425px;
+    animation-delay: 2.8s; /* Staggered for cascading effect */
 }
 
 /**
@@ -172,4 +174,32 @@
     /* LAYOUT & POSITIONING */
     padding: 0 8px;
     text-align: center;
+}
+
+/**
+ * SLIDER SLIDE-IN ANIMATION
+ * =========================
+ * Creates a bouncy slide-in effect from the right with scaling.
+ */
+@keyframes sliderSlideInEntry {
+    0% {
+        opacity: 0;
+        transform: translateX(100px) scale(0.8);
+        filter: blur(10px);
+    }
+    60% {
+        opacity: 0.8;
+        transform: translateX(-10px) scale(1.05);
+        filter: blur(2px);
+    }
+    80% {
+        opacity: 1;
+        transform: translateX(5px) scale(0.98);
+        filter: blur(0px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+        filter: blur(0px);
+    }
 }

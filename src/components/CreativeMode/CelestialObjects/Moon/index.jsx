@@ -1,7 +1,6 @@
 /**
  * PERSONALMOON COMPONENT
  * ======================
- * 
  * Renders day/night versions of personal moon representation with smooth transitions.
  * Handles the switching between day and night moon appearances based on time period.
  * Night hours: (21:00-02:59)

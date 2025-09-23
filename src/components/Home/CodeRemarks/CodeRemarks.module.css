@@ -1,8 +1,6 @@
 /**
  * CODEREMARKS COMPONENT STYLES
  * ============================
- * 
- * This file contains the styling for the CodeRemarks component used in the creative portfolio mode.
  */
 
 /**
@@ -14,7 +12,7 @@
     pointer-events: none;               /* Prevent interaction with floating remarks */
     
     /* LAYOUT */
-    z-index: 20;                        /* High z-index to ensure visibility above other components */
+    z-index: 5;                        /* Ensure visibility above background */
 }
 
 /**
@@ -68,43 +66,43 @@
  * - Each remark follows its own twinkle/drift cycle
  */
 .remark:nth-child(1) {  /* Near the top-left */
-    top: 20%;
-    left: 20%;
+    top: 15%;
+    left: 55%;
     animation-duration: 12.24s;
     animation-delay: 0.5s; /* Randomized delay */
 }
 
 .remark:nth-child(2) {  /* Near the top-right */
-    top: 18%;
-    left: 50%;
+    top: 30%;
+    left: 70%;
     animation-duration: 13.6s;
     animation-delay: 0.9s; /* Randomized delay */
 }
 
 .remark:nth-child(3) {  /* Near the middle-left */
-    top: 45%;
-    left: 10%;
+    top: 50%;
+    left: 72%;
     animation-duration: 9.52s;
     animation-delay: 1.5s; /* Randomized delay */
 }
 
 .remark:nth-child(4) { /* Near the middle-right */
-    top: 60%;
-    left: 65%;
+    top: 70%;
+    left: 60%;
     animation-duration: 14.96s;
     animation-delay: 1.8s; /* Randomized delay */
 }
 
 .remark:nth-child(5) {  /* Near the bottom-middle */
-    top: 75%;
-    left: 30%;
+    top: 85%;
+    left: 70%;
     animation-duration: 10.88s;
     animation-delay: 2.3s; /* Randomized delay */
 }
 
 /**
- * TWINKLE ANIMATION - STAR-LIKE OPACITY & GLOW CYCLING
- * ====================================================
+ * TWINKLE ANIMATION
+ * =================
  * Creates celestial star-like twinkling effect through opacity blinking variations.
  */
 @keyframes twinkle {
@@ -116,8 +114,8 @@
 }
 
 /**
- * DRIFT ANIMATION - GENTLE CELESTIAL DRIFTING MOVEMENT
- * ====================================================
+ * DRIFT ANIMATION
+ * ===============
  * Creates subtle drifting motion that simulates code snippets drifting gently through space.
  */
 @keyframes drift {

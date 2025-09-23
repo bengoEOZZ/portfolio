@@ -1,31 +1,40 @@
 /**
  * SUN COMPONENT STYLES
  * ===================
- * Unified styles for sun image and integrated ray animations
+ * This file contains the styling for the Sun component used in the creative celestial objects.
+ * Features epic stellar birth sequence with explosion effect and continuous solar animations.
  */
 
 /**
  * BASE SUN CONTAINER (.sunContainer)
  * ==================================
+ * Primary container for sun positioning and shared properties.
  */
 .sunContainer {
     /* LAYOUT & POSITIONING */
     position: fixed;
-    top: -10px;
-    left: -10px;
+    top: -25px;             /* Slightly offset from viewport edge */
+    left: -30px;            /* Slightly offset from viewport edge */
     
     /* SIZING */
-    width: 375px;
+    width: 550px;
     height: auto;
     
     /* LAYERING */
-    z-index: 10;
-
+    z-index: 10;            /* Above background, below navigation elements */
+    
     /* PERFORMANCE OPTIMIZATION */
     will-change: transform;
-
+    
     /* TRANSFORM SETUP */
-    transform-origin: top left; /* Sets rotation point for realistic rotational movement */
+    transform-origin: top left;
+    
+    /* ANIMATIONS */
+    animation:  stellarBirthSequence 4s both 0.5s,
+                sunBlur 4s ease-in-out infinite 4s;    /* 0.5s delay, then stellar birth */
+    /* Applies stellar birth animation:
+     * - stellarBirthSequence: Epic cosmic explosion and formation sequence (4s both 0.5s delay)
+     * - sunBlur: Continuous blur pulsing effect (4s infinite, 4s delay total) */
 }
 
 /**
@@ -39,14 +48,13 @@
     will-change: transform, filter; /* Optimizes for rotation, vibration, and filter changes */
     
     /* ANIMATIONS */
-    animation: 
-        sunFadeIn 2s ease-in-out,
-        sunVibrate 5s ease-in-out infinite,
-        sunPulsate 4s ease-in-out infinite;
+    animation:
+        sunVibrate 5s ease-in-out infinite 4.5s,        /* 4.5s delay (0.5s + 4s) */
+        sunPulsate 4s ease-in-out 4s forwards;          /* 4s delay (0.5s + 3.5s) */
     /* Applies triple animations:
-       - sunFadeIn: 2s smooth downward entry fade
-       - sunVibrate: 5s continuous subtle vibration for solar activity
-       - sunPulsate: 4s alternating brightness with blur and glow effects */
+     * - sunEntry: Dramatic entry with blur, hue, scaling, and filter effects (0.5s delay + 4s duration)
+     * - sunVibrate: Continuous subtle vibration (5s infinite, 4.5s delay total)
+     * - sunPulsate: One-time glow fade-in that stays at final state (4s duration, 4s delay, forwards) */
 }
 
 /**
@@ -57,69 +65,150 @@
     composes: sunContainer;  /* Inherits all base sun container properties */
     
     /* DISPLAY */
-    display: inline-block;   /* Required for proper transform application on rays */
+    display: inline-block;   /* Required for proper transform animation on rays */
     
     /* ANIMATIONS */
-    animation: sunVibrate 5s ease-in-out infinite;
-    animation-delay: 2.5s;   /* Offset timing creates dynamic ray movement */
-    
+    animation: sunVibrate 5s ease-in-out infinite 4.75s;    /* 4.75s delay (0.5s + 4.25s) */
+    /* sunVibrate: Gentle rotation matching sun element vibration (5s infinite, 4.75s delay total) */
+
     /* APPEARANCE EFFECTS */
-    filter: 
-        drop-shadow(0 0 15px rgba(255, 165, 0, 0.8))  /* Inner warm orange glow */
-        drop-shadow(0 0 30px rgba(255, 69, 0, 0.6));  /* Outer intense red-orange glow */
-}
-
-polygon[id^="ray"] {
-  will-change: transform, opacity;
-  transform: translateZ(0);
-  opacity: 0;
+    filter:
+        blur(5px)
+        drop-shadow(0 0 15px rgba(255, 165, 0, 0.8)),
+        drop-shadow(0 0 30px rgba(255, 69, 0, 0.6));
+    /* Layered glow effects:
+     * - Inner warm orange glow (15px radius, 0.8 opacity)
+     * - Outer intense red-orange glow (30px radius, 0.6 opacity) */
 }
 
 /**
- * SUN ENTRY ANIMATION
- * ===================
+ * INDIVIDUAL RAY POLYGON STYLES (polygon[id^="ray"])
+ * =================================================
+ * Individual ray elements with entry animation, then JavaScript handoff for ray animation.
  */
-@keyframes sunFadeIn {
-    from { 
-        opacity: 0;                    /* Starts completely transparent */
+polygon[id^="ray"] {
+    /* PERFORMANCE OPTIMIZATION */
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    
+    /* INITIAL STATE */
+    opacity: 0;
+    
+    /* ANIMATIONS */
+    animation: sunraysEntry 4s 0.5s;    /* 0.5s delay */
+    /* Applies individual ray formation:
+     * - sunraysEntry: Each ray forms with scaling and opacity (4s, ends at 0 opacity for JS control) */
+}
+
+/**
+ * STELLAR BIRTH SEQUENCE ANIMATION
+ * ================================
+ * Creates dramatic stellar birth handling scale, colour, opacity, and filter transitions.
+ */
+@keyframes stellarBirthSequence {
+
+    /* STELLAR EXPLOSION PHASE */
+    0% {        /* Initial explosion point */
+        opacity: 0; transform: scale(0.01);
+        filter: brightness(50) blur(300px) saturate(10) hue-rotate(270deg) contrast(5)
+            drop-shadow(0 0 500px #fff) drop-shadow(0 0 800px #0ff) drop-shadow(0 0 1200px #f0f);
     }
-    to { 
-        opacity: 1;                    /* Ends fully visible */
+    8% {        /* Cool plasma-style formation */
+        opacity: 0.3; transform: scale(0.1);
+        filter: brightness(20) blur(200px) saturate(8) hue-rotate(240deg) contrast(4)
+            drop-shadow(0 0 400px #fff) drop-shadow(0 0 600px #6ff) drop-shadow(0 0 900px #f6f);
+    }
+    20% {       /* transitioning to stellar colors */
+        opacity: 0.6; transform: scale(0.3);
+        filter: brightness(15) blur(150px) saturate(6) hue-rotate(180deg) contrast(3)
+            drop-shadow(0 0 300px #ff0) drop-shadow(0 0 500px #f90) drop-shadow(0 0 700px #f30);
+    }
+
+    /* STELLAR SOLAR PHASE */
+    35% {       /* Solar ignition begins */
+        opacity: 0.8; transform: scale(0.6);
+        filter: brightness(10) blur(100px) saturate(4) hue-rotate(120deg) contrast(2.5)
+            drop-shadow(0 0 250px #fc0) drop-shadow(0 0 400px #f60) drop-shadow(0 0 600px #f00);
+    }
+    50% {       /* Approaching solar appearance */
+        opacity: 0.9; transform: scale(0.85);
+        filter: brightness(6) blur(60px) saturate(3) hue-rotate(60deg) contrast(2)
+            drop-shadow(0 0 200px #fa0) drop-shadow(0 0 350px #f40) drop-shadow(0 0 500px #c00);
+    }
+    70% {       /* Peak formation intensity */
+        opacity: 1; transform: scale(1.2);
+        filter: brightness(3) blur(30px) saturate(2) hue-rotate(30deg) contrast(1.5)
+            drop-shadow(0 0 150px #f80) drop-shadow(0 0 250px #f20) drop-shadow(0 0 350px #900);
+    }
+
+    /* STELLAR STABILIZATION PHASE */
+    85% {       /* Settling into stable state - size adjustment */
+        transform: scale(0.95);
+        filter: brightness(2) blur(15px) saturate(1.5) hue-rotate(15deg) contrast(1.2)
+            drop-shadow(0 0 100px #f60) drop-shadow(0 0 180px #e10) drop-shadow(0 0 250px #800);
+    }
+    100% {      /* Stable solar state - natural sun appearance */
+        transform: scale(1);
+        filter: brightness(1) blur(0) saturate(1) hue-rotate(0) contrast(1)
+            drop-shadow(0 0 0 transparent);
     }
 }
 
 /**
- * SUN VIBRATION ANIMATION
+ * SUNRAYS ENTRY ANIMATION
  * =======================
+ * Each ray forms and peaks, then returns to (opacity: 0) for JavaScript animation takeover.
+ */
+@keyframes sunraysEntry {
+    0% { opacity: 0; transform: scale(0); filter: brightness(10) blur(50px); }
+    30% { opacity: 0.8; transform: scale(1.2); filter: brightness(3) blur(10px); }
+    60% { opacity: 1; transform: scale(1); filter: brightness(1) blur(0); }
+    100% { opacity: 0; transform: scale(1); filter: brightness(1) blur(0); }
+}
+
+/**
+ * SUN VIBRATION ANIMATION - SOLAR ACTIVITY SIMULATION
+ * ==================================================
+ * Subtle rotation simulating solar magnetic field activity.
  */
 @keyframes sunVibrate {
-    0% { transform: rotate(0deg); }     /* Neutral position */
-    25% { transform: rotate(0.5deg); }  /* Slight clockwise vibration */
-    50% { transform: rotate(-0.5deg); } /* Slight counter-clockwise vibration */
-    75% { transform: rotate(0.5deg); }  /* Return to clockwise */
-    100% { transform: rotate(0deg); }   /* Return to neutral position */
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(1deg); }
+    50% { transform: rotate(-1deg); }
+    75% { transform: rotate(1deg); }
+    100% { transform: rotate(0deg); }
 }
 
 /**
- * SUN PULSATION ANIMATION
- * =======================
- * Alternating brightness levels with blur and layered glow effects for solar activity.
+ * SUN PULSATION ANIMATION - SOLAR INTENSITY CYCLES
+ * ================================================
+ * One time layered glow fade in effect for solar activity.
  */
 @keyframes sunPulsate {
-    0%, 100% {
-        filter: 
-            blur(0px)                                        /* Sharp focus at base intensity */
+    0% {
+        filter:
             drop-shadow(0 0 50px rgba(255, 165, 0, 0.9))    /* Inner warm orange glow */
             drop-shadow(0 0 100px rgba(255, 69, 0, 0.7))    /* Mid red-orange glow */
             drop-shadow(0 0 150px rgba(255, 0, 0, 0.5))     /* Outer red intensity */
             drop-shadow(0 0 200px rgba(255, 100, 0, 0.3));  /* Extended orange atmosphere */
     }
+    100% {
+        filter:                                      /* Slight blur for intensity */
+            blur(2px)
+            drop-shadow(0 0 50px rgba(255, 165, 0, 0.9))    /* Inner warm orange glow */
+            drop-shadow(0 0 100px rgba(255, 69, 0, 0.7))    /* Mid red-orange glow */
+            drop-shadow(0 0 150px rgba(255, 0, 0, 0.5))     /* Outer red intensity */
+            drop-shadow(0 0 200px rgba(255, 100, 0, 0.3));  /* Extended orange atmosphere */
+    }
+}
+
+@keyframes sunBlur {
+    0%, 100% {
+        filter: 
+            blur(2px)                                        /* Slight blur at base intensity */
+    }
     50% {
         filter: 
-            blur(2px)                                        /* Slight blur at peak intensity */
-            drop-shadow(0 0 80px rgba(255, 225, 0, 1))      /* Enhanced bright yellow glow */
-            drop-shadow(0 0 150px rgba(255, 69, 0, 0.9))    /* Intensified red-orange glow */
-            drop-shadow(0 0 250px rgba(255, 0, 0, 0.7))     /* Expanded red intensity */
-            drop-shadow(0 0 350px rgba(255, 100, 0, 0.4));  /* Extended intense atmosphere */
+            blur(5px)                                        /* Significant blur at peak intensity */
     }
 }

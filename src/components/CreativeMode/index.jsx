@@ -1,21 +1,20 @@
 /**
  * CREATIVEMODE COMPONENT - INTERACTIVE CELESTIAL PORTFOLIO EXPERIENCE
  * ====================================================================
- * 
  * This component renders the main Creative mode interface of the portfolio application.
  * Features an immersive celestial-themed experience with interactive elements, animations,
  * and creative visual effects to showcase the artistic and innovative side of the portfolio.
  * 
  * COMPONENT ARCHITECTURE:
- * This component acts as a container/orchestrator that renders four main child components
+ * This component acts as a container/orchestrator that renders five main child components
  * in a layered composition to create the complete celestial experience:
  * 
+ * - SpaceNavigationBar: Cosmic-themed header with constellation logo and orbital menu
  * - CelestialObjects: Interactive planetary system (Earth, Moon, Sun, planets)
  * - Controls: Interactive user interface panel (clock, season/weather sliders)
  * - WeatherEffects: Dynamic atmospheric particle system (rain, snow, wind, fireflies)
  * - HelloText: Personal introduction and user guidance
  * - NavigationButtons: Orbital navigation system for portfolio sections
- * - CodeRemarks: Floating philosophical JavaScript snippets
  *
  * Design Philosophy:
  * - Represents creativity, innovation, and artistic expression
@@ -24,11 +23,11 @@
  */
 
 // DEPENDENCIES
-import {useState} from 'react';
+import { useState } from 'react';
 import classes from './CreativeMode.module.css'
+import NavigationBar from './NavigationBar'
 import HelloText from './HelloText'
 import NavigationButtons from './NavigationButtons'
-import CodeRemarks from './CodeRemarks'
 import CelestialObjects from './CelestialObjects'
 import WeatherEffects from './WeatherEffects';
 import Controls from './Controls';
@@ -109,7 +108,10 @@ function CreativeMode() {
      */
     return (
         <div className={classes.body}>
+            <NavigationBar />
+            
             <div className={classes.container}>
+                
                 <CelestialObjects 
                     currentHour={currentHour}
                     isNightTime={isNightTime}
@@ -139,8 +141,6 @@ function CreativeMode() {
                 <HelloText />
 
                 <NavigationButtons />
-
-                <CodeRemarks />
             </div>
         </div>
     );

@@ -1,7 +1,6 @@
 /**
  * BUTTONCREATIVE COMPONENT - CREATIVE MODE NAVIGATION BUTTON
  * ==========================================================
- * 
  * This component renders a navigation button that links to the Creative mode of the portfolio.
  */
 

@@ -1,7 +1,6 @@
 /**
  * OTHERPLANETS COMPONENT
  * ======================
- * 
  * Renders Mercury and Venus.
  */
 

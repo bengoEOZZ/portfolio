@@ -1,7 +1,6 @@
 /**
  * CODEREMARKS COMPONENT - FLOATING PHILOSOPHICAL CODE SNIPPETS
  * =============================================================
- * 
  * This component renders floating code-style remarks that display philosophical
  * and inspirational messages written as JavaScript code snippets.
  */
@@ -22,7 +21,7 @@ function CodeRemarks() {
      * - Growth through failure: "try { learn(); } catch (failure) { grow(); }"
      * - Problem-solving mindset: "if (world.needsChange) { buildSolution(); }"
      * - Continuous learning: "do { expandPerspective(); } while (truth.isVast);"
-     * - Innovation drive: "for (idea in ideas) { innovate(idea); }"
+     * - Innovation and drive: "for (idea in ideas) { innovate(idea); }"
      */
     const remarks = [
         'if (user.isCurious) { explore(); }',

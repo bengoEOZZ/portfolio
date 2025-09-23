@@ -1,16 +1,148 @@
+/**
+ * BUTTON CLASSIC COMPONENT STYLES
+ * ===============================
+ */
+
+/**
+ * BASE BUTTON STYLES (.btn)
+ * =========================
+ */
 .btn {
-  padding: 25px 60px;
-  font-size: 2rem;
-  color: white;
-  border: none;
+  /* TYPOGRAPHY - LUXURY CINZEL */
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-size: 1.8rem;              /* Size */
+  font-weight: 500;               /* Weight */
+  text-transform: uppercase;      /* Uppercase styling */
+  letter-spacing: 2px;            /* Letter spacing */
+
+  /* LAYOUT & DIMENSIONS */
+  padding: 20px 60px;             /* Padding */
+  display: inline-block;          /* Inline block for proper positioning */
+  
+  /* LUXURY GOLDEN APPEARANCE */
+  background: 
+    /* Main luxury gold gradient - identical to belt navigation */
+    linear-gradient(135deg, 
+      #FFD700 0%, 
+      #F4D03F 15%,
+      #FFD700 30%,
+      #d4af37 45%,
+      #B8860B 60%,
+      #8B4513 70%,
+      #d4af37 80%,
+      #F4D03F 90%,
+      #FFD700 100%
+    );
+    
+  border: 4px solid #8B4513;      /* Rich brown border (matches belt) */
   border-radius: 10px;
-  cursor: pointer;
-  transition: 0.3s;
-  text-decoration: none;
-  display: inline-block;
-  background-color: #007bff;
+  
+  /* LUXURY SHADOWS */
+  box-shadow: 
+    /* Inner luxury highlights */
+    inset 0 4px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -4px 0 rgba(0, 0, 0, 0.3);
+  
+  /* POSITIONING & EFFECTS */
+  position: relative;             /* For pseudo-element effects */
+  overflow: hidden;               /* Hide overflow for animations */
+  cursor: pointer;                /* Interactive cursor */
+  
+  /* LUXURY TRANSITIONS */
+  transition: all 0.4s;
+  
+  /* TEXT EFFECTS */
+  text-shadow: 
+    0 2px 0 rgba(255, 255, 255, 0.4);
 }
 
+/**
+ * LUXURY SHINE EFFECT (.btn::before)
+ * ==================================
+ * Creates an animated shimmer effect that sweeps across the button
+ */
+.btn::before {
+  /* PSEUDO-ELEMENT SETUP */
+  content: '';                    /* Empty content for pseudo-element */
+  position: absolute;             /* Absolute positioning within button */
+  
+  /* SHIMMER DIMENSIONS & POSITIONING */
+  top: 0%;
+  left: -50%;                     /* Extended left positioning */
+  width: 150%;                    /* Extended width for full coverage */
+  height: 150%;                   /* Extended height for full coverage */
+  
+  /* SHIMMER GRADIENT EFFECT */
+  background: 
+    linear-gradient(45deg, 
+      transparent 30%,              /* Transparent start */
+      rgba(255, 255, 255, 0.1) 35%, /* Subtle light shine */
+      rgba(255, 255, 255, 0.3) 40%, /* Peak shine intensity */
+      rgba(255, 255, 255, 0.1) 45%, /* Fade back to subtle */
+      transparent 50%               /* Transparent end */
+    );
+  
+  /* ANIMATION & EFFECTS */
+  animation: luxuryShimmer 5s ease-in-out infinite; /* Continuous shimmer */
+  z-index: 1;                     /* Above background, below text */
+  border-radius: 15px;            /* Rounded corners for smooth effect */
+}
+
+/**
+ * BUTTON TEXT POSITIONING (.btn > *)
+ * ==================================
+* Ensures button text and content appear above all background animations.
+ * Ensure elements remain visible and clickable while the shimmer animation
+ * (::before pseudo-element) plays underneath.
+ */
+.btn > * {
+  position: relative;
+  z-index: 2;                     /* Above all background effects */
+}
+
+/**
+ * LUXURY HOVER EFFECTS (.btn:hover)
+ * =================================
+ */
 .btn:hover {
-  background-color: #0056b3;
+  /* ENHANCED TRANSFORMATION */
+  transform: translateY(-6px) scale(1.02);
+  
+  /* ENHANCED SHADOWS */
+  box-shadow: 
+    0 0 80px rgba(255, 215, 0, 0.4),
+    inset 0 6px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -6px 0 rgba(0, 0, 0, 0.4);
+  
+  text-shadow: 
+    0 2px 0 rgba(255, 255, 255, 0.6);
+  letter-spacing: 3px;            /* Expanded letter spacing */
+}
+
+/**
+ * LUXURY ACTIVE STATE (.btn:active)
+ * =================================
+ */
+.btn:active {
+  transform: translateY(-2px) scale(1.01);
+  transition: all 0.15s ease;
+}
+
+/**
+ * LUXURY SPARKLE ANIMATION
+ * ========================
+ */
+@keyframes luxuryShimmer {
+  0% { 
+    transform: translateX(-100%) translateY(-100%) rotate(45deg); 
+    opacity: 0; 
+  }
+  50% { 
+    transform: translateX(100%) translateY(100%) rotate(45deg); 
+    opacity: 1; 
+  }
+  100% { 
+    transform: translateX(-100%) translateY(-100%) rotate(45deg); 
+    opacity: 0; 
+  }
 }

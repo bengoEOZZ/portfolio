@@ -1,9 +1,8 @@
 /**
  * EARTH COMPONENT
  * ===============
- * 
  * Dedicated component for rendering Earth with seasonal overlays and dynamic atmospheric effects.
- * Handles all Earth-specific logic including brightness calculations, glow effects, and seasonal variations.
+ * Handles all Earth-specific logic including brightness, glow effects, and seasonal variations.
  */
 
 import { useMemo, memo } from 'react';
@@ -17,7 +16,6 @@ import EarthWinterImage from '../../../../assets/CreativeMode/earthWinter.svg';
 /**
  * Calculate brightness based on time of day
  * =========================================
- * 
  * Determines the brightness level for Earth based on a 24-hour time cycle.
  * Uses different calculations for day, evening, and night periods to create smooth transitions.
  * 
@@ -39,17 +37,14 @@ const calculateBrightness = (currentHour) => {
 /**
  * Calculate dynamic glow colors based on time period
  * =================================================
- * 
- * Generates atmospheric glow colors that change throughout the day to simulate lighting conditions.
+ * Generates atmospheric glow colors that change throughout the day.
  * 
  * COLOR PERIODS:
- * - Daytime: Bright blue atmospheric glow
- * - Evening: Gradual transition from blue to darker tones
- * - Deep Night: Dark blue atmospheric glow
- * - Dawn: Gradual transition from darker tones back to bright blue
+ * - Daytime (06:00 - 18:00): Bright blue atmospheric glow
+ * - Night (18:00 - 06:00): Dark blue atmospheric glow
  */
 const getGlowColors = (currentHour) => {
-    if (currentHour >= 7 && currentHour <= 17) {
+    if (currentHour >= 6 && currentHour < 18) {
         // Day: Bright blue atmospheric glow
         return {
             primary: "135, 206, 250, 0.8",     // Light sky blue
@@ -75,8 +70,8 @@ const Earth = memo(({ currentHour, season, activeControl }) => {
     
     /* MEMOIZED STYLE OBJECTS */
     const earthStyle = useMemo(() => ({
-        filter: `brightness(${brightness}) drop-shadow(0 0 30px rgba(${glowColors.primary}))
-            drop-shadow(0 0 70px rgba(${glowColors.secondary}))`,   // Apply brightness + dual glow effects
+        filter: `brightness(${brightness}) drop-shadow(0 0 80px rgba(${glowColors.primary}))
+            drop-shadow(0 0 120px rgba(${glowColors.secondary}))`,   // Apply brightness + glow effects
         transition: 'filter 1.5s ease-in-out'
     }), [brightness, glowColors]);  // Only rebuild when brightness or colors change
     
@@ -116,25 +111,24 @@ const Earth = memo(({ currentHour, season, activeControl }) => {
         
         // No seasonal overlay for spring (0) or summer (1)
         return null;
-    }, [activeControl, season, seasonalEarthStyle]);
+    }, [activeControl, season, seasonalEarthStyle]); // Recalc when control, season, or style changes
     
     /**
      * COMPONENT OUTPUT
      * ================
      */
     return (
-        <>
+        <div className={classes.earthFloatContainer}>
             {/* MAIN EARTH IMAGE */}
             <img 
                 src={EarthImage} 
-                alt="Earth" 
                 className={classes.earth} 
                 style={earthStyle}
             />
 
             {/* SEASONAL EARTH OVERLAYS */}
             {seasonalContent}
-        </>
+        </div>
     );
 });
 

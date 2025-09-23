@@ -1,0 +1,260 @@
+/**
+ * HELLOTEXT COMPONENT STYLES
+ * ==========================
+ * 
+ * This file contains the styling for the HelloText hero section component used in ClassicMode.
+ */
+
+/**
+ * MAIN CONTAINER STYLES
+ * =====================
+ */
+.container {
+  /* LAYOUT & DIMENSIONS */
+  max-width: 1400px;                  /* Maximum content width */
+  margin: 0 auto;                     /* Center horizontally */
+  position: relative;                 /* For absolute positioned pseudo-elements */
+  z-index: 10;                        /* Above background elements */
+  
+  /* GRID LAYOUT SYSTEM */
+  display: grid;                      /* CSS Grid container */
+  grid-template-columns: 1fr 1fr;     /* Two equal columns */
+  gap: 60px;                          /* Space between columns */
+  align-items: center;                /* Vertical alignment */
+  
+  /* SPACING */
+  padding: 20px 64px;                 /* Internal padding */
+  margin: -50px 0 40px 0;             /* Adjust positioning */
+  height: auto;                       /* Flexible height */
+  flex-grow: 1;                       /* Expand elements within flex container */
+  
+  /* INTERACTIONS */
+  transition: transform 0.3s ease;    /* Smooth hover animation */
+}
+
+/**
+ * CONTAINER HOVER EFFECTS
+ * =======================
+ */
+.container:hover {
+  transform: translateY(-3px);        /* Gentle upward movement */
+}
+
+/**
+ * GOLDEN DIVIDER LINE (.container::before)
+ * ========================================
+ */
+.container::before {
+  content: '';                        /* Required for pseudo-element */
+  position: absolute;                 /* Absolute positioning */
+  top: 200px;                         /* Start position from top */
+  left: 50%;                          /* Center horizontally */
+  transform: translateX(-50%);        /* Perfect centering */
+  
+  /* LINE APPEARANCE */
+  width: 3px;                         /* Line thickness */
+  height: calc(50%);                  /* Dynamic height */
+  background: linear-gradient(to bottom, transparent, #d4af37, transparent);
+  opacity: 0.6;                       /* Subtle transparency */
+  
+  /* INTERACTIONS */
+  transition: all 0.3s ease;          /* Smooth transitions */
+}
+
+/**
+ * ENHANCED DIVIDER ON HOVER
+ * =========================
+ */
+.container:hover::before {
+  opacity: 0.8;                       /* Increased visibility */
+  width: 3px;                         /* Maintain width */
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.5); /* Golden glow effect */
+}
+
+/**
+ * MAIN HEADER STYLES (.header)
+ * ============================
+ */
+.header {
+  /* TYPOGRAPHY */
+  font-size: clamp(3rem, 8vw, 5rem);  /* Responsive sizing */
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-weight: 300;                   /* Light weight for elegance */
+  line-height: 1.1;                   /* Tight line spacing */
+  color: white;                   /* Dark text color */
+  
+  /* VISUAL EFFECTS */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle depth */
+  position: relative;                 /* For pseudo-elements */
+  
+  /* ENTRANCE ANIMATIONS */
+  animation:
+    fadeInHeader 2s ease-out 1s both;       /* Cinematic fade-in */
+  
+  /* INTERACTIONS */
+  transition: all 0.4s ease;          /* Smooth hover transitions */
+}
+
+/**
+ * GOLDEN UNDERLINE (.header::after)
+ * =================================
+ */
+.header::after {
+  content: '';                        /* Required for pseudo-element */
+  position: absolute;                 /* Positioned relative to header */
+  bottom: -16px;                      /* Below the text */
+  left: 0;                            /* Align to left edge */
+  
+  /* UNDERLINE APPEARANCE */
+  width: 120px;                       /* Fixed width */
+  height: 4px;                        /* Line thickness */
+  background: linear-gradient(90deg, #d4af37, #b8941f); /* Golden gradient */
+  border-radius: 2px;                 /* Rounded edges */
+  
+  /* ENTRANCE ANIMATION */
+  animation: expandUnderline 1s ease-out 2s both; /* Delayed expansion */
+}
+
+/**
+ * HEADER CONTAINER HOVER INTERACTION
+ * ==================================
+ */
+.container:hover .header {
+  transform: translateX(-5px);        /* Slight leftward movement */
+}
+
+/**
+ * INTRODUCTION TEXT CONTAINER (.introText)
+ * ========================================
+ */
+.introText {
+  /* TYPOGRAPHY */
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-size: 25px;                    /* Readable size */
+  line-height: 1.9;                   /* Generous line spacing */
+  color: #c8c8c8;                   /* Medium gray for readability */
+  
+  /* ENTRANCE ANIMATION */
+  animation: introTextFadeIn 1s ease-out 0.8s both;
+}
+
+/**
+ * PARAGRAPH STAGGERED ENTRANCE (.introText p)
+ * ===========================================
+ */
+.introText p {
+  margin-bottom: 28px;                /* Spacing between paragraphs */
+  opacity: 0;                         /* Start invisible */
+  animation: introTextFadeIn 0.8s ease-out forwards; /* Fade-in animation */
+}
+
+/* STAGGERED TIMING */
+.introText p:nth-child(1) { animation-delay: 1.5s; } /* First paragraph */
+.introText p:nth-child(2) { animation-delay: 2s; }   /* Second paragraph */
+
+/**
+ * NAME HIGHLIGHT STYLES (.name)
+ * =============================
+ */
+.name {
+  /* APPEARANCE */
+  background: linear-gradient(135deg, #1a1a1a, #2c2c2c); /* Dark gradient */
+  color: #d4af37;                   /* Golden text */
+  padding: 6px 16px;                  /* Internal spacing */
+  border-radius: 6px;                 /* Rounded corners */
+  
+  /* TYPOGRAPHY */
+  font-weight: 700;                   /* Bold weight */
+  font-style: italic;                 /* Italic style */
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  
+  /* VISUAL EFFECTS */
+  text-shadow: 0 0 8px rgba(212, 175, 55, 0.4); /* Golden glow */
+  position: relative;                 /* For pseudo-elements */
+  cursor: pointer;                    /* Interactive cursor */
+  
+  /* INTERACTIONS */
+  transition: all 0.4s ease;          /* Smooth transitions */
+}
+
+/**
+ * NAME SHIMMER EFFECT (.name::before)
+ * ===================================
+ */
+.name::before {
+  content: '';                       /* Required for pseudo-element */
+  position: absolute;                /* Absolute positioning */
+  top: 0;                            /* Full height coverage */
+  left: -100%;                       /* Start off-screen left */
+  width: 100%;                       /* Full width */
+  height: 100%;                      /* Full height */
+  
+  /* SHIMMER GRADIENT */
+  background: linear-gradient(
+    90deg,
+    transparent,                      /* Fade in */
+    rgba(212, 175, 55, 0.4),         /* Golden center */
+    rgba(255, 255, 255, 0.6),        /* Bright white highlight */
+    rgba(212, 175, 55, 0.4),         /* Golden center */
+    transparent                       /* Fade out */
+  );
+  
+  /* ANIMATION */
+  transition: left 0.6s ease;        /* Smooth sweep transition */
+  z-index: 1;                        /* Above background */
+}
+
+/**
+ * SHIMMER ACTIVATION
+ * =================
+ */
+.name:hover::before {
+  left: 100%;                        /* Sweep across to right */
+}
+
+/**
+ * CINEMATIC TEXT ENTRANCE
+ * =======================
+ * Sophisticated fade-in with blur and letter-spacing effects
+ * for luxurious text appearance.
+ */
+@keyframes fadeInHeader {
+  from { opacity: 0; letter-spacing: 5px; filter: blur(5px); }
+  to { opacity: 1; letter-spacing: normal; filter: blur(0px); }
+}
+
+/**
+ * STAGGERED FADE IN
+ * ================
+ * Upward movement with opacity fade for paragraph animations.
+ */
+@keyframes introTextFadeIn {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/**
+ * HORIZONTAL EXPANSION
+ * ===================
+ * Width expansion animation for the golden underline.
+ */
+@keyframes expandUnderline {
+  from { width: 0; }
+  to { width: 120px; }
+}
+
+/* FADE OUT ANIMATION */
+.fadeOut {
+  animation: fadeOut 0.6s ease-out forwards;
+}
+
+@keyframes fadeOut {
+  from { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+  to { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+}
