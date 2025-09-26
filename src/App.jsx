@@ -17,6 +17,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import classes from './App.module.css';
 import CreativeMode from './components/CreativeMode';
 import ClassicMode from './components/ClassicMode';
+import About from './components/ClassicMode/pages/About';
+import Coding from './components/ClassicMode/pages/Coding';
+import Projects from './components/ClassicMode/pages/Projects';
+import Contact from './components/ClassicMode/pages/Contact';
 import ButtonClassic from './components/Home/ButtonClassic';
 import ButtonCreative from './components/Home/ButtonCreative';
 import CodeRemarks from './components/Home/CodeRemarks';
@@ -41,7 +45,12 @@ function App() {
                     </div>
                 } />
                 <Route path="/creative" element={<CreativeMode />} />
-                <Route path="/classic" element={<ClassicMode />} />
+                <Route path="/classic" element={<ClassicMode />}>
+                    <Route path="about" element={<About />} />
+                    <Route path="coding" element={<Coding />} />
+                    <Route path="projects" element={<Projects />} />
+                    <Route path="contact" element={<Contact />} />
+                </Route>
             </Routes>
         </Router>
     );

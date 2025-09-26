@@ -1,0 +1,500 @@
+/**
+ * PROJECTS PAGE STYLES - CLASSICMODE
+ * ==================================
+ * Professional styling for the Projects page with interactive project cards and golden accents.
+ */
+
+/**
+ * PAGE CONTAINER (.projectsPage)
+ * ==============================
+ */
+.projectsPage {
+  /* LAYOUT & POSITIONING */
+  position: relative;
+  z-index: 5;
+  
+  /* SIZING */
+  width: 100%;
+  min-height: 70vh;
+  
+  /* SPACING */
+  padding: 3rem 2rem;
+  
+  /* ANIMATIONS */
+  animation: pageEntrance 0.8s ease-out;
+}
+
+/**
+ * CONTENT CONTAINER (.contentContainer)
+ * ====================================
+ */
+.contentContainer {
+  /* LAYOUT */
+  max-width: 1200px;
+  margin: 0 auto;
+  
+  /* SPACING */
+  padding: 2rem;
+  
+  /* APPEARANCE */
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+/**
+ * PAGE HEADER (.pageHeader)
+ * =========================
+ */
+.pageHeader {
+  /* LAYOUT */
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.pageTitle {
+  /* TYPOGRAPHY */
+  font-size: 3rem;
+  font-weight: 300;
+  font-family: 'Georgia', serif;
+  color: #e6e6fa;
+  margin: 0;
+  
+  /* EFFECTS */
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+  
+  /* ANIMATIONS */
+  animation: titleGlow 2s ease-in-out infinite alternate;
+}
+
+.titleUnderline {
+  /* LAYOUT */
+  width: 100px;
+  height: 3px;
+  margin: 1rem auto;
+  
+  /* APPEARANCE */
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    #d4af37 50%, 
+    transparent 100%);
+  
+  /* ANIMATIONS */
+  animation: underlineGlow 3s ease-in-out infinite;
+}
+
+.pageSubtitle {
+  /* TYPOGRAPHY */
+  font-size: 1.2rem;
+  color: #e6e6fa;
+  font-style: italic;
+  margin-top: 1rem;
+  opacity: 0.8;
+}
+
+/**
+ * CONTENT GRID (.contentGrid)
+ * ===========================
+ */
+.contentGrid {
+  /* LAYOUT */
+  display: grid;
+  gap: 3rem;
+  grid-template-columns: 1fr;
+}
+
+/**
+ * SECTION STYLING
+ * ===============
+ */
+.featuredSection,
+.statsSection,
+.approachSection {
+  /* SPACING */
+  margin-bottom: 2rem;
+}
+
+.sectionTitle {
+  /* TYPOGRAPHY */
+  font-size: 1.8rem;
+  font-weight: 400;
+  font-family: 'Georgia', serif;
+  color: #d4af37;
+  margin-bottom: 1.5rem;
+  
+  /* EFFECTS */
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+/**
+ * PROJECTS GRID (.projectsGrid)
+ * =============================
+ */
+.projectsGrid {
+  /* LAYOUT */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/**
+ * PROJECT CARD (.projectCard)
+ * ===========================
+ */
+.projectCard {
+  /* APPEARANCE */
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 15px;
+  overflow: hidden;
+  
+  /* INTERACTIONS */
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.projectCard:hover {
+  /* HOVER EFFECTS */
+  transform: translateY(-10px);
+  background: rgba(212, 175, 55, 0.15);
+  border-color: rgba(212, 175, 55, 0.5);
+  box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+}
+
+.projectImage {
+  /* LAYOUT */
+  width: 100%;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+.projectPlaceholder {
+  /* LAYOUT */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* APPEARANCE */
+  background: linear-gradient(135deg, 
+    rgba(212, 175, 55, 0.2) 0%, 
+    rgba(212, 175, 55, 0.1) 100%);
+}
+
+.projectIcon {
+  /* TYPOGRAPHY */
+  font-size: 3rem;
+  opacity: 0.7;
+}
+
+.projectContent {
+  /* SPACING */
+  padding: 1.5rem;
+}
+
+.projectTitle {
+  /* TYPOGRAPHY */
+  font-size: 1.4rem;
+  color: #d4af37;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  
+  /* EFFECTS */
+  text-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+}
+
+.projectDesc {
+  /* TYPOGRAPHY */
+  color: #e6e6fa;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+
+.techStack {
+  /* LAYOUT */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.techBadge {
+  /* APPEARANCE */
+  background: rgba(212, 175, 55, 0.2);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 15px;
+  
+  /* SPACING */
+  padding: 0.3rem 0.8rem;
+  
+  /* TYPOGRAPHY */
+  font-size: 0.8rem;
+  color: #e6e6fa;
+  
+  /* INTERACTIONS */
+  transition: all 0.3s ease;
+}
+
+.techBadge:hover {
+  /* HOVER EFFECTS */
+  background: rgba(212, 175, 55, 0.3);
+  transform: translateY(-1px);
+}
+
+.projectLinks {
+  /* LAYOUT */
+  display: flex;
+  gap: 1rem;
+}
+
+.linkButton {
+  /* APPEARANCE */
+  background: linear-gradient(135deg, #d4af37, #f4d03f);
+  border: none;
+  border-radius: 25px;
+  
+  /* SPACING */
+  padding: 0.8rem 1.5rem;
+  
+  /* TYPOGRAPHY */
+  color: #000;
+  font-weight: 500;
+  font-size: 0.9rem;
+  
+  /* INTERACTIONS */
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.linkButton:hover {
+  /* HOVER EFFECTS */
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+  background: linear-gradient(135deg, #f4d03f, #d4af37);
+}
+
+/**
+ * STATISTICS SECTION (.statsSection)
+ * ==================================
+ */
+.statsGrid {
+  /* LAYOUT */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.statCard {
+  /* APPEARANCE */
+  background: linear-gradient(135deg, 
+    rgba(212, 175, 55, 0.1) 0%, 
+    rgba(212, 175, 55, 0.05) 100%);
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  border-radius: 15px;
+  
+  /* SPACING */
+  padding: 2rem 1rem;
+  
+  /* LAYOUT */
+  text-align: center;
+  
+  /* INTERACTIONS */
+  transition: all 0.3s ease;
+}
+
+.statCard:hover {
+  /* HOVER EFFECTS */
+  transform: translateY(-5px);
+  border-color: rgba(212, 175, 55, 0.5);
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+}
+
+.statNumber {
+  /* TYPOGRAPHY */
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: #d4af37;
+  margin-bottom: 0.5rem;
+  
+  /* EFFECTS */
+  text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+  
+  /* ANIMATIONS */
+  animation: numberPulse 3s ease-in-out infinite;
+}
+
+.statLabel {
+  /* TYPOGRAPHY */
+  color: #e6e6fa;
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+/**
+ * APPROACH SECTION (.approachSection)
+ * ===================================
+ */
+.approachGrid {
+  /* LAYOUT */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.approachCard {
+  /* APPEARANCE */
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 12px;
+  
+  /* SPACING */
+  padding: 2rem;
+  
+  /* INTERACTIONS */
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.approachCard:hover {
+  /* HOVER EFFECTS */
+  transform: translateY(-5px);
+  background: rgba(212, 175, 55, 0.15);
+  border-color: rgba(212, 175, 55, 0.5);
+  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.2);
+}
+
+.approachStep {
+  /* APPEARANCE */
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #d4af37, #f4d03f);
+  border-radius: 50%;
+  
+  /* LAYOUT */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  
+  /* TYPOGRAPHY */
+  font-weight: bold;
+  color: #000;
+  font-size: 0.9rem;
+  
+  /* EFFECTS */
+  box-shadow: 0 3px 10px rgba(212, 175, 55, 0.3);
+}
+
+.approachTitle {
+  /* TYPOGRAPHY */
+  font-size: 1.2rem;
+  color: #d4af37;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.approachDesc {
+  /* TYPOGRAPHY */
+  color: #e6e6fa;
+  line-height: 1.6;
+  margin: 0;
+  opacity: 0.9;
+}
+
+/**
+ * ANIMATIONS
+ * ==========
+ */
+@keyframes pageEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes titleGlow {
+  from {
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+  }
+  to {
+    text-shadow: 0 0 30px rgba(212, 175, 55, 0.8), 
+                 0 0 40px rgba(212, 175, 55, 0.3);
+  }
+}
+
+@keyframes underlineGlow {
+  0%, 100% {
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      #d4af37 50%, 
+      transparent 100%);
+  }
+  50% {
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      #f4d03f 50%, 
+      transparent 100%);
+  }
+}
+
+@keyframes numberPulse {
+  0%, 100% {
+    transform: scale(1);
+    text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+  }
+  50% {
+    transform: scale(1.05);
+    text-shadow: 0 0 25px rgba(212, 175, 55, 0.8);
+  }
+}
+
+/**
+ * RESPONSIVE DESIGN
+ * =================
+ */
+@media (max-width: 768px) {
+  .projectsPage {
+    padding: 2rem 1rem;
+  }
+  
+  .contentContainer {
+    padding: 1.5rem;
+  }
+  
+  .pageTitle {
+    font-size: 2.5rem;
+  }
+  
+  .projectsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .projectCard {
+    max-width: 100%;
+  }
+  
+  .statsGrid,
+  .approachGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .projectLinks {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .linkButton {
+    width: 100%;
+  }
+}

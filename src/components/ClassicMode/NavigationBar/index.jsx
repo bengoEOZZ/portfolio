@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import classes from './NavigationBar.module.css';
 
 /**
@@ -14,11 +15,17 @@ import classes from './NavigationBar.module.css';
  * ==============================
  */
 const NavigationBar = () => {
+  const navigate = useNavigate();
+
+  const handleLogoClick = () => {
+    navigate('/classic');
+  };
+
   return (
     <header className={classes.header}>
       
       {/* LOGO SECTION */}
-      <div className={classes.logo}>
+      <div className={classes.logo} onClick={handleLogoClick}>
         
         {/* LOGO: LUXURY CRAFTMANSHIP EMBLEM */}
         <div className={classes.craftsmanLogo}>

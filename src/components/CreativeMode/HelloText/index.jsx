@@ -1,7 +1,6 @@
 /**
  * HELLOTEXT COMPONENT - PORTFOLIO INTRODUCTION & INTERACTIVE GUIDANCE
  * ===================================================================
- * 
  * This component renders the main introductory text section for the Creative Mode interface.
  * 
  * Key Features:

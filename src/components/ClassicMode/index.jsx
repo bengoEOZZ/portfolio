@@ -6,11 +6,12 @@
  * and refined visual effects to showcase the professional and craftsmanship side of the portfolio.
  * 
  * COMPONENT ARCHITECTURE:
- * This component acts as a container/orchestrator that renders three main child components:
+ * This component acts as a container/orchestrator that renders four main child components:
  * 
  * - NavigationBar: Header with luxury logo and briefcase menu
+ * - SophisticatedBackground: Dynamic mathematical flowing curves
  * - HelloText: Professional introduction and portfolio showcase
- * - BeltNavigation: Luxury leather belt navigation system at bottom
+ * - NavigationBelt: Luxury leather belt navigation system at bottom
  *
  * Design Philosophy:
  * - Represents professionalism, craftsmanship, and luxury aesthetics
@@ -18,11 +19,14 @@
  */
 
 // DEPENDENCIES
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 import classes from './ClassicMode.module.css';
 import NavigationBar from './NavigationBar';
+import SophisticatedBackground from './SophisticatedBackground';
 import HelloText from './HelloText';
 import NavigationBelt from './NavigationBelt';
+import { usePageTransition } from '../../hooks/usePageTransition';
 
 /**
  * ClassicMode Component
@@ -33,65 +37,28 @@ const ClassicMode = () => {
    * STATE MANAGEMENT
    * ===============
    */
-  const [time, setTime] = useState(0);
-  const [helloTextFading, setHelloTextFading] = useState(false);
+  const { transitioning, startTransition } = usePageTransition();
+  const location = useLocation();
+  
+  // Check if we're on the home route (ClassicMode homepage)
+  const isHome = location.pathname === '/classic' || location.pathname === '/classic/';
 
   /**
-   * DYNAMIC BACKGROUND ANIMATIONS
-   * =============================
-   * Real-time mathematical calculations for flowing background lines
+   * EFFECT: RESET TRANSITION STATE WHEN RETURNING HOME
+   * ==================================================
+   * No manual state reset needed - hook manages this automatically
    */
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTime((prevTime) => prevTime + 0.016); // ~60fps
-    }, 16);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  /**
-   * MATHEMATICAL PATH GENERATION
-   * ============================
-   * Creates smooth, flowing mathematical curves based on trigonometric functions.
-   * 
-   * MATHEMATICAL FORMULAS:
-   * Position = BasePosition + Math.sin/cos(time * frequency) * amplitude
-   * 
-   * FORMULA BREAKDOWN:
-   * - BasePosition: Static center point (e.g., 300px from top)
-   * - Math.sin/cos: Wave functions that oscillate between -1 and +1
-   * - time: Current animation time in seconds
-   * - frequency: Speed of oscillation (0.2=slow -> 0.6=fast)
-   * - amplitude: Range of movement in pixels (eg: ±50px = 100px total range)
-   * 
-   * COORDINATE SYSTEM:
-   * - X: -200 (off-screen left) to 1800 (off-screen right)
-   * - Y: 0 (top) to 700 (bottom) in viewBox
-   */
-  const calculateDynamicPaths = () => {
-    return {
-      // Flowing line 1
-      flowingPath1: `M-200,${300 + Math.sin(time * 0.5) * 50} 
-                     Q${400 + Math.cos(time * 0.3) * 100},${250 + Math.sin(time * 0.4) * 80} 
-                     ${800 + Math.sin(time * 0.2) * 60},${320 + Math.cos(time * 0.6) * 40} 
-                     T1800,${350 + Math.sin(time * 0.3) * 70}`,
-      
-      // Flowing line 2 
-      flowingPath2: `M-200,${500 + Math.cos(time * 0.4) * 60} 
-                     Q${300 + Math.sin(time * 0.5) * 90},${450 + Math.cos(time * 0.3) * 50} 
-                     ${700 + Math.cos(time * 0.6) * 80},${520 + Math.sin(time * 0.2) * 60} 
-                     T1800,${480 + Math.cos(time * 0.4) * 90}`
-    };
-  };
-
-  const dynamicPaths = calculateDynamicPaths();
 
   /**
    * NAVIGATION HANDLERS
    * ==================
    */
-  const handleNavigationStart = () => {
-    setHelloTextFading(true);
+  const handleNavigationStart = (cardType) => {
+    // Don't transition if clicking home button
+    if (cardType !== 'home') {
+      // The transition will be handled by NavigationBelt component
+      // using the startTransition function passed down
+    }
   };
 
   /**
@@ -103,25 +70,25 @@ const ClassicMode = () => {
       <NavigationBar />
 
       <div className={classes.container}>
-
-        {/* BACKGROUND SYSTEM */}
-        <div className={classes.sophisticatedBackground}>
-          {/* DYNAMIC FLOWING LINES: Real-time mathematical-based curve */}
-          <svg width="100%" height="100%" viewBox="-200 0 1800 700">
-            <g opacity="0.3">
-              {/* Flowing line 1 */}
-              <path d={dynamicPaths.flowingPath1} fill="none"
-                stroke="rgba(212,175,55,0.4)" strokeWidth="4"/>
-              {/* Flowing line 2 */}
-              <path d={dynamicPaths.flowingPath2} fill="none"
-                stroke="rgba(212,175,55,0.2)" strokeWidth="4"/>
-            </g>
-          </svg>
-        </div>
+        {/* BACKGROUND SYSTEM - Always present */}
+        <SophisticatedBackground />
         
-        <HelloText isHelloTextFading={helloTextFading} />
-
-        <NavigationBelt onNavigationStart={handleNavigationStart} />
+        {/* MAIN CONTENT - Conditional rendering */}
+        {isHome ? (
+          <>
+            <HelloText isHelloTextFading={transitioning} />
+            {/* NAVIGATION BELT - Only show on home page */}
+            <NavigationBelt 
+              onNavigationStart={handleNavigationStart} 
+              isBeltFading={transitioning}
+              startTransition={startTransition}
+            />
+          </>
+        ) : (
+          <div className={classes.contentArea}>
+            <Outlet />
+          </div>
+        )}
       </div>
     </div>
   );

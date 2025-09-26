@@ -323,3 +323,124 @@
   0% { opacity: 0.6; }
   100% { opacity: 0; }
 }
+
+/**
+ * CRAFT SYMBOL (.craftSymbol) - FLEUR-DE-LIS IN BUCKLE
+ * ====================================================
+ */
+.craftSymbol {
+  /* SIZING */
+  font-size: 20px;
+  
+  /* APPEARANCE */
+  color: #8b4513;                     /* Bronze/brown color for symbol */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  
+  /* INTERACTIONS */
+  transition: all 0.3s ease;
+  
+  /* LAYOUT */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navBuckle {
+  cursor: pointer;                    /* Make buckle clickable */
+}
+
+.navBuckle:hover .craftSymbol {
+  color: #d4af37;                     /* Golden color on hover */
+  transform: scale(1.1);              /* Slight growth on hover */
+  text-shadow: 
+    0 0 8px rgba(212, 175, 55, 0.6),   /* Golden glow */
+    0 2px 6px rgba(0, 0, 0, 0.4);      /* Enhanced shadow */
+}
+
+/**
+ * BELT FADING ANIMATION (.beltFading)
+ * ===================================
+ * Comprehensive fade-out with unbuckling animation when navigating away from home
+ */
+.beltFading {
+  animation: beltFadeOut 0.6s ease-out forwards;
+}
+
+/* Buckle unbuckling animation when fading */
+.beltFading .navBuckle {
+  animation: buckleUnclasp 0.8s ease-in-out forwards;
+  pointer-events: none;
+}
+
+/* Belt strap fading */
+.beltFading::before {
+  animation: beltSlideAway 0.5s ease-out 0.1s forwards;
+}
+
+/* Stitching fading */
+.beltFading::after {
+  animation: stitchingFadeOut 0.5s ease-out 0.15s forwards;
+}
+
+/* Shimmer effect fading */
+.beltFading .diamondShimmerEffect {
+  animation: sparklesFadeOut 0.4s ease-out 0.2s forwards;
+}
+
+/* Navigation cards exit animation */
+.beltFading .navCard:nth-child(2) {
+  animation: cardExitLeft 0.6s ease-in-out forwards;
+}
+
+.beltFading .navCard:nth-child(3) {
+  animation: cardExitLeft 0.6s ease-in-out 0.05s forwards;
+}
+
+.beltFading .navCard:nth-child(5) {
+  animation: cardExitRight 0.6s ease-in-out forwards;
+}
+
+.beltFading .navCard:nth-child(6) {
+  animation: cardExitRight 0.6s ease-in-out 0.05s forwards;
+}
+
+@keyframes beltFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+}
+
+@keyframes cardExitLeft {
+  0% { 
+    opacity: 1; 
+    transform: translateY(0px) translateX(0px) scale(1) rotateZ(0deg);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(-10px) translateX(-20px) scale(0.95) rotateZ(-5deg);
+  }
+  100% { 
+    opacity: 0; 
+    transform: translateY(30px) translateX(-80px) scale(0.8) rotateZ(-15deg);
+  }
+}
+
+@keyframes cardExitRight {
+  0% { 
+    opacity: 1; 
+    transform: translateY(0px) translateX(0px) scale(1) rotateZ(0deg);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(-10px) translateX(20px) scale(0.95) rotateZ(5deg);
+  }
+  100% { 
+    opacity: 0; 
+    transform: translateY(30px) translateX(80px) scale(0.8) rotateZ(15deg);
+  }
+}

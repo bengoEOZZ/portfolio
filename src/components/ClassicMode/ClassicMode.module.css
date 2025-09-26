@@ -27,58 +27,6 @@
     );
 }
 
-/* PROFESSIONAL FLOATING ELEMENTS */
-.sophisticatedBackground::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  
-  background: 
-    /* Scattered golden floating circles */
-    radial-gradient(circle at 15% 20%, rgba(212,175,55,0.3) 3px, transparent 5px),
-    radial-gradient(circle at 25% 70%, rgba(255,215,0,0.2) 4px, transparent 6px),
-    radial-gradient(circle at 35% 15%, rgba(212,175,55,0.25) 2px, transparent 4px),
-    radial-gradient(circle at 45% 85%, rgba(255,215,0,0.3) 5px, transparent 7px),
-    radial-gradient(circle at 55% 35%, rgba(212,175,55,0.2) 3px, transparent 5px),
-    radial-gradient(circle at 65% 75%, rgba(255,215,0,0.25) 4px, transparent 6px),
-    radial-gradient(circle at 75% 25%, rgba(212,175,55,0.3) 2px, transparent 4px),
-    radial-gradient(circle at 85% 60%, rgba(255,215,0,0.2) 3px, transparent 5px),
-    radial-gradient(circle at 90% 90%, rgba(212,175,55,0.25) 4px, transparent 6px),
-    radial-gradient(circle at 20% 50%, rgba(212,175,55,0.15) 8px, transparent 10px),
-    radial-gradient(circle at 70% 40%, rgba(255,215,0,0.1) 10px, transparent 12px),
-    radial-gradient(circle at 40% 60%, rgba(212,175,55,0.12) 7px, transparent 9px),
-    
-    /* Subtle grid pattern for tech/engineering feel */
-    linear-gradient(90deg, rgba(212,175,55,0.03) 1px, transparent 1px),
-    linear-gradient(0deg, rgba(212,175,55,0.03) 1px, transparent 1px);
-    
-  background-size: 
-    /* Particle sizes */
-    100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%,
-    100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%,
-    /* Grid sizes */
-    60px 60px, 60px 60px;
-    
-  animation: float 12s ease-in-out infinite;
-  z-index: 1;
-}
-
-/* LINE POSITIONING */
-.sophisticatedBackground svg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
-}
-
-/* Update SVG paths to golden color */
-.sophisticatedBackground svg path {
-  stroke: rgba(212,175,55,0.4) !important;
-}
-
 .container {
   height: 100vh;
   width: 100vw;
@@ -110,25 +58,38 @@
 }
 
 /**
- * PROFESSIONAL FLOATING ANIMATION
- * ===============================
- * Subtle, slow movement suggesting technical precision and professionalism
+ * CONTENT AREA - For routed pages (.contentArea)
+ * ==============================================
+ * Container for page content when navigating to sub-pages
  */
-@keyframes float {
-  0%, 100% { 
-    transform: translateY(0px) rotate(0deg);
-    opacity: 0.8;
+.contentArea {
+  /* LAYOUT & POSITIONING */
+  position: relative;
+  z-index: 5;
+  
+  /* SIZING */
+  width: 100%;
+  min-height: 60vh;
+  max-width: 1200px;
+  
+  /* SPACING */
+  padding: 2rem;
+  margin-top: 6rem;
+  
+  /* APPEARANCE */
+  color: #e6e6fa;
+  
+  /* ANIMATIONS */
+  animation: contentFadeIn 0.6s ease-out;
+}
+
+@keyframes contentFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
   }
-  25% { 
-    transform: translateY(-3px) rotate(0.5deg);
-    opacity: 0.9;
-  }
-  50% { 
-    transform: translateY(-5px) rotate(0deg);
+  to {
     opacity: 1;
-  }
-  75% { 
-    transform: translateY(-3px) rotate(-0.5deg);
-    opacity: 0.9;
+    transform: translateY(0);
   }
 }
