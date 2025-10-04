@@ -6,6 +6,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import classes from './Contact.module.css';
+import IDCard from '../../IDCard'; // Import your IDCard component
 import BenMoonAvatar from '../../../../assets/CreativeMode/BenMoonDay.svg';
 import EmailIcon from '../../../../assets/EmailIcon.png';
 import LinkedInIcon from '../../../../assets/LinkedInIcon.png';
@@ -62,70 +63,80 @@ const Contact = () => {
   };
 
   return (
-    <div className={classes.contactArea}>
-      <div className={classes.businessCard} ref={cardRef}>
-        <div className={`${classes.cardInner} ${isFlipped ? classes.flipped : ''}`} ref={cardInnerRef}>
-          
-          {/* FRONT SIDE */}
-          <div className={classes.cardFront}>
-            <div className={classes.goldBackground}></div>
-            <div className={classes.cardContent}>
-              <h1 className={classes.memberName}>BENJAMIN TIONG</h1>
-              <div className={classes.memberTitle}>SOFTWARE DEVELOPER</div>
-              <div className={classes.memberSubtitle}>PREMIUM CODER</div>
-              <div className={classes.blackCircle}>
-                <img src={BenMoonAvatar} alt="Ben Moon Avatar" className={classes.avatarImage} />
-              </div>
-            </div>
-            <div className={classes.flipIndicator} onClick={handleFlip}></div>
-          </div>
+    <div className={classes.contactPage}>
+      {/* PAGE HEADER - ADDED to match Projects page */}
+      <div className={classes.pageHeader}>
+        <h1 className={classes.pageTitle}>Contact Me</h1>
+        <div className={classes.titleUnderline}></div>
+        <p className={classes.pageSubtitle}>
+          Let's connect and explore opportunities for collaboration.
+        </p>
+      </div>
 
-          {/* BACK SIDE */}
-          <div className={classes.cardBack}>
-            <div className={classes.flipBackIndicator} onClick={handleFlip}></div>
-            <div className={classes.backContent}>
+      <div className={classes.contentContainer}>
+        <div className={classes.contactArea}>
+          <div className={classes.businessCard} ref={cardRef}>
+            <div className={`${classes.cardInner} ${isFlipped ? classes.flipped : ''}`} ref={cardInnerRef}>
               
-              <div className={classes.backLeft}>
-                <div className={classes.nameSection}>
-                  <div className={classes.backName}>CONTACT INFO</div>
-                  <div className={classes.premiumLine}></div>
-                </div>
-                
-                <div className={classes.contactList}>
-                  {contacts.map((contact, index) => (
-                    <div key={index} className={classes.contactItem} onClick={() => handleContactClick(contact.url)}>
-                      <div className={classes.contactIcon}>
-                        <img src={contact.iconImage} alt={`${contact.name} icon`} className={classes.iconImage} />
-                      </div>
-                      <div className={classes.contactDetails}>
-                        <div className={classes.contactLabel}>{contact.name.toUpperCase()}</div>
-                        <div className={classes.contactValue}>{contact.label}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+              {/* FRONT SIDE - Use your IDCard component instead! */}
+              <div className={classes.cardFront}>
+                <IDCard 
+                  name="BENJAMIN TIONG"
+                  title="SOFTWARE DEVELOPER" 
+                  subtitle="PREMIUM CODER"
+                  profileImage={BenMoonAvatar}
+                />
+                <div className={classes.flipIndicator} onClick={handleFlip}></div>
               </div>
-              
-              <div className={classes.backRight}>
-                <div className={classes.btMonogram}>
-                  <div className={classes.btContainer}>
-                    <div className={classes.letterB}>B</div>
-                    <div className={classes.letterT}>T</div>
-                    <div className={classes.monogramGlow}></div>
-                    <div className={classes.orbitRings}>
-                      <div className={classes.ring1}></div>
-                      <div className={classes.ring2}></div>
-                      <div className={classes.ring3}></div>
+
+              {/* BACK SIDE */}
+              <div className={classes.cardBack}>
+                <div className={classes.flipBackIndicator} onClick={handleFlip}></div>
+                <div className={classes.backContent}>
+                  
+                  <div className={classes.backLeft}>
+                    <div className={classes.nameSection}>
+                      <div className={classes.backName}>CONTACT INFO</div>
+                      <div className={classes.premiumLine}></div>
+                    </div>
+                    
+                    <div className={classes.contactList}>
+                      {contacts.map((contact, index) => (
+                        <div key={index} className={classes.contactItem} onClick={() => handleContactClick(contact.url)}>
+                          <div className={classes.contactIcon}>
+                            <img src={contact.iconImage} alt={`${contact.name} icon`} className={classes.iconImage} />
+                          </div>
+                          <div className={classes.contactDetails}>
+                            <div className={classes.contactLabel}>{contact.name.toUpperCase()}</div>
+                            <div className={classes.contactValue}>{contact.label}</div>
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
-                  <div className={classes.premiumBadge}>★ PREMIUM ★</div>
+                  
+                  <div className={classes.backRight}>
+                    <div className={classes.btMonogram}>
+                      <div className={classes.btContainer}>
+                        <div className={classes.letterB}>B</div>
+                        <div className={classes.letterT}>T</div>
+                        <div className={classes.monogramGlow}></div>
+                        <div className={classes.orbitRings}>
+                          <div className={classes.ring1}></div>
+                          <div className={classes.ring2}></div>
+                          <div className={classes.ring3}></div>
+                        </div>
+                      </div>
+                      <div className={classes.premiumBadge}>★ PREMIUM ★</div>
+                    </div>
+                    <div className={classes.locationFooter}>ONTARIO • CANADA</div>
+                  </div>
+                  
                 </div>
-                <div className={classes.locationFooter}>TORONTO • CANADA</div>
               </div>
-              
+
             </div>
           </div>
-
         </div>
       </div>
     </div>

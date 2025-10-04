@@ -105,10 +105,7 @@
     transform: scale(1.1);
     
     /* ENHANCED GLOW EFFECT */
-    filter: 
-        drop-shadow(0 0 20px rgba(135, 206, 250, 0.8))
-        drop-shadow(0 0 30px rgba(70, 130, 180, 0.6))
-        drop-shadow(0 0 40px rgba(0, 255, 255, 0.4));
+    filter: drop-shadow(0 0 40px rgba(0, 255, 255, 0.4));
     
     /* GLITCH ON HOVER */
     animation: colourGlitch 3s infinite;

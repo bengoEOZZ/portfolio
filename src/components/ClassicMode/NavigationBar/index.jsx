@@ -9,6 +9,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import classes from './NavigationBar.module.css';
+import emblemImage from '../../../assets/emblem.png'; // Import the emblem image
 
 /**
  * ClassicNavigationBar Component
@@ -24,21 +25,38 @@ const NavigationBar = () => {
   return (
     <header className={classes.header}>
       
-      {/* LOGO SECTION */}
+      {/* LOGO SECTION - ENHANCED */}
       <div className={classes.logo} onClick={handleLogoClick}>
         
-        {/* LOGO: LUXURY CRAFTMANSHIP EMBLEM */}
+        {/* LUXURY CRAFTMANSHIP EMBLEM - ENHANCED */}
         <div className={classes.craftsmanLogo}>
+          
+          {/* INNER SHIMMER RING */}
+          <div className={classes.shimmerRing}></div>
+          
+          {/* MAIN CREST WITH ENHANCED EFFECTS */}
           <div className={classes.outerCrest}>
-            <div className={classes.innerCrest}>
-              <div className={classes.craftSymbol}>⚜</div>
+            {/* RADIAL LUXURY BACKDROP */}
+            <div className={classes.luxuryBackdrop}></div>
+            
+            {/* MAIN EMBLEM */}
+            <img src={emblemImage} alt="Craftsman Emblem" className={classes.craftSymbol} />
+            
+            {/* FLOATING SPARKLES */}
+            <div className={classes.sparkleEffect}>
+              <div className={classes.sparkle} style={{'--delay': '0s', '--duration': '3s'}}></div>
+              <div className={classes.sparkle} style={{'--delay': '1s', '--duration': '4s'}}></div>
+              <div className={classes.sparkle} style={{'--delay': '2s', '--duration': '3.5s'}}></div>
             </div>
           </div>
         </div>
         
-        {/* LOGO: TEXT */}
+        {/* LOGO TEXT - ORIGINAL WITH UNDERLINE */}
         <div className={classes.logoText}>
           <div>classic</div>
+          <div className={classes.primaryText}>
+            <div className={classes.textUnderline}></div>
+          </div>
           <div>craftmanship</div>
         </div>
       </div>

@@ -153,63 +153,236 @@
 .introText p:nth-child(2) { animation-delay: 2s; }   /* Second paragraph */
 
 /**
- * NAME HIGHLIGHT STYLES (.name)
- * =============================
+ * NAME HIGHLIGHT STYLES (.name) - ENHANCED LUXURY
+ * ===============================================
  */
 .name {
-  /* APPEARANCE */
-  background: linear-gradient(135deg, #1a1a1a, #2c2c2c); /* Dark gradient */
+  /* APPEARANCE - ENHANCED */
+  background: 
+    linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 50%, #1a1a1a 100%),
+    linear-gradient(45deg, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
   color: #d4af37;                   /* Golden text */
-  padding: 6px 16px;                  /* Internal spacing */
-  border-radius: 6px;                 /* Rounded corners */
+  padding: 8px 20px;                /* Increased padding */
+  border-radius: 8px;               /* More rounded corners */
+  
+  /* LUXURY BORDER & SHADOWS */
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.4),
+    0 2px 8px rgba(212, 175, 55, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
   
   /* TYPOGRAPHY */
-  font-weight: 700;                   /* Bold weight */
-  font-style: italic;                 /* Italic style */
+  font-weight: 700;                 /* Bold weight */
+  font-style: italic;               /* Italic style */
   font-family: 'Cinzel', 'Times New Roman', serif;
+  letter-spacing: 1px;              /* Spaced letters */
   
   /* VISUAL EFFECTS */
-  text-shadow: 0 0 8px rgba(212, 175, 55, 0.4); /* Golden glow */
-  position: relative;                 /* For pseudo-elements */
-  cursor: pointer;                    /* Interactive cursor */
+  text-shadow: 
+    0 0 10px rgba(212, 175, 55, 0.6),
+    0 2px 4px rgba(0, 0, 0, 0.8);
+  position: relative;               /* For pseudo-elements */
+  cursor: pointer;                  /* Interactive cursor */
   
   /* INTERACTIONS */
-  transition: all 0.4s ease;          /* Smooth transitions */
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  overflow: hidden;                 /* Hide overflow effects */
 }
 
 /**
- * NAME SHIMMER EFFECT (.name::before)
+ * GOLDEN BORDER EFFECT (.name::after)
  * ===================================
  */
-.name::before {
-  content: '';                       /* Required for pseudo-element */
-  position: absolute;                /* Absolute positioning */
-  top: 0;                            /* Full height coverage */
-  left: -100%;                       /* Start off-screen left */
-  width: 100%;                       /* Full width */
-  height: 100%;                      /* Full height */
-  
-  /* SHIMMER GRADIENT */
-  background: linear-gradient(
-    90deg,
-    transparent,                      /* Fade in */
-    rgba(212, 175, 55, 0.4),         /* Golden center */
-    rgba(255, 255, 255, 0.6),        /* Bright white highlight */
-    rgba(212, 175, 55, 0.4),         /* Golden center */
-    transparent                       /* Fade out */
+.name::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, 
+    #d4af37 0%, 
+    #f4e4bc 25%, 
+    #d4af37 50%, 
+    #c9a876 75%, 
+    #d4af37 100%
   );
-  
-  /* ANIMATION */
-  transition: left 0.6s ease;        /* Smooth sweep transition */
-  z-index: 1;                        /* Above background */
+  border-radius: 10px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
 /**
- * SHIMMER ACTIVATION
- * =================
+ * ENHANCED SHIMMER EFFECT (.name::before)
+ * =======================================
  */
+.name::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  
+  /* ENHANCED SHIMMER GRADIENT */
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(212, 175, 55, 0.3) 20%,
+    rgba(255, 255, 255, 0.8) 40%,
+    rgba(244, 228, 188, 0.9) 50%,
+    rgba(255, 255, 255, 0.8) 60%,
+    rgba(212, 175, 55, 0.3) 80%,
+    transparent 100%
+  );
+  
+  transition: left 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  z-index: 2;
+  border-radius: 8px;
+}
+
+/**
+ * SPARKLE EFFECT (.name .nameParticles)
+ * =====================================
+ */
+.nameParticles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.nameParticle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #f4e4bc;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.3s ease;
+  box-shadow: 0 0 6px rgba(244, 228, 188, 0.8);
+}
+
+.nameParticle::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #f4e4bc, transparent);
+  transform: translate(-50%, -50%);
+}
+
+.nameParticle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1px;
+  height: 8px;
+  background: linear-gradient(0deg, transparent, #f4e4bc, transparent);
+  transform: translate(-50%, -50%);
+}
+
+.nameParticle:nth-child(1) {
+  top: 20%;
+  left: 25%;
+  transition-delay: 0.1s;
+}
+
+.nameParticle:nth-child(2) {
+  top: 70%;
+  left: 80%;
+  transition-delay: 0.2s;
+}
+
+.nameParticle:nth-child(3) {
+  top: 45%;
+  left: 60%;
+  transition-delay: 0.3s;
+}
+
+/**
+ * HOVER EFFECTS - SPARKLES ON HOVER
+ * =================================
+ */
+.name:hover .nameParticle {
+  opacity: 1;
+  transform: scale(1);
+  animation: sparkle 1.5s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+/**
+ * HOVER EFFECTS - ENHANCED
+ * ========================
+ */
+.name:hover {
+  transform: translateY(-3px) scale(1.05);
+  color: #f4e4bc;
+  
+  /* ENHANCED SHADOWS */
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.5),
+    0 4px 15px rgba(212, 175, 55, 0.5),
+    0 0 30px rgba(212, 175, 55, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  
+  /* ENHANCED TEXT GLOW */
+  text-shadow: 
+    0 0 15px rgba(244, 228, 188, 0.8),
+    0 0 25px rgba(212, 175, 55, 0.6),
+    0 2px 4px rgba(0, 0, 0, 0.8);
+  
+  letter-spacing: 2px;
+}
+
+.name:hover::after {
+  opacity: 1;
+}
+
 .name:hover::before {
-  left: 100%;                        /* Sweep across to right */
+  left: 100%;
+}
+
+/**
+ * PARTICLE FLOATING ANIMATION
+ * ===========================
+ */
+@keyframes particleFloat {
+  0% { 
+    transform: translateY(0px) translateX(0px) scale(0.9); 
+    opacity: 0.3;
+  }
+  20% { 
+    transform: translateY(-3px) translateX(0.5px) scale(0.95); 
+    opacity: 0.6;
+  }
+  40% { 
+    transform: translateY(-6px) translateX(-0.5px) scale(1); 
+    opacity: 0.8;
+  }
+  60% { 
+    transform: translateY(-8px) translateX(1px) scale(1.05); 
+    opacity: 1;
+  }
+  80% { 
+    transform: translateY(-5px) translateX(0.5px) scale(1); 
+    opacity: 0.7;
+  }
+  100% { 
+    transform: translateY(0px) translateX(0px) scale(0.9); 
+    opacity: 0.3;
+  }
 }
 
 /**
@@ -256,5 +429,20 @@
   to { 
     opacity: 0; 
     transform: translateY(20px); 
+  }
+}
+
+/**
+ * SPARKLE ANIMATION
+ * ================
+ */
+@keyframes sparkle {
+  0%, 100% { 
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  50% { 
+    opacity: 1;
+    transform: scale(1.2) rotate(180deg);
   }
 }

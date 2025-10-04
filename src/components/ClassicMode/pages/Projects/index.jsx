@@ -1,11 +1,10 @@
 /**
  * PROJECTS PAGE COMPONENT - CLASSICMODE
  * =====================================
- * Showcases portfolio projects with detailed descriptions and interactive elements.
- * Features project cards, tech stacks, and demo links.
+ * Interactive stack of project documents with flip-through functionality
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import classes from './Projects.module.css';
 
 /**
@@ -13,170 +12,238 @@ import classes from './Projects.module.css';
  * ==================
  */
 const Projects = () => {
+  const [activeDocument, setActiveDocument] = useState(0);
+  const [isStackFanned, setIsStackFanned] = useState(false);
+
+  const projects = [
+    {
+      id: 1,
+      title: "Portfolio Website",
+      type: "Web Development",
+      description: "A sophisticated dual-mode portfolio featuring ClassicMode and CreativeMode interfaces. Built with React and advanced CSS animations for an immersive user experience.",
+      techStack: ["React", "CSS Modules", "JavaScript", "SVG Animations"],
+      status: "Completed",
+      year: "2024"
+    },
+    {
+      id: 2,
+      title: "Task Management App",
+      type: "Full-Stack Application",
+      description: "A comprehensive productivity application with real-time collaboration features, drag-and-drop functionality, and project tracking capabilities.",
+      techStack: ["React", "Node.js", "MongoDB", "Socket.io"],
+      status: "In Development",
+      year: "2024"
+    },
+    {
+      id: 3,
+      title: "Interactive Game Engine",
+      type: "Game Development",
+      description: "A browser-based game engine with physics simulation, particle systems, and advanced rendering capabilities for modular game development.",
+      techStack: ["JavaScript", "Canvas API", "WebGL", "Physics Engine"],
+      status: "Prototype",
+      year: "2023"
+    },
+    {
+      id: 4,
+      title: "E-Commerce Platform",
+      type: "Web Application",
+      description: "Modern e-commerce solution with payment integration, inventory management, and advanced analytics dashboard for business insights.",
+      techStack: ["Vue.js", "Express.js", "PostgreSQL", "Stripe API"],
+      status: "Completed",
+      year: "2023"
+    },
+    {
+      id: 5,
+      title: "Mobile Fitness Tracker",
+      type: "Mobile Development",
+      description: "Cross-platform fitness application with workout tracking, progress analytics, and social features for motivation and community building.",
+      techStack: ["React Native", "Firebase", "Chart.js", "Health APIs"],
+      status: "Planning",
+      year: "2024"
+    }
+  ];
+
+  const handleDocumentClick = (index) => {
+    setActiveDocument(index);
+  };
+
+  const toggleStack = () => {
+    setIsStackFanned(!isStackFanned);
+  };
+
+  const nextDocument = () => {
+    setActiveDocument((prev) => (prev + 1) % projects.length);
+  };
+
+  const prevDocument = () => {
+    setActiveDocument((prev) => (prev - 1 + projects.length) % projects.length);
+  };
+
   return (
     <div className={classes.projectsPage}>
       <div className={classes.contentContainer}>
+        
         {/* PAGE HEADER */}
         <div className={classes.pageHeader}>
-          <h1 className={classes.pageTitle}>My Projects</h1>
+          <h1 className={classes.pageTitle}>Project Portfolio</h1>
           <div className={classes.titleUnderline}></div>
           <p className={classes.pageSubtitle}>
-            A collection of innovative solutions and creative implementations.
+            A comprehensive collection of development projects and technical achievements.
           </p>
         </div>
 
-        {/* MAIN CONTENT */}
-        <div className={classes.contentGrid}>
-          {/* FEATURED PROJECTS */}
-          <section className={classes.featuredSection}>
-            <h2 className={classes.sectionTitle}>Featured Projects</h2>
-            <div className={classes.projectsGrid}>
-              
-              {/* PROJECT 1 */}
-              <div className={classes.projectCard}>
-                <div className={classes.projectImage}>
-                  <div className={classes.projectPlaceholder}>
-                    <span className={classes.projectIcon}>🌐</span>
-                  </div>
+        {/* THREE-COLUMN LAYOUT */}
+        <div className={classes.threeColumnLayout}>
+          
+          {/* LEFT COLUMN - STATISTICS */}
+          <div className={classes.leftColumn}>
+            <div className={classes.statsSection}>
+              <h3 className={classes.sectionTitle}>Statistics</h3>
+              <div className={classes.portfolioStats}>
+                <div className={classes.statItem}>
+                  <div className={classes.statNumber}>{projects.length}</div>
+                  <div className={classes.statLabel}>Total Projects</div>
                 </div>
-                <div className={classes.projectContent}>
-                  <h3 className={classes.projectTitle}>Portfolio Website</h3>
-                  <p className={classes.projectDesc}>
-                    A sophisticated dual-mode portfolio featuring ClassicMode and CreativeMode interfaces. 
-                    Built with React and advanced CSS animations for an immersive user experience.
-                  </p>
-                  <div className={classes.techStack}>
-                    <span className={classes.techBadge}>React</span>
-                    <span className={classes.techBadge}>CSS Modules</span>
-                    <span className={classes.techBadge}>JavaScript</span>
-                    <span className={classes.techBadge}>SVG Animations</span>
+                <div className={classes.statItem}>
+                  <div className={classes.statNumber}>
+                    {projects.filter(p => p.status === 'Completed').length}
                   </div>
-                  <div className={classes.projectLinks}>
-                    <button className={classes.linkButton}>Live Demo</button>
-                    <button className={classes.linkButton}>GitHub</button>
-                  </div>
+                  <div className={classes.statLabel}>Completed</div>
                 </div>
-              </div>
-
-              {/* PROJECT 2 */}
-              <div className={classes.projectCard}>
-                <div className={classes.projectImage}>
-                  <div className={classes.projectPlaceholder}>
-                    <span className={classes.projectIcon}>📱</span>
+                <div className={classes.statItem}>
+                  <div className={classes.statNumber}>
+                    {[...new Set(projects.flatMap(p => p.techStack))].length}
                   </div>
+                  <div className={classes.statLabel}>Technologies</div>
                 </div>
-                <div className={classes.projectContent}>
-                  <h3 className={classes.projectTitle}>Task Management App</h3>
-                  <p className={classes.projectDesc}>
-                    A full-stack productivity application with real-time collaboration features, 
-                    drag-and-drop functionality, and comprehensive project tracking capabilities.
-                  </p>
-                  <div className={classes.techStack}>
-                    <span className={classes.techBadge}>React</span>
-                    <span className={classes.techBadge}>Node.js</span>
-                    <span className={classes.techBadge}>MongoDB</span>
-                    <span className={classes.techBadge}>Socket.io</span>
-                  </div>
-                  <div className={classes.projectLinks}>
-                    <button className={classes.linkButton}>Live Demo</button>
-                    <button className={classes.linkButton}>GitHub</button>
-                  </div>
-                </div>
-              </div>
-
-              {/* PROJECT 3 */}
-              <div className={classes.projectCard}>
-                <div className={classes.projectImage}>
-                  <div className={classes.projectPlaceholder}>
-                    <span className={classes.projectIcon}>🎮</span>
-                  </div>
-                </div>
-                <div className={classes.projectContent}>
-                  <h3 className={classes.projectTitle}>Interactive Game Engine</h3>
-                  <p className={classes.projectDesc}>
-                    A browser-based game engine with physics simulation, particle systems, 
-                    and advanced rendering capabilities. Features modular architecture for game development.
-                  </p>
-                  <div className={classes.techStack}>
-                    <span className={classes.techBadge}>JavaScript</span>
-                    <span className={classes.techBadge}>Canvas API</span>
-                    <span className={classes.techBadge}>WebGL</span>
-                    <span className={classes.techBadge}>Physics Engine</span>
-                  </div>
-                  <div className={classes.projectLinks}>
-                    <button className={classes.linkButton}>Live Demo</button>
-                    <button className={classes.linkButton}>GitHub</button>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </section>
-
-          {/* PROJECT STATISTICS */}
-          <section className={classes.statsSection}>
-            <h2 className={classes.sectionTitle}>Development Statistics</h2>
-            <div className={classes.statsGrid}>
-              <div className={classes.statCard}>
-                <div className={classes.statNumber}>15+</div>
-                <div className={classes.statLabel}>Projects Completed</div>
-              </div>
-              <div className={classes.statCard}>
-                <div className={classes.statNumber}>5</div>
-                <div className={classes.statLabel}>Programming Languages</div>
-              </div>
-              <div className={classes.statCard}>
-                <div className={classes.statNumber}>10+</div>
-                <div className={classes.statLabel}>Technologies Mastered</div>
-              </div>
-              <div className={classes.statCard}>
-                <div className={classes.statNumber}>100%</div>
-                <div className={classes.statLabel}>Passion Driven</div>
               </div>
             </div>
-          </section>
+          </div>
 
-          {/* DEVELOPMENT APPROACH */}
-          <section className={classes.approachSection}>
-            <h2 className={classes.sectionTitle}>Development Approach</h2>
-            <div className={classes.approachGrid}>
-              <div className={classes.approachCard}>
-                <div className={classes.approachStep}>01</div>
-                <h3 className={classes.approachTitle}>Research & Planning</h3>
-                <p className={classes.approachDesc}>
-                  Thorough analysis of requirements, user needs, and technical constraints 
-                  to establish a solid foundation for development.
-                </p>
-              </div>
-              
-              <div className={classes.approachCard}>
-                <div className={classes.approachStep}>02</div>
-                <h3 className={classes.approachTitle}>Design & Prototyping</h3>
-                <p className={classes.approachDesc}>
-                  Creating intuitive user interfaces and robust system architectures 
-                  with emphasis on usability and scalability.
-                </p>
-              </div>
-              
-              <div className={classes.approachCard}>
-                <div className={classes.approachStep}>03</div>
-                <h3 className={classes.approachTitle}>Development & Testing</h3>
-                <p className={classes.approachDesc}>
-                  Implementing clean, maintainable code with comprehensive testing 
-                  to ensure reliability and performance.
-                </p>
-              </div>
-              
-              <div className={classes.approachCard}>
-                <div className={classes.approachStep}>04</div>
-                <h3 className={classes.approachTitle}>Deployment & Optimization</h3>
-                <p className={classes.approachDesc}>
-                  Seamless deployment with continuous monitoring and optimization 
-                  for enhanced user experience and performance.
-                </p>
+          {/* CENTER COLUMN - DOCUMENT STACK */}
+          <div className={classes.centerColumn}>
+            <div className={classes.documentArea}>
+              <div 
+                className={`${classes.documentStack} ${isStackFanned ? classes.fanned : ''}`}
+                onClick={toggleStack}
+              >
+                {projects.map((project, index) => (
+                  <div
+                    key={project.id}
+                    className={`${classes.projectDocument} ${index === activeDocument ? classes.active : ''}`}
+                    style={{
+                      '--document-index': index,
+                      '--total-documents': projects.length,
+                      zIndex: projects.length - index
+                    }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleDocumentClick(index);
+                    }}
+                  >
+                    {/* Document Header */}
+                    <div className={classes.documentHeader}>
+                      <div className={classes.documentType}>{project.type}</div>
+                      <div className={classes.documentYear}>{project.year}</div>
+                    </div>
+
+                    {/* Document Title */}
+                    <div className={classes.documentTitle}>
+                      <h2>{project.title}</h2>
+                      <div className={classes.statusBadge} data-status={project.status}>
+                        {project.status}
+                      </div>
+                    </div>
+
+                    {/* Document Content */}
+                    <div className={classes.documentContent}>
+                      <p className={classes.projectDescription}>
+                        {project.description}
+                      </p>
+
+                      {/* Tech Stack */}
+                      <div className={classes.techSection}>
+                        <h4 className={classes.techTitle}>Technologies Used:</h4>
+                        <div className={classes.techList}>
+                          {project.techStack.map((tech, techIndex) => (
+                            <span key={techIndex} className={classes.techItem}>
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Project Actions */}
+                      <div className={classes.documentActions}>
+                        <button className={classes.actionButton}>
+                          <span className={classes.buttonIcon}>🔗</span>
+                          Live Demo
+                        </button>
+                        <button className={classes.actionButton}>
+                          <span className={classes.buttonIcon}>📁</span>
+                          GitHub
+                        </button>
+                        <button className={classes.actionButton}>
+                          <span className={classes.buttonIcon}>📄</span>
+                          Details
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Document Footer */}
+                    <div className={classes.documentFooter}>
+                      <div className={classes.documentNumber}>
+                        {String(index + 1).padStart(2, '0')} / {String(projects.length).padStart(2, '0')}
+                      </div>
+                      <div className={classes.documentStamp}>PORTFOLIO</div>
+                    </div>
+
+                    {/* Paper texture overlay */}
+                    <div className={classes.paperTexture}></div>
+                  </div>
+                ))}
               </div>
             </div>
-          </section>
+          </div>
+
+          {/* RIGHT COLUMN - NAVIGATION CONTROLS */}
+          <div className={classes.rightColumn}>
+            <div className={classes.controlsSection}>
+              <h3 className={classes.sectionTitle}>Navigation</h3>
+              
+              <div className={classes.stackInfo}>
+                <span className={classes.currentDoc}>{activeDocument + 1}</span>
+                <span className={classes.docSeparator}>of</span>
+                <span className={classes.totalDocs}>{projects.length}</span>
+              </div>
+
+              <div className={classes.stackControls}>
+                <button 
+                  className={classes.navButton} 
+                  onClick={prevDocument}
+                  disabled={activeDocument === 0}
+                >
+                  ← Previous
+                </button>
+                
+                <button 
+                  className={classes.navButton} 
+                  onClick={nextDocument}
+                  disabled={activeDocument === projects.length - 1}
+                >
+                  Next →
+                </button>
+              </div>
+
+              {/* Stack Toggle Button */}
+              <div className={classes.toggleContainer}>
+                <button className={classes.toggleButton} onClick={toggleStack}>
+                  {isStackFanned ? 'Stack Documents' : 'Fan Out Documents'}
+                </button>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

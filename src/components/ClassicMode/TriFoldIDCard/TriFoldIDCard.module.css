@@ -1,0 +1,316 @@
+.triFoldCard {
+  width: 550px;
+  height: 340px;
+  position: relative;
+  background: #002856;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.5),
+    inset 0 1px 2px rgba(255, 255, 255, 0.1);
+}
+
+/* MAIN SECTIONS WITH GRADIENTS */
+/* Queen's Section - Left third */
+.queensSection {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #4A0000 0%, #8B0000 25%, #C8102E 60%, #FF4757 85%, #FF6B7A 100%); /* Deep dark red to bright coral */
+  clip-path: polygon(0 0, 37% 0, 27% 100%, 0 100%);
+}
+
+/* Moneris Section - Middle third */
+.monerisSection {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #001A2E 0%, #003F73 25%, #0056B3 50%, #1BA3E0 75%, #74D0F1 100%); /* Deep navy to bright cyan */
+  clip-path: polygon(27% 100%, 37% 0, 73% 0, 63% 100%);
+}
+
+/* Manulife Section - Right third */
+.manulifeSection {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #002818 0%, #004D2F 25%, #006B42 50%, #00A758 75%, #4DD687 100%); /* Deep forest to bright mint */
+  clip-path: polygon(63% 100%, 73% 0, 100% 0, 100% 100%);
+}
+
+/* HEADER SECTIONS WITH GRADIENTS */
+.headerQueensSection {
+  position: absolute;
+  width: 100%;
+  height: 25%;
+  background: linear-gradient(135deg, #000A1A 0%, #001A3D 30%, #002856 60%, #4A7BA7 85%, #7DA3D1 100%); /* Midnight to sky blue */
+  clip-path: polygon(0 0, 37% 0, 34.5% 100%, 0 100%);
+  z-index: 2;
+}
+
+.headerMonerisSection {
+  position: absolute;
+  width: 100%;
+  height: 25%;
+  background: linear-gradient(135deg, #000815 0%, #001D2E 30%, #003F73 60%, #2E7A9B 85%, #5BA4C4 100%); /* Deep ocean to steel blue */
+  clip-path: polygon(34.5% 100%, 37% 0, 73% 0, 70.5% 100%);
+  z-index: 2;
+}
+
+.headerManulifeSection {
+  position: absolute;
+  width: 100%;
+  height: 25%;
+  background: linear-gradient(135deg, #0F1419 0%, #1A2536 30%, #263d61 60%, #4A5D7A 85%, #6B7F9C 100%); /* Charcoal to slate blue */
+  clip-path: polygon(70.5% 100%, 73% 0, 100% 0, 100% 100%);
+  z-index: 2;
+}
+
+/* Base logo styling for all header sections */
+.headerQueensSection img,
+.headerManulifeSection img,
+.headerMonerisSection img {
+  position: absolute;
+  object-fit: contain;
+  opacity: 0.9;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3)) brightness(1.2);
+  transition: all 0.3s ease;
+  z-index: 3;
+}
+
+/* Individual logo classes with adjusted positioning for clipped areas */
+.queensLogo {
+  width: auto;
+  height: 45px;
+  top: 55%;
+  left: 18%; /* Positioned within the visible area of the clipped section */
+  transform: translate(-50%, -50%);
+}
+
+.manulifeLogo {
+  width: auto;
+  height: 26px;
+  top: 53%;
+  left: 86%; /* Positioned within the visible area of the clipped section */
+  transform: translate(-50%, -50%);
+}
+
+.monerisLogo {
+  width: auto;
+  height: 95px;
+  top: 42%;
+  left: 53.5%; /* Center of the middle section */
+  transform: translate(-50%, -50%);
+}
+
+/* TEXT CONTENT POSITIONING - FIXED FOR CLIPPED AREAS WITH WIDTH LIMITS */
+.queensText {
+  position: absolute;
+  top: 32%;
+  left: 5%;
+  color: white;
+  z-index: 1;
+  max-width: 140px; /* Limit width to prevent overflow */
+  line-height: 1.4; /* Improved readability */
+  text-align: left;
+}
+
+.monerisText {
+  position: absolute;
+  top: 32%;
+  left: 49.5%;
+  transform: translateX(-50%);
+  color: white;
+  text-align: center;
+  z-index: 1;
+  max-width: 180px; /* Limit width for middle section */
+  line-height: 1.4; /* Improved readability */
+}
+
+.manulifeText {
+  position: absolute;
+  top: 32%;
+  right: 5%;
+  color: white;
+  text-align: right;
+  z-index: 1;
+  max-width: 140px; /* Limit width to prevent overflow */
+  line-height: 1.4; /* Improved readability */
+}
+
+/* TEXT STYLING WITH CONSISTENT SPACING */
+.institution, .company {
+  font-family: 'Cinzel', serif;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 4px; /* Consistent spacing */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  line-height: 1.3;
+}
+
+.program, .role {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-bottom: 3px; /* Consistent spacing */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  line-height: 1.3;
+}
+
+.year, .period {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  opacity: 0.7;
+  letter-spacing: 0.5px;
+  margin-bottom: 3px; /* Consistent spacing */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  line-height: 1.3;
+}
+
+.location {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  opacity: 0.6;
+  margin-bottom: 3px; /* Consistent spacing */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  line-height: 1.3;
+}
+
+.monerisTech {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px; /* Increased from 12px */
+  opacity: 0.8; /* Increased opacity for better visibility */
+  letter-spacing: 1px;
+  font-style: italic;
+  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+  line-height: 1.3;
+  margin-bottom: 3px;
+  color: #40E0D0; /* Light blue color like status */
+}
+
+.achievement {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #FFD700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 3px; /* Consistent spacing */
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  line-height: 1.2;
+}
+
+.monerisHighlight {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #40E0D0;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 3px; /* Consistent spacing */
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  line-height: 1.2;
+}
+.gpa {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #FFD700;
+  opacity: 0.9;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  line-height: 1.2;
+  margin-bottom: 3px; /* Added consistent spacing */
+}
+
+.status {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: #87CEEB;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 3px; /* Consistent spacing */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  line-height: 1.2;
+}
+
+.impact {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 10px;
+  opacity: 0.75;
+  margin-bottom: 3px; /* Consistent spacing */
+  color: #F0F0F0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  line-height: 1.3;
+}
+
+.teamSize {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 9px;
+  opacity: 0.6;
+  font-style: italic;
+  color: #D3D3D3;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  line-height: 1.2;
+  margin-bottom: 0; /* No bottom margin for last element */
+}
+
+/* ADJUST POSITIONING FOR EVEN MORE CONTENT */
+.queensText, .monerisText, .manulifeText {
+  bottom: 5%; /* Move up more to fit all content */
+}
+
+/* RESPONSIVE ADJUSTMENTS - UPDATED */
+@media (max-width: 768px) {
+  .queensText, .manulifeText {
+    max-width: 130px; /* Slightly larger for bigger text */
+  }
+  
+  .monerisText {
+    max-width: 160px;
+  }
+  
+  .institution, .company { font-size: 18px; }
+  .program, .role { font-size: 15px; }
+  .year, .period { font-size: 13px; }
+  .location { font-size: 11px; }
+  .achievement, .highlight { font-size: 10px; }
+  .gpa { font-size: 11px; }
+  .status { font-size: 9px; }
+}
+
+.manulifeTech {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px; /* Increased from 12px */
+  opacity: 0.8; /* Increased opacity for better visibility */
+  letter-spacing: 1px;
+  font-style: italic;
+  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+  line-height: 1.3;
+  margin-bottom: 3px;
+  color: #ADFF2F; /* Light blue color like status */
+  
+}
+
+.manulifeHighlight {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #ADFF2F;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 3px; /* Consistent spacing */
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  line-height: 1.2;
+}
+
+.cardWrapper {
+  transform: scale(var(--scale-factor, 1));
+  transform-origin: center;
+  display: inline-block;
+}
+
+/* Remove any existing transform: scale() from .triCardContainer if it exists */

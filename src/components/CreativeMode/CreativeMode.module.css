@@ -36,73 +36,104 @@
 }
 
 /**
+ * SCANLINE CORRUPTION OVERLAY (.body::before)
+ * ===========================================
+ */
+.body::before {
+    /* CONTENT & POSITIONING */
+    content: '';                       /* Required for pseudo-element */
+    position: absolute;                /* Overlay positioning */
+    top: 0;                            /* Align to top edge */
+    left: 0;                           /* Align to left edge */
+    
+    /* SIZING */
+    width: 100%;                       /* Full screen width */
+    height: 120%;                      /* Extended height for animation overflow */
+    
+    /* SCANLINE PATTERN */
+    background: 
+        repeating-linear-gradient(
+            0deg,                      /* Horizontal lines (0 degrees) */
+            rgba(0, 0, 0, 0.9) 0px,   /* Dark scanline (90% opacity) */
+            transparent 1px,           /* Transparent gap */
+            rgba(255, 255, 255, 0.3) 2px,  /* Bright scanline (30% opacity) */
+            transparent 3px            /* Transparent gap */
+        );
+    
+    /* ANIMATION */
+    opacity: 0;                        /* Hidden by default */
+    animation: scanlineCorruption 15s ease-in-out infinite;  /* Periodic corruption effect */
+    pointer-events: none;              /* Don't block user interactions */
+    z-index: 30;                      /* Layer above background elements */
+}
+
+/**
  * CONTENT CONTAINER WITH ANIMATED STARDUST (.container)
  * =====================================================
- * Main content container featuring multi-layer animated stardust particle system.
- * Uses two overlapping stardust layers with different sizes and drift patterns to create
- * realistic depth and atmospheric movement.
+ * Main content container featuring animated stardust particle system.
  */
 .container {  
     /* LAYOUT & SIZING */
-    height: 100vh;                       /* Full viewport height */
-    width: 100vw;                        /* Full viewport width */
+    height: 100vh;
+    width: 100vw;
     
-    /* MULTI-LAYER STARDUST BACKGROUND SYSTEM */
-    background: 
-        url('../../assets/CreativeMode/stardust.png'),     /* Layer 1: Primary stardust field */
-        url('../../assets/CreativeMode/stardust.png');     /* Layer 2: Secondary stardust field */
+    /* SINGLE LAYER STARDUST */
+    background: url('../../assets/CreativeMode/stardust.png');
     
-    /* STARDUST LAYER SIZING */
-    background-size: 
-        400px 400px,                     /* Layer 1: Medium-density particles */
-        200px 200px;                     /* Layer 2: High-density particles */
+    /* SIZING */
+    background-size: 450px 450px;
     
-    /* STARDUST LAYER POSITIONING */
-    background-position: 
-        0 0,                             /* Layer 1: Origin position */
-        100px 50px;                      /* Layer 2: Offset for depth variation */
+    /* POSITIONING */
+    background-position: 0 0;
     
-    /* MIXED SPEED ATMOSPHERIC ANIMATIONS */
-    animation: 
-        stardustDrift1 60s linear infinite,        /* Horizontal drift animation (1 minute cycle) */
-        stardustDrift2 40s linear infinite;        /* Diagonal drift animation (40 second cycle) */
-    /* Applies double animations for atmospheric background movement*/
+    /* ANIMATION */
+    animation: starDrift 160s linear infinite;
 
     /* LAYOUT PROPERTIES */
-    display: flex;                       /* Flexbox for content centering */
-    justify-content: center;             /* Horizontal centering */
-    align-items: center;                 /* Vertical centering */
-    text-align: center;                  /* Center text inside container */
-    position: relative;                  /* Positioning context for child elements */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
     
-    /* GPU OPTIMIZATION */
-    will-change: background-position, filter, opacity;  /* Hints for browser optimization */
-    transform: translateZ(0);            /* GPU layer creation */
-    backface-visibility: hidden;         /* 3D optimization */
+    /* PERFORMANCE OPTIMIZATION */
+    will-change: background-position;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 /**
- * HORIZONTAL DRIFT ANIMATION (stardustDrift1)
- * ===========================================
+ * SCANLINE CORRUPTION ANIMATION - INTENSE & SHORT (13-15s)
+ * ========================================================
+ * Creates a dramatic television corruption effect with horizontal scanlines.
  */
-@keyframes stardustDrift1 {
-    from { 
-        background-position: 0 0, 100px 50px, -50px -25px;
-    }
-    to { 
-        background-position: 400px 0, 500px 50px, 350px -25px;
-    }
+@keyframes scanlineCorruption {
+    0%, 86% { opacity: 0; transform: translateY(0); }
+    87% { opacity: 0.9; transform: translateY(-15px); }
+    88% { opacity: 1; transform: translateY(-20px); }
+    89% { opacity: 0.8; transform: translateY(10px); }
+    90% { opacity: 1; transform: translateY(-8px); }
+    91% { opacity: 0.9; transform: translateY(5px); }
+    92% { opacity: 1; transform: translateY(-12px); }
+    93% { opacity: 0.7; transform: translateY(8px); }
+    94% { opacity: 1; transform: translateY(-6px); }
+    95% { opacity: 0.8; transform: translateY(3px); }
+    96% { opacity: 0.9; transform: translateY(-10px); }
+    97% { opacity: 0.6; transform: translateY(4px); }
+    98% { opacity: 0.8; transform: translateY(-5px); }
+    99% { opacity: 0.4; transform: translateY(2px); }
+    100% { opacity: 0; transform: translateY(0); }
 }
 
 /**
- * DIAGONAL DRIFT ANIMATION (stardustDrift2)
+ * SMOOTH DRIFT ANIMATION - Single Direction
  * =========================================
  */
-@keyframes stardustDrift2 {
+@keyframes starDrift {
     from { 
-        background-position: 0 0, 100px 50px, -50px -25px;
+        background-position: 0 0;
     }
     to { 
-        background-position: 200px 200px, 300px 250px, 150px 175px;
+        background-position: 600px 600px;  /* Matches size for seamless loop */
     }
 }

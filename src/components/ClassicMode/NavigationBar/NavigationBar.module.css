@@ -95,8 +95,19 @@
  * ==============================================
  */
 .logo:hover .logoText {
-  color: #ffd700;                   /* Brighter gold on hover */
-  text-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+  background: linear-gradient(135deg, 
+    #FFD700 0%,     /* Gold start */
+    #FFFF66 25%,    /* Bright gold */
+    #FFFFFF 45%,    /* Pure white */
+    #FFFACD 50%,    /* Lemon chiffon center */
+    #FFFFFF 55%,    /* Pure white */
+    #FFFF66 75%,    /* Bright gold */
+    #FFD700 100%    /* Gold end */
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
   letter-spacing: 3px;
 }
 
@@ -122,8 +133,8 @@
 }
 
 /**
- * OUTER CREST RING (.outerCrest)
- * ==============================
+ * OUTER CREST RING (.outerCrest) - MATCHING SYMBOL GOLDEN TONES
+ * =============================================================
  */
 .outerCrest {
   /* LAYOUT & POSITIONING */
@@ -131,26 +142,60 @@
   width: 100%;
   height: 100%;
   
-  /* DARK PROJECT THEME APPEARANCE */
-  background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 25%, #000000 50%,
-              #1a1a1a 75%, #2c2c2c 100%);
-  border: 2px solid #d4af37;
+  /* DARK BACKGROUND */
+  background: radial-gradient(circle, 
+    #000000 0%,     /* Pure black center */
+    #0f0f0f 30%,    /* Very dark gray */
+    #1a1a1a 60%,    /* Dark charcoal */
+    #000000 100%    /* Pure black edge */
+  );
+  
   border-radius: 50%;
   
-  /* SOPHISTICATED SHADOW EFFECTS */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6), inset 0 2px 0 rgba(255, 215, 0, 0.2), 
-              inset 0 -2px 0 rgba(0, 0, 0, 0.8);
+  /* ENHANCED GOLDEN SHADOW EFFECTS TO MATCH BRIEFCASE */
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.8), 
+    inset 0 2px 0 rgba(255, 215, 0, 0.3), 
+    inset 0 -2px 0 rgba(44, 24, 16, 0.8),
+    0 0 20px rgba(218, 165, 32, 0.4);
+  transition: all 0.4s ease;
+  
+  /* SETUP FOR CIRCULAR GRADIENT BORDER OVERLAY */
+  position: relative;
+}
+
+/* CIRCULAR GRADIENT BORDER MATCHING EMBLEM SYMBOL - MUCH BRIGHTER */
+.outerCrest::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: linear-gradient(135deg, 
+    #FFD700 0%,     /* Pure gold start */
+    #FFFFFF 40%,    /* Pure white */
+    #FFFACD 45%,    /* Lemon chiffon */
+    #FFFFFF 50%,    /* Pure white center - brightest */
+    #FFFACD 55%,    /* Lemon chiffon */
+    #FFFFFF 60%,    /* Pure white */
+    #FFD700 100%    /* Pure gold end */
+  );
+  border-radius: 50%;
+  z-index: -1;
   transition: all 0.4s ease;
 }
 
-.craftsmanLogo:hover .outerCrest {
-  background: linear-gradient(135deg, #3a3a3a 0%, #2c2c2c 25%, #1a1a1a 50%,
-              #2c2c2c 75%, #3a3a3a 100%);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8), inset 0 2px 0 rgba(255, 215, 0, 0.3), 
-              inset 0 -2px 0 rgba(0, 0, 0, 0.9);
-  border-color: #ffd700;
+/* KEEP THE BRIGHT BORDER ON HOVER - EVEN BRIGHTER */
+.craftsmanLogo:hover .outerCrest::before {
+  background: linear-gradient(135deg, 
+    #FFFFFF 40%,    /* Pure white */
+    #FFFACD 45%,    /* Lemon chiffon */
+    #FFFFFF 50%,    /* Pure white center - brightest */
+    #FFFACD 55%,    /* Lemon chiffon */
+    #FFFFFF 60%,    /* Pure white */
+  );
 }
-
 /**
  * INNER CREST (.innerCrest)
  * =========================
@@ -181,30 +226,35 @@
 }
 
 /**
- * CRAFT SYMBOL (.craftSymbol)
- * ===========================
+ * CRAFT SYMBOL (.craftSymbol) - ENHANCED GOLDEN FILTERS
+ * =====================================================
  */
 .craftSymbol {
   /* LAYOUT & POSITIONING */
   position: absolute;
-  top: 45%;
-  left: 52%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   
-  /* TYPOGRAPHY */
-  font: bold 24px 'Times New Roman', serif;
-  color: #d4af37;
-  
-  /* SOPHISTICATED TEXT EFFECTS */
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8), 0 0 8px rgba(212, 175, 55, 0.6);
+  /* IMAGE SIZING - Larger to fit the outer crest */
+  width: 35px;
+  height: 35px;
+  object-fit: contain;
+  filter: 
+    brightness(120%) 
+    drop-shadow(0 1px 1px rgba(0, 0, 0, 0.9))
+    drop-shadow(0 0 2px rgba(255, 215, 0, 0.8));
   
   /* ANIMATIONS */
   transition: all 0.4s ease;
 }
 
 .craftsmanLogo:hover .craftSymbol {
-  color: #ffd700;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9), 0 0 12px rgba(255, 215, 0, 0.8);
+  filter: 
+    brightness(150%) 
+    drop-shadow(0 2px 2px rgba(0, 0, 0, 1))
+    drop-shadow(0 0 4px rgba(255, 215, 0, 1));
+  
   transform: translate(-50%, -50%) scale(1.1);
 }
 
@@ -218,8 +268,22 @@
   text-transform: lowercase;
   letter-spacing: 2px;
   
-  /* APPEARANCE - GOLDEN THEME */
-  color: #d4af37;
+  /* BRIGHTER GOLDEN GRADIENT TEXT */
+  background: linear-gradient(135deg, 
+    #DAA520 0%,     /* Goldenrod start */
+    #FFD700 20%,    /* Gold */
+    #FFFF66 40%,    /* Bright gold */
+    #FFFACD 50%,    /* Lemon chiffon center */
+    #FFFF66 60%,    /* Bright gold */
+    #FFD700 80%,    /* Gold */
+    #DAA520 100%    /* Goldenrod end */
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  
+  /* ENHANCED TEXT SHADOW FOR BRIGHTNESS */
+  text-shadow: 0 0 12px rgba(255, 255, 102, 0.6);
   
   /* LAYOUT */
   display: flex;
@@ -254,13 +318,13 @@
 }
 
 /**
- * BRIEFCASE HANDLE (.briefcaseHandle)
- * ===================================
+ * BRIEFCASE HANDLE (.briefcaseHandle) - ENHANCED CONTRAST BORDER
+ * =============================================================
  */
 .briefcaseHandle {
   /* LAYOUT & POSITIONING */
   position: absolute;
-  top: -6px;
+  top: -4px;
   left: 50%;
   transform: translateX(-50%);
   
@@ -268,23 +332,44 @@
   width: 32px;
   height: 5px;
   
-  /* LEATHER APPEARANCE */
-  background: linear-gradient(180deg, #8b4513 0%, #a0522d 50%, #8b4513 100%);
-  border: 1px solid #d4af37;
+  /* DEEP RICH GOLDEN APPEARANCE */
+  background: linear-gradient(180deg, 
+    #B8860B 0%, 
+    #DAA520 30%, 
+    #FFD700 50%, 
+    #DAA520 70%, 
+    #B8860B 100%
+  );
+  /* UPDATED: Enhanced contrast border to match briefcase body */
+  border: 1px solid #1A0F08;
   border-radius: 6px;
   
   /* REALISTIC SHADOWS */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.4), 
+    inset 0 1px 0 rgba(255, 215, 0, 0.4);
   transition: all 0.4s ease;
 }
 
 .briefcase:hover .briefcaseHandle {
   transform: translateX(-50%) translateY(-1px);
+  background: linear-gradient(180deg, 
+    #DAA520 0%, 
+    #FFD700 30%, 
+    #FFF700 50%, 
+    #FFD700 70%, 
+    #DAA520 100%
+  );
+  /* UPDATED: Even darker border on hover for maximum contrast */
+  border-color: #0F0A06;
+  box-shadow: 
+    0 3px 6px rgba(0, 0, 0, 0.5), 
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 /**
- * BRIEFCASE BODY (.briefcaseBody)
- * ===============================
+ * BRIEFCASE BODY (.briefcaseBody) - ENHANCED CONTRAST GOLD
+ * =====================================================
  */
 .briefcaseBody {
   /* LAYOUT & POSITIONING */
@@ -292,25 +377,89 @@
   width: 100%;
   height: 100%;
   
-  /* LEATHER GRADIENT APPEARANCE */
-  background: linear-gradient(135deg, #8b4513 0%, #a0522d 20%, #cd853f 40%, #a0522d 60%, #8b4513 100%);
-  border: 2px solid #d4af37;
-  border-radius: 3px;
+  /* ENHANCED CONTRAST GOLDEN GRADIENT */
+  background: linear-gradient(135deg, 
+    #2C1810 0%,     /* Dark brown base */
+    #4A2C17 15%,    /* Medium brown */
+    #8B4513 25%,    /* Rich brown */
+    #B8860B 35%,    /* Dark gold */
+    #DAA520 45%,    /* Goldenrod */
+    #FFD700 55%,    /* Pure gold highlight */
+    #DAA520 65%,    /* Goldenrod */
+    #B8860B 75%,    /* Dark gold */
+    #8B4513 85%,    /* Rich brown */
+    #2C1810 100%    /* Dark brown base */
+  );
   
-  /* SOPHISTICATED SHADOWS */
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4), inset 0 2px 0 rgba(255, 255, 255, 0.2), 
-              inset 0 -2px 0 rgba(0, 0, 0, 0.3);
+  /* ENHANCED CONTRAST BORDER */
+  border: 2px solid #1A0F08;
+  border-radius: 4px;
+  
+  /* ENHANCED SHADOWS FOR DEFINITION */
+  box-shadow: 
+    /* Strong outer shadow for definition */
+    0 6px 15px rgba(0, 0, 0, 0.8),
+    /* Bright inner highlight for contrast */
+    inset 0 2px 0 rgba(255, 215, 0, 0.6),
+    inset 0 -2px 0 rgba(42, 24, 16, 0.9),
+    /* Golden glow */
+    0 0 20px rgba(218, 165, 32, 0.4);
   
   /* 3D TRANSFORM SETUP */
   transition: all 0.4s ease;
   transform-origin: bottom center;
   overflow: hidden;
+  position: relative;
 }
 
+/* Enhanced metallic shine effect with better visibility */
+.briefcaseBody::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, 
+    transparent 30%, 
+    rgba(255, 255, 255, 0.3) 40%, 
+    rgba(255, 255, 255, 0.6) 45%, 
+    rgba(255, 255, 255, 0.9) 50%, 
+    rgba(255, 255, 255, 0.6) 55%, 
+    rgba(255, 255, 255, 0.3) 60%, 
+    transparent 70%
+  );
+  transform: rotate(45deg);
+  animation: deepGoldShine 4s ease-in-out infinite;
+}
+
+/* Enhanced hover state with better contrast */
 .briefcase:hover .briefcaseBody {
   transform: rotateX(-15deg);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6), inset 0 2px 0 rgba(255, 255, 255, 0.3), 
-              inset 0 -2px 0 rgba(0, 0, 0, 0.4), 0 0 30px rgba(212, 175, 55, 0.5);
+  
+  /* BRIGHTER CONTRAST ON HOVER */
+  background: linear-gradient(135deg, 
+    #1A0F08 0%,     /* Darker base for contrast */
+    #3A1F0F 15%,    /* Dark brown */
+    #6B3319 25%,    /* Medium brown */
+    #B8860B 35%,    /* Dark gold */
+    #FFD700 45%,    /* Pure gold */
+    #FFFF66 55%,    /* Bright gold center */
+    #FFD700 65%,    /* Pure gold */
+    #B8860B 75%,    /* Dark gold */
+    #6B3319 85%,    /* Medium brown */
+    #1A0F08 100%    /* Darker base for contrast */
+  );
+  
+  /* ENHANCED SHADOWS FOR BETTER DEFINITION */
+  box-shadow: 
+    0 8px 20px rgba(0, 0, 0, 0.9),
+    inset 0 3px 0 rgba(255, 255, 255, 0.8),
+    inset 0 -3px 0 rgba(26, 15, 8, 1),
+    0 0 30px rgba(255, 215, 0, 0.7);
+  
+  /* Darker border for better definition */
+  border-color: #0F0A06;
 }
 
 /**
@@ -341,44 +490,53 @@
 }
 
 /**
- * BRIEFCASE LOCK & LABEL STYLING
- * ==============================
- * Golden lock symbol and portfolio text with hover glow effects.
+ * BRIEFCASE LOCK & LABEL - ENHANCED CONTRAST
+ * =========================================
  */
 .briefcaseLock,
 .briefcaseLabel {
-  /* SHARED APPEARANCE */
-  color: #d4af37;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+  /* ENHANCED CONTRAST COLORS */
+  color: #2C1810;
+  text-shadow: 
+    0 1px 0 rgba(255, 255, 255, 0.8),
+    0 0 6px rgba(255, 215, 0, 0.6);
   transition: all 0.3s ease;
+  font-weight: bold;
 }
 
 /* BRIEFCASE LOCK SYMBOL */
 .briefcaseLock {
   /* TYPOGRAPHY */
-  font-size: 14px;
+  font-size: 14px;       /* Reduced from 16px */
   
-  /* ENHANCED GLOW */
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3), 0 0 8px rgba(212, 175, 55, 0.6);
+  /* ENHANCED VISIBILITY */
+  text-shadow: 
+    0 1px 0 rgba(255, 255, 255, 0.9), 
+    0 0 6px rgba(255, 215, 0, 0.8),    /* Reduced from 8px */
+    0 0 10px rgba(255, 255, 255, 0.4);  /* Reduced from 12px */
 }
 
 /* BRIEFCASE LABEL TEXT */
 .briefcaseLabel {
   /* TYPOGRAPHY */
-  font: bold 9px 'Times New Roman', serif;
-  letter-spacing: 1px;
+  font: bold 9px 'Times New Roman', serif;  /* Reduced from 10px */
+  letter-spacing: 1px;                      /* Reduced from 1.2px */
   text-transform: uppercase;
 }
 
 .briefcase:hover .briefcaseLock {
-  color: #ffd700;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4), 0 0 15px rgba(255, 215, 0, 0.9);
-  transform: scale(1.15);
+  color: #1A0F08;
+  text-shadow: 
+    0 1px 0 rgba(255, 255, 255, 1), 
+    0 0 8px rgba(255, 215, 0, 1),      /* Reduced from 10px */
+    0 0 12px rgba(255, 255, 255, 0.6); /* Reduced from 15px */
 }
 
 .briefcase:hover .briefcaseLabel {
-  color: #ffd700;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+  color: #1A0F08;
+  text-shadow: 
+    0 1px 0 rgba(255, 255, 255, 1),
+    0 0 8px rgba(255, 215, 0, 0.8);
 }
 
 /**
@@ -394,13 +552,12 @@
   height: 35%;
   
   /* SUBTLE GRADIENT OVERLAY */
-  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
+  background: linear-gradient(180deg, transparent 0%, rgba(139, 105, 20, 0.2) 100%);
 }
 
 /**
- * BRIEFCASE CORNER ACCENTS (.briefcaseCorners)
- * ============================================
- * Golden corner studs with glow effects on hove.
+ * BRIEFCASE CORNER ACCENTS - BETTER VISIBILITY
+ * ===========================================
  */
 .briefcaseCorners {
   /* LAYOUT & POSITIONING */
@@ -414,27 +571,76 @@
   /* PSEUDO-ELEMENT SETUP */
   content: '';
   position: absolute;
-  bottom: 3px;
+  bottom: 4px;
   
-  /* SIZING */
-  width: 5px;
-  height: 5px;
+  /* SIZING - SMALLER STUDS */
+  width: 6px;          /* Reduced from 8px */
+  height: 6px;         /* Reduced from 8px */
   
-  /* GOLDEN APPEARANCE */
-  background: radial-gradient(circle, #ffd700 0%, #d4af37 70%);
-  border-radius: 1px;
+  /* HIGH CONTRAST STUD APPEARANCE */
+  background: radial-gradient(circle, 
+    #FFFFFF 0%, 
+    #FFD700 20%, 
+    #DAA520 50%, 
+    #8B4513 80%, 
+    #2C1810 100%
+  );
+  border: 1px solid #1A0F08;     /* Reduced from 2px */
+  border-radius: 50%;
   
-  /* LUXURY GLOW EFFECTS */
-  box-shadow: 0 0 4px rgba(212, 175, 55, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  /* ENHANCED VISIBILITY EFFECTS */
+  box-shadow: 
+    0 0 8px rgba(255, 215, 0, 1),     /* Reduced from 10px */ 
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -1px 0 rgba(44, 24, 16, 0.8);
   transition: all 0.3s ease;
 }
 
-.briefcaseCorners::before { left: 4px; }
-.briefcaseCorners::after { right: 4px; }
+.briefcaseCorners::before { left: 3px; }    /* Adjusted positioning */
+.briefcaseCorners::after { right: 3px; }    /* Adjusted positioning */
+
+/* Scale down the lock symbol: */
+.briefcaseLock {
+  /* TYPOGRAPHY - SMALLER SIZE */
+  font-size: 14px;       /* Reduced from 16px */
+  
+  /* ENHANCED VISIBILITY */
+  text-shadow: 
+    0 1px 0 rgba(255, 255, 255, 0.9), 
+    0 0 6px rgba(255, 215, 0, 0.8),    /* Reduced from 8px */
+    0 0 10px rgba(255, 255, 255, 0.4);  /* Reduced from 12px */
+}
+
+/* Scale down the portfolio label: */
+.briefcaseLabel {
+  /* TYPOGRAPHY - SMALLER SIZE */
+  font: bold 9px 'Times New Roman', serif;  /* Reduced from 10px */
+  letter-spacing: 1px;                      /* Reduced from 1.2px */
+  text-transform: uppercase;
+}
+
+/* Adjust hover scaling to be proportional: */
+.briefcase:hover .briefcaseLock {
+  color: #1A0F08;
+  text-shadow: 
+    0 1px 0 rgba(255, 255, 255, 1), 
+    0 0 8px rgba(255, 215, 0, 1),      /* Reduced from 10px */
+    0 0 12px rgba(255, 255, 255, 0.6); /* Reduced from 15px */
+}
 
 .briefcase:hover .briefcaseCorners::before,
 .briefcase:hover .briefcaseCorners::after {
-  box-shadow: 0 0 8px rgba(255, 215, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  box-shadow: 
+    0 0 12px rgba(255, 255, 255, 1),    /* Reduced from 15px */
+    inset 0 2px 0 rgba(255, 255, 255, 1),
+    inset 0 -2px 0 rgba(26, 15, 8, 1);
+  background: radial-gradient(circle, 
+    #FFFFFF 0%, 
+    #FFFF66 30%, 
+    #FFD700 60%, 
+    #DAA520 100%
+  );
+  transform: scale(1.05);              /* Reduced from 1.1 */
 }
 
 /**
@@ -516,6 +722,21 @@
 }
 
 /**
+ * ANIMATIONS
+ * ========= =
+ */
+
+/* Golden shine animation for briefcase */
+@keyframes goldShine {
+  0%, 100% { 
+    transform: translateX(-200%) rotate(45deg); 
+  }
+  50% { 
+    transform: translateX(200%) rotate(45deg); 
+  }
+}
+
+/**
  * FADE-IN ANIMATION
  * =================
  */
@@ -527,5 +748,244 @@
   to { 
     opacity: 1; 
     transform: translateY(0); 
+  }
+}
+
+/**
+ * DEEP GOLD SHINE ANIMATION
+ * ========================
+ */
+@keyframes deepGoldShine {
+  0%, 100% { 
+    transform: translateX(-200%) rotate(45deg); 
+    opacity: 0;
+  }
+  50% { 
+    transform: translateX(200%) rotate(45deg); 
+    opacity: 1;
+  }
+}
+
+/**
+ * ROTATING GOLDEN FRAME (.luxuryFrame)
+ * ====================================
+ * Segmented luxury frame that subtly rotates around the emblem
+ */
+.luxuryFrame {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  border-radius: 50%;
+  z-index: 1;
+  animation: luxuryRotate 20s linear infinite;
+}
+
+/**
+ * SHIMMER RING (.shimmerRing)
+ * ===========================
+ * Inner ring with continuous shimmer effect
+ */
+.shimmerRing {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 50%;
+  background: conic-gradient(
+    transparent 0deg,
+    rgba(212, 175, 55, 0.3) 90deg,
+    rgba(244, 228, 188, 0.6) 180deg,
+    rgba(212, 175, 55, 0.3) 270deg,
+    transparent 360deg
+  );
+  z-index: 2;
+  animation: shimmerSpin 6s ease-in-out infinite;
+}
+
+/**
+ * LUXURY BACKDROP (.luxuryBackdrop)
+ * =================================
+ * Radial gradient backdrop behind emblem
+ */
+.luxuryBackdrop {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  height: 120%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle at center,
+    rgba(212, 175, 55, 0.2) 0%,
+    rgba(244, 228, 188, 0.1) 30%,
+    rgba(212, 175, 55, 0.05) 60%,
+    transparent 100%
+  );
+  border-radius: 50%;
+  z-index: -1;
+  animation: backdropPulse 4s ease-in-out infinite;
+}
+
+/**
+ * FLOATING SPARKLES (.sparkleEffect & .sparkle)
+ * =============================================
+ * Subtle animated sparkles around the emblem
+ */
+.sparkleEffect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.sparkle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: #d4af37;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(212, 175, 55, 0.8);
+  animation: 
+    sparkleFloat var(--duration, 3s) ease-in-out infinite var(--delay, 0s),
+    sparkleTwinkle 2s ease-in-out infinite var(--delay, 0s);
+}
+
+.sparkle:nth-child(1) {
+  top: 15%;
+  left: 80%;
+}
+
+.sparkle:nth-child(2) {
+  top: 75%;
+  left: 20%;
+}
+
+.sparkle:nth-child(3) {
+  top: 40%;
+  left: 85%;
+}
+
+/**
+ * ENHANCED LOGO TEXT STYLING
+ * ==========================
+ */
+.primaryText {
+  position: relative;
+}
+
+.textUnderline {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    #d4af37 20%, 
+    #f4e4bc 50%, 
+    #d4af37 80%, 
+    transparent 100%
+  );
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.logo:hover .textUnderline {
+  transform: scaleX(1);
+}
+
+.secondaryText {
+  position: relative;
+  overflow: hidden;
+}
+
+.craftLettering {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all 0.5s ease;
+}
+
+.logo:hover .craftLettering {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.logo:hover .secondaryText > span {
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: all 0.5s ease;
+}
+
+.accentLetter {
+  font-size: 1.2em;
+  color: #f4e4bc;
+  text-shadow: 0 0 8px rgba(244, 228, 188, 0.6);
+  display: inline-block;
+  transform: scale(1);
+  transition: transform 0.3s ease;
+}
+
+.logo:hover .accentLetter {
+  transform: scale(1.1);
+}
+
+/**
+ * LUXURY ANIMATIONS
+ * ================
+ */
+@keyframes luxuryRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes shimmerSpin {
+  0% { transform: rotate(0deg); opacity: 0.6; }
+  50% { transform: rotate(180deg); opacity: 1; }
+  100% { transform: rotate(360deg); opacity: 0.6; }
+}
+
+@keyframes backdropPulse {
+  0%, 100% { 
+    transform: translate(-50%, -50%) scale(1); 
+    opacity: 0.6; 
+  }
+  50% { 
+    transform: translate(-50%, -50%) scale(1.1); 
+    opacity: 0.8; 
+  }
+}
+
+@keyframes sparkleFloat {
+  0%, 100% { 
+    transform: translateY(0px) translateX(0px) rotate(0deg); 
+  }
+  25% { 
+    transform: translateY(-8px) translateX(3px) rotate(90deg); 
+  }
+  50% { 
+    transform: translateY(-4px) translateX(-2px) rotate(180deg); 
+  }
+  75% { 
+    transform: translateY(-12px) translateX(1px) rotate(270deg); 
+  }
+}
+
+@keyframes sparkleTwinkle {
+  0%, 100% { 
+    opacity: 0.4; 
+    transform: scale(0.8); 
+  }
+  50% { 
+    opacity: 1; 
+    transform: scale(1.2); 
   }
 }

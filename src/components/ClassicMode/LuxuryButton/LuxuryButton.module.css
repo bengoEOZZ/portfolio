@@ -13,7 +13,7 @@
  */
 .btn {
   /* TYPOGRAPHY */
-  font-family: 'Georgia', 'Times New Roman', serif; /* Elegant serif font */
+  font-family: 'Cinzel', 'Georgia', 'Times New Roman', serif; /* More luxurious serif font */
   font-size: 1.2rem;                  /* Readable size */
   font-weight: 600;                   /* Semi-bold weight */
   text-transform: uppercase;          /* Uppercase styling */
@@ -24,18 +24,27 @@
   vertical-align: -10px;              /* Baseline alignment */
   padding: 0px 10px;                  /* Internal spacing */
   
-  /* APPEARANCE */
+  /* APPEARANCE - FANOUT STYLE */
   color: #d4af37;                     /* Golden text */
-  background: linear-gradient(135deg, #1a1a1a, #2c2c2c); /* Dark background */
-  border: 3px solid #d4af37;          /* Golden border */
-  border-radius: 6px;                 /* Rounded corners */
+  background: 
+    linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 50%, #0f0f0f 100%),
+    linear-gradient(45deg, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+  border: 2px solid #d4af37;          /* Golden border */
+  border-radius: 8px;                 /* Slightly more rounded corners */
+  
+  /* LUXURY ENHANCEMENTS */
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.4),
+    0 2px 8px rgba(212, 175, 55, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
   
   /* INTERACTIONS */
   position: relative;                 /* For pseudo-elements */
   overflow: hidden;                   /* Hide slide effect */
   cursor: pointer;                    /* Interactive cursor */
   text-decoration: none;              /* Remove underline */
-  transition: all 0.4s;               /* Smooth transitions */
+  transition: all 0.4s ease;         /* Smooth transitions */
   
   /* ACCESSIBILITY */
   user-select: none;                  /* Prevent text selection */
@@ -44,8 +53,7 @@
 /**
  * BUTTON SLIDE BACKGROUND (.btn::before)
  * ======================================
- * Golden background that slides in from left on hover
- * creating an elegant fill effect.
+ * Enhanced golden background with luxury gradient
  */
 .btn::before {
   content: '';                        /* Required for pseudo-element */
@@ -55,8 +63,10 @@
   width: 100%;                       /* Full width */
   height: 100%;                      /* Full height */
   
-  /* GOLDEN BACKGROUND */
-  background: linear-gradient(135deg, #d4af37, #b8941f); /* Golden gradient */
+  /* ENHANCED GOLDEN BACKGROUND - FANOUT STYLE */
+  background: 
+    linear-gradient(135deg, #d4af37 0%, #f4e4bc 25%, #d4af37 50%, #c9a876 75%, #d4af37 100%),
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.2) 0%, transparent 60%);
   
   /* ANIMATION */
   transition: left 0.4s ease;        /* Smooth slide transition */
@@ -74,12 +84,21 @@
 /**
  * BUTTON HOVER EFFECTS
  * ====================
- * Text color change, scaling, and enhanced letter spacing on hover.
+ * Enhanced hover effects to match fanout style
  */
 .btn:hover {
   color: #1a1a1a;                    /* Dark text over golden background */
   transform: translateY(-5px) scale(1.03); /* Lift and scale */
   letter-spacing: 3px;               /* Increased letter spacing */
+  
+  /* ENHANCED HOVER SHADOWS */
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.5),
+    0 4px 15px rgba(212, 175, 55, 0.4),
+    0 0 20px rgba(212, 175, 55, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  
+  border-color: #f4e4bc;             /* Lighter border on hover */
 }
 
 /**

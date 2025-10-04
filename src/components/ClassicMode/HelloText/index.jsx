@@ -40,7 +40,14 @@ const HelloText = ({ isHelloTextFading }) => {
       
       <div className={classes.introText}>
         <p>
-          I am <span className={classes.name}>Benjamin Tiong,</span> a Computer Science graduate
+          I am <span className={classes.name}>
+            BENJAMIN TIONG
+            <div className={classes.nameParticles}>
+              <div className={classes.nameParticle} style={{'--delay': '0s'}}></div>
+              <div className={classes.nameParticle} style={{'--delay': '0.3s'}}></div>
+              <div className={classes.nameParticle} style={{'--delay': '0.6s'}}></div>
+            </div>
+          </span>, a Computer Science graduate
           with a passion for creating innovative and functional solutions. <br></br>
           I strive to create meaningful and impactful work, combining creativity and
           precision to deliver results that stand out.
