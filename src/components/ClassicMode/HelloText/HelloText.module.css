@@ -11,7 +11,7 @@
  */
 .container {
   /* LAYOUT & DIMENSIONS */
-  max-width: 1400px;                  /* Maximum content width */
+  max-width: 1500px;                  /* Maximum content width */
   margin: 0 auto;                     /* Center horizontally */
   position: relative;                 /* For absolute positioned pseudo-elements */
   z-index: 10;                        /* Above background elements */

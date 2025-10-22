@@ -7,6 +7,12 @@
 import React, { useState } from 'react';
 import classes from './Projects.module.css';
 
+// Import GIF demos
+import qbnbDemo from '../../../../assets/gifs/QBNB.gif';
+import qbuzzDemo from '../../../../assets/gifs/QBUZZ.gif';
+import glowstickDemo from '../../../../assets/gifs/glowstickGuy.gif';
+import seDemo from '../../../../assets/gifs/SE.gif';
+
 /**
  * Projects Component
  * ==================
@@ -14,57 +20,79 @@ import classes from './Projects.module.css';
 const Projects = () => {
   const [activeDocument, setActiveDocument] = useState(0);
   const [isStackFanned, setIsStackFanned] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [showDemoModal, setShowDemoModal] = useState(false);
+  const [currentDemoGif, setCurrentDemoGif] = useState(null);
+  const [currentDemoProject, setCurrentDemoProject] = useState(null); // ADD THIS LINE
 
   const projects = [
     {
       id: 1,
       title: "Portfolio Website",
       type: "Web Development",
-      description: "A sophisticated dual-mode portfolio featuring ClassicMode and CreativeMode interfaces. Built with React and advanced CSS animations for an immersive user experience.",
-      techStack: ["React", "CSS Modules", "JavaScript", "SVG Animations"],
-      status: "Completed",
-      year: "2024"
-    },
-    {
-      id: 2,
-      title: "Task Management App",
-      type: "Full-Stack Application",
-      description: "A comprehensive productivity application with real-time collaboration features, drag-and-drop functionality, and project tracking capabilities.",
-      techStack: ["React", "Node.js", "MongoDB", "Socket.io"],
+      description: "A dual-mode portfolio featuring ClassicMode and CreativeMode interfaces. The project is a Single Page Application (SPA) that transforms the traditional portfolio concept into an interactive experience. Just wanted to create something fun and engaging to showcase myself, basically.",
+      techStack: ["React", "JavaScript", "CSS Modules", "Vite"],
       status: "In Development",
-      year: "2024"
+      year: "PRESENT",
+      githubUrl: "https://github.com/bengoEOZZ/portfolio",
+      detailsUrl: "https://github.com/bengoEOZZ/portfolio/blob/React-Migration/README.md"
     },
+  {
+    id: 2,
+    title: "QB&B - Housing Web Application",
+    type: "Full-Stack Application", 
+    description: "AirBnB-inspired vacation rental platform allowing users to create property listings, handle bookings, process payments, and leave reviews. Features comprehensive security testing including SQL injection prevention and Docker containerization for deployment.",
+    techStack: ["Python", "Flask", "MySQL", "Pytest", "Docker", "HTML/CSS"],
+    status: "Completed",
+    year: "2022",
+    githubUrl: "https://github.com/bengoEOZZ/qbnb",
+    detailsUrl: "https://drive.google.com/drive/folders/1FuHbQLe9E0qtCp0x5RY_UJNd8m1BgzMp", // CHANGED: Added Google Drive URL
+    demoGif: qbnbDemo
+  },
     {
       id: 3,
-      title: "Interactive Game Engine",
-      type: "Game Development",
-      description: "A browser-based game engine with physics simulation, particle systems, and advanced rendering capabilities for modular game development.",
-      techStack: ["JavaScript", "Canvas API", "WebGL", "Physics Engine"],
-      status: "Prototype",
-      year: "2023"
+      title: "QBUZZ - Trivia Game Application",
+      type: "Full-Stack Application",
+      description: "Cross-platform trivia game with buzzer system for team competitions. Features dynamic question management with cloud-based question banks, team/individual play modes, real-time score syncing, and smart buzzer lockout functionality for competitive gaming.",
+      techStack: ["Python", "Jinja2", "FastAPI", "WebSockets", "HTML/CSS", "JavaScript"],
+      status: "Completed", 
+      year: "2024",
+      demoGif: qbuzzDemo
     },
-    {
-      id: 4,
-      title: "E-Commerce Platform",
-      type: "Web Application",
-      description: "Modern e-commerce solution with payment integration, inventory management, and advanced analytics dashboard for business insights.",
-      techStack: ["Vue.js", "Express.js", "PostgreSQL", "Stripe API"],
-      status: "Completed",
-      year: "2023"
-    },
+  {
+    id: 4,
+    title: "Glowstick Guy - Unity 2D Game",
+    type: "Game Development",
+    description: "A prototype platformer game featuring unique glowstick mechanics and lighting effects. Players navigate through challenging levels using creative movement and light-based puzzle solving in an immersive gaming experience. A simple prototype made for fun and learning purposes.",
+    techStack: ["Unity", "C#"],
+    status: "Completed",
+    year: "2025",
+    githubUrl: "https://github.com/bengoEOZZ/Glowstick-Guy",
+    detailsUrl: "https://drive.google.com/drive/folders/1DT9tIcDNmb_VZH4q7abX-0yK8zu0x5Ya", // ADDED: Google Drive details
+    demoGif: glowstickDemo
+  },
     {
       id: 5,
-      title: "Mobile Fitness Tracker",
-      type: "Mobile Development",
-      description: "Cross-platform fitness application with workout tracking, progress analytics, and social features for motivation and community building.",
-      techStack: ["React Native", "Firebase", "Chart.js", "Health APIs"],
-      status: "Planning",
-      year: "2024"
+      title: "Stressful Escape - 2D Game",
+      type: "Game Development",
+      description: "A 2D adventure game I made in high school when I didn't feel like studying. Features various mini-games exploring the journey of doing homework. Built with Python and Pygame just for fun and to learn a bit of game development.",
+      techStack: ["Python", "Pygame"],
+      status: "Completed",
+      year: "2020",
+      githubUrl: "https://github.com/bengoEOZZ/stressful_escape",
+      demoGif: seDemo
     }
   ];
 
   const handleDocumentClick = (index) => {
     setActiveDocument(index);
+    if (isStackFanned) {
+      setIsStackFanned(false);
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 1000);
+    }
   };
 
   const toggleStack = () => {
@@ -77,6 +105,25 @@ const Projects = () => {
 
   const prevDocument = () => {
     setActiveDocument((prev) => (prev - 1 + projects.length) % projects.length);
+  };
+
+  const handleLiveDemoClick = (project) => {
+    if (project.id === 1) {
+      return;
+    }
+    if (project.demoGif) {
+      setCurrentDemoGif(project.demoGif);
+      setCurrentDemoProject(project); // ADD THIS LINE
+      setShowDemoModal(true);
+    } else if (project.liveUrl) {
+      window.open(project.liveUrl, '_blank');
+    }
+  };
+
+  const closeDemoModal = () => {
+    setShowDemoModal(false);
+    setCurrentDemoGif(null);
+    setCurrentDemoProject(null); // ADD THIS LINE
   };
 
   return (
@@ -130,11 +177,16 @@ const Projects = () => {
                 {projects.map((project, index) => (
                   <div
                     key={project.id}
-                    className={`${classes.projectDocument} ${index === activeDocument ? classes.active : ''}`}
+                    className={`${classes.projectDocument} 
+                      ${index === activeDocument ? classes.active : ''}
+                      ${isTransitioning ? classes.disableHover : ''}`}
                     style={{
-                      '--document-index': index,
+                      '--document-index': isStackFanned ? projects.length - 1 - index : index,
                       '--total-documents': projects.length,
-                      zIndex: projects.length - index
+                      zIndex: index === activeDocument ? projects.length + 1 : projects.length - index,
+                      ...(!isStackFanned && index === activeDocument && {
+                        transform: 'translateY(0px) translateX(0px) rotate(0deg) scale(1.02)'
+                      })
                     }}
                     onClick={(e) => {
                       e.stopPropagation();
@@ -157,6 +209,7 @@ const Projects = () => {
 
                     {/* Document Content */}
                     <div className={classes.documentContent}>
+                      
                       <p className={classes.projectDescription}>
                         {project.description}
                       </p>
@@ -175,15 +228,36 @@ const Projects = () => {
 
                       {/* Project Actions */}
                       <div className={classes.documentActions}>
-                        <button className={classes.actionButton}>
+                        <button 
+                          className={`${classes.actionButton} ${project.id === 1 ? classes.alwaysActive : ''}`}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleLiveDemoClick(project);
+                          }}
+                          disabled={!project.demoGif && !project.liveUrl}
+                        >
                           <span className={classes.buttonIcon}>🔗</span>
                           Live Demo
                         </button>
-                        <button className={classes.actionButton}>
+                        <button 
+                          className={classes.actionButton}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            if (project.githubUrl) window.open(project.githubUrl, '_blank');
+                          }}
+                          disabled={!project.githubUrl}
+                        >
                           <span className={classes.buttonIcon}>📁</span>
                           GitHub
                         </button>
-                        <button className={classes.actionButton}>
+                        <button 
+                          className={classes.actionButton}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            if (project.detailsUrl) window.open(project.detailsUrl, '_blank');
+                          }}
+                          disabled={!project.detailsUrl}
+                        >
                           <span className={classes.buttonIcon}>📄</span>
                           Details
                         </button>
@@ -246,6 +320,49 @@ const Projects = () => {
 
         </div>
       </div>
+
+      {/* Demo Modal with Premium Art Deco styling */}
+      {showDemoModal && (
+        <div className={classes.demoModal} onClick={closeDemoModal}>
+          <div 
+            className={classes.demoModalContent} 
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* ADD TITLE */}
+            {currentDemoProject && (
+              <div className={classes.demoModalTitle}>
+                {currentDemoProject.title.split(' - ')[0]}
+              </div>
+            )}
+
+            {/* Geometric frames */}
+            <div className={classes.geometricFrame1Container}>
+              <div className={classes.geometricFrame1}></div>
+            </div>
+            <div className={classes.geometricFrame2Container}>
+              <div className={classes.geometricFrame2}></div>
+            </div>
+            <div className={classes.geometricFrame3Container}>
+              <div className={classes.geometricFrame3}></div>
+            </div>
+            
+            <button className={classes.closeModal} onClick={closeDemoModal}>
+              <span>✕</span>
+            </button>
+            
+            {currentDemoGif && (
+              <img src={currentDemoGif} alt="Demo" className={classes.modalGif} />
+            )}
+
+            {/* ADD FOOTER */}
+            {currentDemoProject && (
+              <div className={classes.demoModalFooter}>
+                {currentDemoProject.year}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
