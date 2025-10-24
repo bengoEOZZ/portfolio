@@ -2,7 +2,7 @@
  * CREATIVEMODE COMPONENT STYLES
  * =============================
  * This file contains the styling for the CreativeMode background component.
- * Features cosmic gradients, multi-layer 3D stardust particle systems, atmospheric depth effects, etc.,
+ * Features cosmic gradients, stardust particle systems, atmospheric depth effects, etc.,
  */
 
 /* Import ORBITRON Font */
@@ -134,6 +134,6 @@
         background-position: 0 0;
     }
     to { 
-        background-position: 600px 600px;  /* Matches size for seamless loop */
+        background-position: 450px 450px;  /* Matches size for seamless loop */
     }
 }

@@ -24,13 +24,10 @@
     /* Main luxury gold gradient - identical to belt navigation */
     linear-gradient(135deg, 
       #FFD700 0%, 
-      #F4D03F 15%,
-      #FFD700 30%,
       #d4af37 45%,
       #B8860B 60%,
       #8B4513 70%,
       #d4af37 80%,
-      #F4D03F 90%,
       #FFD700 100%
     );
     
@@ -39,7 +36,7 @@
   
   /* LUXURY SHADOWS */
   box-shadow: 
-    /* Inner luxury highlights */
+    /* Inner highlights */
     inset 0 4px 0 rgba(255, 255, 255, 0.4),
     inset 0 -4px 0 rgba(0, 0, 0, 0.3);
   

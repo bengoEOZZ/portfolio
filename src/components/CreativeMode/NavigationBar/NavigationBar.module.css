@@ -241,8 +241,7 @@
   /* APPEARANCE */
   background: radial-gradient(circle, #ffffff 0%, #ffd700 40%, #ff6347 80%, transparent 100%);
   border-radius: 50%;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.9), 0 0 25px rgba(255, 99, 71, 0.7),
-              0 0 35px rgba(255, 99, 71, 0.5);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
   
   /* ANIMATIONS */
   animation: sunPulse 2s ease-in-out infinite;  /* Gentle pulsing */
@@ -257,9 +256,8 @@
 .orbitalMenu:hover .orbitalSun {
   width: 18px;                        /* 50% size increase */
   height: 18px;
-  animation: sunPulse 1.5s ease-in-out infinite; /* Enhanced glow and size pulsing animation */
-  box-shadow: 0 0 30px rgba(255, 215, 0, 1), 0 0 50px rgba(255, 99, 71, 0.9),
-              0 0 70px rgba(255, 99, 71, 0.7), 0 0 90px rgba(255, 215, 0, 0.5);
+  animation: sunPulse 1.5s ease-in-out infinite;
+  box-shadow: 0 0 35px rgba(255, 215, 0, 1);
 }
 
 /**
@@ -294,7 +292,7 @@
   width: 5px;                         /* Smallest planet */
   height: 5px;
   background: radial-gradient(circle, #a0a0a0 0%, #707070 50%, #404040 100%);
-  box-shadow: 0 0 4px rgba(160, 160, 160, 0.5), 0 0 8px rgba(112, 112, 112, 0.3);
+  box-shadow: 0 0 6px rgba(160, 160, 160, 0.5);
   animation: orbitClose 3s linear infinite;
 }
 
@@ -303,7 +301,7 @@
   width: 6px;                         /* Slightly larger than Mercury */
   height: 6px;
   background: radial-gradient(circle, #d4af37 0%, #b8860b 50%, #996515 100%);
-  box-shadow: 0 0 4px rgba(212, 175, 55, 0.5), 0 0 8px rgba(184, 134, 11, 0.3);
+  box-shadow: 0 0 6px rgba(212, 175, 55, 0.5);
   animation: orbitMedium 5s linear infinite;
 }
 
@@ -312,7 +310,7 @@
   width: 8px;                         /* Larger than inner planets */
   height: 8px;
   background: radial-gradient(circle, #f5f5f5 0%, #d3d3d3 50%, #a9a9a9 100%);
-  box-shadow: 0 0 8px rgba(245, 245, 245, 0.8), 0 0 15px rgba(211, 211, 211, 0.6);
+  box-shadow: 0 0 10px rgba(245, 245, 245, 0.7);
   animation-duration: 6s;
 }
 
@@ -325,7 +323,7 @@
     radial-gradient(circle at 70% 60%, #32cd32 0%, #32cd32 20%, transparent 30%),
     radial-gradient(circle at 40% 80%, #006400 0%, #006400 15%, transparent 25%),
     radial-gradient(circle, #4169e1 0%, #1e90ff 40%, #0066cc 100%);
-  box-shadow: 0 0 8px rgba(65, 105, 225, 0.8), 0 0 15px rgba(30, 144, 255, 0.6);
+  box-shadow: 0 0 10px rgba(65, 105, 225, 0.7);
   animation-duration: 7s;
 }
 
@@ -367,13 +365,11 @@
 @keyframes sunPulse {
   0%, 100% { 
     transform: translate(-50%, -50%) scale(1); 
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.9), 0 0 25px rgba(255, 99, 71, 0.7),
-                0 0 35px rgba(255, 99, 71, 0.5); 
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
   }
   50% { 
     transform: translate(-50%, -50%) scale(1.2); 
-    box-shadow: 0 0 20px rgba(255, 215, 0, 1), 0 0 35px rgba(255, 99, 71, 0.9),
-                0 0 50px rgba(255, 99, 71, 0.7); 
+    box-shadow: 0 0 30px rgba(255, 215, 0, 1);
   }
 }
 

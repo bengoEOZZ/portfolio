@@ -7,7 +7,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import classes from './Contact.module.css';
 import IDCard from '../../IDCard'; // Import your IDCard component
-import BenMoonAvatar from '../../../../assets/CreativeMode/BenMoonDay.svg';
+import BenMoonAvatar from '../../../../assets/CreativeMode/moonDayAvatar.svg';
 import EmailIcon from '../../../../assets/EmailIcon.png';
 import LinkedInIcon from '../../../../assets/LinkedInIcon.png';
 import GithubIcon from '../../../../assets/GithubIcon.png';

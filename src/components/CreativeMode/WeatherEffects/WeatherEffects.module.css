@@ -401,7 +401,7 @@
     clip-path: polygon(50% 0%, 40% 15%, 20% 15%, 28% 30%, 15% 45%, 30% 50%,5% 65%, 15% 75%, 30% 85%,
                     50% 100%, 70% 85%, 85% 75%, 95% 65%, 70% 50%, 85% 45%, 72% 30%, 80% 15%, 60% 15%);
     border-radius: 80%;
-    /* Size varies per leaf - set in positioning rules */
+    /* Size varies per leaf - shape taken from an online example */
     
     /* PERFORMANCE OPTIMIZATION */
     will-change: transform, opacity;

@@ -10,8 +10,8 @@ import { useMemo, memo } from 'react';
 import classes from './Moon.module.css';
 
 // MOON ASSETS
-import BenMoonDayImage from '../../../../assets/CreativeMode/BenMoonDay.svg';
-import BenMoonNightImage from '../../../../assets/CreativeMode/BenMoonNight.svg';
+import MoonDayAvatarImage from '../../../../assets/CreativeMode/moonDayAvatar.svg';
+import MoonNightAvatarImage from '../../../../assets/CreativeMode/moonNightAvatar.svg';
 
 /**
  * PersonalMoon Component
@@ -33,14 +33,14 @@ const Moon = memo(({ isNightTime }) => {
         <>
             {/* DAY VERSION */}
             <img 
-                src={BenMoonDayImage} 
+                src={MoonDayAvatarImage} 
                 className={classes.dayMoon} 
                 style={dayMoonStyle}
             />
             
             {/* NIGHT VERSION */}
             <img 
-                src={BenMoonNightImage}  
+                src={MoonNightAvatarImage}  
                 className={classes.nightMoon} 
                 style={nightMoonStyle}
             />
