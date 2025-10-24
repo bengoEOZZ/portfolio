@@ -14,25 +14,6 @@ import LuxuryButton from '../LuxuryButton';
  * ===================
  */
 const HelloText = ({ isHelloTextFading }) => {
-  /**
-   * BUTTON CLICK HANDLERS
-   * ====================
-   * Handle navigation and interactions for luxury buttons.
-   */
-  const handleAboutClick = () => {
-    console.log('Navigate to About section');
-    // Add navigation logic here
-  };
-
-  const handleCodingClick = () => {
-    console.log('Navigate to Coding section');
-    // Add navigation logic here
-  };
-
-  const handleProjectsClick = () => {
-    console.log('Navigate to Projects section');
-    // Add navigation logic here
-  };
 
   return (
     <main className={`${classes.container} ${isHelloTextFading ? classes.fadeOut : ''}`}>
@@ -54,11 +35,11 @@ const HelloText = ({ isHelloTextFading }) => {
         </p>
         <p>
           Learn more{' '}
-          <LuxuryButton onClick={handleCodingClick}>about me</LuxuryButton>{' '}
+          <LuxuryButton>about me</LuxuryButton>{' '}
           or feel free to explore my{' '}
-          <LuxuryButton onClick={handleCodingClick}>coding</LuxuryButton>{' '}
+          <LuxuryButton>coding</LuxuryButton>{' '}
           and{' '}
-          <LuxuryButton onClick={handleProjectsClick}>projects</LuxuryButton>{' '}
+          <LuxuryButton>projects</LuxuryButton>{' '}
           to see what I've been working on.
         </p>
       </div>

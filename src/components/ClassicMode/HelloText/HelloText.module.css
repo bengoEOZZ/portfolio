@@ -82,6 +82,7 @@
   font-weight: 300;                   /* Light weight for elegance */
   line-height: 1.1;                   /* Tight line spacing */
   color: white;                   /* Dark text color */
+  cursor: default;
   
   /* VISUAL EFFECTS */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle depth */
@@ -136,6 +137,7 @@
   
   /* ENTRANCE ANIMATION */
   animation: introTextFadeIn 1s ease-out 0.8s both;
+  cursor: default;
 }
 
 /**
@@ -185,7 +187,7 @@
     0 0 10px rgba(212, 175, 55, 0.6),
     0 2px 4px rgba(0, 0, 0, 0.8);
   position: relative;               /* For pseudo-elements */
-  cursor: pointer;                  /* Interactive cursor */
+  cursor: default;                  /* Interactive cursor */
   
   /* INTERACTIONS */
   transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);

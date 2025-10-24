@@ -42,7 +42,7 @@
   /* INTERACTIONS */
   position: relative;                 /* For pseudo-elements */
   overflow: hidden;                   /* Hide slide effect */
-  cursor: pointer;                    /* Interactive cursor */
+  cursor: default;                    /* Interactive cursor */
   text-decoration: none;              /* Remove underline */
   transition: all 0.4s ease;         /* Smooth transitions */
   

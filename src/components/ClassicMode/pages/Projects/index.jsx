@@ -23,7 +23,8 @@ const Projects = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [showDemoModal, setShowDemoModal] = useState(false);
   const [currentDemoGif, setCurrentDemoGif] = useState(null);
-  const [currentDemoProject, setCurrentDemoProject] = useState(null); // ADD THIS LINE
+  const [currentDemoProject, setCurrentDemoProject] = useState(null);
+  const [isModalClosing, setIsModalClosing] = useState(false); // ADD THIS LINE
 
   const projects = [
     {
@@ -42,7 +43,7 @@ const Projects = () => {
     title: "QB&B - Housing Web Application",
     type: "Full-Stack Application", 
     description: "AirBnB-inspired vacation rental platform allowing users to create property listings, handle bookings, process payments, and leave reviews. Features comprehensive security testing including SQL injection prevention and Docker containerization for deployment.",
-    techStack: ["Python", "Flask", "MySQL", "Pytest", "Docker", "HTML/CSS"],
+    techStack: ["Python", "Flask", "SQLite", "Pytest", "Docker", "HTML/CSS"],
     status: "Completed",
     year: "2022",
     githubUrl: "https://github.com/bengoEOZZ/qbnb",
@@ -121,9 +122,13 @@ const Projects = () => {
   };
 
   const closeDemoModal = () => {
-    setShowDemoModal(false);
-    setCurrentDemoGif(null);
-    setCurrentDemoProject(null); // ADD THIS LINE
+    setIsModalClosing(true); // ADD THIS LINE
+    setTimeout(() => {
+      setShowDemoModal(false);
+      setCurrentDemoGif(null);
+      setCurrentDemoProject(null);
+      setIsModalClosing(false); // ADD THIS LINE
+    }, 400); // Match animation duration
   };
 
   return (
@@ -323,7 +328,10 @@ const Projects = () => {
 
       {/* Demo Modal with Premium Art Deco styling */}
       {showDemoModal && (
-        <div className={classes.demoModal} onClick={closeDemoModal}>
+        <div 
+          className={`${classes.demoModal} ${isModalClosing ? classes.closing : ''}`} 
+          onClick={closeDemoModal}
+        >
           <div 
             className={classes.demoModalContent} 
             onClick={(e) => e.stopPropagation()}

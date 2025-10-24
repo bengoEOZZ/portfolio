@@ -12,12 +12,14 @@ import { useState } from 'react';
  * ======================
  * Provides centralized control over page transition animations.
  * 
- * @returns {Object} - { transitioning, startTransition }
+ * @returns {Object} - { transitioning, isExiting, startTransition }
  *   - transitioning: Boolean indicating if transition is active
+ *   - isExiting: Boolean for exit animation state
  *   - startTransition: Function to trigger transition with callback
  */
 export const usePageTransition = () => {
   const [transitioning, setTransitioning] = useState(false);
+  const [isExiting, setIsExiting] = useState(false); // ADDED
   
   /**
    * Start Page Transition
@@ -30,16 +32,19 @@ export const usePageTransition = () => {
   const startTransition = (callback, duration = 600) => {
     // Start transition animation
     setTransitioning(true);
+    setIsExiting(true); // ADDED
     
     // Execute callback after animation completes
     setTimeout(() => {
       if (callback) callback();
       setTransitioning(false);
+      setIsExiting(false); // ADDED - Reset after navigation
     }, duration);
   };
   
   return { 
-    transitioning, 
+    transitioning,
+    isExiting, // ADDED
     startTransition 
   };
 };

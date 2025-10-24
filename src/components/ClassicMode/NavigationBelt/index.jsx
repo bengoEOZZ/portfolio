@@ -12,11 +12,6 @@ const NavigationBelt = ({ onNavigationStart, isBeltFading, startTransition }) =>
 
   const handleCardClick = (cardType) => {
     // Don't start transition for home button
-    if (cardType === 'home') {
-      navigate('/classic');
-      return;
-    }
-
     // Use the unified transition hook
     startTransition(() => {
       switch(cardType) {
@@ -69,7 +64,7 @@ const NavigationBelt = ({ onNavigationStart, isBeltFading, startTransition }) =>
       </div>
       
       {/* Belt buckle in center */}
-      <div className={classes.navBuckle} onClick={handleHomeClick}>
+      <div className={classes.navBuckle}>
         <div className={classes.craftSymbol}>⚜</div>
       </div>
       

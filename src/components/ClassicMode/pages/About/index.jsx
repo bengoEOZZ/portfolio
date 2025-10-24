@@ -9,6 +9,7 @@ import classes from './About.module.css';
 import IDCard from '../../IDCard';
 import TriFoldIDCard from '../../TriFoldIDCard';
 import GymMembershipCard from '../../GymMembershipCard';
+import hollowKnightIcon from '../../../../assets/hollowNit.png';
 
 const About = () => {
   const [isWalletOpen, setIsWalletOpen] = useState(false);
@@ -61,7 +62,7 @@ const About = () => {
         "Completion": "112%",
         "Mastery": "Elite"
       },
-      icon: "/src/assets/hollowNit.png"
+      icon: hollowKnightIcon
     }
   };
 

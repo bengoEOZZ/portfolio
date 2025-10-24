@@ -373,7 +373,7 @@
 }
 
 .navBuckle {
-  cursor: pointer;                    /* Make buckle clickable */
+  cursor: default;                    /* Make buckle clickable */
 }
 
 .navBuckle:hover .craftSymbol {

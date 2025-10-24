@@ -37,7 +37,7 @@ const ClassicMode = () => {
    * STATE MANAGEMENT
    * ===============
    */
-  const { transitioning, startTransition } = usePageTransition();
+  const { transitioning, isExiting, startTransition } = usePageTransition();
   const location = useLocation();
   
   // Check if we're on the home route (ClassicMode homepage)
@@ -67,7 +67,7 @@ const ClassicMode = () => {
    */
   return (
     <div className={classes.body}>
-      <NavigationBar />
+      <NavigationBar startTransition={startTransition} />
 
       <div className={classes.container}>
         {/* BACKGROUND SYSTEM - Always present */}
@@ -85,7 +85,7 @@ const ClassicMode = () => {
             />
           </>
         ) : (
-          <div className={classes.contentArea}>
+          <div className={`${classes.contentArea} ${isExiting ? classes.exiting : ''}`}>
             <Outlet />
           </div>
         )}

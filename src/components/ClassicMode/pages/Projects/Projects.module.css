@@ -908,11 +908,13 @@
 /* Demo Modal Styles - PREMIUM ART DECO WITH LAYERED GEOMETRY */
 .demoModal {
   position: fixed;
-  top: 0;
+  top: -5vw;
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at center, rgba(10, 10, 10, 0.98) 0%, rgba(0, 0, 0, 0.99) 100%);
+  width: 120vw;
+  transform: translateX(-23.5%);
+  background: radial-gradient(circle at center, rgba(10, 10, 10, 0.98) 0%, rgba(0, 0, 0, 0.9) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -920,6 +922,34 @@
   backdrop-filter: blur(15px);
   padding: 40px;
   animation: luxurySlideUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ADD: Closing animation class */
+.demoModal.closing {
+  animation: luxurySlideDown 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* ADD: Slide down animation after the luxurySlideUp animation */
+@keyframes luxurySlideDown {
+  from {
+    transform: translateX(-23.5%) translateY(0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-23.5%) translateY(60px) scale(0.96);
+    opacity: 0;
+  }
+}
+
+@keyframes luxurySlideUp {
+  from {
+    transform: translateX(-23.5%) translateY(60px) scale(0.96);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-23.5%) translateY(0) scale(1);
+    opacity: 1;
+  }
 }
 
 .demoModalContent {
@@ -1109,17 +1139,6 @@
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
-}
-
-@keyframes luxurySlideUp {
-  from {
-    transform: translateY(60px) scale(0.96);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
 }
 
 /* Close button styling - ART DECO PREMIUM */

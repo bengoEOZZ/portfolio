@@ -20,7 +20,7 @@
   z-index: 1000;
   margin: 0;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow: visible;
   
   /* LAYOUT STRUCTURE */
   display: flex;
@@ -295,22 +295,19 @@
 }
 
 /**
- * LUXURY BRIEFCASE SYSTEM (.briefcase)
+ * LUXURY BRIEFCASE SYSTEM (.briefcase) - UPDATED WITH NEW ELEMENTS
  * ====================================
- * Interactive briefcase menu with 3D opening animation and portfolio papers reveal.
  */
 .briefcase {
-  /* LAYOUT & POSITIONING */
+  /* KEEP EXISTING SIZING & ANIMATIONS */
   position: relative;
   width: 70px;
   height: 45px;
   
-  /* 3D TRANSFORM SETUP */
   cursor: pointer;
   transition: all 0.5s ease;
   transform-style: preserve-3d;
   perspective: 200px;
-  /* Enables realistic 3D briefcase opening effect */
 }
 
 .briefcase:hover {
@@ -318,407 +315,381 @@
 }
 
 /**
- * BRIEFCASE HANDLE (.briefcaseHandle) - ENHANCED CONTRAST BORDER
+ * BRIEFCASE HANDLE (.briefcaseHandle) - NEW DESIGN FROM YOUR OTHER FILE
  * =============================================================
  */
 .briefcaseHandle {
-  /* LAYOUT & POSITIONING */
   position: absolute;
-  top: -4px;
-  left: 50%;
+  top: -10px; /* UPDATED from -4px */
+  left: 52%;
   transform: translateX(-50%);
+  width: 35px; /* UPDATED from 32px */
+  height: 8px; /* UPDATED from 5px */
   
-  /* SIZING */
-  width: 32px;
-  height: 5px;
-  
-  /* DEEP RICH GOLDEN APPEARANCE */
+  /* NEW GRADIENT FROM YOUR DESIGN */
   background: linear-gradient(180deg, 
-    #B8860B 0%, 
-    #DAA520 30%, 
-    #FFD700 50%, 
-    #DAA520 70%, 
-    #B8860B 100%
+    #f4e4bc 0%, 
+    #d4af37 30%, 
+    #BFA850 70%, 
+    #8B7355 100%
   );
-  /* UPDATED: Enhanced contrast border to match briefcase body */
-  border: 1px solid #1A0F08;
-  border-radius: 6px;
+  border: 2px solid rgba(139, 115, 85, 0.6); /* NEW BORDER STYLE */
+  border-radius: 12px 12px 0 0; /* UPDATED RADIUS */
   
-  /* REALISTIC SHADOWS */
   box-shadow: 
-    0 2px 4px rgba(0, 0, 0, 0.4), 
-    inset 0 1px 0 rgba(255, 215, 0, 0.4);
+    inset 0 2px 6px rgba(255, 255, 255, 0.4),
+    0 3px 10px rgba(0, 0, 0, 0.5);
   transition: all 0.4s ease;
 }
 
 .briefcase:hover .briefcaseHandle {
-  transform: translateX(-50%) translateY(-1px);
-  background: linear-gradient(180deg, 
-    #DAA520 0%, 
-    #FFD700 30%, 
-    #FFF700 50%, 
-    #FFD700 70%, 
-    #DAA520 100%
-  );
-  /* UPDATED: Even darker border on hover for maximum contrast */
-  border-color: #0F0A06;
+  transform: translateX(-50%);
+  /* ENHANCED: Brighter golden glow on hover */
   box-shadow: 
     0 3px 6px rgba(0, 0, 0, 0.5), 
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 0 30px rgba(212, 175, 55, 0.7),  /* Brighter golden glow */
+    0 0 15px rgba(255, 215, 0, 0.5);
 }
 
+/* NEW: Handle shimmer effect */
+.handleShimmer {
+  position: absolute;
+  inset: 2px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.4) 50%, 
+    transparent 100%
+  );
+  border-radius: 10px 10px 0 0;
+  animation: handleGleam 3s ease-in-out infinite;
+}
+
+/* NEW: Handle rivets */
+.briefcaseHandle::before,
+.briefcaseHandle::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  width: 5px;
+  height: 5px;
+  background: radial-gradient(circle, #d4af37, #8B7355);
+  border-radius: 50%;
+  border: 1px solid rgba(139, 115, 85, 0.8);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.briefcaseHandle::before { left: -2px; }
+.briefcaseHandle::after { right: -2px; }
+
 /**
- * BRIEFCASE BODY (.briefcaseBody) - ENHANCED CONTRAST GOLD
+ * BRIEFCASE BODY (.briefcaseBody) - KEEP EXISTING WITH NEW BORDER
  * =====================================================
  */
 .briefcaseBody {
-  /* LAYOUT & POSITIONING */
   position: absolute;
   width: 100%;
   height: 100%;
   
-  /* ENHANCED CONTRAST GOLDEN GRADIENT */
-  background: linear-gradient(135deg, 
-    #2C1810 0%,     /* Dark brown base */
-    #4A2C17 15%,    /* Medium brown */
-    #8B4513 25%,    /* Rich brown */
-    #B8860B 35%,    /* Dark gold */
-    #DAA520 45%,    /* Goldenrod */
-    #FFD700 55%,    /* Pure gold highlight */
-    #DAA520 65%,    /* Goldenrod */
-    #B8860B 75%,    /* Dark gold */
-    #8B4513 85%,    /* Rich brown */
-    #2C1810 100%    /* Dark brown base */
+  /* KEEP YOUR EXISTING GRADIENT */
+  background: linear-gradient(145deg, 
+    #2a2420 0%,
+    #1a1410 30%,
+    #0f0a08 60%,
+    #1a1410 100%
   );
   
-  /* ENHANCED CONTRAST BORDER */
-  border: 2px solid #1A0F08;
+  /* UPDATED BORDER TO MATCH NEW DESIGN */
+  border: 3px solid #BFA850;
   border-radius: 4px;
   
-  /* ENHANCED SHADOWS FOR DEFINITION */
   box-shadow: 
-    /* Strong outer shadow for definition */
-    0 6px 15px rgba(0, 0, 0, 0.8),
-    /* Bright inner highlight for contrast */
-    inset 0 2px 0 rgba(255, 215, 0, 0.6),
-    inset 0 -2px 0 rgba(42, 24, 16, 0.9),
-    /* Golden glow */
-    0 0 20px rgba(218, 165, 32, 0.4);
+    0 10px 30px rgba(0, 0, 0, 0.7),
+    /* BRIGHT WHITE TOP INSET - Very visible */
+    inset 0 4px 12px rgba(255, 255, 255, 0.4),
+    inset 0 2px 6px rgba(244, 228, 188, 0.5),
+    /* Dark bottom for contrast */
+    inset 0 -2px 8px rgba(0, 0, 0, 0.6);
   
-  /* 3D TRANSFORM SETUP */
   transition: all 0.4s ease;
   transform-origin: bottom center;
   overflow: hidden;
   position: relative;
 }
 
-/* Enhanced metallic shine effect with better visibility */
-.briefcaseBody::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(45deg, 
-    transparent 30%, 
-    rgba(255, 255, 255, 0.3) 40%, 
-    rgba(255, 255, 255, 0.6) 45%, 
-    rgba(255, 255, 255, 0.9) 50%, 
-    rgba(255, 255, 255, 0.6) 55%, 
-    rgba(255, 255, 255, 0.3) 60%, 
-    transparent 70%
-  );
-  transform: rotate(45deg);
-  animation: deepGoldShine 4s ease-in-out infinite;
-}
-
-/* Enhanced hover state with better contrast */
+/* KEEP YOUR EXISTING HOVER ANIMATION */
 .briefcase:hover .briefcaseBody {
   transform: rotateX(-15deg);
+  border-color: #d4af37;
   
-  /* BRIGHTER CONTRAST ON HOVER */
-  background: linear-gradient(135deg, 
-    #1A0F08 0%,     /* Darker base for contrast */
-    #3A1F0F 15%,    /* Dark brown */
-    #6B3319 25%,    /* Medium brown */
-    #B8860B 35%,    /* Dark gold */
-    #FFD700 45%,    /* Pure gold */
-    #FFFF66 55%,    /* Bright gold center */
-    #FFD700 65%,    /* Pure gold */
-    #B8860B 75%,    /* Dark gold */
-    #6B3319 85%,    /* Medium brown */
-    #1A0F08 100%    /* Darker base for contrast */
-  );
-  
-  /* ENHANCED SHADOWS FOR BETTER DEFINITION */
+  /* UPDATED: Super bright white insets on hover */
   box-shadow: 
-    0 8px 20px rgba(0, 0, 0, 0.9),
-    inset 0 3px 0 rgba(255, 255, 255, 0.8),
-    inset 0 -3px 0 rgba(26, 15, 8, 1),
-    0 0 30px rgba(255, 215, 0, 0.7);
-  
-  /* Darker border for better definition */
-  border-color: #0F0A06;
+    0 10px 30px rgba(0, 0, 0, 0.7),
+    /* BRIGHT WHITE TOP INSET - Very visible */
+    inset 0 4px 12px rgba(255, 255, 255, 0.4),
+    inset 0 2px 6px rgba(244, 228, 188, 0.5),
+    /* Dark bottom for contrast */
+    inset 0 -2px 8px rgba(0, 0, 0, 0.6),
+    
+    /* ADDED: BRIGHTER golden glow on TOP ONLY (negative Y = upward) */
+    0 -10px 20px rgba(212, 175, 55, 0.7);
 }
 
 /**
- * BRIEFCASE TOP SECTION (.briefcaseTop)
+ * BRIEFCASE TOP SECTION (.briefcaseTop) - ADJUSTED POSITION
  * =====================================
  */
 .briefcaseTop {
-  /* LAYOUT & POSITIONING */
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 65%;
-  
-  /* LAYOUT STRUCTURE */
+  position: relative;
+  height: 50%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  gap: 1px;
-  
-  /* INTERACTIONS */
+  justify-content: center;
+  gap: 2px;
+  z-index: 2;
   transition: all 0.4s ease;
+  padding-top: 4px; /* ADDED: Push content down a bit */
 }
 
-.briefcase:hover .briefcaseTop {
-  transform: translateY(-2px);
+/* ADD: Opening light effect at the top edge - BRIGHTER */
+.briefcaseBody::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 5%;
+  right: 5%;
+  height: 2px;
+  background: transparent;
+  opacity: 0;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 0 rgba(255, 215, 0, 0);
 }
 
+.briefcase:hover .briefcaseBody::after {
+  opacity: 1;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.5) 15%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(255, 255, 255, 0.5) 85%,
+    transparent 100%
+  );
+  box-shadow: 
+    0 0 20px rgba(255, 255, 255, 1),
+    0 3px 15px rgba(255, 215, 0, 0.8);
+}
 /**
- * BRIEFCASE LOCK & LABEL - ENHANCED CONTRAST
+ * BRIEFCASE LOCK STRUCTURE - RESTORED COOL GLOW
  * =========================================
  */
-.briefcaseLock,
-.briefcaseLabel {
-  /* ENHANCED CONTRAST COLORS */
-  color: #2C1810;
-  text-shadow: 
-    0 1px 0 rgba(255, 255, 255, 0.8),
-    0 0 6px rgba(255, 215, 0, 0.6);
-  transition: all 0.3s ease;
-  font-weight: bold;
-}
-
-/* BRIEFCASE LOCK SYMBOL */
 .briefcaseLock {
-  /* TYPOGRAPHY */
-  font-size: 14px;       /* Reduced from 16px */
-  
-  /* ENHANCED VISIBILITY */
-  text-shadow: 
-    0 1px 0 rgba(255, 255, 255, 0.9), 
-    0 0 6px rgba(255, 215, 0, 0.8),    /* Reduced from 8px */
-    0 0 10px rgba(255, 255, 255, 0.4);  /* Reduced from 12px */
+  position: relative;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* BRIEFCASE LABEL TEXT */
+/* RESTORED: Original cool lock glow */
+.lockGlow {
+  position: absolute;
+  inset: -4px;
+  background: radial-gradient(circle, 
+    rgba(212, 175, 55, 0.4), 
+    transparent 70%
+  );
+  border-radius: 50%;
+  animation: lockPulse 2s ease-in-out infinite;
+}
+
+/* RESTORED: Diamond with proper golden glow */
+.lockDiamond {
+  font-size: 14px; /* CHANGED: Smaller */
+  color: #d4af37;
+  text-shadow: 
+    0 0 12px rgba(212, 175, 55, 0.8),
+    0 0 6px rgba(244, 228, 188, 0.6),
+    0 2px 4px rgba(0, 0, 0, 0.8);
+  animation: diamondShimmer 3s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes diamondShimmer {
+  0%, 100% {
+    color: #d4af37;
+    filter: brightness(1);
+  }
+  50% {
+    color: #f4e4bc;
+    filter: brightness(1.4);
+  }
+}
+
+/* HOVER: Lock brightens with cool glow */
+.briefcase:hover .lockDiamond {
+  color: #FFD700;
+  text-shadow: 
+    0 0 20px rgba(255, 215, 0, 1),
+    0 0 10px rgba(244, 228, 188, 0.8),
+    0 3px 6px rgba(0, 0, 0, 1);
+}
+
+.briefcase:hover .lockGlow {
+  background: radial-gradient(circle, 
+    rgba(255, 215, 0, 0.6), 
+    rgba(212, 175, 55, 0.3) 40%,
+    transparent 70%
+  );
+  transform: scale(1.2);
+}
+
+/* ANIMATIONS for the lock glow */
+@keyframes lockPulse {
+  0%, 100% { 
+    opacity: 0.4; 
+    transform: scale(1); 
+  }
+  50% { 
+    opacity: 0.8; 
+    transform: scale(1.1); 
+  }
+}
+
+/* ADJUSTED: Label position */
 .briefcaseLabel {
-  /* TYPOGRAPHY */
-  font: bold 9px 'Times New Roman', serif;  /* Reduced from 10px */
-  letter-spacing: 1px;                      /* Reduced from 1.2px */
+  font-family: 'Cinzel', serif;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-}
-
-.briefcase:hover .briefcaseLock {
-  color: #1A0F08;
+  color: #d4af37;
   text-shadow: 
-    0 1px 0 rgba(255, 255, 255, 1), 
-    0 0 8px rgba(255, 215, 0, 1),      /* Reduced from 10px */
-    0 0 12px rgba(255, 255, 255, 0.6); /* Reduced from 15px */
+    0 0 12px rgba(212, 175, 55, 0.6),
+    0 1px 4px rgba(0, 0, 0, 1);
+  transition: all 0.3s ease;
 }
 
 .briefcase:hover .briefcaseLabel {
-  color: #1A0F08;
+  color: #f4e4bc;
   text-shadow: 
-    0 1px 0 rgba(255, 255, 255, 1),
-    0 0 8px rgba(255, 215, 0, 0.8);
+    0 0 12px rgba(244, 228, 188, 0.9),
+    0 0 6px rgba(255, 215, 0, 0.6);
 }
 
 /**
- * BRIEFCASE BOTTOM SECTION (.briefcaseBottom)
+ * NEW CORNER ORNAMENTS - FROM NEW DESIGN
  * ===========================================
  */
-.briefcaseBottom {
-  /* LAYOUT & POSITIONING */
+.cornerOrnament {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 35%;
-  
-  /* SUBTLE GRADIENT OVERLAY */
-  background: linear-gradient(180deg, transparent 0%, rgba(139, 105, 20, 0.2) 100%);
-}
-
-/**
- * BRIEFCASE CORNER ACCENTS - BETTER VISIBILITY
- * ===========================================
- */
-.briefcaseCorners {
-  /* LAYOUT & POSITIONING */
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-.briefcaseCorners::before,
-.briefcaseCorners::after {
-  /* PSEUDO-ELEMENT SETUP */
-  content: '';
-  position: absolute;
-  bottom: 4px;
-  
-  /* SIZING - SMALLER STUDS */
-  width: 6px;          /* Reduced from 8px */
-  height: 6px;         /* Reduced from 8px */
-  
-  /* HIGH CONTRAST STUD APPEARANCE */
-  background: radial-gradient(circle, 
-    #FFFFFF 0%, 
-    #FFD700 20%, 
-    #DAA520 50%, 
-    #8B4513 80%, 
-    #2C1810 100%
-  );
-  border: 1px solid #1A0F08;     /* Reduced from 2px */
-  border-radius: 50%;
-  
-  /* ENHANCED VISIBILITY EFFECTS */
-  box-shadow: 
-    0 0 8px rgba(255, 215, 0, 1),     /* Reduced from 10px */ 
-    inset 0 1px 0 rgba(255, 255, 255, 0.9),
-    inset 0 -1px 0 rgba(44, 24, 16, 0.8);
+  width: 8px;
+  height: 8px;
+  border: 2px solid #BFA850;
+  pointer-events: none;
   transition: all 0.3s ease;
 }
 
-.briefcaseCorners::before { left: 3px; }    /* Adjusted positioning */
-.briefcaseCorners::after { right: 3px; }    /* Adjusted positioning */
-
-/* Scale down the lock symbol: */
-.briefcaseLock {
-  /* TYPOGRAPHY - SMALLER SIZE */
-  font-size: 14px;       /* Reduced from 16px */
-  
-  /* ENHANCED VISIBILITY */
-  text-shadow: 
-    0 1px 0 rgba(255, 255, 255, 0.9), 
-    0 0 6px rgba(255, 215, 0, 0.8),    /* Reduced from 8px */
-    0 0 10px rgba(255, 255, 255, 0.4);  /* Reduced from 12px */
+.cornerOrnament[style*="top-left"] {
+  top: 5px;
+  left: 5px;
+  border-right: none;
+  border-bottom: none;
+  border-radius: 1px 0 0 0;
 }
 
-/* Scale down the portfolio label: */
-.briefcaseLabel {
-  /* TYPOGRAPHY - SMALLER SIZE */
-  font: bold 9px 'Times New Roman', serif;  /* Reduced from 10px */
-  letter-spacing: 1px;                      /* Reduced from 1.2px */
-  text-transform: uppercase;
+.cornerOrnament[style*="top-right"] {
+  top: 5px;
+  right: 5px;
+  border-left: none;
+  border-bottom: none;
+  border-radius: 0 1px 0 0;
 }
 
-/* Adjust hover scaling to be proportional: */
-.briefcase:hover .briefcaseLock {
-  color: #1A0F08;
-  text-shadow: 
-    0 1px 0 rgba(255, 255, 255, 1), 
-    0 0 8px rgba(255, 215, 0, 1),      /* Reduced from 10px */
-    0 0 12px rgba(255, 255, 255, 0.6); /* Reduced from 15px */
+.cornerOrnament[style*="bottom-left"] {
+  bottom: 5px;
+  left: 5px;
+  border-right: none;
+  border-top: none;
+  border-radius: 0 0 0 1px;
 }
 
-.briefcase:hover .briefcaseCorners::before,
-.briefcase:hover .briefcaseCorners::after {
-  box-shadow: 
-    0 0 12px rgba(255, 255, 255, 1),    /* Reduced from 15px */
-    inset 0 2px 0 rgba(255, 255, 255, 1),
-    inset 0 -2px 0 rgba(26, 15, 8, 1);
-  background: radial-gradient(circle, 
-    #FFFFFF 0%, 
-    #FFFF66 30%, 
-    #FFD700 60%, 
-    #DAA520 100%
-  );
-  transform: scale(1.05);              /* Reduced from 1.1 */
+.cornerOrnament[style*="bottom-right"] {
+  bottom: 5px;
+  right: 5px;
+  border-left: none;
+  border-top: none;
+  border-radius: 0 0 1px 0;
 }
 
-/**
- * PORTFOLIO PAPERS (.portfolioPaper)
- * ==================================
- * Animated portfolio documents that reveal on briefcase hover.
- */
-.portfolioPaper {
-  /* LAYOUT & POSITIONING */
-  position: absolute;
-  top: -3px;
-  left: calc(50% - 16px + var(--paper-offset, 0px));
-  
-  /* SIZING */
-  width: 32px;
-  height: 22px;
-  
-  /* PAPER APPEARANCE */
-  background: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 1px 1px 0 0;
-  
-  /* REALISTIC PAPER SHADOWS */
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 1);
-  
-  /* INITIAL HIDDEN STATE */
-  opacity: 0;
-  transform: translateY(20px) scale(0.6) rotate(var(--paper-angle, 0deg));
-  
-  /* STAGGERED ANIMATION SETUP */
-  transition: all 0.4s ease;
-  z-index: 5;
-  /* Uses CSS custom properties for individual paper positioning and rotation */
-}
-
-/**
- * PORTFOLIO PAPER HOVER ANIMATION
- * ===============================
- */
-.briefcase:hover .portfolioPaper {
-  /* REVEALED STATE */
-  opacity: 1;
-  transform: translateY(-3px) scale(1) rotate(var(--paper-angle, 0deg));
-  z-index: var(--z-index, 10);
-  
-  /* STAGGERED TIMING */
-  transition: all 0.6s ease;
-  transition-delay: calc(0.1s + var(--paper-index) * 0.1s);
-  /* Creates realistic cascade effect with individual paper delays */
-}
-
-/**
- * PAPER CONTENT LINES
- * ===================
- */
-.portfolioPaper::before,
-.portfolioPaper::after {
-  /* PSEUDO-ELEMENT SETUP */
+/* Corner dots */
+.cornerOrnament::before,
+.cornerOrnament::after {
   content: '';
   position: absolute;
-  left: 2px;
-  right: 2px;
-  height: 1px;
+  background: #d4af37;
+  border-radius: 50%;
 }
 
-/* First text line */
-.portfolioPaper::before {
-  top: 5px;
-  background: #333333;
-  opacity: 0.6;
+.cornerOrnament::before {
+  width: 2px;
+  height: 2px;
 }
 
-/* Second text line */
-.portfolioPaper::after {
-  top: 8px;
-  right: 6px;
-  background: #666666;
-  opacity: 0.4;
+.cornerOrnament[style*="top-left"]::before { top: -1px; left: -1px; }
+.cornerOrnament[style*="top-right"]::before { top: -1px; right: -1px; }
+.cornerOrnament[style*="bottom-left"]::before { bottom: -1px; left: -1px; }
+.cornerOrnament[style*="bottom-right"]::before { bottom: -1px; right: -1px; }
+
+.cornerOrnament::after {
+  width: 1.5px;
+  height: 1.5px;
+}
+
+.cornerOrnament[style*="top-left"]::after { top: 2px; left: 2px; }
+.cornerOrnament[style*="top-right"]::after { top: 2px; right: 2px; }
+.cornerOrnament[style*="bottom-left"]::after { bottom: 2px; left: 2px; }
+.cornerOrnament[style*="bottom-right"]::after { bottom: 2px; right: 2px; }
+
+/* Corner hover effects */
+.briefcase:hover .cornerOrnament {
+  border-color: #d4af37;
+  box-shadow: 0 0 6px rgba(212, 175, 55, 0.5);
+}
+
+.briefcase:hover .cornerOrnament::before,
+.briefcase:hover .cornerOrnament::after {
+  background: radial-gradient(circle, 
+    #f4e4bc 0%, 
+    #d4af37 60%, 
+    #BFA850 100%
+  );
+  box-shadow: 0 0 4px rgba(212, 175, 55, 0.6);
+}
+
+/* REMOVE OLD BRIEFCASE BOTTOM & CORNERS SECTIONS */
+/* .briefcaseBottom and .briefcaseCorners are removed */
+
+/* KEEP ALL YOUR EXISTING BACKDROP & ORNAMENTAL BORDER */
+.briefcaseBackdrop {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(191, 168, 80, 0.12) 0%,
+    transparent 70%
+  );
+  animation: backdropPulse 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.ornamentalBorder {
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(191, 168, 80, 0.3);
+  border-radius: 2px;
+  pointer-events: none;
 }
 
 /**
@@ -988,4 +959,614 @@
     opacity: 1; 
     transform: scale(1.2); 
   }
+}
+/* Briefcase container with 3D perspective */
+.briefcase {
+  position: relative;
+  width: 70px;
+  height: 45px;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  perspective: 600px;
+  transition: all 0.3s ease;
+}
+
+/* Shake animation */
+/* Shake animation */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-2px); }
+  40%, 80% { transform: translateX(2px); }
+}
+
+.shake {
+  animation: shake 0.6s ease-in-out;
+}
+
+/* BRIEFCASE INTERIOR - STAYS IN PLACE (revealed when body rotates) */
+.briefcaseInterior {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  border: 3px solid #BFA850;
+  border-radius: 4px;
+  
+  background: linear-gradient(145deg, 
+    #0f0a08 0%,
+    #1a1410 100%
+  );
+  
+  box-shadow: 
+    inset 0 10px 30px rgba(0, 0, 0, 0.9),
+    inset 0 0 40px rgba(0, 0, 0, 0.8);
+
+  z-index: -1; /* Behind the briefcase body */
+}
+
+/* Show interior when briefcase opens */
+.briefcase.open .briefcaseInterior {
+  opacity: 1;
+}
+
+/* Interior gradient - the luxury lining */
+/* Interior gradient - dark with hidden face */
+.interiorGradient {
+  position: absolute;
+  inset: 3px;
+  
+  /* Dark background */
+  background: linear-gradient(180deg,
+    #0a0a0a 0%,
+    #000000 50%,
+    #0a0a0a 100%
+  );
+  
+  border-radius: 2px;
+  
+  box-shadow: 
+    inset 0 10px 20px rgba(0, 0, 0, 0.9),
+    inset 0 -10px 20px rgba(0, 0, 0, 0.9),
+    inset 0 0 40px rgba(0, 0, 0, 0.8);
+}
+
+/* CREEPY FACE - Shows when briefcase opens */
+/* SMILEY FACE - Shows when briefcase opens */
+.interiorGradient::before {
+  content: '';
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  
+  /* Smiley face with glowing eyes */
+  background-image: 
+    /* Left eye */
+    radial-gradient(ellipse 8px 12px at 30% 40%, 
+      #fff 0%,
+      #f4e4bc 20%,
+      #d4af37 40%,
+      rgba(212, 175, 55, 0.8) 60%,
+      transparent 70%
+    ),
+    /* Right eye */
+    radial-gradient(ellipse 8px 12px at 70% 40%, 
+      #fff 0%,
+      #f4e4bc 20%,
+      #d4af37 40%,
+      rgba(212, 175, 55, 0.8) 60%,
+      transparent 70%
+    );
+
+  opacity: 0;
+  transition: opacity 0.6s ease 0.2s;
+  pointer-events: none;
+  
+  /* Set default background size for eyes */
+  background-size: 100% 100%, 100% 100%;
+  background-position: 30% 40%, 70% 40%;
+  background-repeat: no-repeat;
+  
+  /* Add golden glow around eyes */
+  filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.8))
+          drop-shadow(0 0 12px rgba(244, 228, 188, 0.6));
+}
+
+/* Show face when briefcase opens */
+.briefcase.open .interiorGradient::before {
+  opacity: 1;
+  animation: eyeBlink 8s ease-in-out infinite 1s;
+}
+
+@keyframes eyeBlink {
+  0%, 100% { 
+    background-size: 100% 100%, 100% 100%;
+  }
+  45% {
+    background-size: 100% 100%, 100% 100%;
+  }
+  48% { 
+    /* Eyes closing */
+    background-size: 100% 30%, 100% 30%;
+  }
+  50% { 
+    /* Eyes fully closed */
+    background-size: 100% 5%, 100% 5%;
+  }
+  52% { 
+    /* Eyes opening */
+    background-size: 100% 30%, 100% 30%;
+  }
+  55% {
+    background-size: 100% 100%, 100% 100%;
+  }
+}
+
+/* Interior decorative border - darker to match */
+.interiorBorder {
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(139, 115, 85, 0.3);
+  border-radius: 2px;
+  pointer-events: none;
+  box-shadow: 
+    inset 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+/* Hover - slight rotation */
+.briefcase:hover .briefcaseBody {
+  transform: rotateX(-15deg);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.7),
+    inset 0 4px 12px rgba(255, 255, 255, 0.4),
+    inset 0 2px 6px rgba(244, 228, 188, 0.5),
+    inset 0 -2px 8px rgba(0, 0, 0, 0.6),
+    0 -10px 20px rgba(212, 175, 55, 0.7);
+}
+
+/* Open state - body rotates down fully */
+.briefcase.open .briefcaseBody {
+  transform: rotateX(-105deg);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.7),
+    0 -10px 30px rgba(212, 175, 55, 0.8),
+    inset 0 4px 12px rgba(255, 255, 255, 0.4);
+}
+
+/* DROPDOWN MENU - Luxury items popup - MOVED RIGHT TO ALIGN UNDER BRIEFCASE */
+.dropdownMenu {
+  position: fixed;
+  top: calc(32px + 45px + 8px);
+  right: -32px;
+  
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  
+  overflow: visible;
+  z-index: 1001;
+  padding: 4px 0;
+}
+
+/* Individual menu items - SMALLER & TIGHTER */
+/* Individual menu items - SMALLER & TIGHTER */
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: transparent;
+  
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+
+  
+  /* REMOVE: Don't apply animation here */
+}
+
+/* Set initial hidden state ONLY for opening animation */
+.dropdownMenu:not(.closing) .menuItem {
+  opacity: 0;
+  transform: translateY(-30px) rotate(-10deg) scale(0.8);
+  animation: fallFromBriefcase 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* When closing, items should be VISIBLE before fade animation */
+.dropdownMenu.closing .menuItem {
+  opacity: 1;
+  transform: translateY(0) rotate(0deg) scale(1);
+  animation: fadeIntoBriefcase 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
+}
+
+/* Stagger each menu item's animation - ONLY when opening */
+.dropdownMenu:not(.closing) .menuItem:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.dropdownMenu:not(.closing) .menuItem:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.dropdownMenu:not(.closing) .menuItem:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.dropdownMenu:not(.closing) .menuItem:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+/* FALLING ANIMATION - Items tumble out of briefcase */
+@keyframes fallFromBriefcase {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px) rotate(-10deg) scale(0.8);
+  }
+  
+  50% {
+    opacity: 1;
+    transform: translateY(5px) rotate(3deg) scale(1.05);
+  }
+  
+  70% {
+    transform: translateY(-2px) rotate(-1deg) scale(1);
+  }
+  
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+}
+
+/* FADE OUT ANIMATION - Items disappear back into briefcase */
+@keyframes fadeIntoBriefcase {
+  0% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+  
+  30% {
+    transform: translateY(-5px) rotate(-3deg) scale(0.95);
+  }
+  
+  100% {
+    opacity: 0;
+    transform: translateY(-40px) rotate(-15deg) scale(0.7);
+  }
+}
+
+/* Apply fade out animation to dropdown when closing */
+.dropdownMenu.closing .menuItem {
+  animation: fadeIntoBriefcase 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
+}
+
+/* Stagger fade out - reverse order (last item fades first) */
+.dropdownMenu.closing .menuItem:nth-child(1) {
+  animation-delay: 0.3s;
+}
+
+.dropdownMenu.closing .menuItem:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.dropdownMenu.closing .menuItem:nth-child(3) {
+  animation-delay: 0.1s;
+}
+
+.dropdownMenu.closing .menuItem:nth-child(4) {
+  animation-delay: 0s;
+}
+
+.menuItem:hover {
+  background: transparent;
+  padding-left: 16px;
+}
+
+/* Menu labels - SMALLER */
+.menuLabel {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #d4af37;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.menuItem:hover .menuLabel {
+  color: #f4e4bc;
+  letter-spacing: 1.2px;
+}
+
+/* Luxury icon container - SMALLER */
+.luxuryIcon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.menuItem:hover .luxuryIcon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Golden accent bar on hover - THINNER */
+.menuItem::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 60%;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    #d4af37 20%,
+    #f4e4bc 50%,
+    #d4af37 80%,
+    transparent 100%
+  );
+  transition: width 0.3s ease;
+  box-shadow: 0 0 6px rgba(212, 175, 55, 0.8);
+}
+
+.menuItem:hover::after {
+  width: 2px;
+}
+
+/* ===========================
+   WALLET ICON (Background) - DARK LUXURY
+   =========================== */
+/* ===========================
+   FOLDED WALLET ICON (Background) - TOP-DOWN VIEW WITH OVERLAPPING FLAPS
+   =========================== */
+.wallet {
+  position: relative;
+  width: 22px;
+  height: 18px;
+}
+
+/* BACK FLAP (orange/lighter - bottom layer, parallelogram shape) */
+.walletBack {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 20px;
+  height: 16px;
+  
+  /* Lighter orange/tan color */
+  background: linear-gradient(145deg,
+    #4a3828 0%,
+    #3a3020 50%,
+    #2a2418 100%
+  );
+  
+  border: 1px solid #d4af37;
+  border-radius: 2px;
+  
+  /* Skew to create parallelogram - angled shape */
+  transform: skewY(-5deg);
+  
+  box-shadow: 
+    inset 0 1px 3px rgba(0, 0, 0, 0.6),
+    0 2px 6px rgba(0, 0, 0, 0.8);
+  z-index: 1;
+}
+
+/* Stitching on back flap */
+.walletBack::before {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border: 0.5px dashed rgba(212, 175, 55, 0.4);
+  border-radius: 1px;
+}
+
+/* FRONT FLAP (red/darker - top layer, smaller parallelogram) */
+.walletFlap {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  width: 16px;
+  height: 12px;
+  
+  /* Darker red/brown color */
+  background: linear-gradient(145deg,
+    #2a2420 0%,
+    #1a1410 50%,
+    #0f0a08 100%
+  );
+  
+  border: 1px solid #d4af37;
+  border-radius: 2px;
+  
+  /* Skew in opposite direction for overlapping effect */
+  transform: skewY(-5deg);
+  
+  box-shadow: 
+    inset 0 1px 2px rgba(0, 0, 0, 0.8),
+    0 3px 8px rgba(0, 0, 0, 0.9);
+  z-index: 2;
+}
+
+/* Stitching on front flap */
+.walletFlap::before {
+  content: '';
+  position: absolute;
+  inset: 1.5px;
+  border: 0.5px dashed rgba(212, 175, 55, 0.5);
+  border-radius: 1px;
+}
+
+
+
+
+/* REMOVE OLD WALLET STYLES */
+/* Delete .wallet, .walletBody, .walletCorner1, .walletCorner2, .envelopeWallet, etc. */
+
+/* ===========================
+   CARD DECK ICON (Expertise/Coding) - NO SPADE
+   =========================== */
+.cardDeck {
+  position: relative;
+  width: 18px;
+  height: 18px;
+}
+
+.card {
+  position: absolute;
+  width: 12px;
+  height: 16px;
+  background: linear-gradient(145deg,
+    #2a2420 0%,
+    #1a1410 50%,
+    #0f0a08 100%
+  );
+  border: 1.5px solid #d4af37;
+  border-radius: 1.5px;
+  box-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.8),
+    inset 0 1px 2px rgba(212, 175, 55, 0.2),
+    0 0 4px rgba(212, 175, 55, 0.3);
+  
+  /* Stagger cards */
+  left: calc(var(--offset) * 3px);
+  top: calc(var(--offset) * 2px);
+  transform: rotate(calc(var(--offset) * -8deg));
+  z-index: calc(3 - var(--offset));
+}
+
+/* REMOVED: .cardSymbol - no spade anymore */
+
+/* ===========================
+   DOCUMENT STACK ICON (Portfolio/Projects) - DARK PAPERS
+   =========================== */
+.documentStack {
+  position: relative;
+  width: 18px;
+  height: 18px;
+}
+
+.document {
+  position: absolute;
+  width: 14px;
+  height: 16px;
+  background: linear-gradient(145deg,
+    #2a2420 0%,
+    #1a1410 50%,
+    #0f0a08 100%
+  );
+  border: 1px solid #d4af37;
+  border-radius: 1px;
+  box-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.8),
+    inset 0 1px 2px rgba(212, 175, 55, 0.2),
+    0 0 4px rgba(212, 175, 55, 0.3);
+  
+  /* Stack papers */
+  left: calc(var(--layer) * 2px);
+  top: calc(var(--layer) * 1px);
+  z-index: calc(3 - var(--layer));
+}
+
+/* Golden lines on top document */
+.document[style*="--layer: 0"]::before,
+.document[style*="--layer: 0"]::after {
+  content: '';
+  position: absolute;
+  left: 2px;
+  right: 2px;
+  height: 0.5px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(212, 175, 55, 0.4) 10%,
+    rgba(212, 175, 55, 0.6) 50%,
+    rgba(212, 175, 55, 0.4) 90%,
+    transparent 100%
+  );
+}
+
+.document[style*="--layer: 0"]::before {
+  top: 4px;
+}
+
+.document[style*="--layer: 0"]::after {
+  top: 7px;
+}
+
+/* ===========================
+   BUSINESS CARD ICON (Contact) - DARK ELEGANT CARD
+   =========================== */
+.businessCard {
+  position: relative;
+  width: 20px;
+  height: 16px;
+}
+
+.cardBase {
+  width: 20px;
+  height: 13px;
+  background: linear-gradient(145deg,
+    #2a2420 0%,
+    #1a1410 50%,
+    #0f0a08 100%
+  );
+  border: 1px solid #d4af37;
+  border-radius: 2px;
+  box-shadow: 
+    0 2px 6px rgba(0, 0, 0, 0.8),
+    inset 0 1px 2px rgba(212, 175, 55, 0.2),
+    0 0 6px rgba(212, 175, 55, 0.4);
+  position: relative;
+}
+
+/* Initials on card */
+.cardInitial {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Cinzel', serif;
+  font-size: 7px;
+  font-weight: 700;
+  color: #d4af37;
+  letter-spacing: 0.5px;
+  text-shadow: 
+    0 0 4px rgba(212, 175, 55, 0.8),
+    0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Remove old icon styles (monocle, fountainPen, pocketWatch, waxSeal) */
+
+/* Golden accent bar on hover - THINNER */
+.menuItem::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 60%; /* REDUCED: from 70% */
+  background: linear-gradient(180deg,
+    transparent 0%,
+    #d4af37 20%,
+    #f4e4bc 50%,
+    #d4af37 80%,
+    transparent 100%
+  );
+  transition: width 0.3s ease;
+  box-shadow: 0 0 6px rgba(212, 175, 55, 0.8);
+}
+
+.menuItem:hover::after {
+  width: 2px; /* REDUCED: from 4px */
 }

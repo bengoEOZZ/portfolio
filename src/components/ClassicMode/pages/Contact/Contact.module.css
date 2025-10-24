@@ -73,37 +73,8 @@
   height: 340px;
   perspective: 1000px;
   filter: 
-    drop-shadow(0 80px 120px rgba(0, 0, 0, 0.6)) 
-    drop-shadow(0 40px 80px rgba(0, 0, 0, 0.4))
     drop-shadow(0 0 100px rgba(255, 215, 0, 0.3));
   transform: translateY(-270px);
-}
-
-/* Simplified sun rays */
-.businessCard::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 600%;
-  height: 600%;
-  background: 
-    conic-gradient(from 0deg, transparent 0deg, rgba(255, 215, 0, 0.08) 6deg, rgba(212, 175, 55, 0.1) 12deg, rgba(255, 215, 0, 0.07) 18deg, transparent 24deg),
-    conic-gradient(from 60deg, transparent 0deg, rgba(244, 228, 188, 0.07) 5deg, rgba(255, 215, 0, 0.09) 10deg, rgba(212, 175, 55, 0.08) 16deg, transparent 22deg),
-    conic-gradient(from 120deg, transparent 0deg, rgba(255, 215, 0, 0.075) 6deg, rgba(212, 175, 55, 0.09) 12deg, rgba(244, 228, 188, 0.07) 18deg, transparent 25deg),
-    conic-gradient(from 180deg, transparent 0deg, rgba(255, 215, 0, 0.07) 6deg, rgba(212, 175, 55, 0.09) 12deg, rgba(244, 228, 188, 0.065) 18deg, transparent 23deg),
-    conic-gradient(from 240deg, transparent 0deg, rgba(244, 228, 188, 0.075) 5deg, rgba(255, 215, 0, 0.09) 10deg, rgba(212, 175, 55, 0.08) 16deg, transparent 24deg),
-    conic-gradient(from 300deg, transparent 0deg, rgba(255, 215, 0, 0.07) 6deg, rgba(212, 175, 55, 0.08) 12deg, rgba(244, 228, 188, 0.07) 18deg, transparent 25deg);
-  transform: translate(-50%, -50%);
-  animation: smoothRayRotation 90s linear infinite;
-  pointer-events: none;
-  z-index: -1;
-  filter: blur(12px);
-}
-
-@keyframes smoothRayRotation {
-  from { transform: translate(-50%, -50%) rotate(0deg); opacity: 0.5; }
-  to { transform: translate(-50%, -50%) rotate(360deg); opacity: 0.5; }
 }
 
 .cardInner {
