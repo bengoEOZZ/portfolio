@@ -51,8 +51,7 @@
     animation:
         sunVibrate 5s ease-in-out infinite 4.5s,        /* 4.5s delay (0.5s + 4s) */
         sunPulsate 4s ease-in-out 4s forwards;          /* 4s delay (0.5s + 3.5s) */
-    /* Applies triple animations:
-     * - sunEntry: Dramatic entry with blur, hue, scaling, and filter effects (0.5s delay + 4s duration)
+    /* Applies dual animations:
      * - sunVibrate: Continuous subtle vibration (5s infinite, 4.5s delay total)
      * - sunPulsate: One-time glow fade-in that stays at final state (4s duration, 4s delay, forwards) */
 }

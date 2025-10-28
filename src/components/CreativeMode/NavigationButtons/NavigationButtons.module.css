@@ -1,239 +1,429 @@
 /**
  * NAVIGATIONBUTTONS COMPONENT STYLES
  * ==================================
+ * Styles for the orbital navigation button system in creative mode.
+ * 
+ * ANIMATION TIMELINE:
+ * 0-3.4s:   All buttons hidden at center (opacity: 0, scale: 0)
+ * 3.4-4.9s: Buttons materialize with heavy hologram interference (1.5s duration each)
+ *           • Button 0 starts at 3.4s
+ *           • Button 1 starts at 3.6s
+ *           • Button 2 starts at 3.8s
+ *           • Button 3 starts at 4.0s
+ * 4.9s+:    All buttons fully materialized and orbiting continuously
+ * 
+ * DEPTH SYSTEM (Synchronized with orbital position):
+ * - Z-Index: 3 + (sin(angle) × 3) = Range 0-6
+ *   • Front (90°): z-index 6, Back (270°): z-index 0
+ * - Scale: 0.85 + (sin(angle) × 0.15) = Range 0.7-1.0 (30% size variation)
+ *   • Front: 100% size, Back: 70% size
+ * - Brightness: 0.8 + (sin(angle) × 0.4) = Range 0.4-1.2 (80% brightness variation)
+ *   • Front: 120% brightness, Back: 40% brightness
+ * 
+ * ORBITAL MECHANICS:
+ * - Ellipse dimensions: 375px horizontal × 250px vertical
+ * - Rotation speed: 20 seconds per complete 360° revolution
+ * - Wobble: 15× frequency sine wave with 5px amplitude for organic motion
+ * - Button positioning: 90° apart (0°, ~90°, ~180°, ~270°)
  */
 
 /**
- * BUTTONS WRAPPER STYLES (.buttonsWrapper)
- * ========================================
+ * REGISTER CSS CUSTOM PROPERTIES
+ * ==============================
+ * Defines CSS custom properties for animation control.
+ */
+@property --angle {
+  syntax: '<angle>';
+  inherits: true;
+  initial-value: 0deg;
+}
+
+@property --z {
+  syntax: '<integer>';
+  inherits: true;
+  initial-value: 0;
+}
+
+/**
+ * ORBIT CONFIGURATION - ELLIPTICAL
+ * =================================
+ * Defines orbital path dimensions and wobble characteristics.
+ */
+:root {
+  --x-amplitude: 375px;      /* Horizontal radius of ellipse */
+  --y-amplitude: 250px;      /* Vertical radius of ellipse */
+  --wobble-multiplier: 15;   /* Frequency multiplier for sine wave wobble */
+  --wobble-amplitude: 5px;   /* Amplitude of wobble effect */
+}
+
+/**
+ * BUTTONS WRAPPER CONTAINER (.buttonsWrapper)
+ * ===========================================
+ * Main container for all orbital navigation buttons.
  */
 .buttonsWrapper {
-    /* LAYOUT */
     position: relative;
+    width: 100%;
+    height: 100%;
     margin: auto;
 }
 
 /**
- * NAVIGATION BUTTON BASE STYLES (.btn)
- * ====================================
+ * ORBIT CONTAINER - Handles orbital path (.btnOrbitContainer)
+ * ===========================================================
+ * Individual orbit containers that manage each button's elliptical path with dynamic depth.
+ * 
+ * ELLIPTICAL ORBIT CALCULATIONS:
+ * - X position = cos(angle) × 375px + cos(15 × angle) × 5px
+ *   • Main horizontal orbit (375px radius) + high-frequency wobble (15 cycles, 5px amplitude)
+ * - Y position = sin(angle) × 250px + sin(15 × angle) × 5px
+ *   • Main vertical orbit (250px radius) + high-frequency wobble (15 cycles, 5px amplitude)
+ * 
+ * CENTERING OFFSET:
+ * - translate(-150%, -50%)
+ * 
+ * DYNAMIC DEPTH SYSTEM:
+ * - z-index = 3 + (sin(angle) × 3)
+ *   • Range: 0 to 6
+ *   • Buttons during front orbit (90°, sin = 1): z-index = 6
+ *   • Buttons during side orbit (0°/180°, sin = 0): z-index = 3
+ *   • Buttons during back orbit (270°, sin = -1): z-index = 0
+ */
+.btnOrbitContainer {
+    /* LAYOUT & POSITIONING */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    
+    /* ELLIPTICAL ORBIT WITH WOBBLE */
+    --x: calc(cos(var(--angle)) * var(--x-amplitude) + cos(var(--wobble-multiplier) *
+        var(--angle)) * var(--wobble-amplitude));
+    --y: calc(sin(var(--angle)) * var(--y-amplitude) + sin(var(--wobble-multiplier) *
+        var(--angle)) * var(--wobble-amplitude));
+    
+    /* CENTER & ORBIT */
+    transform: translate(-150%, -50%);
+    translate: var(--x) var(--y);
+    
+    /* DYNAMIC DEPTH */
+    --z-depth: calc(6 + (sin(var(--angle)) * 3));
+    z-index: var(--z-depth);
+    
+    /* START HIDDEN AT CENTER */
+    opacity: 0;
+    scale: 0;
+    
+    /* ANIMATIONS */
+    animation: 
+        entryFade 1.5s ease-out forwards,
+        revolve 20s linear infinite 1.5s;
+    /* entryFade: Hologram interference materialization (1.5s once)
+       revolve: Continuous orbital rotation (20s infinite loop, starts after entry) */
+    
+    /* PERFORMANCE OPTIMIZATION */
+    will-change: transform;
+}
+
+/**
+ * ORBIT POSITIONING & TIMING - STAGGERED ENTRY
+ * ============================================
+ * Each button positioned 90° apart with staggered entry delays.
+ * 
+ * ANIMATION DELAY EXPLANATION:
+ * Format: animation-delay: [entryFade delay], [revolve delay]
+ * 
+ * - First value: WHEN the button starts materializing (entryFade)
+ * - Second value: WHERE in the orbit cycle the button starts (revolve)
+ *
+ * POSITIVE DELAY = Wait before starting
+ * NEGATIVE DELAY = Start partway through the animation cycle
+ * 
+ * BUTTON 0 (0° - Right side):
+ * - (3.4s, 3.4s): Materializes at 3.4s, starts orbit at 0° (right side)
+ * 
+ * BUTTON 1 (90° - Bottom):
+ * - (3.6s, -1.6s): Materializes at 3.6s, starts orbit at 90° position (bottom)
+ *   • -1.6s = starts 1.6s into the 20s cycle = 1.6/20 = 8% = ~29° into orbit
+ * 
+ * BUTTON 2 (180° - Left side):
+ * - (3.8s, -6.6s): Materializes at 3.8s, starts orbit at 180° position (left)
+ *   • -6.6s = starts 6.6s into the 20s cycle = 6.6/20 = 33% = ~119° into orbit
+ * 
+ * BUTTON 3 (270° - Top):
+ * - (4s, -11.6s): Materializes at 4s, starts orbit at 270° position (top)
+ *   • -11.6s = starts 11.6s into the 20s cycle = 11.6/20 = 58% = ~209° into orbit
+ */
+.btnOrbitContainer[data-index="0"] { animation-delay: 3.4s, 3.4s; }  /* 0° position */
+.btnOrbitContainer[data-index="1"] { animation-delay: 3.6s, -1.6s; } /* 90° position */
+.btnOrbitContainer[data-index="2"] { animation-delay: 3.8s, -6.6s; } /* 180° position */
+.btnOrbitContainer[data-index="3"] { animation-delay: 4s, -11.6s; }  /* 270° position */
+
+/**
+ * NAVIGATION BUTTON (.btn)
+ * ========================
  */
 .btn {
     /* LAYOUT & POSITIONING */
-    position: absolute;                 /* Required for orbital positioning via JavaScript */
-    display: flex;                      /* Flexbox for centering content */
-    justify-content: center;            /* Center content vertically */
+    display: flex;
+    justify-content: center;
+    position: relative;
     
-    /* PERFORMANCE OPTIMIZATION */
-    will-change: transform, left, top;  /* Optimize for orbital motion and wobble animations */
-
-    /* OUTWARD TRANSITION */
-    transition: left 1.5s ease, top 1.5s ease;  /* Smooth movement to orbital positions */
+    /* INTERACTIONS */
+    cursor: pointer;
+    text-decoration: none;
+    
+    /* ANIMATIONS */
+    animation: wobble 4s ease-in-out infinite;
+    /* Applies gentle side-to-side rotation (4s cycle) */
 }
 
 /**
- * BUTTON ICON STYLES (.btnIcon)
- * =============================
- * Styling for the SVG icon graphics that serve as button backgrounds
+ * BUTTON WOBBLE TIMING - STAGGERED DELAYS
+ * ========================================
+ * Staggered delays for wobble animation to create asynchronous rotation effect
+ */
+.btnOrbitContainer[data-index="0"] .btn { animation-delay: 0s; }
+.btnOrbitContainer[data-index="1"] .btn { animation-delay: 1s; }
+.btnOrbitContainer[data-index="2"] .btn { animation-delay: 2s; }
+.btnOrbitContainer[data-index="3"] .btn { animation-delay: 3s; }
+
+/**
+ * BUTTON ICON - SVG GRAPHIC WITH DEPTH SCALING (.btnIcon)
+ * =======================================================
+ * The main visual button graphic with dynamic depth-based scaling and hologram flicker effects.
+ * 
+ * SIZING:
+ * - Width: 350px (fixed)
+ * - Height: auto (maintains SVG aspect ratio)
+ * 
+ * DEPTH-BASED SCALING SYSTEM:
+ * - Scale = 0.8 + (sin(angle) × 0.2)
+ * - Range: 0.6 to 1.0 (60% to 100% size)
+ * - Variation: 40% size difference between front and back
+ *   • Creates scale depth illusion - buttons appear larger when in front, smaller when behind
+ *
+ * DEPTH-BASED BRIGHTNESS SYSTEM:
+ * - Brightness = 0.8 + (sin(angle) × 0.4)
+ * - Range: 0.4 to 1.2 (40% to 120% brightness)
+ *   • Creates brightness depth illusion - buttons appear brighter when in front, darker when behind
  */
 .btnIcon {
     /* SIZING */
-    width: 350px;                       /* Fixed width */
-    height: auto;                       /* Maintain aspect ratio */
+    width: 350px;
+    height: auto;
     
     /* INTERACTIONS */
-    cursor: pointer;                    /* Indicate clickable element */
+    cursor: pointer;
+    
+    /* SCALE AND BRIGHTNESS BASED ON DEPTH */
+    --depth-scale: calc(0.85 + (sin(var(--angle)) * 0.15));
+    --depth-brightness: calc(0.8 + (sin(var(--angle)) * 0.4));
+    transform: scale(var(--depth-scale));
+    filter: brightness(var(--depth-brightness));
     
     /* PERFORMANCE OPTIMIZATION */
-    will-change: transform, filter, opacity;     /* Optimize for hover scaling and glow effects */
+    will-change: transform, filter;
 }
 
 /**
- * BUTTON TEXT STYLES (.btnText)
- * =================================
+ * BUTTON ICON ANIMATION TIMING - STAGGERED DELAYS
+ * ================================================
+ * Staggered delays for flicker effects for each button.
+ */
+.btnOrbitContainer[data-index="0"] .btnIcon { animation-delay: 1.4s; }
+.btnOrbitContainer[data-index="1"] .btnIcon { animation-delay: 1.65s; }
+.btnOrbitContainer[data-index="2"] .btnIcon { animation-delay: 1.9s; }
+.btnOrbitContainer[data-index="3"] .btnIcon { animation-delay: 1.15s; }
+
+.btn:hover .btnIcon {
+    transform: scale(calc(var(--depth-scale) * 1.15)); /* 15% larger */
+    animation: superGlitch 1.5s linear infinite;
+}
+
+/**
+ * TEXT - WITH GLOWING EFFECT (.btnText)
+ * =====================================
  */
 .btnText {
-    /* POSITIONING */
-    position: absolute;                 /* Overlay on top of icon */
-    top: 50%;                           /* Position at vertical middle of parent button */
-    transform: translateY(-50%);        /* Shift up by half of its own height for true centering */
+    /* LAYOUT & POSITIONING */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     
     /* TYPOGRAPHY */
-    font-size: 0.9rem;
-    font-weight: bold; 
+    font-size: 0.8rem;
+    font-weight: bold;
     font-family: 'Orbitron', sans-serif;
-    
-    /* APPEARANCE */
-    color: #ffffff;                   /* White text */
+    color: #ffffff;
     
     /* INTERACTIONS */
-    pointer-events: none;               /* Ensure text doesn't interfere with clicks */
-}
-
-/**
- * WOBBLE ANIMATION ASSIGNMENTS
- * ============================
- * Alternating subtle wobble rotation animations for better orbital effect,
- * assigning wobble patterns between odd/even buttons for opposite synchronized movement.
- */
-
-/* BUTTON 1 (ABOUT) - Wobble left with hologram flicker */
-.btn:nth-child(1) {
-    animation: wobble-left 3s infinite, hologramFlicker 20s infinite 8s;
-}
-
-/* BUTTON 2 (CODING) - Wobble right with hologram flicker */
-.btn:nth-child(2) {
-    animation: wobble-right 3s infinite, hologramFlicker 20s infinite 8.5s;
-}
-
-/* BUTTON 3 (PROJECTS) - Wobble left with hologram flicker */
-.btn:nth-child(3) {
-    animation: wobble-left 3s infinite, hologramFlicker 20s infinite 8.25s;
-}
-
-/* BUTTON 4 (CONTACT) - Wobble right with hologram flicker */
-.btn:nth-child(4) {
-    animation: wobble-right 3s infinite, hologramFlicker 20s infinite 8.75s;
-}
-
-/**
- * ENHANCED HOVER STATE (.btn:hover .btnIcon)
- * ==========================================
- */
-.btn:hover .btnIcon {
-    /* SCALING EFFECT */
-    transform: scale(1.1);
+    pointer-events: none;
     
-    /* ENHANCED GLOW EFFECT */
-    filter: drop-shadow(0 0 40px rgba(0, 255, 255, 0.4));
-    
-    /* GLITCH ON HOVER */
-    animation: colourGlitch 3s infinite;
+    /* APPEARANCE */
+    text-shadow: 
+        0 0 20px rgba(0, 255, 255, 1);
+}
+
+.btn:hover .btnText {
+    animation: superTextGlitch 0.2s linear infinite;
 }
 
 /**
- * WOBBLE ANIMATION - SUBTLE LEFT AND RIGHT ROTATION
- * ==============================================
- * Subtle wobble rotation animation for first and third buttons.
- * Opposite wobble for second and fourth buttons to create synchronized movement.
- *
- * TRANSLATEX(-100%) CENTERING EXPLANATION
- * ======================================
- * TWO-STEP COORDINATION SYSTEM:
- * 1. Hook calculates orbital positions using complex trigonometry
- *    - useOrbitAnimation Hook: Handles complex orbital math (cos, sin, elliptical motion)
- * 2. CSS applies simple centering offset to perfect the alignment
- *    - CSS translateX(-100%): Handles simple centering offset (move left by button width)
+ * ENTRY ANIMATION - HOLOGRAM INTERFERENCE
+ * ========================================
+ * Creates heavy interference effect like a glitchy button materialization.
  */
-@keyframes wobble-left {
-    /* START & END STATE (0% and 100%) */
+@keyframes entryFade {
+    /* Rapid flickering */
+    0%, 3%, 6%, 9%, 12% { opacity: 0; scale: 0.85; filter: blur(20px) brightness(3.5) saturate(5); }
+    2%, 5%, 8%, 11% { opacity: 0.4; scale: 0.87; filter: blur(15px) brightness(3) contrast(3) saturate(4); }
+    
+    /* Slow stabilizing */
+    18% { opacity: 0.2; scale: 0.89; filter: blur(18px) brightness(3.2) saturate(4.5); }
+    25% { opacity: 0.6; scale: 0.91; filter: blur(12px) brightness(2.5) saturate(3.5); }
+    32% { opacity: 0.3; scale: 0.93; filter: blur(14px) brightness(2.8) contrast(2.5); }
+    45% { opacity: 0.75; scale: 0.95; filter: blur(8px) brightness(2) saturate(3); }
+    55% { opacity: 0.5; scale: 0.97; filter: blur(10px) brightness(2.3) saturate(2.5); }
+    70% { opacity: 0.9; scale: 0.98; filter: blur(4px) brightness(1.6) saturate(2); }
+    85% { opacity: 0.7; scale: 0.99; filter: blur(5px) brightness(1.8); }
+    100% { opacity: 1; scale: 1; filter: brightness(var(--depth-brightness));}
+}
+
+/**
+ * ORBIT ANIMATION - CONTINUOUS ROTATION
+ * =====================================
+ */
+@keyframes revolve {
+  from { --angle: 0deg; }
+  to { --angle: 360deg; }
+}
+
+/**
+ * WOBBLE ANIMATION - SUBTLE ROTATION
+ * ==================================
+ */
+@keyframes wobble {
+    0%, 100% { rotate: 0deg; }
+    25% { rotate: -10deg; }
+    50% { rotate: 0deg; }
+    75% { rotate: 10deg; }
+}
+
+
+
+/**
+ * SUPER GLITCH ANIMATION - EXTREME CHROMATIC ABERRATION
+ * =====================================================
+ * Creates super intense glitchy RGB effects simulating like a hologram or hacker overload.
+ */
+@keyframes superGlitch {
+    0% {/* BASELINE STATE - Initial hover glow */
+        transform: scale(calc(var(--depth-scale) * 1.15)) translate(0, 0);
+        filter: drop-shadow(0 0 50px rgba(0, 255, 255, 1)) drop-shadow(0 0 80px rgba(135, 206, 250, 0.8))
+            brightness(1.3) hue-rotate(0deg);
+    }
+    10% {
+        /* RED/CYAN RGB split | Jitter left 5px, down 2px */
+        transform: scale(calc(var(--depth-scale) * 1.15)) translate(-5px, 2px);
+        filter: drop-shadow(8px 0 0 rgba(255, 0, 0, 1)) drop-shadow(-8px 0 0 rgba(0, 255, 255, 1))
+            brightness(calc(var(--depth-brightness) * 1.5)) hue-rotate(90deg);
+    }
+    20% {
+        /* RED/CYAN RGB split reversed | Jitter right 5px, up 2px */
+        transform: scale(calc(var(--depth-scale) * 1.15)) translate(5px, -2px);
+        filter: drop-shadow(-8px 0 0 rgba(255, 0, 0, 1)) drop-shadow(8px 0 0 rgba(0, 255, 255, 1))
+            brightness(calc(var(--depth-brightness) * 0.8)) hue-rotate(180deg);
+    }
+    30% {
+        /* MAGENTA/GREEN RGB split | Jitter left 3px, down 3px */
+        transform: scale(calc(var(--depth-scale) * 1.15)) translate(-3px, 3px);
+        filter: drop-shadow(0 8px 0 rgba(255, 0, 255, 1)) drop-shadow(0 -8px 0 rgba(0, 255, 0, 1))
+            brightness(calc(var(--depth-brightness) * 1.6)) hue-rotate(270deg);
+    }
+    40% {
+        /* RED/CYAN RGB diagonal split | Jitter right 4px, up 4px */
+        transform: scale(calc(var(--depth-scale) * 1.15)) translate(4px, -4px);
+        filter: drop-shadow(6px 6px 0 rgba(255, 0, 0, 1)) drop-shadow(-6px -6px 0 rgba(0, 255, 255, 1))
+            brightness(calc(var(--depth-brightness) * 1.2)) hue-rotate(45deg);
+    }
+    50% {
+        /* RED/CYAN/YELLOW RGB split | Jitter left 4px, down 1px */
+        transform: scale(calc(var(--depth-scale) * 1.15)) translate(-4px, 1px);
+        filter: drop-shadow(10px 0 0 rgba(255, 0, 0, 1)) drop-shadow(-10px 0 0 rgba(0, 255, 255, 1))
+            drop-shadow(0 10px 0 rgba(255, 255, 0, 1)) brightness(calc(var(--depth-brightness) * 1.8)) contrast(1.5) hue-rotate(135deg);
+    }
+    60% {
+        /*  RED/CYAN RGB split | Jitter right 3px, up 3px */
+        transform: scale(calc(var(--depth-scale) * 1.15)) translate(3px, -3px);
+        filter: drop-shadow(-5px 0 0 rgba(255, 0, 0, 1)) drop-shadow(5px 0 0 rgba(0, 255, 255, 1))
+            brightness(calc(var(--depth-brightness) * 0.9)) hue-rotate(225deg);
+    }
+    70% {
+        /* GREEN/MAGENTA RGB split | Jitter left 2px, down 4px */
+        transform: scale(calc(var(--depth-scale) * 1.15)) translate(-2px, 4px);
+        filter: drop-shadow(7px 0 0 rgba(0, 255, 0, 1)) drop-shadow(-7px 0 0 rgba(255, 0, 255, 1))
+            brightness(calc(var(--depth-brightness) * 1.4)) hue-rotate(315deg);
+    }
+    80% {
+        /* CYAN/RED RGB split | Jitter right 5px */
+        transform: scale(calc(var(--depth-scale) * 1.15)) translate(5px, 0px);
+        filter: drop-shadow(0 0 60px rgba(0, 255, 255, 1)) drop-shadow(0 0 100px rgba(255, 0, 0, 0.8))
+            brightness(calc(var(--depth-brightness) * 1.6)) saturate(2) hue-rotate(0deg);
+    }
+    90% {
+        /* RED/CYAN RGB diagonal split | Jitter left 1px, up 1px */
+        transform: scale(calc(var(--depth-scale) * 1.15)) translate(-1px, -1px);
+        filter: drop-shadow(4px 4px 0 rgba(255, 0, 0, 1)) drop-shadow(-4px -4px 0 rgba(0, 255, 255, 1))
+            brightness(calc(var(--depth-brightness) * 1.3)) hue-rotate(90deg);
+    }
+    100% {
+        /* LOOP RESTART - Back to baseline (matches 0%) */
+        transform: scale(calc(var(--depth-scale) * 1.15)) translate(0, 0);
+        filter: drop-shadow(0 0 50px rgba(0, 255, 255, 1)) drop-shadow(0 0 80px rgba(135, 206, 250, 0.8))
+            brightness(1.3) hue-rotate(0deg);
+    }
+}
+
+/**
+ * TEXT GLITCH HOVER ANIMATION - RAPID RGB SEPARATION
+ * ==================================================
+ * Fast-paced RGB shadow shifts and position jitter for super text glitch effect.
+ */
+@keyframes superTextGlitch {
     0%, 100% {
-        transform: translateX(-100%) rotate(0deg);
-        /* Base position:
-           - translateX(-100%): Offset for orbital positioning
-           - rotate(0deg): No rotation at rest */
-    }
-    
-    /* FIRST QUARTER (25%) */
-    25% {
-        transform: translateX(-100%) rotate(-10deg);
-        /* Rotate slightly to the left*/
-    }
-    
-    /* THIRD QUARTER (75%) */
-    75% {
-        transform: translateX(-100%) rotate(10deg);
-        /* Rotate slightly to the right:
-           - Creates oscillating motion */
-    }
-}
-
-@keyframes wobble-right {
-    /* START & END STATE (0% and 100%) */
-    0%, 100% {
-        transform: translateX(-100%) rotate(0deg);
-        /* Base position:
-           - translateX(-100%): Offset for orbital positioning
-           - rotate(0deg): No rotation at rest */
-    }
-    
-    /* FIRST QUARTER (25%) */
-    25% {
-        transform: translateX(-100%) rotate(10deg);
-        /* Rotate slightly to the right */
-    }
-    
-    /* THIRD QUARTER (75%) */
-    75% {
-        transform: translateX(-100%) rotate(-10deg);
-        /* Rotate slightly to the left:
-           - Creates opposite oscillating motion to wobble-left */
-    }
-}
-
-/**
- * HOLOGRAM FLICKER ANIMATION
- * ==========================
- * Subtle and brief holographic flicker with long quiet periods
- */
-@keyframes hologramFlicker {
-    /* LONG NORMAL STATE - Most of the time */
-    0%, 10%, 30%, 50%, 70%, 90%, 100% { 
+        /* CYAN glow baseline | Centered */
+        text-shadow: 0 0 30px rgba(135, 206, 250, 1), 0 0 60px rgba(0, 255, 255, 1), 0 0 90px rgba(0, 255, 255, 0.6);
+        transform: translateY(-50%) translate(0, 0);
         opacity: 1;
-        filter: none;
     }
-    /* QUICK FLICKER 1 - Brief interference */
-    5% { opacity: 0.7; filter: blur(1px) brightness(1.8) saturate(2.5); }
-    7% { opacity: 0.9; filter: blur(0.5px) contrast(1.6) brightness(1.3); }
-    8% { opacity: 0.6; filter: blur(2px) saturate(3) brightness(1.5); }
-    
-    /* QUICK FLICKER 2 - Another brief glitch */
-    35% { opacity: 0.8; filter: blur(0.8px) brightness(2) saturate(2); }
-    37% { opacity: 0.5; filter: blur(1.5px) contrast(2.5) brightness(0.9); }
-    38% { opacity: 0.9; filter: blur(0.3px) saturate(4) brightness(1.6); }
-    
-    /* QUICK FLICKER 3 - Final brief interference */
-    75% { opacity: 0.4; filter: blur(2.5px) brightness(2.5) saturate(1.5); }
-    77% { opacity: 0.8; filter: blur(1px) contrast(3) brightness(0.8); }
-    78% { opacity: 0.7; filter: blur(1.2px) saturate(5) brightness(1.8); }
-}
-
-/**
- * COLOUR GLITCH ANIMATION
- * =======================
- * This animation creates an intensive dynamic color-shifting effect on hover
- */
-@keyframes colourGlitch {
-    /* BASELINE STATE - Cool Blue Holographic Glow */
-    0% { filter: drop-shadow(0 0 20px rgba(135, 206, 250, 0.8)) drop-shadow(0 0 30px rgba(70, 130, 180, 0.6)) drop-shadow(0 0 40px rgba(0, 255, 255, 0.4)); }
-    
-    /* PHASE 1 - RED/CYAN CONTRAST */
-    10% { filter: drop-shadow(0 0 25px rgba(255, 50, 50, 0.8)) drop-shadow(0 0 35px rgba(50, 200, 255, 0.7)) contrast(1.4) saturate(2); }
-    
-    /* PHASE 2 - YELLOW/PURPLE CONTRAST */
-    20% { filter: drop-shadow(0 0 28px rgba(255, 200, 0, 0.8)) drop-shadow(0 0 38px rgba(180, 50, 255, 0.7)) saturate(2.2) brightness(1.2); }
-
-    /* PHASE 3 - GREEN/MAGENTA CONTRAST */
-    30% { filter: drop-shadow(0 0 30px rgba(50, 255, 100, 0.8)) drop-shadow(0 0 40px rgba(255, 50, 200, 0.7)) brightness(1.3) saturate(2.5); }
-
-    /* PHASE 4 - ORANGE/BLUE CONTRAST */
-    40% { filter: drop-shadow(0 0 32px rgba(255, 140, 0, 0.8)) drop-shadow(0 0 42px rgba(0, 100, 255, 0.8)) contrast(1.6) brightness(1.2) saturate(2.3); }
-
-    /* PHASE 5 - PINK/LIME CONTRAST */
-    50% { filter: drop-shadow(0 0 35px rgba(255, 20, 147, 0.8)) drop-shadow(0 0 45px rgba(100, 255, 100, 0.8)) hue-rotate(15deg) saturate(2.8); }
-
-    /* PHASE 6 - VIOLET/GOLD CONTRAST */
-    60% { filter: drop-shadow(0 0 30px rgba(150, 50, 255, 0.8)) drop-shadow(0 0 40px rgba(255, 215, 0, 0.8)) brightness(1.3) contrast(1.5) saturate(2.4); }
-
-    /* PHASE 7 - GREEN/BROWN CONTRAST */
-    70% { filter: drop-shadow(0 0 33px rgba(0, 255, 200, 0.8)) drop-shadow(0 0 43px rgba(255, 100, 80, 0.8)) saturate(2.6) brightness(1.2); }
-
-    /* PHASE 8 - GREEN/PURPLE/PINK CONTRAST */
-    80% { filter: drop-shadow(0 0 28px rgba(100, 255, 150, 0.8)) drop-shadow(0 0 38px rgba(255, 100, 150, 0.8)); }
-
-    /* PHASE 9 - BLUE/ORANGE/BROWN CONTRAST */
-    90% { filter: drop-shadow(0 0 31px rgba(100, 200, 255, 0.8)) drop-shadow(0 0 41px rgba(255, 100, 50, 0.8)) brightness(1.3) saturate(2.6); }
-
-    /* RETURN TO BASELINE - Cycle Completion */
-    100% { filter: drop-shadow(0 0 20px rgba(135, 206, 250, 0.8)) drop-shadow(0 0 30px rgba(70, 130, 180, 0.6)) drop-shadow(0 0 40px rgba(0, 255, 255, 0.4)); }
+    10% {
+        /* RED/CYAN split + YELLOW glow | Jitter left 3px, down 2px */
+        text-shadow: 5px 0 0 rgba(255, 0, 0, 1), -5px 0 0 rgba(0, 255, 255, 1), 0 0 60px rgba(255, 255, 0, 1);
+        transform: translateY(-50%) translate(-3px, 2px);
+        opacity: 0.9;
+    }
+    20% {
+        /* RED/CYAN split reversed + GREEN glow | Jitter right 3px, up 2px */
+        text-shadow: -5px 0 0 rgba(255, 0, 0, 1), 5px 0 0 rgba(0, 255, 255, 1), 0 0 60px rgba(0, 255, 0, 1);
+        transform: translateY(-50%) translate(3px, -2px);
+        opacity: 1;
+    }
+    30% {
+        /* MAGENTA/GREEN split + RED glow | Jitter left 2px, down 3px */
+        text-shadow: 0 5px 0 rgba(255, 0, 255, 1), 0 -5px 0 rgba(0, 255, 0, 1), 0 0 80px rgba(255, 0, 0, 1);
+        transform: translateY(-50%) translate(-2px, 3px);
+        opacity: 0.8;
+    }
+    40% {
+        /* RED/CYAN diagonal split + WHITE glow | Jitter right 2px, up 3px */
+        text-shadow: 3px 3px 0 rgba(255, 0, 0, 1), -3px -3px 0 rgba(0, 255, 255, 1), 0 0 100px rgba(255, 255, 255, 1);
+        transform: translateY(-50%) translate(2px, -3px);
+        opacity: 1;
+    }
+    50% {
+        /* RED/CYAN/YELLOW triple split + CYAN glow | Jitter left 4px, down 1px */
+        text-shadow: 6px 0 0 rgba(255, 0, 0, 1), -6px 0 0 rgba(0, 255, 255, 1), 0 6px 0 rgba(255, 255, 0, 1), 0 0 120px rgba(0, 255, 255, 1);
+        transform: translateY(-50%) translate(-4px, 1px);
+        opacity: 0.95;
+    }
 }

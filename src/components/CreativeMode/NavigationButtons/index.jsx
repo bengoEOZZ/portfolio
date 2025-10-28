@@ -1,24 +1,22 @@
 /**
  * NAVIGATIONBUTTONS COMPONENT
  * ===========================
- * Main navigation component for the creative portfolio mode featuring orbital button animation, meaning
- * it renders interactive futuristic-based navigation buttons that orbit around a central point.
- * 
- * COMPONENT ARCHITECTURE:
- * - Uses custom hook (useOrbitAnimation) for elliptical orbital motion
- * - Custom SVG graphics for futuristic aesthetic
+ * Main navigation component for the creative portfolio mode featuring orbital button animation.
  * 
  * ANIMATION SYSTEM:
- * 1. Initial State: All buttons start centered in the container behind celestial objects
- * 2. Outward Transition: Smooth outward movement to orbital positions (1.5s duration)
- * 3. Orbital Motion: After outward transition, apply continuous elliptical rotation
- * 4. Wobble Effect: Apply subtle wobble animation for better orbital effect
- * 5. Hover Effects: Upon hover, apply scale transformations and glow interactions
+ * 1. Initial State (0-3.4s): All buttons hidden  with opacity 0 and scale 0.6
+ * 2. Entry Animation (3.4-5.2s): Heavy hologram interference materialization effect
+ * 3. Orbital Motion: CSS @property --angle calculates continuous 20s elliptical rotation
+ *    - Elliptical path: 375px horizontal × 250px vertical radius
+ *    - Wobble effect: 15x frequency sine wave (5px amplitude)
+ *    - Each button positioned 90° apart (0°, 90°, 180°, 270°)
+ * 4. Dynamic Depth System:
+ *    - z-index: Calculated via orbital motion positioning and moon overlap
+ *    - Scale: larger near front (1.0), smaller near back (0.6)
+ * 5. Side Wobble (4s infinite): Buttons rotate ±10° for better orbital motion
  */
 
 // DEPENDENCIES
-import { useRef } from 'react';
-import useOrbitAnimation from './useOrbitAnimation';
 import classes from './NavigationButtons.module.css';
 import NavButton from '../../../assets/CreativeMode/navButton.svg';
 
@@ -27,27 +25,20 @@ import NavButton from '../../../assets/CreativeMode/navButton.svg';
  * ==========================
  */
 function NavigationButtons() {
-    /* DOM REFERENCE FOR ORBITAL ANIMATION */
-    const buttonsWrapperRef = useRef(null); // Provides DOM access for orbital animation calculations
-
-    /* ORBITAL ANIMATION INITIALIZATION */
-    useOrbitAnimation(buttonsWrapperRef, classes.btn); // Use custom hook for orbital animation
-
     /**
      * NAVIGATION DATA CONFIGURATION
      * ============================
      */
     const navItems = [
-        { id: 'about', text: 'ABOUT' },
-        { id: 'coding', text: 'CODING' },
-        { id: 'projects', text: 'PROJECT' },
-        { id: 'contact', text: 'CONTACT' }
+        { id: 'about', text: 'ABOUT' },      // Position: 0° (right)
+        { id: 'coding', text: 'CODING' },    // Position: 90° (bottom)
+        { id: 'projects', text: 'PROJECT' }, // Position: 180° (left)
+        { id: 'contact', text: 'CONTACT' }   // Position: 270° (top)
     ];
 
     /**
      * HANDLE NAVIGATION CLICK (DELETE LATER)
-     * ================================================================
-     * Shows "Under Construction" alert when navigation buttons are clicked
+     * ======================================
      */
     const handleNavClick = (e, sectionName) => {
         e.preventDefault(); // Prevent default anchor behavior
@@ -59,13 +50,15 @@ function NavigationButtons() {
      * ================
      */
     return (
-        <div ref={buttonsWrapperRef} className={classes.buttonsWrapper}>
-            {navItems.map(item => (
-                <a key={item.id} href={`#${item.id}`} className={classes.btn}
-                onClick={(e) => handleNavClick(e, item.text)}> {/* Temporary alert handler */}
-                    <img src={NavButton} className={classes.btnIcon} />
-                    <span className={classes.btnText}>{item.text}</span>
-                </a>
+        <div className={classes.buttonsWrapper}>
+            {navItems.map((item, index) => (
+                <div key={item.id} className={classes.btnOrbitContainer} data-index={index}>
+                    <a href={`#${item.id}`} className={classes.btn}
+                        onClick={(e) => handleNavClick(e, item.text)}> {/* Temporary construction handler */}
+                            <img src={NavButton} className={classes.btnIcon}/>
+                            <span className={classes.btnText}>{item.text}</span>
+                    </a>
+                </div>
             ))}
         </div>
     );

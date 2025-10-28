@@ -1,7 +1,6 @@
 /**
  * CONTROLS COMPONENT
  * ==================
- *
  * Unified control panel for the Clock and Sliders components.
  *
  * COMPONENT ARCHITECTURE:

@@ -1,7 +1,6 @@
 /**
  * CLOCK COMPONENT STYLES
  * ======================
- * 
  * Styling for the interactive clock and time display.
  */
 
@@ -209,7 +208,7 @@
 /**
  * TIME DISPLAY HOLOGRAPHIC ENTRY ANIMATION
  * ========================================
- * Creates a holographic emergence effect with scaling and color shifting.
+ * Creates a materializing holographic effect with scaling and color shifting.
  */
 @keyframes timeDisplayEntry {
     0% {
