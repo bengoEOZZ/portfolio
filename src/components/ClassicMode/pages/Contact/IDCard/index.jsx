@@ -1,23 +1,25 @@
-import React from 'react';
+/**
+ * IDCARD COMPONENT
+ * ================
+ * The front face of the luxury business card featuring gold foil text, profile avatar, and name/title.
+ */
 import classes from './IDCard.module.css';
-import BenMoonAvatar from '../../../../../assets/CreativeMode/moonDayAvatar.svg';
+import BenAvatar from '../../../../../assets/CreativeMode/moonDayAvatar.svg';
 
-const IDCard = ({ 
-  name = "BENJAMIN TIONG", 
-  title = "SOFTWARE DEVELOPER", 
-  subtitle = "PREMIUM CODER",
-  profileImage = BenMoonAvatar,
-  className = "" 
-}) => {
+/**
+ * IDCard Component
+ * ================
+ */
+const IDCard = () => {
   return (
-    <div className={`${classes.idCard} ${className}`}>
-      <div className={classes.goldBackground}></div>
+    <div className={classes.idCard}>
+      <div className={classes.cardBackground}></div>
       <div className={classes.cardContent}>
-        <h1 className={classes.memberName}>{name}</h1>
-        <div className={classes.memberTitle}>{title}</div>
-        <div className={classes.memberSubtitle}>{subtitle}</div>
-        <div className={classes.blackCircle}>
-          <img src={profileImage} alt="Profile Avatar" className={classes.avatarImage} />
+        <h1 className={classes.name}>BENJAMIN TIONG</h1>
+        <div className={classes.title}>SOFTWARE DEVELOPER</div>
+        <div className={classes.subtitle}>PREMIUM CODER</div>
+        <div className={classes.avatar}>
+          <img src={BenAvatar} className={classes.avatarImage} />
         </div>
       </div>
     </div>
