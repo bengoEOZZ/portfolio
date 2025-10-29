@@ -6,7 +6,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import classes from './About.module.css';
-import IDCard from '../../IDCard';
+import IDCard from '../Contact/IDCard';
 import TriFoldIDCard from '../../TriFoldIDCard';
 import GymMembershipCard from '../../GymMembershipCard';
 import hollowKnightIcon from '../../../../assets/hollowNit.png';

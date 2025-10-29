@@ -1,0 +1,350 @@
+/**
+ * 💳 ID CARD BACK STYLES 💳
+ * =========================
+ * Complete styles for the back side of the business card
+ */
+
+/* BACK CONTENT CONTAINER */
+.backContent {
+  position: relative;
+  z-index: 10;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 10px 35px 35px 35px;
+}
+
+/* LEFT SIDE - CONTACT INFO */
+.backLeft {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 15px;
+  padding-top: 40px;
+  padding-left: 30px;
+}
+
+.nameSection {
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.backName {
+  font-family: 'Cinzel', serif;
+  font-size: 22px;
+  font-weight: 400;
+  background: linear-gradient(45deg, #d4af37 0%, #f4e4bc 25%, #d4af37 50%, #f4e4bc 75%, #d4af37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% auto;
+  animation: luxuryTextShine 3s ease-in-out infinite;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+  filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.3));
+}
+
+.backTitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 12px;
+  color: #c9a876;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  opacity: 0.85;
+  font-weight: 300;
+  text-shadow: 0 0 10px rgba(201, 168, 118, 0.2);
+  font-style: normal;
+}
+
+.premiumLine {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #d4af37 20%, #f4e4bc 50%, #d4af37 80%, transparent);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+  animation: linePulse 2s ease-in-out infinite alternate;
+  margin: 0 auto;
+}
+
+.contactList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+  transition: transform 0.2s ease-out;
+  padding: 6px 0;
+  position: relative;
+  will-change: transform;
+}
+
+.contactItem:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 46px;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.08) 40%, transparent 80%);
+}
+
+.contactItem:hover {
+  transform: translateX(8px);
+}
+
+.contactItem:hover::after {
+  background: linear-gradient(90deg, rgba(244, 228, 188, 0.3) 0%, rgba(244, 228, 188, 0.12) 50%, transparent 90%);
+}
+
+.contactIcon {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.2s ease-out;
+  will-change: transform;
+}
+
+.contactItem:hover .contactIcon {
+  transform: scale(1.1);
+}
+
+.iconImage {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  filter: brightness(0) invert(85%) sepia(39%) saturate(647%) hue-rotate(357deg) brightness(110%) contrast(70%);
+  transition: all 0.2s ease-out;
+  margin-top: 15px;
+  will-change: filter, transform;
+}
+
+.contactItem:hover .iconImage {
+  filter: brightness(0) saturate(100%) invert(94%) sepia(18%) saturate(1025%) hue-rotate(356deg) brightness(108%) contrast(94%);
+  transform: scale(1.1);
+}
+
+.contactDetails {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-left: -40px;
+}
+
+.contactLabel {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: #d4af37;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  opacity: 0.9;
+  text-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+}
+
+.contactValue {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  color: #f4e4bc;
+  letter-spacing: 0.3px;
+  font-weight: 300;
+  opacity: 0.95;
+  text-shadow: 0 0 6px rgba(244, 228, 188, 0.2);
+  transition: all 0.2s ease-out;
+  line-height: 1.2;
+}
+
+/* RIGHT SIDE - BT MONOGRAM */
+.backRight {
+  width: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.btMonogram {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+}
+
+.btContainer {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.letterB, 
+.letterT {
+  position: absolute;
+  font-family: 'Cinzel', serif;
+  font-size: 48px;
+  font-weight: 700;
+  text-transform: uppercase;
+  z-index: 3;
+  background: linear-gradient(135deg, #d4af37 0%, #f4e4bc 15%, #ffffff 30%, #f4e4bc 45%, #d4af37 60%, #c9a876 75%, #d4af37 90%, #f4e4bc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 300% 300%;
+  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.8));
+  animation: coldMetalShine 4s ease-in-out infinite;
+}
+
+.letterB {
+  top: 55%;
+  left: 40%;
+  transform: translate(-50%, -50%) rotate(-5deg);
+}
+
+.letterT {
+  top: 55%;
+  right: 35%;
+  transform: translate(50%, -50%) rotate(5deg);
+  animation-delay: 1s;
+}
+
+.monogramGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  background: 
+    radial-gradient(circle at 30% 40%, rgba(212, 175, 55, 0.3) 0%, rgba(244, 228, 188, 0.2) 30%, transparent 70%),
+    radial-gradient(circle at 70% 60%, rgba(244, 228, 188, 0.25) 0%, rgba(212, 175, 55, 0.15) 40%, transparent 80%);
+  border-radius: 50%;
+  animation: monogramPulse 3s ease-in-out infinite alternate;
+  z-index: 1;
+}
+
+.orbitRings {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  z-index: 2;
+}
+
+.ring1, 
+.ring2, 
+.ring3 {
+  position: absolute;
+  border-radius: 50%;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.ring1 {
+  width: 90px;
+  height: 90px;
+  top: 5px;
+  left: 5px;
+  border: 2px dashed rgba(212, 175, 55, 0.5);
+  animation: orbit 10s linear infinite;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+}
+
+.ring2 {
+  width: 110px;
+  height: 110px;
+  top: -5px;
+  left: -5px;
+  border: 1px dotted rgba(244, 228, 188, 0.4);
+  animation: orbitReverse 15s linear infinite;
+  box-shadow: 0 0 20px rgba(244, 228, 188, 0.2);
+}
+
+.ring3 {
+  width: 130px;
+  height: 130px;
+  top: -15px;
+  left: -15px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  animation: orbit 20s linear infinite;
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.2);
+}
+
+.premiumBadge {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.95) 0%, rgba(255, 255, 255, 0.8) 25%, rgba(244, 228, 188, 0.9) 50%, rgba(255, 255, 255, 0.8) 75%, rgba(212, 175, 55, 0.95) 100%);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+  animation: premiumShine 3s ease-in-out infinite alternate;
+  border: 1px solid rgba(212, 175, 55, 0.8);
+}
+
+.locationFooter {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  color: #c9a876;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  opacity: 0.9;
+  text-align: center;
+  text-shadow: 0 0 15px rgba(201, 168, 118, 0.6);
+  font-weight: 500;
+}
+
+/* ANIMATIONS */
+@keyframes luxuryTextShine {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes linePulse {
+  0% { opacity: 0.6; box-shadow: 0 0 15px rgba(212, 175, 55, 0.6); }
+  100% { opacity: 1; box-shadow: 0 0 25px rgba(212, 175, 55, 0.9); }
+}
+
+@keyframes coldMetalShine {
+  0%, 100% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+}
+
+@keyframes monogramPulse {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+  100% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.9; }
+}
+
+@keyframes orbit {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes orbitReverse {
+  0% { transform: rotate(360deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes premiumShine {
+  0% { box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5); transform: scale(1); }
+  100% { box-shadow: 0 8px 30px rgba(212, 175, 55, 0.7); transform: scale(1.05); }
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './IDCard.module.css';
-import BenMoonAvatar from '../../../assets/CreativeMode/moonDayAvatar.svg';
+import BenMoonAvatar from '../../../../../assets/CreativeMode/moonDayAvatar.svg';
 
 const IDCard = ({ 
   name = "BENJAMIN TIONG", 
