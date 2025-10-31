@@ -5,7 +5,7 @@
  */
 
 /* BACK CONTENT CONTAINER */
-.backContent {
+.idCardBack {
   position: relative;
   z-index: 10;
   height: 100%;
@@ -104,18 +104,17 @@
 }
 
 .contactIcon {
-  width: 28px;
-  height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  transition: transform 0.2s ease-out;
-  will-change: transform;
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  filter: brightness(0) invert(85%) sepia(39%) saturate(647%) hue-rotate(357deg) brightness(110%) contrast(70%);
+  transition: all 0.2s ease-out;
+  margin-top: 15px;
 }
 
 .contactItem:hover .contactIcon {
-  transform: scale(1.1);
+  filter: brightness(0) saturate(100%) invert(94%) sepia(18%) saturate(1025%) hue-rotate(356deg) brightness(108%) contrast(94%);
+  transform: scale(1.2);
 }
 
 .iconImage {
@@ -151,6 +150,13 @@
   margin-bottom: 4px;
   opacity: 0.9;
   text-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+}
+
+.copiedMessage {
+  color: #4ade80;
+  margin-left: 8px;
+  font-size: 10px;
+  letter-spacing: 0.5px;
 }
 
 .contactValue {
@@ -247,26 +253,23 @@
   z-index: 2;
 }
 
-.ring1, 
-.ring2, 
-.ring3 {
+.ring {
   position: absolute;
   border-radius: 50%;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
+  animation: orbit linear infinite;
 }
 
-.ring1 {
+.ring:nth-child(1) {
   width: 90px;
   height: 90px;
   top: 5px;
   left: 5px;
   border: 2px dashed rgba(212, 175, 55, 0.5);
-  animation: orbit 10s linear infinite;
+  animation-duration: 10s;
   box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
 }
 
-.ring2 {
+.ring:nth-child(2) {
   width: 110px;
   height: 110px;
   top: -5px;
@@ -276,13 +279,13 @@
   box-shadow: 0 0 20px rgba(244, 228, 188, 0.2);
 }
 
-.ring3 {
+.ring:nth-child(3) {
   width: 130px;
   height: 130px;
   top: -15px;
   left: -15px;
   border: 1px solid rgba(212, 175, 55, 0.3);
-  animation: orbit 20s linear infinite;
+  animation-duration: 20s;
   box-shadow: 0 0 25px rgba(212, 175, 55, 0.2);
 }
 
