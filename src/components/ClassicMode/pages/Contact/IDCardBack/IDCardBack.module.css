@@ -1,178 +1,290 @@
 /**
- * 💳 ID CARD BACK STYLES 💳
- * =========================
- * Complete styles for the back side of the business card
+ * ID CARD BACK COMPONENT STYLES
+ * =============================
+ * This file contains the styling for the IDCardBack component.
  */
 
-/* BACK CONTENT CONTAINER */
+/**
+ * MAIN CONTAINER (.idCardBack)
+ * ============================
+ * Two-column flex layout: contact info (left) and monogram (right).
+ */
 .idCardBack {
+  /* LAYOUT & POSITIONING */
   position: relative;
   z-index: 10;
   height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: stretch;
-  padding: 10px 35px 35px 35px;
+  padding: 10px 35px 35px;
+  cursor: default;
+
+  /* BACKGROUND - Animated hexagonal pattern */
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 70%),
+    linear-gradient(30deg, transparent 40%, rgba(212, 175, 55, 0.02) 40%,
+        rgba(212, 175, 55, 0.02) 60%, transparent 60%),
+    linear-gradient(90deg, transparent 40%, rgba(244, 228, 188, 0.015) 40%,
+        rgba(244, 228, 188, 0.015) 60%, transparent 60%),
+    linear-gradient(150deg, transparent 40%, rgba(212, 175, 55, 0.02) 40%,
+        rgba(212, 175, 55, 0.02) 60%, transparent 60%),
+    #000000;
+    /* LAYER BREAKDOWN:
+      1. Soft gold spotlight effect in the center
+      2. Diagonal stripes at 30° - creates first set of hexagonal edges
+      3. Horizontal stripes at 90° - creates second set of hexagonal edges
+      4. Diagonal stripes at 150° - creates third set of hexagonal edges
+      5. Base color (#000000) */
+  background-size: 100% 100%, 60px 60px, 60px 60px, 60px 60px;
+  
+  /* ANIMATION */
+  animation: hexPattern 20s ease-in-out infinite;
 }
 
-/* LEFT SIDE - CONTACT INFO */
+/**
+ * LEFT COLUMN CONTAINER (.backLeft)
+ * =================================
+ * Contains section header and contact list.
+ */
 .backLeft {
+  /* LAYOUT */
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   gap: 15px;
-  padding-top: 40px;
-  padding-left: 30px;
+  padding: 40px 0 0 30px;
 }
 
-.nameSection {
-  position: relative;
+/**
+ * TITLE CONTAINER (.title)
+ * ========================
+ */
+.title {
   margin-bottom: 8px;
 }
 
-.backName {
+/**
+ * TITLE TEXT (.titleText)
+ * =======================
+ */
+.titleText {
+  /* TYPOGRAPHY */
   font-family: 'Cinzel', serif;
   font-size: 22px;
-  font-weight: 400;
+  font-weight: 500;
+  letter-spacing: 1px;
+  
+  /* LAYOUT */
+  margin-bottom: 5px;
+  
+  /* APPEARANCE - Animated text shine effect */
   background: linear-gradient(45deg, #d4af37 0%, #f4e4bc 25%, #d4af37 50%, #f4e4bc 75%, #d4af37 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  background-size: 200% auto;
-  animation: luxuryTextShine 3s ease-in-out infinite;
-  letter-spacing: 1px;
-  margin-bottom: 5px;
-  filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.3));
+  
+  /* ANIMATION */
+  animation: textShine 3s ease-in-out infinite;
+  /* Smooth left-right gradient movement for shiny text effect */
 }
 
-.backTitle {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 12px;
-  color: #c9a876;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  margin-bottom: 15px;
-  opacity: 0.85;
-  font-weight: 300;
-  text-shadow: 0 0 10px rgba(201, 168, 118, 0.2);
-  font-style: normal;
-}
-
-.premiumLine {
+/**
+ * TITLE UNDERLINE (.titleUnderline)
+ * =================================
+ */
+.titleUnderline {
+  /* SIZING */
   width: 60px;
   height: 2px;
+  
+  /* APPEARANCE */
   background: linear-gradient(90deg, transparent, #d4af37 20%, #f4e4bc 50%, #d4af37 80%, transparent);
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
-  animation: linePulse 2s ease-in-out infinite alternate;
   margin: 0 auto;
+  /* Centered gradient line with glow */
+  
+  /* ANIMATION */
+  animation: underlinePulse 2s ease-in-out infinite alternate;
+  /* Pulsing glow effect */
 }
 
+/**
+ * CONTACT LIST CONTAINER (.contactList)
+ * =====================================
+ * Vertical stack of contact items.
+ */
 .contactList {
+  /* LAYOUT */
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
+/**
+ * INDIVIDUAL CONTACT ITEM (.contactItem)
+ * ======================================
+ * Clickable row containing icon and contact details.
+ */
 .contactItem {
+  /* LAYOUT */
   display: flex;
   align-items: center;
   gap: 15px;
-  cursor: pointer;
-  transition: transform 0.2s ease-out;
   padding: 6px 0;
   position: relative;
-  will-change: transform;
+  
+  /* INTERACTIONS */
+  cursor: pointer;
+  transition: transform 0.2s ease-out;
+  /* Smooth slide on hover */
 }
 
+/**
+ * CONTACT ITEM SEPARATOR LINE (.contactItem:not(:last-child)::after)
+ * ==================================================================
+ * Subtle divider between contact items (except last one).
+ */
 .contactItem:not(:last-child)::after {
+  /* PSEUDO-ELEMENT SETUP */
   content: '';
   position: absolute;
   bottom: -10px;
   left: 46px;
   right: 0;
   height: 1px;
+  
+  /* APPEARANCE */
   background: linear-gradient(90deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.08) 40%, transparent 80%);
+  /* Fading gold line from left to right */
 }
 
+/**
+ * HOVER STATE (.contactItem:hover)
+ * ================================
+ * Slides contact item to the right slightly on hover.
+ */
 .contactItem:hover {
   transform: translateX(8px);
 }
 
+/**
+ * HOVER SEPARATOR BRIGHTENING (.contactItem:hover::after)
+ * =======================================================
+ * Contact item separator line becomes brighter on hover.
+ */
 .contactItem:hover::after {
   background: linear-gradient(90deg, rgba(244, 228, 188, 0.3) 0%, rgba(244, 228, 188, 0.12) 50%, transparent 90%);
 }
 
+/**
+ * CONTACT ICON (.contactIcon)
+ * ===========================
+ * Email/LinkedIn/GitHub icon.
+ */
 .contactIcon {
+  /* SIZING */
   width: 20px;
   height: 20px;
   object-fit: contain;
-  filter: brightness(0) invert(85%) sepia(39%) saturate(647%) hue-rotate(357deg) brightness(110%) contrast(70%);
-  transition: all 0.2s ease-out;
+  
+  /* LAYOUT */
   margin-top: 15px;
+  
+  /* APPEARANCE - Soft Gold Colour */
+  filter: brightness(0) invert(85%) sepia(39%) saturate(647%) hue-rotate(370deg) brightness(210%) contrast(70%);
+  /* Converts contact icons to a muted gold color similar to the contact values */
+  
+  /* TRANSITIONS */
+  transition: filter 0.2s ease-out, transform 0.2s ease-out;
 }
 
+/**
+ * ICON HOVER STATE (.contactItem:hover .contactIcon)
+ * ==================================================
+ * Brightens and scales up icon on hover.
+ */
 .contactItem:hover .contactIcon {
-  filter: brightness(0) saturate(100%) invert(94%) sepia(18%) saturate(1025%) hue-rotate(356deg) brightness(108%) contrast(94%);
-  transform: scale(1.2);
+  filter: brightness(0) saturate(100%) invert(94%) sepia(18%) saturate(1025%) hue-rotate(356deg)
+      brightness(108%) contrast(94%);                     /* Brighter */
+  transform: scale(1.2);                                /* Slightly larger */
 }
 
-.iconImage {
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
-  filter: brightness(0) invert(85%) sepia(39%) saturate(647%) hue-rotate(357deg) brightness(110%) contrast(70%);
-  transition: all 0.2s ease-out;
-  margin-top: 15px;
-  will-change: filter, transform;
-}
-
-.contactItem:hover .iconImage {
-  filter: brightness(0) saturate(100%) invert(94%) sepia(18%) saturate(1025%) hue-rotate(356deg) brightness(108%) contrast(94%);
-  transform: scale(1.1);
-}
-
+/**
+ * CONTACT DETAILS CONTAINER (.contactDetails)
+ * ===========================================
+ */
 .contactDetails {
+  /* LAYOUT */
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 2px;
   margin-left: -40px;
+  /* Negative margin to align details properly with title */
 }
 
+/**
+ * CONTACT LABEL (.contactLabel)
+ * =============================
+ * ("EMAIL", "LINKEDIN", "GITHUB").
+ */
 .contactLabel {
+  /* TYPOGRAPHY */
   font-family: 'Cormorant Garamond', serif;
   font-size: 11px;
   font-weight: 500;
   color: #d4af37;
   letter-spacing: 1.5px;
   text-transform: uppercase;
+  
+  /* LAYOUT */
   margin-bottom: 4px;
+  
+  /* APPEARANCE */
   opacity: 0.9;
-  text-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
 }
 
+/**
+ * COPIED CONFIRMATION MESSAGE (.copiedMessage)
+ * ============================================
+ * Green "✓ Copied to clipboard!" text that appears after copying email.
+ */
 .copiedMessage {
-  color: #4ade80;
-  margin-left: 8px;
-  font-size: 10px;
+  /* TYPOGRAPHY */
+  font-size: 9.5px;
   letter-spacing: 0.5px;
+  color: #4ade80;
+  /* Success green color */
+  
+  /* LAYOUT */
+  margin-left: 8px;
 }
 
+/**
+ * CONTACT VALUE TEXT (.contactValue)
+ * ==================================
+ * Email address or URL display.
+ */
 .contactValue {
+  /* TYPOGRAPHY */
   font-family: 'Cormorant Garamond', serif;
   font-size: 16px;
+  font-weight: 300;
   color: #f4e4bc;
   letter-spacing: 0.3px;
-  font-weight: 300;
-  opacity: 0.95;
-  text-shadow: 0 0 6px rgba(244, 228, 188, 0.2);
-  transition: all 0.2s ease-out;
   line-height: 1.2;
+  
+  /* APPEARANCE */
+  opacity: 0.95;
 }
 
-/* RIGHT SIDE - BT MONOGRAM */
+/**
+ * RIGHT COLUMN CONTAINER (.backRight)
+ * ===================================
+ * Contains monogram, premium badge, and location information.
+ */
 .backRight {
+  /* SIZING & LAYOUT */
   width: 140px;
   display: flex;
   flex-direction: column;
@@ -181,172 +293,288 @@
   gap: 20px;
 }
 
+/**
+ * INITIALS MONOGRAM (.btMonogram)
+ * ===============================
+ */
 .btMonogram {
-  position: relative;
+  /* LAYOUT */
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 25px;
 }
 
+/**
+ * INITIALS MONOGRAM CONTAINER (.btContainer)
+ * ==========================================
+ */
 .btContainer {
+  /* SIZING & LAYOUT */
   position: relative;
   width: 100px;
   height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
+/**
+ * BT LETTERS (.letterB, .letterT)
+ * ===============================
+ * Large "B" and "T" initials with animated metallic gradient.
+ */
 .letterB, 
 .letterT {
+  /* POSITIONING */
   position: absolute;
+  
+  /* TYPOGRAPHY */
   font-family: 'Cinzel', serif;
   font-size: 48px;
   font-weight: 700;
   text-transform: uppercase;
-  z-index: 3;
-  background: linear-gradient(135deg, #d4af37 0%, #f4e4bc 15%, #ffffff 30%, #f4e4bc 45%, #d4af37 60%, #c9a876 75%, #d4af37 90%, #f4e4bc 100%);
+  
+  /* APPEARANCE - Metallic gradient with shine animation */
+  background: linear-gradient(135deg, #d4af37 0%, #f4e4bc 15%, #ffffff 30%,
+      #f4e4bc 45%, #d4af37 60%, #c9a876 75%, #d4af37 90%, #f4e4bc 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  background-size: 300% 300%;
-  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.8));
-  animation: coldMetalShine 4s ease-in-out infinite;
+  background-size: 200% 200%;
+  /* Gradient includes white highlights for metallic effect */
+  
+  /* ANIMATION */
+  animation: metalShine 4s ease-in-out infinite;
+  /* Smooth left-right gradient effect simulating simulating shiny metallic golden surface */
 }
 
+/**
+ * LETTER B POSITIONING (.letterB)
+ * ===============================
+ * Positioned left and rotated counter-clockwise.
+ */
 .letterB {
   top: 55%;
   left: 40%;
   transform: translate(-50%, -50%) rotate(-5deg);
 }
 
+/**
+ * LETTER T POSITIONING (.letterT)
+ * ===============================
+ * Positioned right and rotated clockwise with animation delay.
+ */
 .letterT {
   top: 55%;
   right: 35%;
   transform: translate(50%, -50%) rotate(5deg);
   animation-delay: 1s;
+  /* Offset animation for dynamic effect */
 }
 
+/**
+ * GLOW EFFECT BACKGROUND (.monogramGlow)
+ * ======================================
+ */
 .monogramGlow {
+  /* POSITIONING */
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  
+  /* SIZING */
   width: 120px;
   height: 120px;
-  background: 
-    radial-gradient(circle at 30% 40%, rgba(212, 175, 55, 0.3) 0%, rgba(244, 228, 188, 0.2) 30%, transparent 70%),
-    radial-gradient(circle at 70% 60%, rgba(244, 228, 188, 0.25) 0%, rgba(212, 175, 55, 0.15) 40%, transparent 80%);
   border-radius: 50%;
+  
+  /* APPEARANCE */
+  background:
+    radial-gradient(circle at 30% 40%, rgba(244, 228, 188, 0.2) 40%, transparent 70%);
+  
+  /* ANIMATION */
   animation: monogramPulse 3s ease-in-out infinite alternate;
-  z-index: 1;
 }
 
-.orbitRings {
+/**
+ * ORBITAL RINGS CONTAINER (.rings)
+ * ================================
+ * Spinning rings around initial monogram.
+ */
+.rings {
+  /* POSITIONING */
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  /* Above glow, below letters */
+  
+  /* SIZING */
   width: 100px;
   height: 100px;
-  z-index: 2;
 }
 
+/**
+ * BASE RING STYLES (.ring)
+ * ========================
+ * Shared properties for all three rings.
+ */
 .ring {
+  /* POSITIONING */
   position: absolute;
   border-radius: 50%;
-  animation: orbit linear infinite;
 }
 
+/**
+ * INNERMOST RING (.ring:nth-child(1))
+ * ===================================
+ */
 .ring:nth-child(1) {
+  /* SIZING & POSITIONING */
   width: 90px;
   height: 90px;
   top: 5px;
   left: 5px;
-  border: 2px dashed rgba(212, 175, 55, 0.5);
-  animation-duration: 10s;
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+  
+  /* APPEARANCE */
+  border: 2px dotted rgba(212, 200, 55, 0.4);
+  
+  /* ANIMATION */
+  animation: rotate linear 20s infinite;
 }
 
+/**
+ * MIDDLE RING (.ring:nth-child(2))
+ * ================================
+ */
 .ring:nth-child(2) {
+  /* SIZING & POSITIONING */
   width: 110px;
   height: 110px;
   top: -5px;
   left: -5px;
-  border: 1px dotted rgba(244, 228, 188, 0.4);
-  animation: orbitReverse 15s linear infinite;
-  box-shadow: 0 0 20px rgba(244, 228, 188, 0.2);
+  
+  /* APPEARANCE */
+  border: 1px solid rgba(244, 228, 188, 0.2);
 }
 
+/**
+ * OUTERMOST RING (.ring:nth-child(3))
+ * ===================================
+ */
 .ring:nth-child(3) {
+  /* SIZING & POSITIONING */
   width: 130px;
   height: 130px;
   top: -15px;
   left: -15px;
+  
+  /* APPEARANCE */
   border: 1px solid rgba(212, 175, 55, 0.3);
-  animation-duration: 20s;
-  box-shadow: 0 0 25px rgba(212, 175, 55, 0.2);
 }
 
+/**
+ * PREMIUM BADGE (.premiumBadge)
+ * =============================
+ */
 .premiumBadge {
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.95) 0%, rgba(255, 255, 255, 0.8) 25%, rgba(244, 228, 188, 0.9) 50%, rgba(255, 255, 255, 0.8) 75%, rgba(212, 175, 55, 0.95) 100%);
+  /* SIZING & LAYOUT */
   padding: 8px 16px;
   border-radius: 20px;
+  
+  /* TYPOGRAPHY */
   font-family: 'Cinzel', serif;
   font-size: 10px;
   font-weight: 700;
   color: #1a1a1a;
-  text-transform: uppercase;
   letter-spacing: 1.5px;
-  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+  
+  /* APPEARANCE - Glossy gold gradient with highlights */
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.95) 0%, rgba(255, 255, 255, 0.8) 25%,
+      rgba(244, 228, 188, 0.9) 50%, rgba(255, 255, 255, 0.8) 75%, rgba(212, 175, 55, 0.95) 100%);
+  
+  /* ANIMATION */
   animation: premiumShine 3s ease-in-out infinite alternate;
-  border: 1px solid rgba(212, 175, 55, 0.8);
 }
 
+/**
+ * LOCATION FOOTER (.locationFooter)
+ * =================================
+ */
 .locationFooter {
+  /* TYPOGRAPHY */
   font-family: 'Cinzel', serif;
   font-size: 10px;
+  font-weight: 500;
   color: #c9a876;
   letter-spacing: 3px;
   text-transform: uppercase;
-  opacity: 0.9;
   text-align: center;
-  text-shadow: 0 0 15px rgba(201, 168, 118, 0.6);
-  font-weight: 500;
+  
+  /* APPEARANCE */
+  opacity: 0.9;
 }
 
-/* ANIMATIONS */
-@keyframes luxuryTextShine {
+/**
+ * HEXAGONAL PATTERN ANIMATION
+ * ===========================
+ * Slowly shifts the background pattern positions for subtle movement.
+ */
+@keyframes hexPattern {
+  0%, 100% { background-position: center, 0 0, 30px 0, 15px 26px; }
+  50% { background-position: center, 30px 0, 0 0, -15px -26px; }
+}
+
+/**
+ * TEXT SHINE ANIMATION
+ * ====================
+ */
+@keyframes textShine {
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
 }
 
-@keyframes linePulse {
-  0% { opacity: 0.6; box-shadow: 0 0 15px rgba(212, 175, 55, 0.6); }
-  100% { opacity: 1; box-shadow: 0 0 25px rgba(212, 175, 55, 0.9); }
+/**
+ * LINE PULSE ANIMATION
+ * ====================
+ */
+@keyframes underlinePulse {
+  0% { opacity: 0.6; }
+  100% { opacity: 1; }
 }
 
-@keyframes coldMetalShine {
+/**
+ * METAL SHINE ANIMATION
+ * =====================
+ */
+@keyframes metalShine {
   0%, 100% { background-position: 0% 0%; }
   50% { background-position: 100% 100%; }
 }
 
+/**
+ * MONOGRAM PULSE ANIMATION
+ * ========================
+ * Glow expands and contracts in a breathing pattern.
+ */
 @keyframes monogramPulse {
-  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
-  100% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.9; }
+  0% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.6; }
+  100% { transform: translate(-50%, -50%) scale(1.25); opacity: 0.9; }
 }
 
-@keyframes orbit {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+/**
+ * ROTATE ANIMATION (CLOCKWISE)
+ * ============================
+ * Continuous 360° clockwise rotation.
+ */
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
-@keyframes orbitReverse {
-  0% { transform: rotate(360deg); }
-  100% { transform: rotate(0deg); }
-}
-
+/**
+ * PREMIUM SHINE ANIMATION
+ * =======================
+ * Badge pulsates with growing glow and slight scale increase.
+ */
 @keyframes premiumShine {
   0% { box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5); transform: scale(1); }
   100% { box-shadow: 0 8px 30px rgba(212, 175, 55, 0.7); transform: scale(1.05); }

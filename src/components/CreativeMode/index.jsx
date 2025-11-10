@@ -6,9 +6,7 @@
  * and creative visual effects to showcase the artistic and innovative side of the portfolio.
  * 
  * COMPONENT ARCHITECTURE:
- * This component acts as a container/orchestrator that renders five main child components
- * in a layered composition to create the complete celestial experience:
- * 
+ * -----------------------
  * - SpaceNavigationBar: Cosmic-themed header with constellation logo and orbital menu
  * - CelestialObjects: Interactive planetary system (Earth, Moon, Sun, planets)
  * - Controls: Interactive user interface panel (clock, season/weather sliders)
@@ -17,6 +15,7 @@
  * - NavigationButtons: Orbital navigation system for portfolio sections
  *
  * Design Philosophy:
+ * ------------------
  * - Represents creativity, innovation, and artistic expression
  * - Celestial theme suggests limitless possibilities and exploration
  * - Interactive elements encourage user engagement and discovery

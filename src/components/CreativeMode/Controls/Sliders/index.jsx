@@ -3,9 +3,10 @@
  * =================
  * Control sliders for season and weather manipulation.
  *
- * FEATURES:
- * - Season Control: 4-position slider (Spring/Summer/Fall/Winter)
- * - Weather Control: 5-position slider (Season/Clear/Rainy/Windy/Cloudy)
+ * INTERACTIVE FEATURES:
+ * ---------------------
+ * Season Control: 4-position slider (Spring/Summer/Fall/Winter)
+ * Weather Control: 5-position slider (Season/Clear/Rainy/Windy/Cloudy)
  */
 
 // DEPENDENCIES

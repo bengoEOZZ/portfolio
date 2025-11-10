@@ -75,14 +75,18 @@ const ANIMATION_CONFIG = {
  */
 
 /**
- * ANIMATION STEP
- * ==============
- * ANIMATION_STEP = 1 / (FADE_DURATION / (1000 / ANIMATION_FPS))
- * - 1 / total frames: opacity increment per frame
- *      - (FADE_DURATION / ms per frame): total frames in fade
- *          - FADE_DURATION: total fade time in ms (e.g., 1000ms)
- *          - (1000 / ANIMATION_FPS): ms per frame
- *              - ANIMATION_FPS: frames per second (e.g., 60)
+ * ANIMATION STEP CALCULATION
+ * ==========================
+ * Pre-calculates the opacity increment per animation frame for smooth transitions.
+ * 
+ * Formula Breakdown:
+ * ─────────────────
+ * ANIMATION_STEP = 1 / total_frames
+ * 
+ * Where total_frames = FADE_DURATION / frame_duration
+ *       frame_duration = 1000ms / ANIMATION_FPS
+ * 
+ * Result: Smooth fade from 0 → 1 over exactly 1 second at 60fps
  */
 const ANIMATION_STEP = 1 / (ANIMATION_CONFIG.FADE_DURATION / (1000 / ANIMATION_CONFIG.ANIMATION_FPS));
 
@@ -122,15 +126,15 @@ function useSunRaysAnimation(currentHour) {
     const hasInitializedRef = useRef(false);            // Track if hook has been initialized
 
     /**
-     * OPTIMIZED TIME PERIOD DETECTION
-     * ===============================
-     * Ultra-fast time period detection using pre-computed lookup table
+     * TIME PERIOD DETECTION
+     * =====================
+     * Time period detection using pre-computed lookup table
      * 
      * MATHEMATICAL BREAKDOWN:
      * - rotation (0-360) represents 24-hour cycle
      * - Each hour = 15 degrees (360 ÷ 24 = 15)
      * - Math.floor((rotation % 360) / 15) = current hour
-     * - TIME_PERIODS[hour] = instant lookup vs conditional chains
+     * - TIME_PERIODS[hour] = instant lookup
      */
     const currentTimePeriod = useMemo(() => {
         return TIME_PERIODS[currentHour % 24];
@@ -139,7 +143,7 @@ function useSunRaysAnimation(currentHour) {
     /**
      * SMART DOM ELEMENT CACHING
      * =========================
-     * Intelligent caching that only queries DOM elements actually needed for current time period
+     * Caching DOM elements actually needed for current time period
      *
      * CACHE STRUCTURE (Time-Period Specific):
      * {
@@ -241,9 +245,6 @@ function useSunRaysAnimation(currentHour) {
     /**
      * ANIMATION REGISTRATION SYSTEM
      * =============================
-     * Registers DOM elements for continuous ping-pong opacity animation within the main RAF loop.
-     * Each registered element will pulse between startOpacity and endOpacity indefinitely until
-     * the animation system is reset or the element is removed from the DOM.
      */
     const startOpacityAnimation = (element, startOpacity = 0, endOpacity = 1) => {
         /* Register animation state with pre-calculated step for optimal performance */
@@ -299,8 +300,8 @@ function useSunRaysAnimation(currentHour) {
     };
 
     /**
-     * STREAMLINED ANIMATION SETUP
-     * ===========================
+     * ANIMATION SETUP
+     * ===============
      * Creates staggered animation startup sequence for all ray groups simultaneously.
      *
      * STAGGERING MATHEMATICS:
@@ -331,7 +332,7 @@ function useSunRaysAnimation(currentHour) {
      * ANIMATION ORCHESTRATION CONTROLLER
      * ==================================
      * ORCHESTRATION RESPONSIBILITIES:
-     * - Detects time period boundary crossings (MORNING → AFTERNOON → EVENING)
+     * - Detects time period boundary crossings (MORNING → AFTERNOON → EVENING → DAWN)
      * - Coordinates animation state transitions with cleanup
      * - Initializes new animation patterns using pre-computed optimizations
      * - Manages complete animation lifecycle with memory leak prevention

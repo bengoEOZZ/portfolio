@@ -6,12 +6,19 @@
  * orbital menu system with rotating planets around a central sun.
  * 
  * VISUAL STRUCTURE:
+ * -----------------
  * 1. Logo Section (Left):
  *    - Constellation: 5 twinkling stars with random animation delays
  *    - Title Text: "cosmic creativity" with glow effect
  * 2. Orbital Menu (Right):
  *    - Central Sun: Pulsing glow with radial gradient
  *    - 4 Orbiting Planets: Circular orbit paths with staggered delays
+ * 
+ * INTERACTIVE FEATURES:
+ * ---------------------
+ * Logo Click: Navigate back to home/landing page (under construction)
+ * Orbital Menu Click: Opens settings or navigation panel (under construction)
+ * Hover Effects: Brighter and more visually engaging animations for the orbital menu on hover
  */
 
 import classes from './NavigationBar.module.css';

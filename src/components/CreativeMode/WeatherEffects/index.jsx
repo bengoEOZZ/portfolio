@@ -2,14 +2,18 @@
  * WEATHEREFFECTS COMPONENT
  * ========================
  * Manages dynamic seasonal and weather-based visual effects for the celestial objects interface.
- * Renders animated particles including snow, rain, fireflies, clouds, and other atmospheric elements
- * based on current season, weather conditions, and time period.
+ * Renders animated particles based on current season, weather conditions, and time period.
  *
  * VISUAL EFFECTS SYSTEM:
- * - Seasonal Effects: Spring (rain/clouds/rainbow), Summer (fireflies, heatwave),
- *      Fall (leaves/wind), Winter (snow)
+ * ----------------------
+ * - Seasonal Effects: Spring (rain/clouds/rainbow), Summer (fireflies, heatwave), Fall (leaves/wind), Winter (snow)
  * - Weather Override: Manual weather controls (seasonal, clear, rainy, windy, cloudy) 
  * - Night Effects: Always-active fireflies during night hours (21:00-02:59)
+ * 
+ * INTERACTIVE FEATURES:
+ * ---------------------
+ * Season Control: Displays season-appropriate weather effects based on user selection
+ * Weather Control: Displays specific weather conditions based on user selection
  */
 import { useMemo } from 'react';
 import classes from './WeatherEffects.module.css';

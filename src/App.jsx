@@ -6,6 +6,7 @@
  * and handles navigation between these modes using React Router.
  * 
  * Key Features:
+ * -------------
  * - Mode selection landing page with split-screen design
  * - React Router integration for navigation
  * - Creative Mode: Interactive celestial-themed portfolio layout

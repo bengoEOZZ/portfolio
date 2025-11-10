@@ -37,7 +37,6 @@
   color: #2c2c2c;
   margin: 0 0 1rem 0;
   letter-spacing: 2px;
-  text-transform: uppercase;
   background: linear-gradient(135deg, #d4af37 0%, #f4e4bc 50%, #d4af37 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

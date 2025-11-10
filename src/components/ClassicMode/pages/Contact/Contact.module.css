@@ -1,21 +1,31 @@
 /**
- * 💎 ULTRA LUXURY BUSINESS CARD DESIGN 💎
- * =====================================
- * Premium black & gold with insane details
+ * CONTACT PAGE - BUSINESS CARD STYLES
+ * ===================================
+ * This file contains the styling for the Contact page and its business card component.
  */
 
-/* ===== MAIN CONTAINER ===== */
+/**
+ * CONTACT PAGE CONTAINER (.contactPage)
+ * =====================================
+ */
 .contactPage {
+  /* LAYOUT & POSITIONING */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
   padding: 2rem;
+  
+  /* TYPOGRAPHY */
   font-family: 'Playfair Display', 'Georgia', serif;
 }
 
+/**
+ * CONTENT WRAPPER (.contentContainer)
+ * ===================================
+ */
 .contentContainer {
+  /* LAYOUT & POSITIONING */
   max-width: 1200px;
   width: 100%;
   display: flex;
@@ -25,33 +35,55 @@
   justify-content: center;
 }
 
-/* ===== PAGE HEADER ===== */
+/**
+ * HEADER CONTAINER (.pageHeader)
+ * ==============================
+ */
 .pageHeader {
+  /* LAYOUT & POSITIONING */
   text-align: center;
   margin-bottom: 2rem;
 }
 
+/**
+ * PAGE TITLE STYLES (.pageTitle)
+ * ==============================
+ */
 .pageTitle {
+  /* TYPOGRAPHY */
   font: 700 48px/1.2 'Cinzel', serif;
   color: #2c2c2c;
-  margin: 0 0 1rem 0;
+  margin: 0 0 1rem;
   letter-spacing: 2px;
-  text-transform: uppercase;
+  
+  /* APPEARANCE */
   background: linear-gradient(135deg, #d4af37 0%, #f4e4bc 50%, #d4af37 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
+/**
+ * DECORATIVE UNDERLINE (.titleUnderline)
+ * ======================================
+ */
 .titleUnderline {
+  /* SIZING */
   width: 120px;
   height: 3px;
+  
+  /* APPEARANCE */
   background: linear-gradient(90deg, transparent, #d4af37, transparent);
-  margin: 0 auto 1.5rem auto;
+  margin: 0 auto 1.5rem;
   border-radius: 2px;
 }
 
+/**
+ * SUBTITLE TEXT (.pageSubtitle)
+ * =============================
+ */
 .pageSubtitle {
+  /* TYPOGRAPHY */
   font: 400 18px/1.6 'Cormorant Garamond', serif;
   color: #bbb;
   max-width: 600px;
@@ -59,152 +91,231 @@
   letter-spacing: 0.5px;
 }
 
+/**
+ * CONTACT AREA (.contactArea)
+ * ===========================
+ */
 .contactArea {
+  /* LAYOUT & POSITIONING */
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  position: relative;
 }
 
-.businessCard {
+/**
+ * MOUSE TRACKING AREA (.mouseTrackingArea)
+ * ========================================
+ * Outer container that defines 3D perspective and mouse tracking boundaries.
+ */
+.mouseTrackingArea {
+  /* SIZING */
   width: 550px;
   height: 340px;
+  
+  /* APPEARANCE */
   perspective: 1000px;
-  filter: drop-shadow(0 0 100px rgba(255, 215, 0, 0.3));
+  filter: drop-shadow(0 0 50px rgba(255, 215, 0, 0.3));
   transform: translateY(-270px);
 }
 
-.cardInner {
+/**
+ * ROTATING CARD ELEMENT (.card)
+ * =============================
+ * Card that receives 3D transforms for flip and tilt effects.
+ */
+.card {
+  /* LAYOUT & POSITIONING */
   position: relative;
   width: 100%;
   height: 100%;
   text-align: center;
-  transition: transform 0.1s ease;
+  
+  /* ANIMATIONS */
+  transition: transform 0.1s;
   transform-style: preserve-3d;
 }
 
-.cardInner.flipped {
+/**
+ * FLIPPED STATE (.card.flipped)
+ * =============================
+ * Rotates card 180° on Y-axis to show back face.
+ */
+.card.flipped {
   transform: rotateY(180deg);
 }
 
+/**
+ * CARD FACE BASE STYLES (.cardFront, .cardBack)
+ * =============================================
+ * Shared styling for both sides of the card.
+ */
 .cardFront, 
 .cardBack {
+  /* LAYOUT & POSITIONING */
   position: absolute;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
+  
+  /* APPEARANCE */
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 
     0 0 0 1px rgba(212, 175, 55, 0.5),
-    0 0 0 2px rgba(139, 69, 19, 0.3),
-    0 25px 50px rgba(0, 0, 0, 0.5),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    0 25px 50px rgba(0, 0, 0, 0.5);
 }
 
-.cardFront {
-  background: #000000;
-  pointer-events: auto;
-}
-
+/**
+ * BACK FACE (.cardBack)
+ * =====================
+ */
 .cardBack {
+  /* APPEARANCE */
   transform: rotateY(180deg);
-  background: 
-    radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
-    linear-gradient(30deg, transparent 40%, rgba(212, 175, 55, 0.02) 40%, rgba(212, 175, 55, 0.02) 60%, transparent 60%),
-    linear-gradient(90deg, transparent 40%, rgba(244, 228, 188, 0.015) 40%, rgba(244, 228, 188, 0.015) 60%, transparent 60%),
-    linear-gradient(150deg, transparent 40%, rgba(212, 175, 55, 0.02) 40%, rgba(212, 175, 55, 0.02) 60%, transparent 60%),
-    #000000;
-  background-size: 100% 100%, 60px 60px, 60px 60px, 60px 60px;
-  animation: hexPattern 20s ease-in-out infinite;
-  pointer-events: none;
 }
 
-.cardInner.flipped .cardFront { pointer-events: none; }
-.cardInner.flipped .cardBack { pointer-events: auto; }
+/**
+ * POINTER EVENT TOGGLING
+ * =====================
+ */
+.card.flipped .cardFront { pointer-events: none; }
+.card.flipped .cardBack { pointer-events: auto; }
 
-@keyframes hexPattern {
-  0%, 100% { background-position: center, 0 0, 30px 0, 15px 26px; }
-  50% { background-position: center, 30px 0, 0 0, -15px -26px; }
-}
-
-/* Shared flip indicator styles */
+/**
+ * BASE FLIP TAB STYLES (.flipIndicator, .flipBackIndicator)
+ * =========================================================
+ */
 .flipIndicator, 
 .flipBackIndicator {
+  /* LAYOUT & POSITIONING */
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  z-index: 15;
+  
+  /* SIZING */
   width: 35px;
   height: 80px;
+  
+  /* APPEARANCE */
   background: linear-gradient(135deg, rgba(212, 175, 55, 0.9) 0%, rgba(244, 228, 188, 0.7) 50%, rgba(212, 175, 55, 0.9) 100%);
-  cursor: pointer;
-  z-index: 15;
-  transition: all 0.2s ease-out;
-  will-change: transform, background;
   backface-visibility: hidden;
+  
+  /* INTERACTIONS */
+  cursor: pointer;
+  
+  /* ANIMATIONS */
+  transition: all 0.2s;
 }
 
+/**
+ * FRONT FLIP INDICATOR (.flipIndicator)
+ * =====================================
+ */
 .flipIndicator {
+  /* LAYOUT & POSITIONING */
   right: -15px;
+  
+  /* APPEARANCE */
   border-radius: 15px 0 0 15px;
   box-shadow: -2px 0 10px rgba(212, 175, 55, 0.4);
+  
+  /* ANIMATIONS */
   animation: flipPulse 3s ease-in-out infinite;
 }
 
+/**
+ * BACK FLIP INDICATOR (.flipBackIndicator)
+ * ========================================
+ */
 .flipBackIndicator {
+  /* LAYOUT & POSITIONING */
   left: -15px;
+  
+  /* APPEARANCE */
   border-radius: 0 15px 15px 0;
   box-shadow: 2px 0 10px rgba(212, 175, 55, 0.4);
+  
+  /* ANIMATIONS */
   animation: flipPulseBack 3s ease-in-out infinite;
 }
 
+/**
+ * FLIP TAB TEXT LABELS (::after)
+ * ==============================
+ */
+.flipIndicator::after,
+.flipBackIndicator::after {
+  /* PSEUDO-ELEMENT SETUP */
+  position: absolute;
+  top: 50%;
+  
+  /* TYPOGRAPHY */
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #4A0E0E;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/**
+ * FRONT TAB TEXT (.flipIndicator::after)
+ * ======================================
+ */
 .flipIndicator::after {
   content: 'FLIP';
-  position: absolute;
-  top: 50%;
   left: 30%;
   transform: translate(-50%, -50%) rotate(90deg);
-  font-family: 'Cinzel', serif;
-  font-size: 12px;
-  font-weight: 700;
-  color: #4A0E0E;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
 }
 
+/**
+ * BACK TAB TEXT (.flipBackIndicator::after)
+ * =========================================
+ */
 .flipBackIndicator::after {
   content: 'BACK';
-  position: absolute;
-  top: 50%;
   right: 30%;
   transform: translate(50%, -50%) rotate(-90deg);
-  font-family: 'Cinzel', serif;
-  font-size: 12px;
-  font-weight: 700;
-  color: #4A0E0E;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
 }
 
+/**
+ * FLIP TAB HOVER STATES
+ * =====================
+ */
 .flipIndicator:hover {
+  /* LAYOUT & POSITIONING */
   right: -12px;
+  
+  /* APPEARANCE */
   background: linear-gradient(135deg, rgba(212, 175, 55, 1) 0%, rgba(244, 228, 188, 0.9) 50%, rgba(212, 175, 55, 1) 100%);
+  box-shadow: -4px 0 15px rgba(212, 175, 55, 0.6);
 }
 
 .flipBackIndicator:hover {
+  /* LAYOUT & POSITIONING */
   left: -12px;
+  
+  /* APPEARANCE */
   background: linear-gradient(135deg, rgba(212, 175, 55, 1) 0%, rgba(244, 228, 188, 0.9) 50%, rgba(212, 175, 55, 1) 100%);
-  box-shadow: 3px 0 15px rgba(212, 175, 55, 0.6);
+  box-shadow: 4px 0 15px rgba(212, 175, 55, 0.6);
 }
 
-/* ANIMATIONS */
+/**
+ * FRONT TAB PULSE ANIMATION (@keyframes flipPulse)
+ * ================================================
+ */
 @keyframes flipPulse {
   0%, 100% { box-shadow: -2px 0 10px rgba(212, 175, 55, 0.4); }
   50% { box-shadow: -4px 0 15px rgba(212, 175, 55, 0.6); }
 }
 
+/**
+ * BACK TAB PULSE ANIMATION (@keyframes flipPulseBack)
+ * ===================================================
+ */
 @keyframes flipPulseBack {
   0%, 100% { box-shadow: 2px 0 10px rgba(212, 175, 55, 0.4); }
   50% { box-shadow: 4px 0 15px rgba(212, 175, 55, 0.6); }

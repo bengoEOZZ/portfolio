@@ -5,6 +5,7 @@
  * Contains Earth, Moon, Sun, and other planets.
  * 
  * COMPONENT ARCHITECTURE:
+ * -----------------------
  * - Earth: Main Earth with seasonal overlays and atmospheric effects
  * - Moon: Day/night versions of personal moon representation
  * - Sun: Sun and Sun Rays rendering

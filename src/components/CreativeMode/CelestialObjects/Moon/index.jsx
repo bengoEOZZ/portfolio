@@ -1,9 +1,17 @@
 /**
  * PERSONALMOON COMPONENT
  * ======================
- * Renders day/night versions of personal moon representation with smooth transitions.
- * Handles the switching between day and night moon appearances based on time period.
- * Night hours: (21:00-02:59)
+ * Renders day/night versions of personal moon representation with smooth fade transitions.
+ * Displays different moon appearances based on time of day, switching between day and night states.
+ * 
+ * VISUAL STATES:
+ * --------------
+ * Day Moon (03:00-20:59): Full moon avatar visible during daylight hours
+ * Night Moon (21:00-02:59): Crescent moon avatar visible during nighttime hours
+ * 
+ * INTERACTIVE FEATURES:
+ * ---------------------
+ * Automatic Time Detection: Moon appearance changes based on Day/Night time periods
  */
 
 import { useMemo, memo } from 'react';

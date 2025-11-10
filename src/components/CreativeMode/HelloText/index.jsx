@@ -4,6 +4,7 @@
  * This component renders the main introductory text section for the Creative Mode interface.
  * 
  * Key Features:
+ * -------------
  * - Visual personalized greeting with glowing "Hello World..." heading and descriptive paragraph
  * - Interactive guidance for celestial controls (clock hand, weather/seasonal sliders)
  */

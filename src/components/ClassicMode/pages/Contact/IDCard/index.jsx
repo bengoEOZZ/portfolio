@@ -1,7 +1,7 @@
 /**
  * IDCARD COMPONENT
  * ================
- * The front face of the luxury business card featuring gold foil text, profile avatar, and name/title.
+ * The front face of the ID business card featuring gold foil text, profile avatar, and name/title.
  */
 import classes from './IDCard.module.css';
 import BenAvatar from '../../../../../assets/CreativeMode/moonDayAvatar.svg';

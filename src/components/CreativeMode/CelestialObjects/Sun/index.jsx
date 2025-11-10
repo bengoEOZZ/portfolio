@@ -2,6 +2,33 @@
  * SUN COMPONENT
  * =============
  * Sun component that renders both the sun image and its dynamic ray animations.
+ * 
+ * VISUAL STRUCTURE:
+ * -----------------
+ * • Central Sun: Static yellow-orange sphere (SVG image) as the central light source
+ * • Animated Rays: 5 independent ray groups arranged in a ray pattern around the sun
+ *   - Ray 1 (15 polygons)
+ *   - Ray 2 (70 polygons)
+ *   - Ray 3 (105 polygons)
+ *   - Ray 4 (76 polygons)
+ *   - Ray 5 (57 polygons)
+ * • Each ray group consists of multiple colored polygon fragments with lighting effects
+ * 
+ * INTERACTIVE FEATURES:
+ * ---------------------
+ * • Time-Based Animation: Ray intensity, color, and pulse patterns change based on current hour
+ *   - Morning (6-11): Gentle, warm glow with slower pulsing
+ *   - Midday (12-17): Bright, intense rays with faster pulsing
+ *   - Evening (18-23): Softer, golden rays with medium pulsing
+ *   - Dawn (0-5): Minimal/no animation (sun hidden)
+ * 
+ * ANIMATION SYSTEM:
+ * -----------------
+ * Controlled by useSunRaysAnimation custom hook which:
+ * 1. Detects current time period (morning/midday/evening/night)
+ * 2. Applies appropriate opacity and scale transforms to each ray group
+ * 3. Staggers animations across 5 ray groups for sequential "breathing" effect
+ * 4. Updates continuously as time changes
  */
 
 import { memo } from 'react';

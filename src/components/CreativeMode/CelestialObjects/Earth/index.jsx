@@ -2,7 +2,27 @@
  * EARTH COMPONENT
  * ===============
  * Dedicated component for rendering Earth with seasonal overlays and dynamic atmospheric effects.
- * Handles all Earth-specific logic including brightness, glow effects, and seasonal variations.
+ * Handles all Earth-specific logic including brightness transitions, glow effects, and seasonal variations.
+ * 
+ * VISUAL STRUCTURE:
+ * -----------------
+ * • Base Earth: Static SVG image of Earth showing continents and oceans
+ * • Seasonal Overlays: Additional images that layer on top to show seasonal changes
+ *   - Spring (Index 0): Base Earth only, no overlay
+ *   - Summer (Index 1): Base Earth only, no overlay
+ *   - Fall (Index 2): Fall overlay with autumn colors and leaf patterns
+ *   - Winter (Index 3): Winter overlay with snow coverage on continents
+ * • Atmospheric Glow: Dynamic drop-shadow effects simulating Earth's atmosphere
+ * 
+ * INTERACTIVE FEATURES:
+ * ---------------------
+ * • Time-Based Brightness: Earth dims and brightens based on current hour (24-hour cycle)
+ *   - Day (07:00-17:00): Full brightness (100%)
+ *   - Evening (18:00-23:00): Gradual dimming from 100% to 20%
+ *   - Night (00:00-06:00): Gradual brightening from 20% to 100%
+ * • Dynamic Atmospheric Glow: Color and intensity of glow changes with time
+ *   - Daytime (06:00-17:59): Bright blue atmospheric glow (light sky blue)
+ *   - Nighttime (18:00-05:59): Deep blue atmospheric glow (dark blue)
  */
 
 import { useMemo, memo } from 'react';

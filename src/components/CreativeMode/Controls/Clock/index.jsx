@@ -5,9 +5,14 @@
  * Handles time manipulation through click-and-hold clock hand.
  *
  * FEATURES:
+ * ---------
  * - Analog clock with rotating hand
  * - Digital time display (24-hour format)
  * - Mouse interaction for time manipulation
+ * 
+ * INTERACTIVE FEATURES:
+ * ---------------------
+ * Click & Hold: Press and hold the clock hand for manual time adjustment
  */
 
 // DEPENDENCIES
@@ -32,7 +37,7 @@ function Clock({
         <>
             {/* INTERACTIVE CLOCK SECTION */}
             <div className={classes.clockContainer}>
-                <img src={ClockImage} alt="Clock" className={classes.clock} />
+                <img src={ClockImage} className={classes.clock} />
                 <img 
                     src={ClockHand} 
                     className={classes.clockHand}
