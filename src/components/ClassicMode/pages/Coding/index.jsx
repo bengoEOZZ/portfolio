@@ -1,7 +1,7 @@
 /**
  * CODING PAGE COMPONENT - CLASSICMODE
  * ===================================
- * Technical expertise showcase
+ * Technical expertise showcase, under construction, will change later
  */
 
 import React from 'react';

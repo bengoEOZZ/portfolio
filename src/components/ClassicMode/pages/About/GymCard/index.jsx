@@ -1,8 +1,8 @@
 import React from 'react';
-import classes from './GymMembershipCard.module.css';
-import dumbbellIcon from '../../../assets/dumbell.png';
+import classes from './GymCard.module.css';
+import dumbbellIcon from '../../../../../assets/dumbell.png';
 
-const GymMembershipCard = ({ scale = 1, className }) => {
+const GymCard = ({ scale = 1, className }) => {
   const wrapperStyle = {
     '--scale-factor': scale
   };
@@ -47,4 +47,4 @@ const GymMembershipCard = ({ scale = 1, className }) => {
   );
 };
 
-export default GymMembershipCard;
+export default GymCard;
