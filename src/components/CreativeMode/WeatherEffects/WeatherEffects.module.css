@@ -15,8 +15,8 @@
     position: fixed;
     bottom: 0;
     right: 0;
-    width: 600px;
-    height: 375px;
+    width: 55.56vh;  /* 600px → vh */
+    height: 34.72vh;  /* 375px → vh */
     z-index: 15;
     
     /* INTERACTIONS */
@@ -86,8 +86,8 @@
     display: block;
     
     /* SIZING */
-    width: 4px;
-    height: 4px;
+    width: 0.37vh;  /* 4px → vh */
+    height: 0.37vh;  /* 4px → vh */
     
     /* APPEARANCE */
     background: #ffdd33;
@@ -132,13 +132,13 @@
     display: block;
     
     /* SIZING */
-    width: 5px;
-    height: 5px;
+    width: 0.46vh;  /* 5px → vh */
+    height: 0.46vh;  /* 5px → vh */
     
     /* APPEARANCE */
     background: #ffff66;
     border-radius: 50%;
-    box-shadow: 0 0 6px 2px rgba(255, 120, 0, 0.8);
+    box-shadow: 0 0 0.56vh 0.19vh rgba(255, 120, 0, 0.8);  /* 6px 2px → vh */
 
     /* PERFORMANCE OPTIMIZATION */
     will-change: transform, opacity, box-shadow;
@@ -193,15 +193,16 @@
     display: block;
     
     /* SIZING */
-    width: 250px;
-    height: 120px;
+    width: 23.15vh;  /* 250px → vh */
+    height: 11.11vh;  /* 120px → vh */
     
     /* APPEARANCE */
     background: radial-gradient(circle, #ffffff 60%, #d9d9d9 100%);
     border-radius: 50%;
     opacity: 0;
-    filter: blur(8px);
-    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.25), 0 5px 15px rgba(0, 0, 0, 0.08);
+    filter: blur(0.74vh);  /* 8px → vh */
+    box-shadow: 0 0.93vh 2.31vh rgba(255, 255, 255, 0.25),
+                    0 0.46vh 1.39vh rgba(0, 0, 0, 0.08);  /* 10px 25px, 5px 15px → vh */
     
     /* ANIMATIONS */
     animation: cloudFadeIn 1.5s ease-in-out forwards;
@@ -225,7 +226,7 @@
     /* APPEARANCE */
     background: radial-gradient(circle, #ffffff 60%, #d9d9d9 100%);
     border-radius: 50%;
-    filter: blur(10px);
+    filter: blur(0.93vh);  /* 10px → vh */
 }
 
 /* Front cloud layer - smaller, positioned to upper left */
@@ -245,16 +246,16 @@
 }
 
 /* Cloud positioning patterns with size and blur variations */
-.clouds i:nth-child(1) { top: 14%; left: 15%; width: 235px; height: 115px; animation-delay: 0s; }
-.clouds i:nth-child(2) { top: 33%; left: 25%; width: 190px; height: 90px; animation-delay: 0.9s; }
-.clouds i:nth-child(3) { top: 13%; left: 45%; width: 250px; height: 130px; animation-delay: 0.2s; }
-.clouds i:nth-child(4) { top: 41%; left: 65%; width: 220px; height: 110px; animation-delay: 0.4s; }
-.clouds i:nth-child(5) { top: 25%; left: 85%; width: 185px; height: 85px; animation-delay: 0.5s; }
-.clouds i:nth-child(6) { top: 37%; left: 10%; width: 290px; height: 150px; animation-delay: 0.7s; }
-.clouds i:nth-child(7) { top: 43%; left: 32%; width: 240px; height: 115px; animation-delay: 0.3s; }
-.clouds i:nth-child(8) { top: 45%; left: 55%; width: 310px; height: 165px; animation-delay: 1s; }
-.clouds i:nth-child(9) { top: 35%; left: 75%; width: 220px; height: 105px; animation-delay: 0.2s; }
-.clouds i:nth-child(10) { top: 39%; left: 92%; width: 270px; height: 130px; animation-delay: 0.4s; }
+.clouds i:nth-child(1) { top: 14%; left: 15%; width: 21.76vh; /* 235px → vh */ height: 10.65vh; /* 115px → vh */ animation-delay: 0s; }
+.clouds i:nth-child(2) { top: 33%; left: 25%; width: 17.59vh; /* 190px → vh */ height: 8.33vh; /* 90px → vh */ animation-delay: 0.9s; }
+.clouds i:nth-child(3) { top: 13%; left: 45%; width: 23.15vh; /* 250px → vh */ height: 12.04vh; /* 130px → vh */ animation-delay: 0.2s; }
+.clouds i:nth-child(4) { top: 41%; left: 65%; width: 20.37vh; /* 220px → vh */ height: 10.19vh; /* 110px → vh */ animation-delay: 0.4s; }
+.clouds i:nth-child(5) { top: 25%; left: 85%; width: 17.13vh; /* 185px → vh */ height: 7.87vh; /* 85px → vh */ animation-delay: 0.5s; }
+.clouds i:nth-child(6) { top: 37%; left: 10%; width: 26.85vh; /* 290px → vh */ height: 13.89vh; /* 150px → vh */ animation-delay: 0.7s; }
+.clouds i:nth-child(7) { top: 43%; left: 32%; width: 22.22vh; /* 240px → vh */ height: 10.65vh; /* 115px → vh */ animation-delay: 0.3s; }
+.clouds i:nth-child(8) { top: 45%; left: 55%; width: 28.7vh; /* 310px → vh */ height: 15.28vh; /* 165px → vh */ animation-delay: 1s; }
+.clouds i:nth-child(9) { top: 35%; left: 75%; width: 20.37vh; /* 220px → vh */ height: 9.72vh; /* 105px → vh */ animation-delay: 0.2s; }
+.clouds i:nth-child(10) { top: 39%; left: 92%; width: 25vh; /* 270px → vh */ height: 12.04vh; /* 130px → vh */ animation-delay: 0.4s; }
 
 /**
  * WIND LINE PARTICLE STYLES (.windLine)
@@ -266,8 +267,8 @@
     position: absolute;
     
     /* SIZING */
-    width: 75px;
-    height: 5px;
+    width: 6.94vh;  /* 75px → vh */
+    height: 0.46vh;  /* 5px → vh */
     
     /* APPEARANCE */
     background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8),
@@ -305,7 +306,7 @@
     display: block;
     
     /* SIZING */
-    width: 3px;
+    width: 0.28vh;  /* 3px → vh */
     /* Height varies per raindrop - set in positioning rules */
     
     /* APPEARANCE */
@@ -320,26 +321,26 @@
 }
 
 /* Raindrop positioning with varied heights and timing */
-.raindrops i:nth-child(1) { left: 10%; height: 30px; animation: rainFall 2.0s linear infinite; animation-delay: 3.2s; }
-.raindrops i:nth-child(2) { left: 15%; height: 20px; animation: rainFall 1.8s linear infinite; animation-delay: 3.5s; }
-.raindrops i:nth-child(3) { left: 20%; height: 25px; animation: rainFall 2.2s linear infinite; animation-delay: 3.1s; }
-.raindrops i:nth-child(4) { left: 25%; height: 18px; animation: rainFall 2.0s linear infinite; animation-delay: 3.7s; }
-.raindrops i:nth-child(5) { left: 30%; height: 22px; animation: rainFall 1.9s linear infinite; animation-delay: 3.3s; }
-.raindrops i:nth-child(6) { left: 35%; height: 26px; animation: rainFall 2.1s linear infinite; animation-delay: 3.6s; }
-.raindrops i:nth-child(7) { left: 40%; height: 19px; animation: rainFall 1.7s linear infinite; animation-delay: 3.4s; }
-.raindrops i:nth-child(8) { left: 45%; height: 23px; animation: rainFall 2.3s linear infinite; animation-delay: 3.2s; }
-.raindrops i:nth-child(9) { left: 50%; height: 28px; animation: rainFall 1.6s linear infinite; animation-delay: 3.5s; }
-.raindrops i:nth-child(10) { left: 55%; height: 21px; animation: rainFall 2.0s linear infinite; animation-delay: 3.3s; }
-.raindrops i:nth-child(11) { left: 60%; height: 27px; animation: rainFall 1.9s linear infinite; animation-delay: 3.7s; }
-.raindrops i:nth-child(12) { left: 65%; height: 24px; animation: rainFall 2.2s linear infinite; animation-delay: 3.1s; }
-.raindrops i:nth-child(13) { left: 70%; height: 19px; animation: rainFall 1.8s linear infinite; animation-delay: 3.6s; }
-.raindrops i:nth-child(14) { left: 75%; height: 26px; animation: rainFall 2.1s linear infinite; animation-delay: 3.4s; }
-.raindrops i:nth-child(15) { left: 80%; height: 22px; animation: rainFall 1.7s linear infinite; animation-delay: 3.2s; }
-.raindrops i:nth-child(16) { left: 85%; height: 25px; animation: rainFall 2.3s linear infinite; animation-delay: 3.5s; }
-.raindrops i:nth-child(17) { left: 90%; height: 20px; animation: rainFall 1.8s linear infinite; animation-delay: 3.3s; }
-.raindrops i:nth-child(18) { left: 95%; height: 26px; animation: rainFall 2.0s linear infinite; animation-delay: 3.1s; }
-.raindrops i:nth-child(19) { left: 98%; height: 21px; animation: rainFall 1.9s linear infinite; animation-delay: 3.4s; }
-.raindrops i:nth-child(20) { left: 62%; height: 24px; animation: rainFall 2.2s linear infinite; animation-delay: 3.7s; }
+.raindrops i:nth-child(1) { left: 10%; height: 2.78vh; /* 30px → vh */ animation: rainFall 2.0s linear infinite; animation-delay: 3.2s; }
+.raindrops i:nth-child(2) { left: 15%; height: 1.85vh; /* 20px → vh */ animation: rainFall 1.8s linear infinite; animation-delay: 3.5s; }
+.raindrops i:nth-child(3) { left: 20%; height: 2.31vh; /* 25px → vh */ animation: rainFall 2.2s linear infinite; animation-delay: 3.1s; }
+.raindrops i:nth-child(4) { left: 25%; height: 1.67vh; /* 18px → vh */ animation: rainFall 2.0s linear infinite; animation-delay: 3.7s; }
+.raindrops i:nth-child(5) { left: 30%; height: 2.04vh; /* 22px → vh */ animation: rainFall 1.9s linear infinite; animation-delay: 3.3s; }
+.raindrops i:nth-child(6) { left: 35%; height: 2.41vh; /* 26px → vh */ animation: rainFall 2.1s linear infinite; animation-delay: 3.6s; }
+.raindrops i:nth-child(7) { left: 40%; height: 1.76vh; /* 19px → vh */ animation: rainFall 1.7s linear infinite; animation-delay: 3.4s; }
+.raindrops i:nth-child(8) { left: 45%; height: 2.13vh; /* 23px → vh */ animation: rainFall 2.3s linear infinite; animation-delay: 3.2s; }
+.raindrops i:nth-child(9) { left: 50%; height: 2.59vh; /* 28px → vh */ animation: rainFall 1.6s linear infinite; animation-delay: 3.5s; }
+.raindrops i:nth-child(10) { left: 55%; height: 1.94vh; /* 21px → vh */ animation: rainFall 2.0s linear infinite; animation-delay: 3.3s; }
+.raindrops i:nth-child(11) { left: 60%; height: 2.5vh; /* 27px → vh */ animation: rainFall 1.9s linear infinite; animation-delay: 3.7s; }
+.raindrops i:nth-child(12) { left: 65%; height: 2.22vh; /* 24px → vh */ animation: rainFall 2.2s linear infinite; animation-delay: 3.1s; }
+.raindrops i:nth-child(13) { left: 70%; height: 1.76vh; /* 19px → vh */ animation: rainFall 1.8s linear infinite; animation-delay: 3.6s; }
+.raindrops i:nth-child(14) { left: 75%; height: 2.41vh; /* 26px → vh */ animation: rainFall 2.1s linear infinite; animation-delay: 3.4s; }
+.raindrops i:nth-child(15) { left: 80%; height: 2.04vh; /* 22px → vh */ animation: rainFall 1.7s linear infinite; animation-delay: 3.2s; }
+.raindrops i:nth-child(16) { left: 85%; height: 2.31vh; /* 25px → vh */ animation: rainFall 2.3s linear infinite; animation-delay: 3.5s; }
+.raindrops i:nth-child(17) { left: 90%; height: 1.85vh; /* 20px → vh */ animation: rainFall 1.8s linear infinite; animation-delay: 3.3s; }
+.raindrops i:nth-child(18) { left: 95%; height: 2.41vh; /* 26px → vh */ animation: rainFall 2.0s linear infinite; animation-delay: 3.1s; }
+.raindrops i:nth-child(19) { left: 98%; height: 1.94vh; /* 21px → vh */ animation: rainFall 1.9s linear infinite; animation-delay: 3.4s; }
+.raindrops i:nth-child(20) { left: 62%; height: 2.22vh; /* 24px → vh */ animation: rainFall 2.2s linear infinite; animation-delay: 3.7s; }
 
 /**
  * SNOWFLAKE PARTICLE STYLES (.snowflakes i)
@@ -361,30 +362,30 @@
 }
 
 /* Snowflake positioning with varied sizes and dual animations */
-.snowflakes i:nth-child(1) { left: 10%; top: -5%; width: 6px; height: 6px; animation: fall 9s linear infinite, sway 3s ease-in-out infinite; animation-delay: 0.2s, 0.2s; }
-.snowflakes i:nth-child(2) { left: 20%; top: -15%; width: 8px; height: 8px; animation: fall 12s linear infinite, sway 4s ease-in-out infinite; animation-delay: 1.5s, 1.5s; }
-.snowflakes i:nth-child(3) { left: 30%; top: -20%; width: 5px; height: 5px; animation: fall 8s linear infinite, sway 2.5s ease-in-out infinite; animation-delay: 2.8s, 2.8s; }
-.snowflakes i:nth-child(4) { left: 40%; top: -10%; width: 9px; height: 9px; animation: fall 14s linear infinite, sway 3.5s ease-in-out infinite; animation-delay: 0.7s, 0.7s; }
-.snowflakes i:nth-child(5) { left: 50%; top: -25%; width: 4px; height: 4px; animation: fall 10s linear infinite, sway 2s ease-in-out infinite; animation-delay: 3.2s, 3.2s; }
-.snowflakes i:nth-child(6) { left: 60%; top: -15%; width: 7px; height: 7px; animation: fall 13s linear infinite, sway 4.5s ease-in-out infinite; animation-delay: 2.1s, 2.1s; }
-.snowflakes i:nth-child(7) { left: 70%; top: -5%; width: 5px; height: 5px; animation: fall 11s linear infinite, sway 3.2s ease-in-out infinite; animation-delay: 0.5s, 0.5s; }
-.snowflakes i:nth-child(8) { left: 80%; top: -18%; width: 8px; height: 8px; animation: fall 9.5s linear infinite, sway 2.8s ease-in-out infinite; animation-delay: 1.9s, 1.9s; }
-.snowflakes i:nth-child(9) { left: 90%; top: -22%; width: 6px; height: 6px; animation: fall 12.5s linear infinite, sway 3.7s ease-in-out infinite; animation-delay: 3.5s, 3.5s; }
-.snowflakes i:nth-child(10) { left: 15%; top: -8%; width: 7px; height: 7px; animation: fall 10.2s linear infinite, sway 2.2s ease-in-out infinite; animation-delay: 2.4s, 2.4s; }
-.snowflakes i:nth-child(11) { left: 25%; top: -12%; width: 5px; height: 5px; animation: fall 8.5s linear infinite, sway 3.8s ease-in-out infinite; animation-delay: 1.1s, 1.1s; }
-.snowflakes i:nth-child(12) { left: 35%; top: -28%; width: 9px; height: 9px; animation: fall 11.8s linear infinite, sway 4.2s ease-in-out infinite; animation-delay: 0.3s, 0.3s; }
-.snowflakes i:nth-child(13) { left: 45%; top: -17%; width: 6px; height: 6px; animation: fall 13.2s linear infinite, sway 2.6s ease-in-out infinite; animation-delay: 2.7s, 2.7s; }
-.snowflakes i:nth-child(14) { left: 55%; top: -9%; width: 8px; height: 8px; animation: fall 9.8s linear infinite, sway 3.4s ease-in-out infinite; animation-delay: 1.4s, 1.4s; }
-.snowflakes i:nth-child(15) { left: 65%; top: -21%; width: 5px; height: 5px; animation: fall 12.3s linear infinite, sway 2.9s ease-in-out infinite; animation-delay: 3.8s, 3.8s; }
-.snowflakes i:nth-child(16) { left: 75%; top: -14%; width: 7px; height: 7px; animation: fall 10.7s linear infinite, sway 4.3s ease-in-out infinite; animation-delay: 0.8s, 0.8s; }
-.snowflakes i:nth-child(17) { left: 85%; top: -24%; width: 4px; height: 4px; animation: fall 11.5s linear infinite, sway 3.1s ease-in-out infinite; animation-delay: 2.2s, 2.2s; }
-.snowflakes i:nth-child(18) { left: 95%; top: -19%; width: 6px; height: 6px; animation: fall 8.8s linear infinite, sway 2.7s ease-in-out infinite; animation-delay: 3.1s, 3.1s; }
-.snowflakes i:nth-child(19) { left: 5%; top: -11%; width: 9px; height: 9px; animation: fall 13.5s linear infinite, sway 3.9s ease-in-out infinite; animation-delay: 1.7s, 1.7s; }
-.snowflakes i:nth-child(21) { left: 33%; top: -7%; width: 7px; height: 7px; animation: fall 11.1s linear infinite, sway 3.6s ease-in-out infinite; animation-delay: 2.9s, 2.9s; }
-.snowflakes i:nth-child(22) { left: 43%; top: -16%; width: 8px; height: 8px; animation: fall 10.4s linear infinite, sway 2.3s ease-in-out infinite; animation-delay: 1.3s, 1.3s; }
-.snowflakes i:nth-child(23) { left: 53%; top: -23%; width: 6px; height: 6px; animation: fall 12.7s linear infinite, sway 4.1s ease-in-out infinite; animation-delay: 3.7s, 3.7s; }
-.snowflakes i:nth-child(24) { left: 63%; top: -13%; width: 5px; height: 5px; animation: fall 9.4s linear infinite, sway 3.3s ease-in-out infinite; animation-delay: 0.6s, 0.6s; }
-.snowflakes i:nth-child(25) { left: 73%; top: -27%; width: 7px; height: 7px; animation: fall 13.8s linear infinite, sway 2.8s ease-in-out infinite; animation-delay: 2.5s, 2.5s; }
+.snowflakes i:nth-child(1) { left: 10%; top: -5%; width: 0.56vh; /* 6px → vh */ height: 0.56vh; /* 6px → vh */ animation: fall 9s linear infinite, sway 3s ease-in-out infinite; animation-delay: 0.2s, 0.2s; }
+.snowflakes i:nth-child(2) { left: 20%; top: -15%; width: 0.74vh; /* 8px → vh */ height: 0.74vh; /* 8px → vh */ animation: fall 12s linear infinite, sway 4s ease-in-out infinite; animation-delay: 1.5s, 1.5s; }
+.snowflakes i:nth-child(3) { left: 30%; top: -20%; width: 0.46vh; /* 5px → vh */ height: 0.46vh; /* 5px → vh */ animation: fall 8s linear infinite, sway 2.5s ease-in-out infinite; animation-delay: 2.8s, 2.8s; }
+.snowflakes i:nth-child(4) { left: 40%; top: -10%; width: 0.83vh; /* 9px → vh */ height: 0.83vh; /* 9px → vh */ animation: fall 14s linear infinite, sway 3.5s ease-in-out infinite; animation-delay: 0.7s, 0.7s; }
+.snowflakes i:nth-child(5) { left: 50%; top: -25%; width: 0.37vh; /* 4px → vh */ height: 0.37vh; /* 4px → vh */ animation: fall 10s linear infinite, sway 2s ease-in-out infinite; animation-delay: 3.2s, 3.2s; }
+.snowflakes i:nth-child(6) { left: 60%; top: -15%; width: 0.65vh; /* 7px → vh */ height: 0.65vh; /* 7px → vh */ animation: fall 13s linear infinite, sway 4.5s ease-in-out infinite; animation-delay: 2.1s, 2.1s; }
+.snowflakes i:nth-child(7) { left: 70%; top: -5%; width: 0.46vh; /* 5px → vh */ height: 0.46vh; /* 5px → vh */ animation: fall 11s linear infinite, sway 3.2s ease-in-out infinite; animation-delay: 0.5s, 0.5s; }
+.snowflakes i:nth-child(8) { left: 80%; top: -18%; width: 0.74vh; /* 8px → vh */ height: 0.74vh; /* 8px → vh */ animation: fall 9.5s linear infinite, sway 2.8s ease-in-out infinite; animation-delay: 1.9s, 1.9s; }
+.snowflakes i:nth-child(9) { left: 90%; top: -22%; width: 0.56vh; /* 6px → vh */ height: 0.56vh; /* 6px → vh */ animation: fall 12.5s linear infinite, sway 3.7s ease-in-out infinite; animation-delay: 3.5s, 3.5s; }
+.snowflakes i:nth-child(10) { left: 15%; top: -8%; width: 0.65vh; /* 7px → vh */ height: 0.65vh; /* 7px → vh */ animation: fall 10.2s linear infinite, sway 2.2s ease-in-out infinite; animation-delay: 2.4s, 2.4s; }
+.snowflakes i:nth-child(11) { left: 25%; top: -12%; width: 0.46vh; /* 5px → vh */ height: 0.46vh; /* 5px → vh */ animation: fall 8.5s linear infinite, sway 3.8s ease-in-out infinite; animation-delay: 1.1s, 1.1s; }
+.snowflakes i:nth-child(12) { left: 35%; top: -28%; width: 0.83vh; /* 9px → vh */ height: 0.83vh; /* 9px → vh */ animation: fall 11.8s linear infinite, sway 4.2s ease-in-out infinite; animation-delay: 0.3s, 0.3s; }
+.snowflakes i:nth-child(13) { left: 45%; top: -17%; width: 0.56vh; /* 6px → vh */ height: 0.56vh; /* 6px → vh */ animation: fall 13.2s linear infinite, sway 2.6s ease-in-out infinite; animation-delay: 2.7s, 2.7s; }
+.snowflakes i:nth-child(14) { left: 55%; top: -9%; width: 0.74vh; /* 8px → vh */ height: 0.74vh; /* 8px → vh */ animation: fall 9.8s linear infinite, sway 3.4s ease-in-out infinite; animation-delay: 1.4s, 1.4s; }
+.snowflakes i:nth-child(15) { left: 65%; top: -21%; width: 0.46vh; /* 5px → vh */ height: 0.46vh; /* 5px → vh */ animation: fall 12.3s linear infinite, sway 2.9s ease-in-out infinite; animation-delay: 3.8s, 3.8s; }
+.snowflakes i:nth-child(16) { left: 75%; top: -14%; width: 0.65vh; /* 7px → vh */ height: 0.65vh; /* 7px → vh */ animation: fall 10.7s linear infinite, sway 4.3s ease-in-out infinite; animation-delay: 0.8s, 0.8s; }
+.snowflakes i:nth-child(17) { left: 85%; top: -24%; width: 0.37vh; /* 4px → vh */ height: 0.37vh; /* 4px → vh */ animation: fall 11.5s linear infinite, sway 3.1s ease-in-out infinite; animation-delay: 2.2s, 2.2s; }
+.snowflakes i:nth-child(18) { left: 95%; top: -19%; width: 0.56vh; /* 6px → vh */ height: 0.56vh; /* 6px → vh */ animation: fall 8.8s linear infinite, sway 2.7s ease-in-out infinite; animation-delay: 3.1s, 3.1s; }
+.snowflakes i:nth-child(19) { left: 5%; top: -11%; width: 0.83vh; /* 9px → vh */ height: 0.83vh; /* 9px → vh */ animation: fall 13.5s linear infinite, sway 3.9s ease-in-out infinite; animation-delay: 1.7s, 1.7s; }
+.snowflakes i:nth-child(21) { left: 33%; top: -7%; width: 0.65vh; /* 7px → vh */ height: 0.65vh; /* 7px → vh */ animation: fall 11.1s linear infinite, sway 3.6s ease-in-out infinite; animation-delay: 2.9s, 2.9s; }
+.snowflakes i:nth-child(22) { left: 43%; top: -16%; width: 0.74vh; /* 8px → vh */ height: 0.74vh; /* 8px → vh */ animation: fall 10.4s linear infinite, sway 2.3s ease-in-out infinite; animation-delay: 1.3s, 1.3s; }
+.snowflakes i:nth-child(23) { left: 53%; top: -23%; width: 0.56vh; /* 6px → vh */ height: 0.56vh; /* 6px → vh */ animation: fall 12.7s linear infinite, sway 4.1s ease-in-out infinite; animation-delay: 3.7s, 3.7s; }
+.snowflakes i:nth-child(24) { left: 63%; top: -13%; width: 0.46vh; /* 5px → vh */ height: 0.46vh; /* 5px → vh */ animation: fall 9.4s linear infinite, sway 3.3s ease-in-out infinite; animation-delay: 0.6s, 0.6s; }
+.snowflakes i:nth-child(25) { left: 73%; top: -27%; width: 0.65vh; /* 7px → vh */ height: 0.65vh; /* 7px → vh */ animation: fall 13.8s linear infinite, sway 2.8s ease-in-out infinite; animation-delay: 2.5s, 2.5s; }
 
 /**
  * MAPLE LEAF PARTICLE STYLES (.mapleLeaves i)
@@ -434,31 +435,31 @@
 }
 
 /* Maple leaf positioning with varied sizes and dual animations */
-.mapleLeaves i:nth-child(1) { left: 10%; top: -5%; width: 15px; height: 11px; animation: fall 9s linear infinite, swayAndSpin 3s ease-in-out infinite; animation-delay: 0.2s, 0.2s; }
-.mapleLeaves i:nth-child(2) { left: 20%; top: -15%; width: 18px; height: 14px; animation: fall 12s linear infinite, swayAndSpin 4s ease-in-out infinite; animation-delay: 1.5s, 1.5s; }
-.mapleLeaves i:nth-child(3) { left: 30%; top: -20%; width: 14px; height: 11px; animation: fall 8s linear infinite, swayAndSpin 2.5s ease-in-out infinite; animation-delay: 2.8s, 2.8s; }
-.mapleLeaves i:nth-child(4) { left: 40%; top: -10%; width: 19px; height: 14px; animation: fall 14s linear infinite, swayAndSpin 3.5s ease-in-out infinite; animation-delay: 0.7s, 0.7s; }
-.mapleLeaves i:nth-child(5) { left: 50%; top: -25%; width: 11px; height: 8px; animation: fall 10s linear infinite, swayAndSpin 2s ease-in-out infinite; animation-delay: 3.2s, 3.2s; }
-.mapleLeaves i:nth-child(6) { left: 60%; top: -15%; width: 17px; height: 13px; animation: fall 13s linear infinite, swayAndSpin 4.5s ease-in-out infinite; animation-delay: 2.1s, 2.1s; }
-.mapleLeaves i:nth-child(7) { left: 70%; top: -5%; width: 13px; height: 10px; animation: fall 11s linear infinite, swayAndSpin 3.2s ease-in-out infinite; animation-delay: 0.5s, 0.5s; }
-.mapleLeaves i:nth-child(8) { left: 80%; top: -18%; width: 17px; height: 13px; animation: fall 9.5s linear infinite, swayAndSpin 2.8s ease-in-out infinite; animation-delay: 1.9s, 1.9s; }
-.mapleLeaves i:nth-child(9) { left: 90%; top: -22%; width: 14px; height: 11px; animation: fall 12.5s linear infinite, swayAndSpin 3.7s ease-in-out infinite; animation-delay: 3.5s, 3.5s; }
-.mapleLeaves i:nth-child(10) { left: 15%; top: -8%; width: 16px; height: 12px; animation: fall 10.2s linear infinite, swayAndSpin 2.2s ease-in-out infinite; animation-delay: 2.4s, 2.4s; }
-.mapleLeaves i:nth-child(11) { left: 25%; top: -12%; width: 12px; height: 9px; animation: fall 8.5s linear infinite, swayAndSpin 3.8s ease-in-out infinite; animation-delay: 1.1s, 1.1s; }
-.mapleLeaves i:nth-child(12) { left: 35%; top: -28%; width: 18px; height: 14px; animation: fall 11.8s linear infinite, swayAndSpin 4.2s ease-in-out infinite; animation-delay: 0.3s, 0.3s; }
-.mapleLeaves i:nth-child(13) { left: 45%; top: -17%; width: 14px; height: 11px; animation: fall 13.2s linear infinite, swayAndSpin 2.6s ease-in-out infinite; animation-delay: 2.7s, 2.7s; }
-.mapleLeaves i:nth-child(14) { left: 55%; top: -9%; width: 17px; height: 13px; animation: fall 9.8s linear infinite, swayAndSpin 3.4s ease-in-out infinite; animation-delay: 1.4s, 1.4s; }
-.mapleLeaves i:nth-child(15) { left: 65%; top: -21%; width: 13px; height: 10px; animation: fall 12.3s linear infinite, swayAndSpin 2.9s ease-in-out infinite; animation-delay: 3.8s, 3.8s; }
-.mapleLeaves i:nth-child(16) { left: 75%; top: -14%; width: 15px; height: 11px; animation: fall 10.7s linear infinite, swayAndSpin 4.3s ease-in-out infinite; animation-delay: 0.8s, 0.8s; }
-.mapleLeaves i:nth-child(17) { left: 85%; top: -24%; width: 11px; height: 8px; animation: fall 11.5s linear infinite, swayAndSpin 3.1s ease-in-out infinite; animation-delay: 2.2s, 2.2s; }
-.mapleLeaves i:nth-child(18) { left: 95%; top: -19%; width: 14px; height: 11px; animation: fall 8.8s linear infinite, swayAndSpin 2.7s ease-in-out infinite; animation-delay: 3.1s, 3.1s; }
-.mapleLeaves i:nth-child(19) { left: 5%; top: -11%; width: 19px; height: 14px; animation: fall 13.5s linear infinite, swayAndSpin 3.9s ease-in-out infinite; animation-delay: 1.7s, 1.7s; }
-.mapleLeaves i:nth-child(20) { left: 23%; top: -26%; width: 12px; height: 9px; animation: fall 9.2s linear infinite, swayAndSpin 2.4s ease-in-out infinite; animation-delay: 0.4s, 0.4s; }
-.mapleLeaves i:nth-child(21) { left: 33%; top: -7%; width: 16px; height: 12px; animation: fall 11.1s linear infinite, swayAndSpin 3.6s ease-in-out infinite; animation-delay: 2.9s, 2.9s; }
-.mapleLeaves i:nth-child(22) { left: 43%; top: -16%; width: 17px; height: 13px; animation: fall 10.4s linear infinite, swayAndSpin 2.3s ease-in-out infinite; animation-delay: 1.3s, 1.3s; }
-.mapleLeaves i:nth-child(23) { left: 53%; top: -23%; width: 14px; height: 11px; animation: fall 12.7s linear infinite, swayAndSpin 4.1s ease-in-out infinite; animation-delay: 3.7s, 3.7s; }
-.mapleLeaves i:nth-child(24) { left: 63%; top: -13%; width: 11px; height: 8px; animation: fall 9.4s linear infinite, swayAndSpin 3.3s ease-in-out infinite; animation-delay: 0.6s, 0.6s; }
-.mapleLeaves i:nth-child(25) { left: 73%; top: -27%; width: 15px; height: 11px; animation: fall 13.8s linear infinite, swayAndSpin 2.8s ease-in-out infinite; animation-delay: 2.5s, 2.5s; }
+.mapleLeaves i:nth-child(1) { left: 10%; top: -5%; width: 1.39vh; /* 15px → vh */ height: 1.02vh; /* 11px → vh */ animation: fall 9s linear infinite, swayAndSpin 3s ease-in-out infinite; animation-delay: 0.2s, 0.2s; }
+.mapleLeaves i:nth-child(2) { left: 20%; top: -15%; width: 1.67vh; /* 18px → vh */ height: 1.3vh; /* 14px → vh */ animation: fall 12s linear infinite, swayAndSpin 4s ease-in-out infinite; animation-delay: 1.5s, 1.5s; }
+.mapleLeaves i:nth-child(3) { left: 30%; top: -20%; width: 1.3vh; /* 14px → vh */ height: 1.02vh; /* 11px → vh */ animation: fall 8s linear infinite, swayAndSpin 2.5s ease-in-out infinite; animation-delay: 2.8s, 2.8s; }
+.mapleLeaves i:nth-child(4) { left: 40%; top: -10%; width: 1.76vh; /* 19px → vh */ height: 1.3vh; /* 14px → vh */ animation: fall 14s linear infinite, swayAndSpin 3.5s ease-in-out infinite; animation-delay: 0.7s, 0.7s; }
+.mapleLeaves i:nth-child(5) { left: 50%; top: -25%; width: 1.02vh; /* 11px → vh */ height: 0.74vh; /* 8px → vh */ animation: fall 10s linear infinite, swayAndSpin 2s ease-in-out infinite; animation-delay: 3.2s, 3.2s; }
+.mapleLeaves i:nth-child(6) { left: 60%; top: -15%; width: 1.57vh; /* 17px → vh */ height: 1.2vh; /* 13px → vh */ animation: fall 13s linear infinite, swayAndSpin 4.5s ease-in-out infinite; animation-delay: 2.1s, 2.1s; }
+.mapleLeaves i:nth-child(7) { left: 70%; top: -5%; width: 1.2vh; /* 13px → vh */ height: 0.93vh; /* 10px → vh */ animation: fall 11s linear infinite, swayAndSpin 3.2s ease-in-out infinite; animation-delay: 0.5s, 0.5s; }
+.mapleLeaves i:nth-child(8) { left: 80%; top: -18%; width: 1.57vh; /* 17px → vh */ height: 1.2vh; /* 13px → vh */ animation: fall 9.5s linear infinite, swayAndSpin 2.8s ease-in-out infinite; animation-delay: 1.9s, 1.9s; }
+.mapleLeaves i:nth-child(9) { left: 90%; top: -22%; width: 1.3vh; /* 14px → vh */ height: 1.02vh; /* 11px → vh */ animation: fall 12.5s linear infinite, swayAndSpin 3.7s ease-in-out infinite; animation-delay: 3.5s, 3.5s; }
+.mapleLeaves i:nth-child(10) { left: 15%; top: -8%; width: 1.48vh; /* 16px → vh */ height: 1.11vh; /* 12px → vh */ animation: fall 10.2s linear infinite, swayAndSpin 2.2s ease-in-out infinite; animation-delay: 2.4s, 2.4s; }
+.mapleLeaves i:nth-child(11) { left: 25%; top: -12%; width: 1.11vh; /* 12px → vh */ height: 0.83vh; /* 9px → vh */ animation: fall 8.5s linear infinite, swayAndSpin 3.8s ease-in-out infinite; animation-delay: 1.1s, 1.1s; }
+.mapleLeaves i:nth-child(12) { left: 35%; top: -28%; width: 1.67vh; /* 18px → vh */ height: 1.3vh; /* 14px → vh */ animation: fall 11.8s linear infinite, swayAndSpin 4.2s ease-in-out infinite; animation-delay: 0.3s, 0.3s; }
+.mapleLeaves i:nth-child(13) { left: 45%; top: -17%; width: 1.3vh; /* 14px → vh */ height: 1.02vh; /* 11px → vh */ animation: fall 13.2s linear infinite, swayAndSpin 2.6s ease-in-out infinite; animation-delay: 2.7s, 2.7s; }
+.mapleLeaves i:nth-child(14) { left: 55%; top: -9%; width: 1.57vh; /* 17px → vh */ height: 1.2vh; /* 13px → vh */ animation: fall 9.8s linear infinite, swayAndSpin 3.4s ease-in-out infinite; animation-delay: 1.4s, 1.4s; }
+.mapleLeaves i:nth-child(15) { left: 65%; top: -21%; width: 1.2vh; /* 13px → vh */ height: 0.93vh; /* 10px → vh */ animation: fall 12.3s linear infinite, swayAndSpin 2.9s ease-in-out infinite; animation-delay: 3.8s, 3.8s; }
+.mapleLeaves i:nth-child(16) { left: 75%; top: -14%; width: 1.39vh; /* 15px → vh */ height: 1.02vh; /* 11px → vh */ animation: fall 10.7s linear infinite, swayAndSpin 4.3s ease-in-out infinite; animation-delay: 0.8s, 0.8s; }
+.mapleLeaves i:nth-child(17) { left: 85%; top: -24%; width: 1.02vh; /* 11px → vh */ height: 0.74vh; /* 8px → vh */ animation: fall 11.5s linear infinite, swayAndSpin 3.1s ease-in-out infinite; animation-delay: 2.2s, 2.2s; }
+.mapleLeaves i:nth-child(18) { left: 95%; top: -19%; width: 1.3vh; /* 14px → vh */ height: 1.02vh; /* 11px → vh */ animation: fall 8.8s linear infinite, swayAndSpin 2.7s ease-in-out infinite; animation-delay: 3.1s, 3.1s; }
+.mapleLeaves i:nth-child(19) { left: 5%; top: -11%; width: 1.76vh; /* 19px → vh */ height: 1.3vh; /* 14px → vh */ animation: fall 13.5s linear infinite, swayAndSpin 3.9s ease-in-out infinite; animation-delay: 1.7s, 1.7s; }
+.mapleLeaves i:nth-child(20) { left: 23%; top: -26%; width: 1.11vh; /* 12px → vh */ height: 0.83vh; /* 9px → vh */ animation: fall 9.2s linear infinite, swayAndSpin 2.4s ease-in-out infinite; animation-delay: 0.4s, 0.4s; }
+.mapleLeaves i:nth-child(21) { left: 33%; top: -7%; width: 1.48vh; /* 16px → vh */ height: 1.11vh; /* 12px → vh */ animation: fall 11.1s linear infinite, swayAndSpin 3.6s ease-in-out infinite; animation-delay: 2.9s, 2.9s; }
+.mapleLeaves i:nth-child(22) { left: 43%; top: -16%; width: 1.57vh; /* 17px → vh */ height: 1.2vh; /* 13px → vh */ animation: fall 10.4s linear infinite, swayAndSpin 2.3s ease-in-out infinite; animation-delay: 1.3s, 1.3s; }
+.mapleLeaves i:nth-child(23) { left: 53%; top: -23%; width: 1.3vh; /* 14px → vh */ height: 1.02vh; /* 11px → vh */ animation: fall 12.7s linear infinite, swayAndSpin 4.1s ease-in-out infinite; animation-delay: 3.7s, 3.7s; }
+.mapleLeaves i:nth-child(24) { left: 63%; top: -13%; width: 1.02vh; /* 11px → vh */ height: 0.74vh; /* 8px → vh */ animation: fall 9.4s linear infinite, swayAndSpin 3.3s ease-in-out infinite; animation-delay: 0.6s, 0.6s; }
+.mapleLeaves i:nth-child(25) { left: 73%; top: -27%; width: 1.39vh; /* 15px → vh */ height: 1.02vh; /* 11px → vh */ animation: fall 13.8s linear infinite, swayAndSpin 2.8s ease-in-out infinite; animation-delay: 2.5s, 2.5s; }
 
 /**
  * RAINBOW ARC SPECIAL EFFECT (.rainbowArc)
@@ -473,8 +474,8 @@
     z-index: 9;
     
     /* SIZING */
-    width: 600px;
-    height: 300px;
+    width: 55.56vh;  /* 600px → vh */
+    height: 27.78vh;  /* 300px → vh */
     
     /* APPEARANCE */
     background: linear-gradient(to bottom, 
@@ -486,9 +487,9 @@
         rgba(75, 0, 130, 0.6),     /* Indigo */
         rgba(238, 130, 238, 0.3)   /* Violet */
     );
-    border-radius: 300px 300px 0 0; /* Semi-circular arc shape */
+    border-radius: 27.78vh 27.78vh 0 0;  /* 300px → vh */
     transform: rotate(-17deg);
-    filter: blur(20px);
+    filter: blur(1.85vh);  /* 20px → vh */
     
     /* INTERACTIONS */
     pointer-events: none;
@@ -514,8 +515,8 @@
     z-index: 11;
     
     /* SIZING */
-    width: 800px;
-    height: 330px;
+    width: 74.07vh;  /* 800px → vh */
+    height: 30.56vh;  /* 330px → vh */
     
     /* INTERACTIONS */
     pointer-events: none;
@@ -540,7 +541,7 @@
     /* APPEARANCE */
     background: rgba(255, 165, 0, 0.15);
     border-radius: 50% 50% 0 0;
-    filter: blur(12px);
+    filter: blur(1.11vh);  /* 12px → vh */
     
     /* PERFORMANCE OPTIMIZATION */
     will-change: transform, filter;
@@ -589,13 +590,13 @@
     /* Dim phases */
     0%, 5%, 12%, 17%, 22%, 90%, 100% { 
         opacity: 0.2; 
-        box-shadow: 0 0 4px 1px rgba(255, 190, 60, 0.4); 
+        box-shadow: 0 0 0.37vh 0.09vh rgba(255, 190, 60, 0.4);  /* 4px 1px → vh */
     }
     
     /* Bright phases */
     9%, 15%, 20%, 30%, 70% { 
         opacity: 0.8; 
-        box-shadow: 0 0 8px 3px rgba(255, 190, 60, 0.7), 0 0 12px 6px rgba(255, 150, 30, 0.3); 
+        box-shadow: 0 0 0.74vh 0.28vh rgba(255, 190, 60, 0.7);  /* 8px 3px, 12px 6px → vh */
     }
 }
 
@@ -606,13 +607,13 @@
  */
 @keyframes nightFireflyDrift {
     0% { transform: translate(0, 0); }
-    12% { transform: translate(15px, -35px); }
-    25% { transform: translate(30px, -45px); }
-    37% { transform: translate(20px, -15px); }
-    50% { transform: translate(5px, -5px); }
-    62% { transform: translate(-10px, -20px); }
-    75% { transform: translate(-25px, -30px); }
-    87% { transform: translate(-15px, -15px); }
+    12% { transform: translate(1.39vh, -3.24vh); } /* 15px, 35px → vh */
+    25% { transform: translate(2.78vh, -4.17vh); } /* 30px, 45px → vh */
+    37% { transform: translate(1.85vh, -1.39vh); } /* 20px, 15px → vh */
+    50% { transform: translate(0.46vh, -0.46vh); } /* 5px, 5px → vh */
+    62% { transform: translate(-0.93vh, -1.85vh); } /* -10px, -20px → vh */
+    75% { transform: translate(-2.31vh, -2.78vh); } /* -25px, -30px → vh */
+    87% { transform: translate(-1.39vh, -1.39vh); } /* -15px, -15px → vh */
     100% { transform: translate(0, 0); }
 }
 
@@ -635,31 +636,31 @@
 /* Drift pattern 1 */
 @keyframes summerFireflyDrift1 {
     0% { transform: translate(0, 0); }
-    15% { transform: translate(12px, -20px); }
-    30% { transform: translate(25px, -8px); }
-    45% { transform: translate(18px, 12px); }
-    60% { transform: translate(-5px, 22px); }
-    75% { transform: translate(-15px, 10px); }
-    90% { transform: translate(-8px, -10px); }
+    15% { transform: translate(1.11vh, -1.85vh); } /* 15px, 25px → vh */
+    30% { transform: translate(2.31vh, -0.74vh); } /* 30px, 10px → vh */
+    45% { transform: translate(1.67vh, 1.11vh); } /* 20px, 15px → vh */
+    60% { transform: translate(-0.46vh, 2.04vh); } /* -6px, 26px → vh */
+    75% { transform: translate(-1.39vh, 0.93vh); } /* -18px, 12px → vh */
+    90% { transform: translate(-0.74vh, -0.93vh); } /* -10px, -12px → vh */
     100% { transform: translate(0, 0); }
 }
 
 /* Drift pattern 2 */
 @keyframes summerFireflyDrift2 {
     0% { transform: translate(0, 0); }
-    20% { transform: translate(-18px, -12px); }
-    40% { transform: translate(-10px, 18px); }
-    60% { transform: translate(8px, 25px); }
-    80% { transform: translate(20px, 5px); }
+    20% { transform: translate(-1.67vh, -1.11vh); } /* -20px, -15px → vh */
+    40% { transform: translate(-0.93vh, 1.67vh); } /* -11px, 22px → vh */
+    60% { transform: translate(0.74vh, 2.31vh); } /* 10px, 31px → vh */
+    80% { transform: translate(1.85vh, 0.46vh); } /* 25px, 6px → vh */
     100% { transform: translate(0, 0); }
 }
 
 /* Drift pattern 3 */
 @keyframes summerFireflyDrift3 {
     0% { transform: translate(0, 0); }
-    25% { transform: translate(22px, 5px); }
-    50% { transform: translate(10px, -22px); }
-    75% { transform: translate(-12px, -15px); }
+    25% { transform: translate(2.04vh, 0.46vh); } /* 27px, 6px → vh */
+    50% { transform: translate(0.93vh, -2.04vh); } /* 12px, -26px → vh */
+    75% { transform: translate(-1.11vh, -1.39vh); } /* -15px, -18px → vh */
     100% { transform: translate(0, 0); }
 }
 
@@ -671,7 +672,7 @@
 @keyframes cloudFadeIn {
     from { 
         opacity: 0; 
-        transform: translateY(-5px) scale(0.95); 
+        transform: translateY(-0.46vh) scale(0.95); /* -5px → vh */
     }
     to { 
         opacity: 0.7; 
@@ -717,15 +718,15 @@
         opacity: 0; 
     }
     45% { 
-        transform: translateY(5%) translateX(50px) rotate(-20deg); 
+        transform: translateY(5%) translateX(4.63vh) rotate(-20deg);  /* 50px → vh */
         opacity: 0.8; 
     }
     55% { 
-        transform: translateY(75%) translateX(60px) rotate(-20deg); 
+        transform: translateY(75%) translateX(5.56vh) rotate(-20deg);  /* 60px → vh */
         opacity: 0.8; 
     }
     70%, 100% { 
-        transform: translateY(100%) translateX(100px) rotate(-20deg); 
+        transform: translateY(100%) translateX(9.26vh) rotate(-20deg);  /* 100px → vh */
         opacity: 0; 
         top: 100%; 
     }
@@ -759,9 +760,9 @@
  * Creates gentle side-to-side swaying motion for snowflakes.
  */
 @keyframes sway {
-    0% { transform: translateX(-8px); }
-    50% { transform: translateX(8px); }
-    100% { transform: translateX(-8px); }
+    0% { transform: translateX(-0.74vh); } /* -8px → vh */
+    50% { transform: translateX(0.74vh); } /* 8px → vh */
+    100% { transform: translateX(-0.74vh); } /* -8px → vh */
 }
 
 /**
@@ -770,9 +771,9 @@
  * Combines swaying and spinning motion for realistic leaf falling effect.
  */
 @keyframes swayAndSpin {
-    0% { transform: translateX(-16px) rotate(-20deg); }
-    50% { transform: translateX(16px) rotate(20deg); }
-    100% { transform: translateX(-16px) rotate(-20deg); }
+    0% { transform: translateX(-1.48vh) rotate(-20deg); } /* -16px → vh */
+    50% { transform: translateX(1.48vh) rotate(20deg); } /* 16px → vh */
+    100% { transform: translateX(-1.48vh) rotate(-20deg); } /* -16px → vh */
 }
 
 /**
@@ -802,16 +803,16 @@
         transform: scaleX(1.2) scaleY(0.8) translateY(0); 
     }
     50% { 
-        transform: scaleX(1.3) scaleY(1.1) translateY(-10px); 
+        transform: scaleX(1.3) scaleY(1.1) translateY(-0.93vh);  /* -10px → vh */
     }
 }
 
 /* Second heat wave pattern - different timing and scaling */
 @keyframes heatdistortWave2 {
     0%, 100% { 
-        transform: scaleX(1.1) scaleY(1) translateY(5px); 
+        transform: scaleX(1.1) scaleY(1) translateY(0.46vh);  /* 5px → vh */
     }
     50% { 
-        transform: scaleX(1.4) scaleY(0.9) translateY(-5px); 
+        transform: scaleX(1.4) scaleY(0.9) translateY(-0.46vh);  /* -5px → vh */
     }
 }

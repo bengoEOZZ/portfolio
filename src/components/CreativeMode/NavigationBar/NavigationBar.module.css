@@ -13,14 +13,14 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 90px;                       /* Fixed header height */
-  padding: 0 40px;                    /* Horizontal breathing room */
+  height: 8.33vh; /* 90px → vh */
+  padding: 0 2.08vw; /* 40px → vw */
   z-index: 1000;                      /* Above all other content */
   
   /* APPEARANCE */
   background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%,rgba(25, 25, 112, 0.5) 30%,
                 rgba(72, 61, 139, 0.5) 60%, rgba(0, 0, 0, 0.95) 100%);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(1.04vw); /* 20px → vw */
   
   /* LAYOUT STRUCTURE */
   display: flex;                      /* Horizontal layout */
@@ -33,8 +33,8 @@
   
   /* INITIAL STATE FOR ANIMATION */
   opacity: 0;                         /* Hidden initially */
-  transform: translateY(-100px);      /* Positioned above viewport */
-  filter: blur(10px);                 /* Out of focus */
+  transform: translateY(-9.26vh); /* -100px → vh */
+  filter: blur(0.52vw); /* 10px → vw */
   
   /* ANIMATIONS */
   animation: fadeIn 1.2s ease-out 5s both;  /* Delayed entrance */
@@ -51,7 +51,7 @@
   /* LAYOUT & POSITIONING */
   display: flex;                      /* Side-by-side layout */
   align-items: center;                /* Vertical center */
-  gap: 20px;                          /* Space between constellation and text */
+  gap: 1.04vw; /* 20px → vw */
   
   /* INTERACTIONS */
   cursor: pointer;
@@ -60,7 +60,7 @@
 
 /* Logo hover effect */
 .logoContainer:hover { 
-  transform: scale(1.05) translateX(8px);  /* Slight grow + right shift */
+  transform: scale(1.05) translateX(0.42vw); /* 8px → vw */  /* Slight grow + right shift */
 }
 
 /**
@@ -70,8 +70,8 @@
 .logoConstellation {
   /* LAYOUT & POSITIONING */
   position: relative;                 /* For absolute star positioning */
-  width: 50px;                        /* Square container */
-  height: 50px;
+  width: 2.6vw; /* 50px → vw */
+  height: 4.63vh; /* 50px → vh */
   
   /* CENTERING */
   display: flex;                      /* Flexbox for center alignment */
@@ -88,8 +88,8 @@
   position: absolute;                 /* Free positioning within constellation */
   
   /* SIZING */
-  width: 6px;                         /* Small circular stars */
-  height: 6px;
+  width: 0.31vw; /* 6px → vw */
+  height: 0.56vh; /* 6px → vh */
   
   /* APPEARANCE */
   background: radial-gradient(circle, #ffffff 0%, transparent 100%);
@@ -105,10 +105,10 @@
  * =========================
  * Placement of 5 stars in constellation formation with varied animation delays.
  */
-.star:nth-child(1) { top: 10px; left: 15px; animation-delay: 0s; }
-.star:nth-child(2) { top: 5px; right: 12px; animation-delay: 0.4s; }
-.star:nth-child(3) { bottom: 8px; left: 10px; animation-delay: 0.8s; }
-.star:nth-child(4) { bottom: 12px; right: 8px; animation-delay: 1.2s; }
+.star:nth-child(1) { top: 0.93vh; /* 10px → vh */ left: 0.78vw; /* 15px → vw */ animation-delay: 0s; }
+.star:nth-child(2) { top: 0.46vh; /* 5px → vh */ right: 0.63vw; /* 12px → vw */ animation-delay: 0.4s; }
+.star:nth-child(3) { bottom: 0.74vh; /* 8px → vh */ left: 0.52vw; /* 10px → vw */ animation-delay: 0.8s; }
+.star:nth-child(4) { bottom: 1.11vh; /* 12px → vh */ right: 0.42vw; /* 8px → vw */ animation-delay: 1.2s; }
 .star:nth-child(5) { top: 50%; left: 50%; transform: translate(-50%, -50%); animation-delay: 1.6s; }
 
 /**
@@ -117,9 +117,9 @@
  */
 .logoText {
   /* TYPOGRAPHY */
-  font: 600 14px/1.1 'Courier New', monospace;  /* Code-style font */
+  font: 600 0.73vw/1.1 'Courier New', monospace; /* 14px → vw */
   text-transform: lowercase;          /* All lowercase */
-  letter-spacing: 2px;                /* Spaced out characters */
+  letter-spacing: 0.1vw; /* 2px → vw */
   
   /* APPEARANCE */
   color: #e6e6fa;
@@ -127,7 +127,7 @@
   /* LAYOUT */
   display: flex;                      /* Vertical text stacking */
   flex-direction: column;             /* Stack text vertically */
-  gap: 2px;                           /* Minimal line spacing */
+  gap: 0.19vh; /* 2px → vh */
   
   /* INTERACTIONS */
   transition: all 0.4s ease;         /* Smooth hover transitions */
@@ -139,8 +139,8 @@
  */
 .logoContainer:hover .logoText {
   color: #ffffff;
-  text-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 25px rgba(147, 112, 219, 0.8);
-  letter-spacing: 3px;    /* Wider spacing on hover */
+  text-shadow: 0 0 0.78vw rgba(255, 255, 255, 1), 0 0 1.3vw rgba(147, 112, 219, 0.8); /* 15px 25px → vw */
+  letter-spacing: 0.16vw; /* 3px → vw */    /* Wider spacing on hover */
 }
 
 /**
@@ -151,8 +151,8 @@
 .orbitalMenu {
   /* LAYOUT & POSITIONING */
   position: relative;                 /* For absolute child positioning */
-  width: 60px;                        /* Square menu area */
-  height: 60px;
+  width: 3.13vw; /* 60px → vw */
+  height: 5.56vh; /* 60px → vh */
   
   /* INTERACTIONS */
   cursor: pointer;
@@ -165,7 +165,7 @@
  */
 .orbitalMenu:hover {  /* Slight scale up and glow on hover */
   transform: scale(1.3);
-  filter: drop-shadow(0 0 30px rgba(147, 112, 219, 0.8));
+  filter: drop-shadow(0 0 1.56vw rgba(147, 112, 219, 0.8)); /* 30px → vw */
 }
 
 /**
@@ -194,12 +194,12 @@
 
 /* Primary orbital ring - Purple theme */
 .orbitalMenu::before { 
-  border: 1px solid rgba(147, 112, 219, 0);  /* Transparent purple border */
+  border: 0.05vw solid rgba(147, 112, 219, 0); /* 1px → vw */  /* Transparent purple border */
 }
 
 /* Secondary orbital ring - Gold theme */
 .orbitalMenu::after { 
-  border: 1px solid rgba(255, 215, 0, 0);    /* Transparent gold border */
+  border: 0.05vw solid rgba(255, 215, 0, 0); /* 1px → vw */    /* Transparent gold border */
 }
 
 /**
@@ -208,15 +208,15 @@
  * Expanding ring animations that appear on menu hover with pulsing effects.
  */
 .orbitalMenu:hover::before {
-  width: 40px;                        /* Inner ring size */
-  height: 40px;
+  width: 2.08vw; /* 40px → vw */                        /* Inner ring size */
+  height: 3.7vh; /* 40px → vh */
   border-color: rgba(147, 112, 219, 0.4);    /* Visible purple */
   animation: orbitalRingPulse 2s ease-in-out infinite;  /* Continuous pulse */
 }
 
 .orbitalMenu:hover::after {
-  width: 55px;                        /* Outer ring size */
-  height: 55px;
+  width: 2.86vw; /* 55px → vw */                        /* Outer ring size */
+  height: 5.09vh; /* 55px → vh */
   border-color: rgba(255, 215, 0, 0.3);      /* Visible gold */
   animation: orbitalRingPulse 2s ease-in-out infinite 0.5s;  /* Offset timing */
 }
@@ -235,13 +235,13 @@
   z-index: 10;                        /* Above orbital rings */
   
   /* SIZING */
-  width: 12px;                        /* Small sun size */
-  height: 12px;
+  width: 0.63vw; /* 12px → vw */
+  height: 1.11vh; /* 12px → vh */
   
   /* APPEARANCE */
   background: radial-gradient(circle, #ffffff 0%, #ffd700 40%, #ff6347 80%, transparent 100%);
   border-radius: 50%;
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+  box-shadow: 0 0 1.04vw rgba(255, 215, 0, 0.8); /* 20px → vw */
   
   /* ANIMATIONS */
   animation: sunPulse 2s ease-in-out infinite;  /* Gentle pulsing */
@@ -254,10 +254,10 @@
  * Dramatic size increase and enhanced glow when orbital menu is hovered.
  */
 .orbitalMenu:hover .orbitalSun {
-  width: 18px;                        /* 50% size increase */
-  height: 18px;
+  width: 0.94vw; /* 18px → vw */                        /* 50% size increase */
+  height: 1.67vh; /* 18px → vh */
   animation: sunPulse 1.5s ease-in-out infinite;
-  box-shadow: 0 0 35px rgba(255, 215, 0, 1);
+  box-shadow: 0 0 1.82vw rgba(255, 215, 0, 1); /* 35px → vw */
 }
 
 /**
@@ -289,41 +289,41 @@
 
 /* Mercury - smallest, gray, closest orbit (3s period, 16px radius) */
 .orbitingPlanet:nth-child(2) {
-  width: 5px;                         /* Smallest planet */
-  height: 5px;
+  width: 0.26vw; /* 5px → vw */                         /* Smallest planet */
+  height: 0.46vh; /* 5px → vh */
   background: radial-gradient(circle, #a0a0a0 0%, #707070 50%, #404040 100%);
-  box-shadow: 0 0 6px rgba(160, 160, 160, 0.5);
+  box-shadow: 0 0 0.31vw rgba(160, 160, 160, 0.5); /* 6px → vw */
   animation: orbitClose 3s linear infinite;
 }
 
 /* Venus - medium-small, golden, second orbit (5s period, 20px radius) */
 .orbitingPlanet:nth-child(3) {
-  width: 6px;                         /* Slightly larger than Mercury */
-  height: 6px;
+  width: 0.31vw; /* 6px → vw */                         /* Slightly larger than Mercury */
+  height: 0.56vh; /* 6px → vh */
   background: radial-gradient(circle, #d4af37 0%, #b8860b 50%, #996515 100%);
-  box-shadow: 0 0 6px rgba(212, 175, 55, 0.5);
+  box-shadow: 0 0 0.31vw rgba(212, 175, 55, 0.5); /* 6px → vw */
   animation: orbitMedium 5s linear infinite;
 }
 
 /* Moon - pale white/gray, third orbit (6s period, 25px radius) */
 .orbitingPlanet:nth-child(4) {
-  width: 8px;                         /* Larger than inner planets */
-  height: 8px;
+  width: 0.42vw; /* 8px → vw */                         /* Larger than inner planets */
+  height: 0.74vh; /* 8px → vh */
   background: radial-gradient(circle, #f5f5f5 0%, #d3d3d3 50%, #a9a9a9 100%);
-  box-shadow: 0 0 10px rgba(245, 245, 245, 0.7);
+  box-shadow: 0 0 0.52vw rgba(245, 245, 245, 0.7); /* 10px → vw */
   animation-duration: 6s;
 }
 
 /* Earth - blue/green continents, outermost orbit (7s period, 25px radius) */
 .orbitingPlanet:nth-child(5) {
-  width: 8px;                         /* Same size as Moon */
-  height: 8px;
+  width: 0.42vw; /* 8px → vw */                         /* Same size as Moon */
+  height: 0.74vh; /* 8px → vh */
   background: 
     radial-gradient(circle at 20% 30%, #228b22 0%, #228b22 25%, transparent 35%),
     radial-gradient(circle at 70% 60%, #32cd32 0%, #32cd32 20%, transparent 30%),
     radial-gradient(circle at 40% 80%, #006400 0%, #006400 15%, transparent 25%),
     radial-gradient(circle, #4169e1 0%, #1e90ff 40%, #0066cc 100%);
-  box-shadow: 0 0 10px rgba(65, 105, 225, 0.7);
+  box-shadow: 0 0 0.52vw rgba(65, 105, 225, 0.7); /* 10px → vw */
   animation-duration: 7s;
 }
 
@@ -332,8 +332,8 @@
  * ========================
  */
 @keyframes fadeIn {
-  0% { opacity: 0; transform: translateY(-100px); filter: blur(10px); }
-  50% { opacity: 0.7; filter: blur(5px); }
+  0% { opacity: 0; transform: translateY(-9.26vh); filter: blur(0.52vw); } /* -100px 10px → vh/vw */
+  50% { opacity: 0.7; filter: blur(0.26vw); } /* 5px → vw */
   100% { opacity: 1; transform: translateY(0); filter: blur(0); }
 }
 
@@ -365,11 +365,11 @@
 @keyframes sunPulse {
   0%, 100% { 
     transform: translate(-50%, -50%) scale(1); 
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    box-shadow: 0 0 1.04vw rgba(255, 215, 0, 0.8); /* 20px → vw */
   }
   50% { 
     transform: translate(-50%, -50%) scale(1.2); 
-    box-shadow: 0 0 30px rgba(255, 215, 0, 1);
+    box-shadow: 0 0 1.56vw rgba(255, 215, 0, 1); /* 30px → vw */
   }
 }
 
@@ -380,18 +380,18 @@
 
 /* Standard orbit - 25px radius for Moon and Earth */
 @keyframes orbitFar {
-  0% { transform: translate(-50%, -50%) rotate(0deg) translateX(25px) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg) translateX(25px) rotate(-360deg); }
+  0% { transform: translate(-50%, -50%) rotate(0deg) translateX(1.3vw) rotate(0deg); } /* 25px → vw */
+  100% { transform: translate(-50%, -50%) rotate(360deg) translateX(1.3vw) rotate(-360deg); } /* 25px → vw */
 }
 
 /* Close orbit - 16px radius for Mercury */
 @keyframes orbitClose {
-  0% { transform: translate(-50%, -50%) rotate(0deg) translateX(16px) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg) translateX(16px) rotate(-360deg); }
+  0% { transform: translate(-50%, -50%) rotate(0deg) translateX(0.83vw) rotate(0deg); } /* 16px → vw */
+  100% { transform: translate(-50%, -50%) rotate(360deg) translateX(0.83vw) rotate(-360deg); } /* 16px → vw */
 }
 
 /* Medium close orbit - 20px radius for Venus */
 @keyframes orbitMedium {
-  0% { transform: translate(-50%, -50%) rotate(0deg) translateX(20px) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg) translateX(20px) rotate(-360deg); }
+  0% { transform: translate(-50%, -50%) rotate(0deg) translateX(1.04vw) rotate(0deg); } /* 20px → vw */
+  100% { transform: translate(-50%, -50%) rotate(360deg) translateX(1.04vw) rotate(-360deg); } /* 20px → vw */
 }

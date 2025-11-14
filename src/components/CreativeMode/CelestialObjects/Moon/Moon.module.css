@@ -1,6 +1,7 @@
 /**
  * MOON COMPONENT STYLES
  * =====================
+ * Styling for the Moon character representation in day and night modes.
  */
 
 /**
@@ -10,20 +11,20 @@
  */
 .dayMoon {
     /* LAYOUT & POSITIONING */
-    position: relative;
-    left: 50vw;
+    position: relative;                 /* Relative to parent container */
+    left: 50vw;                         /* Centered horizontally */
     
     /* LAYERING */
-    z-index: 5;
+    z-index: 5;                         /* Above background elements */
     
     /* SIZING */
-    width: 950px;
+    width: 49vw;                        /* Responsive width */
     
     /* PERFORMANCE OPTIMIZATION */
-    will-change: transform;
+    will-change: transform;             /* Optimizes floating animation */
     
     /* TRANSFORM SETUP */
-    transform: translateX(-50%);
+    transform: translateX(-50%);        /* Centers moon horizontally */
     
     /* ANIMATIONS */
     animation: moonFloat 6s ease-in-out infinite;
@@ -31,8 +32,11 @@
     
     /* APPEARANCE EFFECTS */
     filter: 
-        drop-shadow(0 0 40px rgba(220, 225, 235, 0.6))   /* Inner cool white glow */
-        drop-shadow(0 0 160px rgba(160, 180, 210, 0.25)); /* Extended night atmosphere */
+        drop-shadow(0 0 3.7vh rgba(220, 225, 235, 0.6))     /* 40px → vh */
+        drop-shadow(0 0 14.81vh rgba(160, 180, 210, 0.25)); /* 160px → vh */
+    /* Layered glow effects:
+     * - Inner soft white glow (40px radius, 0.6 opacity)
+     * - Outer blue-tinted atmosphere (160px radius, 0.25 opacity) */
 }
 
 /**
@@ -42,21 +46,21 @@
  */
 .nightMoon {
     /* LAYOUT & POSITIONING */
-    position: absolute;
-    left: 48vw;
+    position: absolute;                 /* Free positioning */
+    left: 48vw;                         /* Slightly off-center */
     
     /* LAYERING */
-    z-index: 5;
+    z-index: 5;                         /* Above background elements */
 
     /* SIZING */
-    width: 850px;
+    width: 45vw;                        /* Slightly smaller than day moon */
     
     /* PERFORMANCE OPTIMIZATION */
-    will-change: transform, filter;
+    will-change: transform, filter;     /* Optimizes rocking and glow effects */
     
     /* TRANSFORM SETUP */
-    transform: translateX(-50%);
-    transform-origin: center center;     /* Sets rotation point for rocking motion */
+    transform: translateX(-50%);        /* Centers moon horizontally */
+    transform-origin: center center;    /* Sets rotation point for rocking motion */
     
     /* ANIMATIONS */
     animation: 
@@ -65,17 +69,27 @@
     
     /* APPEARANCE EFFECTS */
     filter: 
-        drop-shadow(0 0 80px rgba(220, 225, 235, 0.8))   /* Inner cool white glow */
-        drop-shadow(0 0 200px rgba(160, 180, 210, 0.5)); /* Extended night atmosphere */
+        drop-shadow(0 0 7.41vh rgba(220, 225, 235, 0.8))    /* 80px → vh */
+        drop-shadow(0 0 18.52vh rgba(160, 180, 210, 0.5));  /* 200px → vh */
+    /* Enhanced nighttime glow effects:
+     * - Inner bright white glow (80px radius, 0.8 opacity)
+     * - Outer atmospheric glow (200px radius, 0.5 opacity) */
 }
 
 /**
  * MOON FLOATING ANIMATION
  * =======================
+ * Gentle vertical floating motion for daytime moon.
  */
 @keyframes moonFloat {
-    0%, 100% { transform: translate3d(-50%, 0, 0); }      /* Base centered position */
-    50% { transform: translate3d(-50%, -20px, 0); }       /* Floats up 20px at midpoint */
+    0%, 100% { 
+        transform: translate3d(-50%, 0, 0); 
+        /* Base centered position */
+    }
+    50% { 
+        transform: translate3d(-50%, -1.85vh, 0); /* -20px → vh */
+        /* Floats up 20px at midpoint */
+    }
 }
 
 /**
@@ -84,7 +98,16 @@
  * Gentle rocking motion for night moon character expression and personality.
  */
 @keyframes moonRockingMotion {
-    0%, 100% { transform: translate3d(-50%, 0, 0) rotate(0deg); }   /* Neutral centered position */
-    25% { transform: translate3d(-50%, 0, 0) rotate(2deg); }        /* Rocks 2 degrees clockwise */
-    75% { transform: translate3d(-50%, 0, 0) rotate(-2deg); }       /* Rocks 2 degrees counter-clockwise */
+    0%, 100% { 
+        transform: translate3d(-50%, 0, 0) rotate(0deg); 
+        /* Neutral centered position */
+    }
+    25% { 
+        transform: translate3d(-50%, 0, 0) rotate(2deg); 
+        /* Rocks 2 degrees clockwise */
+    }
+    75% { 
+        transform: translate3d(-50%, 0, 0) rotate(-2deg); 
+        /* Rocks 2 degrees counter-clockwise */
+    }
 }

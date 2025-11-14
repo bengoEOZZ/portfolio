@@ -12,16 +12,16 @@
  */
 .earthFloatContainer {
     /* LAYOUT & POSITIONING */
-    position: fixed;
-    bottom: -50%;
-    right: -10%;
+    position: fixed;                    /* Fixed to viewport */
+    bottom: -45%;                       /* Positioned below viewport */
+    right: -7%;                         /* Positioned right of viewport */
     
     /* SIZING */
-    width: 800px;
+    width: 74.07vh;  /* 800px → vh */
     height: auto;
     
     /* LAYERING */
-    z-index: 10;            /* Above background, below navigation elements */
+    z-index: 10;                        /* Above background, below navigation elements */
     
     /* ANIMATIONS */
     animation: 
@@ -32,7 +32,7 @@
      * - earthFloat: Gentle floating motion starting after meteor entry completes (6s infinite, 3.5s delay) */
     
     /* PERFORMANCE OPTIMIZATION */
-    will-change: transform, filter;
+    will-change: transform, filter;     /* Optimizes meteor trajectory and floating effects */
 }
 
 /**
@@ -43,14 +43,14 @@
  */
 .earth {
     /* LAYOUT & POSITIONING */
-    position: relative;
+    position: relative;                 /* Relative to float container */
     
     /* SIZING */
     width: 100%;
     height: auto;
     
     /* PERFORMANCE OPTIMIZATION */
-    will-change: transform, filter;
+    will-change: transform, filter;     /* Optimizes rotation and formation effects */
 
     /* ANIMATIONS */
     animation: 
@@ -67,7 +67,7 @@
  */
 .earthSeason {
     /* LAYOUT & POSITIONING */
-    position: absolute;
+    position: absolute;                 /* Overlays on top of base Earth */
     top: 0;
     left: 0;
     
@@ -76,18 +76,18 @@
     height: auto;
     
     /* APPEARANCE */
-    opacity: 0.5;
+    opacity: 0.5;                       /* Semi-transparent overlay */
     
     /* PERFORMANCE OPTIMIZATION */
-    will-change: transform, filter;
+    will-change: transform, filter;     /* Optimizes rotation animation */
     
     /* ANIMATIONS */
     animation:
         earthSeasonFadeIn 2s forwards,
         earthRotation 200s linear infinite;
     /* Applies dual animations:
-     * - earthSeasonFadeIn: Fades in seasonal overlay (0.5s)
-     * - earthRotation: Continuous rotation (200s infinite) */
+     * - earthSeasonFadeIn: Fades in seasonal overlay (2s forwards)
+     * - earthRotation: Continuous rotation matching base Earth (200s infinite) */
 }
 
 /**
@@ -103,41 +103,47 @@
         opacity: 0.9;
         transform: translateX(-150vw) translateY(-75vh) rotate(-30deg) scale(0.5);
         filter: 
-            brightness(17.5) blur(90px) hue-rotate(150deg) saturate(10)
-            drop-shadow(0 0 120px #ff6500)
-            drop-shadow(0 0 250px #ff8000);
+            brightness(17.5) blur(8.33vh) /* 90px → vh */ hue-rotate(150deg) saturate(10)
+            drop-shadow(0 0 11.11vh #ff6500) /* 120px → vh */
+            drop-shadow(0 0 23.15vh #ff8000); /* 250px → vh */
+        /* Ultra-bright fiery meteor with extreme blur and orange glow */
     }
     35% {          /* Midway through entry - bright */
         opacity: 1;
         transform: translateX(-50vw) translateY(-25vh) rotate(-10deg) scale(0.8);
-        filter: brightness(12) blur(60px) hue-rotate(120deg) saturate(6)
-            drop-shadow(0 0 100px #ff8500)
-            drop-shadow(0 0 200px #ffa000);
+        filter: brightness(12) blur(5.56vh) /* 60px → vh */ hue-rotate(120deg) saturate(6)
+            drop-shadow(0 0 9.26vh #ff8500) /* 100px → vh */
+            drop-shadow(0 0 18.52vh #ffa000); /* 200px → vh */
+        /* Still blazing hot with reduced blur and lighter orange glow */
     }
     55% {        /* Just before settling - slightly overshoot position */
-        transform: translateX(20px) translateY(40px) rotate(5deg) scale(1.15);
-        filter: brightness(5) blur(30px) hue-rotate(60deg) saturate(2.7)
-            drop-shadow(0 0 80px #ffaa00)
-            drop-shadow(0 0 150px #ffcc00);
+        transform: translateX(1.85vh) /* 20px → vh */ translateY(3.7vh) /* 40px → vh */ rotate(5deg) scale(1.15);
+        filter: brightness(5) blur(2.78vh) /* 30px → vh */ hue-rotate(60deg) saturate(2.7)
+            drop-shadow(0 0 7.41vh #ffaa00) /* 80px → vh */
+            drop-shadow(0 0 13.89vh #ffcc00); /* 150px → vh */
+        /* Cooling to yellow-orange with reduced intensity */
     }
 
     /* REBOUND & SETTLE */
     70% {       /* Settling into position - slight rebound effect */
-        transform: translateX(-15px) translateY(-20px) rotate(-2deg) scale(1.05);
-        filter: brightness(3) blur(15px) hue-rotate(30deg) saturate(1.56)
-            drop-shadow(0 0 60px #ffcc33)
-            drop-shadow(0 0 100px #ffdd66);
+        transform: translateX(-1.39vh) /* -15px → vh */ translateY(-1.85vh) /* -20px → vh */ rotate(-2deg) scale(1.05);
+        filter: brightness(3) blur(1.39vh) /* 15px → vh */ hue-rotate(30deg) saturate(1.56)
+            drop-shadow(0 0 5.56vh #ffcc33) /* 60px → vh */
+            drop-shadow(0 0 9.26vh #ffdd66); /* 100px → vh */
+        /* Further cooling with softer yellow glow */
     }
     85% {       /* Another slight rebound effect */
-        transform: translateX(8px) translateY(10px) rotate(1deg) scale(1.02);
-        filter: brightness(1.8) blur(8px) hue-rotate(10deg) saturate(1.21)
-            drop-shadow(0 0 40px #ffdd99)
-            drop-shadow(0 0 70px #ffeeaa);
+        transform: translateX(0.74vh) /* 8px → vh */ translateY(0.93vh) /* 10px → vh */ rotate(1deg) scale(1.02);
+        filter: brightness(1.8) blur(0.74vh) /* 8px → vh */ hue-rotate(10deg) saturate(1.21)
+            drop-shadow(0 0 3.7vh #ffdd99) /* 40px → vh */
+            drop-shadow(0 0 6.48vh #ffeeaa); /* 70px → vh */
+        /* Nearly cooled with pale yellow glow */
     }
     100% {      /* Final position - settle into normal Earth appearance */
         transform: translateX(0) translateY(0) rotate(0deg) scale(1);
         filter: brightness(1) blur(0px) hue-rotate(0deg) saturate(1)
             drop-shadow(0 0 0px transparent);
+        /* Natural Earth colors with no effects */
     }
 }
 
@@ -150,48 +156,57 @@
     0% {        /* Tiny molten seed (0.1x scale, 0° rotation) */
         transform: rotate(0deg) scale(0.1);
         filter: 
-            blur(200px) 
+            blur(18.52vh) /* 200px → vh */
             hue-rotate(180deg)
             contrast(2);
         opacity: 0.3;
+        /* Extremely blurred molten core beginning formation */
     }
     10% {       /* Small growth (0.3x scale, 180° - half rotation) */
         transform: rotate(180deg) scale(0.3);
-        filter: blur(150px) hue-rotate(150deg) contrast(1.8);
+        filter: blur(13.89vh) /* 150px → vh */ hue-rotate(150deg) contrast(1.8);
         opacity: 0.5;
+        /* Rapid accretion with cooling colors */
     }
     25% {       /* Rapid expansion (0.6x scale, 540° - 1.5 rotations) */
-    transform: rotate(540deg) scale(0.6);
-        filter: blur(100px) hue-rotate(90deg) contrast(1.5);
+        transform: rotate(540deg) scale(0.6);
+        filter: blur(9.26vh) /* 100px → vh */ hue-rotate(90deg) contrast(1.5);
         opacity: 0.8;
+        /* Major planetary growth phase */
     }
     45% {       /* Near full size (0.85x scale, 1080° - 3 full rotations) */
         transform: rotate(1080deg) scale(0.85);
-        filter: blur(60px) hue-rotate(45deg) contrast(1.3);
+        filter: blur(5.56vh) /* 60px → vh */ hue-rotate(45deg) contrast(1.3);
         opacity: 0.95;
+        /* Approaching final size with clearer appearance */
     }
     65% {       /* Slight overshoot (1.05x scale, 1440° - 4 rotations) */
         transform: rotate(1440deg) scale(1.05);
-        filter: blur(30px) hue-rotate(20deg) contrast(1.1);
+        filter: blur(2.78vh) /* 30px → vh */ hue-rotate(20deg) contrast(1.1);
         opacity: 1;
+        /* Overshoots target size slightly */
     }
     80% {       /* Small rebound (1.02x scale, 1620° - 4.5 rotations) */
         transform: rotate(1620deg) scale(1.02);
-        filter: blur(15px) hue-rotate(10deg) contrast(1.05);
+        filter: blur(1.39vh) /* 15px → vh */ hue-rotate(10deg) contrast(1.05);
+        /* Bounces back from overshoot */
     }
     90% {       /* Fine adjustment (1.01x scale, 1710° - 4.75 rotations) */
         transform: rotate(1710deg) scale(1.01);
-        filter: blur(5px) hue-rotate(5deg) contrast(1.02);
+        filter: blur(0.46vh) /* 5px → vh */ hue-rotate(5deg) contrast(1.02);
+        /* Final stabilization adjustments */
     }
     100% {      /* Perfect size & position (1x scale, 1800° - 5 full rotations) */
         transform: rotate(1800deg) scale(1);
         filter: blur(0px) hue-rotate(0deg) contrast(1);
+        /* Fully formed stable planet */
     }
 }
 
 /**
  * EARTH ROTATION ANIMATION
  * ========================
+ * Continuous planetary rotation representing 24-hour day cycle.
  */
 @keyframes earthRotation {
     0% { transform: rotate(0deg); }     /* Starts at natural rotation */
@@ -201,18 +216,20 @@
 /**
  * EARTH FLOATING ANIMATION
  * ========================
- * Applied only to the container for clean separation
+ * Applied only to the container for clean separation of concerns.
+ * Creates gentle vertical bobbing motion.
  */
 @keyframes earthFloat {
     0%, 100% { transform: translateY(0px); }      /* Base position */
-    50% { transform: translateY(-15px); }         /* Floats up 15px at midpoint */
+    50% { transform: translateY(-1.39vh); }       /* -15px → vh */ /* Floats up 15px at midpoint */
 }
 
 /**
  * EARTH SEASON FADE IN
  * ====================
+ * Gradual appearance of seasonal overlay texture.
  */
 @keyframes earthSeasonFadeIn {
     0% { opacity: 0; }                    /* Fully transparent */
-    100% { opacity: 0.5; }                  /* Fully opaque */
+    100% { opacity: 0.5; }                /* Semi-transparent overlay at 50% */
 }

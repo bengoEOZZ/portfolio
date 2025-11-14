@@ -13,11 +13,17 @@
   justify-content: center;         /* Horizontally center all content */
   align-items: center;             /* Vertically center all content */
   flex-direction: column;          /* Stack elements vertically */
+
+  /* POSITIONING */
+  position: relative;
   
   /* VIEWPORT DIMENSIONS */
   height: 100vh;                   /* Full viewport height */
   width: 100vw;                    /* Full viewport width */
   
+  /* PREVENT SCROLLING */
+  overflow: hidden;                /* Hide any overflow content */
+
   /* SPLIT-SCREEN BACKGROUND */
   background: linear-gradient(
     to right,                       /* Horizontal gradient from left to right */

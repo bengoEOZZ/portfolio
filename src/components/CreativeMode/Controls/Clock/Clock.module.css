@@ -11,20 +11,20 @@
  */
 .clockContainer {
     /* LAYOUT & POSITIONING */
-    position: fixed;
-    top: 25px;
-    right: 50px;
-    width: 400px;
+    position: fixed;                    /* Fixed to viewport */
+    top: 2.31vh;  /* 25px → vh */
+    right: calc(12.76vw - 22.5vh);     /* Dynamic right positioning */
+    width: 45vh;                        /* Container width */
     height: auto;
-    z-index: 17;
+    z-index: 17;                        /* Above background elements */
     
     /* INITIAL STATE FOR ANIMATION */
-    opacity: 0;
+    opacity: 0;                         /* Hidden initially */
     
     /* ANIMATIONS */
     animation: 
-        clockEntry 3s 1.5s forwards,
-        clockFloat 25s ease-in-out 4.5s infinite;
+        clockEntry 3s 1.5s forwards,    /* Delayed bouncy entrance */
+        clockFloat 25s ease-in-out 4.5s infinite;  /* Continuous floating */
     /* Applies bouncy materialization first, then continuous floating */
 }
 
@@ -35,15 +35,16 @@
  */
 .clock {
     /* SIZING */
-    width: 300px;
+    width: 34vh;  /* 367px → vh */
     height: auto;
     
     /* LAYOUT & POSITIONING */
-    position: relative;
+    position: relative;                 /* For absolute children */
     
     /* APPEARANCE */
-    filter: drop-shadow(0 0 25px rgba(255, 223, 0, 0.7))
-            drop-shadow(0 0 50px rgba(255, 69, 0, 0.3));
+    filter: drop-shadow(0 0 2.31vh /* 25px → vh */ rgba(255, 223, 0, 0.7))
+            drop-shadow(0 0 4.63vh /* 50px → vh */ rgba(255, 69, 0, 0.3));
+    /* Golden glow with orange accent */
 }
 
 /**
@@ -53,22 +54,23 @@
  */
 .clockHand {
     /* SIZING */
-    width: 40px;
+    width: 4.5vh;  /* 48.6px → vh */
     height: auto;
     
     /* LAYOUT & POSITIONING */
-    position: absolute;
-    top: 74px;
-    left: 176px;
-    z-index: 16;
-    transform-origin: 50% 75%; /* Sets rotation point at visual base of clock hand */
+    position: absolute;                 /* Free positioning over clock */
+    top: 8.3vh;                         /* Vertical centering */
+    left: 20vh;                         /* Horizontal centering */
+    z-index: 16;                        /* Above clock base */
+    transform-origin: 50% 75%;          /* Rotation point at visual base */
     
     /* INTERACTIONS */
-    cursor: pointer;
+    cursor: pointer;                    /* Indicates interactivity */
     
     /* APPEARANCE */
-    filter: drop-shadow(0 0 15px rgba(255, 223, 0, 0.8)) 
-            drop-shadow(0 0 5px rgba(255, 255, 255, 0.9));
+    filter: drop-shadow(0 0 1.39vh /* 15px → vh */ rgba(255, 223, 0, 0.8)) 
+            drop-shadow(0 0 0.46vh /* 5px → vh */ rgba(255, 255, 255, 0.9));
+    /* Golden glow with white highlight */
 }
 
 /**
@@ -77,12 +79,13 @@
  */
 .clockHand:hover {
     /* ENHANCED GLOW EFFECTS */
-    filter: drop-shadow(0 0 30px rgba(255, 223, 0, 1))
-            drop-shadow(0 0 15px rgba(255, 255, 255, 1))
-            drop-shadow(0 0 45px rgba(255, 165, 0, 0.8));
+    filter: drop-shadow(0 0 2.78vh /* 30px → vh */ rgba(255, 223, 0, 1))
+            drop-shadow(0 0 1.39vh /* 15px → vh */ rgba(255, 255, 255, 1))
+            drop-shadow(0 0 4.17vh /* 45px → vh */ rgba(255, 165, 0, 0.8));
+    /* Intensified multi-layer glow */
     
     /* LAYERING */
-    z-index: 18;
+    z-index: 18;                        /* Brings to front */
     /* Brings clock hand to front during hover */
     
     /* ANIMATIONS */
@@ -96,39 +99,40 @@
  */
 .timeDisplay {
     /* LAYOUT & POSITIONING */
-    position: fixed;
-    top: 310px;
-    right: 360px;
-    z-index: 100;
+    position: fixed;                    /* Fixed to viewport */
+    top: 35vh;  /* 378px → vh */
+    right: 18.75vw;  /* 360px → vw */
+    z-index: 100;                       /* Above most elements */
     
     /* SIZING */
-    width: 60px;
+    width: 6.8vh;  /* 73.44px → vh */
     height: auto;
 
     /* TYPOGRAPHY */
     font-family: 'Orbitron', sans-serif;
-    font-size: 1rem;
+    font-size: 0.9vw;  /* 17.28px → vw */
     font-weight: 700;
     text-align: center;
     
     /* APPEARANCE */
     color: #00d4ff;
-    text-shadow: 0 0 15px rgba(0, 212, 255, 0.9);
+    text-shadow: 0 0 1.39vh /* 15px → vh */ rgba(0, 212, 255, 0.9);
     background: rgba(10, 20, 40, 0.6);
-    padding: 10px 20px;
-    border-radius: 10px;
-    border: 2px solid rgba(0, 212, 255, 0.4);
+    padding: 0.93vh /* 10px → vh */ 1.85vh /* 20px → vh */;
+    border-radius: 0.93vh; /* 10px → vh */
+    border: 0.19vh /* 2px → vh */ solid rgba(0, 212, 255, 0.4);
     box-shadow: 
-        0 0 20px rgba(0, 212, 255, 0.4),
-        inset 0 0 15px rgba(0, 212, 255, 0.2);
+        0 0 1.85vh /* 20px → vh */ rgba(0, 212, 255, 0.4),
+        inset 0 0 1.39vh /* 15px → vh */ rgba(0, 212, 255, 0.2);
+    /* Holographic display effect */
     
     /* INITIAL STATE FOR ANIMATION */
-    opacity: 0;
+    opacity: 0;                         /* Hidden initially */
 
     /* ANIMATIONS */
     animation: 
         timeDisplayEntry 2.5s cubic-bezier(0.34, 1.56, 0.64, 1) 2.2s forwards;
-    /* Applies holographic entry first, then continuous pulsing */
+    /* Applies holographic entry with bounce easing */
 }
 
 /**
@@ -140,22 +144,26 @@
     0% {
         opacity: 0;
         transform: scale(0) rotate(180deg);
-        filter: blur(10px) brightness(0.3);
+        filter: blur(0.93vh) /* 10px → vh */ brightness(0.3);
+        /* Tiny, spinning, blurred, and dark */
     }
     40% {
         opacity: 0.8;
         transform: scale(1.1) rotate(-10deg);
-        filter: blur(2px) brightness(1.2);
+        filter: blur(0.19vh) /* 2px → vh */ brightness(1.2);
+        /* Overshoots size with counter-rotation */
     }
     60% {
         opacity: 1;
         transform: scale(0.95) rotate(5deg);
         filter: blur(0px) brightness(1);
+        /* Undershoots with slight rotation */
     }
     100% {
         opacity: 1;
         transform: scale(1) rotate(0deg);
         filter: blur(0px) brightness(1);
+        /* Settles to final state */
     }
 }
 
@@ -169,16 +177,16 @@
         transform: translateX(0) translateY(0) rotate(0deg); 
     }
     20% { 
-        transform: translateX(-10px) translateY(5px) rotate(-4deg); 
+        transform: translateX(-0.93vh) /* -10px → vh */ translateY(0.46vh) /* 5px → vh */ rotate(-4deg); 
     }
     40% { 
-        transform: translateX(8px) translateY(-7px) rotate(6deg); 
+        transform: translateX(0.74vh) /* 8px → vh */ translateY(-0.65vh) /* -7px → vh */ rotate(6deg); 
     }
     60% { 
-        transform: translateX(12px) translateY(3px) rotate(-5deg); 
+        transform: translateX(1.11vh) /* 12px → vh */ translateY(0.28vh) /* 3px → vh */ rotate(-5deg); 
     }
     80% { 
-        transform: translateX(-5px) translateY(-4px) rotate(3deg); 
+        transform: translateX(-0.46vh) /* -5px → vh */ translateY(-0.37vh) /* -4px → vh */ rotate(3deg); 
     }
     100% { 
         transform: translateX(0) translateY(0) rotate(0deg); 
@@ -193,15 +201,16 @@
 @keyframes clockHandGlow {
     /* Base glow state */
     0%, 100% {
-        filter: drop-shadow(0 0 30px rgba(255, 223, 0, 1))
-                drop-shadow(0 0 15px rgba(255, 255, 255, 1));
+        filter: drop-shadow(0 0 2.78vh /* 30px → vh */ rgba(255, 223, 0, 1))
+                drop-shadow(0 0 1.39vh /* 15px → vh */ rgba(255, 255, 255, 1));
     }
     
     /* Intensified glow state */
     50% {
-        filter: drop-shadow(0 0 30px rgba(255, 223, 0, 1))
-                drop-shadow(0 0 25px rgba(255, 255, 255, 1))
-                drop-shadow(0 0 40px rgba(255, 140, 0, 0.9));
+        filter: drop-shadow(0 0 2.78vh /* 30px → vh */ rgba(255, 223, 0, 1))
+                drop-shadow(0 0 2.31vh /* 25px → vh */ rgba(255, 255, 255, 1))
+                drop-shadow(0 0 3.7vh /* 40px → vh */ rgba(255, 140, 0, 0.9));
+        /* Triple-layer glow with orange accent */
     }
 }
 
@@ -214,21 +223,25 @@
     0% {
         opacity: 0;
         transform: scaleY(0.1) scaleX(1.5);
-        filter: blur(20px) hue-rotate(180deg);
+        filter: blur(1.85vh) /* 20px → vh */ hue-rotate(180deg);
+        /* Thin horizontal line, blurred, color-shifted */
     }
     30% {
         opacity: 0.4;
         transform: scaleY(0.6) scaleX(1.2);
-        filter: blur(10px) hue-rotate(90deg);
+        filter: blur(0.93vh) /* 10px → vh */ hue-rotate(90deg);
+        /* Expanding vertically, less blur */
     }
     70% {
         opacity: 0.8;
         transform: scaleY(1.1) scaleX(0.9);
-        filter: blur(3px) hue-rotate(0deg);
+        filter: blur(0.28vh) /* 3px → vh */ hue-rotate(0deg);
+        /* Overshoots vertical, undershoots horizontal */
     }
     100% {
-        opacity: 0.8; /* Matches the dimmed state in timeDisplayPulse */
+        opacity: 0.8;
         transform: scaleY(1) scaleX(1);
         filter: blur(0px) hue-rotate(0deg);
+        /* Final state with slight transparency */
     }
 }

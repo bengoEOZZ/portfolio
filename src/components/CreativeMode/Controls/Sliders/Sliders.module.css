@@ -10,38 +10,39 @@
  */
 .sliderContainer {
     /* LAYOUT & POSITIONING */
-    position: fixed;
-    right: 20px;
-    z-index: 20;
+    position: fixed;                    /* Fixed to viewport */
+    right: 1.04vw; /* 20px → vw */
+    z-index: 20;                        /* Above most content */
     
     /* SIZING */
-    width: 450px;
+    width: 23.44vw;  /* 450px → vw */
     height: auto;
     
     /* TYPOGRAPHY */
     font-family: 'Orbitron', sans-serif;
+    font-size: 0.9vw;  /* 17px → vw */
     color: #00d4ff;
-    text-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
+    text-shadow: 0 0 0.52vw rgba(0, 212, 255, 0.8); /* 10px → vw */
     text-align: center;
     
     /* INITIAL STATE FOR ANIMATION */
-    opacity: 0;
+    opacity: 0;                         /* Hidden initially */
     
     /* ANIMATIONS */
-    animation: sliderSlideInEntry 2.2s forwards;
+    animation: sliderSlideInEntry 2.2s forwards;  /* Slide-in entrance */
 }
 
 /* Weather slider positioning and delay */
 .weatherSlider {
-    top: 350px;
-    animation-delay: 2.5s; /* Starts after clock materializes */
+    top: 40vh;  /* 350px → vh */
+    animation-delay: 2.5s;              /* Starts after clock materializes */
 }
 
 
 /* Season slider positioning and delay */
 .seasonSlider {
-    top: 425px;
-    animation-delay: 2.8s; /* Staggered for cascading effect */
+    top: 50vh;  /* 425px → vh */
+    animation-delay: 2.8s;              /* Staggered for cascading effect */
 }
 
 /**
@@ -51,10 +52,10 @@
 .slider {
     /* SIZING */
     width: 97.5%; 
-    height: 12px;
+    height: 1.11vh;  /* 12px → vh */
     
     /* LAYOUT & POSITIONING */
-    margin: 10px auto;
+    margin: 0.93vh auto;  /* 10px → vh */
     display: block;
     
     /* APPEARANCE RESET */
@@ -63,8 +64,8 @@
     
     /* APPEARANCE */
     background: linear-gradient(90deg, #1a1a2e, #0f3460); /* Dark gradient background */
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+    border-radius: 0.52vw;  /* 10px → vw */
+    box-shadow: 0 0 0.52vw rgba(0, 212, 255, 0.5); /* 10px → vw */
     
     /* INTERACTIONS */
     transition: background 0.3s, box-shadow 0.3s;
@@ -80,7 +81,7 @@
     /* Brighter gradient on hover */
     
     /* ENHANCED GLOW */
-    box-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
+    box-shadow: 0 0 1.04vw rgba(0, 212, 255, 0.8); /* 20px → vw */
     /* Increased cyan glow intensity */
 }
 
@@ -95,14 +96,14 @@
     appearance: none;
     
     /* SIZING */
-    width: 15px;
-    height: 15px;
+    width: 0.78vw;  /* 15px → vw */
+    height: 1.39vh;  /* 15px → vh */
     
     /* APPEARANCE */
     background: radial-gradient(circle, #00d4ff, #007bff);
-    border: 1.5px solid #00d4ff;
+    border: 0.08vw solid #00d4ff;  /* 1.5px → vw */
     border-radius: 50%;
-    box-shadow: 0 0 15px rgba(0, 212, 255, 0.8);
+    box-shadow: 0 0 0.78vw rgba(0, 212, 255, 0.8); /* 15px → vw */
     
     /* INTERACTIONS */
     cursor: pointer;
@@ -146,7 +147,7 @@
     /* Enlarges thumb by 20% for better interaction feedback */
     
     /* ENHANCED GLOW */
-    box-shadow: 0 0 25px rgba(0, 212, 255, 1);
+    box-shadow: 0 0 1.3vw rgba(0, 212, 255, 1); /* 25px → vw */
     /* Full opacity cyan glow on hover */
 }
 
@@ -156,12 +157,12 @@
  */
 .sliderLabels {
     /* LAYOUT & POSITIONING */
-    display: flex;
-    justify-content: space-between;
-    margin-top: 5px;
+    display: flex;                      /* Horizontal layout */
+    justify-content: space-between;     /* Even spacing */
+    margin-top: 0.46vh;  /* 5px → vh */
     
     /* TYPOGRAPHY */
-    font-size: 0.75rem;
+    font-size: 0.8vw;  /* 15.36px → vw */
     color: #00d4ff;
 }
 
@@ -172,7 +173,7 @@
  */
 .sliderLabels span {
     /* LAYOUT & POSITIONING */
-    padding: 0 8px;
+    padding: 0 0.42vw;  /* 8px → vw */
     text-align: center;
 }
 
@@ -184,17 +185,17 @@
 @keyframes sliderSlideInEntry {
     0% {
         opacity: 0;
-        transform: translateX(100px) scale(0.8);
-        filter: blur(10px);
+        transform: translateX(5.21vw) scale(0.8);  /* 100px → vw */
+        filter: blur(0.52vw); /* 10px → vw */
     }
     60% {
         opacity: 0.8;
-        transform: translateX(-10px) scale(1.05);
-        filter: blur(2px);
+        transform: translateX(-0.52vw) scale(1.05); /* -10px → vw */
+        filter: blur(0.1vw); /* 2px → vw */
     }
     80% {
         opacity: 1;
-        transform: translateX(5px) scale(0.98);
+        transform: translateX(0.26vw) scale(0.98); /* 5px → vw */
         filter: blur(0px);
     }
     100% {

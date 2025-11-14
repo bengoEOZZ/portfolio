@@ -62,7 +62,6 @@
     
     /* ANIMATION */
     opacity: 0;                        /* Hidden by default */
-    animation: scanlineCorruption 15s ease-in-out infinite;  /* Periodic corruption effect */
     pointer-events: none;              /* Don't block user interactions */
     z-index: 30;                      /* Layer above background elements */
 }
@@ -100,29 +99,6 @@
     will-change: background-position;
     transform: translateZ(0);
     backface-visibility: hidden;
-}
-
-/**
- * SCANLINE CORRUPTION ANIMATION - INTENSE & SHORT (13-15s)
- * ========================================================
- * Creates a dramatic television corruption effect with horizontal scanlines.
- */
-@keyframes scanlineCorruption {
-    0%, 86% { opacity: 0; transform: translateY(0); }
-    87% { opacity: 0.9; transform: translateY(-15px); }
-    88% { opacity: 1; transform: translateY(-20px); }
-    89% { opacity: 0.8; transform: translateY(10px); }
-    90% { opacity: 1; transform: translateY(-8px); }
-    91% { opacity: 0.9; transform: translateY(5px); }
-    92% { opacity: 1; transform: translateY(-12px); }
-    93% { opacity: 0.7; transform: translateY(8px); }
-    94% { opacity: 1; transform: translateY(-6px); }
-    95% { opacity: 0.8; transform: translateY(3px); }
-    96% { opacity: 0.9; transform: translateY(-10px); }
-    97% { opacity: 0.6; transform: translateY(4px); }
-    98% { opacity: 0.8; transform: translateY(-5px); }
-    99% { opacity: 0.4; transform: translateY(2px); }
-    100% { opacity: 0; transform: translateY(0); }
 }
 
 /**

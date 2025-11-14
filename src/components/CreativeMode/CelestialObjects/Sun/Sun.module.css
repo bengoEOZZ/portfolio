@@ -13,11 +13,11 @@
 .sunContainer {
     /* LAYOUT & POSITIONING */
     position: fixed;
-    top: -25px;             /* Slightly offset from viewport edge */
-    left: -30px;            /* Slightly offset from viewport edge */
+    top: -2.31vh; /* -25px → vh */            /* Slightly offset from viewport edge */
+    left: -1.56vw; /* -30px → vw */            /* Slightly offset from viewport edge */
     
     /* SIZING */
-    width: 550px;
+    width: 55.56vh;  /* 600px → vh */
     height: auto;
     
     /* LAYERING */
@@ -72,9 +72,9 @@
 
     /* APPEARANCE EFFECTS */
     filter:
-        blur(5px)
-        drop-shadow(0 0 15px rgba(255, 165, 0, 0.8)),
-        drop-shadow(0 0 30px rgba(255, 69, 0, 0.6));
+        blur(0.26vw) /* 5px → vw */
+        drop-shadow(0 0 0.78vw /* 15px → vw */ rgba(255, 165, 0, 0.8)),
+        drop-shadow(0 0 1.56vw /* 30px → vw */ rgba(255, 69, 0, 0.6));
     /* Layered glow effects:
      * - Inner warm orange glow (15px radius, 0.8 opacity)
      * - Outer intense red-orange glow (30px radius, 0.6 opacity) */
@@ -109,42 +109,42 @@ polygon[id^="ray"] {
     /* STELLAR EXPLOSION PHASE */
     0% {        /* Initial explosion point */
         opacity: 0; transform: scale(0.01);
-        filter: brightness(50) blur(300px) saturate(10) hue-rotate(270deg) contrast(5)
-            drop-shadow(0 0 500px #fff) drop-shadow(0 0 800px #0ff) drop-shadow(0 0 1200px #f0f);
+        filter: brightness(50) blur(15.63vw) /* 300px → vw */ saturate(10) hue-rotate(270deg) contrast(5)
+            drop-shadow(0 0 26.04vw /* 500px → vw */ #fff) drop-shadow(0 0 41.67vw /* 800px → vw */ #0ff) drop-shadow(0 0 62.5vw /* 1200px → vw */ #f0f);
     }
     8% {        /* Cool plasma-style formation */
         opacity: 0.3; transform: scale(0.1);
-        filter: brightness(20) blur(200px) saturate(8) hue-rotate(240deg) contrast(4)
-            drop-shadow(0 0 400px #fff) drop-shadow(0 0 600px #6ff) drop-shadow(0 0 900px #f6f);
+        filter: brightness(20) blur(10.42vw) /* 200px → vw */ saturate(8) hue-rotate(240deg) contrast(4)
+            drop-shadow(0 0 20.83vw /* 400px → vw */ #fff) drop-shadow(0 0 31.25vw /* 600px → vw */ #6ff) drop-shadow(0 0 46.88vw /* 900px → vw */ #f6f);
     }
     20% {       /* transitioning to stellar colors */
         opacity: 0.6; transform: scale(0.3);
-        filter: brightness(15) blur(150px) saturate(6) hue-rotate(180deg) contrast(3)
-            drop-shadow(0 0 300px #ff0) drop-shadow(0 0 500px #f90) drop-shadow(0 0 700px #f30);
+        filter: brightness(15) blur(7.81vw) /* 150px → vw */ saturate(6) hue-rotate(180deg) contrast(3)
+            drop-shadow(0 0 15.63vw /* 300px → vw */ #ff0) drop-shadow(0 0 26.04vw /* 500px → vw */ #f90) drop-shadow(0 0 36.46vw /* 700px → vw */ #f30);
     }
 
     /* STELLAR SOLAR PHASE */
     35% {       /* Solar ignition begins */
         opacity: 0.8; transform: scale(0.6);
-        filter: brightness(10) blur(100px) saturate(4) hue-rotate(120deg) contrast(2.5)
-            drop-shadow(0 0 250px #fc0) drop-shadow(0 0 400px #f60) drop-shadow(0 0 600px #f00);
+        filter: brightness(10) blur(5.21vw) /* 100px → vw */ saturate(4) hue-rotate(120deg) contrast(2.5)
+            drop-shadow(0 0 13.02vw /* 250px → vw */ #fc0) drop-shadow(0 0 20.83vw /* 400px → vw */ #f60) drop-shadow(0 0 31.25vw /* 600px → vw */ #f00);
     }
     50% {       /* Approaching solar appearance */
         opacity: 0.9; transform: scale(0.85);
-        filter: brightness(6) blur(60px) saturate(3) hue-rotate(60deg) contrast(2)
-            drop-shadow(0 0 200px #fa0) drop-shadow(0 0 350px #f40) drop-shadow(0 0 500px #c00);
+        filter: brightness(6) blur(3.13vw) /* 60px → vw */ saturate(3) hue-rotate(60deg) contrast(2)
+            drop-shadow(0 0 10.42vw /* 200px → vw */ #fa0) drop-shadow(0 0 18.23vw /* 350px → vw */ #f40) drop-shadow(0 0 26.04vw /* 500px → vw */ #c00);
     }
     70% {       /* Peak formation intensity */
         opacity: 1; transform: scale(1.2);
-        filter: brightness(3) blur(30px) saturate(2) hue-rotate(30deg) contrast(1.5)
-            drop-shadow(0 0 150px #f80) drop-shadow(0 0 250px #f20) drop-shadow(0 0 350px #900);
+        filter: brightness(3) blur(1.56vw) /* 30px → vw */ saturate(2) hue-rotate(30deg) contrast(1.5)
+            drop-shadow(0 0 7.81vw /* 150px → vw */ #f80) drop-shadow(0 0 13.02vw /* 250px → vw */ #f20) drop-shadow(0 0 18.23vw /* 350px → vw */ #900);
     }
 
     /* STELLAR STABILIZATION PHASE */
     85% {       /* Settling into stable state - size adjustment */
         transform: scale(0.95);
-        filter: brightness(2) blur(15px) saturate(1.5) hue-rotate(15deg) contrast(1.2)
-            drop-shadow(0 0 100px #f60) drop-shadow(0 0 180px #e10) drop-shadow(0 0 250px #800);
+        filter: brightness(2) blur(0.78vw) /* 15px → vw */ saturate(1.5) hue-rotate(15deg) contrast(1.2)
+            drop-shadow(0 0 5.21vw /* 100px → vw */ #f60) drop-shadow(0 0 9.38vw /* 180px → vw */ #e10) drop-shadow(0 0 13.02vw /* 250px → vw */ #800);
     }
     100% {      /* Stable solar state - natural sun appearance */
         transform: scale(1);
@@ -159,8 +159,8 @@ polygon[id^="ray"] {
  * Each ray forms and peaks, then returns to (opacity: 0) for JavaScript animation takeover.
  */
 @keyframes sunraysEntry {
-    0% { opacity: 0; transform: scale(0); filter: brightness(10) blur(50px); }
-    30% { opacity: 0.8; transform: scale(1.2); filter: brightness(3) blur(10px); }
+    0% { opacity: 0; transform: scale(0); filter: brightness(10) blur(2.6vw); } /* 50px → vw */
+    30% { opacity: 0.8; transform: scale(1.2); filter: brightness(3) blur(0.52vw); } /* 10px → vw */
     60% { opacity: 1; transform: scale(1); filter: brightness(1) blur(0); }
     100% { opacity: 0; transform: scale(1); filter: brightness(1) blur(0); }
 }
@@ -186,28 +186,33 @@ polygon[id^="ray"] {
 @keyframes sunPulsate {
     0% {
         filter:
-            drop-shadow(0 0 50px rgba(255, 165, 0, 0.9))    /* Inner warm orange glow */
-            drop-shadow(0 0 100px rgba(255, 69, 0, 0.7))    /* Mid red-orange glow */
-            drop-shadow(0 0 150px rgba(255, 0, 0, 0.5))     /* Outer red intensity */
-            drop-shadow(0 0 200px rgba(255, 100, 0, 0.3));  /* Extended orange atmosphere */
+            drop-shadow(0 0 2.6vw /* 50px → vw */ rgba(255, 165, 0, 0.9))    /* Inner warm orange glow */
+            drop-shadow(0 0 5.21vw /* 100px → vw */ rgba(255, 69, 0, 0.7))    /* Mid red-orange glow */
+            drop-shadow(0 0 7.81vw /* 150px → vw */ rgba(255, 0, 0, 0.5))     /* Outer red intensity */
+            drop-shadow(0 0 10.42vw /* 200px → vw */ rgba(255, 100, 0, 0.3));  /* Extended orange atmosphere */
     }
     100% {
         filter:                                      /* Slight blur for intensity */
-            blur(2px)
-            drop-shadow(0 0 50px rgba(255, 165, 0, 0.9))    /* Inner warm orange glow */
-            drop-shadow(0 0 100px rgba(255, 69, 0, 0.7))    /* Mid red-orange glow */
-            drop-shadow(0 0 150px rgba(255, 0, 0, 0.5))     /* Outer red intensity */
-            drop-shadow(0 0 200px rgba(255, 100, 0, 0.3));  /* Extended orange atmosphere */
+            blur(0.1vw) /* 2px → vw */
+            drop-shadow(0 0 2.6vw /* 50px → vw */ rgba(255, 165, 0, 0.9))    /* Inner warm orange glow */
+            drop-shadow(0 0 5.21vw /* 100px → vw */ rgba(255, 69, 0, 0.7))    /* Mid red-orange glow */
+            drop-shadow(0 0 7.81vw /* 150px → vw */ rgba(255, 0, 0, 0.5))     /* Outer red intensity */
+            drop-shadow(0 0 10.42vw /* 200px → vw */ rgba(255, 100, 0, 0.3));  /* Extended orange atmosphere */
     }
 }
 
+/**
+ * SUN BLUR PULSATION ANIMATION
+ * ============================
+ * Continuous blur effect simulating atmospheric distortion.
+ */
 @keyframes sunBlur {
     0%, 100% {
         filter: 
-            blur(2px)                                        /* Slight blur at base intensity */
+            blur(0.1vw); /* 2px → vw */                           /* Slight blur at base intensity */
     }
     50% {
         filter: 
-            blur(5px)                                        /* Significant blur at peak intensity */
+            blur(0.26vw); /* 5px → vw */                          /* Significant blur at peak intensity */
     }
 }

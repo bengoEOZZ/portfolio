@@ -1,85 +1,123 @@
-/* OTHER PLANETS COMPONENT STYLES
+/**
+ * OTHER PLANETS COMPONENT STYLES
  * ==============================
+ * Styling for Mercury and Venus celestial objects with orbital animations.
  */
 
 /**
  * MERCURY PLANET (.mercury)
  * =========================
+ * Smallest inner planet with fast orbital period.
  */
 .mercury {
     /* LAYOUT & POSITIONING */
-    position: fixed;
-    top: 175px;
-    left: 500px;
+    position: fixed;                    /* Fixed to viewport */
+    top: 16.2vh;  /* 175px → vh */
+    left: 26.04vw;  /* 500px → vw */
     
     /* SIZING */
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
+    width: 1.04vw;  /* 20px → vw */
+    height: 1.85vh;  /* 20px → vh */
     
     /* LAYERING */
-    z-index: 4;
+    z-index: 4;                         /* Behind Earth, above background */
     
     /* PERFORMANCE OPTIMIZATION */
-    will-change: transform;
+    will-change: transform;             /* Optimizes orbital animation */
     
     /* ANIMATIONS */
     animation: 
-        mercuryOrbit 18s linear infinite;
+        mercuryOrbit 18s linear infinite;  /* Fast 18s orbital period */
+    /* Applies continuous elliptical orbit with rotation */
     
     /* APPEARANCE EFFECTS */
-    filter: drop-shadow(0 0 8px rgba(180, 180, 180, 0.7));    /* Extended atmosphere */
+    filter: drop-shadow(0 0 0.42vw rgba(180, 180, 180, 0.7)); /* 8px → vw */
+    /* Gray glow simulating thin atmosphere */
 }
 
 /**
  * VENUS PLANET (.venus)
  * ====================
+ * Second planet with thick cloudy atmosphere and slower orbit.
  */
 .venus {
     /* LAYOUT & POSITIONING */
-    position: fixed;
-    top: 220px;
-    left: 580px;
+    position: fixed;                    /* Fixed to viewport */
+    top: 20.37vh;  /* 220px → vh */
+    left: 30.21vw;  /* 580px → vw */
     
     /* SIZING */
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
+    width: 1.82vw;  /* 35px → vw */
+    height: 3.24vh;  /* 35px → vh */
     
     /* LAYERING */
-    z-index: 4;
+    z-index: 4;                         /* Behind Earth, above background */
     
     /* PERFORMANCE OPTIMIZATION */
-    will-change: transform;
+    will-change: transform;             /* Optimizes orbital animation */
     
     /* ANIMATIONS */
     animation: 
-        venusOrbit 28s linear infinite;
+        venusOrbit 28s linear infinite;    /* Slower 28s orbital period */
+    /* Applies continuous elliptical orbit with rotation */
     
     /* APPEARANCE EFFECTS */
-    filter: drop-shadow(0 0 20px rgba(255, 220, 175, 0.8));  /* Extended atmosphere */
+    filter: drop-shadow(0 0 1.04vw rgba(255, 220, 175, 0.8)); /* 20px → vw */
+    /* Warm golden glow simulating thick atmosphere */
 }
 
 /**
  * MERCURY ORBITAL ANIMATION
  * =========================
+ * Fast elliptical orbit with rotation matching orbital position.
  */
 @keyframes mercuryOrbit {
-    0% { transform: translate3d(0, 0, 0) rotate(0deg); }           /* Starting orbital position */
-    25% { transform: translate3d(-20px, -15px, 0) rotate(90deg); } /* Quarter orbit with rotation */
-    50% { transform: translate3d(-30px, 25px, 0) rotate(180deg); } /* Half orbit with rotation */
-    75% { transform: translate3d(15px, 30px, 0) rotate(270deg); }  /* Three-quarter orbit */
-    100% { transform: translate3d(0, 0, 0) rotate(360deg); }       /* Complete orbital cycle */
+    0% { 
+        transform: translate3d(0, 0, 0) rotate(0deg); 
+        /* Starting orbital position */
+    }
+    25% { 
+        transform: translate3d(-1.04vw, -1.39vh, 0) rotate(90deg); /* -20px -15px → vw/vh */
+        /* Quarter orbit with rotation */
+    }
+    50% { 
+        transform: translate3d(-1.56vw, 2.31vh, 0) rotate(180deg); /* -30px 25px → vw/vh */
+        /* Half orbit with rotation */
+    }
+    75% { 
+        transform: translate3d(0.78vw, 2.78vh, 0) rotate(270deg); /* 15px 30px → vw/vh */
+        /* Three-quarter orbit */
+    }
+    100% { 
+        transform: translate3d(0, 0, 0) rotate(360deg); 
+        /* Complete orbital cycle */
+    }
 }
 
 /**
  * VENUS ORBITAL ANIMATION
  * =======================
+ * Slower elliptical orbit with rotation matching orbital position.
  */
 @keyframes venusOrbit {
-    0% { transform: translate3d(0, 0, 0) rotate(0deg); }           /* Starting orbital position */
-    25% { transform: translate3d(-20px, -15px, 0) rotate(90deg); } /* Quarter orbit with rotation */
-    50% { transform: translate3d(-30px, 25px, 0) rotate(180deg); } /* Half orbit with rotation */
-    75% { transform: translate3d(15px, 30px, 0) rotate(270deg); }  /* Three-quarter orbit */
-    100% { transform: translate3d(0, 0, 0) rotate(360deg); }       /* Complete orbital cycle */
+    0% { 
+        transform: translate3d(0, 0, 0) rotate(0deg); 
+        /* Starting orbital position */
+    }
+    25% { 
+        transform: translate3d(-1.04vw, -1.39vh, 0) rotate(90deg); /* -20px -15px → vw/vh */
+        /* Quarter orbit with rotation */
+    }
+    50% { 
+        transform: translate3d(-1.56vw, 2.31vh, 0) rotate(180deg); /* -30px 25px → vw/vh */
+        /* Half orbit with rotation */
+    }
+    75% { 
+        transform: translate3d(0.78vw, 2.78vh, 0) rotate(270deg); /* 15px 30px → vw/vh */
+        /* Three-quarter orbit */
+    }
+    100% { 
+        transform: translate3d(0, 0, 0) rotate(360deg); 
+        /* Complete orbital cycle */
+    }
 }

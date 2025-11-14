@@ -10,23 +10,22 @@
  */
 .container {
     /* LAYOUT & POSITIONING */
-    position: absolute;
-    z-index: 10;                        /* Ensure the text is above the buttons */
-    bottom: 5%;
-    left: 4%;
+    position: absolute;                 /* Free positioning */
+    z-index: 10;                        /* Above background elements */
+    bottom: 5%;                         /* Bottom spacing */
+    left: 4%;                           /* Left spacing */
 
     /* SIZING */
-    width: 400px;                       /* Fixed width */
+    width: 20.83vw;  /* 400px → vw */
     height: auto;
     
     /* INITIAL STATE FOR ANIMATION */
-    opacity: 0;
+    opacity: 0;                         /* Hidden initially */
     
     /* ANIMATIONS */
     animation: 
-        textEntry 2.5s 3s forwards,
-        textFloat 20s ease-in-out infinite 5.5s;
-    /* Cosmic-themed entrance to match the celestial environment, then gentle floating */
+        textEntry 2.5s 3s forwards,     /* Delayed entrance */
+        textFloat 20s ease-in-out infinite 5.5s;  /* Continuous floating */
 }
 
 /**
@@ -35,21 +34,20 @@
  */
 .header {
     /* TYPOGRAPHY */
-    font-size: 3rem;
+    font-size: 2.5vw;  /* 48px → vw */
     font-weight: bold;
-    margin: 0;                                  /* Remove default margins */
+    margin: 0;
     
     /* APPEARANCE */
     color: #ffffff;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
-            0 0 20px rgba(0, 123, 255, 0.6); /* Glowing text */
+    text-shadow: 0 0 0.52vw rgba(255, 255, 255, 0.8), 0 0 1.04vw rgba(0, 123, 255, 0.6); /* 10px 20px → vw */
     
-    /* UNDERLINE */
-    border-bottom: 10px solid #007bff;      /* Bright blue underline accent */
-    display: inline-block;                    /* Allows underline to fit text width */
+    /* LAYOUT */
+    border-bottom: 0.52vw solid #007bff; /* 10px → vw */
+    display: inline-block;
     
-    /* ENHANCED ANIMATION */
-    animation: textGlow 3s ease-in-out infinite 5.5s;
+    /* ANIMATIONS */
+    animation: textGlow 3s ease-in-out infinite 5.5s;  /* Glowing effect */
 }
 
 /**
@@ -57,15 +55,15 @@
  * ================================
  */
 .text {
-    /* SPACING */
-    margin: 1rem;                       /* Margin from header */
+    /* LAYOUT & POSITIONING */
+    margin: 1rem;
     
     /* TYPOGRAPHY */
-    font-size: 1.2rem;
-    line-height: 1.8;                   /* Line spacing */
+    font-size: 1vw;  /* 19.2px → vw */
+    line-height: 1.8;
     
     /* APPEARANCE */
-    color: #b0b0b0;                   /* Soft light gray */
+    color: #b0b0b0;
 }
 
 /**
@@ -76,28 +74,28 @@
 @keyframes textEntry {
     0% {
         opacity: 0;
-        transform: translateY(-80px) translateX(-30px) scale(0.7) rotate(-5deg);
-        filter: blur(15px) brightness(0.3);
+        transform: translateY(-4.17vw) translateX(-1.56vw) scale(0.7) rotate(-5deg); /* -80px -30px → vw */
+        filter: blur(0.78vw) brightness(0.3); /* 15px → vw */
     }
     30% {
         opacity: 0.4;
-        transform: translateY(-40px) translateX(-15px) scale(0.85) rotate(-2deg);
-        filter: blur(8px) brightness(0.6);
+        transform: translateY(-2.08vw) translateX(-0.78vw) scale(0.85) rotate(-2deg); /* -40px -15px → vw */
+        filter: blur(0.42vw) brightness(0.6); /* 8px → vw */
     }
     70% {
         opacity: 0.8;
-        transform: translateY(-10px) translateX(-3px) scale(1.05) rotate(1deg);
-        filter: blur(3px) brightness(1.1);
+        transform: translateY(-0.52vw) translateX(-0.16vw) scale(1.05) rotate(1deg); /* -10px -3px → vw */
+        filter: blur(0.16vw) brightness(1.1); /* 3px → vw */
     }
     90% {
         opacity: 1;
-        transform: translateY(5px) translateX(2px) scale(1.02) rotate(0deg);
-        filter: blur(1px) brightness(1.05);
+        transform: translateY(0.26vw) translateX(0.1vw) scale(1.02) rotate(0deg); /* 5px 2px → vw */
+        filter: blur(0.05vw) brightness(1.05); /* 1px → vw */
     }
     100% {
         opacity: 1;
         transform: translateY(0) translateX(0) scale(1) rotate(0deg);
-        filter: blur(0px) brightness(1);
+        filter: blur(0) brightness(1);
     }
 }
 
@@ -111,22 +109,22 @@
         transform: translateY(0) translateX(0) rotate(0deg); 
     }
     15% { 
-        transform: translateY(-8px) translateX(-5px) rotate(-1deg); 
+        transform: translateY(-0.42vw) translateX(-0.26vw) rotate(-1deg); /* -8px -5px → vw */
     }
     30% { 
-        transform: translateY(-12px) translateX(3px) rotate(1.5deg); 
+        transform: translateY(-0.63vw) translateX(0.16vw) rotate(1.5deg); /* -12px 3px → vw */
     }
     45% { 
-        transform: translateY(-5px) translateX(8px) rotate(-0.5deg); 
+        transform: translateY(-0.26vw) translateX(0.42vw) rotate(-0.5deg); /* -5px 8px → vw */
     }
     60% { 
-        transform: translateY(2px) translateX(6px) rotate(1deg); 
+        transform: translateY(0.1vw) translateX(0.31vw) rotate(1deg); /* 2px 6px → vw */
     }
     75% { 
-        transform: translateY(8px) translateX(-2px) rotate(-1.5deg); 
+        transform: translateY(0.42vw) translateX(-0.1vw) rotate(-1.5deg); /* 8px -2px → vw */
     }
     90% { 
-        transform: translateY(3px) translateX(-6px) rotate(0.5deg); 
+        transform: translateY(0.16vw) translateX(-0.31vw) rotate(0.5deg); /* 3px -6px → vw */
     }
     100% { 
         transform: translateY(0) translateX(0) rotate(0deg); 
@@ -136,15 +134,15 @@
 /**
  * TEXT GLOW ANIMATION
  * ===================
+ * Pulsing glow effect for the header text.
  */
 @keyframes textGlow {
     0%, 100% {
-        text-shadow: 
-            0 0 20px rgba(0, 123, 255, 0.6);
+        text-shadow: 0 0 1.04vw rgba(0, 123, 255, 0.6); /* 20px → vw */
     }
     50% {
         text-shadow: 
-            0 0 30px rgba(0, 123, 255, 0.8),
-            0 0 40px rgba(100, 200, 255, 0.4);
+            0 0 1.56vw rgba(0, 123, 255, 0.8), /* 30px → vw */
+            0 0 2.08vw rgba(100, 200, 255, 0.4); /* 40px → vw */
     }
 }
