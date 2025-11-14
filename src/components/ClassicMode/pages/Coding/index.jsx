@@ -17,7 +17,7 @@ const Coding = () => {
     "Backend": ["Python", "FastAPI", "Flask", "Node.js"],
     "Databases": ["PostgreSQL", "MongoDB", "SQL"],
     "DevOps & Tools": ["Git", "GitHub", "GitLab", "Docker", "PyTest", "Ansible", "PowerShell", "VS Code"],
-    "Machine Learning": ["Coming Soon"]
+    "Data Visualization": ["Python", "Pandas", "Numpy", "Pytorch", "R", "Tableau", "Excel"],
   };
 
   return (

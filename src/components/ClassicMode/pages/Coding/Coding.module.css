@@ -111,7 +111,7 @@
 }
 
 .categoryTitle {
-  font: 600 16.8px/1 'Cinzel', serif; /* CHANGED: 14 * 1.2 = 16.8 */
+  font: 600 15px/1 'Cinzel', serif; /* CHANGED: 14 * 1.2 = 16.8 */
   color: #BFA850;
   margin: 0;
   letter-spacing: 0.96px; /* CHANGED: 0.8 * 1.2 = 0.96 */
