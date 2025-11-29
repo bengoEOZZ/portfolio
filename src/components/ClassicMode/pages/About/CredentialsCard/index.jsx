@@ -4,11 +4,11 @@
  * Credentials card displaying education and work experience.
  * Features three diagonal sections with company/school logos and details.
  * 
- * COMPONENT STRUCTURE:
+ * VISUAL STRUCTURE:
  * -------------------
- * • Three diagonal sections (Queen's, Moneris, Manulife)
- * • Each section has main header and logo overlay + body content
- * • Content and relevant information is positioned in the body content
+ * 1. Three diagonal sections (Queen's, Moneris, Manulife)
+ *    - Each section has a main header with logo and body content
+ *    - Content and relevant information is positioned in the body content
  */
 
 // DEPENDENCIES
@@ -20,7 +20,7 @@ import monerisLogo from '../../../../../assets/moneris.png';
 /**
  * CREDENTIALS DATA
  * ================
- * Centralized content for each section of the card.
+ * Credentials content for each section of the card.
  */
 const CREDENTIALS_DATA = {
   queens: {
@@ -65,9 +65,9 @@ const CREDENTIALS_DATA = {
  * 
  * RENDERING LOGIC:
  * ----------------
- * 1. Main gradient section with clipped diagonal shape
- * 2. Header overlay with darker gradient and logo
- * 3. Text content positioned below header (title → subtitle → period → location → highlight → subtext)
+ * Main gradient section with clipped diagonal shape (2 sections for header/body).
+ *   - Header overlay with darker gradient and logo
+ *   - Text content positioned below header (title → subtitle → period → location → highlight → subtext)
  */
 const Section = ({ type, data }) => (
   <>
@@ -101,10 +101,7 @@ const Section = ({ type, data }) => (
  */
 const CredentialsCard = ({ scale = 1, className = '' }) => {
   return (
-    <div 
-      className={`${classes.cardWrapper} ${className}`}
-      style={{ '--scale-factor': scale }}
-    >
+    <div className={`${classes.cardWrapper} ${className}`} style={{ '--scale-factor': scale }} >
       <div className={classes.credentialsCard}>
         <Section type="queens" data={CREDENTIALS_DATA.queens} />
         <Section type="moneris" data={CREDENTIALS_DATA.moneris} />

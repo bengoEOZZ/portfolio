@@ -1,11 +1,9 @@
 /**
- * ABOUT PAGE COMPONENT - CLASSICMODE
- * ==================================
- * Interactive luxury wallet with 3D mouse tracking that opens to reveal interior contents.
- * Features professional ID window, card slots, and hover-activated detail popups.
+ * ABOUT PAGE COMPONENT - CLASSICMODE (OPTIMIZED)
+ * ==============================================
  */
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import classes from './About.module.css';
 import IDCard from '../Contact/IDCard';
 import CredentialsCard from './CredentialsCard';
@@ -14,8 +12,6 @@ import hollowKnightIcon from '../../../../assets/hollowNit.png';
 
 /**
  * HOVER DATA CONFIGURATION
- * ========================
- * Defines popup content for each hoverable item in the wallet.
  */
 const HOVER_DATA = {
   gymCard: {
@@ -63,7 +59,6 @@ const HOVER_DATA = {
 
 /**
  * PERSONAL INFO DATA
- * ==================
  */
 const PERSONAL_INFO = [
   { label: "Name", value: "Benjamin Tiong" },
@@ -75,59 +70,61 @@ const PERSONAL_INFO = [
 
 /**
  * HOVER ZONE CONFIGURATION
- * ========================
- * Precise positioning for clickable card areas.
  */
 const HOVER_ZONES = {
-  gym: { top: '45px', left: '35px', width: '475px', height: '60px' },
-  credentials: { top: '140px', left: '25px', width: '500px', height: '60px' },
-  hollowKnight: { bottom: '25px', right: '25px', width: '80px', height: '80px' }
+  gymCard: { 
+    position: { top: '45px', left: '35px', width: '475px', height: '60px' },
+    hoverClass: 'gymHover'
+  },
+  credentialsCard: { 
+    position: { top: '140px', left: '25px', width: '500px', height: '60px' },
+    hoverClass: 'credentialsHover'
+  },
+  hollowKnight: { 
+    position: { bottom: '25px', right: '25px', width: '80px', height: '80px' },
+    hoverClass: 'hollowKnightHover'
+  }
 };
 
 /**
  * HoverZone Component
- * ===================
- * Reusable invisible hover area for card interactions.
  */
-const HoverZone = ({ itemKey, position, title, onHover, onLeave }) => {
-  // Map itemKey to the correct CSS class suffix
-  const hoverClassMap = {
-    gymCard: 'gymHover',
-    credentialsCard: 'credentialsHover',
-    hollowKnight: 'hollowKnightHover'
+const HoverZone = ({ itemKey, onHover, onLeave }) => {
+  const config = HOVER_ZONES[itemKey];
+  
+  const handleMouseEnter = () => {
+    onHover(itemKey);
+    const rightInterior = document.querySelector(`.${classes.walletRightInterior}`);
+    if (rightInterior) {
+      rightInterior.classList.add(classes[config.hoverClass]);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    onLeave();
+    const rightInterior = document.querySelector(`.${classes.walletRightInterior}`);
+    if (rightInterior) {
+      rightInterior.classList.remove(classes[config.hoverClass]);
+    }
   };
 
   return (
     <div
       className={classes.preciseHoverZone}
-      onMouseEnter={() => {
-        onHover(itemKey);
-        const rightInterior = document.querySelector(`.${classes.walletRightInterior}`);
-        if (rightInterior) {
-          rightInterior.classList.add(classes[hoverClassMap[itemKey]]);
-        }
-      }}
-      onMouseLeave={() => {
-        onLeave();
-        const rightInterior = document.querySelector(`.${classes.walletRightInterior}`);
-        if (rightInterior) {
-          rightInterior.classList.remove(classes[hoverClassMap[itemKey]]);
-        }
-      }}
-      style={{ position: 'absolute', zIndex: 30, cursor: 'pointer', ...position }}
-      title={title}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      style={{ position: 'absolute', zIndex: 30, cursor: 'pointer', ...config.position }}
+      title={HOVER_DATA[itemKey].title}
     />
   );
 };
 
 /**
  * About Component
- * ===============
  */
 const About = () => {
   const [isWalletOpen, setIsWalletOpen] = useState(false);
   const [hoverItem, setHoverItem] = useState(null);
-  const walletRef = useRef(null);
   const walletContainerRef = useRef(null);
 
   const toggleWallet = () => setIsWalletOpen(!isWalletOpen);
@@ -136,19 +133,18 @@ const About = () => {
 
   /**
    * 3D MOUSE TRACKING EFFECT
-   * ========================
-   * DEPENDENCIES: [isWalletOpen]
    */
   useEffect(() => {
-    const wallet = walletRef.current;
     const walletContainer = walletContainerRef.current;
-    if (!wallet || !walletContainer) return;
+    if (!walletContainer) return;
 
     const handleMouseMove = (e) => {
-      const rect = wallet.getBoundingClientRect();
+      const rect = walletContainer.getBoundingClientRect();
       const intensity = isWalletOpen ? 5 : 15;
-      const mouseX = (e.clientX - rect.left - rect.width / 2) / rect.width * intensity;
-      const mouseY = (e.clientY - rect.top - rect.height / 2) / rect.height * -intensity;
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const mouseX = (e.clientX - centerX) / rect.width * intensity;
+      const mouseY = (e.clientY - centerY) / rect.height * -intensity;
       walletContainer.style.transform = `rotateX(${mouseY}deg) rotateY(${mouseX}deg)`;
     };
 
@@ -156,14 +152,73 @@ const About = () => {
       walletContainer.style.transform = '';
     };
 
-    wallet.addEventListener('mousemove', handleMouseMove);
-    wallet.addEventListener('mouseleave', handleMouseLeave);
+    const parentElement = walletContainer.parentElement;
+    parentElement.addEventListener('mousemove', handleMouseMove);
+    parentElement.addEventListener('mouseleave', handleMouseLeave);
 
     return () => {
-      wallet.removeEventListener('mousemove', handleMouseMove);
-      wallet.removeEventListener('mouseleave', handleMouseLeave);
+      parentElement.removeEventListener('mousemove', handleMouseMove);
+      parentElement.removeEventListener('mouseleave', handleMouseLeave);
     };
   }, [isWalletOpen]);
+
+  // Memoize hover popup content to prevent recreation
+  const hoverPopupContent = useMemo(() => {
+    if (!hoverItem) return null;
+    
+    const data = HOVER_DATA[hoverItem];
+    
+    if (data.type === 'card') {
+      return (
+        <div className={classes.cardPopupContainer}>
+          <div className={classes.cardDisplay}>
+            {React.createElement(data.component, {
+              scale: data.scale,
+              className: classes.popupCard
+            })}
+          </div>
+          <div className={classes.cardInfo}>
+            <h3 className={classes.cardTitle}>{data.title}</h3>
+            <p className={classes.cardSubtitle}>{data.subtitle}</p>
+            <p className={classes.cardDescription}>{data.description}</p>
+            <div className={classes.cardStats}>
+              {Object.entries(data.stats).map(([key, value]) => (
+                <div key={key} className={classes.cardStat}>
+                  <span className={classes.cardStatLabel}>{key}:</span>
+                  <span className={classes.cardStatValue}>{value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <>
+        <div className={classes.hoverPopupHeader}>
+          <div className={classes.hoverPopupIcon}>
+            <img src={data.icon} alt={data.title} />
+          </div>
+          <div>
+            <h3 className={classes.hoverPopupTitle}>{data.title}</h3>
+            <p className={classes.hoverPopupSubtitle}>{data.subtitle}</p>
+          </div>
+        </div>
+        <div className={classes.hoverPopupContent}>
+          <p className={classes.hoverPopupDescription}>{data.description}</p>
+          <div className={classes.hoverPopupStats}>
+            {Object.entries(data.stats).map(([key, value]) => (
+              <div key={key} className={classes.hoverPopupStat}>
+                <span className={classes.hoverPopupStatLabel}>{key}:</span>
+                <span className={classes.hoverPopupStatValue}>{value}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </>
+    );
+  }, [hoverItem]);
 
   return (
     <div className={classes.aboutPage}>
@@ -172,52 +227,7 @@ const About = () => {
       <div className={`${classes.hoverOverlay} ${hoverItem ? classes.active : ''}`}>
         {hoverItem && (
           <div className={`${classes.hoverPopup} ${HOVER_DATA[hoverItem].type === 'card' ? classes.cardPopup : classes.infoPopup}`}>
-            {HOVER_DATA[hoverItem].type === 'card' ? (
-              <div className={classes.cardPopupContainer}>
-                <div className={classes.cardDisplay}>
-                  {React.createElement(HOVER_DATA[hoverItem].component, {
-                    scale: HOVER_DATA[hoverItem].scale,
-                    className: classes.popupCard
-                  })}
-                </div>
-                <div className={classes.cardInfo}>
-                  <h3 className={classes.cardTitle}>{HOVER_DATA[hoverItem].title}</h3>
-                  <p className={classes.cardSubtitle}>{HOVER_DATA[hoverItem].subtitle}</p>
-                  <p className={classes.cardDescription}>{HOVER_DATA[hoverItem].description}</p>
-                  <div className={classes.cardStats}>
-                    {Object.entries(HOVER_DATA[hoverItem].stats).map(([key, value]) => (
-                      <div key={key} className={classes.cardStat}>
-                        <span className={classes.cardStatLabel}>{key}:</span>
-                        <span className={classes.cardStatValue}>{value}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <>
-                <div className={classes.hoverPopupHeader}>
-                  <div className={classes.hoverPopupIcon}>
-                    <img src={HOVER_DATA[hoverItem].icon} alt={HOVER_DATA[hoverItem].title} />
-                  </div>
-                  <div>
-                    <h3 className={classes.hoverPopupTitle}>{HOVER_DATA[hoverItem].title}</h3>
-                    <p className={classes.hoverPopupSubtitle}>{HOVER_DATA[hoverItem].subtitle}</p>
-                  </div>
-                </div>
-                <div className={classes.hoverPopupContent}>
-                  <p className={classes.hoverPopupDescription}>{HOVER_DATA[hoverItem].description}</p>
-                  <div className={classes.hoverPopupStats}>
-                    {Object.entries(HOVER_DATA[hoverItem].stats).map(([key, value]) => (
-                      <div key={key} className={classes.hoverPopupStat}>
-                        <span className={classes.hoverPopupStatLabel}>{key}:</span>
-                        <span className={classes.hoverPopupStatValue}>{value}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </>
-            )}
+            {hoverPopupContent}
           </div>
         )}
       </div>
@@ -253,7 +263,7 @@ const About = () => {
         <div className={classes.centerColumn}>
           <div className={classes.contentContainer}>
             <div className={classes.walletSection}>
-              <div ref={walletRef} className={classes.walletWrapper}>
+              <div className={classes.walletWrapper}>
                 <div 
                   ref={walletContainerRef}
                   className={`${classes.walletContainer} ${isWalletOpen ? classes.walletOpen : ''}`}
@@ -299,27 +309,14 @@ const About = () => {
                     </div>
                     
                     {/* HOVER ZONES */}
-                    <HoverZone 
-                      itemKey="gymCard"
-                      position={HOVER_ZONES.gym}
-                      title="Elite Fitness Club - Full Card View"
-                      onHover={handleItemHover}
-                      onLeave={handleItemLeave}
-                    />
-                    <HoverZone 
-                      itemKey="credentialsCard"
-                      position={HOVER_ZONES.credentials}
-                      title="Professional Credentials - Full Card View"
-                      onHover={handleItemHover}
-                      onLeave={handleItemLeave}
-                    />
-                    <HoverZone 
-                      itemKey="hollowKnight"
-                      position={HOVER_ZONES.hollowKnight}
-                      title="Hollow Knight Mastery"
-                      onHover={handleItemHover}
-                      onLeave={handleItemLeave}
-                    />
+                    {Object.keys(HOVER_ZONES).map(key => (
+                      <HoverZone 
+                        key={key}
+                        itemKey={key}
+                        onHover={handleItemHover}
+                        onLeave={handleItemLeave}
+                      />
+                    ))}
                   </div>
                 </div>
               </div>

@@ -1,47 +1,54 @@
-import React from 'react';
+/**
+ * GYM CARD COMPONENT
+ * ==================
+ * Premium fitness membership card with premium gold aesthetic.
+ * Features Membership status, Dumbbell icon, Elite badge, and Shimmer effect.
+ * 
+ * VISUAL STRUCTURE:
+ * -------------------
+ * - Premium gold aesthetic
+ * - Elite badge indicator (top-right corner)
+ * - Dumbbell icon centerpiece
+ * - Membership text (club name, status, access level)
+ */
+
+// DEPENDENCIES
 import classes from './GymCard.module.css';
 import dumbbellIcon from '../../../../../assets/dumbell.png';
 
+/**
+ * GymCard Component
+ * =================
+ * SCALING: Uses CSS custom property --scale-factor to resize entire card when needed.
+ */
 const GymCard = ({ scale = 1, className }) => {
-  const wrapperStyle = {
-    '--scale-factor': scale
-  };
-
   return (
-    <div 
-      className={`${classes.cardWrapper} ${className || ''}`}
-      style={wrapperStyle}
-    >
-      <div className={classes.gymCardRose}>
-        <div className={classes.roseGoldGradient}></div>
-        
-        <div className={classes.minimalContent}>
-          {/* Elite Badge */}
+    <div className={`${classes.cardWrapper} ${className || ''}`} style={{ '--scale-factor': scale }} >
+      <div className={classes.gymCard}>
+        <div className={classes.content}>
+          
+          {/* ELITE STATUS BADGE */}
           <div className={classes.eliteBadge}>
             <span className={classes.eliteText}>ELITE</span>
           </div>
           
-          {/* Regular Gym Brand */}
-          <div className={classes.gymBrand}>
-            <div className={classes.gymName}>FITNESS CLUB</div>
-            <div className={classes.gymTagline}>HEALTH & WELLNESS</div>
+          {/* GYM TITLE SECTION */}
+          <div className={classes.gymText}>
+            <div className={classes.gymTitle}>FITNESS CLUB</div>
+            <div className={classes.gymSubtitle}>HEALTH & WELLNESS</div>
           </div>
           
-          {/* CENTERPIECE - Big Dumbbell Focus */}
-          <div className={classes.centerpiece}>
-            <div className={classes.dumbbellContainer}>
-              <img src={dumbbellIcon} alt="Gym Member" className={classes.mainDumbbell} />
-            </div>
-            <div className={classes.membershipFocus}>
-              <div className={classes.primaryStatus}>GYM MEMBER</div>
-              <div className={classes.accessLevel}>FULL ACCESS</div>
-            </div>
+          {/* BODY - DUMBBELL ICON & MEMBERSHIP STATUS */}
+          <div className={classes.body}>
+            <img src={dumbbellIcon} className={classes.dumbbell} />
+            <div className={classes.membership}>GYM MEMBER</div>
+            <div className={classes.membershipStatus}>FULL ACCESS</div>
           </div>
           
         </div>
         
-        <div className={classes.shimmerEffect}></div>
-        <div className={classes.elegantAccents}></div>
+        {/* SHIMMER OVERLAY */}
+        <div className={classes.shimmer}></div>
       </div>
     </div>
   );
