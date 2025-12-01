@@ -1,0 +1,1232 @@
+/**
+ * LUXURY WALLET COMPONENT STYLES
+ * ===============================
+ * Styling for the LuxuryWallet component.
+ */
+
+/* ===== CSS VARIABLES ===== */
+:root {
+  /* Shadow used across wallet exterior and interiors for depth */
+  --wallet-shadow: 
+    0 35px 70px rgba(0, 0, 0, 0.9),
+    0 25px 40px rgba(0, 0, 0, 0.7),
+    0 15px 20px rgba(0, 0, 0, 0.5);
+  
+  /* Gold glow effect for hover state */
+  --gold-glow: 0 0 80px rgba(212, 175, 55, 0.7);
+  
+  /* Font styling for text and labels */
+  --luxury-font: 600 12px/1 'Cinzel', serif;
+  
+  /* Gold gradient used for multiple elements */
+  --gold-gradient: linear-gradient(135deg, #d4af37 0%, #f4e4bc 15%, #ffffff 30%, #f4e4bc 45%,
+                    #d4af37 60%, #c9a876 75%, #d4af37 90%, #f4e4bc 100%);
+  
+  /* Popup typography */
+  --popup-gold: #d4af37;
+  --popup-subtitle-color: #bbb;
+  --popup-text-color: #ccc;
+  --popup-stat-bg: rgba(212, 175, 55, 0.1);
+  --popup-stat-border: rgba(212, 175, 55, 0.2);
+}
+
+/**
+ * WALLET SECTION CONTAINER (.walletSection)
+ * =========================================
+ * Main container for entire wallet component.
+ */
+.walletSection {
+  /* LAYOUT */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+}
+
+/**
+ * 3D MOUSE TRACKING WRAPPER (.walletWrapper)
+ * ==========================================
+ * Creates 3D perspective space for rotation effect.
+ */
+.walletWrapper {
+  /* 3D SPACE SETUP */
+  perspective: 1000px;           /* Depth of 3D space */
+  transform-style: preserve-3d;  /* Enable 3D transforms for children */
+}
+
+/**
+ * WALLET CONTAINER (.walletContainer)
+ * ===================================
+ * Main interactive container - handles open/close change and 3D rotation.
+ */
+.walletContainer {
+  /* LAYOUT & POSITIONING */
+  position: relative;
+  cursor: pointer;
+  
+  /* 3D TRANSFORM SETUP */
+  transform-style: preserve-3d;
+  perspective: 1200px;
+  backface-visibility: hidden;
+  
+  /* ANIMATIONS */
+  transition: width 0.8s ease, transform 0.1s ease;
+  
+  /* PERFORMANCE */
+  will-change: transform;  /* Hint browser for transform animations */
+}
+
+/* Open state - expands to fit both interiors */
+.walletOpen .walletContainer {
+  width: 1080px;  /* 540px (exterior) + 270px (left) + 270px (right) */
+}
+
+/**
+ * WALLET EXTERIOR (.luxuryWallet)
+ * ===============================
+ * Closed wallet surface with leather texture and gold decorations.
+ * 
+ * TEXTURE LAYERS:
+ * --------------
+ * 1. Fine dot grain (2 radial gradients)
+ * 2. Diagonal crosshatch pattern (2 linear gradients)
+ * 3. Binding depth shadow (1 linear gradient)
+ * 4. Base dark gradient (1 linear gradient)
+ */
+.luxuryWallet {
+  /* SIZING */
+  width: 540px;
+  height: 450px;
+  
+  /* LAYOUT */
+  position: relative;
+  
+  /* LAYERED LEATHER TEXTURE */
+  background: 
+    /* Fine leather grain dot pattern */
+    radial-gradient(circle at 25% 25%, rgba(40, 40, 40, 0.4) 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, rgba(30, 30, 30, 0.3) 1px, transparent 1px),
+    /* Diagonal crosshatch texture patterns */
+    linear-gradient(60deg, transparent 30%, rgba(40, 40, 40, 0.3) 30%, rgba(40, 40, 40, 0.2) 70%, transparent 70%),
+    linear-gradient(-60deg, transparent 30%, rgba(30, 30, 30, 0.3) 30%, rgba(30, 30, 30, 0.2) 70%, transparent 70%),
+    /* Wallet binding depth at left edge */
+    linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(5, 5, 5, 0.9) 1%, transparent 10%),
+    /* Base dark leather gradient */
+    linear-gradient(135deg, #1a1a1a 0%, #050505 100%);
+  background-size: 3px 3px, 4px 4px, 40px 40px, 40px 40px, 100% 100%, 100% 100%;
+  border-radius: 18px 12px 12px 18px;
+  box-shadow: 
+    /* 3-layer depth shadow */
+    var(--wallet-shadow),
+    /* Inner highlight for edges */
+    inset 0 2px 4px rgba(255, 255, 255, 0.1);
+  border: 1px solid #222;
+  transform: perspective(1000px);
+  transform-style: preserve-3d;
+  transform-origin: left center;
+  transition: transform 0.8s ease, opacity 0.8s ease, box-shadow 0.3s ease;
+  opacity: 1;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.walletContainer:hover .luxuryWallet {
+  box-shadow: 
+    /* Original */
+    var(--wallet-shadow),
+    /* Original */
+    inset 0 2px 4px rgba(255, 255, 255, 0.1),
+    /* Hover: Gold glow on hover */
+    var(--gold-glow);
+}
+
+/* Open animation - Wallet open up and fades out */
+.walletOpen .luxuryWallet {
+  transform: perspective(1000px) rotateY(-160deg) translateX(-90px);
+  opacity: 0;
+}
+
+/**
+ * WALLET STITCHING (.walletStitching)
+ * ===================================
+ * Decorative dashed border with animated gold gradient color shift.
+ */
+.walletStitching {
+  /* POSITIONING */
+  position: absolute;
+  top: 15px;
+  left: 0px;
+  right: 15px;
+  bottom: 15px;
+  
+  /* APPEARANCE */
+  border-top: 2px dashed #d4af37;
+  border-right: 2px dashed #f4e4bc;
+  border-bottom: 2px dashed #d4af37;
+  border-radius: 18px 8px 8px 18px;
+  opacity: 0.85;
+  
+  /* ANIMATION */
+  animation: stitchingGlow 3s ease-in-out infinite;
+}
+
+/**
+ * BT MONOGRAM SECTION (.btMonogram, .btContainer)
+ * ===============================================
+ * Contains overlapping B and T letters with animated gold gradient.
+ */
+.btMonogram {
+  /* POSITIONING - Bottom right corner */
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  
+  /* LAYOUT */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Container for positioning letters relative to each other */
+.btContainer {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/**
+ * MONOGRAM LETTERS (.letterB, .letterT)
+ * =====================================
+ */
+.letterB, .letterT {
+  /* POSITIONING */
+  position: absolute;
+  z-index: 3;
+  
+  /* TYPOGRAPHY */
+  font-family: 'Cinzel', serif;
+  font-size: 100px;
+  font-weight: 700;
+  text-transform: uppercase;
+  
+  /* GRADIENT TEXT EFFECT */
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 300% 300%;
+  
+  /* SHADOW EFFECTS */
+  filter: drop-shadow(0 0 24px rgba(212, 175, 55, 0.8));
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  
+  /* ANIMATION */
+  animation: shine 4s ease-in-out infinite;
+}
+
+/* B letter - left side, rotated left */
+.letterB {
+  top: 55%;
+  left: 40%;
+  transform: translate(-50%, -50%) rotate(-5deg);
+}
+
+/* T letter - right side, rotated right, delayed animation */
+.letterT {
+  top: 55%;
+  right: 35%;
+  transform: translate(50%, -50%) rotate(5deg);
+  animation-delay: 1s;  /* Offset for staggered shine effect */
+}
+
+/**
+ * WALLET CORNERS (.walletCorners)
+ * ===============================
+ */
+.walletCorners {
+  /* POSITIONING */
+  position: absolute;
+  z-index: 12;
+  
+  /* SIZING */
+  width: 20px;
+  height: 20px;
+  
+  /* APPEARANCE */
+  background: linear-gradient(135deg, #c9aa71 0%, #f4e4bc 50%, #d4af37 100%);
+  border: 1px solid #b8860b;
+}
+
+/* Top-right corner position */
+.cornerTopRight { 
+  top: 10px; 
+  right: 10px; 
+  border-radius: 0 8px 0 0; 
+}
+
+/* Bottom-right corner position */
+.cornerBottomRight { 
+  bottom: 10px; 
+  right: 10px; 
+  border-radius: 0 0 8px 0; 
+}
+
+/**
+ * LUXURY BRANDING TEXT (.luxuryBranding)
+ * ======================================
+ * "HANDCODED" text label on bottom-left exterior.
+ */
+.luxuryBranding {
+  /* POSITIONING */
+  position: absolute;
+  bottom: 20px;
+  left: 25px;
+  z-index: 11;
+  
+  /* TYPOGRAPHY */
+  font: var(--luxury-font);
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  
+  /* APPEARANCE */
+  color: rgba(212, 175, 55, 0.8);
+  opacity: 0.9;
+}
+
+/**
+ * WALLET INTERIOR PANELS (.walletLeftInterior, .walletRightInterior)
+ * ==================================================================
+ * Left and right interior panels that slide out when wallet opens.
+ * Both share base styling with leather texture background.
+ * 
+ * ANIMATION FLOW:
+ * --------------
+ * 1. Initially hidden (opacity: 0) and positioned off-screen
+ * 2. When .walletOpen applied, fade in and slide to final positions
+ * 3. Left panel contains ID card window
+ * 4. Right panel contains card slots and Hollow Knight emblem
+ */
+.walletLeftInterior,
+.walletRightInterior {
+  /* SIZING */
+  width: 540px;
+  height: 450px;
+  
+  /* POSITIONING */
+  position: absolute;
+  top: 0;
+  z-index: 5;
+  
+  /* LAYERED LEATHER TEXTURE */
+  background:
+    /* Fine leather grain dot pattern */
+    repeating-linear-gradient(0deg, rgba(139, 69, 19, 0.06) 0px, rgba(139, 69, 19, 0.06) 1px, transparent 1px, transparent 3px),
+    repeating-linear-gradient(90deg, rgba(101, 67, 33, 0.04) 0px, rgba(101, 67, 33, 0.04) 1px, transparent 1px, transparent 3px),
+    /* Diagonal crosshatch texture patterns */
+    linear-gradient(135deg, #151515 0%, #080808 100%);
+  
+  /* APPEARANCE */
+  border: 1px solid #333;
+  box-shadow: var(--wallet-shadow);
+  
+  /* INITIAL STATE */
+  opacity: 0;
+  overflow: visible;
+  
+  /* ANIMATION */
+  transition: all 0.8s ease;
+}
+
+/* Left interior - slides in from left */
+.walletLeftInterior {
+  left: -270px;  /* Initial position (off-screen) */
+  border-radius: 7px 0 0 7px;
+  border-right: none;  /* Seamless connection with right exterior */
+}
+
+/* Right interior - slides in from right */
+.walletRightInterior {
+  left: 180px;  /* Initial position (off-screen) */
+  border-radius: 0 12px 12px 0;
+  border-left: none;  /* Seamless connection with left exterior */
+}
+
+/* Open state - panels visible at final positions */
+.walletOpen .walletLeftInterior {
+  opacity: 1;
+  left: -270px;
+}
+
+.walletOpen .walletRightInterior {
+  opacity: 1;
+  left: 270px;
+}
+
+/**
+ * PREMIUM HEADER (.premiumHeader)
+ * ===============================
+ */
+.premiumHeader {
+  /* POSITIONING */
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 15;
+  
+  /* TYPOGRAPHY */
+  font-family: 'Cinzel', serif;
+  font-size: 30px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  white-space: nowrap;
+  
+  /* GRADIENT TEXT EFFECT */
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 300% 300%;
+  
+  /* GLOW EFFECTS */
+  filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.8));
+  
+  /* ANIMATION */
+  animation: shine 4s ease-in-out infinite;
+}
+
+/**
+ * ID WINDOW CONTAINER (.idWindowContainer)
+ * ========================================
+ * Padding container that positions ID window within left interior.
+ */
+.idWindowContainer {
+  /* LAYOUT */
+  padding: 80px 40px 60px 40px;  /* Space for header and label */
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/**
+ * ID WINDOW (.idWindow)
+ * =====================
+ * Plastic cover effect containing the ID card.
+ * Features plastic cover appearance.
+ */
+.idWindow {
+  /* SIZING */
+  width: 100%;
+  height: 320px;
+  
+  /* POSITIONING */
+  position: relative;
+  z-index: 10;
+  
+  /* LAYOUT */
+  display: flex;
+  overflow: hidden;
+  
+  /* APPEARANCE */
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+  
+  /* INITIAL STATE */
+  opacity: 0;
+  
+  /* ANIMATION */
+  transition: all 0.6s ease;
+}
+
+/* Visible when wallet opens */
+.walletOpen .idWindow {
+  opacity: 1;
+}
+
+/**
+ * ID WINDOW FRAME (.idWindowFrame)
+ * ================================
+ * Plastic dashed frame and animated glare effects.
+ */
+.idWindowFrame {
+  /* POSITIONING */
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  right: 10px;
+  bottom: 8px;
+  z-index: 15;
+  
+  /* BORDERS */
+  border: 1px dashed rgba(255, 255, 255, 0.8);  /* Inner dashed border around frame */
+  border-radius: 8px;
+ 
+  /* PLASTIC COVER EFFECT */
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(212, 175, 55, 0.15) 100%);  /* Subtle golden tint overlay on plastic */
+  backdrop-filter: blur(2px);  /* Blur effect */
+  
+  /* INNER BORDER SHADOW */
+  box-shadow: inset 0 3px 12px rgba(255, 255, 255, 0.5);
+  
+  /* INTERACTIONS */
+  pointer-events: none;  /* Allow clicking through to card */
+}
+
+/**
+ * PLASTIC GLARE EFFECTS (.idWindowFrame::before, ::after)
+ * =====================================================
+ * Creates realistic light reflections on plastic surface.
+ * ::before = Diagonal glare stripe (static)
+ * ::after = Circular glare spot (animated)
+ */
+.idWindowFrame::before {
+  /* PSEUDO-ELEMENT SETUP */
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  
+  /* DIAGONAL GLARE STRIPES */
+  background: 
+    linear-gradient(45deg, 
+      transparent 0%, 
+      rgba(255, 255, 255, 0.4) 20%, 
+      transparent 25%, 
+      transparent 70%, 
+      rgba(255, 255, 255, 0.3) 75%, 
+      transparent 80%
+    );
+  border-radius: 8px;
+}
+
+.idWindowFrame::after {
+  /* PSEUDO-ELEMENT SETUP */
+  content: '';
+  position: absolute;
+  top: 5%;
+  left: 10%;
+  z-index: 2;
+  
+  /* CIRCULAR GLARE SPOT */
+  width: 30%;
+  height: 40%;
+  background: 
+    radial-gradient(ellipse at center, 
+      rgba(255, 255, 255, 0.6) 0%, 
+      rgba(255, 255, 255, 0.2) 40%, 
+      transparent 70%
+    );
+  border-radius: 50%;
+  transform: rotate(-25deg);
+  
+  /* ANIMATION */
+  animation: glareFloat 6s ease-in-out infinite;
+}
+
+/**
+ * ID SECTION LABEL (.idSectionLabel)
+ * ==================================
+ * "IDENTIFICATION" label at bottom of left interior.
+ */
+.idSectionLabel {
+  /* POSITIONING */
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  
+  /* TYPOGRAPHY */
+  font: var(--luxury-font);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  
+  /* APPEARANCE */
+  color: rgba(212, 175, 55, 0.7);
+}
+
+/**
+ * HOLLOW KNIGHT EMBLEM (.walletRightInterior::before)
+ * ===================================================
+ * Bottom-right decorative emblem with glow effect.
+ */
+.walletRightInterior::before {
+  /* PSEUDO-ELEMENT SETUP */
+  content: '';
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+  
+  /* SIZING */
+  width: 80px;
+  height: 80px;
+  
+  /* IMAGE */
+  background: url('/src/assets/hollowNit.png') no-repeat center center;
+  background-size: contain;
+  
+  /* LAYERING */
+  z-index: 20;
+  opacity: 1;
+  
+  /* ANIMATION */
+  transition: all 0.8s ease;
+  
+  /* GLOW EFFECTS */
+  filter: 
+    brightness(2.5)      /* Brighten the image */
+    contrast(1.3)        /* Increase contrast */
+    saturate(1.2)        /* Boost color saturation */
+    drop-shadow(0 0 12px rgba(255, 255, 255, 0.8))      /* White outer glow */
+    drop-shadow(0 0 6px rgba(212, 175, 55, 1));         /* Gold inner glow */
+  
+  /* INTERACTIONS */
+  cursor: pointer;
+}
+
+/**
+ * FLEUR-DE-LIS decorative symbol (.walletRightInterior::after)
+ * ============================================================
+ * Top-right decorative symbol.
+ */
+.walletRightInterior::after {
+  /* PSEUDO-ELEMENT SETUP */
+  content: '⚜';
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  z-index: 25;
+  
+  /* TYPOGRAPHY */
+  font-size: 15px;
+  
+  /* APPEARANCE */
+  color: #d4af37;
+  opacity: 0.3;
+}
+
+/**
+ * CARD SLOTS CONTAINER (.cardSlotsContainer)
+ * ==========================================
+ */
+.cardSlotsContainer {
+  /* LAYOUT */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/**
+ * CARD SLOT (.cardSlot)
+ * =====================
+ * Individual card pocket with fabric texture and depth effect.
+ * Uses ::before for top edge line and ::after for pocket exterior.
+ */
+.cardSlot {
+  width: 100%;
+  background: none;
+  border: none;
+  position: relative;
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+.cardSlot:nth-child(1) {
+  position: absolute;
+  top: 100px;
+  height: 68%;
+  z-index: 3;
+}
+
+.cardSlot:nth-child(2) {
+  position: absolute;
+  top: 200px;
+  height: 55%;
+  z-index: 5;
+  overflow: visible;
+}
+
+/* Open state - slots visible */
+.walletOpen .cardSlot {
+  opacity: 1;
+}
+
+/**
+ * CARD SLOT TOP EDGE (.cardSlot::before)
+ * ======================================
+ * Golden line at top of pocket opening.
+ */
+.cardSlot::before {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(139, 69, 19, 0.4) 0%, rgba(212, 175, 55, 0.9) 50%, rgba(139, 69, 19, 0.4) 100%);
+  z-index: 3;
+}
+
+/**
+ * CARD SLOT FABRIC POCKET (.cardSlot::after)
+ * ==========================================
+ * Layered texture creating realistic fabric pocket exterior.
+ * 
+ * TEXTURE LAYERS:
+ * --------------
+ * 1. Fine dot grain (2 radial gradients)
+ * 2. Depth gradient (1 linear gradient)
+ * 3. Base dark gradient (1 linear gradient)
+ */
+.cardSlot::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: 
+    /* Fine leather grain dot pattern */
+    radial-gradient(circle at 30% 30%, rgba(35, 35, 35, 0.3) 1px, transparent 1px),
+    radial-gradient(circle at 70% 70%, rgba(30, 30, 30, 0.25) 1px, transparent 1px),
+    /* Pocket depth shadow gradient */
+    linear-gradient(180deg, rgba(40, 40, 40, 0.3) 0%, rgba(10, 10, 10, 0.8) 35%, rgba(0, 0, 0, 0.95) 100%),
+    /* Base dark leather gradient */
+    linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+  background-size: 3px 3px, 4px 4px, 100% 100%, 100% 100%;
+  border-radius: 0 0 8px 0;
+  box-shadow: 
+    /* Pocket depth for the edges */
+    inset 0 8px 20px rgba(0, 0, 0, 0.8),
+    inset 0 2px 6px rgba(0, 0, 0, 0.4);
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+/**
+ * CARD LABEL (.cardLabel)
+ * =======================
+ * "FITNESS" and "CREDENTIALS" labels on pocket slots.
+ */
+.cardLabel {
+  /* POSITIONING */
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 10;
+  
+  /* TYPOGRAPHY */
+  font: var(--luxury-font);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  
+  /* APPEARANCE */
+  color: rgba(212, 175, 55, 0.7);
+}
+
+/**
+ * CARD COMPONENTS (.card)
+ * =======================
+ * GymCard and CredentialsCard components displayed in pockets.
+ */
+.card {
+  /* POSITIONING */
+  position: absolute;
+  
+  /* LAYOUT */
+  transform-origin: center center;
+  
+  /* INTERACTIONS */
+  pointer-events: none;  /* Hover handled by invisible zones */
+  
+  /* ANIMATION */
+  transition: all 0.4s ease;  /* Bounce easing */
+}
+
+/* First card (GymCard) */
+.card:nth-child(1) {
+  top: -75px;
+  z-index: 0;
+}
+
+/* Second card (CredentialsCard) */
+.card:nth-child(2) {
+  z-index: 4;
+}
+
+/**
+ * PRECISE HOVER ZONE (.preciseHoverZone)
+ * ======================================
+ * Base style for all hover trigger zones.
+ */
+.preciseHoverZone {
+  /* APPEARANCE */
+  border-radius: 6px;
+  
+  /* INTERACTIONS */
+  pointer-events: all;  /* Enable mouse events */
+  
+  /* ANIMATION */
+  transition: all 0.2s ease;
+}
+
+/**
+ * HOVER STATE EFFECTS
+ * ===================
+ * Card lift animations triggered when hover zone classes applied.
+ */
+
+/* Gym card hover - lifts first card */
+.gymCardHover .cardSlot:nth-child(1) .card {
+  transform: translateY(-15px) scale(0.9);
+}
+
+/* Credentials card hover - lifts second card */
+.credentialsCardHover .cardSlot:nth-child(2) .card {
+  transform: translateY(-15px) scale(0.95);
+}
+
+/* Hollow Knight hover - scales emblem */
+.hollowKnightHover::before {
+  transform: scale(1.2);
+}
+
+/**
+ * STITCHING GLOW ANIMATION
+ * ========================
+ */
+@keyframes stitchingGlow {
+  0%, 100% { 
+    border-top-color: #d4af37;
+    border-right-color: #f4e4bc;
+    border-bottom-color: #d4af37;
+  }
+  50% { 
+    border-top-color: #f4e4bc;
+    border-right-color: #d4af37;
+    border-bottom-color: #f4e4bc;
+  }
+}
+
+/**
+ * SHINE ANIMATION
+ * ===============
+ * Shifts background position for continuous shine effect.
+ */
+@keyframes shine {
+  0%, 100% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+}
+
+/**
+ * GLARE FLOAT ANIMATION
+ * =====================
+ */
+@keyframes glareFloat {
+  0%, 100% { 
+    opacity: 0.3;
+    transform: rotate(-25deg) translateY(0) scale(1);
+  }
+  50% { 
+    opacity: 0.6;
+    transform: rotate(-25deg) translateY(-12px) scale(1.08);
+  }
+}
+
+/**
+ * ===========================================
+ * HOVER OVERLAY & POPUP SYSTEM
+ * ===========================================
+ * Full-screen overlay with centered popup for card/info display.
+ * Triggered when hovering over wallet items.
+ */
+
+/**
+ * HOVER OVERLAY (.hoverOverlay)
+ * =============================
+ */
+.hoverOverlay {
+  /* POSITIONING & SIZING */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 120vw;
+  transform: translateX(-22.5%);
+  
+  /* APPEARANCE */
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  
+  /* LAYERING */
+  z-index: 9999;
+  
+  /* INITIAL STATE */
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  
+  /* ANIMATION */
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Active state */
+.hoverOverlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/**
+ * HOVER POPUP (.hoverPopup)
+ * =========================
+ * Centered popup container with scale animation.
+ */
+.hoverPopup {
+  /* POSITIONING AND SIZING */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  
+  /* APPEARANCE */
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  border: 2px solid #d4af37;
+  border-radius: 15px;
+  padding: 2rem;
+  
+  /* INTERACTIONS */
+  pointer-events: none;
+  
+  /* ANIMATION */
+  animation: popupSlideUp 0.5s ease;
+}
+
+/**
+ * POPUP HEADER (.hoverPopupHeader, .hoverPopupIcon, .hoverPopupTitle, .hoverPopupSubtitle)
+ * =======================================================================================
+ * Header section with icon, title, and subtitle for info-type popups.
+ */
+.hoverPopupHeader {
+  /* LAYOUT */
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  
+  /* SPACING */
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  
+  /* APPEARANCE */
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.hoverPopupIcon {
+  /* SIZING */
+  width: 80px;
+  height: 80px;
+  padding: 10px;
+  
+  /* LAYOUT */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  
+  /* APPEARANCE */
+  border-radius: 10px;
+  border: 2px solid #d4af37;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+  background: #000;
+}
+
+.hoverPopupIcon img {
+  /* SIZING */
+  width: 100%;
+  height: 100%;
+  
+  /* APPEARANCE */
+  object-fit: contain;
+  border-radius: 8px;
+  filter: brightness(3);
+}
+
+.hoverPopupTitle {
+  /* TYPOGRAPHY */
+  font: 700 24px/1.2 'Cinzel', serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  
+  /* APPEARANCE */
+  color: var(--popup-gold);
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+  
+  /* SPACING */
+  margin: 0 0 0.5rem 0;
+}
+
+.hoverPopupSubtitle {
+  /* TYPOGRAPHY */
+  font: 400 16px/1.4 'Cormorant Garamond', serif;
+  font-style: italic;
+  
+  /* APPEARANCE */
+  color: var(--popup-subtitle-color);
+  
+  /* SPACING */
+  margin: 0;
+}
+
+.hoverPopupContent {
+  /* APPEARANCE */
+  color: #ccc;
+  line-height: 1.6;
+}
+
+.hoverPopupDescription {
+  /* TYPOGRAPHY */
+  font: 600 14px/1.6 'Cormorant Garamond', serif;
+  
+  /* SPACING */
+  margin: 0 0 1rem 0;
+}
+
+/**
+ * POPUP STATS GRID
+ * ================
+ * Shared stats grid for both card and info popups.
+ */
+.popupStats {
+  /* LAYOUT */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  
+  /* SIZING */
+  width: 100%;
+  
+  /* SPACING */
+  margin-top: 1rem;
+}
+
+.popupStat {
+  /* LAYOUT */
+  display: flex;
+  justify-content: space-between;
+  
+  /* SPACING */
+  padding: 0.5rem;
+  
+  /* APPEARANCE */
+  background: rgba(212, 175, 55, 0.1);
+  border-radius: 5px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.popupStatLabel {
+  /* SIZING */
+  flex-shrink: 0;
+  
+  /* TYPOGRAPHY */
+  font: 700 12px/1 'Cinzel', serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  
+  /* APPEARANCE */
+  color: var(--popup-gold);
+}
+
+.popupStatValue {
+  /* TYPOGRAPHY */
+  font: 500 12px/1 'Cormorant Garamond', serif;
+  text-align: right;
+  
+  /* APPEARANCE */
+  color: #ffffff;
+}
+
+/**
+ * CARD POPUP STYLES (.cardPopup, .cardPopupContainer, .cardDisplay, .popupCard)
+ * ============================================================================
+ * Wide popup variant for displaying card components.
+ */
+.cardPopup {
+  /* SPACING */
+  padding: 40px 60px;
+  
+  /* APPEARANCE */
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  border: 2px solid #d4af37;
+  border-radius: 20px;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.8),
+    inset 0 1px 0 rgba(212, 175, 55, 0.3);
+}
+
+.cardPopupContainer {
+  /* LAYOUT */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  height: 100%;
+  text-align: center;
+}
+
+.cardDisplay {
+  /* SIZING */
+  flex-shrink: 0;
+  width: fit-content;
+  
+  /* LAYOUT */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* APPEARANCE */
+  background: transparent;
+  border: none;
+  border-radius: 15px;
+  backdrop-filter: blur(2px);
+}
+
+.cardInfo {
+  /* SIZING */
+  flex: 1;
+  max-width: 500px;
+  
+  /* LAYOUT */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  /* APPEARANCE */
+  color: #ffffff;
+}
+
+/**
+ * POPUP STATS GRID
+ * ================
+ * Shared stats grid for both card and info popups.
+ */
+.popupStats {
+  /* LAYOUT */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  
+  /* SIZING */
+  width: 100%;
+  
+  /* SPACING */
+  margin-top: 1rem;
+}
+
+.popupStat {
+  /* LAYOUT */
+  display: flex;
+  justify-content: space-between;
+  
+  /* SPACING */
+  padding: 0.5rem;
+  
+  /* APPEARANCE */
+  background: rgba(212, 175, 55, 0.1);
+  border-radius: 5px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.popupStatLabel {
+  /* SIZING */
+  flex-shrink: 0;
+  
+  /* TYPOGRAPHY */
+  font: 700 12px/1 'Cinzel', serif;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  
+  /* APPEARANCE */
+  color: #d4af37;
+}
+
+.popupStatValue {
+  /* TYPOGRAPHY */
+  font: 500 12px/1 'Cormorant Garamond', serif;
+  text-align: right;
+  
+  /* APPEARANCE */
+  color: #ffffff;
+}
+
+/**
+ * CARD TYPOGRAPHY
+ * ===============
+ */
+.cardTitle {
+  /* TYPOGRAPHY */
+  font: 700 28px/1.2 'Cinzel', serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  
+  /* APPEARANCE */
+  color: var(--popup-gold);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  
+  /* SPACING */
+  margin: 0 0 12px 0;
+}
+
+.cardSubtitle {
+  /* TYPOGRAPHY */
+  font: 400 18px/1.4 'Cormorant Garamond', serif;
+  font-style: italic;
+  
+  /* APPEARANCE */
+  color: var(--popup-subtitle-color);
+  
+  /* SPACING */
+  margin: 0 0 20px 0;
+}
+
+.cardDescription {
+  /* SIZING */
+  max-width: 450px;
+  
+  /* TYPOGRAPHY */
+  font: 400 16px/1.6 'Cormorant Garamond', serif;
+  text-align: center;
+  
+  /* APPEARANCE */
+  color: var(--popup-text-color);
+  
+  /* SPACING */
+  margin: 0 0 1rem 0;
+}
+
+/**
+ * POPUP ANIMATIONS
+ * ================
+ */
+@keyframes popupSlideUp {
+  from {
+    transform: translate(-50%, calc(-50% + 40px)) scale(0.92);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}

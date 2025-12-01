@@ -99,9 +99,10 @@ const Section = ({ type, data }) => (
  * =========================
  * SCALING: Uses CSS custom property --scale-factor to resize entire card when needed.
  */
-const CredentialsCard = ({ scale = 1, className = '' }) => {
+const CredentialsCard = ({ scale = 1, className, disableAnimations = false }) => {
   return (
-    <div className={`${classes.cardWrapper} ${className}`} style={{ '--scale-factor': scale }} >
+    <div className={`${classes.cardWrapper} ${className || ''}
+        ${disableAnimations ? classes.noAnimations : ''}`} style={{ '--scale-factor': scale }} >
       <div className={classes.credentialsCard}>
         <Section type="queens" data={CREDENTIALS_DATA.queens} />
         <Section type="moneris" data={CREDENTIALS_DATA.moneris} />
