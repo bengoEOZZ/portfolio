@@ -196,11 +196,11 @@
   z-index: 15;
   
   /* SIZING */
-  width: 35px;
-  height: 80px;
+  width: 50px;
+  height: 100px;
   
   /* APPEARANCE */
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.9) 0%, rgba(244, 228, 188, 0.7) 50%, rgba(212, 175, 55, 0.9) 100%);
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.95) 0%, rgba(244, 228, 188, 0.85) 50%, rgba(212, 175, 55, 0.95) 100%);
   backface-visibility: hidden;
   
   /* INTERACTIONS */
@@ -216,11 +216,11 @@
  */
 .flipIndicator {
   /* LAYOUT & POSITIONING */
-  right: -15px;
+  right: -20px;
   
   /* APPEARANCE */
-  border-radius: 15px 0 0 15px;
-  box-shadow: -2px 0 10px rgba(212, 175, 55, 0.4);
+  border-radius: 25px 0 0 25px;
+  box-shadow: -3px 0 15px rgba(212, 175, 55, 0.5);
   
   /* ANIMATIONS */
   animation: flipPulse 3s ease-in-out infinite;
@@ -232,11 +232,11 @@
  */
 .flipBackIndicator {
   /* LAYOUT & POSITIONING */
-  left: -15px;
+  left: -20px;
   
   /* APPEARANCE */
-  border-radius: 0 15px 15px 0;
-  box-shadow: 2px 0 10px rgba(212, 175, 55, 0.4);
+  border-radius: 0 25px 25px 0;
+  box-shadow: 3px 0 15px rgba(212, 175, 55, 0.5);
   
   /* ANIMATIONS */
   animation: flipPulseBack 3s ease-in-out infinite;
@@ -254,9 +254,9 @@
   
   /* TYPOGRAPHY */
   font-family: 'Cinzel', serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
-  color: #4A0E0E;
+  color: #2c2c2c;
   letter-spacing: 1.5px;
   text-transform: uppercase;
 }
@@ -287,20 +287,20 @@
  */
 .flipIndicator:hover {
   /* LAYOUT & POSITIONING */
-  right: -12px;
+  right: -15px;
   
   /* APPEARANCE */
-  background: linear-gradient(135deg, rgba(212, 175, 55, 1) 0%, rgba(244, 228, 188, 0.9) 50%, rgba(212, 175, 55, 1) 100%);
-  box-shadow: -4px 0 15px rgba(212, 175, 55, 0.6);
+  background: linear-gradient(135deg, rgba(212, 175, 55, 1) 0%, rgba(244, 228, 188, 1) 50%, rgba(212, 175, 55, 1) 100%);
+  box-shadow: -5px 0 20px rgba(212, 175, 55, 0.7);
 }
 
 .flipBackIndicator:hover {
   /* LAYOUT & POSITIONING */
-  left: -12px;
+  left: -15px;
   
   /* APPEARANCE */
-  background: linear-gradient(135deg, rgba(212, 175, 55, 1) 0%, rgba(244, 228, 188, 0.9) 50%, rgba(212, 175, 55, 1) 100%);
-  box-shadow: 4px 0 15px rgba(212, 175, 55, 0.6);
+  background: linear-gradient(135deg, rgba(212, 175, 55, 1) 0%, rgba(244, 228, 188, 1) 50%, rgba(212, 175, 55, 1) 100%);
+  box-shadow: 5px 0 20px rgba(212, 175, 55, 0.7);
 }
 
 /**
@@ -308,8 +308,8 @@
  * ================================================
  */
 @keyframes flipPulse {
-  0%, 100% { box-shadow: -2px 0 10px rgba(212, 175, 55, 0.4); }
-  50% { box-shadow: -4px 0 15px rgba(212, 175, 55, 0.6); }
+  0%, 100% { box-shadow: -3px 0 15px rgba(212, 175, 55, 0.5); }
+  50% { box-shadow: -5px 0 20px rgba(212, 175, 55, 0.7); }
 }
 
 /**
@@ -317,6 +317,6 @@
  * ===================================================
  */
 @keyframes flipPulseBack {
-  0%, 100% { box-shadow: 2px 0 10px rgba(212, 175, 55, 0.4); }
-  50% { box-shadow: 4px 0 15px rgba(212, 175, 55, 0.6); }
+  0%, 100% { box-shadow: 3px 0 15px rgba(212, 175, 55, 0.5); }
+  50% { box-shadow: 5px 0 20px rgba(212, 175, 55, 0.7); }
 }

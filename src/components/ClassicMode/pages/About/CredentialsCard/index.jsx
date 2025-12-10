@@ -13,9 +13,9 @@
 
 // DEPENDENCIES
 import classes from './CredentialsCard.module.css';
-import queensLogo from '../../../../../assets/queens.png';
-import manulifeLogo from '../../../../../assets/manulife.png';
-import monerisLogo from '../../../../../assets/moneris.png';
+import queensLogo from '../../../../../assets/ClassicMode/queensLogo.png';
+import manulifeLogo from '../../../../../assets/ClassicMode/manulifeLogo.png';
+import monerisLogo from '../../../../../assets/ClassicMode/monerisLogo.png';
 
 /**
  * CREDENTIALS DATA

@@ -11,9 +11,9 @@
 
 // DEPENDENCIES
 import classes from './IDCardBack.module.css';
-import EmailIcon from '../../../../../assets/EmailIcon.png';
-import LinkedInIcon from '../../../../../assets/LinkedInIcon.png';
-import GithubIcon from '../../../../../assets/GithubIcon.png';
+import EmailIcon from '../../../../../assets/ClassicMode/emailIcon.png';
+import LinkedInIcon from '../../../../../assets/ClassicMode/LinkedInIcon.png';
+import GithubIcon from '../../../../../assets/ClassicMode/githubIcon.png';
 import { useState, useCallback } from 'react';
 
 const IDCardBack = () => {

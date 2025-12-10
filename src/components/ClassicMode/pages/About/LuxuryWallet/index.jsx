@@ -42,7 +42,7 @@ import classes from './LuxuryWallet.module.css';
 import IDCard from '../../Contact/IDCard';
 import CredentialsCard from '../CredentialsCard';
 import GymCard from '../GymCard';
-import hollowKnightIcon from '../../../../../assets/hollowNit.png';
+import hollowKnightIcon from '../../../../../assets/ClassicMode/hollowKnightEmblem.png';
 import use3DMouseTracking from '../../../../../hooks/use3DMouseTracking';
 
 /**

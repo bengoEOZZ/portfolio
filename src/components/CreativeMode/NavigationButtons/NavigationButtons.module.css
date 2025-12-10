@@ -265,7 +265,7 @@
 }
 
 .btn:hover .btnText {
-    animation: superTextGlitch 0.2s linear infinite;
+    animation: superTextGlitch 1.5s linear infinite;
 }
 
 /**

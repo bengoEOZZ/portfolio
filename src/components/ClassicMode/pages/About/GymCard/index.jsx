@@ -14,7 +14,7 @@
 
 // DEPENDENCIES
 import classes from './GymCard.module.css';
-import dumbbellIcon from '../../../../../assets/dumbell.png';
+import dumbbellIcon from '../../../../../assets/ClassicMode/dumbell.png';
 
 /**
  * GymCard Component

@@ -9,7 +9,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import classes from './NavigationBar.module.css';
-import emblemImage from '../../../assets/emblem.png';
+import emblemImage from '../../../assets/ClassicMode/dustinessEmblem.png';
 
 /**
  * ClassicNavigationBar Component
