@@ -1,38 +1,41 @@
 /**
- * PROJECTS PAGE - DOCUMENT STACK STYLING
- * ======================================
- * Interactive stack of project documents with realistic paper effects
+ * PROJECTS PAGE COMPONENT STYLES
+ * ===============================
+ * Interactive stack of project documents with flip-through functionality,
+ * stacked/fanned display modes, and live demo popup system.
  */
 
-/* ===== CSS VARIABLES ===== */
+/**
+ * CSS VARIABLES
+ * =============
+ */
 :root {
-  /* Gold colors */
+  /* COLORS - Gold Palette */
   --gold-primary: #BFA850;
+  --gold-secondary: #b8941f;
   --gold-light: #F4E4BC;
   --gold-bright: #FFED4E;
   --gold-dark: #8B6914;
-  --gold-secondary: #b8941f;
   
-  /* Black/Dark colors */
+  /* COLORS - Black/Dark Palette */
   --black-primary: #0a0a0a;
   --black-light: #2c2c2c;
   --black-lighter: #1a1a1a;
   
-  /* Shadows */
+  /* SHADOWS */
   --shadow-small: 0 4px 20px rgba(0, 0, 0, 0.1);
-  --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.25), 0 4px 10px rgba(0, 0, 0, 0.15);
+  --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.25);
   --shadow-large: 0 20px 60px rgba(0, 0, 0, 0.6);
   --shadow-gold-glow: 0 0 40px rgba(212, 175, 55, 0.4);
   
-  /* Gold border setup (reusable) */
+  /* BORDERS - Gold Double Border Effect */
   --border-gold-double: 
-    0 0 0 1px var(--gold-primary) inset,
-    0 0 0 8px var(--black-primary) inset,
-    0 0 0 10px var(--gold-primary) inset,
-    0 0 0 11px var(--black-primary) inset,
-    0 0 0 12px rgba(212, 175, 55, 0.3) inset;
+    0 0 0 1px var(--gold-primary) inset,        /* Outer gold border (1px thin line) */
+    0 0 0 8px var(--black-primary) inset,       /* Black spacer creating gap between gold borders */
+    0 0 0 10px var(--gold-primary) inset,       /* Inner gold border (2px thick line) */
+    0 0 0 11px var(--black-primary) inset;      /* Inner black spacer */
   
-  /* Gold gradient (reusable) */
+  /* GRADIENTS */
   --gradient-gold: linear-gradient(135deg, var(--gold-primary) 0%, #E8D7B0 50%, var(--gold-primary) 100%);
   --gradient-gold-shine: linear-gradient(
     90deg,
@@ -50,36 +53,54 @@
   );
 }
 
-/* ===== MAIN CONTAINER ===== */
+/**
+ * MAIN CONTAINER (.projectsPage, .contentContainer)
+ * =================================================
+ */
 .projectsPage {
+  /* LAYOUT & POSITIONING */
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem;
+  
+  /* TYPOGRAPHY */
   font-family: 'Playfair Display', 'Georgia', serif;
 }
 
 .contentContainer {
+  /* SIZING */
   max-width: 1600px;
   width: 100%;
+  
+  /* LAYOUT & POSITIONING */
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 3rem;
 }
 
-/* ===== PAGE HEADER ===== */
+/**
+ * PAGE HEADER (.pageHeader, .pageTitle, .titleUnderline, .pageSubtitle)
+ * =====================================================================
+ */
 .pageHeader {
+  /* LAYOUT & POSITIONING */
   text-align: center;
   margin-bottom: 2rem;
 }
 
 .pageTitle {
+  /* TYPOGRAPHY */
   font: 700 48px/1.2 'Cinzel', serif;
-  color: var(--black-light);
-  margin: 0 0 1rem 0;
   letter-spacing: 2px;
+  
+  /* LAYOUT & POSITIONING */
+  margin: 0 0 1rem 0;
+  
+  /* APPEARANCE */
+  color: var(--black-light);
   background: linear-gradient(135deg, #d4af37 0%, var(--gold-light) 50%, #d4af37 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -87,137 +108,205 @@
 }
 
 .titleUnderline {
+  /* SIZING */
   width: 120px;
   height: 3px;
-  background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+  
+  /* LAYOUT & POSITIONING */
   margin: 0 auto 1.5rem auto;
+  
+  /* APPEARANCE */
+  background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
   border-radius: 2px;
 }
 
 .pageSubtitle {
+  /* TYPOGRAPHY */
   font: 400 18px/1.6 'Cormorant Garamond', serif;
-  color: #bbb;
+  letter-spacing: 0.5px;
+  
+  /* LAYOUT & POSITIONING */
   max-width: 600px;
   margin: 0 auto;
-  letter-spacing: 0.5px;
+  
+  /* APPEARANCE */
+  color: #bbb;
 }
 
-/* ===== THREE-COLUMN LAYOUT ===== */
+/**
+ * THREE-COLUMN LAYOUT (.threeColumnLayout)
+ * ========================================
+ */
 .threeColumnLayout {
+  /* LAYOUT & POSITIONING */
   display: grid;
-  grid-template-columns: 240px 1fr 240px; /* CHANGED: Increased by 20% (200px → 240px) */
-  gap: 8rem; 
+  grid-template-columns: 240px 1fr 240px;
+  gap: 8rem;
   align-items: flex-start;
-  width: 100%;
   justify-content: center;
+  width: 100%;
 }
 
-/* ===== LEFT COLUMN - STATISTICS ===== */
+/**
+ * COLUMN LAYOUTS (.leftColumn, .centerColumn, .rightColumn)
+ * =========================================================
+ */
 .leftColumn {
+  /* LAYOUT & POSITIONING */
   display: flex;
   flex-direction: column;
 }
 
-.statsSection {
-  background: linear-gradient(135deg, rgba(44, 44, 44, 0.05) 0%, rgba(26, 26, 26, 0.05) 100%);
-  padding: 1.5rem;
-  border-radius: 12px;
-  border: 1px solid rgba(212, 175, 55, 0.1);
-  box-shadow: var(--shadow-small);
-}
-
-/* ===== CENTER COLUMN - DOCUMENTS ===== */
 .centerColumn {
+  /* LAYOUT & POSITIONING */
   display: flex;
   justify-content: center;
   align-items: center;
   padding-top: 0.5rem;
 }
 
+.rightColumn {
+  /* LAYOUT & POSITIONING */
+  display: flex;
+  flex-direction: column;
+  padding-top: 2rem;
+  
+  /* POSITIONING */
+  position: relative;
+  z-index: 1000;
+}
+
+/**
+ * DOCUMENT AREA (.documentArea, .documentStack)
+ * =============================================
+ */
 .documentArea {
+  /* LAYOUT & POSITIONING */
   display: flex;
   flex-direction: column;
   align-items: center;
-  perspective: 1200px;
   position: relative;
-  z-index: 1; /* Lower than navigation */
+  z-index: 1;
+  
+  /* 3D EFFECTS */
+  perspective: 1200px;
 }
 
 .documentStack {
+  /* SIZING */
+  width: 750px;
+  height: 850px;
+  
+  /* LAYOUT & POSITIONING */
   position: relative;
-  width: 750px; /* CHANGED: Made papers bigger (600px → 750px) */
-  height: 850px; /* CHANGED: Made papers taller (700px → 850px) */
+  
+  /* INTERACTIONS */
   cursor: pointer;
-  transition: all 0.8s ease;
+  
+  /* 3D EFFECTS */
   transform-style: preserve-3d;
+  
+  /* ANIMATIONS */
+  transition: all 0.8s ease;
+  
+  /* POSITIONING */
   z-index: 1;
 }
 
-/* ===== RIGHT COLUMN - CONTROLS ===== */
-.rightColumn {
-  display: flex;
-  flex-direction: column;
-  position: relative; /* Add positioning context */
-  z-index: 1000; /* Ensure it's above other elements */
-  padding-top: 2rem;
+/**
+ * SECTION STYLING (.statsSection, .controlsSection, .sectionTitle)
+ * ================================================================
+ */
+.statsSection,
+.controlsSection {
+  /* LAYOUT & POSITIONING */
+  padding: 1.5rem;
+  
+  /* APPEARANCE */
+  background: linear-gradient(135deg, rgba(44, 44, 44, 0.4) 0%, rgba(26, 26, 26, 0.8) 100%);
+  border-radius: 12px;
+  border: 1px solid rgba(212, 175, 55, 0.1);
 }
 
 .controlsSection {
-  background: linear-gradient(135deg, rgba(28, 28, 28, 0.92), rgba(20, 20, 20, 0.95));
-  padding: 2rem;
-  border-radius: 12px;
+  /* APPEARANCE - Override for controls section */
+  background: linear-gradient(135deg, rgba(28, 28, 28, 0.3), rgba(20, 20, 20, 0.9));
   border: 1px solid rgba(212, 175, 55, 0.3);
-  box-shadow: 
-    var(--shadow-medium),
-    0 0 0 1px rgba(212, 175, 55, 0.2);
-  position: sticky;
-  top: 2rem;
-  z-index: 1000;
+  
+  /* EFFECTS */
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  
+  /* POSITIONING */
+  top: 2rem;
+  z-index: 1000;
 }
 
 .sectionTitle {
+  /* TYPOGRAPHY */
   font: 600 18px/1.2 'Cinzel', serif;
-  color: var(--gold-primary);
-  margin: 0 0 1.5rem 0;
   letter-spacing: 1px;
   text-transform: uppercase;
-  text-align: center;
-  border-bottom: 2px solid rgba(212, 175, 55, 0.4);
-  padding-bottom: 0.75rem;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  
+  /* LAYOUT & POSITIONING */
+  text-align: center;
+  margin: 0 0 1.5rem 0;
+  padding-bottom: 0.75rem;
+  
+  /* APPEARANCE */
+  color: var(--gold-primary);
+  border-bottom: 2px solid rgba(212, 175, 55, 0.4);
 }
 
-/* ===== NAVIGATION CONTROLS ===== */
+/**
+ * NAVIGATION CONTROLS (.stackInfo, .currentDoc, .docSeparator, .totalDocs)
+ * ========================================================================
+ */
 .stackInfo {
+  /* LAYOUT & POSITIONING */
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  font: 600 16px/1 'Cinzel', serif;
-  color: #f0f0f0;
-  letter-spacing: 1px;
   margin-bottom: 1.5rem;
+  
+  /* TYPOGRAPHY */
+  font: 600 16px/1 'Cinzel', serif;
+  letter-spacing: 1px;
+  
+  /* APPEARANCE */
+  color: #f0f0f0;
 }
 
 .currentDoc {
-  color: #f4e4bc; /* Lighter gold for better contrast */
+  /* TYPOGRAPHY */
   font-size: 20px;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  
+  /* APPEARANCE */
+  color: #f4e4bc;
 }
 
 .docSeparator {
-  color: #aaa;
+  /* TYPOGRAPHY */
   font-size: 14px;
   text-transform: lowercase;
+  
+  /* APPEARANCE */
+  color: #aaa;
 }
 
 .totalDocs {
+  /* APPEARANCE */
   color: #bbb;
 }
 
+/**
+ * NAVIGATION BUTTONS (.stackControls, .navButton)
+ * ===============================================
+ */
 .stackControls {
+  /* LAYOUT & POSITIONING */
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -225,99 +314,145 @@
 }
 
 .navButton {
+  /* SIZING */
+  width: 100%;
+  
+  /* LAYOUT & POSITIONING */
   padding: 12px 24px;
+  position: relative;
+  z-index: 1001;
+  
+  /* TYPOGRAPHY */
+  font: 600 14px/1 'Cinzel', serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  
+  /* APPEARANCE */
   background: linear-gradient(135deg, #d4af37, #f4e4bc);
   border: none;
   border-radius: 6px;
-  font: 600 14px/1 'Cinzel', serif;
   color: #2c2c2c;
-  letter-spacing: 1px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  width: 100%;
-  position: relative;
-  z-index: 1001;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  
+  /* INTERACTIONS */
+  cursor: pointer;
+  
+  /* ANIMATIONS */
+  transition: all 0.3s ease;
 }
 
 .navButton:hover:not(:disabled) {
+  /* APPEARANCE */
   background: linear-gradient(135deg, #f4e4bc, #BFA850);
-  transform: translateY(-2px);
   box-shadow: 0 6px 15px rgba(212, 175, 55, 0.5);
+  
+  /* ANIMATIONS */
+  transform: translateY(-2px);
 }
 
 .navButton:disabled {
+  /* APPEARANCE */
   opacity: 0.5;
+  
+  /* INTERACTIONS */
   cursor: not-allowed;
+  
+  /* ANIMATIONS */
   transform: none;
 }
 
+/**
+ * TOGGLE BUTTON (.toggleContainer, .toggleButton)
+ * ===============================================
+ */
 .toggleContainer {
+  /* LAYOUT & POSITIONING */
   margin-top: 0;
 }
 
 .toggleButton {
+  /* SIZING */
+  width: 100%;
+  
+  /* LAYOUT & POSITIONING */
   padding: 12px 30px;
+  position: relative;
+  z-index: 1001;
+  
+  /* TYPOGRAPHY */
+  font: 600 14px/1 'Cinzel', serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  
+  /* APPEARANCE */
   background: linear-gradient(135deg, #2c2c2c, #1a1a1a);
   border: 2px solid #d4af37;
   border-radius: 6px;
-  font: 600 14px/1 'Cinzel', serif;
   color: #BFA850;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  width: 100%;
-  position: relative;
-  z-index: 1001;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  
+  /* INTERACTIONS */
+  cursor: pointer;
+  
+  /* ANIMATIONS */
+  transition: all 0.3s ease;
 }
 
 .toggleButton:hover {
+  /* APPEARANCE */
   background: linear-gradient(135deg, #d4af37, #f4e4bc);
   color: #2c2c2c;
-  transform: translateY(-2px);
   box-shadow: 0 6px 15px rgba(212, 175, 55, 0.5);
+  
+  /* ANIMATIONS */
+  transform: translateY(-2px);
 }
 
-/* ===== UPDATED STATISTICS LAYOUT ===== */
+/**
+ * STATISTICS DISPLAY (.portfolioStats, .statItem, .statNumber, .statLabel)
+ * ========================================================================
+ */
 .portfolioStats {
+  /* LAYOUT & POSITIONING */
   display: flex;
   flex-direction: column;
-  gap: 1rem; /* CHANGED: Reduced gap between stat items (1.5rem → 1rem) */
+  gap: 1rem;
   margin-top: 0;
   padding: 0;
 }
 
 .statItem {
+  /* LAYOUT & POSITIONING */
   text-align: center;
-  padding: 1rem; /* CHANGED: Reduced padding (1.5rem → 1rem) */
+  padding: 1rem;
+  
+  /* APPEARANCE */
   background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(244, 228, 188, 0.05) 100%);
   border-radius: 8px;
   border: 1px solid rgba(212, 175, 55, 0.2);
+  
+  /* ANIMATIONS */
   transition: all 0.3s ease;
 }
 
 .statNumber {
-  font: 700 24px/1 'Cinzel', serif; /* CHANGED: Reduced font size (32px → 24px) */
-  color: #BFA850;
-  margin-bottom: 6px; /* CHANGED: Reduced margin (8px → 6px) */
+  /* TYPOGRAPHY */
+  font: 700 24px/1 'Cinzel', serif;
   letter-spacing: 1px;
+  
+  /* LAYOUT & POSITIONING */
+  margin-bottom: 6px;
+  
+  /* APPEARANCE */
+  color: #BFA850;
 }
 
 .statLabel {
-  font: 600 10px/1.4 'Cinzel', serif; /* CHANGED: Reduced font size (12px → 10px) */
-  color: #bbb;
+  /* TYPOGRAPHY */
+  font: 600 10px/1.4 'Cinzel', serif;
   letter-spacing: 1px;
   text-transform: uppercase;
-}
-
-.statsSection,
-.controlsSection {
-  background: linear-gradient(135deg, rgba(44, 44, 44, 0.05) 0%, rgba(26, 26, 26, 0.05) 100%);
-  padding: 1.5rem; /* CHANGED: Reduced padding (2rem → 1.5rem) */
-  border-radius: 12px;
-  border: 1px solid rgba(212, 175, 55, 0.1);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  
+  /* APPEARANCE */
+  color: #bbb;
 }

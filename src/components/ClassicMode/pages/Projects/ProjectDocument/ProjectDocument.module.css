@@ -1,38 +1,77 @@
+/**
+ * PROJECT DOCUMENT COMPONENT STYLES
+ * ==================================
+ * Styling for the ProjectDocument component (certificate-style project cards).
+ */
+
+/**
+ * CSS VARIABLES
+ * =============
+ * Reusable color values for consistency.
+ */
+:root {
+  --gold-primary: #BFA850;
+  --gold-secondary: #b8941f;
+  --black-primary: #0a0a0a;
+  --black-secondary: #1a1a1a;
+  
+  /* Common shadow values */
+  --shadow-base: 0 10px 40px rgba(0, 0, 0, 0.5);
+  --shadow-hover: 0 20px 50px rgba(0, 0, 0, 0.6);
+  --shadow-large: 0 30px 80px rgba(0, 0, 0, 0.8);
+  --shadow-glow: 0 0 30px rgba(212, 175, 55, 0.3);
+}
+
+/**
+ * PROJECT DOCUMENT BASE (.projectDocument)
+ * ========================================
+ */
 .projectDocument {
+  /* POSITIONING */
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  
+  /* APPEARANCE */
   background: var(--black-primary);
   border: 3px solid var(--gold-primary);
-  border-radius: 0;
   
+  /* Subtle gold gradient overlay (top-left corner fade) */
   background-image: 
     linear-gradient(
       135deg,
       rgba(212, 175, 55, 0.15) 0%,
-      rgba(184, 148, 31, 0.08) 15%,
       transparent 30%,
       transparent 100%
     );
   background-color: var(--black-primary);
   
+  /* Shadow and border effects */
   box-shadow: 
-    0 10px 40px rgba(0, 0, 0, 0.5),
+    var(--shadow-base),
     var(--border-gold-double);
   
+  /* STACKING TRANSFORM */
+  /* Uses CSS variables for dynamic positioning based on index */
   transform: 
     translateY(calc(var(--document-index) * -12px))
     translateX(calc(var(--document-index) * 2px))
     rotate(calc(var(--document-index) * -1.5deg));
   
-  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  /* TRANSITIONS */
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Cubic Bezier for bounce effect */
   cursor: pointer;
   overflow: hidden;
   z-index: calc(5 - var(--document-index));
 }
 
+/**
+ * INNER BORDER DECORATION
+ * =======================
+ * Subtle inner border frame.
+ */
 .projectDocument::before {
   content: '';
   position: absolute;
@@ -44,32 +83,55 @@
   pointer-events: none;
 }
 
+/**
+ * ACTIVE STATE
+ * ============
+ * Selected document gets enhanced shadow and slight scale.
+ */
 .projectDocument.active {
   transform: 
-    translateY(calc(var(--document-index) * -12px))
-    translateX(calc(var(--document-index) * 3px))
-    rotate(calc(var(--document-index) * -1.5deg))
-    scale(1.02);
+    translateY(calc(var(--document-index) * -12px))  /* Maintain stacking vertical offset */
+    translateX(calc(var(--document-index) * 3px))    /* Slightly wider horizontal spread (3px vs 2px) */
+    rotate(calc(var(--document-index) * -1.5deg))    /* Keep rotation angle */
+    scale(1.05);                                     /* Larger scale to stand out more during transition */
   box-shadow: 
-    var(--shadow-large),
-    var(--border-gold-double),
-    var(--shadow-gold-glow);
-  z-index: 50;
+    var(--shadow-large),         /* Deep shadow for elevation */
+    var(--border-gold-double),   /* Layered gold borders */
+    var(--shadow-gold-glow);     /* Gold glow effect */
+  filter: blur(0px);             /* Sharp focus for active document */
+  opacity: 1;                    /* Full opacity for active state */
+  z-index: 50;                   /* Bring to front above all other cards */
+  transition: 
+    transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), /* Faster, more dramatic bounce */
+    box-shadow 0.5s ease,
+    filter 0.6s ease,            /* Smooth focus transition from blur to sharp */
+    opacity 0.6s ease,           /* Smooth opacity fade masks z-index change */
+    z-index 0s 0.1s;             /* Z-index changes mid-animation */
 }
 
+/**
+ * HOVER STATE
+ * ===========
+ * Card lifts up with enhanced glow on hover.
+ */
 .projectDocument:hover {
   transform: 
-    translateY(-140px)
-    translateX(calc(var(--document-index) * 2px))
-    rotate(calc(var(--document-index) * -1.5deg))
-    scale(1.03);
+    translateY(-140px)                                /* Dramatic lift upward on hover */
+    translateX(calc(var(--document-index) * 2px))     /* Maintain horizontal stacking offset */
+    rotate(calc(var(--document-index) * -1.5deg))     /* Keep rotation angle */
+    scale(1.03);                                      /* Slightly larger scale than active state */
   box-shadow: 
-    0 20px 50px rgba(0, 0, 0, 0.6),
-    var(--border-gold-double),
-    0 0 30px rgba(212, 175, 55, 0.3);
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    var(--shadow-hover),         /* Enhanced shadow for elevated state */
+    var(--border-gold-double),   /* Layered gold borders */
+    var(--shadow-glow);          /* Gold glow effect */
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Faster bounce for immediate response */
 }
 
+/**
+ * DOCUMENT HEADER (.documentHeader)
+ * =================================
+ * Top section with corner triangles and labels.
+ */
 .documentHeader {
   display: flex;
   justify-content: space-between;
@@ -80,6 +142,11 @@
   position: relative;
 }
 
+/**
+ * CORNER TRIANGLES
+ * ================
+ * Gold triangular decorations in top-left and top-right corners.
+ */
 .documentHeader::before {
   content: '';
   position: absolute;
@@ -93,6 +160,7 @@
   z-index: 1;
 }
 
+/* Right corner triangle */
 .documentHeader::after {
   content: '';
   position: absolute;
@@ -106,6 +174,11 @@
   z-index: 1;
 }
 
+/**
+ * DOCUMENT TYPE LABEL (.documentType)
+ * ===================================
+ * Project type text positioned in left corner.
+ */
 .documentType {
   font: 700 11px/1 'Cinzel', serif;
   color: var(--gold-primary);
@@ -117,6 +190,11 @@
   z-index: 2;
 }
 
+/**
+ * DOCUMENT YEAR LABEL (.documentYear)
+ * ===================================
+ * Year text positioned in right corner.
+ */
 .documentYear {
   font: 900 11px/1 'Cinzel', serif;
   color: var(--gold-primary);
@@ -126,6 +204,11 @@
   z-index: 2;
 }
 
+/**
+ * DOCUMENT TITLE SECTION (.documentTitle)
+ * =======================================
+ * Center header with project title and status badge.
+ */
 .documentTitle {
   padding: 5px 40px 20px 40px;
   text-align: center;
@@ -134,6 +217,7 @@
   position: relative;
 }
 
+/* Triple diamond decorator above title */
 .documentTitle::before {
   content: '◆ ◆ ◆';
   position: absolute;
@@ -146,6 +230,11 @@
   opacity: 0.6;
 }
 
+/**
+ * PROJECT TITLE (h2)
+ * ==================
+ * Animated gold gradient text with shine effect.
+ */
 .documentTitle h2 {
   font: 700 28px/1.2 'Cinzel', serif;
   margin: 15px 0 10px 0;
@@ -157,10 +246,14 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: goldShine 4s linear infinite;
-  filter: drop-shadow(0 0 8px rgba(191, 168, 80, 0.6))
-          drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
+  filter: drop-shadow(0 0 8px rgba(191, 168, 80, 0.6));
 }
 
+/**
+ * GOLD SHINE ANIMATION
+ * ====================
+ * Horizontal sliding gradient effect on title.
+ */
 @keyframes goldShine {
   0% {
     background-position: 0% center;
@@ -170,6 +263,11 @@
   }
 }
 
+/**
+ * STATUS BADGE (.statusBadge)
+ * ===========================
+ * Hexagonal badge showing project status (e.g., "Completed").
+ */
 .statusBadge {
   display: inline-block;
   padding: 6px 20px;
@@ -180,12 +278,14 @@
   position: relative;
   background: linear-gradient(135deg, var(--gold-primary), var(--gold-secondary));
   color: var(--black-primary);
-  clip-path: polygon(10% 0, 90% 0, 100% 50%, 90% 100%, 10% 100%, 0 50%);
-  box-shadow: 
-    0 4px 15px rgba(212, 175, 55, 0.4),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+  clip-path: polygon(10% 0, 90% 0, 100% 50%, 90% 100%, 10% 100%, 0 50%); /* Hexagon shape */
 }
 
+/**
+ * DOCUMENT CONTENT (.documentContent)
+ * ===================================
+ * Main body containing description, tech stack, and action buttons.
+ */
 .documentContent {
   padding: 15px 40px 20px 40px;
   flex: 1;
@@ -196,6 +296,11 @@
   text-align: center;
 }
 
+/**
+ * PROJECT DESCRIPTION (.projectDescription)
+ * =========================================
+ * Italic description text with gold gradient.
+ */
 .projectDescription {
   font: italic 18px/2 'Cormorant Garamond', 'Cinzel', serif;
   background: var(--gradient-gold);
@@ -207,33 +312,47 @@
   position: relative;
   text-align: center;
   font-weight: 500;
-  text-shadow: none;
-  filter: drop-shadow(0 2px 4px rgba(191, 168, 80, 0.3));
 }
 
+/**
+ * TECH SECTION TITLE (.techTitle)
+ * ===============================
+ * "Technologies Used" heading with diamond decorators.
+ */
 .techTitle {
   font: 700 11px/1 'Cinzel', serif;
-  color: #BFA850;
+  color: var(--gold-primary);
   letter-spacing: 1.5px;
   text-transform: uppercase;
   position: relative;
   margin-top: -10px;
 }
 
+/* Diamond decorators before and after title */
 .techTitle::before,
 .techTitle::after {
   content: '◆';
-  color: #BFA850;
+  color: var(--gold-primary);
   margin: 0 15px;
   font-size: 10px;
 }
 
+/**
+ * TECH SECTION CONTAINER (.techSection)
+ * =====================================
+ * Wrapper for tech title and tech tags list.
+ */
 .techSection {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
+/**
+ * TECH LIST (.techList)
+ * =====================
+ * Flex container for technology tags.
+ */
 .techList {
   display: flex;
   flex-wrap: wrap;
@@ -241,30 +360,37 @@
   gap: 8px;
 }
 
+/**
+ * TECH ITEM TAG (.techItem)
+ * =========================
+ * Individual technology badge with hover transform.
+ */
 .techItem {
   padding: 6px 12px;
-  background: #0a0a0a;
-  border: 2px solid #BFA850;
-  border-radius: 0;
+  background: var(--black-primary);
+  border: 2px solid var(--gold-primary);
   font: 600 10px/1.2 'Cinzel', serif;
-  color: #BFA850;
+  color: var(--gold-primary);
   letter-spacing: 1.2px;
   text-transform: uppercase;
   transition: all 0.3s ease;
-  box-shadow: 
-    inset 0 0 0 1px rgba(212, 175, 55, 0.2),
-    0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
+/* Tech item hover - gold fill with lift */
 .techItem:hover {
-  background: #BFA850;
-  color: #0a0a0a;
+  background: var(--gold-primary);
+  color: var(--black-primary);
   transform: translateY(-2px) scale(1.05);
   box-shadow: 
     0 4px 15px rgba(212, 175, 55, 0.5),
-    inset 0 0 0 1px #0a0a0a;
+    inset 0 0 0 1px var(--black-primary);
 }
 
+/**
+ * DOCUMENT ACTIONS (.documentActions)
+ * ===================================
+ * Button group container for Live Demo, GitHub, and Details buttons.
+ */
 .documentActions {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -273,13 +399,17 @@
   padding: 0 40px 25px 40px;
 }
 
+/**
+ * ACTION BUTTON (.actionButton)
+ * ============================
+ * Gold-bordered button with layered shadow effects.
+ */
 .actionButton {
   padding: 16px 24px;
   background: 
-    linear-gradient(145deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
-  border: 3px solid #BFA850;
-  border-radius: 0;
-  color: #BFA850;
+    linear-gradient(145deg, var(--black-primary) 0%, var(--black-secondary) 50%, var(--black-primary) 100%);
+  border: 3px solid var(--gold-primary);
+  color: var(--gold-primary);
   font-family: 'Cinzel', serif;
   font-size: 11px;
   font-weight: 700;
@@ -293,13 +423,11 @@
   gap: 8px;
   position: relative;
   box-shadow: 
-    inset 0 0 0 1px #0a0a0a,
-    inset 0 0 0 3px rgba(212, 175, 55, 0.3),
-    inset 0 2px 4px rgba(212, 175, 55, 0.2),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.5),
-    0 6px 20px rgba(0, 0, 0, 0.4);
+    inset 0 0 0 1px var(--black-primary),
+    inset 0 0 0 3px rgba(212, 175, 55, 0.3);
 }
 
+/* Inner border decoration */
 .actionButton::before {
   content: '';
   position: absolute;
@@ -311,68 +439,85 @@
   pointer-events: none;
 }
 
+/**
+ * BUTTON HOVER STATE
+ * ==================
+ * Gold fill with lift animation when hovering enabled buttons.
+ */
 .actionButton:hover:not(:disabled) {
   background: 
-    linear-gradient(145deg, #BFA850 0%, #d4af37 50%, #BFA850 100%);
-  color: #0a0a0a;
+    linear-gradient(145deg, var(--gold-primary) 0%, #d4af37 50%, var(--gold-primary) 100%);
+  color: var(--black-primary);
   transform: translateY(-3px);
   box-shadow: 
-    inset 0 0 0 1px #0a0a0a,
+    inset 0 0 0 1px var(--black-primary),
     inset 0 0 0 3px rgba(10, 10, 10, 0.3),
-    inset 0 2px 4px rgba(255, 255, 255, 0.3),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.3),
     0 10px 30px rgba(212, 175, 55, 0.5);
 }
 
 .actionButton:disabled {
   background: 
-    linear-gradient(145deg, #0a0a0a 0%, #0a0a0a 50%, #0a0a0a 100%);
+    linear-gradient(145deg, var(--black-primary) 0%, var(--black-primary) 50%, var(--black-primary) 100%);
   border: 3px solid rgba(191, 168, 80, 0.3);
   color: rgba(191, 168, 80, 0.3);
   cursor: not-allowed;
   opacity: 0.4;
-  box-shadow: 
-    inset 0 0 0 1px #0a0a0a,
-    inset 0 0 0 3px rgba(212, 175, 55, 0.1),
-    0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Disabled button icon opacity */
 .actionButton:disabled .buttonIcon {
   opacity: 0.5;
 }
 
+/* Disabled button inner border */
 .actionButton:disabled::before {
   border-color: rgba(212, 175, 55, 0.1);
 }
 
+/**
+ * BUTTON ICON (.buttonIcon)
+ * =========================
+ * Emoji icons displayed in buttons.
+ */
 .buttonIcon {
   font-size: 14px;
   display: inline-block;
 }
 
+/**
+ * ALWAYS ACTIVE PULSE (.alwaysActive)
+ * ===================================
+ * Continuous pulse animation for demo button (all projects except first).
+ */
 .alwaysActive {
-  animation: pulse 2s ease-in-out infinite;
+  animation: pulse 3s ease-in-out infinite;
 }
 
+/**
+ * PULSE ANIMATION
+ * ===============
+ * Subtle shadow pulsing effect for attention.
+ */
 @keyframes pulse {
   0%, 100% {
     box-shadow: 
-      inset 0 0 0 1px #0a0a0a,
+      inset 0 0 0 1px var(--black-primary),
       inset 0 0 0 3px rgba(212, 175, 55, 0.3),
-      inset 0 2px 4px rgba(212, 175, 55, 0.2),
-      inset 0 -2px 4px rgba(0, 0, 0, 0.5),
       0 6px 20px rgba(0, 0, 0, 0.4);
   }
   50% {
     box-shadow: 
-      inset 0 0 0 1px #0a0a0a,
-      inset 0 0 0 3px rgba(212, 175, 55, 0.5),
-      inset 0 2px 4px rgba(212, 175, 55, 0.3),
-      inset 0 -2px 4px rgba(0, 0, 0, 0.5),
+      inset 0 0 0 1px var(--black-primary),
+      inset 0 0 0 3px rgba(212, 175, 55, 0.3),
       0 6px 20px rgba(212, 175, 55, 0.3);
   }
 }
 
+/**
+ * DOCUMENT FOOTER (.documentFooter)
+ * =================================
+ * Bottom section with page number and portfolio stamp.
+ */
 .documentFooter {
   display: flex;
   justify-content: space-between;
@@ -384,6 +529,7 @@
   margin-top: 0px;
 }
 
+/* Left diamond decorator on border */
 .documentFooter::before {
   content: '◆';
   position: absolute;
@@ -395,6 +541,7 @@
   padding: 0 8px;
 }
 
+/* Right diamond decorator on border */
 .documentFooter::after {
   content: '◆';
   position: absolute;
@@ -406,6 +553,11 @@
   padding: 0 8px;
 }
 
+/**
+ * DOCUMENT NUMBER (.documentNumber)
+ * =================================
+ * Current page / total pages indicator (e.g., "01 / 05").
+ */
 .documentNumber {
   font: 700 9px/1 'Cinzel', serif;
   color: #BFA850;
@@ -414,6 +566,11 @@
   padding-top: 12px;
 }
 
+/**
+ * DOCUMENT STAMP (.documentStamp)
+ * ===============================
+ * "PORTFOLIO" stamp text with slight rotation.
+ */
 .documentStamp {
   font: 900 10px/1 'Cinzel', serif;
   color: #BFA850;
@@ -424,27 +581,26 @@
   opacity: 0.9;
 }
 
-.paperTexture {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    radial-gradient(circle at 25% 25%, rgba(0,0,0,0.015) 1px, transparent 1px),
-    radial-gradient(circle at 75% 75%, rgba(0,0,0,0.015) 1px, transparent 1px);
-  background-size: 40px 40px, 60px 60px;
-  pointer-events: none;
-  border-radius: 8px;
-}
-
-/* ===== FAN OUT MODE STYLES ===== */
+/**
+ * FAN OUT MODE STYLES
+ * ===================
+ * Card spread positioning for fanned display mode.
+ * Each document gets unique rotation and translation for fan effect.
+ */
 .projectDocument.fanned {
-  transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: 
+    transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), /* Spring-like bounce for fan spread */
+    filter 0.6s ease,   /* Smooth blur transition */
+    opacity 0.6s ease;  /* Smooth opacity transition */
 }
 
-/* Fan out positioning for each document */
+/* Blur only non-active and non-hovered fanned documents */
+.projectDocument.fanned:not(.active):not(:hover) {
+  filter: blur(2px);  /* Blur inactive documents in fan mode */
+  opacity: 0.7;       /* Dim inactive documents */
+}
+
+/* Individual fan positioning for each card */
 .projectDocument.fanned:nth-child(1) {
   transform: 
     translateY(0)
@@ -490,30 +646,30 @@
   z-index: 5;
 }
 
-/* Hover effect in fanned mode */
+/**
+ * FANNED HOVER STATE
+ * ==================
+ * Lift animation with enhanced shadows when hovering fanned cards.
+ */
 .projectDocument.fanned:hover {
   transform: 
     translateY(-40px)
     translateX(var(--fan-x))
     rotate(var(--fan-rotate))
     scale(0.95);
-  box-shadow: 
-    0 25px 70px rgba(0, 0, 0, 0.7),
-    0 0 0 1px #BFA850 inset,
-    0 0 0 8px #0a0a0a inset,
-    0 0 0 10px #BFA850 inset,
-    0 0 0 11px #0a0a0a inset,
-    0 0 0 12px rgba(212, 175, 55, 0.3) inset,
-    0 0 50px rgba(212, 175, 55, 0.5);
   z-index: 100;
 }
 
-/* Custom hover for each position in fanned mode */
+/**
+ * INDIVIDUAL FANNED HOVER POSITIONS
+ * =================================
+ * Each card maintains its fan angle during hover but lifts higher.
+ */
 .projectDocument.fanned:nth-child(1):hover {
   --fan-x: -300px;
   --fan-rotate: 12deg;
   transform: 
-    translateY(-100px)
+    translateY(-150px)
     translateX(-300px)
     rotate(12deg)
     scale(0.95);
@@ -523,7 +679,7 @@
   --fan-x: -150px;
   --fan-rotate: 6deg;
   transform: 
-    translateY(-100px)
+    translateY(-150px)
     translateX(-150px)
     rotate(6deg)
     scale(0.95);
@@ -533,7 +689,7 @@
   --fan-x: 0px;
   --fan-rotate: 0deg;
   transform: 
-    translateY(-100px)
+    translateY(-150px)
     translateX(0)
     rotate(0deg)
     scale(1);
@@ -543,7 +699,7 @@
   --fan-x: 150px;
   --fan-rotate: -6deg;
   transform: 
-    translateY(-100px)
+    translateY(-150px)
     translateX(150px)
     rotate(-6deg)
     scale(0.95);
@@ -553,33 +709,17 @@
   --fan-x: 300px;
   --fan-rotate: -12deg;
   transform: 
-    translateY(-100px)
+    translateY(-150px)
     translateX(300px)
     rotate(-12deg)
     scale(0.95);
 }
 
-/* Active document in fanned mode */
-.projectDocument.fanned.active {
-  box-shadow: 
-    0 30px 80px rgba(0, 0, 0, 0.8),
-    0 0 0 1px #BFA850 inset,
-    0 0 0 8px #0a0a0a inset,
-    0 0 0 10px #BFA850 inset,
-    0 0 0 11px #0a0a0a inset,
-    0 0 0 12px rgba(212, 175, 55, 0.3) inset,
-    0 0 60px rgba(212, 175, 55, 0.6);
-  transition: 0.2s ease;
-}
-
-/* Disable hover during transition */
+/**
+ * DISABLE HOVER STATE (.disableHover)
+ * ===================================
+ * Prevents hover effects during mode transitions (stacked ↔ fanned).
+ */
 .projectDocument.disableHover:hover {
-  transform: 
-    translateY(calc(var(--document-index) * -12px))
-    translateX(calc(var(--document-index) * 2px))
-    rotate(calc(var(--document-index) * -1.5deg));
-  box-shadow: 
-    0 10px 40px rgba(0, 0, 0, 0.5),
-    var(--border-gold-double);
-  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Smooth bounce transition */
 }
