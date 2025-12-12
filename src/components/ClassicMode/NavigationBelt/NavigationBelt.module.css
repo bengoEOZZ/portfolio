@@ -1,71 +1,112 @@
 /**
- * LUXURY BELT NAVIGATION - STREAMLINED
- * ===================================
- * Louis Vuitton inspired luxury belt with waving flag effects
+ * LUXURY BELT NAVIGATION
+ * ======================
+ * This file contains styling for the Louis Vuitton-inspired luxury belt navigation.
  */
 
-/* MAIN NAVIGATION BELT */
+/**
+ * MAIN NAVIGATION BELT CONTAINER (.navCards)
+ * ==========================================
+ */
 .navCards {
+  /* LAYOUT & POSITIONING */
   position: fixed;
   bottom: 80px;
   left: 0;
   right: 0;
+  width: 100vw;
   height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100vw;
-  animation: luxuryBeltRise 1.5s ease-out 1.0s both, flagWave 4s ease-in-out infinite 3s;
   z-index: 100;
+  
+  /* APPEARANCE */
   opacity: 0;
   transform-style: preserve-3d;
   perspective: 1000px;
+  
+  /* ANIMATIONS */
+  animation: luxuryBeltEntry 1.5s ease-out 1.0s both, wave 4s ease-in-out infinite 3s;
+  will-change: transform, opacity;
 }
 
-/* DIAMOND SHIMMER EFFECT */
-.diamondShimmerEffect {
+/**
+ * SHINE EFFECT (.shineEffect)
+ * ============================
+ * Animated sparkle layer that sweeps across the belt surface.
+ */
+.shineEffect {
+  /* LAYOUT & POSITIONING */
   position: absolute;
   top: 50%;
   left: -10%;
   transform: translateY(-50%);
+  z-index: 7;
+  
+  /* SIZING */
   height: 180px;
   width: 120vw;
+  
+  /* APPEARANCE - X Shine Effect */
   background: 
     linear-gradient(45deg, transparent 0%, transparent 20%, rgba(255,255,255,0.8) 25%, rgba(255,255,255,1) 30%, rgba(255,255,255,0.8) 35%, transparent 40%, transparent 100%),
     linear-gradient(-45deg, transparent 0%, transparent 60%, rgba(255,255,255,0.6) 65%, rgba(255,255,255,0.9) 70%, rgba(255,255,255,0.6) 75%, transparent 80%, transparent 100%);
-  z-index: 7;
-  animation: diamondShimmer 6s ease-in-out infinite, shimmerWave 3.5s ease-in-out infinite 3s;
   opacity: 0.6;
+  
+  /* ANIMATIONS */
+  animation: shine 6s ease-in-out infinite, shineWave 3.5s ease-in-out infinite 3s;
+  will-change: transform, opacity;
 }
 
-/* LEATHER BELT STRAP */
+/**
+ * LEATHER BELT STRAP (.navCards::before)
+ * ======================================
+ * Main leather strap with realistic brown gradient and golden border.
+ */
 .navCards::before {
+  /* PSEUDO-ELEMENT SETUP */
   content: '';
   position: absolute;
   top: 50%;
   left: -10%;
   transform: translateY(-50%);
+  z-index: 1;
+  
+  /* SIZING */
   height: 160px;
   width: 120vw;
+  
+  /* APPEARANCE */
   background: 
-    linear-gradient(180deg, #1a0f08 0%, #2d1710 5%, #4a2416 15%, #6b3319 25%, #8b4513 35%, #a0522d 45%, #cd853f 50%, #daa520 55%, #cd853f 60%, #a0522d 65%, #8b4513 75%, #6b3319 85%, #4a2416 95%, #1a0f08 100%),
-    radial-gradient(ellipse 8px 6px at 20px 10px, rgba(0,0,0,0.3) 0%, transparent 50%),
-    linear-gradient(90deg, transparent 0%, rgba(255,215,0,0.1) 25%, rgba(255,215,0,0.2) 50%, rgba(255,215,0,0.1) 75%, transparent 100%);
+    linear-gradient(180deg, #1a0f08 0%, #2d1710 5%, #4a2416 15%, #6b3319 25%, #8b4513 35%, #a0522d 45%,
+      #cd853f 50%, #daa520 55%, #cd853f 60%, #a0522d 65%, #8b4513 75%, #6b3319 85%, #4a2416 95%, #1a0f08 100%);
   border: 8px solid #FFD700;
-  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.8), 0 0 80px rgba(255, 215, 0, 0.4), inset 0 12px 0 rgba(255, 255, 255, 0.15), inset 0 -12px 0 rgba(0, 0, 0, 0.6);
-  z-index: 1;
-  animation: beltMaterialize 2s ease-out 1.2s both, beltFlagWave 3s ease-in-out infinite 3s;
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.8), 0 0 80px rgba(255, 215, 0, 0.4);
+  
+  /* ANIMATIONS */
+  animation: beltMaterialize 2s ease-out 1.2s both, beltWave 3s ease-in-out infinite 3s;
+  will-change: transform, opacity, filter;
 }
 
-/* LUXURY STITCHING */
+/**
+ * LUXURY STITCHING (.navCards::after)
+ * ===================================
+ */
 .navCards::after {
+  /* PSEUDO-ELEMENT SETUP */
   content: '';
   position: absolute;
   top: 50%;
   left: -10%;
   transform: translateY(-50%);
+  z-index: 2;
+  
+  /* SIZING */
   height: 160px;
   width: 120vw;
+  
+  /* APPEARANCE */
   background: 
     linear-gradient(90deg, transparent 0%, #FFD700 2%, transparent 4%, transparent 8%, #FFD700 10%, transparent 12%),
     linear-gradient(90deg, transparent 0%, #FFD700 2%, transparent 4%, transparent 8%, #FFD700 10%, transparent 12%);
@@ -73,120 +114,197 @@
   background-position: 0 20px, 0 calc(100% - 20px);
   background-repeat: repeat-x;
   opacity: 0.8;
-  z-index: 2;
+  
+  /* ANIMATIONS */
   animation: stitchingAppear 1.5s ease-out 2.0s both, stitchingWave 3.2s ease-in-out infinite 3s;
+  will-change: transform, opacity;
 }
 
-/* LUXURY BUCKLE */
+/**
+ * LUXURY BUCKLE (.navBuckle)
+ * ==========================
+ */
 .navBuckle {
+  /* LAYOUT & POSITIONING */
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 280px;
-  height: 200px;
-  background: radial-gradient(ellipse at center, #FFD700 0%, #F4D03F 15%, #FFD700 30%, #d4af37 45%, #B8860B 60%, #8B4513 75%, #d4af37 85%, #FFD700 100%);
-  border: 8px solid #8B4513;
-  border-radius: 35px;
-  box-shadow: 0 50px 150px rgba(0, 0, 0, 0.9), 0 0 100px rgba(255, 215, 0, 0.6), inset 0 12px 0 rgba(255, 255, 255, 0.5), inset 0 -12px 0 rgba(0, 0, 0, 0.5);
   z-index: 50;
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: buckleDescend 2s ease-out 0s both, buckleWaveFloat 4s ease-in-out infinite 2.5s;
-  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  
+  /* SIZING */
+  width: 280px;
+  height: 200px;
+  
+  /* APPEARANCE */
+  background: radial-gradient(ellipse at center, #FFD700 0%, #F4D03F 15%, #FFD700 30%, #d4af37 45%, #B8860B 60%,
+              #8B4513 75%, #d4af37 85%, #FFD700 100%);
+  border: 8px solid #8B4513;
+  border-radius: 35px;
+  box-shadow: 0 0 100px rgba(255, 215, 0, 0.6), inset 0 12px 0 rgba(255, 255, 255, 0.5), inset 0 -12px 0 rgba(0, 0, 0, 0.5);
   opacity: 0;
   overflow: hidden;
+  
+  /* INTERACTIONS */
+  cursor: default;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  
+  /* ANIMATIONS */
+  animation: buckleDescend 2s ease-out 0s both, buckleWave 4s ease-in-out infinite 2.5s;
+  will-change: transform, opacity;
 }
 
+/**
+ * BUCKLE INNER CIRCLE (.navBuckle::before)
+ * ========================================
+ */
 .navBuckle::before {
+  /* PSEUDO-ELEMENT SETUP */
   content: '';
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  
+  /* SIZING */
   width: 120px;
   height: 120px;
+  
+  /* APPEARANCE */
   background: radial-gradient(circle, rgba(139, 69, 19, 0.9) 0%, rgba(139, 69, 19, 0.7) 30%, rgba(212, 175, 55, 0.3) 50%, transparent 80%);
   border: 6px solid #8B4513;
   border-radius: 50%;
   box-shadow: inset 0 6px 0 rgba(255, 255, 255, 0.4), inset 0 -6px 0 rgba(0, 0, 0, 0.5);
 }
 
+/**
+ * BUCKLE FLEUR-DE-LIS SYMBOL (.navBuckle::after)
+ * ==============================================
+ */
 .navBuckle::after {
+  /* PSEUDO-ELEMENT SETUP */
   content: '⚜';
   position: absolute;
   top: 48%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 10;
+  
+  /* TYPOGRAPHY */
   font-size: 45px;
+  font-weight: bold;
   color: #d4af37;
   text-shadow: 0 4px 8px rgba(0, 0, 0, 0.8), 0 0 30px rgba(212, 175, 55, 0.8);
-  font-weight: bold;
-  z-index: 10;
 }
 
-/* NAVIGATION CARDS */
+/**
+ * NAVIGATION CARDS (.navCard)
+ * ===========================
+ * Golden cards with abbreviated page labels (Ab, Co, Pr, Ct).
+ */
 .navCard {
-  width: 140px;
-  height: 100px;
+  /* LAYOUT & POSITIONING */
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 20;
+  
+  /* SIZING */
+  width: 140px;
+  height: 100px;
+  flex-shrink: 0;
+  
+  /* APPEARANCE */
   background: linear-gradient(135deg, #FFD700 0%, #F4D03F 15%, #FFD700 30%, #d4af37 45%, #B8860B 60%, #8B4513 70%, #d4af37 80%, #F4D03F 90%, #FFD700 100%);
   border: 4px solid #8B4513;
   border-radius: 15px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  z-index: 20;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 215, 0, 0.3), inset 0 4px 0 rgba(255, 255, 255, 0.4), inset 0 -4px 0 rgba(0, 0, 0, 0.3);
-  transition: all 0.4s ease;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 4px 0 rgba(255, 255, 255, 0.4), inset 0 -4px 0 rgba(0, 0, 0, 0.3);
   opacity: 0;
   transform: translateY(30px) scale(0.9);
-  animation: studRise 0.8s ease-out forwards, cardFlagWave 3.8s ease-in-out infinite 4s;
-  flex-shrink: 0;
+  overflow: hidden;
+  
+  /* INTERACTIONS */
+  cursor: pointer;
+  transition: all 0.4s ease;
+  
+  /* ANIMATIONS */
+  animation: cardWave 3.8s ease-in-out infinite 4s;
+  will-change: transform, opacity;
 }
 
-/* CARD POSITIONING */
-.navCard:nth-child(2) { animation-delay: 2.5s; order: 1; margin-right: 100px; }
-.navCard:nth-child(3) { animation-delay: 2.8s; order: 2; margin-right: 200px; }
-.navCard:nth-child(5) { animation-delay: 3.1s; order: 4; margin-left: 200px; }
-.navCard:nth-child(6) { animation-delay: 3.4s; order: 5; margin-left: 100px; }
+/**
+ * CARD POSITIONING
+ * ================
+ * Staggered entrance animations and spacing around central buckle. Cubic bezier for bounce effect.
+ */
+.navCard:nth-child(2) { 
+  animation: cardEntryLeft 1s cubic-bezier(0.34, 1.56, 0.64, 1) 2.5s forwards, cardWave 3.8s ease-in-out infinite 6s;
+  order: 1; 
+  margin-right: 100px; 
+}
+.navCard:nth-child(3) { 
+  animation: cardEntryLeft 1s cubic-bezier(0.34, 1.56, 0.64, 1) 2.8s forwards, cardWave 3.8s ease-in-out infinite 6.3s;
+  order: 2; 
+  margin-right: 200px; 
+}
+.navCard:nth-child(5) { 
+  animation: cardEntryRight 1s cubic-bezier(0.34, 1.56, 0.64, 1) 3.1s forwards, cardWave 3.8s ease-in-out infinite 6.6s;
+  order: 4; 
+  margin-left: 200px; 
+}
+.navCard:nth-child(6) { 
+  animation: cardEntryRight 1s cubic-bezier(0.34, 1.56, 0.64, 1) 3.4s forwards, cardWave 3.8s ease-in-out infinite 6.9s;
+  order: 5; 
+  margin-left: 100px; 
+}
 
+/**
+ * CARD SPARKLE EFFECT (.navCard::before)
+ * ======================================
+ */
 .navCard::before {
+  /* PSEUDO-ELEMENT SETUP */
   content: '';
   position: absolute;
   top: -50%;
   left: -50%;
+  z-index: 1;
+  
+  /* SIZING */
   width: 200%;
   height: 200%;
+  
+  /* APPEARANCE */
   background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.6) 48%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0.6) 52%, transparent 70%);
-  animation: luxurySparkle 6s ease-in-out infinite;
-  z-index: 1;
   border-radius: 15px;
+  
+  /* ANIMATIONS */
+  animation: luxurySparkle 6s ease-in-out infinite;
+  will-change: transform, opacity;
 }
 
+/**
+ * CARD HOVER STATE (.navCard:hover)
+ * =================================
+ */
 .navCard:hover {
+  /* APPEARANCE */
   transform: translateY(-8px) scale(1.03);
-  box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.6),
-    0 0 30px rgba(255, 215, 0, 0.5),
-    inset 0 2px 0 rgba(255, 255, 255, 0.6);
-  
-  /* Subtle golden glow */
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 4px 0 rgba(255, 255, 255, 0.4), inset 0 -4px 0 rgba(0, 0, 0, 0.3);
   background: linear-gradient(135deg, 
     #FFD700 0%, 
     #FFFFFF 20%, 
     #F4D03F 40%, 
      #B8860B 60%, 
-    #8B4513 70%,    /* Keep this brown line */
+    #8B4513 70%,
     #d4af37 80%,  
     #FFD700 100%
   );
-  
-  /* Brighter border */
   border-color: #654321;
 }
 
@@ -200,33 +318,54 @@
   transform: translateY(-1px);
 }
 
-/* TYPOGRAPHY */
+/**
+ * CARD ABBREVIATION TEXT (.cardAbbrev)
+ * ====================================
+ * Large italic letters (Ab, Co, Pr, Ct).
+ */
 .cardAbbrev {
-  font-size: 26px;
-  font-weight: 800;
-  margin-bottom: 6px;
-  color: #2C1810;
+  /* LAYOUT & POSITIONING */
   position: relative;
   z-index: 2;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3);
-  transition: all 0.4s ease;
+  
+  /* TYPOGRAPHY */
   font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 26px;
+  font-weight: 800;
   font-style: italic;
+  color: #2C1810;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3);
+  margin-bottom: 6px;
+  
+  /* INTERACTIONS */
+  transition: all 0.4s ease;
 }
 
 .navCard:hover .cardAbbrev { transform: scale(1.15); color: #1a1a1a; }
 
+/**
+ * CARD LABEL TEXT (.cardLabel)
+ * ============================
+ * Small uppercase full page names.
+ */
 .cardLabel {
+  /* LAYOUT & POSITIONING */
+  position: relative;
+  z-index: 2;
+  
+  /* TYPOGRAPHY */
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
   color: #4A2C17;
-  position: relative;
-  z-index: 2;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
-  transition: all 0.4s ease;
+  
+  /* APPEARANCE */
   opacity: 0.9;
+  
+  /* INTERACTIONS */
+  transition: all 0.4s ease;
 }
 
 .navCard:hover .cardLabel {
@@ -236,8 +375,17 @@
   transform: translateY(-1px);
 }
 
-/* CORE ANIMATIONS */
-@keyframes flagWave {
+/**
+ * CORE ANIMATIONS
+ * ===============
+ */
+
+/**
+ * BELT WAVE ANIMATION (@keyframes wave)
+ * =====================================
+ * Main container 3D waving motion.
+ */
+@keyframes wave {
   0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
   25% { transform: rotateX(1.5deg) rotateY(0.8deg) rotateZ(0.3deg); }
   50% { transform: rotateX(-0.8deg) rotateY(-0.4deg) rotateZ(-0.2deg); }
@@ -245,7 +393,12 @@
   100% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
 }
 
-@keyframes beltFlagWave {
+/**
+ * BELT FLAG WAVE ANIMATION (@keyframes beltWave)
+ * ==============================================
+ * Leather strap waving motion with vertical scaling.
+ */
+@keyframes beltWave {
   0% { transform: translateY(-50%) perspective(1000px) rotateX(0deg) rotateY(0deg) scaleY(1); }
   25% { transform: translateY(-50%) perspective(1000px) rotateX(2deg) rotateY(0.8deg) scaleY(1.01); }
   50% { transform: translateY(-50%) perspective(1000px) rotateX(-1deg) rotateY(-0.6deg) scaleY(0.99); }
@@ -253,26 +406,46 @@
   100% { transform: translateY(-50%) perspective(1000px) rotateX(0deg) rotateY(0deg) scaleY(1); }
 }
 
-@keyframes shimmerWave {
+/**
+ * SHINE WAVE ANIMATION (@keyframes shineWave)
+ * ===========================================
+ * Diamond sparkle layer waving motion.
+ */
+@keyframes shineWave {
   0% { transform: translateY(-50%) skewX(0deg) rotateY(0deg); }
   50% { transform: translateY(-50%) skewX(0.8deg) rotateY(0.4deg); }
   100% { transform: translateY(-50%) skewX(0deg) rotateY(0deg); }
 }
 
+/**
+ * STITCHING WAVE ANIMATION (@keyframes stitchingWave)
+ * ===================================================
+ * Golden stitching waving motion.
+ */
 @keyframes stitchingWave {
   0% { transform: translateY(-50%) rotateX(0deg); }
   50% { transform: translateY(-50%) rotateX(1.5deg); }
   100% { transform: translateY(-50%) rotateX(0deg); }
 }
 
-@keyframes buckleWaveFloat {
+/**
+ * BUCKLE WAVE FLOAT ANIMATION (@keyframes buckleWave)
+ * ===================================================
+ * Central buckle floating waving motion.
+ */
+@keyframes buckleWave {
   0% { transform: translate(-50%, -50%) rotateX(0deg) rotateZ(0deg); }
   33% { transform: translate(-50%, -50%) rotateX(0.8deg) rotateZ(0.4deg); }
   66% { transform: translate(-50%, -50%) rotateX(-0.4deg) rotateZ(-0.2deg); }
   100% { transform: translate(-50%, -50%) rotateX(0deg) rotateZ(0deg); }
 }
 
-@keyframes cardFlagWave {
+/**
+ * CARD WAVE ANIMATION (@keyframes cardWave)
+ * =========================================
+ * Navigation cards subtle waving motion.
+ */
+@keyframes cardWave {
   0% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
   25% { transform: translateY(-0.8px) rotateX(0.4deg) rotateY(0.2deg); }
   50% { transform: translateY(0.8px) rotateX(-0.2deg) rotateY(-0.15deg); }
@@ -280,55 +453,134 @@
   100% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
 }
 
-@keyframes diamondShimmer {
+/**
+ * SHINE ANIMATION (@keyframes shine)
+ * ==================================
+ * Sparkle sweeping across belt surface.
+ */
+@keyframes shine {
   0% { background-position: -200% 0%, 200% 0%; opacity: 0.6; }
   50% { background-position: 200% 0%, -200% 0%; opacity: 0.9; }
   100% { background-position: -200% 0%, 200% 0%; opacity: 0.6; }
 }
 
-@keyframes luxuryBeltRise {
+/**
+ * ENTRANCE ANIMATIONS
+ * ===================
+ */
+
+/**
+ * LUXURY BELT ENTRY ANIMATION (@keyframes luxuryBeltEntry)
+ * ========================================================
+ * Main container entrance from bottom.
+ */
+@keyframes luxuryBeltEntry {
   0% { opacity: 0; transform: translateY(80px) scale(0.9); }
   50% { opacity: 0.7; transform: translateY(-10px) scale(1.02); }
   100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
+/**
+ * BELT MATERIALIZE ANIMATION (@keyframes beltMaterialize)
+ * =======================================================
+ * Leather strap entrance with blur effect.
+ */
 @keyframes beltMaterialize {
   0% { opacity: 0; transform: translateY(-50%) scaleX(0.5); filter: blur(10px); }
   50% { opacity: 0.8; transform: translateY(-50%) scaleX(1.05); filter: blur(2px); }
   100% { opacity: 1; transform: translateY(-50%) scaleX(1); filter: blur(0); }
 }
 
+/**
+ * STITCHING APPEAR ANIMATION (@keyframes stitchingAppear)
+ * =======================================================
+ * Golden stitching entrance with vertical reveal.
+ */
 @keyframes stitchingAppear {
   0% { opacity: 0; transform: translateY(-50%) scaleY(0); }
   100% { opacity: 0.8; transform: translateY(-50%) scaleY(1); }
 }
 
+/**
+ * BUCKLE DESCEND ANIMATION (@keyframes buckleDescend)
+ * ===================================================
+ * Central buckle dramatic entrance from above with rotation.
+ */
 @keyframes buckleDescend {
   0% { opacity: 0; transform: translate(-50%, -150%) scale(0.5) rotateY(180deg); }
   60% { opacity: 1; transform: translate(-50%, -45%) scale(1.1) rotateY(-10deg); }
   100% { opacity: 1; transform: translate(-50%, -50%) scale(1) rotateY(0deg); }
 }
 
-@keyframes studRise {
-  0% { opacity: 0; transform: translateY(30px) scale(0.9); }
-  50% { opacity: 0.7; transform: translateY(-5px) scale(1.02); }
-  100% { opacity: 1; transform: translateY(0) scale(1); }
+/**
+ * CARD ENTRY LEFT ANIMATION (@keyframes cardEntryLeft)
+ * ====================================================
+ * Left-side cards slide in from left with clockwise rotation and bouce.
+ */
+@keyframes cardEntryLeft {
+  0% { 
+    opacity: 0; 
+    transform: translateX(-40px) translateY(6px) scale(0.85) rotateZ(-5deg); 
+  }
+  60% { 
+    opacity: 1; 
+    transform: translateX(2px) translateY(-1px) scale(1.01) rotateZ(1deg); 
+  }
+  100% { 
+    opacity: 1; 
+    transform: translateX(0) translateY(0) scale(1) rotateZ(0deg); 
+  }
 }
 
+/**
+ * CARD ENTRY RIGHT ANIMATION (@keyframes cardEntryRight)
+ * ======================================================
+ * Right-side cards slide in from right with counter-clockwise rotation and bouce.
+ */
+@keyframes cardEntryRight {
+  0% { 
+    opacity: 0; 
+    transform: translateX(40px) translateY(6px) scale(0.85) rotateZ(5deg); 
+  }
+  60% { 
+    opacity: 1; 
+    transform: translateX(-2px) translateY(-1px) scale(1.01) rotateZ(-1deg); 
+  }
+  100% { 
+    opacity: 1; 
+    transform: translateX(0) translateY(0) scale(1) rotateZ(0deg); 
+  }
+}
+
+/**
+ * LUXURY SPARKLE ANIMATION (@keyframes luxurySparkle)
+ * ===================================================
+ * Diagonal sparkle sweeping across cards.
+ */
 @keyframes luxurySparkle {
   0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); opacity: 0; }
   50% { transform: translateX(100%) translateY(100%) rotate(45deg); opacity: 1; }
   100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); opacity: 0; }
 }
 
-/* EXIT ANIMATIONS */
+/**
+ * EXIT ANIMATIONS
+ * ===============
+ */
+
+/* Exit state classes */
 .navBuckle.unclasping { animation: buckleUnclasp 1.2s ease-in-out forwards; pointer-events: none; }
 .navCards.beltDisappearing::before { animation: beltSlideAway 0.4s ease-out 0.05s forwards; }
 .navCards.beltDisappearing::after { animation: stitchingFadeOut 0.4s ease-out 0.08s forwards; }
-.navCards.beltDisappearing .diamondShimmerEffect { animation: sparklesFadeOut 0.35s ease-out 0.1s forwards; }
+.navCards.beltDisappearing .shineEffect { animation: sparklesFadeOut 0.35s ease-out 0.1s forwards; }
 .navCard.exitingLeft { animation: cardExitLeft 0.8s ease-in-out forwards; }
 .navCard.exitingRight { animation: cardExitRight 0.8s ease-in-out forwards; }
 
+/**
+ * BUCKLE UNCLASP ANIMATION (@keyframes buckleUnclasp)
+ * ===================================================
+ * Buckle exit with rotation and shrinking.
+ */
 @keyframes buckleUnclasp {
   0% { transform: translate(-50%, -50%) scale(1) rotateY(0deg); opacity: 1; }
   30% { transform: translate(-50%, -50%) scale(1.1) rotateY(5deg) rotateZ(2deg); }
@@ -336,85 +588,62 @@
   100% { transform: translate(-50%, -50%) scale(0.2) rotateY(180deg) rotateZ(45deg); opacity: 0; }
 }
 
+/**
+ * BELT SLIDE AWAY ANIMATION (@keyframes beltSlideAway)
+ * ====================================================
+ * Leather strap simple fade out.
+ */
 @keyframes beltSlideAway {
   0% { opacity: 1; }
   100% { opacity: 0; }
 }
 
+/**
+ * STITCHING FADE OUT ANIMATION (@keyframes stitchingFadeOut)
+ * ==========================================================
+ * Golden stitching fade out.
+ */
 @keyframes stitchingFadeOut {
   0% { opacity: 0.8; }
   100% { opacity: 0; }
 }
 
+/**
+ * SPARKLES FADE OUT ANIMATION (@keyframes sparklesFadeOut)
+ * ========================================================
+ * Diamond shimmer fade out.
+ */
 @keyframes sparklesFadeOut {
   0% { opacity: 0.6; }
   100% { opacity: 0; }
 }
 
 /**
- * CRAFT SYMBOL (.craftSymbol) - FLEUR-DE-LIS IN BUCKLE
- * ====================================================
- */
-.craftSymbol {
-  /* SIZING */
-  font-size: 20px;
-  
-  /* APPEARANCE */
-  color: #8b4513;                     /* Bronze/brown color for symbol */
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  
-  /* INTERACTIONS */
-  transition: all 0.3s ease;
-  
-  /* LAYOUT */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.navBuckle {
-  cursor: default;                    /* Make buckle clickable */
-}
-
-.navBuckle:hover .craftSymbol {
-  color: #d4af37;                     /* Golden color on hover */
-  transform: scale(1.1);              /* Slight growth on hover */
-  text-shadow: 
-    0 0 8px rgba(212, 175, 55, 0.6),   /* Golden glow */
-    0 2px 6px rgba(0, 0, 0, 0.4);      /* Enhanced shadow */
-}
-
-/**
- * BELT FADING ANIMATION (.beltFading)
- * ===================================
- * Comprehensive fade-out with unbuckling animation when navigating away from home
+ * BELT FADING STATE (.beltFading)
+ * ===============================
+ * Comprehensive fade-out when navigating away from home.
  */
 .beltFading {
   animation: beltFadeOut 0.6s ease-out forwards;
 }
 
-/* Buckle unbuckling animation when fading */
 .beltFading .navBuckle {
   animation: buckleUnclasp 0.8s ease-in-out forwards;
   pointer-events: none;
 }
 
-/* Belt strap fading */
 .beltFading::before {
   animation: beltSlideAway 0.5s ease-out 0.1s forwards;
 }
 
-/* Stitching fading */
 .beltFading::after {
   animation: stitchingFadeOut 0.5s ease-out 0.15s forwards;
 }
 
-/* Shimmer effect fading */
-.beltFading .diamondShimmerEffect {
+.beltFading .shineEffect {
   animation: sparklesFadeOut 0.4s ease-out 0.2s forwards;
 }
 
-/* Navigation cards exit animation */
 .beltFading .navCard:nth-child(2) {
   animation: cardExitLeft 0.6s ease-in-out forwards;
 }
@@ -431,6 +660,11 @@
   animation: cardExitRight 0.6s ease-in-out 0.05s forwards;
 }
 
+/**
+ * BELT FADE OUT ANIMATION (@keyframes beltFadeOut)
+ * ================================================
+ * Main container downward fade.
+ */
 @keyframes beltFadeOut {
   from {
     opacity: 1;
@@ -442,6 +676,11 @@
   }
 }
 
+/**
+ * CARD EXIT LEFT ANIMATION (@keyframes cardExitLeft)
+ * ==================================================
+ * Left-side cards exit with leftward drift and rotation.
+ */
 @keyframes cardExitLeft {
   0% { 
     opacity: 1; 
@@ -457,6 +696,11 @@
   }
 }
 
+/**
+ * CARD EXIT RIGHT ANIMATION (@keyframes cardExitRight)
+ * ====================================================
+ * Right-side cards exit with rightward drift and rotation.
+ */
 @keyframes cardExitRight {
   0% { 
     opacity: 1; 

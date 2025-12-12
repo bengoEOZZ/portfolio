@@ -1,15 +1,15 @@
 /**
- * CLASSICMODE COMPONENT - SOPHISTICATED LUXURY PORTFOLIO EXPERIENCE
- * =================================================================
+ * CLASSICMODE COMPONENT - LUXURY PORTFOLIO EXPERIENCE
+ * ===================================================
  * This component renders the main Classic mode interface of the portfolio application.
- * Features a classy luxury-themed experience with sophisticated animations, golden accents,
+ * Features a classy luxury-themed experience with luxurious animations, golden accents,
  * and refined visual effects to showcase the professional and craftsmanship side of the portfolio.
  * 
  * COMPONENT ARCHITECTURE:
  * This component acts as a container/orchestrator that renders four main child components:
  * 
  * - NavigationBar: Header with luxury logo and briefcase menu
- * - SophisticatedBackground: Dynamic mathematical flowing curves
+ * - LuxuryBackground: Dynamic mathematical flowing curves
  * - HelloText: Professional introduction and portfolio showcase
  * - NavigationBelt: Luxury leather belt navigation system at bottom
  *
@@ -22,7 +22,7 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import classes from './ClassicMode.module.css';
 import NavigationBar from './NavigationBar';
-import SophisticatedBackground from './SophisticatedBackground';
+import LuxuryBackground from './LuxuryBackground';
 import HelloText from './HelloText';
 import NavigationBelt from './NavigationBelt';
 import { usePageTransition } from '../../hooks/usePageTransition';
@@ -70,7 +70,7 @@ const ClassicMode = () => {
 
       <div className={classes.container}>
         {/* BACKGROUND SYSTEM - Always present */}
-        <SophisticatedBackground />
+        <LuxuryBackground />
         
         {/* MAIN CONTENT - Conditional rendering */}
         {isHome ? (

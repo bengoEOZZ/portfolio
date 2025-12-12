@@ -1,0 +1,968 @@
+/**
+ * BRIEFCASE NAVIGATION COMPONENT STYLES
+ * ======================================
+ * Styles for the interactive luxury briefcase dropdown menu.
+ */
+
+/**
+ * MAIN BRIEFCASE CONTAINER (.briefcase)
+ * ======================================
+ */
+.briefcase {
+  /* LAYOUT & POSITIONING */
+  position: relative;
+  width: 70px;
+  height: 45px;
+  
+  /* 3D PROPERTIES */
+  transform-style: preserve-3d;      /* Enable 3D transforms on children */
+  perspective: 200px;                /* Depth effect for 3D rotation */
+  
+  /* INTERACTIONS */
+  cursor: pointer;                   /* Indicate clickability */
+  transition: all 0.5s ease;         /* Smooth property changes */
+}
+
+/**
+ * BRIEFCASE HANDLE (.briefcaseHandle)
+ * ====================================
+ */
+.briefcaseHandle {
+  /* LAYOUT & POSITIONING */
+  position: absolute;                /* Position above briefcase body */
+  top: -10px;                        /* Offset above body */
+  left: 52%;                         /* Slightly right of center */
+  transform: translateX(-50%);       /* Center horizontally */
+  width: 35px;                       /* Handle width */
+  height: 8px;                       /* Handle thickness */
+  
+  /* APPEARANCE */
+  background: linear-gradient(180deg, #f4e4bc, #d4af37 30%, #BFA850 70%, #8B7355);  /* Golden gradient */
+  border: 2px solid rgba(139, 115, 85, 0.6);                                        /* Bronze border */
+  border-radius: 12px 12px 0 0;                                                     /* Rounded top */
+  box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.4), 0 3px 10px rgba(0, 0, 0, 0.5);  /* Shine + depth */
+  
+  /* INTERACTIONS */
+  transition: all 0.4s ease;         /* Smooth hover effects */
+}
+
+/* Handle hover glow */
+.briefcase:hover .briefcaseHandle {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 0 30px rgba(212, 175, 55, 0.7), 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+/* Handle rivets (decorative metal fasteners) */
+.briefcaseHandle::before,
+.briefcaseHandle::after {
+  content: '';                       /* Pseudo-element */
+  position: absolute;                /* Position on handle */
+  bottom: -2px;                      /* At connection point */
+  width: 5px;                        /* Rivet size */
+  height: 5px;                       /* Circular */
+  background: radial-gradient(circle, #d4af37, #8B7355);  /* Gold to bronze */
+  border-radius: 50%;                /* Perfect circle */
+  border: 1px solid rgba(139, 115, 85, 0.8);              /* Bronze border */
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);         /* Depth */
+}
+.briefcaseHandle::before { left: -2px; }    /* Left rivet */
+.briefcaseHandle::after { right: -2px; }    /* Right rivet */
+
+/**
+ * BRIEFCASE BODY (.briefcaseBody)
+ * ================================
+ */
+.briefcaseBody {
+  /* LAYOUT & POSITIONING */
+  position: absolute;                /* Fill container */
+  width: 100%;                       /* Full width */
+  height: 100%;                      /* Full height */
+  transform-origin: bottom center;   /* Rotate from bottom */
+  overflow: hidden;                  /* Hide interior until open */
+  
+  /* APPEARANCE */
+  background: linear-gradient(145deg, #2a2420, #1a1410 30%, #0f0a08 60%, #1a1410);  /* Dark leather texture */
+  border: 3px solid #BFA850;                                                         /* Golden border */
+  border-radius: 4px;                                                                 /* Rounded corners */
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.7),                  /* Outer shadow */
+    inset 0 4px 12px rgba(255, 255, 255, 0.4),       /* Top highlight */
+    inset 0 2px 6px rgba(244, 228, 188, 0.5),        /* Metallic shine */
+    inset 0 -2px 8px rgba(0, 0, 0, 0.6);             /* Bottom depth */
+  
+  /* INTERACTIONS */
+  transition: all 0.4s ease;         /* Smooth animations */
+}
+
+/* Hover preview peek */
+.briefcase:hover .briefcaseBody {
+  transform: rotateX(-15deg);        /* Slight tilt */
+  border-color: #d4af37;             /* Brighten border */
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.7), 
+    inset 0 4px 12px rgba(255, 255, 255, 0.4), 
+    inset 0 2px 6px rgba(244, 228, 188, 0.5), 
+    inset 0 -2px 8px rgba(0, 0, 0, 0.6), 
+    0 -10px 20px rgba(212, 175, 55, 0.7);    /* Bottom glow */
+}
+
+/* Fully opened state */
+.briefcase.open .briefcaseBody {
+  transform: rotateX(-105deg);       /* Full rotation */
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.7), 
+    0 -10px 30px rgba(212, 175, 55, 0.8),    /* Strong glow */
+    inset 0 4px 12px rgba(255, 255, 255, 0.4);
+}
+
+/**
+ * TOP SECTION LABEL AREA (.briefcaseTop)
+ * =======================================
+ */
+.briefcaseTop {
+  /* LAYOUT & POSITIONING */
+  position: relative;                /* For z-index stacking */
+  height: 50%;                       /* Top half of briefcase */
+  display: flex;                     /* Center contents */
+  flex-direction: column;            /* Stack vertically */
+  align-items: center;               /* Center horizontally */
+  justify-content: center;           /* Center vertically */
+  gap: 2px;                          /* Space between elements */
+  padding-top: 4px;                  /* Push down slightly */
+  z-index: 2;                        /* Above interior */
+}
+
+/**
+ * GLEAM EFFECT (::after)
+ * =======================
+ */
+.briefcaseBody::after {
+  content: '';                       /* Pseudo-element */
+  position: absolute;                /* Position on body */
+  top: 0;                            /* Top edge */
+  left: 5%;                          /* Inset from left */
+  right: 5%;                         /* Inset from right */
+  height: 2px;                       /* Thin line */
+  opacity: 0;                        /* Hidden by default */
+  transition: all 0.4s ease;         /* Fade in smoothly */
+}
+
+/* Gleam appears on hover */
+.briefcase:hover .briefcaseBody::after {
+  opacity: 1;                        /* Fade in */
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5) 15%, rgba(255, 255, 255, 0.9) 50%, rgba(255, 255, 255, 0.5) 85%, transparent);  /* White shine */
+  box-shadow: 0 0 20px #fff, 0 3px 15px rgba(255, 215, 0, 0.8);  /* Glow effect */
+}
+
+/**
+ * DIAMOND SYMBOL (.briefcaseDiamond)
+ * ===================================
+ */
+.briefcaseDiamond {
+  /* TYPOGRAPHY */
+  font-size: 14px;                   /* Icon size */
+  
+  /* APPEARANCE */
+  color: #d4af37;                    /* Golden color */
+  text-shadow: 0 0 12px rgba(212, 175, 55, 0.8), 0 0 6px rgba(244, 228, 188, 0.6), 0 2px 4px rgba(0, 0, 0, 0.8);  /* Glow + depth */
+  
+  /* ANIMATIONS */
+  animation: diamondShimmer 3s ease-in-out infinite;  /* Pulsing shine */
+}
+
+/* Diamond hover brightening */
+.briefcase:hover .briefcaseDiamond {
+  color: #FFD700;                    /* Brighter gold */
+  text-shadow: 0 0 20px #FFD700, 0 0 10px rgba(244, 228, 188, 0.8), 0 3px 6px #000;  /* Stronger glow */
+}
+
+/**
+ * MENU LABEL TEXT (.briefcaseLabel)
+ * ==================================
+ */
+.briefcaseLabel {
+  /* TYPOGRAPHY */
+  font-family: 'Cinzel', serif;      /* Luxury serif font */
+  font-size: 8px;                    /* Small label */
+  font-weight: 700;                  /* Bold */
+  letter-spacing: 1.5px;             /* Spaced capitals */
+  text-transform: uppercase;         /* ALL CAPS */
+  
+  /* APPEARANCE */
+  color: #d4af37;                    /* Golden color */
+  text-shadow: 0 0 12px rgba(212, 175, 55, 0.6), 0 1px 4px #000;  /* Glow + depth */
+  
+  /* INTERACTIONS */
+  transition: all 0.3s ease;         /* Smooth hover */
+}
+
+/* Label hover brightening */
+.briefcase:hover .briefcaseLabel {
+  color: #f4e4bc;                    /* Champagne color */
+  text-shadow: 0 0 12px rgba(244, 228, 188, 0.9), 0 0 6px rgba(255, 215, 0, 0.6);  /* Enhanced glow */
+}
+
+/**
+ * CORNER ORNAMENTS (.cornerOrnament)
+ * ===================================
+ */
+.cornerOrnament {
+  /* LAYOUT & POSITIONING */
+  position: absolute;                /* Position at corners */
+  width: 8px;                        /* Ornament size */
+  height: 8px;                       /* Square ornament */
+  
+  /* APPEARANCE */
+  border: 2px solid #BFA850;         /* Antique gold border */
+  
+  /* INTERACTIONS */
+  pointer-events: none;              /* Don't block clicks */
+  transition: all 0.3s ease;         /* Smooth hover */
+}
+
+/* Top-left corner */
+.cornerOrnament:nth-child(2) {
+  top: 5px;                          /* Inset from top */
+  left: 5px;                         /* Inset from left */
+  border-right: none;                /* Remove right border */
+  border-bottom: none;               /* Remove bottom border */
+  border-radius: 1px 0 0 0;          /* Rounded corner */
+}
+
+/* Top-right corner */
+.cornerOrnament:nth-child(3) {
+  top: 5px;                          /* Inset from top */
+  right: 5px;                        /* Inset from right */
+  border-left: none;                 /* Remove left border */
+  border-bottom: none;               /* Remove bottom border */
+  border-radius: 0 1px 0 0;          /* Rounded corner */
+}
+
+/* Bottom-left corner */
+.cornerOrnament:nth-child(4) {
+  bottom: 5px;                       /* Inset from bottom */
+  left: 5px;                         /* Inset from left */
+  border-right: none;                /* Remove right border */
+  border-top: none;                  /* Remove top border */
+  border-radius: 0 0 0 1px;          /* Rounded corner */
+}
+
+/* Bottom-right corner */
+.cornerOrnament:nth-child(5) {
+  bottom: 5px;                       /* Inset from bottom */
+  right: 5px;                        /* Inset from right */
+  border-left: none;                 /* Remove left border */
+  border-top: none;                  /* Remove top border */
+  border-radius: 0 0 1px 0;          /* Rounded corner */
+}
+
+/* Corner accent dots */
+.cornerOrnament::before,
+.cornerOrnament::after {
+  content: '';                       /* Pseudo-element */
+  position: absolute;                /* Position on ornament */
+  background: #d4af37;               /* Golden color */
+  border-radius: 50%;                /* Round dots */
+}
+
+/* Larger outer dot */
+.cornerOrnament::before {
+  width: 2px;                        /* Dot size */
+  height: 2px;                       /* Circular */
+}
+
+/* Position outer dots at corners */
+.cornerOrnament:nth-child(2)::before { top: -1px; left: -1px; }
+.cornerOrnament:nth-child(3)::before { top: -1px; right: -1px; }
+.cornerOrnament:nth-child(4)::before { bottom: -1px; left: -1px; }
+.cornerOrnament:nth-child(5)::before { bottom: -1px; right: -1px; }
+
+/* Smaller inner dot */
+.cornerOrnament::after {
+  width: 1.5px;                      /* Smaller dot */
+  height: 1.5px;                     /* Circular */
+}
+
+/* Position inner dots */
+.cornerOrnament:nth-child(2)::after { top: 2px; left: 2px; }
+.cornerOrnament:nth-child(3)::after { top: 2px; right: 2px; }
+.cornerOrnament:nth-child(4)::after { bottom: 2px; left: 2px; }
+.cornerOrnament:nth-child(5)::after { bottom: 2px; right: 2px; }
+
+/* Hover brightening */
+.briefcase:hover .cornerOrnament {
+  border-color: #d4af37;             /* Brighter gold */
+  box-shadow: 0 0 6px rgba(212, 175, 55, 0.5);  /* Glow effect */
+}
+
+/* Hover dot gradients */
+.briefcase:hover .cornerOrnament::before,
+.briefcase:hover .cornerOrnament::after {
+  background: radial-gradient(circle, 
+    #f4e4bc 0%, 
+    #d4af37 60%, 
+    #BFA850 100%
+  );                                 /* Radial gradient */
+  box-shadow: 0 0 4px rgba(212, 175, 55, 0.6);  /* Dot glow */
+}
+
+/**
+ * BRIEFCASE INTERIOR (.briefcaseInterior)
+ * ========================================
+ */
+.briefcaseInterior {
+  /* LAYOUT & POSITIONING */
+  position: absolute;                /* Fill briefcase body */
+  top: 0;                            /* Top edge */
+  left: 0;                           /* Left edge */
+  width: 100%;                       /* Full width */
+  height: 100%;                      /* Full height */
+  z-index: -1;                       /* Behind body */
+  
+  /* APPEARANCE */
+  border: 3px solid #BFA850;         /* Antique gold border */
+  border-radius: 4px;                /* Rounded edges */
+  background: linear-gradient(145deg, 
+    #0f0a08 0%,
+    #1a1410 100%
+  );                                 /* Dark leather interior */
+  box-shadow: 
+    inset 0 10px 30px rgba(0, 0, 0, 0.9),
+    inset 0 0 40px rgba(0, 0, 0, 0.8);  /* Deep shadow */
+}
+
+/* Visible when briefcase opens */
+.briefcase.open .briefcaseInterior {
+  opacity: 1;                        /* Fade in */
+}
+
+/* Mysterious interior creature */
+.interiorCreature {
+  /* LAYOUT & POSITIONING */
+  position: absolute;                /* Position inside interior */
+  inset: 3px;                        /* Inset from edges */
+  
+  /* APPEARANCE */
+  background: linear-gradient(180deg,
+    #0a0a0a 0%,
+    #000000 50%,
+    #0a0a0a 100%
+  );                                 /* Pitch black void */
+  border-radius: 2px;                /* Rounded edges */
+  box-shadow: 
+    inset 0 10px 20px rgba(0, 0, 0, 0.9),
+    inset 0 -10px 20px rgba(0, 0, 0, 0.9),
+    inset 0 0 40px rgba(0, 0, 0, 0.8);  /* Deep darkness */
+}
+
+/* Glowing eyes (::before) */
+.interiorCreature::before {
+  content: '';                       /* Pseudo-element */
+  
+  /* LAYOUT & POSITIONING */
+  position: absolute;                /* Position in creature */
+  top: 55%;                          /* Slightly below center */
+  left: 50%;                         /* Center horizontally */
+  transform: translate(-50%, -50%); /* Perfect centering */
+  width: 80%;                        /* Most of interior */
+  height: 80%;                       /* Most of interior */
+  
+  /* APPEARANCE */
+  background-image: 
+    radial-gradient(ellipse 8px 12px at 30% 40%, 
+      #fff 0%,
+      #f4e4bc 20%,
+      #d4af37 40%,
+      rgba(212, 175, 55, 0.8) 60%,
+      transparent 70%
+    ),
+    radial-gradient(ellipse 8px 12px at 70% 40%, 
+      #fff 0%,
+      #f4e4bc 20%,
+      #d4af37 40%,
+      rgba(212, 175, 55, 0.8) 60%,
+      transparent 70%
+    );                               /* Two glowing eyes */
+  background-size: 100% 100%, 100% 100%;  /* Full size */
+  background-position: 30% 40%, 70% 40%;  /* Position eyes */
+  background-repeat: no-repeat;      /* Don't repeat */
+  filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.8))
+          drop-shadow(0 0 12px rgba(244, 228, 188, 0.6));  /* Eye glow */
+  
+  /* INTERACTIONS */
+  opacity: 0;                        /* Hidden by default */
+  transition: opacity 0.6s ease 0.2s;  /* Fade in delay */
+  pointer-events: none;              /* Don't block clicks */
+}
+
+/* Eyes appear when open */
+.briefcase.open .interiorCreature::before {
+  opacity: 1;                        /* Fade in */
+  animation: eyeBlink 8s ease-in-out infinite 1s;  /* Blinking effect */
+}
+
+/* Interior decorative border */
+.interiorBorder {
+  /* LAYOUT & POSITIONING */
+  position: absolute;                /* Position inside */
+  inset: 6px;                        /* Inset from edges */
+  
+  /* APPEARANCE */
+  border: 1px solid rgba(139, 115, 85, 0.3);  /* Subtle border */
+  border-radius: 2px;                /* Rounded edges */
+  box-shadow: 
+    inset 0 0 10px rgba(0, 0, 0, 0.8);  /* Dark shadow */
+  
+  /* INTERACTIONS */
+  pointer-events: none;              /* Don't block clicks */
+}
+
+/**
+ * DROPDOWN MENU (.dropdownMenu)
+ * ==============================
+ */
+.dropdownMenu {
+  /* LAYOUT & POSITIONING */
+  position: fixed;                   /* Fixed to viewport */
+  top: calc(32px + 45px + 8px);      /* Below navigation bar */
+  right: -32px;                      /* Align with briefcase */
+  z-index: 1001;                     /* Above all content */
+  padding: 4px 0;                    /* Vertical spacing */
+  
+  /* APPEARANCE */
+  background: transparent;           /* No background */
+  border: none;                      /* No border */
+  box-shadow: none;                  /* No shadow */
+  overflow: visible;                 /* Allow animations */
+}
+
+/* Individual menu item */
+.menuItem {
+  /* LAYOUT & POSITIONING */
+  display: flex;                     /* Flexbox layout */
+  align-items: center;               /* Center vertically */
+  gap: 10px;                         /* Space between icon and label */
+  padding: 8px 12px;                 /* Inner spacing */
+  position: relative;                /* For pseudo-elements */
+  
+  /* APPEARANCE */
+  background: transparent;           /* No background */
+  
+  /* INTERACTIONS */
+  cursor: pointer;                   /* Hand cursor */
+  transition: all 0.3s ease;         /* Smooth hover */
+}
+
+/* Opening animation state */
+.dropdownMenu:not(.closing) .menuItem {
+  opacity: 0;                        /* Start hidden */
+  transform: translateY(-30px) rotate(-10deg) scale(0.8);  /* Start above and rotated */
+  animation: fallFromBriefcase 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;  /* Bouncy fall */
+}
+
+/* Closing animation state */
+.dropdownMenu.closing .menuItem {
+  opacity: 1;                        /* Start visible */
+  transform: translateY(0) rotate(0deg) scale(1);  /* Start in place */
+  animation: fadeIntoBriefcase 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;  /* Smooth fade */
+}
+
+/* Staggered opening delays */
+.dropdownMenu:not(.closing) .menuItem:nth-child(1) { animation-delay: 0.1s; }
+.dropdownMenu:not(.closing) .menuItem:nth-child(2) { animation-delay: 0.2s; }
+.dropdownMenu:not(.closing) .menuItem:nth-child(3) { animation-delay: 0.3s; }
+.dropdownMenu:not(.closing) .menuItem:nth-child(4) { animation-delay: 0.4s; }
+
+/* Staggered closing delays (reverse order) */
+.dropdownMenu.closing .menuItem:nth-child(1) { animation-delay: 0.3s; }
+.dropdownMenu.closing .menuItem:nth-child(2) { animation-delay: 0.2s; }
+.dropdownMenu.closing .menuItem:nth-child(3) { animation-delay: 0.1s; }
+.dropdownMenu.closing .menuItem:nth-child(4) { animation-delay: 0s; }
+
+/* Hover shift effect */
+.menuItem:hover {
+  background: transparent;           /* Keep transparent */
+  padding-left: 16px;                /* Shift right */
+}
+
+/* Menu label text */
+.menuLabel {
+  /* TYPOGRAPHY */
+  font-family: 'Cinzel', serif;      /* Luxury serif font */
+  font-size: 11px;                   /* Small label size */
+  font-weight: 600;                  /* Semi-bold */
+  letter-spacing: 1px;               /* Spaced letters */
+  text-transform: uppercase;         /* ALL CAPS */
+  white-space: nowrap;               /* No line breaks */
+  
+  /* APPEARANCE */
+  color: #d4af37;                    /* Golden color */
+  
+  /* INTERACTIONS */
+  transition: all 0.3s ease;         /* Smooth hover */
+}
+
+/* Hover brightening */
+.menuItem:hover .menuLabel {
+  color: #f4e4bc;                    /* Champagne color */
+  letter-spacing: 1.2px;             /* Slightly wider spacing */
+}
+
+/* Icon container */
+.luxuryIcon {
+  /* LAYOUT & POSITIONING */
+  width: 20px;                       /* Icon size */
+  height: 20px;                      /* Square icon */
+  display: flex;                     /* Flexbox layout */
+  align-items: center;               /* Center vertically */
+  justify-content: center;           /* Center horizontally */
+  position: relative;                /* For sparkles */
+  flex-shrink: 0;                    /* Don't shrink */
+  
+  /* INTERACTIONS */
+  transition: all 0.3s ease;         /* Smooth hover */
+}
+
+/* Hover rotation */
+.menuItem:hover .luxuryIcon {
+  transform: rotate(7deg);           /* Slight rotation */
+}
+
+/**
+ * SPARKLE EFFECTS (.sparkle1, .sparkle2, .sparkle3) - Inspiration from a Claude design
+ * ====================================================================================
+ */
+.sparkle1,
+.sparkle2,
+.sparkle3 {
+  /* LAYOUT & POSITIONING */
+  position: absolute;                /* Position on icon */
+  width: 1.5px;                      /* Dot size */
+  height: 1.5px;                     /* Circular */
+  z-index: 10;                       /* Above icons */
+  
+  /* APPEARANCE */
+  background: #f4e4bc;               /* center dot */
+  border-radius: 50%;                /* Round dot */
+  box-shadow: 
+    0 0 3px rgba(244, 228, 188, 0.8),       /* Center glow */
+    /* Horizontal beam (left to right) */
+    -3px 0 0 -0.5px transparent,            /* Far left fade */
+    -2px 0 0 -0.5px #f4e4bc,                /* Left outer */
+    -1px 0 0 -0.5px #f4e4bc,                /* Left inner */
+    1px 0 0 -0.5px #f4e4bc,                 /* Right inner */
+    2px 0 0 -0.5px #f4e4bc,                 /* Right outer */
+    3px 0 0 -0.5px transparent,             /* Far right fade */
+    /* Vertical beam (top to bottom) */
+    0 -3px 0 -0.5px transparent,            /* Top fade */
+    0 -2px 0 -0.5px #f4e4bc,                /* Top outer */
+    0 -1px 0 -0.5px #f4e4bc,                /* Top inner */
+    0 1px 0 -0.5px #f4e4bc,                 /* Bottom inner */
+    0 2px 0 -0.5px #f4e4bc,                 /* Bottom outer */
+    0 3px 0 -0.5px transparent;             /* Bottom fade - creates ✨ cross sparkle */
+  
+  /* INTERACTIONS */
+  opacity: 0;                        /* Hidden by default */
+  transform: scale(0);               /* Start small */
+  pointer-events: none;              /* Don't block clicks */
+  transition: all 0.3s ease;         /* Smooth appearance */
+}
+
+/* Animate sparkles on hover */
+.menuItem:hover .sparkle1,
+.menuItem:hover .sparkle2,
+.menuItem:hover .sparkle3 {
+  animation: iconSparkle 1.5s ease-in-out infinite;  /* Pulsing sparkle */
+}
+
+/* Sparkle positions (spread from center) */
+.sparkle1 {
+  top: 20%;                          /* Upper area */
+  left: 15%;                         /* Left side */
+}
+
+.sparkle2 {
+  top: 75%;                          /* Lower area */
+  right: 15%;                        /* Right side */
+}
+
+.sparkle3 {
+  top: 10%;                          /* Upper area */
+  right: 12%;                        /* Right side */
+}
+
+/* Staggered sparkle delays */
+.menuItem:hover .sparkle2 {
+  animation-delay: 0.3s;             /* Second sparkle */
+}
+
+.menuItem:hover .sparkle3 {
+  animation-delay: 0.6s;             /* Third sparkle */
+}
+
+/* Edge glow effect (::after) */
+.menuItem::after {
+  content: '';                       /* Pseudo-element */
+  
+  /* LAYOUT & POSITIONING */
+  position: absolute;                /* Position on menu item */
+  left: 0;                           /* Left edge */
+  top: 50%;                          /* Center vertically */
+  transform: translateY(-50%);       /* Perfect centering */
+  width: 0;                          /* Start invisible */
+  height: 60%;                       /* Most of height */
+  
+  /* APPEARANCE */
+  background: linear-gradient(180deg,
+    transparent 0%,
+    #d4af37 20%,
+    #f4e4bc 50%,
+    #d4af37 80%,
+    transparent 100%
+  );                                 /* Golden gradient */
+  box-shadow: 0 0 6px rgba(212, 175, 55, 0.8);  /* Glow effect */
+  
+  /* INTERACTIONS */
+  transition: width 0.3s ease;       /* Smooth expansion */
+}
+
+/* Expand glow on hover */
+.menuItem:hover::after {
+  width: 2px;                        /* Show edge line */
+}
+
+/**
+ * MENU ICONS
+ * ==========
+ */
+
+/**
+ * WALLET ICON (.wallet)
+ * ======================
+ */
+.wallet {
+  /* LAYOUT & POSITIONING */
+  position: relative;                /* For child positioning */
+  width: 22px;                       /* Wallet width */
+  height: 18px;                      /* Wallet height */
+  padding: 1px;                      /* Border width */
+  
+  /* APPEARANCE */
+  background: linear-gradient(45deg, #d4af37 0%, #f4e4bc 50%, #d4af37 100%);  /* Gradient border */
+  border-radius: 3px;                /* Rounded corners */
+}
+
+/* Wallet back panel */
+.walletBack {
+  /* LAYOUT & POSITIONING */
+  position: absolute;                /* Position in wallet */
+  bottom: 1px;                       /* Bottom placement */
+  left: 1px;                         /* Left offset */
+  width: 18px;                       /* Back width */
+  height: 14px;                      /* Back height */
+  z-index: 1;                        /* Behind flap */
+  
+  /* APPEARANCE */
+  background: linear-gradient(145deg,
+    #4a3828 0%,
+    #3a3020 50%,
+    #2a2418 100%
+  );                                 /* Brown leather gradient */
+  border-radius: 2px;                /* Rounded edges */
+  transform: skewY(-5deg);           /* Slight perspective */
+  box-shadow: 
+    inset 0 1px 3px rgba(0, 0, 0, 0.6),
+    0 2px 6px rgba(0, 0, 0, 0.8);    /* Depth shadows */
+}
+
+/* Stitching detail (::before) */
+.walletBack::before {
+  content: '';                       /* Pseudo-element */
+  
+  /* LAYOUT & POSITIONING */
+  position: absolute;                /* Position on back */
+  inset: 2px;                        /* Inset from edges */
+  
+  /* APPEARANCE */
+  border: 0.5px dashed rgba(212, 175, 55, 0.4);  /* Dashed stitching */
+  border-radius: 1px;                /* Rounded stitching */
+}
+
+/* Wallet flap (top fold) */
+.walletFlap {
+  /* LAYOUT & POSITIONING */
+  position: absolute;                /* Position in wallet */
+  top: 2px;                          /* Top placement */
+  right: 1px;                        /* Right offset */
+  width: 14px;                       /* Flap width */
+  height: 10px;                      /* Flap height */
+  z-index: 2;                        /* Above back */
+  
+  /* APPEARANCE */
+  background: linear-gradient(145deg,
+    #2a2420 0%,
+    #1a1410 50%,
+    #0f0a08 100%
+  );                                 /* Darker leather gradient */
+  border-radius: 2px;                /* Rounded edges */
+  transform: skewY(-5deg);           /* Slight perspective */
+  box-shadow: 
+    inset 0 1px 2px rgba(0, 0, 0, 0.8),
+    0 3px 8px rgba(0, 0, 0, 0.9);    /* Strong shadow */
+}
+
+/* Flap stitching (::before) */
+.walletFlap::before {
+  content: '';                       /* Pseudo-element */
+  
+  /* LAYOUT & POSITIONING */
+  position: absolute;                /* Position on flap */
+  inset: 1.5px;                      /* Inset from edges */
+  
+  /* APPEARANCE */
+  border: 0.5px dashed rgba(212, 175, 55, 0.5);  /* Golden stitching */
+  border-radius: 1px;                /* Rounded stitching */
+}
+
+/* Wallet clasp (golden closure) */
+.walletClasp {
+  /* LAYOUT & POSITIONING */
+  position: absolute;                /* Position on wallet */
+  top: 50%;                          /* Center vertically */
+  right: 3px;                        /* Right side */
+  transform: translateY(-50%);       /* Perfect centering */
+  width: 4px;                        /* Clasp width */
+  height: 6px;                       /* Clasp height */
+  z-index: 3;                        /* Above all */
+  
+  /* APPEARANCE */
+  background: radial-gradient(circle, #d4af37, #BFA850);  /* Golden gradient */
+  border: 0.5px solid rgba(139, 115, 85, 0.8);  /* Bronze edge */
+  border-radius: 1px;                /* Rounded clasp */
+  box-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.8),
+    0 0 3px rgba(212, 175, 55, 0.5);  /* Glow + depth */
+}
+
+/**
+ * CARD DECK ICON (.cardDeck)
+ * ===========================
+ */
+.cardDeck {
+  /* LAYOUT & POSITIONING */
+  position: relative;                /* For card positioning */
+  width: 18px;                       /* Deck width */
+  height: 18px;                      /* Deck height */
+}
+
+/* Individual card in deck */
+.card {
+  /* LAYOUT & POSITIONING */
+  position: absolute;                /* Stacking position */
+  width: 12px;                       /* Card width */
+  height: 16px;                      /* Card height */
+  
+  /* APPEARANCE */
+  background: linear-gradient(145deg, #2a2420, #1a1410 50%, #0f0a08);  /* Dark leather */
+  border: 1px solid;                 /* Border for gradient */
+  border-image: linear-gradient(45deg, #d4af37 0%, #f4e4bc 50%, #d4af37 100%) 1;  /* Gradient border */
+  border-radius: 1.5px;              /* Rounded corners */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.8), inset 0 1px 2px rgba(212, 175, 55, 0.2), 0 0 4px rgba(212, 175, 55, 0.3);  /* Depth + glow */
+}
+
+/* Front card (straight) */
+.card:nth-child(1) {
+  left: 0;                           /* Left position */
+  top: 0;                            /* Top position */
+  transform: rotate(0deg);           /* No rotation */
+  z-index: 3;                        /* Top card */
+}
+
+/* Middle card (slight angle) */
+.card:nth-child(2) {
+  left: 3px;                         /* Offset right */
+  top: 2px;                          /* Offset down */
+  transform: rotate(-8deg);          /* Slight rotation */
+  z-index: 2;                        /* Middle card */
+}
+
+/* Back card (more angle) */
+.card:nth-child(3) {
+  left: 6px;                         /* Further right */
+  top: 4px;                          /* Further down */
+  transform: rotate(-16deg);         /* More rotation */
+  z-index: 1;                        /* Bottom card */
+}
+
+/**
+ * DOCUMENT STACK ICON (.documentStack)
+ * ======================================
+ */
+.documentStack {
+  /* LAYOUT & POSITIONING */
+  position: relative;                /* For document positioning */
+  width: 18px;                       /* Stack width */
+  height: 18px;                      /* Stack height */
+}
+
+/* Individual document in stack */
+.document {
+  /* LAYOUT & POSITIONING */
+  position: absolute;                /* Stacking position */
+  width: 14px;                       /* Document width */
+  height: 16px;                      /* Document height */
+  
+  /* APPEARANCE */
+  background: linear-gradient(145deg, #2a2420, #1a1410 50%, #0f0a08);  /* Dark leather */
+  border: 1px solid;                 /* Border for gradient */
+  border-image: linear-gradient(45deg, #d4af37 0%, #f4e4bc 50%, #d4af37 100%) 1;  /* Gradient border */
+  border-radius: 1px;                /* Slight rounding */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.8), inset 0 1px 2px rgba(212, 175, 55, 0.2), 0 0 4px rgba(212, 175, 55, 0.3);  /* Depth + glow */
+}
+
+/* Front document */
+.document:nth-child(1) {
+  left: 0;                           /* Base position */
+  top: 0;                            /* Top position */
+  z-index: 3;                        /* Top document */
+}
+
+/* Middle document */
+.document:nth-child(2) {
+  left: 2px;                         /* Offset right */
+  top: 1px;                          /* Offset down */
+  z-index: 2;                        /* Middle document */
+}
+
+/* Back document */
+.document:nth-child(3) {
+  left: 4px;                         /* Further right */
+  top: 2px;                          /* Further down */
+  z-index: 1;                        /* Bottom document */
+}
+
+/* Text lines on front document (::before, ::after) */
+.document:nth-child(1)::before,
+.document:nth-child(1)::after {
+  content: '';                       /* Pseudo-element */
+  
+  /* LAYOUT & POSITIONING */
+  position: absolute;                /* Position on document */
+  left: 2px;                         /* Left margin */
+  right: 2px;                        /* Right margin */
+  height: 0.5px;                     /* Line thickness */
+  
+  /* APPEARANCE */
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.4) 10%, rgba(212, 175, 55, 0.6) 50%, rgba(212, 175, 55, 0.4) 90%, transparent);  /* Fading text line */
+}
+
+/* Line positions */
+.document:nth-child(1)::before { top: 4px; }   /* First line */
+.document:nth-child(1)::after { top: 7px; }    /* Second line */
+
+/**
+ * BUSINESS CARD ICON (.businessCard)
+ * ====================================
+ */
+.businessCard {
+  /* LAYOUT & POSITIONING */
+  position: relative;                /* For child positioning */
+  width: 20px;                       /* Card width */
+  height: 16px;                      /* Card height */
+  padding: 1px;                      /* Border width */
+  
+  /* APPEARANCE */
+  background: linear-gradient(45deg, #d4af37 0%, #f4e4bc 50%, #d4af37 100%);  /* Gradient border */
+  border-radius: 3px;                /* Rounded corners */
+}
+
+/* Card base panel */
+.cardBase {
+  /* LAYOUT & POSITIONING */
+  position: relative;                /* For initial positioning */
+  width: 18px;                       /* Base width */
+  height: 14px;                      /* Base height */
+  
+  /* APPEARANCE */
+  background: linear-gradient(145deg, #2a2420, #1a1410 50%, #0f0a08);  /* Dark leather */
+  border-radius: 2px;                /* Rounded edges */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.8), inset 0 1px 2px rgba(212, 175, 55, 0.2);  /* Depth + glow */
+}
+
+/* Monogram initial on card */
+.cardInitial {
+  /* LAYOUT & POSITIONING */
+  position: absolute;                /* Center on card */
+  top: 50%;                          /* Center vertically */
+  left: 50%;                         /* Center horizontally */
+  transform: translate(-50%, -50%); /* Perfect centering */
+  
+  /* TYPOGRAPHY */
+  font-family: 'Cinzel', serif;      /* Luxury serif font */
+  font-size: 7px;                    /* Small initial */
+  font-weight: 700;                  /* Bold */
+  letter-spacing: 0.5px;             /* Spaced letters */
+  
+  /* APPEARANCE */
+  color: #d4af37;                    /* Golden color */
+  text-shadow: 0 0 4px rgba(212, 175, 55, 0.8), 0 1px 2px rgba(0, 0, 0, 0.8);  /* Glow + depth */
+}
+
+/**
+ * ANIMATIONS
+ * ==========
+ */
+
+/* Shake animation for briefcase */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }      /* Start/end position */
+  20%, 60% { transform: translateX(-2px); }   /* Shift left */
+  40%, 80% { transform: translateX(2px); }    /* Shift right */
+}
+
+/* Shake utility class */
+.shake {
+  animation: shake 0.6s ease-in-out;  /* Trigger shake */
+}
+
+/* Diamond shimmer pulse */
+@keyframes diamondShimmer {
+  0%, 100% { color: #d4af37; filter: brightness(1); }    /* Normal gold */
+  50% { color: #f4e4bc; filter: brightness(1.4); }       /* Bright champagne */
+}
+
+/* Sparkle twinkle effect */
+@keyframes iconSparkle {
+  0%, 100% { 
+    opacity: 0;                              /* Hidden */
+    transform: scale(0) rotate(0deg);        /* Tiny */
+  }
+  50% { 
+    opacity: 1;                              /* Visible */
+    transform: scale(1.2) rotate(180deg);    /* Large + rotated */
+  }
+}
+
+/* Menu items falling from briefcase */
+@keyframes fallFromBriefcase {
+  0% { opacity: 0; transform: translateY(-30px) rotate(-10deg) scale(0.8); }  /* Start above */
+  50% { opacity: 1; transform: translateY(5px) rotate(3deg) scale(1.05); }    /* Bounce down */
+  70% { transform: translateY(-2px) rotate(-1deg) scale(1); }                 /* Bounce up */
+  100% { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); }        /* Settle */
+}
+
+/* Menu items fading into briefcase */
+@keyframes fadeIntoBriefcase {
+  0% { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); }          /* Start visible */
+  30% { transform: translateY(-5px) rotate(-3deg) scale(0.95); }              /* Lift up */
+  100% { opacity: 0; transform: translateY(-40px) rotate(-15deg) scale(0.7); }  /* Fade away */
+}
+
+/* Interior creature eye blink */
+@keyframes eyeBlink {
+  0%, 100% { background-size: 100% 100%, 100% 100%; }  /* Eyes open */
+  45% { background-size: 100% 100%, 100% 100%; }       /* Still open */
+  48% { background-size: 100% 30%, 100% 30%; }         /* Closing */
+  50% { background-size: 100% 5%, 100% 5%; }           /* Closed */
+  52% { background-size: 100% 30%, 100% 30%; }         /* Opening */
+  55% { background-size: 100% 100%, 100% 100%; }       /* Open again */
+}

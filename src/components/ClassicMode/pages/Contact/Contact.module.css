@@ -219,7 +219,7 @@
   right: -20px;
   
   /* APPEARANCE */
-  border-radius: 25px 0 0 25px;
+  border-radius: 20px 0 0 20px;
   box-shadow: -3px 0 15px rgba(212, 175, 55, 0.5);
   
   /* ANIMATIONS */
@@ -235,7 +235,7 @@
   left: -20px;
   
   /* APPEARANCE */
-  border-radius: 0 25px 25px 0;
+  border-radius: 0 20px 20px 0;
   box-shadow: 3px 0 15px rgba(212, 175, 55, 0.5);
   
   /* ANIMATIONS */

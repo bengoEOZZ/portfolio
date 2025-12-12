@@ -1,33 +1,48 @@
 /**
  * NAVIGATION BAR COMPONENT
  * ========================
+ * Luxury navigation header for the ClassicMode interface with animated briefcase menu.
  * 
- * Renders a sophisticated navigation header for the ClassicMode interface.
- * Features a craftmanship logo and an elegant briefcase menu icon.
+ * COMPONENT ARCHITECTURE:
+ * -----------------------
+ * Logo Section: Craftmanship emblem with shimmer effects and text
+ * Briefcase Menu: Interactive luxury briefcase that opens to reveal navigation items
+ * 
+ * INTERACTIONS:
+ * -------------
+ * Logo Click: Navigate to home page with page transition
+ * Briefcase Click: Shake animation followed by menu open/close
+ * Menu Items: Navigate to respective pages (About, Coding, Projects, Contact)
+ * Click Outside: Automatically closes menu when clicking outside briefcase area
  */
 
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import classes from './NavigationBar.module.css';
 import emblemImage from '../../../assets/ClassicMode/dustinessEmblem.png';
+import Briefcase from './Briefcase';
 
 /**
- * ClassicNavigationBar Component
- * ==============================
+ * NavigationBar Component
+ * =======================
  */
 const NavigationBar = ({ startTransition }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isShaking, setIsShaking] = useState(false);
-  const [isClosing, setIsClosing] = useState(false);
-  const briefcaseRef = useRef(null); // Reference to briefcase element
   
+  /**
+   * LOGO CLICK HANDLER
+   * ==================
+   * Navigates to home page if user is on a different page.
+   * Uses page transition hook if available for smooth fade effects.
+   */
   const handleLogoClick = () => {
+    // Prevent navigation if already on home page
     if (location.pathname === '/classic' || location.pathname === '/classic/') {
       return;
     }
     
+    // Use transition hook if provided, otherwise navigate directly
     if (startTransition) {
       startTransition(() => {
         navigate('/classic');
@@ -37,50 +52,10 @@ const NavigationBar = ({ startTransition }) => {
     }
   };
 
-  const handleBriefcaseClick = () => {
-    if (!isMenuOpen) {
-      // Shake animation first
-      setIsShaking(true);
-      setIsClosing(false);
-      setTimeout(() => {
-        setIsShaking(false);
-        setIsMenuOpen(true);
-      }, 600);
-    } else {
-      // Start closing animation
-      closeMenu();
-    }
-  };
-
-  const closeMenu = () => {
-    setIsClosing(true);
-    
-    // Wait for animation to complete before removing menu
-    setTimeout(() => {
-      setIsMenuOpen(false);
-      setIsClosing(false);
-    }, 900); // 0.5s animation + 0.4s delay for last item
-  };
-
-  // Close menu when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (isMenuOpen && briefcaseRef.current && !briefcaseRef.current.contains(event.target)) {
-        closeMenu();
-      }
-    };
-
-    // Add event listener when menu is open
-    if (isMenuOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    }
-
-    // Cleanup
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [isMenuOpen]);
-
+  /**
+   * COMPONENT OUTPUT
+   * ================
+   */
   return (
     <header className={classes.header}>
       
@@ -88,12 +63,12 @@ const NavigationBar = ({ startTransition }) => {
       <div className={classes.logo} onClick={handleLogoClick}>
         
         {/* LUXURY CRAFTMANSHIP EMBLEM */}
-        <div className={classes.craftsmanLogo}>
+        <div className={classes.luxuryLogo}>
           <div className={classes.shimmerRing}></div>
           
           <div className={classes.outerCrest}>
             <div className={classes.luxuryBackdrop}></div>
-            <img src={emblemImage} alt="Craftsman Emblem" className={classes.craftSymbol} />
+            <img src={emblemImage} className={classes.emblem} />
             
             <div className={classes.sparkleEffect}>
               <div className={classes.sparkle} style={{'--delay': '0s', '--duration': '3s'}}></div>
@@ -113,164 +88,8 @@ const NavigationBar = ({ startTransition }) => {
         </div>
       </div>
       
-      {/* REDESIGNED BRIEFCASE */}
-      <div 
-        ref={briefcaseRef}
-        className={`${classes.briefcase} ${isShaking ? classes.shake : ''} ${isMenuOpen ? classes.open : ''}`}
-        onClick={handleBriefcaseClick}
-      >
-        
-        {/* ORNATE HANDLE WITH SHIMMER */}
-        <div className={classes.briefcaseHandle}>
-          <div className={classes.handleShimmer}></div>
-        </div>
-        
-        {/* BRIEFCASE INTERIOR - STAYS IN PLACE (behind everything) */}
-        <div className={classes.briefcaseInterior}>
-          <div className={classes.interiorGradient}></div>
-          <div className={classes.interiorBorder}></div>
-        </div>
-        
-        {/* LUXURY BRIEFCASE BODY - THIS ROTATES */}
-        <div className={classes.briefcaseBody}>
-          
-          {/* RADIAL BACKDROP (like logo) */}
-          <div className={classes.briefcaseBackdrop}></div>
-          
-          {/* ORNAMENTAL BORDER */}
-          <div className={classes.ornamentalBorder}></div>
-          
-          {/* TOP SECTION WITH DIAMOND LOCK */}
-          <div className={classes.briefcaseTop}>
-            {/* DIAMOND LOCK WITH GLOW */}
-            <div className={classes.briefcaseLock}>
-              <div className={classes.lockGlow}></div>
-              <div className={classes.lockDiamond}>◆</div>
-            </div>
-            
-            {/* ELEGANT LABEL */}
-            <div className={classes.briefcaseLabel}>PORTFOLIO</div>
-          </div>
-          
-          {/* CORNER ORNAMENTS (matching logo style) */}
-          <div className={classes.cornerOrnament} style={{'--position': 'top-left'}}></div>
-          <div className={classes.cornerOrnament} style={{'--position': 'top-right'}}></div>
-          <div className={classes.cornerOrnament} style={{'--position': 'bottom-left'}}></div>
-          <div className={classes.cornerOrnament} style={{'--position': 'bottom-right'}}></div>
-          
-        </div>
-        
-        {/* DROPDOWN MENU - Luxury items with fade animations */}
-        {(isMenuOpen || isClosing) && (
-          <div className={`${classes.dropdownMenu} ${isClosing ? classes.closing : ''}`}>
-            
-            {/* ABOUT - Folded Wallet Icon */}
-            <div 
-              className={classes.menuItem}
-              onClick={(e) => {
-                e.stopPropagation();
-                closeMenu();
-                // Navigate to about page
-                if (startTransition) {
-                  startTransition(() => {
-                    navigate('/classic/about');
-                  });
-                } else {
-                  navigate('/classic/about');
-                }
-              }}
-            >
-              <div className={classes.luxuryIcon}>
-                <div className={classes.wallet}>
-                  <div className={classes.walletBack}></div>
-                  <div className={classes.walletFlap}></div>
-                  <div className={classes.walletClasp}></div>
-                </div>
-              </div>
-              <span className={classes.menuLabel}>about</span>
-            </div>
-            
-            {/* CODING - Deck of Cards Icon */}
-            <div 
-              className={classes.menuItem}
-              onClick={(e) => {
-                e.stopPropagation();
-                closeMenu();
-                // Navigate to coding page
-                if (startTransition) {
-                  startTransition(() => {
-                    navigate('/classic/coding');
-                  });
-                } else {
-                  navigate('/classic/coding');
-                }
-              }}
-            >
-              <div className={classes.luxuryIcon}>
-                <div className={classes.cardDeck}>
-                  <div className={classes.card} style={{'--offset': '0'}}></div>
-                  <div className={classes.card} style={{'--offset': '1'}}></div>
-                  <div className={classes.card} style={{'--offset': '2'}}></div>
-                </div>
-              </div>
-              <span className={classes.menuLabel}>coding</span>
-            </div>
-            
-            {/* PROJECTS - Stack of Documents Icon */}
-            <div 
-              className={classes.menuItem}
-              onClick={(e) => {
-                e.stopPropagation();
-                closeMenu();
-                // Navigate to projects page
-                if (startTransition) {
-                  startTransition(() => {
-                    navigate('/classic/projects');
-                  });
-                } else {
-                  navigate('/classic/projects');
-                }
-              }}
-            >
-              <div className={classes.luxuryIcon}>
-                <div className={classes.documentStack}>
-                  <div className={classes.document} style={{'--layer': '0'}}></div>
-                  <div className={classes.document} style={{'--layer': '1'}}></div>
-                  <div className={classes.document} style={{'--layer': '2'}}></div>
-                </div>
-              </div>
-              <span className={classes.menuLabel}>projects</span>
-            </div>
-            
-            {/* CONTACT - Business Card Icon */}
-            <div 
-              className={classes.menuItem}
-              onClick={(e) => {
-                e.stopPropagation();
-                closeMenu();
-                // Navigate to contact page
-                if (startTransition) {
-                  startTransition(() => {
-                    navigate('/classic/contact');
-                  });
-                } else {
-                  navigate('/classic/contact');
-                }
-              }}
-            >
-              <div className={classes.luxuryIcon}>
-                <div className={classes.businessCard}>
-                  <div className={classes.cardBase}></div>
-                  <div className={classes.cardInitial}>BT</div>
-                </div>
-              </div>
-              <span className={classes.menuLabel}>contact</span>
-            </div>
-            
-          </div>
-        )}
-        
-      </div>
+      {/* BRIEFCASE NAVIGATION */}
+      <Briefcase startTransition={startTransition} />
 
     </header>
   );

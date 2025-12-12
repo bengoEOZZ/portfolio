@@ -1,16 +1,14 @@
 /**
- * SOPHISTICATED BACKGROUND COMPONENT STYLES
- * =========================================
- * Styles for the dynamic mathematical background system in ClassicMode.
- * Features optimized SVG rendering and performance-focused styling.
+ * LUXURY BACKGROUND COMPONENT STYLES
+ * ==================================
+ * Styles for the dynamic luxury background system in ClassicMode.
  */
 
 /**
- * BACKGROUND CONTAINER (.sophisticatedBackground)
+ * BACKGROUND CONTAINER (.luxuryBackground)
  * ==============================================
- * Full-screen background container for dynamic mathematical curves.
  */
-.sophisticatedBackground {
+.luxuryBackground {
   /* LAYOUT & POSITIONING */
   position: absolute;                 /* Full container coverage */
   top: 0;                            /* Start from top */
@@ -30,7 +28,7 @@
 }
 
 /* PROFESSIONAL FLOATING ELEMENTS */
-.sophisticatedBackground::after {
+.luxuryBackground::after {
   content: '';
   position: absolute;
   top: 0;
@@ -69,9 +67,8 @@
 }
 
 /**
- * PROFESSIONAL FLOATING ANIMATION
- * ===============================
- * Subtle, slow movement suggesting technical precision and professionalism
+ * FLOATING ANIMATION
+ * ==================
  */
 @keyframes float {
   0%, 100% { 

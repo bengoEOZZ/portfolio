@@ -1,28 +1,23 @@
 /**
- * SOPHISTICATED BACKGROUND COMPONENT
- * ==================================
+ * LUXURY BACKGROUND COMPONENT
+ * ===========================
  * Renders dynamic mathematical flowing curves for the ClassicMode interface.
- * Features real-time trigonometric calculations creating smooth, animated SVG paths.
+ * Features real-time calculations creating smooth, animated SVG paths.
  * 
  * MATHEMATICAL IMPLEMENTATION:
  * - Uses sine/cosine wave functions for natural curve generation
  * - 60fps animation loop for smooth visual experience
  * - Golden accent colors matching luxury theme
- * 
- * TECHNICAL FEATURES:
- * - Real-time path calculation using trigonometric functions
- * - Optimized SVG rendering with proper viewBox coordinates
- * - Performance-optimized with strategic opacity and stroke settings
  */
 
 import { useEffect, useState } from 'react';
-import classes from './SophisticatedBackground.module.css';
+import classes from './LuxuryBackground.module.css';
 
 /**
- * SophisticatedBackground Component
- * ================================
+ * LuxuryBackground Component
+ * ==========================
  */
-const SophisticatedBackground = () => {
+const LuxuryBackground = () => {
   /**
    * STATE MANAGEMENT
    * ===============
@@ -84,7 +79,7 @@ const SophisticatedBackground = () => {
    * ================
    */
   return (
-    <div className={classes.sophisticatedBackground}>
+    <div className={classes.luxuryBackground}>
       {/* DYNAMIC FLOWING LINES: Real-time mathematical-based curves */}
       <svg width="100%" height="100%" viewBox="-200 0 1800 700">
         <g opacity="0.3">
@@ -108,4 +103,4 @@ const SophisticatedBackground = () => {
   );
 };
 
-export default SophisticatedBackground;
+export default LuxuryBackground;

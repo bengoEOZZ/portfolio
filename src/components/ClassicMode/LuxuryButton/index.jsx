@@ -2,7 +2,7 @@
  * LUXURYBUTTON COMPONENT - REUSABLE GOLDEN INTERACTIVE BUTTON
  * ==========================================================
  *
- * A sophisticated, reusable button component with a luxury theme.
+ * A reusable button component with a luxury theme.
  * Features slide-in background effects, hover transformations, etc.
  */
 
