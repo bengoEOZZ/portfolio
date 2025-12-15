@@ -1,4 +1,4 @@
-# Portfolio - Benjamin Tiong
+# Benjamin Tiong - Portfolio Website
 
 ## Tech Stack
 
