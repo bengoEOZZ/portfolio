@@ -1,0 +1,56 @@
+/**
+ * SPARKLE COMPONENT STYLES
+ * =========================
+ * Reusable luxury sparkle effect with cross-beam star design
+ */
+
+.sparkle {
+  /* LAYOUT & POSITIONING */
+  position: absolute;                /* Position on icon */
+  width: 1.5px;                      /* Dot size */
+  height: 1.5px;                     /* Circular */
+  z-index: 10;                       /* Above icons */
+  
+  /* APPEARANCE */
+  background: #f4e4bc;               /* Champagne center dot */
+  border-radius: 50%;                /* Round dot */
+  box-shadow: 
+    0 0 3px rgba(244, 228, 188, 0.8),       /* Center glow */
+    /* Horizontal beam (left to right) */
+    -3px 0 0 -0.5px transparent,            /* Far left fade */
+    -2px 0 0 -0.5px #f4e4bc,                /* Left outer */
+    -1px 0 0 -0.5px #f4e4bc,                /* Left inner */
+    1px 0 0 -0.5px #f4e4bc,                 /* Right inner */
+    2px 0 0 -0.5px #f4e4bc,                 /* Right outer */
+    3px 0 0 -0.5px transparent,             /* Far right fade */
+    /* Vertical beam (top to bottom) */
+    0 -3px 0 -0.5px transparent,            /* Top fade */
+    0 -2px 0 -0.5px #f4e4bc,                /* Top outer */
+    0 -1px 0 -0.5px #f4e4bc,                /* Top inner */
+    0 1px 0 -0.5px #f4e4bc,                 /* Bottom inner */
+    0 2px 0 -0.5px #f4e4bc,                 /* Bottom outer */
+    0 3px 0 -0.5px transparent;             /* Bottom fade - creates cross sparkle */
+  
+  /* INTERACTIONS */
+  opacity: 0;                        /* Hidden by default */
+  transform: scale(0);               /* Start small */
+  pointer-events: none;              /* Don't block clicks */
+  transition: all 0.3s ease;         /* Smooth appearance */
+}
+
+/**
+ * ANIMATIONS
+ * ==========
+ */
+
+/* Sparkle twinkle effect */
+@keyframes iconSparkle {
+  0%, 100% { 
+    opacity: 0;                              /* Hidden */
+    transform: scale(0) rotate(0deg);        /* Tiny */
+  }
+  50% { 
+    opacity: 1;                              /* Visible */
+    transform: scale(1.2) rotate(180deg);    /* Large + rotated */
+  }
+}

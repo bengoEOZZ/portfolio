@@ -17,7 +17,7 @@ import classes from './LuxuryBackground.module.css';
  * LuxuryBackground Component
  * ==========================
  */
-const LuxuryBackground = () => {
+const LuxuryBackground = ({ isExiting = false }) => {
   /**
    * STATE MANAGEMENT
    * ===============
@@ -80,6 +80,10 @@ const LuxuryBackground = () => {
    */
   return (
     <div className={classes.luxuryBackground}>
+      {/* TRANSITION CORNER LIGHTS */}
+      <div className={`${classes.cornerLight} ${classes.bottomLeft} ${isExiting ? classes.active : ''}`}></div>
+      <div className={`${classes.cornerLight} ${classes.bottomRight} ${isExiting ? classes.active : ''}`}></div>
+      
       {/* DYNAMIC FLOWING LINES: Real-time mathematical-based curves */}
       <svg width="100%" height="100%" viewBox="-200 0 1800 700">
         <g opacity="0.3">

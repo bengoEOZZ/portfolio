@@ -397,7 +397,13 @@
 /* Eyes appear when open */
 .briefcase.open .interiorCreature::before {
   opacity: 1;                        /* Fade in */
-  animation: eyeBlink 8s ease-in-out infinite 1s;  /* Blinking effect */
+  animation: eyeBlink 5s ease-in-out infinite 1s;  /* Blinking effect */
+}
+
+/* Eyes squint when closing (watching items get sucked in) */
+.briefcase.open.closing .interiorCreature::before {
+  opacity: 1 !important;
+  animation: squint 0.9s forwards !important;
 }
 
 /* Interior decorative border */
@@ -527,76 +533,29 @@
   transform: rotate(7deg);           /* Slight rotation */
 }
 
-/**
- * SPARKLE EFFECTS (.sparkle1, .sparkle2, .sparkle3) - Inspiration from a Claude design
- * ====================================================================================
- */
-.sparkle1,
-.sparkle2,
-.sparkle3 {
-  /* LAYOUT & POSITIONING */
-  position: absolute;                /* Position on icon */
-  width: 1.5px;                      /* Dot size */
-  height: 1.5px;                     /* Circular */
-  z-index: 10;                       /* Above icons */
-  
-  /* APPEARANCE */
-  background: #f4e4bc;               /* center dot */
-  border-radius: 50%;                /* Round dot */
-  box-shadow: 
-    0 0 3px rgba(244, 228, 188, 0.8),       /* Center glow */
-    /* Horizontal beam (left to right) */
-    -3px 0 0 -0.5px transparent,            /* Far left fade */
-    -2px 0 0 -0.5px #f4e4bc,                /* Left outer */
-    -1px 0 0 -0.5px #f4e4bc,                /* Left inner */
-    1px 0 0 -0.5px #f4e4bc,                 /* Right inner */
-    2px 0 0 -0.5px #f4e4bc,                 /* Right outer */
-    3px 0 0 -0.5px transparent,             /* Far right fade */
-    /* Vertical beam (top to bottom) */
-    0 -3px 0 -0.5px transparent,            /* Top fade */
-    0 -2px 0 -0.5px #f4e4bc,                /* Top outer */
-    0 -1px 0 -0.5px #f4e4bc,                /* Top inner */
-    0 1px 0 -0.5px #f4e4bc,                 /* Bottom inner */
-    0 2px 0 -0.5px #f4e4bc,                 /* Bottom outer */
-    0 3px 0 -0.5px transparent;             /* Bottom fade - creates ✨ cross sparkle */
-  
-  /* INTERACTIONS */
-  opacity: 0;                        /* Hidden by default */
-  transform: scale(0);               /* Start small */
+/* Sparkles container */
+.sparkles {
+  position: absolute;                /* Fill icon container */
+  inset: 0;                          /* Cover entire area */
   pointer-events: none;              /* Don't block clicks */
-  transition: all 0.3s ease;         /* Smooth appearance */
 }
 
-/* Animate sparkles on hover */
-.menuItem:hover .sparkle1,
-.menuItem:hover .sparkle2,
-.menuItem:hover .sparkle3 {
-  animation: iconSparkle 1.5s ease-in-out infinite;  /* Pulsing sparkle */
+/* Trigger sparkle animations on menu item hover - target all children */
+.menuItem:hover .sparkles > * {
+  animation: iconSparkle 1.5s ease-in-out infinite !important;  /* Pulsing sparkle */
 }
 
-/* Sparkle positions (spread from center) */
-.sparkle1 {
-  top: 20%;                          /* Upper area */
-  left: 15%;                         /* Left side */
+/* Staggered animation delays */
+.menuItem:hover .sparkles > *:nth-child(1) {
+  animation-delay: 0s !important;    /* First sparkle */
 }
 
-.sparkle2 {
-  top: 75%;                          /* Lower area */
-  right: 15%;                        /* Right side */
+.menuItem:hover .sparkles > *:nth-child(2) {
+  animation-delay: 0.3s !important;  /* Second sparkle */
 }
 
-.sparkle3 {
-  top: 10%;                          /* Upper area */
-  right: 12%;                        /* Right side */
-}
-
-/* Staggered sparkle delays */
-.menuItem:hover .sparkle2 {
-  animation-delay: 0.3s;             /* Second sparkle */
-}
-
-.menuItem:hover .sparkle3 {
-  animation-delay: 0.6s;             /* Third sparkle */
+.menuItem:hover .sparkles > *:nth-child(3) {
+  animation-delay: 0.6s !important;  /* Third sparkle */
 }
 
 /* Edge glow effect (::after) */
@@ -627,7 +586,7 @@
 
 /* Expand glow on hover */
 .menuItem:hover::after {
-  width: 2px;                        /* Show edge line */
+  width: 3px;                        /* Show edge line */
 }
 
 /**
@@ -965,4 +924,27 @@
   50% { background-size: 100% 5%, 100% 5%; }           /* Closed */
   52% { background-size: 100% 30%, 100% 30%; }         /* Opening */
   55% { background-size: 100% 100%, 100% 100%; }       /* Open again */
+}
+
+/* Annoyed squint animation - eyes narrow and look down */
+@keyframes squint {
+  0% { 
+    background-position: 30% 40%, 70% 40%;  /* Normal position */
+    background-size: 100% 100%, 100% 100%;
+  }
+  20% { 
+    background-position: 30% 55%, 70% 55%;  /* Quickly look down */
+    background-size: 80% 30%, 80% 30%;  /* Fast squint */
+    opacity: 1;
+  }
+  60% { 
+    background-position: 30% 55%, 70% 55%;  /* Hold annoyed look */
+    background-size: 80% 30%, 80% 30%;  /* Stay squinted */
+    opacity: 0.6;
+  }
+  100% { 
+    background-position: 30% 55%, 70% 55%;  /* Keep squinted position */
+    background-size: 80% 30%, 80% 30%;  /* Keep squinted */
+    opacity: 0;  /* Smooth fade out while squinted */
+  }
 }

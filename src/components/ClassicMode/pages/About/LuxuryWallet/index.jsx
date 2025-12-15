@@ -43,7 +43,7 @@ import IDCard from '../../Contact/IDCard';
 import CredentialsCard from '../CredentialsCard';
 import GymCard from '../GymCard';
 import hollowKnightIcon from '../../../../../assets/ClassicMode/hollowKnightEmblem.png';
-import use3DMouseTracking from '../../../../../hooks/use3DMouseTracking';
+import use3DMouseTracking from '../../../../../hooks/ClassicMode/use3DMouseTracking';
 
 /**
  * HOVER DATA CONFIGURATION
@@ -174,6 +174,9 @@ const HoverZone = React.memo(({ itemKey, onHover, onLeave, isOpen }) => {
 const LuxuryWallet = ({ isOpen, onToggle }) => {
   const walletContainerRef = useRef(null);
   
+  // ENTRANCE ANIMATION STATE
+  const [isEntering, setIsEntering] = useState(true);
+  
   // HOVER STATE - Track which item is being hovered
   const [hoverItem, setHoverItem] = useState(null);
   
@@ -282,7 +285,10 @@ const LuxuryWallet = ({ isOpen, onToggle }) => {
 
       {/* WALLET SECTION */}
       <div className={classes.walletSection}>
-        <div className={classes.walletWrapper}>
+        <div 
+          className={`${classes.walletWrapper} ${isEntering ? classes.entering : ''}`}
+          onAnimationEnd={() => setIsEntering(false)}
+        >
           {/* Main container - ref enables 3D tracking, onClick toggles open/close */}
           <div ref={walletContainerRef} className={`${classes.walletContainer}
             ${isOpen ? classes.walletOpen : ''}`} onClick={onToggle} >

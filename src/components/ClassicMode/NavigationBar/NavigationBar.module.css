@@ -194,34 +194,6 @@
     #FFFFFF 60%,    /* Pure white */
   );
 }
-/**
- * INNER CREST (.innerCrest)
- * =========================
- */
-.innerCrest {
-  /* LAYOUT & POSITIONING */
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 70%;
-  height: 70%;
-  
-  /* DARK PROJECT THEME APPEARANCE */
-  background: radial-gradient(circle, #1a1a1a 0%, #000000 40%, #2c2c2c 80%);
-  border: 1px solid #d4af37;
-  border-radius: 50%;
-  
-  /* ENHANCED DEPTH SHADOWS */
-  box-shadow: inset 0 1px 0 rgba(255, 215, 0, 0.3), inset 0 -1px 0 rgba(0, 0, 0, 0.8), 
-              0 0 8px rgba(212, 175, 55, 0.4);
-  transition: all 0.4s ease;
-}
-
-.luxuryLogo:hover .innerCrest {
-  background: radial-gradient(circle, #2c2c2c 0%, #1a1a1a 30%, #000000 70%);
-  border-color: #ffd700;
-}
 
 /**
  * CRAFT SYMBOL (.emblem) - ENHANCED GOLDEN FILTERS
@@ -284,10 +256,145 @@
   text-shadow: 0 0 12px rgba(255, 255, 102, 0.6);
   
   /* LAYOUT */
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 2px;
   
   /* INTERACTIONS */
   transition: all 0.3s ease;
+}
+
+.textUnderline {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    #d4af37 20%, 
+    #f4e4bc 50%, 
+    #d4af37 80%, 
+    transparent 100%
+  );
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.logo:hover .textUnderline {
+  transform: scaleX(1);
+}
+
+/**
+ * SHIMMER RING (.shimmerRing)
+ * ===========================
+ * Inner ring with continuous shimmer effect
+ */
+.shimmerRing {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 50%;
+  background: conic-gradient(
+    transparent 0deg,
+    rgba(212, 175, 55, 0.3) 90deg,
+    rgba(244, 228, 188, 0.6) 180deg,
+    rgba(212, 175, 55, 0.3) 270deg,
+    transparent 360deg
+  );
+  z-index: 2;
+  animation: shimmerRotate 8s linear infinite;
+  transition: all 0.4s ease;
+}
+
+/**
+ * FLOATING SPARKLES (.sparkleEffect & .sparkle)
+ * =============================================
+ * Subtle animated sparkles around the emblem
+ */
+.sparkleEffect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Target Sparkle component children */
+.sparkleEffect > * {
+  animation: 
+    sparkleFloat var(--duration, 3s) ease-in-out infinite var(--delay, 0s),
+    sparkleTwinkle 2s ease-in-out infinite var(--delay, 0s) !important;
+}
+
+/* Sparkle positions around logo */
+.sparkleEffect > *:nth-child(1) {
+  top: 15%;                          /* Upper right */
+  left: 80%;
+}
+
+.sparkleEffect > *:nth-child(2) {
+  top: 75%;                          /* Lower left */
+  left: 20%;
+}
+
+.sparkleEffect > *:nth-child(3) {
+  top: 40%;                          /* Middle right */
+  left: 85%;
+}
+
+/**
+ * ANIMATIONS
+ * ==========
+ */
+
+/* Sparkle floating movement */
+@keyframes sparkleFloat {
+  0%, 100% { 
+    transform: translateY(0) translateX(0);     /* Start position */
+  }
+  25% { 
+    transform: translateY(-3px) translateX(2px);  /* Float up-right */
+  }
+  50% { 
+    transform: translateY(-5px) translateX(0);    /* Float up */
+  }
+  75% { 
+    transform: translateY(-3px) translateX(-2px); /* Float up-left */
+  }
+}
+
+/* Sparkle twinkle effect */
+@keyframes sparkleTwinkle {
+  0%, 100% { 
+    opacity: 0;                              /* Hidden */
+    transform: scale(0) rotate(0deg);        /* Tiny */
+  }
+  50% { 
+    opacity: 1;                              /* Visible */
+    transform: scale(1.2) rotate(180deg);    /* Large + rotated */
+  }
+}
+
+/* Shimmer ring rotation */
+@keyframes shimmerRotate {
+  0% { 
+    transform: rotate(0deg);                 /* Start */
+  }
+  100% { 
+    transform: rotate(360deg);               /* Full rotation */
+  }
+}
+
+/* Navbar brighten on transition */
+@keyframes navbarBrighten {
+  0% { filter: blur(0px) saturate(1) brightness(1); }
+  50% { filter: blur(3px) saturate(1.5) brightness(1.6); }
+  100% { filter: blur(0px) saturate(1) brightness(1); }
+}
+
+.header.transitioning {
+  animation: navbarBrighten 1.5s ease-in-out;
 }

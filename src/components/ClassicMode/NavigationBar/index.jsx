@@ -5,14 +5,14 @@
  * 
  * COMPONENT ARCHITECTURE:
  * -----------------------
- * Logo Section: Craftmanship emblem with shimmer effects and text
+ * Logo Section: Luxury emblem with sparkle/shimmer effects and text
  * Briefcase Menu: Interactive luxury briefcase that opens to reveal navigation items
  * 
  * INTERACTIONS:
  * -------------
  * Logo Click: Navigate to home page with page transition
  * Briefcase Click: Shake animation followed by menu open/close
- * Menu Items: Navigate to respective pages (About, Coding, Projects, Contact)
+ * Click Menu Items: Navigate to respective pages (About, Coding, Projects, Contact)
  * Click Outside: Automatically closes menu when clicking outside briefcase area
  */
 
@@ -21,12 +21,13 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import classes from './NavigationBar.module.css';
 import emblemImage from '../../../assets/ClassicMode/dustinessEmblem.png';
 import Briefcase from './Briefcase';
+import Sparkle from '../Sparkle';
 
 /**
  * NavigationBar Component
  * =======================
  */
-const NavigationBar = ({ startTransition }) => {
+const NavigationBar = ({ startTransition, transitioning }) => {
   const navigate = useNavigate();
   const location = useLocation();
   
@@ -46,7 +47,7 @@ const NavigationBar = ({ startTransition }) => {
     if (startTransition) {
       startTransition(() => {
         navigate('/classic');
-      });
+      }, 1500);
     } else {
       navigate('/classic');
     }
@@ -57,7 +58,7 @@ const NavigationBar = ({ startTransition }) => {
    * ================
    */
   return (
-    <header className={classes.header}>
+    <header className={`${classes.header} ${transitioning ? classes.transitioning : ''}`}>
       
       {/* LOGO SECTION */}
       <div className={classes.logo} onClick={handleLogoClick}>
@@ -67,13 +68,12 @@ const NavigationBar = ({ startTransition }) => {
           <div className={classes.shimmerRing}></div>
           
           <div className={classes.outerCrest}>
-            <div className={classes.luxuryBackdrop}></div>
             <img src={emblemImage} className={classes.emblem} />
             
             <div className={classes.sparkleEffect}>
-              <div className={classes.sparkle} style={{'--delay': '0s', '--duration': '3s'}}></div>
-              <div className={classes.sparkle} style={{'--delay': '1s', '--duration': '4s'}}></div>
-              <div className={classes.sparkle} style={{'--delay': '2s', '--duration': '3.5s'}}></div>
+              <Sparkle animationDelay="0s" duration="1.5s" />
+              <Sparkle animationDelay="0.3s" duration="1.5s" />
+              <Sparkle animationDelay="0.6s" duration="1.5s" />
             </div>
           </div>
         </div>
@@ -81,9 +81,7 @@ const NavigationBar = ({ startTransition }) => {
         {/* LOGO TEXT */}
         <div className={classes.logoText}>
           <div>classic</div>
-          <div className={classes.primaryText}>
             <div className={classes.textUnderline}></div>
-          </div>
           <div>craftmanship</div>
         </div>
       </div>

@@ -12,8 +12,6 @@
   /* LAYOUT & POSITIONING */
   position: fixed;
   bottom: 80px;
-  left: 0;
-  right: 0;
   width: 100vw;
   height: 200px;
   display: flex;
@@ -85,7 +83,7 @@
   box-shadow: 0 40px 120px rgba(0, 0, 0, 0.8), 0 0 80px rgba(255, 215, 0, 0.4);
   
   /* ANIMATIONS */
-  animation: beltMaterialize 2s ease-out 1.2s both, beltWave 3s ease-in-out infinite 3s;
+  animation: beltEntry 2s ease-out 1.2s both, beltWave 3s ease-in-out infinite 3s;
   will-change: transform, opacity, filter;
 }
 
@@ -481,11 +479,11 @@
 }
 
 /**
- * BELT MATERIALIZE ANIMATION (@keyframes beltMaterialize)
- * =======================================================
+ * BELT ENTRY ANIMATION (@keyframes beltEntry)
+ * ===========================================
  * Leather strap entrance with blur effect.
  */
-@keyframes beltMaterialize {
+@keyframes beltEntry {
   0% { opacity: 0; transform: translateY(-50%) scaleX(0.5); filter: blur(10px); }
   50% { opacity: 0.8; transform: translateY(-50%) scaleX(1.05); filter: blur(2px); }
   100% { opacity: 1; transform: translateY(-50%) scaleX(1); filter: blur(0); }
@@ -570,7 +568,7 @@
 
 /* Exit state classes */
 .navBuckle.unclasping { animation: buckleUnclasp 1.2s ease-in-out forwards; pointer-events: none; }
-.navCards.beltDisappearing::before { animation: beltSlideAway 0.4s ease-out 0.05s forwards; }
+.navCards.beltDisappearing::before { animation: beltFadeAway 0.4s ease-out 0.05s forwards; }
 .navCards.beltDisappearing::after { animation: stitchingFadeOut 0.4s ease-out 0.08s forwards; }
 .navCards.beltDisappearing .shineEffect { animation: sparklesFadeOut 0.35s ease-out 0.1s forwards; }
 .navCard.exitingLeft { animation: cardExitLeft 0.8s ease-in-out forwards; }
@@ -589,11 +587,11 @@
 }
 
 /**
- * BELT SLIDE AWAY ANIMATION (@keyframes beltSlideAway)
- * ====================================================
+ * BELT FADE AWAY ANIMATION (@keyframes beltFadeAway)
+ * ==================================================
  * Leather strap simple fade out.
  */
-@keyframes beltSlideAway {
+@keyframes beltFadeAway {
   0% { opacity: 1; }
   100% { opacity: 0; }
 }
@@ -633,7 +631,7 @@
 }
 
 .beltFading::before {
-  animation: beltSlideAway 0.5s ease-out 0.1s forwards;
+  animation: beltFadeAway 0.5s ease-out 0.1s forwards;
 }
 
 .beltFading::after {

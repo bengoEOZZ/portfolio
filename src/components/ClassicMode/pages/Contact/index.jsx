@@ -19,7 +19,9 @@ import { useState, useRef, useEffect } from 'react';
 import classes from './Contact.module.css';
 import IDCard from './IDCard';
 import IDCardBack from './IDCardBack';
-import use3DMouseTracking from '../../../../hooks/use3DMouseTracking';
+import use3DMouseTracking from '../../../../hooks/ClassicMode/use3DMouseTracking';
+import PageHeader from '../PageHeader';
+import LuxuryWallet from '../About/LuxuryWallet';
 
 /**
  * Contact Component
@@ -28,6 +30,27 @@ import use3DMouseTracking from '../../../../hooks/use3DMouseTracking';
 const Contact = () => {
   /* Tracks card flip state (false = front, true = back) */
   const [isFlipped, setIsFlipped] = useState(false);
+  
+  /* Tracks entrance animation state for wallet appearance */
+  const [isEntering, setIsEntering] = useState(true);
+  const [walletOpen, setWalletOpen] = useState(false);
+  
+  // Trigger wallet opening after a delay
+  useEffect(() => {
+    const openTimer = setTimeout(() => {
+      setWalletOpen(true);
+    }, 1200);
+    
+    // Remove wallet from DOM after animation completes (1.6s animation + 0.8s delay = 2.4s)
+    const removeTimer = setTimeout(() => {
+      setIsEntering(false);
+    }, 2400);
+    
+    return () => {
+      clearTimeout(openTimer);
+      clearTimeout(removeTimer);
+    };
+  }, []);
   
   const mouseTrackingAreaRef = useRef(null);    // Outer container: defines the mouse tracking area
   const rotatingCardRef = useRef(null);         // Inner card: the actual element that rotates and tilts
@@ -73,16 +96,21 @@ const Contact = () => {
     <div className={classes.contactPage}>
       
       {/* PAGE HEADER */}
-      <div className={classes.pageHeader}>
-        <h1 className={classes.pageTitle}>Contact Me</h1>
-        <div className={classes.titleUnderline}></div>
-        <p className={classes.pageSubtitle}>
-          Let's connect and explore opportunities for collaboration.
-        </p>
-      </div>
+      <PageHeader 
+        title="Contact Me"
+        subtitle="Let's connect and explore opportunities for collaboration."
+      />
 
       {/* CONTACT PAGE */}
       <div className={classes.contentContainer}>
+        
+        {/* WALLET ANIMATION - Appears briefly then fades */}
+        {isEntering && (
+          <div className={classes.walletContainer}>
+            <LuxuryWallet isOpen={walletOpen} onToggle={() => {}} />
+          </div>
+        )}
+        
         <div className={classes.contactArea}>
           
           {/* MOUSE TRACKING AREA */}

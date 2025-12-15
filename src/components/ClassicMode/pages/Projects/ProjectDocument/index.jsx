@@ -33,6 +33,7 @@
  */
 
 // DEPENDENCIES
+import { useState } from 'react';
 import classes from './ProjectDocument.module.css';
 
 /**
@@ -49,6 +50,8 @@ const ProjectDocument = ({
   onClick,
   onDemoClick 
 }) => {
+  // State to control entrance animation - starts true, becomes false after animation
+  const [isEntering, setIsEntering] = useState(true);
   // Calculate inline styles for stacking/fanning
   const documentStyle = {
     // In fanned mode, reverse index order (to appear from leftmost-rightmost in fanned mode)
@@ -69,12 +72,14 @@ const ProjectDocument = ({
       className={`${classes.projectDocument} 
         ${isActive ? classes.active : ''}  /* Add .active class when selected */
         ${isStackFanned ? classes.fanned : ''}  /* Add .fanned class for fan layout */
-        ${isTransitioning ? classes.disableHover : ''}`}  /* Disable hover during transitions */
+        ${isTransitioning ? classes.disableHover : ''}  /* Disable hover during transitions */
+        ${isEntering ? classes.entering : ''}`}  /* Add .entering class for entrance animation */
       style={documentStyle}  /* Apply calculated inline styles for positioning */
       onClick={(e) => {
         e.stopPropagation();  /* Stop click event from triggering parent elements */
         onClick(index);  /* Notify parent that this document was clicked */
       }}
+      onAnimationEnd={() => setIsEntering(false)}  /* Remove entering class after animation completes */
     >
       {/* DOCUMENT HEADER */}
       <div className={classes.documentHeader}>

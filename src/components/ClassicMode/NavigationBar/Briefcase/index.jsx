@@ -5,19 +5,22 @@
  * 
  * COMPONENT ARCHITECTURE:
  * -----------------------
- * Body: Luxury briefcase with diamond and corner ornaments
- * Interior: Visible when opened, creates depth effect
- * Dropdown Menu: Animated menu with luxury icons (wallet, cards, documents, business card)
+ * Handle: Golden gradient handle with decorative rivets
+ * Body: Dark leather briefcase with diamond symbol, "PORTFOLIO" label, and corner ornaments
+ * Interior: Fixed behind body with mysterious creature and glowing golden eyes that blink
+ * Dropdown Menu: Four animated menu items with luxury icons (wallet, cards, documents, business card)
  * 
  * INTERACTIONS:
  * -------------
- * Click Briefcase: Shake animation followed by menu open/close
- * Click Menu Items: Navigate to respective pages with page transition
- * Click Outside: Automatically closes menu
+ * Click Briefcase: Horizontal shake animation (600ms) followed by menu open/close
+ * Click Menu Items: Triggers staggered closing animation, navigates with page transition
+ * Click Outside: useEffect with mousedown listener automatically closes menu
+ * Hover Effects: Golden glow on briefcase, sparkles on icons, edge line on menu items
  */
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Sparkle from '../../Sparkle';
 import classes from './Briefcase.module.css';
 
 /**
@@ -172,7 +175,7 @@ const Briefcase = ({ startTransition }) => {
   return (
     <div 
       ref={briefcaseRef}
-      className={`${classes.briefcase} ${isShaking ? classes.shake : ''} ${isMenuOpen ? classes.open : ''}`}
+      className={`${classes.briefcase} ${isShaking ? classes.shake : ''} ${isMenuOpen ? classes.open : ''} ${isClosing ? classes.closing : ''}`}
       onClick={handleBriefcaseClick}
     >
       
@@ -211,26 +214,28 @@ const Briefcase = ({ startTransition }) => {
               key={item.id}                                  // Unique key for React list rendering
               className={classes.menuItem}
               onClick={(e) => {
-                e.stopPropagation();                         // Prevent briefcase click from triggering
+                e.stopPropagation();                         // Prevent briefcase click from triggering parent handler
                 closeMenu();                                 // Trigger staggered close animation
                 // Navigate with page transition if available
                 if (startTransition) {
                   startTransition(() => {
                     navigate(item.path);                     // Navigate within transition
-                  });
+                  }, 1500);
                 } else {
                   navigate(item.path);                       // Fallback navigation
                 }
               }}
             >
-              {/* Icon container with mapped icon component (Sparkle effect upon hover) */}
+              {/* MENU ITEM ICON (Sparkle effects upon hover) */}
               <div className={classes.luxuryIcon}>
                 {ICON_COMPONENTS[item.icon]}
-                <div className={classes.sparkle1}></div>
-                <div className={classes.sparkle2}></div>
-                <div className={classes.sparkle3}></div>
+                <div className={classes.sparkles}>
+                  <Sparkle style={{ top: '20%', left: '15%' }} animationDelay="0s" />
+                  <Sparkle style={{ top: '75%', right: '15%' }} animationDelay="0.3s" />
+                  <Sparkle style={{ top: '10%', right: '12%' }} animationDelay="0.6s" />
+                </div>
               </div>
-              {/* Menu item label */}
+              {/* MENU ITEM LABEL */}
               <span className={classes.menuLabel}>{item.label}</span>
             </div>
           ))}

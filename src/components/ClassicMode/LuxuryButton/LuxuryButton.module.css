@@ -1,9 +1,7 @@
 /**
  * LUXURYBUTTON COMPONENT STYLES
  * =============================
- * 
- * Luxury button styling with golden theme and elegant animations.
- * Features slide-in background effects and premium hover interactions.
+ * Luxury button styling with golden theme.
  */
 
 /**
@@ -32,17 +30,10 @@
   border: 2px solid #d4af37;          /* Golden border */
   border-radius: 8px;                 /* Slightly more rounded corners */
   
-  /* LUXURY ENHANCEMENTS */
-  box-shadow: 
-    0 4px 15px rgba(0, 0, 0, 0.4),
-    0 2px 8px rgba(212, 175, 55, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
-  
   /* INTERACTIONS */
   position: relative;                 /* For pseudo-elements */
   overflow: hidden;                   /* Hide slide effect */
-  cursor: default;                    /* Interactive cursor */
+  cursor: pointer;                    /* Interactive cursor */
   text-decoration: none;              /* Remove underline */
   transition: all 0.4s ease;         /* Smooth transitions */
   
@@ -93,22 +84,9 @@
   
   /* ENHANCED HOVER SHADOWS */
   box-shadow: 
-    0 8px 25px rgba(0, 0, 0, 0.5),
-    0 4px 15px rgba(212, 175, 55, 0.4),
-    0 0 20px rgba(212, 175, 55, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    0 4px 15px rgba(212, 175, 55, 0.4);
   
   border-color: #f4e4bc;             /* Lighter border on hover */
-}
-
-/**
- * FOCUS STYLES
- * ============
- * Accessibility styling for keyboard navigation.
- */
-.btn:focus {
-  outline: 2px solid #d4af37;        /* Golden focus outline */
-  outline-offset: 2px;               /* Offset from element */
 }
 
 /**

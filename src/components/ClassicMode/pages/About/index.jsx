@@ -21,6 +21,7 @@
 import { useState, useCallback } from 'react';
 import classes from './About.module.css';
 import LuxuryWallet from './LuxuryWallet';
+import PageHeader from '../PageHeader';
 
 /**
  * PERSONAL INFO DATA
@@ -41,6 +42,7 @@ const PERSONAL_INFO = [
 const About = () => {
   // STATE MANAGEMENT - Only wallet open/close state (hover logic moved to LuxuryWallet)
   const [isWalletOpen, setIsWalletOpen] = useState(false);
+  const [isEntering, setIsEntering] = useState(true);
   
   // Toggle wallet open/close - makes sure the state is updated based on previous state
   const toggleWallet = useCallback(() => setIsWalletOpen(prev => !prev), []);
@@ -49,19 +51,19 @@ const About = () => {
     <div className={classes.aboutPage}>
 
       {/* PAGE HEADER */}
-      <div className={classes.pageHeader}>
-        <h1 className={classes.pageTitle}>About Me</h1>
-        <div className={classes.titleUnderline}></div>
-        <p className={classes.pageSubtitle}>
-          Personal background, values, and professional journey.
-        </p>
-      </div>
+      <PageHeader 
+        title="About Me"
+        subtitle="Personal background, values, and professional journey."
+      />
 
       {/* THREE-COLUMN LAYOUT */}
       <div className={classes.threeColumnLayout}>
         
         {/* LEFT COLUMN - Personal info */}
-        <div className={`${classes.leftColumn} ${isWalletOpen ? classes.fadeOut : classes.fadeIn}`}>
+        <div 
+          className={`${classes.leftColumn} ${isWalletOpen ? classes.fadeOut : classes.fadeIn} ${isEntering ? classes.entering : ''}`}
+          onAnimationEnd={() => setIsEntering(false)}
+        >
           <div className={classes.infoSection}>
             <h3 className={classes.sectionTitle}>Personal Information</h3>
             <div className={classes.infoList}>
@@ -81,7 +83,7 @@ const About = () => {
         </div>
 
         {/* RIGHT COLUMN - Philosophy quote*/}
-        <div className={`${classes.rightColumn} ${isWalletOpen ? classes.fadeOut : classes.fadeIn}`}>
+        <div className={`${classes.rightColumn} ${isWalletOpen ? classes.fadeOut : classes.fadeIn} ${isEntering ? classes.entering : ''}`}>
           <div className={classes.philosophySection}>
             <h3 className={classes.sectionTitle}>Philosophy</h3>
             <div className={classes.philosophyContent}>

@@ -18,7 +18,6 @@
  */
 
 // DEPENDENCIES
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import classes from './NavigationBelt.module.css';
 
@@ -55,7 +54,7 @@ const NavigationBelt = ({ onNavigationStart, isBeltFading, startTransition }) =>
           navigate('/classic');
           break;
       }
-    });
+    }, 1500);
 
     // Notify parent to start belt fade-out animation
     if (onNavigationStart) {

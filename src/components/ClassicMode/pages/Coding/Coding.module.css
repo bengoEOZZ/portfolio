@@ -14,40 +14,10 @@
   padding: 4rem 2rem;
 }
 
-/* ===== PAGE HEADER ===== */
-.pageHeader {
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-.pageTitle {
-  font: 700 48px/1.2 'Cinzel', serif; /* KEEP - don't touch */
-  color: #2c2c2c;
-  margin: 0 0 1rem 0;
-  letter-spacing: 2px;
-  background: linear-gradient(135deg, #d4af37 0%, #f4e4bc 50%, #d4af37 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.titleUnderline {
-  width: 120px;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, #BFA850, transparent);
-  margin: 0 auto 1.5rem auto;
-  border-radius: 2px;
-}
-
-.pageSubtitle {
-  font: 400 18px/1.6 'Cormorant Garamond', serif; /* KEEP - don't touch */
-  color: #bbb;
-  max-width: 600px;
-  margin: 0 auto;
-  letter-spacing: 0.5px;
-}
-
-/* ===== UNDER DEVELOPMENT NOTICE ===== */
+/**
+ * UNDER DEVELOPMENT NOTICE (.developmentNotice)
+ * =============================================
+ */
 .developmentNotice {
   display: flex;
   align-items: center;
@@ -60,6 +30,7 @@
   border-radius: 8px;
   padding: 0.6rem 1.2rem; /* CHANGED: 0.5 * 1.2, 1 * 1.2 */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  animation: luxuryEntrance 1.2s ease-out 0.7s backwards;
 }
 
 .noticeIcon {
@@ -81,6 +52,23 @@
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 1.2rem; /* CHANGED: 1 * 1.2 = 1.2 */
   padding: 0 1rem;
+  
+  /* DELAYED ENTRANCE ANIMATION */
+  opacity: 0;
+  animation: techStackEntrance 1.2s ease-out 0.9s forwards;
+}
+
+@keyframes techStackEntrance {
+  0% {
+    opacity: 0;
+    transform: perspective(1500px) translateY(60px) scale(0.92);
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1500px) translateY(0) scale(1);
+    filter: blur(0px);
+  }
 }
 
 /* ===== TECH CATEGORY ===== */
@@ -185,6 +173,39 @@
 @media (max-width: 1200px) {
   .techStackContainer {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ===== LUXURY ANIMATIONS ===== */
+@keyframes luxuryEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes subtleGlow {
+  0%, 100% {
+    text-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+  }
+  50% {
+    text-shadow: 0 0 40px rgba(212, 175, 55, 0.7),
+                 0 0 60px rgba(255, 215, 0, 0.3);
+  }
+}
+
+@keyframes underlineExpand {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  100% {
+    width: 120px;
+    opacity: 1;
   }
 }
 

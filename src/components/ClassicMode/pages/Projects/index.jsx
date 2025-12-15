@@ -23,6 +23,7 @@ import React, { useState, useMemo, useCallback } from 'react';
 import classes from './Projects.module.css';
 import ProjectDocument from './ProjectDocument';
 import DemoPopup from './DemoPopup';
+import PageHeader from '../PageHeader';
 
 // Import GIF demos
 import qbnbDemo from '../../../../assets/ClassicMode/gifs/QBNB.gif';
@@ -198,13 +199,10 @@ const Projects = () => {
       <div className={classes.contentContainer}>
         
         {/* PAGE HEADER */}
-        <div className={classes.pageHeader}>
-          <h1 className={classes.pageTitle}>Project Portfolio</h1>
-          <div className={classes.titleUnderline}></div>
-          <p className={classes.pageSubtitle}>
-            A comprehensive collection of development projects and technical achievements.
-          </p>
-        </div>
+        <PageHeader 
+          title="Project Portfolio"
+          subtitle="A comprehensive collection of development projects and technical achievements."
+        />
 
         {/* THREE-COLUMN LAYOUT */}
         <div className={classes.threeColumnLayout}>

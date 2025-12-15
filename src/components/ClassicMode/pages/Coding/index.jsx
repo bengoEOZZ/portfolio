@@ -6,6 +6,7 @@
 
 import React from 'react';
 import classes from './Coding.module.css';
+import PageHeader from '../PageHeader';
 
 /**
  * Coding Component
@@ -23,13 +24,10 @@ const Coding = () => {
   return (
     <div className={classes.codingPage}>
       {/* PAGE HEADER */}
-      <div className={classes.pageHeader}>
-        <h1 className={classes.pageTitle}>Coding Expertise</h1>
-        <div className={classes.titleUnderline}></div>
-        <p className={classes.pageSubtitle}>
-          A comprehensive overview of development skills and technologies
-        </p>
-      </div>
+      <PageHeader 
+        title="Coding Expertise"
+        subtitle="A comprehensive overview of development skills and technologies"
+      />
 
       {/* UNDER DEVELOPMENT NOTICE */}
       <div className={classes.developmentNotice}>

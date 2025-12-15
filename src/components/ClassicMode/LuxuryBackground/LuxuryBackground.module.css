@@ -88,3 +88,65 @@
     opacity: 0.9;
   }
 }
+
+/**
+ * CORNER LIGHT EFFECTS
+ * ====================
+ * Large light sources that activate during page transitions
+ */
+.cornerLight {
+  position: absolute;
+  width: 2400px;
+  height: 1400px;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+  z-index: 2;
+  filter: blur(120px);
+}
+
+.bottomLeft {
+  bottom: -1000px;
+  left: -1000px;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0.5) 20%,
+    rgba(255, 255, 255, 0.2) 40%,
+    rgba(255, 255, 255, 0.05) 60%,
+    transparent 100%
+  );
+}
+
+.bottomRight {
+  bottom: -1000px;
+  right: -1000px;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0.5) 20%,
+    rgba(255, 255, 255, 0.2) 40%,
+    rgba(255, 255, 255, 0.05) 60%,
+    transparent 100%
+  );
+}
+
+.cornerLight.active {
+  animation: lightPulse 1.6s ease-out forwards;
+}
+
+@keyframes lightPulse {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}

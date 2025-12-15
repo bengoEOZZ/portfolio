@@ -25,7 +25,7 @@ import NavigationBar from './NavigationBar';
 import LuxuryBackground from './LuxuryBackground';
 import HelloText from './HelloText';
 import NavigationBelt from './NavigationBelt';
-import { usePageTransition } from '../../hooks/usePageTransition';
+import { usePageTransition } from '../../hooks/ClassicMode/usePageTransition';
 
 /**
  * ClassicMode Component
@@ -66,16 +66,16 @@ const ClassicMode = () => {
    */
   return (
     <div className={classes.body}>
-      <NavigationBar startTransition={startTransition} />
+      <NavigationBar startTransition={startTransition} transitioning={transitioning} />
 
       <div className={classes.container}>
         {/* BACKGROUND SYSTEM - Always present */}
-        <LuxuryBackground />
+        <LuxuryBackground isExiting={isExiting} />
         
         {/* MAIN CONTENT - Conditional rendering */}
         {isHome ? (
           <>
-            <HelloText isHelloTextFading={transitioning} />
+            <HelloText isHelloTextFading={transitioning} startTransition={startTransition} />
             {/* NAVIGATION BELT - Only show on home page */}
             <NavigationBelt 
               onNavigationStart={handleNavigationStart} 

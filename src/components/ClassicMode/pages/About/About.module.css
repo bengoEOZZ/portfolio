@@ -33,58 +33,6 @@
 }
 
 /**
- * PAGE HEADER (.pageHeader, .pageTitle, .titleUnderline, .pageSubtitle)
- * =====================================================================
- */
-.pageHeader {
-  /* LAYOUT & POSITIONING */
-  text-align: center;
-  margin-bottom: 3.5rem;
-}
-
-.pageTitle {
-  /* TYPOGRAPHY */
-  font: 700 48px/1.2 'Cinzel', serif;
-  letter-spacing: 2px;
-  
-  /* LAYOUT & POSITIONING */
-  margin: 0 0 1rem 0;
-  
-  /* APPEARANCE */
-  color: var(--gold-primary);
-  background: linear-gradient(135deg, var(--gold-primary) 0%, #f0d98d 50%, var(--gold-primary) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.titleUnderline {
-  /* SIZING */
-  width: 120px;
-  height: 3px;
-  
-  /* LAYOUT & POSITIONING */
-  margin: 0 auto 1.5rem auto;
-  
-  /* APPEARANCE */
-  background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
-  border-radius: 2px;
-}
-
-.pageSubtitle {
-  /* TYPOGRAPHY */
-  font: 400 18px/1.6 'Cormorant Garamond', serif;
-  letter-spacing: 0.5px;
-  
-  /* LAYOUT & POSITIONING */
-  max-width: 600px;
-  margin: 0 auto;
-  
-  /* APPEARANCE */
-  color: var(--text-tertiary);
-}
-
-/**
  * THREE-COLUMN LAYOUT (.threeColumnLayout)
  * ========================================
  */
@@ -93,6 +41,7 @@
   display: grid;
   grid-template-columns: 360px 1fr 360px;
   gap: 5rem;
+  margin-top: 2.5rem;
   align-items: flex-start;
   justify-content: center;
   width: 100%;
@@ -114,6 +63,12 @@
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
+.leftColumn.entering {
+  /* ENTRANCE ANIMATION */
+  opacity: 0;
+  animation: slideInFromLeft 1s ease-out 0.8s both;
+}
+
 .rightColumn {
   /* LAYOUT & POSITIONING */
   display: flex;
@@ -125,11 +80,40 @@
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
+.rightColumn.entering {
+  /* ENTRANCE ANIMATION */
+  opacity: 0;
+  animation: slideInFromRight 1s ease-out 0.8s both;
+}
+
 .centerColumn {
   /* LAYOUT & POSITIONING */
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/* ENTRANCE ANIMATIONS */
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 /**

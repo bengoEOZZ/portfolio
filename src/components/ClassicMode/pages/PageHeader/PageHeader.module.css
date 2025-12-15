@@ -1,0 +1,258 @@
+/**
+ * PAGE HEADER COMPONENT STYLES
+ * =============================
+ * Styling for the reusable page header component used across all ClassicMode pages.
+ */
+
+/**
+ * MAIN HEADER CONTAINER (.pageHeader)
+ * ===================================
+ */
+.pageHeader {
+  /* LAYOUT & POSITIONING */
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/**
+ * TITLE WRAPPER (.titleWrapper)
+ * =============================
+ * Container for title and positioned sparkle effects.
+ */
+.titleWrapper {
+  /* LAYOUT & POSITIONING */
+  position: relative;
+  display: inline-block;
+}
+
+/**
+ * SPARKLE EFFECT LAYER (.sparkleEffect)
+ * =====================================
+ * Absolute overlay containing animated sparkle elements.
+ */
+.sparkleEffect {
+  /* LAYOUT & POSITIONING */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  
+  /* INTERACTIONS */
+  pointer-events: none;
+}
+
+/**
+ * SPARKLE CHILDREN ANIMATIONS (.sparkleEffect > *)
+ * ================================================
+ * Applies floating and twinkling animations to all sparkle elements.
+ */
+.sparkleEffect > * {
+  /* ANIMATIONS */
+  animation: 
+    sparkleFloat var(--duration, 3s) ease-in-out infinite var(--delay, 0s),
+    sparkleTwinkle 2s ease-in-out infinite var(--delay, 0s) !important;
+}
+
+/**
+ * SPARKLE POSITIONING
+ * ===================
+ * Scattered placement of sparkle elements around the title.
+ * Six sparkles positioned at various corners and edges for balanced effect.
+ */
+.sparkleEffect > *:nth-child(1) {
+  /* LAYOUT & POSITIONING */
+  position: absolute;
+  top: 8%;
+  left: 12%;
+}
+
+.sparkleEffect > *:nth-child(2) {
+  /* LAYOUT & POSITIONING */
+  position: absolute;
+  top: 18%;
+  left: 45%;
+}
+
+.sparkleEffect > *:nth-child(3) {
+  /* LAYOUT & POSITIONING */
+  position: absolute;
+  top: 10%;
+  right: 10%;
+}
+
+.sparkleEffect > *:nth-child(4) {
+  /* LAYOUT & POSITIONING */
+  position: absolute;
+  bottom: 35%;
+  left: 25%;
+}
+
+.sparkleEffect > *:nth-child(5) {
+  /* LAYOUT & POSITIONING */
+  position: absolute;
+  bottom: 30%;
+  left: 60%;
+}
+
+.sparkleEffect > *:nth-child(6) {
+  /* LAYOUT & POSITIONING */
+  position: absolute;
+  bottom: 38%;
+  right: 18%;
+}
+
+/**
+ * PAGE TITLE (.pageTitle)
+ * =======================
+ * Main title text with gold gradient and glow effect.
+ */
+.pageTitle {
+  /* TYPOGRAPHY */
+  font: 700 48px/1.2 'Cinzel', serif;
+  color: #2c2c2c;
+  letter-spacing: 2px;
+  
+  /* LAYOUT & POSITIONING */
+  margin: 0 0 1rem 0;
+  
+  /* APPEARANCE */
+  background: linear-gradient(135deg, #d4af37 0%, #f4e4bc 50%, #d4af37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+  
+  /* ANIMATIONS */
+  animation: luxuryEntrance 0.8s ease-out, subtleGlow 4s ease-in-out 1s infinite;
+}
+
+/**
+ * TITLE UNDERLINE (.titleUnderline)
+ * =================================
+ * Decorative gold gradient line beneath title.
+ */
+.titleUnderline {
+  /* SIZING */
+  width: 120px;
+  height: 3px;
+  
+  /* LAYOUT & POSITIONING */
+  margin: 0 auto 1.5rem auto;
+  
+  /* APPEARANCE */
+  background: linear-gradient(90deg, transparent, #BFA850, transparent);
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(191, 168, 80, 0.6);
+  
+  /* ANIMATIONS */
+  animation: underlineExpand 1s ease-out 0.4s backwards;
+}
+
+/**
+ * PAGE SUBTITLE (.pageSubtitle)
+ * =============================
+ * Descriptive text below title and underline.
+ */
+.pageSubtitle {
+  /* TYPOGRAPHY */
+  font: 400 18px/1.6 'Cormorant Garamond', serif;
+  color: #bbb;
+  letter-spacing: 0.5px;
+  
+  /* LAYOUT & POSITIONING */
+  max-width: 600px;
+  margin: 0 auto;
+  
+  /* ANIMATIONS */
+  animation: luxuryEntrance 0.8s ease-out 0.6s backwards;
+}
+
+/**
+ * ANIMATIONS
+ * ==========
+ */
+
+/**
+ * LUXURY ENTRANCE ANIMATION (@keyframes luxuryEntrance)
+ * =====================================================
+ * Fade-in with upward slide for title and subtitle entrance.
+ */
+@keyframes luxuryEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/**
+ * SUBTLE GLOW ANIMATION (@keyframes subtleGlow)
+ * =============================================
+ * Pulsing glow effect on title text shadow.
+ */
+@keyframes subtleGlow {
+  0%, 100% {
+    text-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+  }
+  50% {
+    text-shadow: 0 0 40px rgba(212, 175, 55, 0.7),
+                 0 0 60px rgba(255, 215, 0, 0.3);
+  }
+}
+
+/**
+ * UNDERLINE EXPAND ANIMATION (@keyframes underlineExpand)
+ * =======================================================
+ * Horizontal expansion of decorative underline from center.
+ */
+@keyframes underlineExpand {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  100% {
+    width: 120px;
+    opacity: 1;
+  }
+}
+
+/**
+ * SPARKLE FLOAT ANIMATION (@keyframes sparkleFloat)
+ * =================================================
+ * Gentle vertical and horizontal floating movement for sparkles.
+ */
+@keyframes sparkleFloat {
+  0%, 100% { 
+    transform: translateY(0) translateX(0);
+  }
+  25% { 
+    transform: translateY(-3px) translateX(2px);
+  }
+  50% { 
+    transform: translateY(-5px) translateX(0);
+  }
+  75% { 
+    transform: translateY(-3px) translateX(-2px);
+  }
+}
+
+/**
+ * SPARKLE TWINKLE ANIMATION (@keyframes sparkleTwinkle)
+ * =====================================================
+ * Fade and scale effect with rotation for sparkle twinkling.
+ */
+@keyframes sparkleTwinkle {
+  0%, 100% { 
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  50% { 
+    opacity: 1;
+    transform: scale(1.2) rotate(180deg);
+  }
+}
