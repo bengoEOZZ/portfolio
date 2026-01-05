@@ -121,16 +121,14 @@
  */
 @media (max-height: 600px) and (orientation: landscape) {
   .body {
-    overflow-y: auto;
+    overflow-y: hidden;
     overflow-x: hidden;
-    height: auto;
-    min-height: 100vh;
+    height: 120vh;
   }
   
   .container {
-    overflow-y: auto;
+    overflow-y: hidden;
     overflow-x: hidden;
-    height: auto;
-    min-height: 100vh;
+    height: 120vh;
   }
 }
