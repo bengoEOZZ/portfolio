@@ -25,16 +25,27 @@
   overflow: hidden;                /* Hide any overflow content */
 
   /* SPLIT-SCREEN BACKGROUND */
-  background: linear-gradient(
-    to right,                       /* Horizontal gradient from left to right */
-    #0a0a0a 0%,
-    #3a3a3a 30%,
-    #4a4a4a 40%,
-    #5a5a5a 50%,
-    #124a91 50%,
-    #1a237e 75%,
-    #0a0f1c 100%
-  );
+  background: 
+    /* Slight gradient darkening overlay (focus attention to center) */
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.4) 0%,
+      rgba(0, 0, 0, 0.2) 30%,
+      transparent 50%,
+      rgba(0, 0, 0, 0.2) 70%,
+      rgba(0, 0, 0, 0.3) 100%
+    ),
+    /* Left-to-right base gradient */
+    linear-gradient(
+      to right,                       /* Horizontal gradient from left to right */
+      #0a0a0a 0%,
+      #3a3a3a 30%,
+      #4a4a4a 40%,
+      #5a5a5a 50%,
+      #124a91 50%,
+      #1a237e 75%,
+      #0a0f1c 100%
+    );
   /* Creates distinct left/right zones:
      - Left (0-50%): Professional classical gradient (matching ClassicMode)
      - Right (50-100%): Celestial cosmic gradient (matching CreativeMode) */
@@ -58,9 +69,9 @@
   /* TILE PATTERN */
   background: 
     /* Subtle grid pattern for tech/engineering feel */
-    linear-gradient(90deg, rgba(212,175,55,0.1) 1px, transparent 1px),
-    linear-gradient(0deg, rgba(212,175,55,0.1) 1px, transparent 1px);
-  background-size: 40px 40px, 40px 40px;
+    linear-gradient(90deg, rgba(212,175,55,0.1) 0.052vw, transparent 0.052vw),    /* 1px → vw */
+    linear-gradient(0deg, rgba(212,175,55,0.1) 0.093vh, transparent 0.093vh);     /* 1px → vh */
+  background-size: 2.083vw 3.704vh, 2.083vw 3.704vh;                              /* 40px 40px → vw vh */
 
   /* INTERACTION & LAYERING */
   pointer-events: none;
@@ -85,52 +96,356 @@
   /* STAR FIELD EFFECT */
   background-image: 
     /* Multiple tiny radial gradient "stars" at specific positions */
-    radial-gradient(1.5px 1.5px at 10% 20%, rgba(255,255,255,0.8), transparent),
-    radial-gradient(1.5px 1.5px at 30% 40%, rgba(255,255,255,0.6), transparent),
-    radial-gradient(1.5px 1.5px at 60% 10%, rgba(255,255,255,0.7), transparent),  
-    radial-gradient(1.5px 1.5px at 80% 60%, rgba(255,255,255,0.5), transparent),   
-    radial-gradient(1.5px 1.5px at 20% 80%, rgba(255,255,255,0.6), transparent),  
-    radial-gradient(1.5px 1.5px at 90% 30%, rgba(255,255,255,0.8), transparent),
-    radial-gradient(1.5px 1.5px at 40% 70%, rgba(255,255,255,0.4), transparent);
+    radial-gradient(0.078vw 0.139vh at 10% 20%, rgba(255,255,255,0.8), transparent),    /* 1.5px 1.5px → vw vh */
+    radial-gradient(0.078vw 0.139vh at 30% 40%, rgba(255,255,255,0.6), transparent),    /* 1.5px 1.5px → vw vh */
+    radial-gradient(0.078vw 0.139vh at 60% 10%, rgba(255,255,255,0.7), transparent),    /* 1.5px 1.5px → vw vh */
+    radial-gradient(0.078vw 0.139vh at 80% 60%, rgba(255,255,255,0.5), transparent),    /* 1.5px 1.5px → vw vh */
+    radial-gradient(0.078vw 0.139vh at 20% 80%, rgba(255,255,255,0.6), transparent),    /* 1.5px 1.5px → vw vh */
+    radial-gradient(0.078vw 0.139vh at 90% 30%, rgba(255,255,255,0.8), transparent),    /* 1.5px 1.5px → vw vh */
+    radial-gradient(0.078vw 0.139vh at 40% 70%, rgba(255,255,255,0.4), transparent);    /* 1.5px 1.5px → vw vh */
   
   /* INTERACTION & LAYERING */
   pointer-events: none;
 }
 
 /**
+ * ===============================================
+ * HEADER & UI ELEMENTS
+ * ===============================================
+ */
+
+/**
  * PAGE HEADER STYLES (.header)
  * ============================
+ * Main title with gradient text effect that shifts between gold and blue
  */
 .header {
   /* TYPOGRAPHY */
-  color: white;
-  font-size: 5rem;                 
+  font-size: 7.407vh;              /* 80px → vh (responsive) */
   font-weight: 700;                /* Bold for readability */
+  
+  /* GRADIENT TEXT EFFECT - Gold → White → Blue */
+  background: linear-gradient(
+    90deg, 
+    #BFA850 0%,                    /* Classic gold (left) */
+    #fff 35%,                      /* White transition */
+    #fff 65%,                      /* White center */
+    #6495ED 100%                   /* Creative blue (right) */
+  );
+  background-size: 200% 100%;      /* Oversized for animation */
+  -webkit-background-clip: text;   /* Clip gradient to text shape */
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  
+  /* ANIMATION - Flicker on load, then continuous gradient shift */
+  animation: 
+    nameFlicker 4s ease-out forwards,           /* Initial power-on effect */
+    gradientShift 8s ease-in-out infinite 4s;   /* Ongoing gradient motion */
 
   /* ENHANCED 3D VISIBILITY */
-  text-shadow: 
-    2px 2px 4px rgba(255, 255, 255, 0.8),   /* Light shadow */
-    -2px -2px 4px rgba(0, 0, 0, 0.3);       /* Dark shadow */
+  filter: drop-shadow(0 0 1.5rem rgba(255, 255, 255, 0.4));
   
-  /* SPACING */
-  margin-bottom: 30px;
-  z-index: 5;                       /* Ensure header appears above background */
+  /* SPACING & LAYERING */
+  margin-bottom: 2.778vh;          /* 30px → vh */
+  z-index: 5;                      /* Above background decorations */
+
+  /* HOVER TRANSITION */
+  transition: 
+    letter-spacing 0.4s ease, 
+    transform 0.4s ease, 
+    filter 0.4s ease;
+  cursor: default;
+  will-change: letter-spacing, transform, filter;  /* GPU optimization hint */
+}
+
+/**
+ * GRADIENT SHIFT ANIMATION
+ * Slowly moves the gradient back and forth across the text
+ */
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }    /* Start: gold emphasized */
+  50% { background-position: 100% 50%; }       /* Peak: blue emphasized */
+}
+
+/* HEADER HOVER - Power surge glow effect */
+.header:hover {
+  letter-spacing: 0.4rem;          /* Spread letters apart */
+  transform: scale(1.05);          /* Slight enlargement */
 }
 
 /**
  * BUTTON CONTAINER STYLES (.buttons)
  * ==================================
+ * Horizontally centered container for mode selection buttons
  */
 .buttons {
-  /* LAYOUT */
-  display: flex;                   /* Flexbox container */
+  /* LAYOUT - Horizontal flex container */
+  display: flex;
   justify-content: center;         /* Center buttons horizontally */
   align-items: center;             /* Align buttons vertically */
-
-  /* POSITIONING */
-  transform: translateX(8px);     /* Shift entire button container 8px to the right */
   
   /* SPACING */
-  gap: 80px;                       /* Large gap */
-  margin-bottom: 75px;             /* Space between header and buttons */
+  gap: 4.167vw;                    /* 80px → vw (space between buttons) */
+  margin-bottom: 6.944vh;          /* 75px → vh (space below container) */
+}
+
+/**
+ * CREATIVE CONTAINER STYLES (.creativeContainer)
+ * ==============================================
+ * Wrapper for Creative button + epilepsy warning text
+ */
+.creativeContainer {
+  display: flex;
+  flex-direction: column;          /* Stack button and warning vertically */
+  align-items: center;             /* Center both elements */
+  gap: 0.926vh;                    /* 10px → vh (space between elements) */
+  position: relative;
+}
+
+/**
+ * EPILEPSY WARNING STYLES (.epilepsyWarning)
+ * ==========================================
+ * Small disclaimer text below the Creative button
+ */
+.epilepsyWarning {
+  color: white;
+  font-size: 1.111vh;              /* 12px → vh (small text) */
+  font-style: italic;              /* Emphasis styling */
+  font-weight: 300;                /* Light weight */
+  text-align: center;
+  margin: 0;
+  opacity: 0.85;                   /* Slightly transparent */
+  letter-spacing: 0.260vw;         /* 5px → vw (spread out) */
+  animation: celestialFloat 6s ease-in-out infinite;  /* Gentle floating */
+}
+
+/**
+ * NAME FLICKER ENTRANCE ANIMATION
+ * ================================
+ * Neon sign flicker effect - simulates a sign powering on with electrical flickers
+ */
+@keyframes nameFlicker {
+  /* Initial state - invisible */
+  0% { 
+    opacity: 0; 
+    filter: drop-shadow(0 0 0 transparent); 
+    transform: scale(0.95); 
+  }
+  /* First flash - bright burst */
+  10% { 
+    opacity: 1; 
+    filter: drop-shadow(0 0 2rem rgba(255, 255, 255, 0.9)); 
+  }
+  /* Quick flicker off */
+  15% { 
+    opacity: 0.3; 
+    filter: drop-shadow(0 0 0 transparent); 
+  }
+  /* Second flash - strong */
+  25% { 
+    opacity: 1; 
+    filter: drop-shadow(0 0 2.5rem rgba(255, 255, 255, 0.8)); 
+  }
+  /* Partial fade */
+  30% { opacity: 0.5; }
+  /* Quick recovery */
+  35% { opacity: 1; }
+  /* Another flicker */
+  40% { 
+    opacity: 0.7; 
+    filter: drop-shadow(0 0 0 transparent); 
+  }
+  /* Stabilizing */
+  50% { 
+    opacity: 1; 
+    filter: drop-shadow(0 0 2rem rgba(255, 255, 255, 0.6)); 
+    transform: scale(1); 
+  }
+  /* Final stable state */
+  100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 1.5rem rgba(255, 255, 255, 0.4));
+    transform: scale(1);
+  }
+}
+
+/**
+ * ===============================================
+ * CENTER DIVIDER SECTION
+ * ===============================================
+ */
+
+/**
+ * CENTER DIVIDER (.centerDivider)
+ * ===============================
+ */
+.centerDivider {
+  /* POSITIONING */
+  position: absolute;
+  left: 50%;                       /* Center of viewport */
+  top: 0;
+  transform: translateX(-50%);     /* Perfect centering adjustment */
+  
+  /* DIMENSIONS */
+  width: 0.3vw;                    /* Thin vertical line */
+  height: 100%;                    /* Full viewport height */
+  
+  /* ENERGY STREAM GRADIENT - Blends both theme colors */
+  background: linear-gradient(
+    180deg,                           /* Top to bottom */
+    transparent 0%,                   /* Fade in from top */
+    rgba(191, 168, 80, 0.8) 20%,    /* Gold (Classic side influence) */
+    rgba(255, 255, 255, 1) 50%,     /* White center - neutral meeting point */
+    rgba(100, 149, 237, 0.8) 80%,   /* Blue (Creative side influence) */
+    transparent 100%                  /* Fade out at bottom */
+  );
+  
+  /* LAYERING & ANIMATION */
+  z-index: 2;                      /* Above backgrounds, below content */
+  animation: dividerPulse 3s ease-in-out infinite;  /* Breathing glow */
+}
+
+/* FLOATING ENERGY ORBS - Two glowing spheres that bob along the divider */
+.centerDivider::before,
+.centerDivider::after {
+  content: '';                     /* Required for pseudo-element */
+  position: absolute;
+  left: 50%;                       /* Center on the divider line */
+  transform: translateX(-50%);     /* Perfect centering */
+  
+  /* ORB SHAPE */
+  width: 1.5vw;                    /* Circular orb size */
+  height: 1.5vw;
+  border-radius: 50%;              /* Perfect circle */
+  background: white;             /* Bright white fill */
+  
+  /* ORB GLOW */
+  box-shadow: 0 0 2rem rgba(255, 255, 255, 0.8);
+  
+  animation: orbFloat 8s ease-in-out infinite;  /* Floating motion */
+}
+
+/* UPPER ORB - Positioned at 20% from top */
+.centerDivider::before {
+  top: 20%;
+  animation-delay: 0s;             /* Starts immediately */
+}
+
+/* LOWER ORB - Positioned at 70% from top */
+.centerDivider::after {
+  top: 75%;
+  animation-delay: -4s;            /* Offset by half cycle for alternating motion */
+}
+
+/**
+ * DIVIDER PULSE ANIMATION
+ * =======================
+ */
+@keyframes dividerPulse {
+  0%, 100% {
+    opacity: 0.7;                                      /* Dimmed state */
+    box-shadow: 
+      0 0 1.5rem rgba(191, 168, 80, 0.6),              /* Gold glow (Classic side) */
+      0 0 3rem rgba(100, 149, 237, 0.6);               /* Blue glow (Creative side) */
+  }
+  50% {
+    opacity: 1;                                        /* Full brightness */
+    box-shadow: 
+      0 0 2rem rgba(191, 168, 80, 0.8),                /* Enhanced gold */
+      0 0 4rem rgba(100, 149, 237, 0.8),               /* Enhanced blue */
+      0 0 6rem rgba(255, 255, 255, 0.4);               /* White outer glow */
+  }
+}
+
+/**
+ * ORB FLOAT ANIMATION
+ * ===================
+ */
+@keyframes orbFloat {
+  0%, 100% { transform: translateX(-50%) translateY(0) scale(1); }      /* Rest position */
+  50% { transform: translateX(-50%) translateY(-30px) scale(1.3); }     /* Float up & grow */
+}
+
+/**
+ * PORTAL VORTEX - CENTER DIVIDER ENHANCEMENT (.portalVortex)
+ * ==========================================================
+ */
+.portalVortex {
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  transform: translate(-50%, -50%);
+  width: 20vw;
+  height: 10vw;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* INDIVIDUAL PORTAL RING */
+.portalRing {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  border: 0.1vw solid;
+  animation: ringPulse 3s ease-in-out infinite;
+}
+
+/* RING 1 - Outermost ring (100% size) - Gold tint */
+.portalRing:nth-child(1) { width: 100%; height: 100%; transform: translate(-50%, -50%); border-color: rgba(191, 168, 80, 0.25); animation-delay: 0s; }
+
+/* RING 2 - Second ring (80% size) - White */
+.portalRing:nth-child(2) { width: 80%; height: 80%; transform: translate(-50%, -50%); border-color: rgba(255, 255, 255, 0.18); animation-delay: 0.5s; }
+
+/* RING 3 - Third ring (60% size) - Blue tint */
+.portalRing:nth-child(3) { width: 60%; height: 60%; transform: translate(-50%, -50%); border-color: rgba(100, 149, 237, 0.25); animation-delay: 1s; }
+
+/* RING 4 - Innermost ring (40% size) - White */
+.portalRing:nth-child(4) { width: 40%; height: 40%; transform: translate(-50%, -50%); border-color: rgba(255, 255, 255, 0.3); animation-delay: 1.5s; }
+
+/**
+ * RING PULSE ANIMATION (@keyframes)
+ * =================================
+ */
+@keyframes ringPulse {
+  0%, 100% { 
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  50% { 
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 0.5;
+  }
+}
+
+/* PORTAL CORE - Central glowing energy point */
+.portalCore {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1.5vw;
+  height: 1.5vw;
+  background: radial-gradient(
+    circle, 
+    white 0%,                      /* Bright center */
+    rgba(255,255,255,0) 70%        /* Fade to transparent */
+  );
+  border-radius: 50%;
+  animation: portalPulse 2s ease-in-out infinite;  /* Breathing glow */
+}
+
+/**
+ * PORTAL PULSE ANIMATION (@keyframes)
+ * ===================================
+ */
+@keyframes portalPulse {
+  0%, 100% { 
+    transform: translate(-50%, -50%) scale(1);                 /* Normal size */
+    box-shadow: 0 0 2vw rgba(255,255,255,0.8);               /* White aura */
+  }
+  50% { 
+    transform: translate(-50%, -50%) scale(1.5);               /* Expanded */
+    box-shadow: 0 0 3vw rgba(255,255,255,1);                 /* Stronger white aura */
+  }
 }

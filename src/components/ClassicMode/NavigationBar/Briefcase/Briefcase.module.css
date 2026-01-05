@@ -11,12 +11,12 @@
 .briefcase {
   /* LAYOUT & POSITIONING */
   position: relative;
-  width: 70px;
-  height: 45px;
+  width: 3.65vw;
+  height: 2.34vw;
   
   /* 3D PROPERTIES */
   transform-style: preserve-3d;      /* Enable 3D transforms on children */
-  perspective: 200px;                /* Depth effect for 3D rotation */
+  perspective: 10.42vw;              /* Depth effect for 3D rotation */
   
   /* INTERACTIONS */
   cursor: pointer;                   /* Indicate clickability */
@@ -30,17 +30,19 @@
 .briefcaseHandle {
   /* LAYOUT & POSITIONING */
   position: absolute;                /* Position above briefcase body */
-  top: -10px;                        /* Offset above body */
+  top: -22%;                         /* Offset above body */
   left: 52%;                         /* Slightly right of center */
   transform: translateX(-50%);       /* Center horizontally */
-  width: 35px;                       /* Handle width */
-  height: 8px;                       /* Handle thickness */
+  width: 50%;                        /* Handle width relative to briefcase */
+  height: 18%;                       /* Handle thickness relative to briefcase */
   
   /* APPEARANCE */
   background: linear-gradient(180deg, #f4e4bc, #d4af37 30%, #BFA850 70%, #8B7355);  /* Golden gradient */
-  border: 2px solid rgba(139, 115, 85, 0.6);                                        /* Bronze border */
-  border-radius: 12px 12px 0 0;                                                     /* Rounded top */
-  box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.4), 0 3px 10px rgba(0, 0, 0, 0.5);  /* Shine + depth */
+  border: 0.125rem solid rgba(139, 115, 85, 0.6);                                   /* 2px → rem */
+  border-radius: 0.75rem 0.75rem 0 0;                                               /* 12px → rem */
+  box-shadow: 
+    inset 0 0.125rem 0.375rem rgba(255, 255, 255, 0.4),   /* 2px 6px → rem */
+    0 0.1875rem 0.625rem rgba(0, 0, 0, 0.5);              /* 3px 10px → rem */
   
   /* INTERACTIONS */
   transition: all 0.4s ease;         /* Smooth hover effects */
@@ -48,7 +50,11 @@
 
 /* Handle hover glow */
 .briefcase:hover .briefcaseHandle {
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 0 30px rgba(212, 175, 55, 0.7), 0 0 15px rgba(255, 215, 0, 0.5);
+  box-shadow: 
+    0 0.1875rem 0.375rem rgba(0, 0, 0, 0.5),              /* 3px 6px → rem */
+    inset 0 0.0625rem 0 rgba(255, 255, 255, 0.6),         /* 1px → rem */
+    0 0 1.875rem rgba(212, 175, 55, 0.7),                 /* 30px → rem */
+    0 0 0.9375rem rgba(255, 215, 0, 0.5);                 /* 15px → rem */
 }
 
 /* Handle rivets (decorative metal fasteners) */
@@ -56,16 +62,16 @@
 .briefcaseHandle::after {
   content: '';                       /* Pseudo-element */
   position: absolute;                /* Position on handle */
-  bottom: -2px;                      /* At connection point */
-  width: 5px;                        /* Rivet size */
-  height: 5px;                       /* Circular */
+  bottom: -25%;                      /* At connection point */
+  width: 14%;                        /* Rivet size relative to handle */
+  height: 62%;                       /* Circular relative to handle */
   background: radial-gradient(circle, #d4af37, #8B7355);  /* Gold to bronze */
   border-radius: 50%;                /* Perfect circle */
-  border: 1px solid rgba(139, 115, 85, 0.8);              /* Bronze border */
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);         /* Depth */
+  border: 0.0625rem solid rgba(139, 115, 85, 0.8);        /* 1px → rem */
+  box-shadow: inset 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.5);  /* 1px 2px → rem */
 }
-.briefcaseHandle::before { left: -2px; }    /* Left rivet */
-.briefcaseHandle::after { right: -2px; }    /* Right rivet */
+.briefcaseHandle::before { left: -5%; }  /* Left rivet */
+.briefcaseHandle::after { right: -5%; }  /* Right rivet */
 
 /**
  * BRIEFCASE BODY (.briefcaseBody)
@@ -81,13 +87,13 @@
   
   /* APPEARANCE */
   background: linear-gradient(145deg, #2a2420, #1a1410 30%, #0f0a08 60%, #1a1410);  /* Dark leather texture */
-  border: 3px solid #BFA850;                                                         /* Golden border */
-  border-radius: 4px;                                                                 /* Rounded corners */
+  border: 0.1875rem solid #BFA850;                                                  /* 3px → rem */
+  border-radius: 0.25rem;                                                           /* 4px → rem */
   box-shadow: 
-    0 10px 30px rgba(0, 0, 0, 0.7),                  /* Outer shadow */
-    inset 0 4px 12px rgba(255, 255, 255, 0.4),       /* Top highlight */
-    inset 0 2px 6px rgba(244, 228, 188, 0.5),        /* Metallic shine */
-    inset 0 -2px 8px rgba(0, 0, 0, 0.6);             /* Bottom depth */
+    0 0.625rem 1.875rem rgba(0, 0, 0, 0.7),              /* 10px 30px → rem */
+    inset 0 0.25rem 0.75rem rgba(255, 255, 255, 0.4),    /* 4px 12px → rem */
+    inset 0 0.125rem 0.375rem rgba(244, 228, 188, 0.5),  /* 2px 6px → rem */
+    inset 0 -0.125rem 0.5rem rgba(0, 0, 0, 0.6);         /* 2px 8px → rem */
   
   /* INTERACTIONS */
   transition: all 0.4s ease;         /* Smooth animations */
@@ -98,20 +104,20 @@
   transform: rotateX(-15deg);        /* Slight tilt */
   border-color: #d4af37;             /* Brighten border */
   box-shadow: 
-    0 10px 30px rgba(0, 0, 0, 0.7), 
-    inset 0 4px 12px rgba(255, 255, 255, 0.4), 
-    inset 0 2px 6px rgba(244, 228, 188, 0.5), 
-    inset 0 -2px 8px rgba(0, 0, 0, 0.6), 
-    0 -10px 20px rgba(212, 175, 55, 0.7);    /* Bottom glow */
+    0 0.625rem 1.875rem rgba(0, 0, 0, 0.7),              /* 10px 30px → rem */
+    inset 0 0.25rem 0.75rem rgba(255, 255, 255, 0.4),    /* 4px 12px → rem */
+    inset 0 0.125rem 0.375rem rgba(244, 228, 188, 0.5),  /* 2px 6px → rem */
+    inset 0 -0.125rem 0.5rem rgba(0, 0, 0, 0.6),         /* 2px 8px → rem */
+    0 -0.625rem 1.25rem rgba(212, 175, 55, 0.7);         /* 10px 20px → rem */
 }
 
 /* Fully opened state */
 .briefcase.open .briefcaseBody {
   transform: rotateX(-105deg);       /* Full rotation */
   box-shadow: 
-    0 10px 30px rgba(0, 0, 0, 0.7), 
-    0 -10px 30px rgba(212, 175, 55, 0.8),    /* Strong glow */
-    inset 0 4px 12px rgba(255, 255, 255, 0.4);
+    0 0.625rem 1.875rem rgba(0, 0, 0, 0.7),              /* 10px 30px → rem */
+    0 -0.625rem 1.875rem rgba(212, 175, 55, 0.8),        /* 10px 30px → rem */
+    inset 0 0.25rem 0.75rem rgba(255, 255, 255, 0.4);    /* 4px 12px → rem */
 }
 
 /**
@@ -126,8 +132,8 @@
   flex-direction: column;            /* Stack vertically */
   align-items: center;               /* Center horizontally */
   justify-content: center;           /* Center vertically */
-  gap: 2px;                          /* Space between elements */
-  padding-top: 4px;                  /* Push down slightly */
+  gap: 3%;                           /* Space between elements */
+  padding-top: 9%;                   /* Push down slightly */
   z-index: 2;                        /* Above interior */
 }
 
@@ -141,7 +147,7 @@
   top: 0;                            /* Top edge */
   left: 5%;                          /* Inset from left */
   right: 5%;                         /* Inset from right */
-  height: 2px;                       /* Thin line */
+  height: 0.1vw;                     /* Thin line */
   opacity: 0;                        /* Hidden by default */
   transition: all 0.4s ease;         /* Fade in smoothly */
 }
@@ -150,7 +156,9 @@
 .briefcase:hover .briefcaseBody::after {
   opacity: 1;                        /* Fade in */
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5) 15%, rgba(255, 255, 255, 0.9) 50%, rgba(255, 255, 255, 0.5) 85%, transparent);  /* White shine */
-  box-shadow: 0 0 20px #fff, 0 3px 15px rgba(255, 215, 0, 0.8);  /* Glow effect */
+  box-shadow: 
+    0 0 1.25rem #fff,                                    /* 20px → rem */
+    0 0.1875rem 0.9375rem rgba(255, 215, 0, 0.8);        /* 3px 15px → rem */
 }
 
 /**
@@ -159,11 +167,14 @@
  */
 .briefcaseDiamond {
   /* TYPOGRAPHY */
-  font-size: 14px;                   /* Icon size */
+  font-size: 0.73vw;                 /* Icon size */
   
   /* APPEARANCE */
   color: #d4af37;                    /* Golden color */
-  text-shadow: 0 0 12px rgba(212, 175, 55, 0.8), 0 0 6px rgba(244, 228, 188, 0.6), 0 2px 4px rgba(0, 0, 0, 0.8);  /* Glow + depth */
+  text-shadow: 
+    0 0 0.75rem rgba(212, 175, 55, 0.8),       /* 12px → rem */
+    0 0 0.375rem rgba(244, 228, 188, 0.6),     /* 6px → rem */
+    0 0.125rem 0.25rem rgba(0, 0, 0, 0.8);     /* 2px 4px → rem */
   
   /* ANIMATIONS */
   animation: diamondShimmer 3s ease-in-out infinite;  /* Pulsing shine */
@@ -172,7 +183,10 @@
 /* Diamond hover brightening */
 .briefcase:hover .briefcaseDiamond {
   color: #FFD700;                    /* Brighter gold */
-  text-shadow: 0 0 20px #FFD700, 0 0 10px rgba(244, 228, 188, 0.8), 0 3px 6px #000;  /* Stronger glow */
+  text-shadow: 
+    0 0 1.25rem #FFD700,                       /* 20px → rem */
+    0 0 0.625rem rgba(244, 228, 188, 0.8),     /* 10px → rem */
+    0 0.1875rem 0.375rem #000;                 /* 3px 6px → rem */
 }
 
 /**
@@ -182,14 +196,16 @@
 .briefcaseLabel {
   /* TYPOGRAPHY */
   font-family: 'Cinzel', serif;      /* Luxury serif font */
-  font-size: 8px;                    /* Small label */
+  font-size: 0.42vw;                 /* Small label */
   font-weight: 700;                  /* Bold */
-  letter-spacing: 1.5px;             /* Spaced capitals */
+  letter-spacing: 0.08vw;            /* Spaced capitals */
   text-transform: uppercase;         /* ALL CAPS */
   
   /* APPEARANCE */
   color: #d4af37;                    /* Golden color */
-  text-shadow: 0 0 12px rgba(212, 175, 55, 0.6), 0 1px 4px #000;  /* Glow + depth */
+  text-shadow: 
+    0 0 0.75rem rgba(212, 175, 55, 0.6),       /* 12px → rem */
+    0 0.0625rem 0.25rem #000;                  /* 1px 4px → rem */
   
   /* INTERACTIONS */
   transition: all 0.3s ease;         /* Smooth hover */
@@ -198,7 +214,9 @@
 /* Label hover brightening */
 .briefcase:hover .briefcaseLabel {
   color: #f4e4bc;                    /* Champagne color */
-  text-shadow: 0 0 12px rgba(244, 228, 188, 0.9), 0 0 6px rgba(255, 215, 0, 0.6);  /* Enhanced glow */
+  text-shadow: 
+    0 0 0.75rem rgba(244, 228, 188, 0.9),      /* 12px → rem */
+    0 0 0.375rem rgba(255, 215, 0, 0.6);       /* 6px → rem */
 }
 
 /**
@@ -208,11 +226,11 @@
 .cornerOrnament {
   /* LAYOUT & POSITIONING */
   position: absolute;                /* Position at corners */
-  width: 8px;                        /* Ornament size */
-  height: 8px;                       /* Square ornament */
+  width: 11.5%;                      /* Ornament size relative to body */
+  height: 18%;                       /* Square-ish ornament */
   
   /* APPEARANCE */
-  border: 2px solid #BFA850;         /* Antique gold border */
+  border: 0.125rem solid #BFA850;    /* 2px → rem */
   
   /* INTERACTIONS */
   pointer-events: none;              /* Don't block clicks */
@@ -221,38 +239,38 @@
 
 /* Top-left corner */
 .cornerOrnament:nth-child(2) {
-  top: 5px;                          /* Inset from top */
-  left: 5px;                         /* Inset from left */
+  top: 7%;                           /* Inset from top */
+  left: 7%;                          /* Inset from left */
   border-right: none;                /* Remove right border */
   border-bottom: none;               /* Remove bottom border */
-  border-radius: 1px 0 0 0;          /* Rounded corner */
+  border-radius: 0.0625rem 0 0 0;   /* 1px → rem */
 }
 
 /* Top-right corner */
 .cornerOrnament:nth-child(3) {
-  top: 5px;                          /* Inset from top */
-  right: 5px;                        /* Inset from right */
+  top: 7%;                           /* Inset from top */
+  right: 7%;                         /* Inset from right */
   border-left: none;                 /* Remove left border */
   border-bottom: none;               /* Remove bottom border */
-  border-radius: 0 1px 0 0;          /* Rounded corner */
+  border-radius: 0 0.0625rem 0 0;    /* 1px → rem */
 }
 
 /* Bottom-left corner */
 .cornerOrnament:nth-child(4) {
-  bottom: 5px;                       /* Inset from bottom */
-  left: 5px;                         /* Inset from left */
+  bottom: 7%;                        /* Inset from bottom */
+  left: 7%;                          /* Inset from left */
   border-right: none;                /* Remove right border */
   border-top: none;                  /* Remove top border */
-  border-radius: 0 0 0 1px;          /* Rounded corner */
+  border-radius: 0 0 0 0.0625rem;    /* 1px → rem */
 }
 
 /* Bottom-right corner */
 .cornerOrnament:nth-child(5) {
-  bottom: 5px;                       /* Inset from bottom */
-  right: 5px;                        /* Inset from right */
+  bottom: 7%;                        /* Inset from bottom */
+  right: 7%;                         /* Inset from right */
   border-left: none;                 /* Remove left border */
   border-top: none;                  /* Remove top border */
-  border-radius: 0 0 1px 0;          /* Rounded corner */
+  border-radius: 0 0 0.0625rem 0;    /* 1px → rem */
 }
 
 /* Corner accent dots */
@@ -266,32 +284,32 @@
 
 /* Larger outer dot */
 .cornerOrnament::before {
-  width: 2px;                        /* Dot size */
-  height: 2px;                       /* Circular */
+  width: 24%;                        /* Dot size relative to ornament */
+  height: 24%;                       /* Circular */
 }
 
 /* Position outer dots at corners */
-.cornerOrnament:nth-child(2)::before { top: -1px; left: -1px; }
-.cornerOrnament:nth-child(3)::before { top: -1px; right: -1px; }
-.cornerOrnament:nth-child(4)::before { bottom: -1px; left: -1px; }
-.cornerOrnament:nth-child(5)::before { bottom: -1px; right: -1px; }
+.cornerOrnament:nth-child(2)::before { top: -12%; left: -12%; }
+.cornerOrnament:nth-child(3)::before { top: -12%; right: -12%; }
+.cornerOrnament:nth-child(4)::before { bottom: -12%; left: -12%; }
+.cornerOrnament:nth-child(5)::before { bottom: -12%; right: -12%; }
 
 /* Smaller inner dot */
 .cornerOrnament::after {
-  width: 1.5px;                      /* Smaller dot */
-  height: 1.5px;                     /* Circular */
+  width: 19%;                        /* Smaller dot */
+  height: 19%;                       /* Circular */
 }
 
 /* Position inner dots */
-.cornerOrnament:nth-child(2)::after { top: 2px; left: 2px; }
-.cornerOrnament:nth-child(3)::after { top: 2px; right: 2px; }
-.cornerOrnament:nth-child(4)::after { bottom: 2px; left: 2px; }
-.cornerOrnament:nth-child(5)::after { bottom: 2px; right: 2px; }
+.cornerOrnament:nth-child(2)::after { top: 24%; left: 24%; }
+.cornerOrnament:nth-child(3)::after { top: 24%; right: 24%; }
+.cornerOrnament:nth-child(4)::after { bottom: 24%; left: 24%; }
+.cornerOrnament:nth-child(5)::after { bottom: 24%; right: 24%; }
 
 /* Hover brightening */
 .briefcase:hover .cornerOrnament {
   border-color: #d4af37;             /* Brighter gold */
-  box-shadow: 0 0 6px rgba(212, 175, 55, 0.5);  /* Glow effect */
+  box-shadow: 0 0 0.375rem rgba(212, 175, 55, 0.5);  /* 6px → rem */
 }
 
 /* Hover dot gradients */
@@ -302,7 +320,7 @@
     #d4af37 60%, 
     #BFA850 100%
   );                                 /* Radial gradient */
-  box-shadow: 0 0 4px rgba(212, 175, 55, 0.6);  /* Dot glow */
+  box-shadow: 0 0 0.25rem rgba(212, 175, 55, 0.6);  /* 4px → rem */
 }
 
 /**
@@ -319,15 +337,15 @@
   z-index: -1;                       /* Behind body */
   
   /* APPEARANCE */
-  border: 3px solid #BFA850;         /* Antique gold border */
-  border-radius: 4px;                /* Rounded edges */
+  border: 0.1875rem solid #BFA850;   /* 3px → rem */
+  border-radius: 0.25rem;            /* 4px → rem */
   background: linear-gradient(145deg, 
     #0f0a08 0%,
     #1a1410 100%
   );                                 /* Dark leather interior */
   box-shadow: 
-    inset 0 10px 30px rgba(0, 0, 0, 0.9),
-    inset 0 0 40px rgba(0, 0, 0, 0.8);  /* Deep shadow */
+    inset 0 0.625rem 1.875rem rgba(0, 0, 0, 0.9),  /* 10px 30px → rem */
+    inset 0 0 2.5rem rgba(0, 0, 0, 0.8);           /* 40px → rem */
 }
 
 /* Visible when briefcase opens */
@@ -339,7 +357,7 @@
 .interiorCreature {
   /* LAYOUT & POSITIONING */
   position: absolute;                /* Position inside interior */
-  inset: 3px;                        /* Inset from edges */
+  inset: 4%;                         /* Inset from edges */
   
   /* APPEARANCE */
   background: linear-gradient(180deg,
@@ -347,11 +365,11 @@
     #000000 50%,
     #0a0a0a 100%
   );                                 /* Pitch black void */
-  border-radius: 2px;                /* Rounded edges */
+  border-radius: 0.125rem;           /* 2px → rem */
   box-shadow: 
-    inset 0 10px 20px rgba(0, 0, 0, 0.9),
-    inset 0 -10px 20px rgba(0, 0, 0, 0.9),
-    inset 0 0 40px rgba(0, 0, 0, 0.8);  /* Deep darkness */
+    inset 0 0.625rem 1.25rem rgba(0, 0, 0, 0.9),   /* 10px 20px → rem */
+    inset 0 -0.625rem 1.25rem rgba(0, 0, 0, 0.9),  /* 10px 20px → rem */
+    inset 0 0 2.5rem rgba(0, 0, 0, 0.8);           /* 40px → rem */
 }
 
 /* Glowing eyes (::before) */
@@ -368,14 +386,14 @@
   
   /* APPEARANCE */
   background-image: 
-    radial-gradient(ellipse 8px 12px at 30% 40%, 
+    radial-gradient(ellipse 0.42vw 0.63vw at 30% 40%, 
       #fff 0%,
       #f4e4bc 20%,
       #d4af37 40%,
       rgba(212, 175, 55, 0.8) 60%,
       transparent 70%
     ),
-    radial-gradient(ellipse 8px 12px at 70% 40%, 
+    radial-gradient(ellipse 0.42vw 0.63vw at 70% 40%, 
       #fff 0%,
       #f4e4bc 20%,
       #d4af37 40%,
@@ -385,8 +403,9 @@
   background-size: 100% 100%, 100% 100%;  /* Full size */
   background-position: 30% 40%, 70% 40%;  /* Position eyes */
   background-repeat: no-repeat;      /* Don't repeat */
-  filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.8))
-          drop-shadow(0 0 12px rgba(244, 228, 188, 0.6));  /* Eye glow */
+  filter: 
+    drop-shadow(0 0 0.5rem rgba(212, 175, 55, 0.8))    /* 8px → rem */
+    drop-shadow(0 0 0.75rem rgba(244, 228, 188, 0.6)); /* 12px → rem */
   
   /* INTERACTIONS */
   opacity: 0;                        /* Hidden by default */
@@ -410,13 +429,13 @@
 .interiorBorder {
   /* LAYOUT & POSITIONING */
   position: absolute;                /* Position inside */
-  inset: 6px;                        /* Inset from edges */
+  inset: 8%;                         /* Inset from edges */
   
   /* APPEARANCE */
-  border: 1px solid rgba(139, 115, 85, 0.3);  /* Subtle border */
-  border-radius: 2px;                /* Rounded edges */
+  border: 0.05vw solid rgba(139, 115, 85, 0.3);  /* Subtle border */
+  border-radius: 0.1vw;              /* Rounded edges */
   box-shadow: 
-    inset 0 0 10px rgba(0, 0, 0, 0.8);  /* Dark shadow */
+    inset 0 0 0.625rem rgba(0, 0, 0, 0.8);  /* 10px → rem */
   
   /* INTERACTIONS */
   pointer-events: none;              /* Don't block clicks */
@@ -429,10 +448,10 @@
 .dropdownMenu {
   /* LAYOUT & POSITIONING */
   position: fixed;                   /* Fixed to viewport */
-  top: calc(32px + 45px + 8px);      /* Below navigation bar */
-  right: -32px;                      /* Align with briefcase */
+  top: 4.43vw;                       /* Below navigation bar */
+  right: -1.67vw;                    /* Align with briefcase */
   z-index: 1001;                     /* Above all content */
-  padding: 4px 0;                    /* Vertical spacing */
+  padding: 0.21vw 0;                 /* Vertical spacing */
   
   /* APPEARANCE */
   background: transparent;           /* No background */
@@ -446,8 +465,8 @@
   /* LAYOUT & POSITIONING */
   display: flex;                     /* Flexbox layout */
   align-items: center;               /* Center vertically */
-  gap: 10px;                         /* Space between icon and label */
-  padding: 8px 12px;                 /* Inner spacing */
+  gap: 0.52vw;                       /* Space between icon and label */
+  padding: 0.42vw 0.63vw;            /* Inner spacing */
   position: relative;                /* For pseudo-elements */
   
   /* APPEARANCE */
@@ -461,7 +480,7 @@
 /* Opening animation state */
 .dropdownMenu:not(.closing) .menuItem {
   opacity: 0;                        /* Start hidden */
-  transform: translateY(-30px) rotate(-10deg) scale(0.8);  /* Start above and rotated */
+  transform: translateY(-1.56vw) rotate(-10deg) scale(0.8);  /* Start above and rotated */
   animation: fallFromBriefcase 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;  /* Bouncy fall */
 }
 
@@ -487,16 +506,16 @@
 /* Hover shift effect */
 .menuItem:hover {
   background: transparent;           /* Keep transparent */
-  padding-left: 16px;                /* Shift right */
+  padding-left: 0.83vw;              /* Shift right */
 }
 
 /* Menu label text */
 .menuLabel {
   /* TYPOGRAPHY */
   font-family: 'Cinzel', serif;      /* Luxury serif font */
-  font-size: 11px;                   /* Small label size */
+  font-size: 0.57vw;                 /* Small label size */
   font-weight: 600;                  /* Semi-bold */
-  letter-spacing: 1px;               /* Spaced letters */
+  letter-spacing: 0.05vw;            /* Spaced letters */
   text-transform: uppercase;         /* ALL CAPS */
   white-space: nowrap;               /* No line breaks */
   
@@ -510,14 +529,14 @@
 /* Hover brightening */
 .menuItem:hover .menuLabel {
   color: #f4e4bc;                    /* Champagne color */
-  letter-spacing: 1.2px;             /* Slightly wider spacing */
+  letter-spacing: 0.063vw;           /* Slightly wider spacing */
 }
 
 /* Icon container */
 .luxuryIcon {
   /* LAYOUT & POSITIONING */
-  width: 20px;                       /* Icon size */
-  height: 20px;                      /* Square icon */
+  width: 1.04vw;                     /* Icon size */
+  height: 1.04vw;                    /* Square icon */
   display: flex;                     /* Flexbox layout */
   align-items: center;               /* Center vertically */
   justify-content: center;           /* Center horizontally */
@@ -578,7 +597,7 @@
     #d4af37 80%,
     transparent 100%
   );                                 /* Golden gradient */
-  box-shadow: 0 0 6px rgba(212, 175, 55, 0.8);  /* Glow effect */
+  box-shadow: 0 0 0.375rem rgba(212, 175, 55, 0.8);  /* 6px → rem */
   
   /* INTERACTIONS */
   transition: width 0.3s ease;       /* Smooth expansion */
@@ -586,7 +605,7 @@
 
 /* Expand glow on hover */
 .menuItem:hover::after {
-  width: 3px;                        /* Show edge line */
+  width: 0.16vw;                     /* Show edge line */
 }
 
 /**
@@ -601,23 +620,23 @@
 .wallet {
   /* LAYOUT & POSITIONING */
   position: relative;                /* For child positioning */
-  width: 22px;                       /* Wallet width */
-  height: 18px;                      /* Wallet height */
-  padding: 1px;                      /* Border width */
+  width: 1.15vw;                     /* Wallet width */
+  height: 0.94vw;                    /* Wallet height */
+  padding: 0.05vw;                   /* Border width */
   
   /* APPEARANCE */
   background: linear-gradient(45deg, #d4af37 0%, #f4e4bc 50%, #d4af37 100%);  /* Gradient border */
-  border-radius: 3px;                /* Rounded corners */
+  border-radius: 0.16vw;             /* Rounded corners */
 }
 
 /* Wallet back panel */
 .walletBack {
   /* LAYOUT & POSITIONING */
   position: absolute;                /* Position in wallet */
-  bottom: 1px;                       /* Bottom placement */
-  left: 1px;                         /* Left offset */
-  width: 18px;                       /* Back width */
-  height: 14px;                      /* Back height */
+  bottom: 5%;                        /* Bottom placement */
+  left: 4%;                          /* Left offset */
+  width: 82%;                        /* Back width relative to wallet */
+  height: 78%;                       /* Back height relative to wallet */
   z-index: 1;                        /* Behind flap */
   
   /* APPEARANCE */
@@ -626,11 +645,11 @@
     #3a3020 50%,
     #2a2418 100%
   );                                 /* Brown leather gradient */
-  border-radius: 2px;                /* Rounded edges */
+  border-radius: 0.1vw;              /* Rounded edges */
   transform: skewY(-5deg);           /* Slight perspective */
   box-shadow: 
-    inset 0 1px 3px rgba(0, 0, 0, 0.6),
-    0 2px 6px rgba(0, 0, 0, 0.8);    /* Depth shadows */
+    inset 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.6),  /* 1px 3px → rem */
+    0 0.125rem 0.375rem rgba(0, 0, 0, 0.8);          /* 2px 6px → rem */
 }
 
 /* Stitching detail (::before) */
@@ -639,21 +658,21 @@
   
   /* LAYOUT & POSITIONING */
   position: absolute;                /* Position on back */
-  inset: 2px;                        /* Inset from edges */
+  inset: 10%;                        /* Inset from edges */
   
   /* APPEARANCE */
-  border: 0.5px dashed rgba(212, 175, 55, 0.4);  /* Dashed stitching */
-  border-radius: 1px;                /* Rounded stitching */
+  border: 0.026vw dashed rgba(212, 175, 55, 0.4);  /* Dashed stitching */
+  border-radius: 0.05vw;             /* Rounded stitching */
 }
 
 /* Wallet flap (top fold) */
 .walletFlap {
   /* LAYOUT & POSITIONING */
   position: absolute;                /* Position in wallet */
-  top: 2px;                          /* Top placement */
-  right: 1px;                        /* Right offset */
-  width: 14px;                       /* Flap width */
-  height: 10px;                      /* Flap height */
+  top: 10%;                          /* Top placement */
+  right: 4%;                         /* Right offset */
+  width: 63%;                        /* Flap width relative to wallet */
+  height: 55%;                       /* Flap height relative to wallet */
   z-index: 2;                        /* Above back */
   
   /* APPEARANCE */
@@ -662,11 +681,11 @@
     #1a1410 50%,
     #0f0a08 100%
   );                                 /* Darker leather gradient */
-  border-radius: 2px;                /* Rounded edges */
+  border-radius: 0.1vw;              /* Rounded edges */
   transform: skewY(-5deg);           /* Slight perspective */
   box-shadow: 
-    inset 0 1px 2px rgba(0, 0, 0, 0.8),
-    0 3px 8px rgba(0, 0, 0, 0.9);    /* Strong shadow */
+    inset 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.8),   /* 1px 2px → rem */
+    0 0.1875rem 0.5rem rgba(0, 0, 0, 0.9);           /* 3px 8px → rem */
 }
 
 /* Flap stitching (::before) */
@@ -675,11 +694,11 @@
   
   /* LAYOUT & POSITIONING */
   position: absolute;                /* Position on flap */
-  inset: 1.5px;                      /* Inset from edges */
+  inset: 10%;                        /* Inset from edges */
   
   /* APPEARANCE */
-  border: 0.5px dashed rgba(212, 175, 55, 0.5);  /* Golden stitching */
-  border-radius: 1px;                /* Rounded stitching */
+  border: 0.026vw dashed rgba(212, 175, 55, 0.5);  /* Golden stitching */
+  border-radius: 0.05vw;             /* Rounded stitching */
 }
 
 /* Wallet clasp (golden closure) */
@@ -687,19 +706,19 @@
   /* LAYOUT & POSITIONING */
   position: absolute;                /* Position on wallet */
   top: 50%;                          /* Center vertically */
-  right: 3px;                        /* Right side */
+  right: 14%;                        /* Right side */
   transform: translateY(-50%);       /* Perfect centering */
-  width: 4px;                        /* Clasp width */
-  height: 6px;                       /* Clasp height */
+  width: 18%;                        /* Clasp width relative to wallet */
+  height: 33%;                       /* Clasp height relative to wallet */
   z-index: 3;                        /* Above all */
   
   /* APPEARANCE */
   background: radial-gradient(circle, #d4af37, #BFA850);  /* Golden gradient */
-  border: 0.5px solid rgba(139, 115, 85, 0.8);  /* Bronze edge */
-  border-radius: 1px;                /* Rounded clasp */
+  border: 0.026vw solid rgba(139, 115, 85, 0.8);  /* Bronze edge */
+  border-radius: 0.05vw;             /* Rounded clasp */
   box-shadow: 
-    0 1px 2px rgba(0, 0, 0, 0.8),
-    0 0 3px rgba(212, 175, 55, 0.5);  /* Glow + depth */
+    0 0.0625rem 0.125rem rgba(0, 0, 0, 0.8),   /* 1px 2px → rem */
+    0 0 0.1875rem rgba(212, 175, 55, 0.5);     /* 3px → rem */
 }
 
 /**
@@ -709,23 +728,26 @@
 .cardDeck {
   /* LAYOUT & POSITIONING */
   position: relative;                /* For card positioning */
-  width: 18px;                       /* Deck width */
-  height: 18px;                      /* Deck height */
+  width: 0.94vw;                     /* Deck width */
+  height: 0.94vw;                    /* Deck height */
 }
 
 /* Individual card in deck */
 .card {
   /* LAYOUT & POSITIONING */
   position: absolute;                /* Stacking position */
-  width: 12px;                       /* Card width */
-  height: 16px;                      /* Card height */
+  width: 67%;                        /* Card width relative to deck */
+  height: 88%;                       /* Card height relative to deck */
   
   /* APPEARANCE */
   background: linear-gradient(145deg, #2a2420, #1a1410 50%, #0f0a08);  /* Dark leather */
-  border: 1px solid;                 /* Border for gradient */
+  border: 0.05vw solid;              /* Border for gradient */
   border-image: linear-gradient(45deg, #d4af37 0%, #f4e4bc 50%, #d4af37 100%) 1;  /* Gradient border */
-  border-radius: 1.5px;              /* Rounded corners */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.8), inset 0 1px 2px rgba(212, 175, 55, 0.2), 0 0 4px rgba(212, 175, 55, 0.3);  /* Depth + glow */
+  border-radius: 0.08vw;             /* Rounded corners */
+  box-shadow: 
+    0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.8),        /* 1px 3px → rem */
+    inset 0 0.0625rem 0.125rem rgba(212, 175, 55, 0.2),  /* 1px 2px → rem */
+    0 0 0.25rem rgba(212, 175, 55, 0.3);             /* 4px → rem */
 }
 
 /* Front card (straight) */
@@ -738,16 +760,16 @@
 
 /* Middle card (slight angle) */
 .card:nth-child(2) {
-  left: 3px;                         /* Offset right */
-  top: 2px;                          /* Offset down */
+  left: 17%;                         /* Offset right */
+  top: 10%;                          /* Offset down */
   transform: rotate(-8deg);          /* Slight rotation */
   z-index: 2;                        /* Middle card */
 }
 
 /* Back card (more angle) */
 .card:nth-child(3) {
-  left: 6px;                         /* Further right */
-  top: 4px;                          /* Further down */
+  left: 33%;                         /* Further right */
+  top: 22%;                          /* Further down */
   transform: rotate(-16deg);         /* More rotation */
   z-index: 1;                        /* Bottom card */
 }
@@ -759,23 +781,26 @@
 .documentStack {
   /* LAYOUT & POSITIONING */
   position: relative;                /* For document positioning */
-  width: 18px;                       /* Stack width */
-  height: 18px;                      /* Stack height */
+  width: 0.94vw;                     /* Stack width */
+  height: 0.94vw;                    /* Stack height */
 }
 
 /* Individual document in stack */
 .document {
   /* LAYOUT & POSITIONING */
   position: absolute;                /* Stacking position */
-  width: 14px;                       /* Document width */
-  height: 16px;                      /* Document height */
+  width: 78%;                        /* Document width relative to stack */
+  height: 88%;                       /* Document height relative to stack */
   
   /* APPEARANCE */
   background: linear-gradient(145deg, #2a2420, #1a1410 50%, #0f0a08);  /* Dark leather */
-  border: 1px solid;                 /* Border for gradient */
+  border: 0.05vw solid;              /* Border for gradient */
   border-image: linear-gradient(45deg, #d4af37 0%, #f4e4bc 50%, #d4af37 100%) 1;  /* Gradient border */
-  border-radius: 1px;                /* Slight rounding */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.8), inset 0 1px 2px rgba(212, 175, 55, 0.2), 0 0 4px rgba(212, 175, 55, 0.3);  /* Depth + glow */
+  border-radius: 0.05vw;             /* Slight rounding */
+  box-shadow: 
+    0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.8),        /* 1px 3px → rem */
+    inset 0 0.0625rem 0.125rem rgba(212, 175, 55, 0.2),  /* 1px 2px → rem */
+    0 0 0.25rem rgba(212, 175, 55, 0.3);             /* 4px → rem */
 }
 
 /* Front document */
@@ -787,15 +812,15 @@
 
 /* Middle document */
 .document:nth-child(2) {
-  left: 2px;                         /* Offset right */
-  top: 1px;                          /* Offset down */
+  left: 10%;                         /* Offset right */
+  top: 5%;                           /* Offset down */
   z-index: 2;                        /* Middle document */
 }
 
 /* Back document */
 .document:nth-child(3) {
-  left: 4px;                         /* Further right */
-  top: 2px;                          /* Further down */
+  left: 22%;                         /* Further right */
+  top: 10%;                          /* Further down */
   z-index: 1;                        /* Bottom document */
 }
 
@@ -806,17 +831,17 @@
   
   /* LAYOUT & POSITIONING */
   position: absolute;                /* Position on document */
-  left: 2px;                         /* Left margin */
-  right: 2px;                        /* Right margin */
-  height: 0.5px;                     /* Line thickness */
+  left: 14%;                         /* Left margin */
+  right: 14%;                        /* Right margin */
+  height: 3%;                        /* Line thickness */
   
   /* APPEARANCE */
   background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.4) 10%, rgba(212, 175, 55, 0.6) 50%, rgba(212, 175, 55, 0.4) 90%, transparent);  /* Fading text line */
 }
 
 /* Line positions */
-.document:nth-child(1)::before { top: 4px; }   /* First line */
-.document:nth-child(1)::after { top: 7px; }    /* Second line */
+.document:nth-child(1)::before { top: 25%; }   /* First line */
+.document:nth-child(1)::after { top: 43%; }    /* Second line */
 
 /**
  * BUSINESS CARD ICON (.businessCard)
@@ -825,26 +850,28 @@
 .businessCard {
   /* LAYOUT & POSITIONING */
   position: relative;                /* For child positioning */
-  width: 20px;                       /* Card width */
-  height: 16px;                      /* Card height */
-  padding: 1px;                      /* Border width */
+  width: 1.04vw;                     /* Card width */
+  height: 0.83vw;                    /* Card height */
+  padding: 0.05vw;                   /* Border width */
   
   /* APPEARANCE */
   background: linear-gradient(45deg, #d4af37 0%, #f4e4bc 50%, #d4af37 100%);  /* Gradient border */
-  border-radius: 3px;                /* Rounded corners */
+  border-radius: 0.16vw;             /* Rounded corners */
 }
 
 /* Card base panel */
 .cardBase {
   /* LAYOUT & POSITIONING */
   position: relative;                /* For initial positioning */
-  width: 18px;                       /* Base width */
-  height: 14px;                      /* Base height */
+  width: 90%;                        /* Base width relative to card */
+  height: 88%;                       /* Base height relative to card */
   
   /* APPEARANCE */
   background: linear-gradient(145deg, #2a2420, #1a1410 50%, #0f0a08);  /* Dark leather */
-  border-radius: 2px;                /* Rounded edges */
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.8), inset 0 1px 2px rgba(212, 175, 55, 0.2);  /* Depth + glow */
+  border-radius: 0.1vw;              /* Rounded edges */
+  box-shadow: 
+    0 0.125rem 0.375rem rgba(0, 0, 0, 0.8),          /* 2px 6px → rem */
+    inset 0 0.0625rem 0.125rem rgba(212, 175, 55, 0.2);  /* 1px 2px → rem */
 }
 
 /* Monogram initial on card */
@@ -857,13 +884,15 @@
   
   /* TYPOGRAPHY */
   font-family: 'Cinzel', serif;      /* Luxury serif font */
-  font-size: 7px;                    /* Small initial */
+  font-size: 0.36vw;                 /* Small initial */
   font-weight: 700;                  /* Bold */
-  letter-spacing: 0.5px;             /* Spaced letters */
+  letter-spacing: 0.026vw;           /* Spaced letters */
   
   /* APPEARANCE */
   color: #d4af37;                    /* Golden color */
-  text-shadow: 0 0 4px rgba(212, 175, 55, 0.8), 0 1px 2px rgba(0, 0, 0, 0.8);  /* Glow + depth */
+  text-shadow: 
+    0 0 0.25rem rgba(212, 175, 55, 0.8),       /* 4px → rem */
+    0 0.0625rem 0.125rem rgba(0, 0, 0, 0.8);   /* 1px 2px → rem */
 }
 
 /**
@@ -874,8 +903,8 @@
 /* Shake animation for briefcase */
 @keyframes shake {
   0%, 100% { transform: translateX(0); }      /* Start/end position */
-  20%, 60% { transform: translateX(-2px); }   /* Shift left */
-  40%, 80% { transform: translateX(2px); }    /* Shift right */
+  20%, 60% { transform: translateX(-0.1vw); } /* Shift left */
+  40%, 80% { transform: translateX(0.1vw); }  /* Shift right */
 }
 
 /* Shake utility class */
@@ -903,17 +932,17 @@
 
 /* Menu items falling from briefcase */
 @keyframes fallFromBriefcase {
-  0% { opacity: 0; transform: translateY(-30px) rotate(-10deg) scale(0.8); }  /* Start above */
-  50% { opacity: 1; transform: translateY(5px) rotate(3deg) scale(1.05); }    /* Bounce down */
-  70% { transform: translateY(-2px) rotate(-1deg) scale(1); }                 /* Bounce up */
-  100% { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); }        /* Settle */
+  0% { opacity: 0; transform: translateY(-1.56vw) rotate(-10deg) scale(0.8); }  /* Start above */
+  50% { opacity: 1; transform: translateY(0.26vw) rotate(3deg) scale(1.05); }   /* Bounce down */
+  70% { transform: translateY(-0.1vw) rotate(-1deg) scale(1); }                 /* Bounce up */
+  100% { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); }          /* Settle */
 }
 
 /* Menu items fading into briefcase */
 @keyframes fadeIntoBriefcase {
-  0% { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); }          /* Start visible */
-  30% { transform: translateY(-5px) rotate(-3deg) scale(0.95); }              /* Lift up */
-  100% { opacity: 0; transform: translateY(-40px) rotate(-15deg) scale(0.7); }  /* Fade away */
+  0% { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); }            /* Start visible */
+  30% { transform: translateY(-0.26vw) rotate(-3deg) scale(0.95); }             /* Lift up */
+  100% { opacity: 0; transform: translateY(-2.08vw) rotate(-15deg) scale(0.7); }  /* Fade away */
 }
 
 /* Interior creature eye blink */
@@ -948,3 +977,33 @@
     opacity: 0;  /* Smooth fade out while squinted */
   }
 }
+
+/**
+ * MOBILE RESPONSIVE STYLES
+ * ========================
+ * Larger briefcase dropdown menu for better mobile usability.
+ */
+@media (max-height: 600px) and (orientation: landscape) {
+  /* Briefcase Menu Positioning */
+  .dropdownMenu {
+    top: 3rem;
+    right: -2.25rem;
+  }
+
+  .briefcaseHandle {
+    left: 58%;
+  }
+
+  /* Menu items */
+  .menuLabel {
+    padding: 0.5rem 0.5rem;
+    font-size: 0.7rem;
+    gap: 0rem;
+  }
+  
+  /* Menu icons */
+  .luxuryIcon {
+    scale: 1.5;
+  }
+}
+

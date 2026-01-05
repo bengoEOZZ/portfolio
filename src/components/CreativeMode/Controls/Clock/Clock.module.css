@@ -12,7 +12,7 @@
 .clockContainer {
     /* LAYOUT & POSITIONING */
     position: fixed;                    /* Fixed to viewport */
-    top: 2.31vh;  /* 25px → vh */
+    top: 4vh;  /* 25px → vh */
     right: calc(12.76vw - 22.5vh);     /* Dynamic right positioning */
     width: 45vh;                        /* Container width */
     height: auto;
@@ -35,15 +35,15 @@
  */
 .clock {
     /* SIZING */
-    width: 34vh;  /* 367px → vh */
+    width: 75.5%;                       /* Clock width relative to container (34vh / 45vh) */
     height: auto;
     
     /* LAYOUT & POSITIONING */
     position: relative;                 /* For absolute children */
     
     /* APPEARANCE */
-    filter: drop-shadow(0 0 2.31vh /* 25px → vh */ rgba(255, 223, 0, 0.7))
-            drop-shadow(0 0 4.63vh /* 50px → vh */ rgba(255, 69, 0, 0.3));
+    filter: drop-shadow(0 0 0.390625rem /* 6.25px */ rgba(255, 223, 0, 0.7))
+            drop-shadow(0 0 0.78125rem /* 12.5px */ rgba(255, 69, 0, 0.3));
     /* Golden glow with orange accent */
 }
 
@@ -54,22 +54,23 @@
  */
 .clockHand {
     /* SIZING */
-    width: 4.5vh;  /* 48.6px → vh */
+    width: 10%;                         /* Hand width relative to container */
     height: auto;
     
     /* LAYOUT & POSITIONING */
     position: absolute;                 /* Free positioning over clock */
-    top: 8.3vh;                         /* Vertical centering */
-    left: 20vh;                         /* Horizontal centering */
+    top: 25%;                         /* Vertical centering relative to container */
+    left: 44.4%;                        /* Horizontal centering relative to container */
     z-index: 16;                        /* Above clock base */
     transform-origin: 50% 75%;          /* Rotation point at visual base */
     
     /* INTERACTIONS */
     cursor: pointer;                    /* Indicates interactivity */
+    touch-action: none;                 /* Prevent default touch behaviors for better mobile support */
     
     /* APPEARANCE */
-    filter: drop-shadow(0 0 1.39vh /* 15px → vh */ rgba(255, 223, 0, 0.8)) 
-            drop-shadow(0 0 0.46vh /* 5px → vh */ rgba(255, 255, 255, 0.9));
+    filter: drop-shadow(0 0 0.234375rem /* 3.75px */ rgba(255, 223, 0, 0.8)) 
+            drop-shadow(0 0 0.078125rem /* 1.25px */ rgba(255, 255, 255, 0.9));
     /* Golden glow with white highlight */
 }
 
@@ -79,9 +80,9 @@
  */
 .clockHand:hover {
     /* ENHANCED GLOW EFFECTS */
-    filter: drop-shadow(0 0 2.78vh /* 30px → vh */ rgba(255, 223, 0, 1))
-            drop-shadow(0 0 1.39vh /* 15px → vh */ rgba(255, 255, 255, 1))
-            drop-shadow(0 0 4.17vh /* 45px → vh */ rgba(255, 165, 0, 0.8));
+    filter: drop-shadow(0 0 0.46875rem /* 7.5px */ rgba(255, 223, 0, 1))
+            drop-shadow(0 0 0.234375rem /* 3.75px */ rgba(255, 255, 255, 1))
+            drop-shadow(0 0 0.703125rem /* 11.25px */ rgba(255, 165, 0, 0.8));
     /* Intensified multi-layer glow */
     
     /* LAYERING */
@@ -116,14 +117,14 @@
     
     /* APPEARANCE */
     color: #00d4ff;
-    text-shadow: 0 0 1.39vh /* 15px → vh */ rgba(0, 212, 255, 0.9);
+    text-shadow: 0 0 0.234375rem /* 3.75px */ rgba(0, 212, 255, 0.9);
     background: rgba(10, 20, 40, 0.6);
-    padding: 0.93vh /* 10px → vh */ 1.85vh /* 20px → vh */;
-    border-radius: 0.93vh; /* 10px → vh */
-    border: 0.19vh /* 2px → vh */ solid rgba(0, 212, 255, 0.4);
+    padding: 0.625rem /* 10px → rem */ 1.25rem /* 20px → rem */;
+    border-radius: 0.625rem; /* 10px → rem */
+    border: 0.125rem /* 2px → rem */ solid rgba(0, 212, 255, 0.4);
     box-shadow: 
-        0 0 1.85vh /* 20px → vh */ rgba(0, 212, 255, 0.4),
-        inset 0 0 1.39vh /* 15px → vh */ rgba(0, 212, 255, 0.2);
+        0 0 0.3125rem /* 5px */ rgba(0, 212, 255, 0.4),
+        inset 0 0 0.234375rem /* 3.75px */ rgba(0, 212, 255, 0.2);
     /* Holographic display effect */
     
     /* INITIAL STATE FOR ANIMATION */
@@ -144,13 +145,13 @@
     0% {
         opacity: 0;
         transform: scale(0) rotate(180deg);
-        filter: blur(0.93vh) /* 10px → vh */ brightness(0.3);
+        filter: blur(0.625rem) /* 10px → rem */ brightness(0.3);
         /* Tiny, spinning, blurred, and dark */
     }
     40% {
         opacity: 0.8;
         transform: scale(1.1) rotate(-10deg);
-        filter: blur(0.19vh) /* 2px → vh */ brightness(1.2);
+        filter: blur(0.125rem) /* 2px → rem */ brightness(1.2);
         /* Overshoots size with counter-rotation */
     }
     60% {
@@ -177,16 +178,16 @@
         transform: translateX(0) translateY(0) rotate(0deg); 
     }
     20% { 
-        transform: translateX(-0.93vh) /* -10px → vh */ translateY(0.46vh) /* 5px → vh */ rotate(-4deg); 
+        transform: translateX(-0.625rem) /* -10px → rem */ translateY(0.3125rem) /* 5px → rem */ rotate(-4deg); 
     }
     40% { 
-        transform: translateX(0.74vh) /* 8px → vh */ translateY(-0.65vh) /* -7px → vh */ rotate(6deg); 
+        transform: translateX(0.5rem) /* 8px → rem */ translateY(-0.4375rem) /* -7px → rem */ rotate(6deg); 
     }
     60% { 
-        transform: translateX(1.11vh) /* 12px → vh */ translateY(0.28vh) /* 3px → vh */ rotate(-5deg); 
+        transform: translateX(0.75rem) /* 12px → rem */ translateY(0.1875rem) /* 3px → rem */ rotate(-5deg); 
     }
     80% { 
-        transform: translateX(-0.46vh) /* -5px → vh */ translateY(-0.37vh) /* -4px → vh */ rotate(3deg); 
+        transform: translateX(-0.3125rem) /* -5px → rem */ translateY(-0.25rem) /* -4px → rem */ rotate(3deg); 
     }
     100% { 
         transform: translateX(0) translateY(0) rotate(0deg); 
@@ -201,15 +202,15 @@
 @keyframes clockHandGlow {
     /* Base glow state */
     0%, 100% {
-        filter: drop-shadow(0 0 2.78vh /* 30px → vh */ rgba(255, 223, 0, 1))
-                drop-shadow(0 0 1.39vh /* 15px → vh */ rgba(255, 255, 255, 1));
+        filter: drop-shadow(0 0 0.46875rem /* 7.5px */ rgba(255, 223, 0, 1))
+                drop-shadow(0 0 0.234375rem /* 3.75px */ rgba(255, 255, 255, 1));
     }
     
     /* Intensified glow state */
     50% {
-        filter: drop-shadow(0 0 2.78vh /* 30px → vh */ rgba(255, 223, 0, 1))
-                drop-shadow(0 0 2.31vh /* 25px → vh */ rgba(255, 255, 255, 1))
-                drop-shadow(0 0 3.7vh /* 40px → vh */ rgba(255, 140, 0, 0.9));
+        filter: drop-shadow(0 0 0.46875rem /* 7.5px */ rgba(255, 223, 0, 1))
+                drop-shadow(0 0 0.390625rem /* 6.25px */ rgba(255, 255, 255, 1))
+                drop-shadow(0 0 0.625rem /* 10px */ rgba(255, 140, 0, 0.9));
         /* Triple-layer glow with orange accent */
     }
 }
@@ -223,19 +224,19 @@
     0% {
         opacity: 0;
         transform: scaleY(0.1) scaleX(1.5);
-        filter: blur(1.85vh) /* 20px → vh */ hue-rotate(180deg);
+        filter: blur(1.25rem) /* 20px → rem */ hue-rotate(180deg);
         /* Thin horizontal line, blurred, color-shifted */
     }
     30% {
         opacity: 0.4;
         transform: scaleY(0.6) scaleX(1.2);
-        filter: blur(0.93vh) /* 10px → vh */ hue-rotate(90deg);
+        filter: blur(0.625rem) /* 10px → rem */ hue-rotate(90deg);
         /* Expanding vertically, less blur */
     }
     70% {
         opacity: 0.8;
         transform: scaleY(1.1) scaleX(0.9);
-        filter: blur(0.28vh) /* 3px → vh */ hue-rotate(0deg);
+        filter: blur(0.1875rem) /* 3px → rem */ hue-rotate(0deg);
         /* Overshoots vertical, undershoots horizontal */
     }
     100% {
@@ -244,4 +245,17 @@
         filter: blur(0px) hue-rotate(0deg);
         /* Final state with slight transparency */
     }
+}
+
+/**
+ * MOBILE LANDSCAPE STYLES
+ * =======================
+ * Reduce time display size for mobile landscape view
+ */
+@media (max-height: 600px) and (orientation: landscape) {
+  .timeDisplay {
+    font-size: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    width: auto;
+  }
 }

@@ -23,6 +23,8 @@ function Controls({
     weather, 
     handleMouseDown, 
     handleMouseUp,
+    handleTouchStart,
+    handleTouchEnd,
     onSeasonChange, 
     onWeatherChange 
 }) {
@@ -33,6 +35,8 @@ function Controls({
                 currentHour={currentHour}
                 handleMouseDown={handleMouseDown}
                 handleMouseUp={handleMouseUp}
+                handleTouchStart={handleTouchStart}
+                handleTouchEnd={handleTouchEnd}
             />
             
             <Sliders 

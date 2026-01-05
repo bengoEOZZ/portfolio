@@ -17,7 +17,7 @@
   display: flex;
   justify-content: space-between;
   align-items: stretch;
-  padding: 10px 35px 35px;
+  padding: 0.52vw 1.82vw 1.82vw;            /* 10px 35px 35px → vw */
   cursor: default;
 
   /* BACKGROUND - Animated hexagonal pattern */
@@ -36,7 +36,7 @@
       3. Horizontal stripes at 90° - creates second set of hexagonal edges
       4. Diagonal stripes at 150° - creates third set of hexagonal edges
       5. Base color (#000000) */
-  background-size: 100% 100%, 60px 60px, 60px 60px, 60px 60px;
+  background-size: 100% 100%, 3.125vw 3.125vw, 3.125vw 3.125vw, 3.125vw 3.125vw;  /* 60px → vw */
   
   /* ANIMATION */
   animation: hexPattern 20s ease-in-out infinite;
@@ -52,8 +52,8 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  padding: 40px 0 0 30px;
+  gap: 0.78vw;                              /* 15px → vw */
+  padding: 2.08vw 0 0 1.56vw;               /* 40px 0 0 30px → vw */
 }
 
 /**
@@ -61,7 +61,7 @@
  * ========================
  */
 .title {
-  margin-bottom: 8px;
+  margin-bottom: 0.42vw;                    /* 8px → vw */
 }
 
 /**
@@ -71,12 +71,12 @@
 .titleText {
   /* TYPOGRAPHY */
   font-family: 'Cinzel', serif;
-  font-size: 22px;
+  font-size: 1.15vw;                        /* 22px → vw */
   font-weight: 500;
-  letter-spacing: 1px;
+  letter-spacing: 0.0625rem;                /* 1px → rem */
   
   /* LAYOUT */
-  margin-bottom: 5px;
+  margin-bottom: 0.26vw;                    /* 5px → vw */
   
   /* APPEARANCE - Animated text shine effect */
   background: linear-gradient(45deg, #d4af37 0%, #f4e4bc 25%, #d4af37 50%, #f4e4bc 75%, #d4af37 100%);
@@ -95,8 +95,8 @@
  */
 .titleUnderline {
   /* SIZING */
-  width: 60px;
-  height: 2px;
+  width: 3.125vw;                           /* 60px → vw */
+  height: 0.125rem;                         /* 2px → rem */
   
   /* APPEARANCE */
   background: linear-gradient(90deg, transparent, #d4af37 20%, #f4e4bc 50%, #d4af37 80%, transparent);
@@ -117,7 +117,7 @@
   /* LAYOUT */
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0.625vw;                             /* 12px → vw */
 }
 
 /**
@@ -129,8 +129,8 @@
   /* LAYOUT */
   display: flex;
   align-items: center;
-  gap: 15px;
-  padding: 6px 0;
+  gap: 0.78vw;                              /* 15px → vw */
+  padding: 0.3125vw 0;                      /* 6px → vw */
   position: relative;
   
   /* INTERACTIONS */
@@ -148,10 +148,10 @@
   /* PSEUDO-ELEMENT SETUP */
   content: '';
   position: absolute;
-  bottom: -10px;
-  left: 46px;
+  bottom: -0.52vw;                          /* -10px → vw */
+  left: 2.4vw;                              /* 46px → vw */
   right: 0;
-  height: 1px;
+  height: 0.0625rem;                        /* 1px → rem */
   
   /* APPEARANCE */
   background: linear-gradient(90deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.08) 40%, transparent 80%);
@@ -164,7 +164,7 @@
  * Slides contact item to the right slightly on hover.
  */
 .contactItem:hover {
-  transform: translateX(8px);
+  transform: translateX(0.5rem);            /* 8px → rem */
 }
 
 /**
@@ -183,12 +183,12 @@
  */
 .contactIcon {
   /* SIZING */
-  width: 20px;
-  height: 20px;
+  width: 1.04vw;                            /* 20px → vw */
+  height: 1.04vw;                           /* 20px → vw */
   object-fit: contain;
   
   /* LAYOUT */
-  margin-top: 15px;
+  margin-top: 0.78vw;                       /* 15px → vw */
   
   /* APPEARANCE - Soft Gold Colour */
   filter: brightness(0) invert(85%) sepia(39%) saturate(647%) hue-rotate(370deg) brightness(210%) contrast(70%);
@@ -218,8 +218,8 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  margin-left: -40px;
+  gap: 0.1vw;                               /* 2px → vw */
+  margin-left: -2.08vw;                     /* -40px → vw */
   /* Negative margin to align details properly with title */
 }
 
@@ -231,14 +231,14 @@
 .contactLabel {
   /* TYPOGRAPHY */
   font-family: 'Cormorant Garamond', serif;
-  font-size: 11px;
+  font-size: 0.57vw;                        /* 11px → vw */
   font-weight: 500;
   color: #d4af37;
-  letter-spacing: 1.5px;
+  letter-spacing: 0.09375rem;               /* 1.5px → rem */
   text-transform: uppercase;
   
   /* LAYOUT */
-  margin-bottom: 4px;
+  margin-bottom: 0.21vw;                    /* 4px → vw */
   
   /* APPEARANCE */
   opacity: 0.9;
@@ -251,13 +251,13 @@
  */
 .copiedMessage {
   /* TYPOGRAPHY */
-  font-size: 9.5px;
-  letter-spacing: 0.5px;
+  font-size: 0.49vw;                        /* 9.5px → vw */
+  letter-spacing: 0.03125rem;               /* 0.5px → rem */
   color: #4ade80;
   /* Success green color */
   
   /* LAYOUT */
-  margin-left: 8px;
+  margin-left: 0.42vw;                      /* 8px → vw */
 }
 
 /**
@@ -268,10 +268,10 @@
 .contactValue {
   /* TYPOGRAPHY */
   font-family: 'Cormorant Garamond', serif;
-  font-size: 16px;
+  font-size: 0.83vw;                        /* 16px → vw */
   font-weight: 300;
   color: #f4e4bc;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.01875rem;               /* 0.3px → rem */
   line-height: 1.2;
   
   /* APPEARANCE */
@@ -285,12 +285,12 @@
  */
 .backRight {
   /* SIZING & LAYOUT */
-  width: 140px;
+  width: 7.29vw;                            /* 140px → vw */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 1.04vw;                              /* 20px → vw */
 }
 
 /**
@@ -302,7 +302,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 25px;
+  gap: 1.3vw;                               /* 25px → vw */
 }
 
 /**
@@ -312,8 +312,8 @@
 .btContainer {
   /* SIZING & LAYOUT */
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 5.21vw;                            /* 100px → vw */
+  height: 5.21vw;                           /* 100px → vw */
 }
 
 /**
@@ -328,7 +328,7 @@
   
   /* TYPOGRAPHY */
   font-family: 'Cinzel', serif;
-  font-size: 48px;
+  font-size: 2.5vw;                         /* 48px → vw */
   font-weight: 700;
   text-transform: uppercase;
   
@@ -382,8 +382,8 @@
   transform: translate(-50%, -50%);
   
   /* SIZING */
-  width: 120px;
-  height: 120px;
+  width: 6.25vw;                            /* 120px → vw */
+  height: 6.25vw;                           /* 120px → vw */
   border-radius: 50%;
   
   /* APPEARANCE */
@@ -408,8 +408,8 @@
   /* Above glow, below letters */
   
   /* SIZING */
-  width: 100px;
-  height: 100px;
+  width: 5.21vw;                            /* 100px → vw */
+  height: 5.21vw;                           /* 100px → vw */
 }
 
 /**
@@ -429,13 +429,13 @@
  */
 .ring:nth-child(1) {
   /* SIZING & POSITIONING */
-  width: 90px;
-  height: 90px;
-  top: 5px;
-  left: 5px;
+  width: 4.69vw;                            /* 90px → vw */
+  height: 4.69vw;                           /* 90px → vw */
+  top: 0.26vw;                              /* 5px → vw */
+  left: 0.26vw;                             /* 5px → vw */
   
   /* APPEARANCE */
-  border: 2px dotted rgba(212, 200, 55, 0.4);
+  border: 0.125rem dotted rgba(212, 200, 55, 0.4);  /* 2px → rem */
   
   /* ANIMATION */
   animation: rotate linear 20s infinite;
@@ -447,13 +447,13 @@
  */
 .ring:nth-child(2) {
   /* SIZING & POSITIONING */
-  width: 110px;
-  height: 110px;
-  top: -5px;
-  left: -5px;
+  width: 5.73vw;                            /* 110px → vw */
+  height: 5.73vw;                           /* 110px → vw */
+  top: -0.26vw;                             /* -5px → vw */
+  left: -0.26vw;                            /* -5px → vw */
   
   /* APPEARANCE */
-  border: 1px solid rgba(244, 228, 188, 0.2);
+  border: 0.0625rem solid rgba(244, 228, 188, 0.2);  /* 1px → rem */
 }
 
 /**
@@ -462,13 +462,13 @@
  */
 .ring:nth-child(3) {
   /* SIZING & POSITIONING */
-  width: 130px;
-  height: 130px;
-  top: -15px;
-  left: -15px;
+  width: 6.77vw;                            /* 130px → vw */
+  height: 6.77vw;                           /* 130px → vw */
+  top: -0.78vw;                             /* -15px → vw */
+  left: -0.78vw;                            /* -15px → vw */
   
   /* APPEARANCE */
-  border: 1px solid rgba(212, 175, 55, 0.3);
+  border: 0.0625rem solid rgba(212, 175, 55, 0.3);  /* 1px → rem */
 }
 
 /**
@@ -477,15 +477,15 @@
  */
 .premiumBadge {
   /* SIZING & LAYOUT */
-  padding: 8px 16px;
-  border-radius: 20px;
+  padding: 0.42vw 0.83vw;                   /* 8px 16px → vw */
+  border-radius: 1.04vw;                    /* 20px → vw */
   
   /* TYPOGRAPHY */
   font-family: 'Cinzel', serif;
-  font-size: 10px;
+  font-size: 0.52vw;                        /* 10px → vw */
   font-weight: 700;
   color: #1a1a1a;
-  letter-spacing: 1.5px;
+  letter-spacing: 0.09375rem;               /* 1.5px → rem */
   
   /* APPEARANCE - Glossy gold gradient with highlights */
   background: linear-gradient(135deg, rgba(212, 175, 55, 0.95) 0%, rgba(255, 255, 255, 0.8) 25%,
@@ -502,10 +502,10 @@
 .locationFooter {
   /* TYPOGRAPHY */
   font-family: 'Cinzel', serif;
-  font-size: 10px;
+  font-size: 0.52vw;                        /* 10px → vw */
   font-weight: 500;
   color: #c9a876;
-  letter-spacing: 3px;
+  letter-spacing: 0.1875rem;                /* 3px → rem */
   text-transform: uppercase;
   text-align: center;
   
@@ -519,8 +519,8 @@
  * Slowly shifts the background pattern positions for subtle movement.
  */
 @keyframes hexPattern {
-  0%, 100% { background-position: center, 0 0, 30px 0, 15px 26px; }
-  50% { background-position: center, 30px 0, 0 0, -15px -26px; }
+  0%, 100% { background-position: center, 0 0, 1.56vw 0, 0.78vw 1.35vw; }  /* 30px, 15px 26px → vw */
+  50% { background-position: center, 1.56vw 0, 0 0, -0.78vw -1.35vw; }     /* 30px, -15px -26px → vw */
 }
 
 /**
@@ -576,6 +576,33 @@
  * Badge pulsates with growing glow and slight scale increase.
  */
 @keyframes premiumShine {
-  0% { box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5); transform: scale(1); }
-  100% { box-shadow: 0 8px 30px rgba(212, 175, 55, 0.7); transform: scale(1.05); }
+  0% { box-shadow: 0 0.375rem 1.25rem rgba(212, 175, 55, 0.5); transform: scale(1); }      /* 6px 20px → rem */
+  100% { box-shadow: 0 0.5rem 1.875rem rgba(212, 175, 55, 0.7); transform: scale(1.05); }  /* 8px 30px → rem */
+}
+
+/**
+ * MOBILE RESPONSIVE STYLES
+ * ========================
+ */
+@media (max-height: 600px) and (orientation: landscape) {
+  .contactValue {
+    font-size: 0.6rem;
+  }
+  
+  .contactIcon {
+    display: none;
+  }
+
+  .contactItem {
+    left: 0.4rem;
+  }
+  
+  .premiumBadge {
+    font-size: 0;
+  }
+  
+  .premiumBadge::after {
+    content: 'PREMIUM';
+    font-size: 0.45rem;
+  }
 }

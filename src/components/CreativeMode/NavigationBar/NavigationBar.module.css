@@ -20,7 +20,7 @@
   /* APPEARANCE */
   background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%,rgba(25, 25, 112, 0.5) 30%,
                 rgba(72, 61, 139, 0.5) 60%, rgba(0, 0, 0, 0.95) 100%);
-  backdrop-filter: blur(1.04vw); /* 20px → vw */
+  backdrop-filter: blur(1.25rem); /* 20px → rem */
   
   /* LAYOUT STRUCTURE */
   display: flex;                      /* Horizontal layout */
@@ -34,7 +34,7 @@
   /* INITIAL STATE FOR ANIMATION */
   opacity: 0;                         /* Hidden initially */
   transform: translateY(-9.26vh); /* -100px → vh */
-  filter: blur(0.52vw); /* 10px → vw */
+  filter: blur(0.625rem); /* 10px → rem */
   
   /* ANIMATIONS */
   animation: fadeIn 1.2s ease-out 5s both;  /* Delayed entrance */
@@ -88,8 +88,8 @@
   position: absolute;                 /* Free positioning within constellation */
   
   /* SIZING */
-  width: 0.31vw; /* 6px → vw */
-  height: 0.56vh; /* 6px → vh */
+  width: 12%;                         /* Star size relative to constellation */
+  height: 12%;                        /* Square star */
   
   /* APPEARANCE */
   background: radial-gradient(circle, #ffffff 0%, transparent 100%);
@@ -105,10 +105,10 @@
  * =========================
  * Placement of 5 stars in constellation formation with varied animation delays.
  */
-.star:nth-child(1) { top: 0.93vh; /* 10px → vh */ left: 0.78vw; /* 15px → vw */ animation-delay: 0s; }
-.star:nth-child(2) { top: 0.46vh; /* 5px → vh */ right: 0.63vw; /* 12px → vw */ animation-delay: 0.4s; }
-.star:nth-child(3) { bottom: 0.74vh; /* 8px → vh */ left: 0.52vw; /* 10px → vw */ animation-delay: 0.8s; }
-.star:nth-child(4) { bottom: 1.11vh; /* 12px → vh */ right: 0.42vw; /* 8px → vw */ animation-delay: 1.2s; }
+.star:nth-child(1) { top: 20%; left: 30%; animation-delay: 0s; }
+.star:nth-child(2) { top: 10%; right: 24%; animation-delay: 0.4s; }
+.star:nth-child(3) { bottom: 16%; left: 20%; animation-delay: 0.8s; }
+.star:nth-child(4) { bottom: 24%; right: 16%; animation-delay: 1.2s; }
 .star:nth-child(5) { top: 50%; left: 50%; transform: translate(-50%, -50%); animation-delay: 1.6s; }
 
 /**
@@ -139,7 +139,7 @@
  */
 .logoContainer:hover .logoText {
   color: #ffffff;
-  text-shadow: 0 0 0.78vw rgba(255, 255, 255, 1), 0 0 1.3vw rgba(147, 112, 219, 0.8); /* 15px 25px → vw */
+  text-shadow: 0 0 0.9375rem rgba(255, 255, 255, 1), 0 0 1.5625rem rgba(147, 112, 219, 0.8); /* 15px 25px → rem */
   letter-spacing: 0.16vw; /* 3px → vw */    /* Wider spacing on hover */
 }
 
@@ -165,7 +165,7 @@
  */
 .orbitalMenu:hover {  /* Slight scale up and glow on hover */
   transform: scale(1.3);
-  filter: drop-shadow(0 0 1.56vw rgba(147, 112, 219, 0.8)); /* 30px → vw */
+  filter: drop-shadow(0 0 1.875rem rgba(147, 112, 219, 0.8)); /* 30px → rem */
 }
 
 /**
@@ -194,12 +194,12 @@
 
 /* Primary orbital ring - Purple theme */
 .orbitalMenu::before { 
-  border: 0.05vw solid rgba(147, 112, 219, 0); /* 1px → vw */  /* Transparent purple border */
+  border: 0.0625rem solid rgba(147, 112, 219, 0); /* 1px → rem */  /* Transparent purple border */
 }
 
 /* Secondary orbital ring - Gold theme */
 .orbitalMenu::after { 
-  border: 0.05vw solid rgba(255, 215, 0, 0); /* 1px → vw */    /* Transparent gold border */
+  border: 0.0625rem solid rgba(255, 215, 0, 0); /* 1px → rem */    /* Transparent gold border */
 }
 
 /**
@@ -208,15 +208,15 @@
  * Expanding ring animations that appear on menu hover with pulsing effects.
  */
 .orbitalMenu:hover::before {
-  width: 2.08vw; /* 40px → vw */                        /* Inner ring size */
-  height: 3.7vh; /* 40px → vh */
+  width: 67%;                         /* Inner ring size relative to menu */
+  height: 67%;
   border-color: rgba(147, 112, 219, 0.4);    /* Visible purple */
   animation: orbitalRingPulse 2s ease-in-out infinite;  /* Continuous pulse */
 }
 
 .orbitalMenu:hover::after {
-  width: 2.86vw; /* 55px → vw */                        /* Outer ring size */
-  height: 5.09vh; /* 55px → vh */
+  width: 92%;                         /* Outer ring size relative to menu */
+  height: 92%;
   border-color: rgba(255, 215, 0, 0.3);      /* Visible gold */
   animation: orbitalRingPulse 2s ease-in-out infinite 0.5s;  /* Offset timing */
 }
@@ -235,13 +235,13 @@
   z-index: 10;                        /* Above orbital rings */
   
   /* SIZING */
-  width: 0.63vw; /* 12px → vw */
-  height: 1.11vh; /* 12px → vh */
+  width: 20%;                         /* Sun size relative to orbital menu */
+  height: 20%;                        /* Square sun */
   
   /* APPEARANCE */
   background: radial-gradient(circle, #ffffff 0%, #ffd700 40%, #ff6347 80%, transparent 100%);
   border-radius: 50%;
-  box-shadow: 0 0 1.04vw rgba(255, 215, 0, 0.8); /* 20px → vw */
+  box-shadow: 0 0 1.25rem rgba(255, 215, 0, 0.8); /* 20px → rem */
   
   /* ANIMATIONS */
   animation: sunPulse 2s ease-in-out infinite;  /* Gentle pulsing */
@@ -254,10 +254,10 @@
  * Dramatic size increase and enhanced glow when orbital menu is hovered.
  */
 .orbitalMenu:hover .orbitalSun {
-  width: 0.94vw; /* 18px → vw */                        /* 50% size increase */
-  height: 1.67vh; /* 18px → vh */
+  width: 30%;                         /* 50% size increase */
+  height: 30%;
   animation: sunPulse 1.5s ease-in-out infinite;
-  box-shadow: 0 0 1.82vw rgba(255, 215, 0, 1); /* 35px → vw */
+  box-shadow: 0 0 2.1875rem rgba(255, 215, 0, 1); /* 35px → rem */
 }
 
 /**
@@ -289,41 +289,41 @@
 
 /* Mercury - smallest, gray, closest orbit (3s period, 16px radius) */
 .orbitingPlanet:nth-child(2) {
-  width: 0.26vw; /* 5px → vw */                         /* Smallest planet */
-  height: 0.46vh; /* 5px → vh */
+  width: 8%;                          /* Smallest planet */
+  height: 8%;
   background: radial-gradient(circle, #a0a0a0 0%, #707070 50%, #404040 100%);
-  box-shadow: 0 0 0.31vw rgba(160, 160, 160, 0.5); /* 6px → vw */
+  box-shadow: 0 0 0.375rem rgba(160, 160, 160, 0.5); /* 6px → rem */
   animation: orbitClose 3s linear infinite;
 }
 
 /* Venus - medium-small, golden, second orbit (5s period, 20px radius) */
 .orbitingPlanet:nth-child(3) {
-  width: 0.31vw; /* 6px → vw */                         /* Slightly larger than Mercury */
-  height: 0.56vh; /* 6px → vh */
+  width: 10%;                         /* Slightly larger than Mercury */
+  height: 10%;
   background: radial-gradient(circle, #d4af37 0%, #b8860b 50%, #996515 100%);
-  box-shadow: 0 0 0.31vw rgba(212, 175, 55, 0.5); /* 6px → vw */
+  box-shadow: 0 0 0.375rem rgba(212, 175, 55, 0.5); /* 6px → rem */
   animation: orbitMedium 5s linear infinite;
 }
 
 /* Moon - pale white/gray, third orbit (6s period, 25px radius) */
 .orbitingPlanet:nth-child(4) {
-  width: 0.42vw; /* 8px → vw */                         /* Larger than inner planets */
-  height: 0.74vh; /* 8px → vh */
+  width: 13%;                         /* Larger than inner planets */
+  height: 13%;
   background: radial-gradient(circle, #f5f5f5 0%, #d3d3d3 50%, #a9a9a9 100%);
-  box-shadow: 0 0 0.52vw rgba(245, 245, 245, 0.7); /* 10px → vw */
+  box-shadow: 0 0 0.625rem rgba(245, 245, 245, 0.7); /* 10px → rem */
   animation-duration: 6s;
 }
 
 /* Earth - blue/green continents, outermost orbit (7s period, 25px radius) */
 .orbitingPlanet:nth-child(5) {
-  width: 0.42vw; /* 8px → vw */                         /* Same size as Moon */
-  height: 0.74vh; /* 8px → vh */
+  width: 13%;                         /* Same size as Moon */
+  height: 13%;
   background: 
     radial-gradient(circle at 20% 30%, #228b22 0%, #228b22 25%, transparent 35%),
     radial-gradient(circle at 70% 60%, #32cd32 0%, #32cd32 20%, transparent 30%),
     radial-gradient(circle at 40% 80%, #006400 0%, #006400 15%, transparent 25%),
     radial-gradient(circle, #4169e1 0%, #1e90ff 40%, #0066cc 100%);
-  box-shadow: 0 0 0.52vw rgba(65, 105, 225, 0.7); /* 10px → vw */
+  box-shadow: 0 0 0.625rem rgba(65, 105, 225, 0.7); /* 10px → rem */
   animation-duration: 7s;
 }
 
@@ -332,8 +332,8 @@
  * ========================
  */
 @keyframes fadeIn {
-  0% { opacity: 0; transform: translateY(-9.26vh); filter: blur(0.52vw); } /* -100px 10px → vh/vw */
-  50% { opacity: 0.7; filter: blur(0.26vw); } /* 5px → vw */
+  0% { opacity: 0; transform: translateY(-9.26vh); filter: blur(0.625rem); } /* -100px 10px → vh/rem */
+  50% { opacity: 0.7; filter: blur(0.3125rem); } /* 5px → rem */
   100% { opacity: 1; transform: translateY(0); filter: blur(0); }
 }
 
@@ -365,11 +365,11 @@
 @keyframes sunPulse {
   0%, 100% { 
     transform: translate(-50%, -50%) scale(1); 
-    box-shadow: 0 0 1.04vw rgba(255, 215, 0, 0.8); /* 20px → vw */
+    box-shadow: 0 0 1.25rem rgba(255, 215, 0, 0.8); /* 20px → rem */
   }
   50% { 
     transform: translate(-50%, -50%) scale(1.2); 
-    box-shadow: 0 0 1.56vw rgba(255, 215, 0, 1); /* 30px → vw */
+    box-shadow: 0 0 1.875rem rgba(255, 215, 0, 1); /* 30px → rem */
   }
 }
 

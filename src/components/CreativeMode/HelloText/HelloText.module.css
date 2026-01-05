@@ -40,10 +40,10 @@
     
     /* APPEARANCE */
     color: #ffffff;
-    text-shadow: 0 0 0.52vw rgba(255, 255, 255, 0.8), 0 0 1.04vw rgba(0, 123, 255, 0.6); /* 10px 20px → vw */
+    text-shadow: 0 0 0.625rem rgba(255, 255, 255, 0.8), 0 0 1.25rem rgba(0, 123, 255, 0.6); /* 10px 20px → rem */
     
     /* LAYOUT */
-    border-bottom: 0.52vw solid #007bff; /* 10px → vw */
+    border-bottom: 0.625rem solid #007bff; /* 10px → rem */
     display: inline-block;
     
     /* ANIMATIONS */
@@ -75,22 +75,22 @@
     0% {
         opacity: 0;
         transform: translateY(-4.17vw) translateX(-1.56vw) scale(0.7) rotate(-5deg); /* -80px -30px → vw */
-        filter: blur(0.78vw) brightness(0.3); /* 15px → vw */
+        filter: blur(0.9375rem) brightness(0.3); /* 15px → rem */
     }
     30% {
         opacity: 0.4;
         transform: translateY(-2.08vw) translateX(-0.78vw) scale(0.85) rotate(-2deg); /* -40px -15px → vw */
-        filter: blur(0.42vw) brightness(0.6); /* 8px → vw */
+        filter: blur(0.5rem) brightness(0.6); /* 8px → rem */
     }
     70% {
         opacity: 0.8;
         transform: translateY(-0.52vw) translateX(-0.16vw) scale(1.05) rotate(1deg); /* -10px -3px → vw */
-        filter: blur(0.16vw) brightness(1.1); /* 3px → vw */
+        filter: blur(0.1875rem) brightness(1.1); /* 3px → rem */
     }
     90% {
         opacity: 1;
         transform: translateY(0.26vw) translateX(0.1vw) scale(1.02) rotate(0deg); /* 5px 2px → vw */
-        filter: blur(0.05vw) brightness(1.05); /* 1px → vw */
+        filter: blur(0.0625rem) brightness(1.05); /* 1px → rem */
     }
     100% {
         opacity: 1;
@@ -138,11 +138,30 @@
  */
 @keyframes textGlow {
     0%, 100% {
-        text-shadow: 0 0 1.04vw rgba(0, 123, 255, 0.6); /* 20px → vw */
+        text-shadow: 0 0 1.25rem rgba(0, 123, 255, 0.6); /* 20px → rem */
     }
     50% {
         text-shadow: 
-            0 0 1.56vw rgba(0, 123, 255, 0.8), /* 30px → vw */
-            0 0 2.08vw rgba(100, 200, 255, 0.4); /* 40px → vw */
+            0 0 1.875rem rgba(0, 123, 255, 0.8), /* 30px → rem */
+            0 0 2.5rem rgba(100, 200, 255, 0.4); /* 40px → rem */
+    }
+}
+
+/**
+ * MOBILE LANDSCAPE STYLES
+ * =======================
+ * Reduce underline size for mobile landscape view
+ */
+@media (max-height: 600px) and (orientation: landscape) {
+    .container {
+        bottom: 0%;
+    }
+    
+    .header {
+        border-bottom: 0.3rem solid #007bff;
+    }
+  
+    .text {
+        margin-top: 0.3rem;
     }
 }

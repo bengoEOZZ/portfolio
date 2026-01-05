@@ -1,0 +1,740 @@
+/**
+ * ROTATESCREEN COMPONENT STYLES
+ * ==============================
+ * This file contains the styling for the RotateScreen overlay component displayed in portrait orientation.
+ * Features three distinct variants (classic, creative, home) with animated backgrounds, decorative elements,
+ * and responsive typography. Only visible when device orientation is portrait mode.
+ */
+
+/**
+ * BASE ROTATE OVERLAY (.rotateOverlay)
+ * ====================================
+ * Primary container for the portrait orientation warning screen.
+ */
+
+/* INITIAL STATE - Hidden by default, only show in portrait */
+.rotateOverlay {
+  /* DISPLAY */
+  display: none;
+  /* Hidden in landscape - only visible when portrait media query triggers */
+}
+
+/* PORTRAIT ORIENTATION MEDIA QUERY */
+@media screen and (orientation: portrait) {
+  .rotateOverlay {
+    /* POSITIONING - Full screen fixed overlay */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99999;               /* Highest z-index to ensure overlay covers all content */
+    
+    /* LAYOUT */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* APPEARANCE - Default dark background */
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%); 
+    overflow: hidden;
+  }
+}
+
+/**
+ * ============================================================
+ * SHARED ANIMATED BACKGROUND
+ * ============================================================
+ * Rotating gradient background layer for depth effect.
+ */
+
+.backgroundGradient {
+  /* LAYOUT & POSITIONING */
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  
+  /* SIZING */
+  width: 200%; /* Oversized to prevent edge visibility during rotation */
+  height: 200%; /* Oversized to prevent edge visibility during rotation */
+  
+  /* ANIMATIONS */
+  animation: gradientRotate 20s linear infinite;
+}
+
+/**
+ * GRADIENT ROTATION ANIMATION (@keyframes)
+ * ========================================
+ * Full 360° rotation creating continuous movement effect.
+ */
+@keyframes gradientRotate {
+  0% { 
+    transform: rotate(0deg); /* Start position */
+  }
+  100% { 
+    transform: rotate(360deg); /* Full rotation */
+  }
+}
+
+/**
+ * ============================================================
+ * CONTENT CONTAINER (.content)
+ * ============================================================
+ * Main content wrapper for typography and visual elements.
+ */
+
+.content {
+  /* LAYOUT & POSITIONING */
+  position: relative;
+  z-index: 1; /* Above background gradients */
+  
+  /* TYPOGRAPHY ALIGNMENT */
+  text-align: center;
+  
+  /* SPACING */
+  padding: 2rem;
+  
+  /* SIZING */
+  max-width: 90%; /* Responsive width */
+}
+
+/**
+ * ============================================================
+ * PHONE ICON (Classic & Home variants)
+ * ============================================================
+ * Rotating phone device illustration with screen.
+ */
+
+/* Phone Icon Container */
+.phoneIcon {
+  /* LAYOUT & POSITIONING */
+  position: relative;
+  
+  /* SIZING */
+  width: 120px;
+  height: 120px;
+  
+  /* SPACING */
+  margin: 0 auto 2rem;
+}
+
+/* Phone Device */
+.phone {
+  /* LAYOUT & POSITIONING */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  /* SIZING */
+  width: 50px;
+  height: 90px;
+  
+  /* APPEARANCE */
+  background: linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 100%);
+  border: 3px solid #BFA850; /* Gold border for Classic theme */
+  border-radius: 10px;
+  box-shadow: 
+    0 0 30px rgba(191, 168, 80, 0.3), /* Gold glow */
+    inset 0 0 20px rgba(0, 0, 0, 0.5); /* Inner depth */
+  
+  /* ANIMATIONS */
+  animation: phoneRotate 3s ease-in-out infinite;
+}
+
+/* Phone Screen - Inner Display */
+.phoneScreen {
+  /* LAYOUT & POSITIONING */
+  position: absolute;
+  top: 8px;
+  left: 5px;
+  right: 5px;
+  bottom: 15px;
+  
+  /* APPEARANCE */
+  background: linear-gradient(180deg, #BFA850 0%, #8B6914 100%); /* Gold gradient */
+  border-radius: 4px;
+  opacity: 0.8; /* Slightly transparent for depth */
+}
+
+/* Phone Notch - Bottom Home Indicator */
+.phoneNotch {
+  /* LAYOUT & POSITIONING */
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  /* SIZING */
+  width: 20px;
+  height: 4px;
+  
+  /* APPEARANCE */
+  background: #BFA850; /* Gold accent matching theme */
+  border-radius: 2px;
+  opacity: 0.6; /* Subtle visibility */
+}
+
+/**
+ * PHONE ROTATION ANIMATION (@keyframes)
+ * =====================================
+ * Animates phone rotating from vertical to horizontal orientation.
+ * -15° → -90° → -75° sequence creates realistic tilt motion.
+ */
+@keyframes phoneRotate {
+  0%, 100% {
+    transform: translate(-50%, -50%) rotate(0deg); /* Vertical start */
+  }
+  25% {
+    transform: translate(-50%, -50%) rotate(-15deg); /* Initial tilt */
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(-90deg); /* Horizontal */
+  }
+  75% {
+    transform: translate(-50%, -50%) rotate(-75deg); /* Slight bounce back */
+  }
+}
+
+/* Rotate Arrow Overlay Icon */
+.rotateArrow {
+  /* LAYOUT & POSITIONING */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  /* SIZING */
+  width: 100px;
+  height: 100px;
+  
+  /* APPEARANCE */
+  color: #BFA850; /* Gold color for Classic theme */
+  opacity: 0.6;
+  
+  /* ANIMATIONS */
+  animation: arrowPulse 2s ease-in-out infinite;
+}
+
+.rotateArrow svg {
+  /* SIZING */
+  width: 100%;
+  height: 100%;
+}
+
+/**
+ * ARROW PULSE ANIMATION (@keyframes)
+ * ==================================
+ * Pulsing effect for rotation arrow to draw attention.
+ * Opacity and scale change to create breathing effect.
+ */
+@keyframes arrowPulse {
+  0%, 100% {
+    opacity: 0.4; /* Softer visibility */
+    transform: translate(-50%, -50%) scale(1); /* Normal size */
+  }
+  50% {
+    opacity: 0.8; /* Peak visibility */
+    transform: translate(-50%, -50%) scale(1.1); /* Slightly enlarged */
+  }
+}
+
+/**
+ * ============================================================
+ * TYPOGRAPHY (.title, .subtitle, .hint)
+ * ============================================================
+ * Text elements providing user guidance.
+ */
+
+/* Main Title */
+.title {
+  /* TYPOGRAPHY */
+  font-family: 'Cinzel', 'Georgia', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #BFA850; /* Gold for Classic theme */
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  
+  /* SPACING */
+  margin: 0 0 1rem 0;
+  
+  /* APPEARANCE */
+  text-shadow: 0 0 20px rgba(191, 168, 80, 0.5); /* Gold glow */
+  
+  /* ANIMATIONS */
+  animation: textGlow 3s ease-in-out infinite;
+}
+
+/**
+ * TEXT GLOW ANIMATION (@keyframes)
+ * ================================
+ * Subtle brightness pulsing for title text.
+ */
+@keyframes textGlow {
+  0%, 100% {
+    filter: brightness(1); /* Normal brightness */
+  }
+  50% {
+    filter: brightness(1.2); /* Increased brightness */
+  }
+}
+
+/* Subtitle Text */
+.subtitle {
+  /* TYPOGRAPHY */
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: rgba(191, 168, 80, 0.8); /* Semi-transparent gold */
+  letter-spacing: 0.05em;
+  line-height: 1.6;
+  
+  /* SPACING */
+  margin: 0 0 2rem 0;
+}
+
+/* Decorative Line Separator */
+.decorativeLine {
+  /* SIZING */
+  width: 100px;
+  height: 2px;
+  
+  /* APPEARANCE */
+  background: linear-gradient(90deg, transparent, #BFA850, transparent); /* Fade in/out */
+  
+  /* SPACING */
+  margin: 0 auto 1.5rem;
+}
+
+/* Hint Text - Small Instructional Text */
+.hint {
+  /* TYPOGRAPHY */
+  font-family: 'Cinzel', 'Georgia', serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: rgba(191, 168, 80, 0.5); /* Subtle gold */
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  
+  /* SPACING */
+  margin: 0;
+}
+
+/**
+ * ============================================================
+ * CORNER DECORATIONS (.corner)
+ * ============================================================
+ * Ornamental corner borders creating frame effect.
+ */
+
+.corner {
+  /* LAYOUT & POSITIONING */
+  position: absolute;
+  
+  /* SIZING */
+  width: 60px;
+  height: 60px;
+  
+  /* APPEARANCE */
+  border: 2px solid rgba(191, 168, 80, 0.3); /* Subtle gold border */
+}
+
+/* Top Left Corner */
+.topLeft {
+  /* POSITIONING */
+  top: 20px;
+  left: 20px;
+  
+  /* BORDER REMOVAL - Creates L-shape */
+  border-right: none;
+  border-bottom: none;
+}
+
+/* Top Right Corner */
+.topRight {
+  /* POSITIONING */
+  top: 20px;
+  right: 20px;
+  
+  /* BORDER REMOVAL - Creates mirrored L-shape */
+  border-left: none;
+  border-bottom: none;
+}
+
+/* Bottom Left Corner */
+.bottomLeft {
+  /* POSITIONING */
+  bottom: 20px;
+  left: 20px;
+  
+  /* BORDER REMOVAL - Creates inverted L-shape */
+  border-right: none;
+  border-top: none;
+}
+
+/* Bottom Right Corner */
+.bottomRight {
+  /* POSITIONING */
+  bottom: 20px;
+  right: 20px;
+  
+  /* BORDER REMOVAL - Creates mirrored inverted L-shape */
+  border-left: none;
+  border-top: none;
+}
+
+/**
+ * ============================================================
+ * VARIANT: HOME (Mixed Theme - Split Design)
+ * ============================================================
+ * Combination of gold and blue aesthetics representing both portfolio modes.
+ */
+
+/* HOME - Base Background */
+.home {
+  /* APPEARANCE */
+  background: linear-gradient(135deg, #0a0a0a 0%, #0d1b2a 50%, #0a0a0a 100%);
+  /* Gradient transitioning from dark to space theme */
+}
+
+/* HOME - Background Gradient */
+.home .backgroundGradient {
+  /* APPEARANCE */
+  background: 
+    radial-gradient(circle at 25% 50%, rgba(191, 168, 80, 0.08) 0%, transparent 35%),
+    radial-gradient(circle at 75% 50%, rgba(100, 149, 237, 0.08) 0%, transparent 35%);
+  /* Split design: gold on left, blue on right */
+}
+
+/* HOME - Typography & Elements */
+.home .title {
+  /* APPEARANCE - Gradient text effect */
+  background: linear-gradient(90deg, #BFA850, #6495ED);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+}
+
+.home .subtitle {
+  /* TYPOGRAPHY */
+  color: rgba(200, 200, 200, 0.8);
+}
+
+.home .decorativeLine {
+  /* APPEARANCE */
+  background: linear-gradient(90deg, #BFA850, #6495ED);
+}
+
+.home .hint {
+  /* TYPOGRAPHY */
+  color: rgba(200, 200, 200, 0.5);
+}
+
+.home .corner {
+  /* APPEARANCE */
+  border-image: linear-gradient(135deg, rgba(191, 168, 80, 0.3), rgba(100, 149, 237, 0.3)) 1;
+}
+
+/* HOME - Phone Device Styling - Mixed gradient */
+.home .phone {
+  /* APPEARANCE */
+  border: 3px solid;
+  border-image: linear-gradient(135deg, #BFA850, #6495ED) 1;
+  box-shadow: 
+    0 0 20px rgba(191, 168, 80, 0.3),
+    0 0 20px rgba(100, 149, 237, 0.3),
+    inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.home .phoneScreen {
+  /* APPEARANCE */
+  background: linear-gradient(180deg, #BFA850 0%, #6495ED 100%);
+}
+
+.home .phoneNotch {
+  /* APPEARANCE */
+  background: linear-gradient(90deg, #BFA850, #6495ED);
+}
+
+.home .rotateArrow {
+  /* APPEARANCE */
+  color: #9090c0;
+}
+
+/**
+ * ============================================================
+ * VARIANT: CLASSIC (Gold Luxury Theme)
+ * ============================================================
+ * Professional gold-accented styling for the classic portfolio mode.
+ */
+
+/* CLASSIC - Background Gradient */
+.classic .backgroundGradient {
+  /* APPEARANCE */
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(191, 168, 80, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(191, 168, 80, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 60%);
+  /* Subtle gold radial gradients + rotation */
+}
+
+/* CLASSIC - Phone Device Styling */
+.classic .phone {
+  /* APPEARANCE */
+  border-color: #BFA850;           /* Classic gold border */
+  box-shadow: 
+    0 0 30px rgba(191, 168, 80, 0.3),
+    inset 0 0 20px rgba(0, 0, 0, 0.5);
+  /* Gold glow with inner shadow for depth */
+}
+
+/* CLASSIC - Phone Screen */
+.classic .phoneScreen {
+  /* APPEARANCE */
+  background: linear-gradient(180deg, #BFA850 0%, #8B6914 100%);
+  /* Gold to darker gold gradient for screen display */
+}
+
+/* CLASSIC - Phone Notch */
+.classic .phoneNotch {
+  /* APPEARANCE */
+  background: #BFA850;             /* Solid gold notch */
+}
+
+/* CLASSIC - Rotation Arrow */
+.classic .rotateArrow {
+  /* APPEARANCE */
+  color: #BFA850;                  /* Gold arrow color */
+}
+
+/* CLASSIC - Title Text */
+.classic .title {
+  /* APPEARANCE */
+  color: #BFA850;                  /* Gold text */
+  text-shadow: 0 0 20px rgba(191, 168, 80, 0.5);
+  /* Subtle gold glow effect */
+}
+
+/* CLASSIC - Subtitle Text */
+.classic .subtitle {
+  /* APPEARANCE */
+  color: rgba(191, 168, 80, 0.8);  /* Semi-transparent gold */
+}
+
+/* CLASSIC - Decorative Line */
+.classic .decorativeLine {
+  /* APPEARANCE */
+  background: linear-gradient(90deg, transparent, #BFA850, transparent);
+  /* Fading gold horizontal line */
+}
+
+/* CLASSIC - Hint Text */
+.classic .hint {
+  /* APPEARANCE */
+  color: rgba(191, 168, 80, 0.5);  /* Subtle gold text */
+}
+
+/* CLASSIC - Corner Decorations */
+.classic .corner {
+  /* APPEARANCE */
+  border-color: rgba(191, 168, 80, 0.3);
+  /* Semi-transparent gold corners */
+}
+
+/**
+ * ============================================================
+ * VARIANT: CREATIVE (Space/Celestial Theme)
+ * ============================================================
+ * Cosmic blue-accented styling with starfield and planetary decorations.
+ */
+
+/* CREATIVE - Base Background */
+.creative {
+  /* APPEARANCE */
+  background: radial-gradient(ellipse at center, #0d1b2a 0%, #020810 100%);
+  /* Deep space radial gradient */
+}
+
+/* CREATIVE - Background Gradient */
+.creative .backgroundGradient {
+  /* APPEARANCE */
+  background: 
+    radial-gradient(circle at 30% 30%, rgba(100, 149, 237, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 70% 70%, rgba(147, 112, 219, 0.06) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(255, 200, 100, 0.04) 0%, transparent 50%);
+  /* Blue and purple celestial light sources */
+}
+
+/**
+ * STARS PARTICLE SYSTEM (.starsContainer, .star)
+ * ==============================================
+ * Animated starfield effect for creative mode.
+ */
+
+/* Stars Container */
+.starsContainer {
+  /* LAYOUT & POSITIONING */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  /* INTERACTIONS */
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Individual Star Particle */
+.star {
+  /* LAYOUT & POSITIONING */
+  position: absolute;
+  
+  /* SIZING */
+  width: 3px;
+  height: 3px;
+  
+  /* APPEARANCE */
+  background: white;
+  border-radius: 50%;
+  
+  /* ANIMATIONS */
+  animation: twinkle 2s ease-in-out infinite;
+  /* Pulsing brightness effect */
+}
+
+/**
+ * STAR TWINKLE ANIMATION (@keyframes)
+ * ===================================
+ */
+@keyframes twinkle {
+  0%, 100% { 
+    opacity: 0.3; 
+    transform: scale(0.8); 
+  }
+  50% { 
+    opacity: 1; 
+    transform: scale(1.2); 
+  }
+}
+
+/* CREATIVE - Typography & Elements */
+.creative .title {
+  /* TYPOGRAPHY */
+  color: #6495ED;
+  text-shadow: 0 0 20px rgba(100, 149, 237, 0.6);
+  font-family: 'Cinzel', 'Georgia', serif;
+  letter-spacing: 0.1em;
+}
+
+.creative .subtitle {
+  /* TYPOGRAPHY */
+  color: rgba(147, 180, 255, 0.85);
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+}
+
+.creative .decorativeLine {
+  /* APPEARANCE */
+  background: linear-gradient(90deg, transparent, #6495ED, transparent);
+}
+
+.creative .hint {
+  /* TYPOGRAPHY */
+  color: rgba(100, 149, 237, 0.5);
+  font-family: 'Cinzel', 'Georgia', serif;
+}
+
+.creative .corner {
+  /* APPEARANCE */
+  border-color: rgba(100, 149, 237, 0.3);
+}
+
+/* CREATIVE - Phone Device Styling */
+.creative .phone {
+  /* APPEARANCE */
+  border-color: #6495ED;
+  box-shadow: 
+    0 0 30px rgba(100, 149, 237, 0.4),
+    inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.creative .phoneScreen {
+  /* APPEARANCE */
+  background: linear-gradient(180deg, #6495ED 0%, #1a5490 100%);
+}
+
+.creative .phoneNotch {
+  /* APPEARANCE */
+  background: #6495ED;
+}
+
+.creative .rotateArrow {
+  /* APPEARANCE */
+  color: #6495ED;
+}
+
+/**
+ * ============================================================
+ * SATURN BACKGROUND DECORATION (Creative/Mixed Variant Only)
+ * ============================================================
+ * Decorative Saturn planet with rings for Creative theme atmosphere.
+ */
+
+/* Saturn Container */
+.saturnDecoration {
+  /* LAYOUT & POSITIONING */
+  position: absolute;
+  top: 12%;
+  right: 15%;
+  z-index: 0; /* Behind main content */
+  
+  /* SIZING */
+  width: 60px;
+  height: 60px;
+  
+  /* APPEARANCE */
+  opacity: 0.7; /* Subtle presence */
+}
+
+/* Saturn Planet Body */
+.saturnPlanet {
+  /* LAYOUT & POSITIONING */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  /* SIZING */
+  width: 35px;
+  height: 35px;
+  
+  /* APPEARANCE */
+  background: linear-gradient(135deg, #6495ED 0%, #4169E1 50%, #1a3a8a 100%); /* Blue planet gradient */
+  border-radius: 50%;
+  box-shadow: 
+    inset -8px -8px 15px rgba(0, 0, 0, 0.4), /* Shadow side */
+    inset 4px 4px 10px rgba(100, 180, 255, 0.3), /* Light side */
+    0 0 25px rgba(100, 149, 237, 0.4); /* Outer glow */
+}
+
+/* Saturn Ring */
+.saturnRing {
+  /* LAYOUT & POSITIONING */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotateX(70deg); /* 3D tilt effect */
+  
+  /* SIZING */
+  width: 60px;
+  height: 60px;
+  
+  /* APPEARANCE */
+  border: 3px solid rgba(100, 149, 237, 0.5); /* Blue ring */
+  border-radius: 50%;
+  box-shadow: 
+    0 0 10px rgba(100, 149, 237, 0.3), /* Outer glow */
+    inset 0 0 10px rgba(100, 149, 237, 0.2); /* Inner glow */
+}

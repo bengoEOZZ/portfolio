@@ -36,58 +36,14 @@
 }
 
 /**
- * SCANLINE CORRUPTION OVERLAY (.body::before)
- * ===========================================
+ * STARFIELD (.starfieldContainer)
+ * ===============================
  */
-.body::before {
-    /* CONTENT & POSITIONING */
-    content: '';                       /* Required for pseudo-element */
-    position: absolute;                /* Overlay positioning */
-    top: 0;                            /* Align to top edge */
-    left: 0;                           /* Align to left edge */
-    
-    /* SIZING */
-    width: 100%;                       /* Full screen width */
-    height: 120%;                      /* Extended height for animation overflow */
-    
-    /* SCANLINE PATTERN */
-    background: 
-        repeating-linear-gradient(
-            0deg,                      /* Horizontal lines (0 degrees) */
-            rgba(0, 0, 0, 0.9) 0px,   /* Dark scanline (90% opacity) */
-            transparent 1px,           /* Transparent gap */
-            rgba(255, 255, 255, 0.3) 2px,  /* Bright scanline (30% opacity) */
-            transparent 3px            /* Transparent gap */
-        );
-    
-    /* ANIMATION */
-    opacity: 0;                        /* Hidden by default */
-    pointer-events: none;              /* Don't block user interactions */
-    z-index: 30;                      /* Layer above background elements */
-}
-
-/**
- * CONTENT CONTAINER WITH ANIMATED STARDUST (.container)
- * =====================================================
- * Main content container featuring animated stardust particle system.
- */
-.container {  
+.starfieldContainer {  
     /* LAYOUT & SIZING */
     height: 100vh;
     width: 100vw;
     
-    /* SINGLE LAYER STARDUST */
-    background: url('../../assets/CreativeMode/stardust.png');
-    
-    /* SIZING */
-    background-size: 450px 450px;
-    
-    /* POSITIONING */
-    background-position: 0 0;
-    
-    /* ANIMATION */
-    animation: starDrift 160s linear infinite;
-
     /* LAYOUT PROPERTIES */
     display: flex;
     justify-content: center;
@@ -96,20 +52,83 @@
     position: relative;
     
     /* PERFORMANCE OPTIMIZATION */
-    will-change: background-position;
     transform: translateZ(0);
     backface-visibility: hidden;
 }
 
 /**
- * SMOOTH DRIFT ANIMATION - Single Direction
- * =========================================
+ * ===========================================
+ * STARFIELD DEPTH LAYERS - ANIMATED STARS
+ * ===========================================
+ * Multiple layers of stars with twinkling animation (same as App.module.css)
  */
+.starfieldLayer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Base star - white circular dot with pulsing animation */
+.deepStar {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: starTwinkle 3s ease-in-out infinite;
+}
+
+/* 4-point sparkle effect via crossed gradient rays */
+.deepStar::before,
+.deepStar::after {
+    content: '';
+    position: absolute;
+    background: linear-gradient(90deg, transparent, white, transparent);
+}
+
+/* Horizontal ray */
+.deepStar::before {
+    width: 500%;
+    height: 40%;
+    left: -200%;
+    top: 30%;
+}
+
+/* Vertical ray */
+.deepStar::after {
+    width: 40%;
+    height: 500%;
+    left: 30%;
+    top: -200%;
+    background: linear-gradient(180deg, transparent, white, transparent);
+}
+
+/* Star size variants */
+.deepStar.medium { width: 0.15vw; height: 0.15vw; box-shadow: 0 0 0.3vw rgba(255, 255, 255, 0.6); }
+.deepStar.small  { width: 0.08vw; height: 0.08vw; box-shadow: 0 0 0.15vw rgba(255, 255, 255, 0.4); }
+.deepStar.tiny   { width: 0.05vw; height: 0.05vw; box-shadow: 0 0 0.1vw rgba(255, 255, 255, 0.3); }
+
+/* Hide sparkle rays on small stars (too small to see detail) */
+.deepStar.small::before, .deepStar.small::after,
+.deepStar.tiny::before,  .deepStar.tiny::after { display: none; }
+
+/* Drifting variant - adds subtle position movement to stars */
+.deepStar.drift {
+    animation: starDrift 4s ease-in-out infinite;
+}
+
+/* Twinkle animation - fade and scale pulsing */
+@keyframes starTwinkle {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.3); }
+}
+
+/* Twinkle with drift - adds gentle floating movement */
 @keyframes starDrift {
-    from { 
-        background-position: 0 0;
-    }
-    to { 
-        background-position: 450px 450px;  /* Matches size for seamless loop */
-    }
+    0%, 100% { opacity: 0.5; transform: scale(1) translate(0, 0); }
+    25% { opacity: 0.8; transform: scale(1.1) translate(0.3vw, -0.2vh); }
+    50% { opacity: 1; transform: scale(1.3) translate(0.5vw, 0); }
+    75% { opacity: 0.8; transform: scale(1.1) translate(0.3vw, 0.2vh); }
 }

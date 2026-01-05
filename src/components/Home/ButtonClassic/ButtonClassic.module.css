@@ -10,13 +10,13 @@
 .btn {
   /* TYPOGRAPHY - LUXURY CINZEL */
   font-family: 'Cinzel', 'Times New Roman', serif;
-  font-size: 1.8rem;              /* Size */
-  font-weight: 500;               /* Weight */
-  text-transform: uppercase;      /* Uppercase styling */
-  letter-spacing: 2px;            /* Letter spacing */
+  font-size: 3.3vh;              /* 1.8rem / 28.8px → vh */
+  font-weight: 500;                /* Weight */
+  text-transform: uppercase;       /* Uppercase styling */
+  letter-spacing: 0.104vw;         /* 2px → vw */
 
   /* LAYOUT & DIMENSIONS */
-  padding: 20px 60px;             /* Padding */
+  padding: 2vh 3vw;        /* 20px 60px → vh vw */
   display: inline-block;          /* Inline block for proper positioning */
   
   /* LUXURY GOLDEN APPEARANCE */
@@ -31,14 +31,14 @@
       #FFD700 100%
     );
     
-  border: 4px solid #8B4513;      /* Rich brown border (matches belt) */
-  border-radius: 10px;
+  border: 0.25rem solid #8B4513;   /* 4px → rem */
+  border-radius: 0.625rem;          /* 10px → rem */
   
   /* LUXURY SHADOWS */
   box-shadow: 
     /* Inner highlights */
-    inset 0 4px 0 rgba(255, 255, 255, 0.4),
-    inset 0 -4px 0 rgba(0, 0, 0, 0.3);
+    inset 0 0.25rem 0 rgba(255, 255, 255, 0.4),  /* 4px → rem */
+    inset 0 -0.25rem 0 rgba(0, 0, 0, 0.3);       /* -4px → rem */
   
   /* POSITIONING & EFFECTS */
   position: relative;             /* For pseudo-element effects */
@@ -50,7 +50,7 @@
   
   /* TEXT EFFECTS */
   text-shadow: 
-    0 2px 0 rgba(255, 255, 255, 0.4);
+    0 0.125rem 0 rgba(255, 255, 255, 0.4);  /* 2px → rem */
 }
 
 /**
@@ -82,7 +82,7 @@
   /* ANIMATION & EFFECTS */
   animation: luxuryShimmer 5s ease-in-out infinite; /* Continuous shimmer */
   z-index: 1;                     /* Above background, below text */
-  border-radius: 15px;            /* Rounded corners for smooth effect */
+  border-radius: 0.9375rem;          /* 15px → rem */
 }
 
 /**
@@ -103,17 +103,17 @@
  */
 .btn:hover {
   /* ENHANCED TRANSFORMATION */
-  transform: translateY(-6px) scale(1.02);
+  transform: translateY(-0.556vh) scale(1.02);  /* -6px → vh */
   
   /* ENHANCED SHADOWS */
   box-shadow: 
-    0 0 80px rgba(255, 215, 0, 0.4),
-    inset 0 6px 0 rgba(255, 255, 255, 0.5),
-    inset 0 -6px 0 rgba(0, 0, 0, 0.4);
+    0 0 5rem rgba(255, 215, 0, 0.4),           /* 80px → rem */
+    inset 0 0.375rem 0 rgba(255, 255, 255, 0.5),   /* 6px → rem */
+    inset 0 -0.375rem 0 rgba(0, 0, 0, 0.4);        /* -6px → rem */
   
   text-shadow: 
-    0 2px 0 rgba(255, 255, 255, 0.6);
-  letter-spacing: 3px;            /* Expanded letter spacing */
+    0 0.125rem 0 rgba(255, 255, 255, 0.6);         /* 2px → rem */
+  letter-spacing: 0.156vw;                        /* 3px → vw */
 }
 
 /**
@@ -121,7 +121,7 @@
  * =================================
  */
 .btn:active {
-  transform: translateY(-2px) scale(1.01);
+  transform: translateY(-0.185vh) scale(1.01);  /* -2px → vh */
   transition: all 0.15s ease;
 }
 

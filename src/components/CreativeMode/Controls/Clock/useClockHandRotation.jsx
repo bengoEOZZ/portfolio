@@ -68,19 +68,29 @@ const useClockHandRotation = () => {
     const [isHolding, setIsHolding] = useState(false);                 // Mouse interaction state
 
     /**
-     * PHASE 2: MOUSE EVENT HANDLING
-     * =============================
-     * Capture and process mouse interactions for rotation control
+     * PHASE 2: MOUSE & TOUCH EVENT HANDLING
+     * =====================================
+     * Capture and process mouse/touch interactions for rotation control
      * 
      * EVENT FLOW:
-     * 1. Mouse Down → Set isHolding = true → Triggers continuous rotation
-     * 2. Mouse Up → Set isHolding = false → Stops continuous rotation
+     * 1. Mouse Down / Touch Start → Set isHolding = true → Triggers continuous rotation
+     * 2. Mouse Up / Touch End → Set isHolding = false → Stops continuous rotation
      */
     const handleMouseDown = () => {
         setIsHolding(true);
     };
     
     const handleMouseUp = () => {
+        setIsHolding(false);
+    };
+    
+    const handleTouchStart = (e) => {
+        e.preventDefault(); // Prevent default touch behavior
+        setIsHolding(true);
+    };
+    
+    const handleTouchEnd = (e) => {
+        e.preventDefault(); // Prevent default touch behavior
         setIsHolding(false);
     };
 
@@ -129,7 +139,9 @@ const useClockHandRotation = () => {
     return {
         rotation,           // Current rotation angle for visual positioning
         handleMouseDown,    // Mouse press handler to start rotation
-        handleMouseUp       // Mouse release handler to stop rotation
+        handleMouseUp,      // Mouse release handler to stop rotation
+        handleTouchStart,   // Touch start handler for mobile support
+        handleTouchEnd      // Touch end handler for mobile support
     };
 };
 

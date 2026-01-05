@@ -102,15 +102,15 @@ const HOVER_DATA = {
  */
 const HOVER_ZONES = {
   gymCard: { 
-    position: { top: '45px', left: '35px', width: '475px', height: '60px' },
+    position: { top: '2.34vw', left: '1.82vw', width: '24.74vw', height: '3.13vw' },  /* 45px, 35px, 475px, 60px → vw */
     hoverClass: 'gymCardHover'
   },
   credentialsCard: { 
-    position: { top: '140px', left: '25px', width: '500px', height: '60px' },
+    position: { top: '7.29vw', left: '1.3vw', width: '26.04vw', height: '3.13vw' },   /* 140px, 25px, 500px, 60px → vw */
     hoverClass: 'credentialsCardHover'
   },
   hollowKnight: { 
-    position: { bottom: '25px', right: '25px', width: '80px', height: '80px' },
+    position: { bottom: '1.3vw', right: '1.3vw', width: '4.17vw', height: '4.17vw' }, /* 25px, 25px, 80px, 80px → vw */
     hoverClass: 'hollowKnightHover'
   }
 };
@@ -171,7 +171,7 @@ const HoverZone = React.memo(({ itemKey, onHover, onLeave, isOpen }) => {
  * ======================
  * Main wallet component with 3D tracking, card displays, and hover popups.
  */
-const LuxuryWallet = ({ isOpen, onToggle }) => {
+const LuxuryWallet = ({ isOpen, onToggle, skipCards = false }) => {
   const walletContainerRef = useRef(null);
   
   // ENTRANCE ANIMATION STATE
@@ -179,6 +179,11 @@ const LuxuryWallet = ({ isOpen, onToggle }) => {
   
   // HOVER STATE - Track which item is being hovered
   const [hoverItem, setHoverItem] = useState(null);
+  
+  // MOBILE DETECTION - Matches CSS media query
+  const isMobile = useMemo(() => {
+    return window.matchMedia('(max-height: 600px) and (orientation: landscape)').matches;
+  }, []);
   
   // Handle hover enter - set which item is hovered
   const handleItemHover = useCallback((itemKey) => {
@@ -189,6 +194,16 @@ const LuxuryWallet = ({ isOpen, onToggle }) => {
   const handleItemLeave = useCallback(() => {
     setHoverItem(null);
   }, []);
+
+  // Handle wallet click - prevent closing on mobile once opened
+  const handleWalletClick = useCallback(() => {
+    // On mobile, only allow opening (not closing)
+    if (isMobile && isOpen) {
+      return; // Do nothing if wallet is already open on mobile
+    }
+    // On desktop or when opening on mobile, proceed normally
+    onToggle();
+  }, [isMobile, isOpen, onToggle]);
 
   /**
    * BUILD POPUP CONTENT
@@ -291,7 +306,7 @@ const LuxuryWallet = ({ isOpen, onToggle }) => {
         >
           {/* Main container - ref enables 3D tracking, onClick toggles open/close */}
           <div ref={walletContainerRef} className={`${classes.walletContainer}
-            ${isOpen ? classes.walletOpen : ''}`} onClick={onToggle} >
+            ${isOpen ? classes.walletOpen : ''}`} onClick={handleWalletClick} >
 
           {/* WALLET EXTERIOR - Closed leather wallet with BT monogram */}
           <div className={classes.luxuryWallet}>
@@ -333,12 +348,12 @@ const LuxuryWallet = ({ isOpen, onToggle }) => {
             <div className={classes.cardSlotsContainer}>
               {/* First pocket - Gym membership card */}
               <div className={classes.cardSlot}>
-                <GymCard scale={0.85} className={classes.card} />
+                {!skipCards && <GymCard scale={0.85} className={classes.card} />}
                 <div className={classes.cardLabel}>FITNESS</div>
               </div>
               {/* Second pocket - Credentials card */}
               <div className={classes.cardSlot}>
-                <CredentialsCard scale={0.9} className={classes.card} />
+                {!skipCards && <CredentialsCard scale={0.9} className={classes.card} />}
                 <div className={classes.cardLabel}>CREDENTIALS</div>
               </div>
             </div>

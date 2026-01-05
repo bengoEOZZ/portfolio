@@ -16,8 +16,8 @@
     left: 26.04vw;  /* 500px → vw */
     
     /* SIZING */
-    width: 1.04vw;  /* 20px → vw */
-    height: 1.85vh;  /* 20px → vh */
+    width: 1.25rem;  /* 20px → rem */
+    height: 1.25rem;  /* 20px → rem */
     
     /* LAYERING */
     z-index: 4;                         /* Behind Earth, above background */
@@ -31,7 +31,7 @@
     /* Applies continuous elliptical orbit with rotation */
     
     /* APPEARANCE EFFECTS */
-    filter: drop-shadow(0 0 0.42vw rgba(180, 180, 180, 0.7)); /* 8px → vw */
+    filter: drop-shadow(0 0 0.125rem rgba(180, 180, 180, 0.7)); /* 2px */
     /* Gray glow simulating thin atmosphere */
 }
 
@@ -47,8 +47,8 @@
     left: 30.21vw;  /* 580px → vw */
     
     /* SIZING */
-    width: 1.82vw;  /* 35px → vw */
-    height: 3.24vh;  /* 35px → vh */
+    width: 2.1875rem;  /* 35px → rem */
+    height: 2.1875rem;  /* 35px → rem */
     
     /* LAYERING */
     z-index: 4;                         /* Behind Earth, above background */
@@ -62,7 +62,7 @@
     /* Applies continuous elliptical orbit with rotation */
     
     /* APPEARANCE EFFECTS */
-    filter: drop-shadow(0 0 1.04vw rgba(255, 220, 175, 0.8)); /* 20px → vw */
+    filter: drop-shadow(0 0 0.3125rem rgba(255, 220, 175, 0.8)); /* 5px */
     /* Warm golden glow simulating thick atmosphere */
 }
 
@@ -105,15 +105,15 @@
         /* Starting orbital position */
     }
     25% { 
-        transform: translate3d(-1.04vw, -1.39vh, 0) rotate(90deg); /* -20px -15px → vw/vh */
+        transform: translate3d(-1.25rem, -0.9375rem, 0) rotate(90deg); /* -20px -15px → rem */
         /* Quarter orbit with rotation */
     }
     50% { 
-        transform: translate3d(-1.56vw, 2.31vh, 0) rotate(180deg); /* -30px 25px → vw/vh */
+        transform: translate3d(-1.875rem, 1.5625rem, 0) rotate(180deg); /* -30px 25px → rem */
         /* Half orbit with rotation */
     }
     75% { 
-        transform: translate3d(0.78vw, 2.78vh, 0) rotate(270deg); /* 15px 30px → vw/vh */
+        transform: translate3d(0.9375rem, 1.875rem, 0) rotate(270deg); /* 15px 30px → rem */
         /* Three-quarter orbit */
     }
     100% { 

@@ -107,7 +107,7 @@ const Contact = () => {
         {/* WALLET ANIMATION - Appears briefly then fades */}
         {isEntering && (
           <div className={classes.walletContainer}>
-            <LuxuryWallet isOpen={walletOpen} onToggle={() => {}} />
+            <LuxuryWallet isOpen={walletOpen} onToggle={() => {}} skipCards={true} />
           </div>
         )}
         

@@ -38,7 +38,7 @@ import useClockHandRotation from './Controls/Clock/useClockHandRotation';
  */
 function CreativeMode() {
     /* CLOCK ROTATION MANAGEMENT (See ./Controls/Clock/useClockHandRotation.jsx) */
-    const { rotation, handleMouseDown, handleMouseUp } = useClockHandRotation();
+    const { rotation, handleMouseDown, handleMouseUp, handleTouchStart, handleTouchEnd } = useClockHandRotation();
 
     /* Calculate initial season based on current date */
     const getCurrentSeason = () => {
@@ -109,8 +109,27 @@ function CreativeMode() {
         <div className={classes.body}>
             <NavigationBar />
             
-            <div className={classes.container}>
-                
+            {/* STARFIELD BACKROUND - Animated twinkling stars */}
+            <div className={classes.starfieldContainer}>
+                <div className={classes.starfieldLayer}>
+                    {/* Tiny micro stars */}
+                    {[[4,18],[9,48],[14,82],[19,12],[24,38],[29,65],[34,92],[39,25],[44,55],[49,88],[54,15],[59,42],[64,75],[69,5],[74,32],[79,62],[84,95],[89,28],[94,58],[99,85],[1,35],[6,65],[11,95],[16,25],[21,55],[26,85],[31,15],[36,45],[41,75],[46,5],[51,35],[56,65],[61,95],[66,25],[71,55],[76,85],[81,15],[86,45],[91,75],[96,5],[2,42],[7,72],[12,2],[17,32],[22,62],[27,92],[32,22],[37,52],[42,82],[47,12],[52,42],[57,72],[62,2],[67,32],[72,62],[77,92],[82,22],[87,52],[92,82],[97,12]].map(([l,t],i)=>(
+                        <div key={`ty${i}`} className={`${classes.deepStar} ${classes.tiny}`} style={{left:`${l}%`,top:`${t}%`,animationDelay:`${i*0.05}s`}}/>
+                    ))}
+                    {/* Small distant stars */}
+                    {[[2,28],[7,40],[11,62],[16,75],[21,92],[26,18],[31,32],[36,58],[41,85],[46,42],[51,8],[56,25],[61,48],[66,72],[71,95],[76,12],[81,38],[86,55],[91,78],[96,22],[4,55],[9,82],[14,15],[19,48],[24,72],[29,5],[34,38],[39,68],[44,92],[49,25],[54,58],[59,85],[64,18],[69,45],[74,78],[79,10],[84,42],[89,65],[94,92],[99,28],[1,68],[6,95],[11,22],[16,52],[21,82],[26,12],[31,45],[36,75],[41,5],[46,35],[51,65],[56,95],[61,28],[66,58],[71,88],[76,18],[81,48],[86,78],[91,8],[96,38],[3,72],[8,5],[13,38],[18,68],[23,95],[28,28],[33,58],[38,88],[43,18],[48,48],[53,78],[58,8],[63,38],[68,68],[73,98],[78,28],[83,58],[88,88],[93,18],[98,48]].map(([l,t],i)=>(
+                        <div key={`sm${i}`} className={`${classes.deepStar} ${classes.small}`} style={{left:`${l}%`,top:`${t}%`,animationDelay:`${i*0.04}s`}}/>
+                    ))}
+                    {/* Medium stars */}
+                    {[[22,88],[28,5],[32,45],[38,62],[42,28],[48,72],[52,18],[58,52],[62,82],[68,25],[72,58],[78,92],[26,42],[36,85],[46,20],[56,95],[66,38],[76,55],[24,82],[34,15],[44,48],[54,78],[64,12],[74,42],[29,62],[39,5],[49,38],[59,85],[69,18],[79,52]].map(([l,t],i)=>(
+                        <div key={`md${i}`} className={`${classes.deepStar} ${classes.medium}`} style={{left:`${l}%`,top:`${t}%`,animationDelay:`${i*0.06}s`}}/>
+                    ))}
+                    {/* Drifting stars - subtle movement */}
+                    {[[10,30],[30,15],[50,60],[70,85],[90,40],[20,70],[80,20],[15,50],[35,80],[55,25]].map(([l,t],i)=>(
+                        <div key={`dft${i}`} className={`${classes.deepStar} ${classes.medium} ${classes.drift}`} style={{left:`${l}%`,top:`${t}%`,animationDelay:`${i*0.4}s`}}/>
+                    ))}
+                </div>
+
                 <CelestialObjects 
                     currentHour={currentHour}
                     isNightTime={isNightTime}
@@ -126,6 +145,8 @@ function CreativeMode() {
                     weather={weather}
                     handleMouseDown={handleMouseDown}
                     handleMouseUp={handleMouseUp}
+                    handleTouchStart={handleTouchStart}
+                    handleTouchEnd={handleTouchEnd}
                     onSeasonChange={handleSeasonChange}
                     onWeatherChange={handleWeatherChange}
                 />

@@ -12,23 +12,23 @@
 .btn {
   /* TYPOGRAPHY */
   font-family: 'Cinzel', 'Georgia', 'Times New Roman', serif; /* More luxurious serif font */
-  font-size: 1.2rem;                  /* Readable size */
+  font-size: 2vh;                     /* 19.2px → vh */
   font-weight: 600;                   /* Semi-bold weight */
   text-transform: uppercase;          /* Uppercase styling */
-  letter-spacing: 2px;                /* Spaced letters */
+  letter-spacing: 0.125rem;           /* 2px → rem */
   
   /* LAYOUT */
   display: inline-block;              /* Inline block positioning */
-  vertical-align: -10px;              /* Baseline alignment */
-  padding: 0px 10px;                  /* Internal spacing */
+  vertical-align: -0.625rem;          /* -10px → rem */
+  padding: 0 0.625rem;                /* 0 10px → rem */
   
   /* APPEARANCE - FANOUT STYLE */
   color: #d4af37;                     /* Golden text */
   background: 
     linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 50%, #0f0f0f 100%),
     linear-gradient(45deg, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
-  border: 2px solid #d4af37;          /* Golden border */
-  border-radius: 8px;                 /* Slightly more rounded corners */
+  border: 0.125rem solid #d4af37;          /* 2px → rem */
+  border-radius: 0.5rem;                 /* 8px → rem */
   
   /* INTERACTIONS */
   position: relative;                 /* For pseudo-elements */
@@ -79,12 +79,12 @@
  */
 .btn:hover {
   color: #1a1a1a;                    /* Dark text over golden background */
-  transform: translateY(-5px) scale(1.03); /* Lift and scale */
-  letter-spacing: 3px;               /* Increased letter spacing */
+  transform: translateY(-0.3125rem) scale(1.03); /* -5px → rem */
+  letter-spacing: 0.1875rem;         /* 3px → rem */
   
   /* ENHANCED HOVER SHADOWS */
   box-shadow: 
-    0 4px 15px rgba(212, 175, 55, 0.4);
+    0 0.25rem 0.9375rem rgba(212, 175, 55, 0.4);  /* 4px 15px → rem */
   
   border-color: #f4e4bc;             /* Lighter border on hover */
 }
@@ -95,5 +95,5 @@
  * Styling when button is being pressed.
  */
 .btn:active {
-  transform: translateY(-2px) scale(1.01); /* Reduced movement when pressed */
+  transform: translateY(-0.125rem) scale(1.01); /* -2px → rem */
 }

@@ -25,12 +25,12 @@
     
     /* TYPOGRAPHY */
     font-family: 'Orbitron', sans-serif;    /* Futuristic font */
-    font-size: 1.2rem;
+    font-size: 2vh;                     /* 1.2rem → vh */
     
     /* APPEARANCE */
     color: #ffffff;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 1),
-            0 0 40px rgba(255, 255, 255, 0.9); /* Glowing effect */
+    text-shadow: 0 0 1.25rem rgba(255, 255, 255, 1),        /* 20px → rem */
+            0 0 2.5rem rgba(255, 255, 255, 0.9);           /* 40px → rem */
     white-space: nowrap;                    /* Prevent text wrapping */
     
     /* ANIMATIONS */
@@ -120,8 +120,8 @@
  */
 @keyframes drift {
     0% { transform: translate(0, 0); }
-    25% { transform: translate(15px, -10px); }
-    50% { transform: translate(0px, -15px); }
-    75% { transform: translate(-15px, -5px); }
+    25% { transform: translate(0.781vw, -0.926vh); }        /* 15px -10px → vw vh */
+    50% { transform: translate(0, -1.389vh); }              /* 0px -15px → vh */
+    75% { transform: translate(-0.781vw, -0.463vh); }       /* -15px -5px → vw vh */
     100% { transform: translate(0, 0); }
 }

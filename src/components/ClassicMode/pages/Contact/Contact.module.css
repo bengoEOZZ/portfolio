@@ -26,7 +26,7 @@
  */
 .contentContainer {
   /* LAYOUT & POSITIONING */
-  max-width: 1200px;
+  max-width: 62.5vw;                        /* 1200px → vw */
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -70,7 +70,7 @@
   }
   100% {
     opacity: 0;
-    filter: blur(5px);
+    filter: blur(0.3125rem);                /* 5px → rem */
   }
 }
 
@@ -94,13 +94,13 @@
  */
 .mouseTrackingArea {
   /* SIZING */
-  width: 550px;
-  height: 340px;
+  width: 28.65vw;                           /* 550px → vw */
+  height: 17.71vw;                          /* 340px → vw */
   
   /* APPEARANCE */
-  perspective: 1000px;
-  filter: drop-shadow(0 0 50px rgba(255, 215, 0, 0.3));
-  transform: translateY(-270px);
+  perspective: 52.08vw;                     /* 1000px → vw */
+  filter: drop-shadow(0 0 3.125rem rgba(255, 215, 0, 0.3));  /* 50px → rem */
+  transform: translateY(-14.06vw);          /* -270px → vw */
   
   /* PERFORMANCE */
   will-change: opacity, transform;
@@ -113,19 +113,19 @@
 @keyframes cardSlideFromWallet {
   0% {
     opacity: 0;
-    transform: translateY(-270px) translateX(-800px) scale(0.6) rotateZ(-15deg);
+    transform: translateY(-14.06vw) translateX(-41.67vw) scale(0.6) rotateZ(-15deg);  /* -270px -800px → vw */
   }
   60% {
     opacity: 1;
-    transform: translateY(-270px) translateX(20px) scale(1.05) rotateZ(2deg);
+    transform: translateY(-14.06vw) translateX(1.04vw) scale(1.05) rotateZ(2deg);     /* -270px 20px → vw */
   }
   80% {
     opacity: 1;
-    transform: translateY(-270px) translateX(-10px) scale(0.98) rotateZ(-1deg);
+    transform: translateY(-14.06vw) translateX(-0.52vw) scale(0.98) rotateZ(-1deg);   /* -270px -10px → vw */
   }
   100% {
     opacity: 1;
-    transform: translateY(-270px) translateX(0) scale(1) rotateZ(0deg);
+    transform: translateY(-14.06vw) translateX(0) scale(1) rotateZ(0deg);
   }
 }
 
@@ -175,11 +175,11 @@
   will-change: transform;
   
   /* APPEARANCE */
-  border-radius: 20px;
+  border-radius: 1.25rem;                   /* 20px → rem */
   overflow: hidden;
   box-shadow: 
-    0 0 0 1px rgba(212, 175, 55, 0.5),
-    0 25px 50px rgba(0, 0, 0, 0.5);
+    0 0 0 0.0625rem rgba(212, 175, 55, 0.5),  /* 1px → rem */
+    0 1.5625rem 3.125rem rgba(0, 0, 0, 0.5);  /* 25px 50px → rem */
 }
 
 /**
@@ -211,8 +211,8 @@
   z-index: 15;
   
   /* SIZING */
-  width: 50px;
-  height: 100px;
+  width: 2.6vw;                             /* 50px → vw */
+  height: 5.21vw;                           /* 100px → vw */
   
   /* APPEARANCE */
   background: linear-gradient(135deg, rgba(212, 175, 55, 0.95) 0%, rgba(244, 228, 188, 0.85) 50%, rgba(212, 175, 55, 0.95) 100%);
@@ -231,11 +231,11 @@
  */
 .flipIndicator {
   /* LAYOUT & POSITIONING */
-  right: -20px;
+  right: -1.25rem;                          /* -20px → rem */
   
   /* APPEARANCE */
-  border-radius: 20px 0 0 20px;
-  box-shadow: -3px 0 15px rgba(212, 175, 55, 0.5);
+  border-radius: 1.25rem 0 0 1.25rem;       /* 20px → rem */
+  box-shadow: -0.1875rem 0 0.9375rem rgba(212, 175, 55, 0.5);  /* -3px 15px → rem */
   
   /* ANIMATIONS */
   animation: flipPulse 3s ease-in-out infinite;
@@ -247,11 +247,11 @@
  */
 .flipBackIndicator {
   /* LAYOUT & POSITIONING */
-  left: -20px;
+  left: -1.25rem;                           /* -20px → rem */
   
   /* APPEARANCE */
-  border-radius: 0 20px 20px 0;
-  box-shadow: 3px 0 15px rgba(212, 175, 55, 0.5);
+  border-radius: 0 1.25rem 1.25rem 0;       /* 20px → rem */
+  box-shadow: 0.1875rem 0 0.9375rem rgba(212, 175, 55, 0.5);  /* 3px 15px → rem */
   
   /* ANIMATIONS */
   animation: flipPulseBack 3s ease-in-out infinite;
@@ -269,10 +269,10 @@
   
   /* TYPOGRAPHY */
   font-family: 'Cinzel', serif;
-  font-size: 14px;
+  font-size: 0.73vw;                        /* 14px → vw */
   font-weight: 700;
   color: #2c2c2c;
-  letter-spacing: 1.5px;
+  letter-spacing: 0.09375rem;               /* 1.5px → rem */
   text-transform: uppercase;
 }
 
@@ -302,20 +302,20 @@
  */
 .flipIndicator:hover {
   /* LAYOUT & POSITIONING */
-  right: -15px;
+  right: -0.9375rem;                        /* -15px → rem */
   
   /* APPEARANCE */
   background: linear-gradient(135deg, rgba(212, 175, 55, 1) 0%, rgba(244, 228, 188, 1) 50%, rgba(212, 175, 55, 1) 100%);
-  box-shadow: -5px 0 20px rgba(212, 175, 55, 0.7);
+  box-shadow: -0.3125rem 0 1.25rem rgba(212, 175, 55, 0.7);  /* -5px 20px → rem */
 }
 
 .flipBackIndicator:hover {
   /* LAYOUT & POSITIONING */
-  left: -15px;
+  left: -0.9375rem;                         /* -15px → rem */
   
   /* APPEARANCE */
   background: linear-gradient(135deg, rgba(212, 175, 55, 1) 0%, rgba(244, 228, 188, 1) 50%, rgba(212, 175, 55, 1) 100%);
-  box-shadow: 5px 0 20px rgba(212, 175, 55, 0.7);
+  box-shadow: 0.3125rem 0 1.25rem rgba(212, 175, 55, 0.7);   /* 5px 20px → rem */
 }
 
 /**
@@ -323,8 +323,8 @@
  * ================================================
  */
 @keyframes flipPulse {
-  0%, 100% { box-shadow: -3px 0 15px rgba(212, 175, 55, 0.5); }
-  50% { box-shadow: -5px 0 20px rgba(212, 175, 55, 0.7); }
+  0%, 100% { box-shadow: -0.1875rem 0 0.9375rem rgba(212, 175, 55, 0.5); }  /* -3px 15px → rem */
+  50% { box-shadow: -0.3125rem 0 1.25rem rgba(212, 175, 55, 0.7); }         /* -5px 20px → rem */
 }
 
 /**
@@ -332,6 +332,48 @@
  * ===================================================
  */
 @keyframes flipPulseBack {
-  0%, 100% { box-shadow: 3px 0 15px rgba(212, 175, 55, 0.5); }
-  50% { box-shadow: 5px 0 20px rgba(212, 175, 55, 0.7); }
+  0%, 100% { box-shadow: 0.1875rem 0 0.9375rem rgba(212, 175, 55, 0.5); }  /* 3px 15px → rem */
+  50% { box-shadow: 0.3125rem 0 1.25rem rgba(212, 175, 55, 0.7); }         /* 5px 20px → rem */
+}
+
+/**
+ * MOBILE RESPONSIVE STYLES
+ * ========================
+ * Larger flip indicators for landscape phones/tablets
+ */
+@media (max-height: 600px) and (orientation: landscape) {
+  .card {
+    transform: scale(1.2);
+  }
+  
+  .card.flipped {
+    transform: scale(1.2) rotateY(180deg);
+  }
+
+  .flipIndicator, 
+  .flipBackIndicator {
+    width: 2.5rem;
+    height: 4rem;
+  }
+  
+  .flipIndicator {
+    right: -1rem;
+  }
+  
+  .flipBackIndicator {
+    left: -1rem;
+  }
+  
+  .flipIndicator::after,
+  .flipBackIndicator::after {
+    font-size: 0.6rem;
+  }
+  
+  .flipIndicator:hover {
+    right: -1.25rem;
+  }
+  
+  .flipBackIndicator:hover {
+    left: -1.25rem;
+  }
 }

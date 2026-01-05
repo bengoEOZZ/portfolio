@@ -30,7 +30,9 @@ function Clock({
     rotation,
     currentHour,
     handleMouseDown, 
-    handleMouseUp 
+    handleMouseUp,
+    handleTouchStart,
+    handleTouchEnd
 }) {
 
     return (
@@ -45,6 +47,8 @@ function Clock({
                     onMouseDown={handleMouseDown}
                     onMouseUp={handleMouseUp}
                     onMouseLeave={handleMouseUp}
+                    onTouchStart={handleTouchStart}
+                    onTouchEnd={handleTouchEnd}
                 />
             </div>
 

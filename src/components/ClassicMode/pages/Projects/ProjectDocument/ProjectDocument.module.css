@@ -16,10 +16,10 @@
   --black-secondary: #1a1a1a;
   
   /* Common shadow values */
-  --shadow-base: 0 10px 40px rgba(0, 0, 0, 0.5);
-  --shadow-hover: 0 20px 50px rgba(0, 0, 0, 0.6);
-  --shadow-large: 0 30px 80px rgba(0, 0, 0, 0.8);
-  --shadow-glow: 0 0 30px rgba(212, 175, 55, 0.3);
+  --shadow-base: 0 0.63rem 2.5rem rgba(0, 0, 0, 0.5);
+  --shadow-hover: 0 1.25rem 3.13rem rgba(0, 0, 0, 0.6);
+  --shadow-large: 0 1.88rem 5rem rgba(0, 0, 0, 0.8);
+  --shadow-glow: 0 0 1.88rem rgba(212, 175, 55, 0.3);
 }
 
 /* DOCUMENT DROP ENTRANCE ANIMATION */
@@ -27,24 +27,24 @@
   0% {
     opacity: 0;
     transform: 
-      translateY(-400px)
-      translateX(calc(var(--document-index) * 2px))
+      translateY(-20.83vw)
+      translateX(calc(var(--document-index) * 0.1vw))
       rotate(calc(var(--document-index) * -1.5deg))
       scale(0.9);
   }
   60% {
     opacity: 1;
     transform: 
-      translateY(calc(var(--document-index) * -12px + 15px))
-      translateX(calc(var(--document-index) * 2px))
+      translateY(calc(var(--document-index) * -0.63vw + 0.78vw))
+      translateX(calc(var(--document-index) * 0.1vw))
       rotate(calc(var(--document-index) * -1.5deg))
       scale(1.05);
   }
   100% {
     opacity: 1;
     transform: 
-      translateY(calc(var(--document-index) * -12px))
-      translateX(calc(var(--document-index) * 2px))
+      translateY(calc(var(--document-index) * -0.63vw))
+      translateX(calc(var(--document-index) * 0.1vw))
       rotate(calc(var(--document-index) * -1.5deg))
       scale(calc(1 + 0.02 * (1 - min(var(--document-index), 1))));
   }
@@ -57,14 +57,14 @@
 .projectDocument {
   /* POSITIONING */
   position: absolute;
-  top: 0;
+  top: 1vw;
   left: 0;
   width: 100%;
   height: 100%;
   
   /* APPEARANCE */
   background: var(--black-primary);
-  border: 3px solid var(--gold-primary);
+  border: 0.19rem solid var(--gold-primary);
   
   /* Subtle gold gradient overlay (top-left corner fade) */
   background-image: 
@@ -84,8 +84,8 @@
   /* STACKING TRANSFORM */
   /* Uses CSS variables for dynamic positioning based on index */
   transform: 
-    translateY(calc(var(--document-index) * -12px))
-    translateX(calc(var(--document-index) * 2px))
+    translateY(calc(var(--document-index) * -0.63vw))
+    translateX(calc(var(--document-index) * 0.1vw))
     rotate(calc(var(--document-index) * -1.5deg));
   
   /* TRANSITIONS */
@@ -114,11 +114,11 @@
 .projectDocument::before {
   content: '';
   position: absolute;
-  top: 20px;
-  left: 20px;
-  right: 20px;
-  bottom: 20px;
-  border: 1px solid rgba(212, 175, 55, 0.3);
+  top: 1.04vw;
+  left: 1.04vw;
+  right: 1.04vw;
+  bottom: 1.04vw;
+  border: 0.06rem solid rgba(212, 175, 55, 0.3);
   pointer-events: none;
 }
 
@@ -129,15 +129,15 @@
  */
 .projectDocument.active {
   transform: 
-    translateY(calc(var(--document-index) * -12px))  /* Maintain stacking vertical offset */
-    translateX(calc(var(--document-index) * 3px))    /* Slightly wider horizontal spread (3px vs 2px) */
+    translateY(calc(var(--document-index) * -0.63vw))  /* Maintain stacking vertical offset */
+    translateX(calc(var(--document-index) * 0.16vw))    /* Slightly wider horizontal spread (3px vs 2px) */
     rotate(calc(var(--document-index) * -1.5deg))    /* Keep rotation angle */
     scale(1.05);                                     /* Larger scale to stand out more during transition */
   box-shadow: 
     var(--shadow-large),         /* Deep shadow for elevation */
     var(--border-gold-double),   /* Layered gold borders */
     var(--shadow-gold-glow);     /* Gold glow effect */
-  filter: blur(0px);             /* Sharp focus for active document */
+  filter: blur(0);             /* Sharp focus for active document */
   opacity: 1;                    /* Full opacity for active state */
   z-index: 50;                   /* Bring to front above all other cards */
   transition: 
@@ -155,8 +155,8 @@
  */
 .projectDocument:hover {
   transform: 
-    translateY(-140px)                                /* Dramatic lift upward on hover */
-    translateX(calc(var(--document-index) * 2px))     /* Maintain horizontal stacking offset */
+    translateY(-7.29vw)                                /* Dramatic lift upward on hover */
+    translateX(calc(var(--document-index) * 0.1vw))     /* Maintain horizontal stacking offset */
     rotate(calc(var(--document-index) * -1.5deg))     /* Keep rotation angle */
     scale(1.03);                                      /* Slightly larger scale than active state */
   box-shadow: 
@@ -175,7 +175,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 30px 15px 30px;
+  padding: 1.04vw 1.56vw 0.78vw 1.56vw;
   border-bottom: none;
   background: transparent;
   position: relative;
@@ -194,7 +194,7 @@
   width: 0;
   height: 0;
   border-style: solid;
-  border-width: 70px 70px 0 0;
+  border-width: 3.65vw 3.65vw 0 0;
   border-color: var(--gold-primary) transparent transparent transparent;
   z-index: 1;
 }
@@ -208,7 +208,7 @@
   width: 0;
   height: 0;
   border-style: solid;
-  border-width: 0 70px 70px 0;
+  border-width: 0 3.65vw 3.65vw 0;
   border-color: transparent var(--gold-primary) transparent transparent;
   z-index: 1;
 }
@@ -219,13 +219,13 @@
  * Project type text positioned in left corner.
  */
 .documentType {
-  font: 700 11px/1 'Cinzel', serif;
+  font: 700 0.57vw/1 'Cinzel', serif;
   color: var(--gold-primary);
-  letter-spacing: 1.2px;
+  letter-spacing: 0.06vw;
   text-transform: uppercase;
   position: absolute;
-  bottom: 12px;
-  left: 65px;
+  bottom: 0.63vw;
+  left: 3.39vw;
   z-index: 2;
 }
 
@@ -235,11 +235,11 @@
  * Year text positioned in right corner.
  */
 .documentYear {
-  font: 900 11px/1 'Cinzel', serif;
+  font: 900 0.57vw/1 'Cinzel', serif;
   color: var(--gold-primary);
   position: absolute;
-  bottom: 12px;
-  right: 60px;
+  bottom: 0.63vw;
+  right: 3.13vw;
   z-index: 2;
 }
 
@@ -249,7 +249,7 @@
  * Center header with project title and status badge.
  */
 .documentTitle {
-  padding: 5px 40px 20px 40px;
+  padding: 0.26vw 2.08vw 1.04vw 2.08vw;
   text-align: center;
   background: transparent;
   border-bottom: none;
@@ -260,12 +260,12 @@
 .documentTitle::before {
   content: '◆ ◆ ◆';
   position: absolute;
-  top: 5px;
+  top: 0.26vw;
   left: 50%;
   transform: translateX(-50%);
   color: var(--gold-primary);
-  font-size: 10px;
-  letter-spacing: 8px;
+  font-size: 0.52vw;
+  letter-spacing: 0.42vw;
   opacity: 0.6;
 }
 
@@ -275,9 +275,9 @@
  * Animated gold gradient text with shine effect.
  */
 .documentTitle h2 {
-  font: 700 28px/1.2 'Cinzel', serif;
-  margin: 15px 0 10px 0;
-  letter-spacing: 1.5px;
+  font: 700 1.46vw/1.2 'Cinzel', serif;
+  margin: 0.78vw 0 0.52vw 0;
+  letter-spacing: 0.08vw;
   text-transform: uppercase;
   background: var(--gradient-gold-shine);
   background-size: 200% auto;
@@ -285,7 +285,7 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: goldShine 4s linear infinite;
-  filter: drop-shadow(0 0 8px rgba(191, 168, 80, 0.6));
+  filter: drop-shadow(0 0 0.5rem rgba(191, 168, 80, 0.6));
 }
 
 /**
@@ -309,10 +309,10 @@
  */
 .statusBadge {
   display: inline-block;
-  padding: 6px 20px;
+  padding: 0.31vw 1.04vw;
   border-radius: 0;
-  font: 600 10px/1 'Cinzel', serif;
-  letter-spacing: 1.5px;
+  font: 600 0.52vw/1 'Cinzel', serif;
+  letter-spacing: 0.08vw;
   text-transform: uppercase;
   position: relative;
   background: linear-gradient(135deg, var(--gold-primary), var(--gold-secondary));
@@ -326,10 +326,10 @@
  * Main body containing description, tech stack, and action buttons.
  */
 .documentContent {
-  padding: 15px 40px 20px 40px;
+  padding: 0.78vw 2.08vw 1.04vw 2.08vw;
   flex: 1;
   display: flex;
-  gap: 10px;
+  gap: 0.52vw;
   flex-direction: column;
   background: transparent;
   text-align: center;
@@ -341,13 +341,13 @@
  * Italic description text with gold gradient.
  */
 .projectDescription {
-  font: italic 18px/2 'Cormorant Garamond', 'Cinzel', serif;
+  font: italic 0.94vw/2 'Cormorant Garamond', 'Cinzel', serif;
   background: var(--gradient-gold);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-top: -20px;
-  letter-spacing: 0.5px;
+  margin-top: -1.04vw;
+  letter-spacing: 0.03vw;
   position: relative;
   text-align: center;
   font-weight: 500;
@@ -359,12 +359,12 @@
  * "Technologies Used" heading with diamond decorators.
  */
 .techTitle {
-  font: 700 11px/1 'Cinzel', serif;
+  font: 700 0.57vw/1 'Cinzel', serif;
   color: var(--gold-primary);
-  letter-spacing: 1.5px;
+  letter-spacing: 0.08vw;
   text-transform: uppercase;
   position: relative;
-  margin-top: -10px;
+  margin-top: -0.52vw;
 }
 
 /* Diamond decorators before and after title */
@@ -372,8 +372,8 @@
 .techTitle::after {
   content: '◆';
   color: var(--gold-primary);
-  margin: 0 15px;
-  font-size: 10px;
+  margin: 0 0.78vw;
+  font-size: 0.52vw;
 }
 
 /**
@@ -384,7 +384,7 @@
 .techSection {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 0.52vw;
 }
 
 /**
@@ -396,7 +396,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 8px;
+  gap: 0.42vw;
 }
 
 /**
@@ -405,12 +405,12 @@
  * Individual technology badge with hover transform.
  */
 .techItem {
-  padding: 6px 12px;
+  padding: 0.31vw 0.63vw;
   background: var(--black-primary);
-  border: 2px solid var(--gold-primary);
-  font: 600 10px/1.2 'Cinzel', serif;
+  border: 0.13rem solid var(--gold-primary);
+  font: 600 0.52vw/1.2 'Cinzel', serif;
   color: var(--gold-primary);
-  letter-spacing: 1.2px;
+  letter-spacing: 0.06vw;
   text-transform: uppercase;
   transition: all 0.3s ease;
 }
@@ -419,10 +419,10 @@
 .techItem:hover {
   background: var(--gold-primary);
   color: var(--black-primary);
-  transform: translateY(-2px) scale(1.05);
+  transform: translateY(-0.1vw) scale(1.05);
   box-shadow: 
-    0 4px 15px rgba(212, 175, 55, 0.5),
-    inset 0 0 0 1px var(--black-primary);
+    0 0.25rem 0.94rem rgba(212, 175, 55, 0.5),
+    inset 0 0 0 0.06rem var(--black-primary);
 }
 
 /**
@@ -433,9 +433,9 @@
 .documentActions {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  margin-top: 25px;
-  padding: 0 40px 25px 40px;
+  gap: 1.04vw;
+  margin-top: 1.3vw;
+  padding: 0 2.08vw 1.3vw 2.08vw;
 }
 
 /**
@@ -444,37 +444,37 @@
  * Gold-bordered button with layered shadow effects.
  */
 .actionButton {
-  padding: 16px 24px;
+  padding: 0.83vw 1.25vw;
   background: 
     linear-gradient(145deg, var(--black-primary) 0%, var(--black-secondary) 50%, var(--black-primary) 100%);
-  border: 3px solid var(--gold-primary);
+  border: 0.19rem solid var(--gold-primary);
   color: var(--gold-primary);
   font-family: 'Cinzel', serif;
-  font-size: 11px;
+  font-size: 0.57vw;
   font-weight: 700;
-  letter-spacing: 1.8px;
+  letter-spacing: 0.09vw;
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 0.42vw;
   position: relative;
   box-shadow: 
-    inset 0 0 0 1px var(--black-primary),
-    inset 0 0 0 3px rgba(212, 175, 55, 0.3);
+    inset 0 0 0 0.06rem var(--black-primary),
+    inset 0 0 0 0.19rem rgba(212, 175, 55, 0.3);
 }
 
 /* Inner border decoration */
 .actionButton::before {
   content: '';
   position: absolute;
-  top: 3px;
-  left: 3px;
-  right: 3px;
-  bottom: 3px;
-  border: 1px solid rgba(212, 175, 55, 0.2);
+  top: 0.19rem;
+  left: 0.19rem;
+  right: 0.19rem;
+  bottom: 0.19rem;
+  border: 0.06rem solid rgba(212, 175, 55, 0.2);
   pointer-events: none;
 }
 
@@ -487,17 +487,17 @@
   background: 
     linear-gradient(145deg, var(--gold-primary) 0%, #d4af37 50%, var(--gold-primary) 100%);
   color: var(--black-primary);
-  transform: translateY(-3px);
+  transform: translateY(-0.16vw);
   box-shadow: 
-    inset 0 0 0 1px var(--black-primary),
-    inset 0 0 0 3px rgba(10, 10, 10, 0.3),
-    0 10px 30px rgba(212, 175, 55, 0.5);
+    inset 0 0 0 0.06rem var(--black-primary),
+    inset 0 0 0 0.19rem rgba(10, 10, 10, 0.3),
+    0 0.63rem 1.88rem rgba(212, 175, 55, 0.5);
 }
 
 .actionButton:disabled {
   background: 
     linear-gradient(145deg, var(--black-primary) 0%, var(--black-primary) 50%, var(--black-primary) 100%);
-  border: 3px solid rgba(191, 168, 80, 0.3);
+  border: 0.19rem solid rgba(191, 168, 80, 0.3);
   color: rgba(191, 168, 80, 0.3);
   cursor: not-allowed;
   opacity: 0.4;
@@ -519,7 +519,7 @@
  * Emoji icons displayed in buttons.
  */
 .buttonIcon {
-  font-size: 14px;
+  font-size: 0.73vw;
   display: inline-block;
 }
 
@@ -540,15 +540,15 @@
 @keyframes pulse {
   0%, 100% {
     box-shadow: 
-      inset 0 0 0 1px var(--black-primary),
-      inset 0 0 0 3px rgba(212, 175, 55, 0.3),
-      0 6px 20px rgba(0, 0, 0, 0.4);
+      inset 0 0 0 0.06rem var(--black-primary),
+      inset 0 0 0 0.19rem rgba(212, 175, 55, 0.3),
+      0 0.38rem 1.25rem rgba(0, 0, 0, 0.4);
   }
   50% {
     box-shadow: 
-      inset 0 0 0 1px var(--black-primary),
-      inset 0 0 0 3px rgba(212, 175, 55, 0.3),
-      0 6px 20px rgba(212, 175, 55, 0.3);
+      inset 0 0 0 0.06rem var(--black-primary),
+      inset 0 0 0 0.19rem rgba(212, 175, 55, 0.3),
+      0 0.38rem 1.25rem rgba(212, 175, 55, 0.3);
   }
 }
 
@@ -561,35 +561,35 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 40px 25px 40px;
-  border-top: 2px solid #BFA850;
+  padding: 0 2.08vw 1.3vw 2.08vw;
+  border-top: 0.13rem solid #BFA850;
   background: transparent;
   position: relative;
-  margin-top: 0px;
+  margin-top: 0;
 }
 
 /* Left diamond decorator on border */
 .documentFooter::before {
   content: '◆';
   position: absolute;
-  top: -8px;
-  left: 40px;
+  top: -0.42vw;
+  left: 2.08vw;
   color: #BFA850;
-  font-size: 12px;
+  font-size: 0.63vw;
   background: #0a0a0a;
-  padding: 0 8px;
+  padding: 0 0.42vw;
 }
 
 /* Right diamond decorator on border */
 .documentFooter::after {
   content: '◆';
   position: absolute;
-  top: -8px;
-  right: 40px;
+  top: -0.42vw;
+  right: 2.08vw;
   color: #BFA850;
-  font-size: 12px;
+  font-size: 0.63vw;
   background: #0a0a0a;
-  padding: 0 8px;
+  padding: 0 0.42vw;
 }
 
 /**
@@ -598,11 +598,11 @@
  * Current page / total pages indicator (e.g., "01 / 05").
  */
 .documentNumber {
-  font: 700 9px/1 'Cinzel', serif;
+  font: 700 0.47vw/1 'Cinzel', serif;
   color: #BFA850;
-  letter-spacing: 1.2px;
+  letter-spacing: 0.06vw;
   text-transform: uppercase;
-  padding-top: 12px;
+  padding-top: 0.63vw;
 }
 
 /**
@@ -611,11 +611,11 @@
  * "PORTFOLIO" stamp text with slight rotation.
  */
 .documentStamp {
-  font: 900 10px/1 'Cinzel', serif;
+  font: 900 0.52vw/1 'Cinzel', serif;
   color: #BFA850;
-  letter-spacing: 1.5px;
+  letter-spacing: 0.08vw;
   text-transform: uppercase;
-  padding-top: 12px;
+  padding-top: 0.63vw;
   transform: rotate(-3deg);
   opacity: 0.9;
 }
@@ -635,7 +635,7 @@
 
 /* Blur only non-active and non-hovered fanned documents */
 .projectDocument.fanned:not(.active):not(:hover) {
-  filter: blur(2px);  /* Blur inactive documents in fan mode */
+  filter: blur(0.13rem);  /* Blur inactive documents in fan mode */
   opacity: 0.7;       /* Dim inactive documents */
 }
 
@@ -643,7 +643,7 @@
 .projectDocument.fanned:nth-child(1) {
   transform: 
     translateY(0)
-    translateX(-300px)
+    translateX(-15.63vw)
     rotate(12deg)
     scale(0.85);
   z-index: 1;
@@ -651,8 +651,8 @@
 
 .projectDocument.fanned:nth-child(2) {
   transform: 
-    translateY(-20px)
-    translateX(-150px)
+    translateY(-1.04vw)
+    translateX(-7.81vw)
     rotate(6deg)
     scale(0.85);
   z-index: 2;
@@ -660,7 +660,7 @@
 
 .projectDocument.fanned:nth-child(3) {
   transform: 
-    translateY(-30px)
+    translateY(-1.56vw)
     translateX(0)
     rotate(0deg)
     scale(0.9);
@@ -669,8 +669,8 @@
 
 .projectDocument.fanned:nth-child(4) {
   transform: 
-    translateY(-20px)
-    translateX(150px)
+    translateY(-1.04vw)
+    translateX(7.81vw)
     rotate(-6deg)
     scale(0.85);
   z-index: 4;
@@ -679,7 +679,7 @@
 .projectDocument.fanned:nth-child(5) {
   transform: 
     translateY(0)
-    translateX(300px)
+    translateX(15.63vw)
     rotate(-12deg)
     scale(0.85);
   z-index: 5;
@@ -692,7 +692,7 @@
  */
 .projectDocument.fanned:hover {
   transform: 
-    translateY(-40px)
+    translateY(-2.08vw)
     translateX(var(--fan-x))
     rotate(var(--fan-rotate))
     scale(0.95);
@@ -705,51 +705,51 @@
  * Each card maintains its fan angle during hover but lifts higher.
  */
 .projectDocument.fanned:nth-child(1):hover {
-  --fan-x: -300px;
+  --fan-x: -15.63vw;
   --fan-rotate: 12deg;
   transform: 
-    translateY(-150px)
-    translateX(-300px)
+    translateY(-7.81vw)
+    translateX(-15.63vw)
     rotate(12deg)
     scale(0.95);
 }
 
 .projectDocument.fanned:nth-child(2):hover {
-  --fan-x: -150px;
+  --fan-x: -7.81vw;
   --fan-rotate: 6deg;
   transform: 
-    translateY(-150px)
-    translateX(-150px)
+    translateY(-7.81vw)
+    translateX(-7.81vw)
     rotate(6deg)
     scale(0.95);
 }
 
 .projectDocument.fanned:nth-child(3):hover {
-  --fan-x: 0px;
+  --fan-x: 0;
   --fan-rotate: 0deg;
   transform: 
-    translateY(-150px)
+    translateY(-7.81vw)
     translateX(0)
     rotate(0deg)
     scale(1);
 }
 
 .projectDocument.fanned:nth-child(4):hover {
-  --fan-x: 150px;
+  --fan-x: 7.81vw;
   --fan-rotate: -6deg;
   transform: 
-    translateY(-150px)
-    translateX(150px)
+    translateY(-7.81vw)
+    translateX(7.81vw)
     rotate(-6deg)
     scale(0.95);
 }
 
 .projectDocument.fanned:nth-child(5):hover {
-  --fan-x: 300px;
+  --fan-x: 15.63vw;
   --fan-rotate: -12deg;
   transform: 
-    translateY(-150px)
-    translateX(300px)
+    translateY(-7.81vw)
+    translateX(15.63vw)
     rotate(-12deg)
     scale(0.95);
 }
@@ -762,3 +762,63 @@
 .projectDocument.disableHover:hover {
   transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Smooth bounce transition */
 }
+
+/**
+ * MOBILE LANDSCAPE STYLES
+ * =======================
+ * Optimizations for mobile landscape view
+ */
+@media (max-height: 600px) and (orientation: landscape) {
+  /* Move documents up on mobile */
+  .projectDocument {
+    top: -4vw;
+  }
+  
+  /* Hide description text on mobile */
+  .projectDescription {
+    display: none;
+  }
+  
+  /* Increase font sizes for better readability */
+  .documentType,
+  .documentYear {
+    font-size: 0.5rem;
+  }
+  
+  .documentTitle h2 {
+    font-size: 0.8rem;
+  }
+  
+  .statusBadge {
+    display: none;
+  }
+  
+  .techTitle {
+    font-size: 0.5rem;
+  }
+  
+  .techTitle::before,
+  .techTitle::after {
+    font-size: 0.4rem;
+  }
+  
+  .techItem {
+    font-size: 0.4rem;
+    padding: 0.2rem 0.4rem;
+  }
+  
+  .actionButton {
+    font-size: 0.4rem;
+    padding: 0.2rem 0.3rem;
+  }
+  
+  .buttonIcon {
+    font-size: 0.8rem;
+  }
+  
+  .documentNumber,
+  .documentStamp {
+    font-size: 0.4rem;
+  }
+}
+

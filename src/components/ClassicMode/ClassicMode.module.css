@@ -33,7 +33,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   color: #1a1a1a;
   font-family: 'Georgia', 'Times New Roman', serif;
@@ -49,7 +49,7 @@
 @keyframes pageLoad {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(1.875rem);  /* 30px → rem */
   }
   to {
     opacity: 1;
@@ -70,11 +70,11 @@
   /* SIZING */
   width: 100%;
   min-height: 60vh;
-  max-width: 1200px;
+  max-width: 62.5vw;                        /* 1200px → vw */
   
   /* SPACING */
   padding: 2rem;
-  margin-top: 6rem;
+  margin-top: 5vw;                          /* Scales with zoom */
   
   /* APPEARANCE */
   color: #e6e6fa;
@@ -82,18 +82,6 @@
   /* REMOVED: animation: contentFadeIn 0.6s ease-out; */
   /* This was blocking the conditional animations below */
 }
-
-/* You can delete this old keyframe if not used elsewhere */
-/* @keyframes contentFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-} */
 
 /* Default state - fade in animation */
 .contentArea:not(.exiting) {
@@ -108,7 +96,7 @@
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(1.875rem);  /* 30px → rem */
   }
   to {
     opacity: 1;
@@ -123,6 +111,6 @@
   }
   to {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(1.875rem);  /* 30px → rem */
   }
 }

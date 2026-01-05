@@ -34,6 +34,10 @@ const use3DMouseTracking = (elementRef, options = {}, dependencies = []) => {
     // SAFETY CHECK: Exit if refs not ready
     if (!element || !trackingElement) return;
 
+    // MOBILE DETECTION: Disable 3D tilt on mobile/tablet devices
+    const isMobile = window.matchMedia('(max-height: 600px) and (orientation: landscape)').matches;
+    if (isMobile) return;
+
     /**
      * MOUSE MOVE HANDLER
      * ==================

@@ -13,11 +13,11 @@
 .sunContainer {
     /* LAYOUT & POSITIONING */
     position: fixed;
-    top: -2.31vh; /* -25px → vh */            /* Slightly offset from viewport edge */
-    left: -1.56vw; /* -30px → vw */            /* Slightly offset from viewport edge */
+    top: -1rem; /* -25px → rem */            /* Slightly offset from viewport edge */
+    left: -1.875rem; /* -30px → rem */            /* Slightly offset from viewport edge */
     
     /* SIZING */
-    width: 55.56vh;  /* 600px → vh */
+    width: 60vh;  /* 600px → vh */
     height: auto;
     
     /* LAYERING */
@@ -72,12 +72,12 @@
 
     /* APPEARANCE EFFECTS */
     filter:
-        blur(0.26vw) /* 5px → vw */
-        drop-shadow(0 0 0.78vw /* 15px → vw */ rgba(255, 165, 0, 0.8)),
-        drop-shadow(0 0 1.56vw /* 30px → vw */ rgba(255, 69, 0, 0.6));
-    /* Layered glow effects:
-     * - Inner warm orange glow (15px radius, 0.8 opacity)
-     * - Outer intense red-orange glow (30px radius, 0.6 opacity) */
+        blur(0.3125rem) /* 5px → rem */
+        drop-shadow(0 0 0.234375rem /* 3.75px */ rgba(255, 165, 0, 0.35))
+        drop-shadow(0 0 0.46875rem /* 7.5px */ rgba(255, 69, 0, 0.25))
+        drop-shadow(0 0 0.125rem /* 2px */ rgba(255, 200, 0, 0.45))
+        drop-shadow(0 0 0.1875rem /* 3px */ rgba(255, 140, 0, 0.35));
+    /* Layered glow effects with subtle ray highlights */
 }
 
 /**
@@ -109,42 +109,42 @@ polygon[id^="ray"] {
     /* STELLAR EXPLOSION PHASE */
     0% {        /* Initial explosion point */
         opacity: 0; transform: scale(0.01);
-        filter: brightness(50) blur(15.63vw) /* 300px → vw */ saturate(10) hue-rotate(270deg) contrast(5)
-            drop-shadow(0 0 26.04vw /* 500px → vw */ #fff) drop-shadow(0 0 41.67vw /* 800px → vw */ #0ff) drop-shadow(0 0 62.5vw /* 1200px → vw */ #f0f);
+        filter: brightness(50) blur(18.75rem) /* 300px → rem */ saturate(10) hue-rotate(270deg) contrast(5)
+            drop-shadow(0 0 7.8125rem /* 125px */ #fff) drop-shadow(0 0 12.5rem /* 200px */ #0ff) drop-shadow(0 0 18.75rem /* 300px */ #f0f);
     }
     8% {        /* Cool plasma-style formation */
         opacity: 0.3; transform: scale(0.1);
-        filter: brightness(20) blur(10.42vw) /* 200px → vw */ saturate(8) hue-rotate(240deg) contrast(4)
-            drop-shadow(0 0 20.83vw /* 400px → vw */ #fff) drop-shadow(0 0 31.25vw /* 600px → vw */ #6ff) drop-shadow(0 0 46.88vw /* 900px → vw */ #f6f);
+        filter: brightness(20) blur(12.5rem) /* 200px → rem */ saturate(8) hue-rotate(240deg) contrast(4)
+            drop-shadow(0 0 6.25rem /* 100px */ #fff) drop-shadow(0 0 9.375rem /* 150px */ #6ff) drop-shadow(0 0 14.0625rem /* 225px */ #f6f);
     }
     20% {       /* transitioning to stellar colors */
         opacity: 0.6; transform: scale(0.3);
-        filter: brightness(15) blur(7.81vw) /* 150px → vw */ saturate(6) hue-rotate(180deg) contrast(3)
-            drop-shadow(0 0 15.63vw /* 300px → vw */ #ff0) drop-shadow(0 0 26.04vw /* 500px → vw */ #f90) drop-shadow(0 0 36.46vw /* 700px → vw */ #f30);
+        filter: brightness(15) blur(9.375rem) /* 150px → rem */ saturate(6) hue-rotate(180deg) contrast(3)
+            drop-shadow(0 0 4.6875rem /* 75px */ #ff0) drop-shadow(0 0 7.8125rem /* 125px */ #f90) drop-shadow(0 0 10.9375rem /* 175px */ #f30);
     }
 
     /* STELLAR SOLAR PHASE */
     35% {       /* Solar ignition begins */
         opacity: 0.8; transform: scale(0.6);
-        filter: brightness(10) blur(5.21vw) /* 100px → vw */ saturate(4) hue-rotate(120deg) contrast(2.5)
-            drop-shadow(0 0 13.02vw /* 250px → vw */ #fc0) drop-shadow(0 0 20.83vw /* 400px → vw */ #f60) drop-shadow(0 0 31.25vw /* 600px → vw */ #f00);
+        filter: brightness(10) blur(6.25rem) /* 100px → rem */ saturate(4) hue-rotate(120deg) contrast(2.5)
+            drop-shadow(0 0 3.90625rem /* 62.5px */ #fc0) drop-shadow(0 0 6.25rem /* 100px */ #f60) drop-shadow(0 0 9.375rem /* 150px */ #f00);
     }
     50% {       /* Approaching solar appearance */
         opacity: 0.9; transform: scale(0.85);
-        filter: brightness(6) blur(3.13vw) /* 60px → vw */ saturate(3) hue-rotate(60deg) contrast(2)
-            drop-shadow(0 0 10.42vw /* 200px → vw */ #fa0) drop-shadow(0 0 18.23vw /* 350px → vw */ #f40) drop-shadow(0 0 26.04vw /* 500px → vw */ #c00);
+        filter: brightness(6) blur(3.75rem) /* 60px → rem */ saturate(3) hue-rotate(60deg) contrast(2)
+            drop-shadow(0 0 3.125rem /* 50px */ #fa0) drop-shadow(0 0 5.46875rem /* 87.5px */ #f40) drop-shadow(0 0 7.8125rem /* 125px */ #c00);
     }
     70% {       /* Peak formation intensity */
         opacity: 1; transform: scale(1.2);
-        filter: brightness(3) blur(1.56vw) /* 30px → vw */ saturate(2) hue-rotate(30deg) contrast(1.5)
-            drop-shadow(0 0 7.81vw /* 150px → vw */ #f80) drop-shadow(0 0 13.02vw /* 250px → vw */ #f20) drop-shadow(0 0 18.23vw /* 350px → vw */ #900);
+        filter: brightness(3) blur(1.875rem) /* 30px → rem */ saturate(2) hue-rotate(30deg) contrast(1.5)
+            drop-shadow(0 0 2.34375rem /* 37.5px */ #f80) drop-shadow(0 0 3.90625rem /* 62.5px */ #f20) drop-shadow(0 0 5.46875rem /* 87.5px */ #900);
     }
 
     /* STELLAR STABILIZATION PHASE */
     85% {       /* Settling into stable state - size adjustment */
         transform: scale(0.95);
-        filter: brightness(2) blur(0.78vw) /* 15px → vw */ saturate(1.5) hue-rotate(15deg) contrast(1.2)
-            drop-shadow(0 0 5.21vw /* 100px → vw */ #f60) drop-shadow(0 0 9.38vw /* 180px → vw */ #e10) drop-shadow(0 0 13.02vw /* 250px → vw */ #800);
+        filter: brightness(2) blur(0.9375rem) /* 15px → rem */ saturate(1.5) hue-rotate(15deg) contrast(1.2)
+            drop-shadow(0 0 1.5625rem /* 25px */ #f60) drop-shadow(0 0 2.8125rem /* 45px */ #e10) drop-shadow(0 0 3.90625rem /* 62.5px */ #800);
     }
     100% {      /* Stable solar state - natural sun appearance */
         transform: scale(1);
@@ -159,8 +159,8 @@ polygon[id^="ray"] {
  * Each ray forms and peaks, then returns to (opacity: 0) for JavaScript animation takeover.
  */
 @keyframes sunraysEntry {
-    0% { opacity: 0; transform: scale(0); filter: brightness(10) blur(2.6vw); } /* 50px → vw */
-    30% { opacity: 0.8; transform: scale(1.2); filter: brightness(3) blur(0.52vw); } /* 10px → vw */
+    0% { opacity: 0; transform: scale(0); filter: brightness(10) blur(3.125rem); } /* 50px → rem */
+    30% { opacity: 0.8; transform: scale(1.2); filter: brightness(3) blur(0.625rem); } /* 10px → rem */
     60% { opacity: 1; transform: scale(1); filter: brightness(1) blur(0); }
     100% { opacity: 0; transform: scale(1); filter: brightness(1) blur(0); }
 }
@@ -186,18 +186,18 @@ polygon[id^="ray"] {
 @keyframes sunPulsate {
     0% {
         filter:
-            drop-shadow(0 0 2.6vw /* 50px → vw */ rgba(255, 165, 0, 0.9))    /* Inner warm orange glow */
-            drop-shadow(0 0 5.21vw /* 100px → vw */ rgba(255, 69, 0, 0.7))    /* Mid red-orange glow */
-            drop-shadow(0 0 7.81vw /* 150px → vw */ rgba(255, 0, 0, 0.5))     /* Outer red intensity */
-            drop-shadow(0 0 10.42vw /* 200px → vw */ rgba(255, 100, 0, 0.3));  /* Extended orange atmosphere */
+            drop-shadow(0 0 2.9296875rem /* 46.875px */ rgba(255, 165, 0, 0.9))    /* Inner warm orange glow */
+            drop-shadow(0 0 5.859375rem /* 93.75px */ rgba(255, 69, 0, 0.7))    /* Mid red-orange glow */
+            drop-shadow(0 0 8.7890625rem /* 140.625px */ rgba(255, 0, 0, 0.5))     /* Outer red intensity */
+            drop-shadow(0 0 11.71875rem /* 187.5px */ rgba(255, 100, 0, 0.3));  /* Extended orange atmosphere */
     }
     100% {
         filter:                                      /* Slight blur for intensity */
-            blur(0.1vw) /* 2px → vw */
-            drop-shadow(0 0 2.6vw /* 50px → vw */ rgba(255, 165, 0, 0.9))    /* Inner warm orange glow */
-            drop-shadow(0 0 5.21vw /* 100px → vw */ rgba(255, 69, 0, 0.7))    /* Mid red-orange glow */
-            drop-shadow(0 0 7.81vw /* 150px → vw */ rgba(255, 0, 0, 0.5))     /* Outer red intensity */
-            drop-shadow(0 0 10.42vw /* 200px → vw */ rgba(255, 100, 0, 0.3));  /* Extended orange atmosphere */
+            blur(0.125rem) /* 2px → rem */
+            drop-shadow(0 0 2.9296875rem /* 46.875px */ rgba(255, 165, 0, 0.9))    /* Inner warm orange glow */
+            drop-shadow(0 0 5.859375rem /* 93.75px */ rgba(255, 69, 0, 0.7))    /* Mid red-orange glow */
+            drop-shadow(0 0 8.7890625rem /* 140.625px */ rgba(255, 0, 0, 0.5))     /* Outer red intensity */
+            drop-shadow(0 0 11.71875rem /* 187.5px */ rgba(255, 100, 0, 0.3));  /* Extended orange atmosphere */
     }
 }
 
@@ -209,10 +209,22 @@ polygon[id^="ray"] {
 @keyframes sunBlur {
     0%, 100% {
         filter: 
-            blur(0.1vw); /* 2px → vw */                           /* Slight blur at base intensity */
+            blur(0.125rem); /* 2px → rem */                           /* Slight blur at base intensity */
     }
     50% {
         filter: 
-            blur(0.26vw); /* 5px → vw */                          /* Significant blur at peak intensity */
+            blur(0.3125rem); /* 5px → rem */                          /* Significant blur at peak intensity */
     }
+}
+
+/**
+ * MOBILE LANDSCAPE STYLES
+ * =======================
+ * Move sun to the right for mobile landscape view
+ */
+@media (max-height: 600px) and (orientation: landscape) {
+  .sunContainer {
+    top: 0rem;
+    left: -0.5rem;
+  }
 }

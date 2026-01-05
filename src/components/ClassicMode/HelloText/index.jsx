@@ -13,6 +13,7 @@
 
 // DEPENDENCIES
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import classes from './HelloText.module.css';
 import LuxuryButton from '../LuxuryButton';
 
@@ -22,6 +23,7 @@ import LuxuryButton from '../LuxuryButton';
  */
 const HelloText = ({ isHelloTextFading, startTransition }) => {
   const navigate = useNavigate();
+  const [isNameHovered, setIsNameHovered] = useState(false);
 
   /**
    * BUTTON CLICK HANDLER
@@ -49,7 +51,10 @@ const HelloText = ({ isHelloTextFading, startTransition }) => {
         
         {/* FIRST PARAGRAPH - Personal introduction with name highlight */}
         <p>
-          I am <span className={classes.name}>
+          I am <span 
+            className={`${classes.name} ${isNameHovered ? classes.nameHovered : ''}`}
+            onMouseEnter={() => setIsNameHovered(true)}
+          >
             BENJAMIN TIONG
             
             {/* NAME PARTICLES - Three rotating sparkles with staggered timing */}

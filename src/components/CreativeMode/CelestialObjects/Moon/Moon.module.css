@@ -12,13 +12,13 @@
 .dayMoon {
     /* LAYOUT & POSITIONING */
     position: relative;                 /* Relative to parent container */
-    left: 50vw;                         /* Centered horizontally */
+    left: 50vw;  /* 960px → vw */      /* Centered horizontally */
     
     /* LAYERING */
     z-index: 5;                         /* Above background elements */
     
     /* SIZING */
-    width: 49vw;                        /* Responsive width */
+    width: 49vw;  /* 940.8px → vw */    /* Responsive width */
     
     /* PERFORMANCE OPTIMIZATION */
     will-change: transform;             /* Optimizes floating animation */
@@ -32,11 +32,11 @@
     
     /* APPEARANCE EFFECTS */
     filter: 
-        drop-shadow(0 0 3.7vh rgba(220, 225, 235, 0.6))     /* 40px → vh */
-        drop-shadow(0 0 14.81vh rgba(160, 180, 210, 0.25)); /* 160px → vh */
+        drop-shadow(0 0 0.625rem rgba(220, 225, 235, 0.6))     /* 10px */
+        drop-shadow(0 0 2.5rem rgba(160, 180, 210, 0.25)); /* 40px */
     /* Layered glow effects:
-     * - Inner soft white glow (40px radius, 0.6 opacity)
-     * - Outer blue-tinted atmosphere (160px radius, 0.25 opacity) */
+     * - Inner soft white glow (10px radius, 0.6 opacity)
+     * - Outer blue-tinted atmosphere (40px radius, 0.25 opacity) */
 }
 
 /**
@@ -47,13 +47,13 @@
 .nightMoon {
     /* LAYOUT & POSITIONING */
     position: absolute;                 /* Free positioning */
-    left: 48vw;                         /* Slightly off-center */
+    left: 48vw;  /* 921.6px → vw */    /* Slightly off-center */
     
     /* LAYERING */
     z-index: 5;                         /* Above background elements */
 
     /* SIZING */
-    width: 45vw;                        /* Slightly smaller than day moon */
+    width: 45vw;  /* 864px → vw */      /* Slightly smaller than day moon */
     
     /* PERFORMANCE OPTIMIZATION */
     will-change: transform, filter;     /* Optimizes rocking and glow effects */
@@ -69,11 +69,11 @@
     
     /* APPEARANCE EFFECTS */
     filter: 
-        drop-shadow(0 0 7.41vh rgba(220, 225, 235, 0.8))    /* 80px → vh */
-        drop-shadow(0 0 18.52vh rgba(160, 180, 210, 0.5));  /* 200px → vh */
+        drop-shadow(0 0 1.25rem rgba(220, 225, 235, 0.8))    /* 20px */
+        drop-shadow(0 0 3.125rem rgba(160, 180, 210, 0.5));  /* 50px */
     /* Enhanced nighttime glow effects:
-     * - Inner bright white glow (80px radius, 0.8 opacity)
-     * - Outer atmospheric glow (200px radius, 0.5 opacity) */
+     * - Inner bright white glow (20px radius, 0.8 opacity)
+     * - Outer atmospheric glow (50px radius, 0.5 opacity) */
 }
 
 /**
@@ -87,7 +87,7 @@
         /* Base centered position */
     }
     50% { 
-        transform: translate3d(-50%, -1.85vh, 0); /* -20px → vh */
+        transform: translate3d(-50%, -1.25rem, 0); /* -20px → rem */
         /* Floats up 20px at midpoint */
     }
 }
@@ -110,4 +110,15 @@
         transform: translate3d(-50%, 0, 0) rotate(-2deg); 
         /* Rocks 2 degrees counter-clockwise */
     }
+}
+
+/**
+ * MOBILE LANDSCAPE STYLES
+ * =======================
+ * Reduce moon size in daytime for mobile landscape view
+ */
+@media (max-height: 600px) and (orientation: landscape) {
+  .dayMoon {
+    width: 35vw;
+  }
 }

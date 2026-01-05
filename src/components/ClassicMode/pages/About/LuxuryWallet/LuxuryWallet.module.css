@@ -8,15 +8,15 @@
 :root {
   /* Shadow used across wallet exterior and interiors for depth */
   --wallet-shadow: 
-    0 35px 70px rgba(0, 0, 0, 0.9),
-    0 25px 40px rgba(0, 0, 0, 0.7),
-    0 15px 20px rgba(0, 0, 0, 0.5);
+    0 2.1875rem 4.375rem rgba(0, 0, 0, 0.9),
+    0 1.5625rem 2.5rem rgba(0, 0, 0, 0.7),
+    0 0.9375rem 1.25rem rgba(0, 0, 0, 0.5);
   
   /* Gold glow effect for hover state */
-  --gold-glow: 0 0 80px rgba(212, 175, 55, 0.7);
+  --gold-glow: 0 0 5rem rgba(212, 175, 55, 0.7);
   
   /* Font styling for text and labels */
-  --luxury-font: 600 12px/1 'Cinzel', serif;
+  --luxury-font: 600 0.625vw/1 'Cinzel', serif;
   
   /* Gold gradient used for multiple elements */
   --gold-gradient: linear-gradient(135deg, #d4af37 0%, #f4e4bc 15%, #ffffff 30%, #f4e4bc 45%,
@@ -51,7 +51,7 @@
  */
 .walletWrapper {
   /* 3D SPACE SETUP */
-  perspective: 1000px;           /* Depth of 3D space */
+  perspective: 52.08vw;          /* 1000px → vw */
   transform-style: preserve-3d;  /* Enable 3D transforms for children */
 }
 
@@ -64,18 +64,18 @@
 @keyframes walletEntrance {
   0% {
     opacity: 0;
-    transform: perspective(1500px) translateY(150px) translateZ(-200px) rotateX(35deg) scale(0.7);
-    filter: blur(10px);
+    transform: perspective(78.125vw) translateY(7.81vw) translateZ(-10.42vw) rotateX(35deg) scale(0.7);
+    filter: blur(0.625rem);
   }
   85% {
     opacity: 1;
-    transform: perspective(1500px) translateY(5px) translateZ(5px) rotateX(2deg) scale(0.98);
-    filter: blur(0px);
+    transform: perspective(78.125vw) translateY(0.26vw) translateZ(0.26vw) rotateX(2deg) scale(0.98);
+    filter: blur(0);
   }
   100% {
     opacity: 1;
-    transform: perspective(1500px) translateY(0) translateZ(0) rotateX(0deg) scale(1);
-    filter: blur(0px);
+    transform: perspective(78.125vw) translateY(0) translateZ(0) rotateX(0deg) scale(1);
+    filter: blur(0);
   }
 }
 
@@ -91,7 +91,7 @@
   
   /* 3D TRANSFORM SETUP */
   transform-style: preserve-3d;
-  perspective: 1200px;
+  perspective: 62.5vw;                        /* 1200px → vw */
   backface-visibility: hidden;
   
   /* ANIMATIONS */
@@ -103,7 +103,7 @@
 
 /* Open state - expands to fit both interiors */
 .walletOpen .walletContainer {
-  width: 1080px;  /* 540px (exterior) + 270px (left) + 270px (right) */
+  width: 56.25vw;  /* 1080px → vw */
 }
 
 /**
@@ -120,8 +120,8 @@
  */
 .luxuryWallet {
   /* SIZING */
-  width: 540px;
-  height: 450px;
+  width: 28.125vw;                           /* 540px → vw */
+  height: 23.44vw;                           /* 450px → vw */
   
   /* LAYOUT */
   position: relative;
@@ -132,8 +132,8 @@
   /* LAYERED LEATHER TEXTURE */
   background: 
     /* Fine leather grain dot pattern */
-    radial-gradient(circle at 25% 25%, rgba(40, 40, 40, 0.4) 1px, transparent 1px),
-    radial-gradient(circle at 75% 75%, rgba(30, 30, 30, 0.3) 1px, transparent 1px),
+    radial-gradient(circle at 25% 25%, rgba(40, 40, 40, 0.4) 0.052vw, transparent 0.052vw),
+    radial-gradient(circle at 75% 75%, rgba(30, 30, 30, 0.3) 0.052vw, transparent 0.052vw),
     /* Diagonal crosshatch texture patterns */
     linear-gradient(60deg, transparent 30%, rgba(40, 40, 40, 0.3) 30%, rgba(40, 40, 40, 0.2) 70%, transparent 70%),
     linear-gradient(-60deg, transparent 30%, rgba(30, 30, 30, 0.3) 30%, rgba(30, 30, 30, 0.2) 70%, transparent 70%),
@@ -141,15 +141,15 @@
     linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(5, 5, 5, 0.9) 1%, transparent 10%),
     /* Base dark leather gradient */
     linear-gradient(135deg, #1a1a1a 0%, #050505 100%);
-  background-size: 3px 3px, 4px 4px, 40px 40px, 40px 40px, 100% 100%, 100% 100%;
-  border-radius: 18px 12px 12px 18px;
+  background-size: 0.156vw 0.156vw, 0.21vw 0.21vw, 2.08vw 2.08vw, 2.08vw 2.08vw, 100% 100%, 100% 100%;
+  border-radius: 1.125rem 0.75rem 0.75rem 1.125rem;
   box-shadow: 
     /* 3-layer depth shadow */
     var(--wallet-shadow),
     /* Inner highlight for edges */
-    inset 0 2px 4px rgba(255, 255, 255, 0.1);
-  border: 1px solid #222;
-  transform: perspective(1000px);
+    inset 0 0.125rem 0.25rem rgba(255, 255, 255, 0.1);
+  border: 0.0625rem solid #222;
+  transform: perspective(52.08vw);
   transform-style: preserve-3d;
   transform-origin: left center;
   transition: transform 0.8s ease, opacity 0.8s ease, box-shadow 0.3s ease;
@@ -170,7 +170,7 @@
 
 /* Open animation - Wallet open up and fades out */
 .walletOpen .luxuryWallet {
-  transform: perspective(1000px) rotateY(-160deg) translateX(-90px);
+  transform: perspective(52.08vw) rotateY(-160deg) translateX(-4.69vw);
   opacity: 0;
 }
 
@@ -182,16 +182,16 @@
 .walletStitching {
   /* POSITIONING */
   position: absolute;
-  top: 15px;
-  left: 0px;
-  right: 15px;
-  bottom: 15px;
+  top: 0.78vw;                               /* 15px → vw */
+  left: 0;
+  right: 0.78vw;                             /* 15px → vw */
+  bottom: 0.78vw;                            /* 15px → vw */
   
   /* APPEARANCE */
-  border-top: 2px dashed #d4af37;
-  border-right: 2px dashed #f4e4bc;
-  border-bottom: 2px dashed #d4af37;
-  border-radius: 18px 8px 8px 18px;
+  border-top: 0.125rem dashed #d4af37;
+  border-right: 0.125rem dashed #f4e4bc;
+  border-bottom: 0.125rem dashed #d4af37;
+  border-radius: 1.125rem 0.5rem 0.5rem 1.125rem;
   opacity: 0.85;
   
   /* ANIMATION */
@@ -218,8 +218,8 @@
 /* Container for positioning letters relative to each other */
 .btContainer {
   position: relative;
-  width: 200px;
-  height: 200px;
+  width: 10.42vw;                            /* 200px → vw */
+  height: 10.42vw;                           /* 200px → vw */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -236,7 +236,7 @@
   
   /* TYPOGRAPHY */
   font-family: 'Cinzel', serif;
-  font-size: 100px;
+  font-size: 5.21vw;                         /* 100px → vw */
   font-weight: 700;
   text-transform: uppercase;
   
@@ -248,8 +248,8 @@
   background-size: 300% 300%;
   
   /* SHADOW EFFECTS */
-  filter: drop-shadow(0 0 24px rgba(212, 175, 55, 0.8));
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  filter: drop-shadow(0 0 1.5rem rgba(212, 175, 55, 0.8));
+  text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5);
   
   /* ANIMATION */
   animation: shine 4s ease-in-out infinite;
@@ -280,26 +280,26 @@
   z-index: 12;
   
   /* SIZING */
-  width: 20px;
-  height: 20px;
+  width: 1.04vw;                             /* 20px → vw */
+  height: 1.04vw;                            /* 20px → vw */
   
   /* APPEARANCE */
   background: linear-gradient(135deg, #c9aa71 0%, #f4e4bc 50%, #d4af37 100%);
-  border: 1px solid #b8860b;
+  border: 0.0625rem solid #b8860b;
 }
 
 /* Top-right corner position */
 .cornerTopRight { 
-  top: 10px; 
-  right: 10px; 
-  border-radius: 0 8px 0 0; 
+  top: 0.52vw;                               /* 10px → vw */
+  right: 0.52vw;                             /* 10px → vw */
+  border-radius: 0 0.5rem 0 0; 
 }
 
 /* Bottom-right corner position */
 .cornerBottomRight { 
-  bottom: 10px; 
-  right: 10px; 
-  border-radius: 0 0 8px 0; 
+  bottom: 0.52vw;                            /* 10px → vw */
+  right: 0.52vw;                             /* 10px → vw */
+  border-radius: 0 0 0.5rem 0; 
 }
 
 /**
@@ -310,14 +310,14 @@
 .luxuryBranding {
   /* POSITIONING */
   position: absolute;
-  bottom: 20px;
-  left: 25px;
+  bottom: 1.04vw;                            /* 20px → vw */
+  left: 1.3vw;                               /* 25px → vw */
   z-index: 11;
   
   /* TYPOGRAPHY */
   font: var(--luxury-font);
   font-weight: 700;
-  letter-spacing: 3px;
+  letter-spacing: 0.1875rem;                 /* 3px → rem */
   text-transform: uppercase;
   
   /* APPEARANCE */
@@ -341,8 +341,8 @@
 .walletLeftInterior,
 .walletRightInterior {
   /* SIZING */
-  width: 540px;
-  height: 450px;
+  width: 28.125vw;                           /* 540px → vw */
+  height: 23.44vw;                           /* 450px → vw */
   
   /* POSITIONING */
   position: absolute;
@@ -355,13 +355,13 @@
   /* LAYERED LEATHER TEXTURE */
   background:
     /* Fine leather grain dot pattern */
-    repeating-linear-gradient(0deg, rgba(139, 69, 19, 0.06) 0px, rgba(139, 69, 19, 0.06) 1px, transparent 1px, transparent 3px),
-    repeating-linear-gradient(90deg, rgba(101, 67, 33, 0.04) 0px, rgba(101, 67, 33, 0.04) 1px, transparent 1px, transparent 3px),
+    repeating-linear-gradient(0deg, rgba(139, 69, 19, 0.06) 0, rgba(139, 69, 19, 0.06) 0.052vw, transparent 0.052vw, transparent 0.156vw),
+    repeating-linear-gradient(90deg, rgba(101, 67, 33, 0.04) 0, rgba(101, 67, 33, 0.04) 0.052vw, transparent 0.052vw, transparent 0.156vw),
     /* Diagonal crosshatch texture patterns */
     linear-gradient(135deg, #151515 0%, #080808 100%);
   
   /* APPEARANCE */
-  border: 1px solid #333;
+  border: 0.0625rem solid #333;
   box-shadow: var(--wallet-shadow);
   
   /* INITIAL STATE */
@@ -374,27 +374,27 @@
 
 /* Left interior - slides in from left */
 .walletLeftInterior {
-  left: -270px;  /* Initial position (off-screen) */
-  border-radius: 7px 0 0 7px;
+  left: -14.06vw;                            /* -270px → vw */
+  border-radius: 0.4375rem 0 0 0.4375rem;
   border-right: none;  /* Seamless connection with right exterior */
 }
 
 /* Right interior - slides in from right */
 .walletRightInterior {
-  left: 180px;  /* Initial position (off-screen) */
-  border-radius: 0 12px 12px 0;
+  left: 9.375vw;                             /* 180px → vw */
+  border-radius: 0 0.75rem 0.75rem 0;
   border-left: none;  /* Seamless connection with left exterior */
 }
 
 /* Open state - panels visible at final positions */
 .walletOpen .walletLeftInterior {
   opacity: 1;
-  left: -270px;
+  left: -14.06vw;                            /* -270px → vw */
 }
 
 .walletOpen .walletRightInterior {
   opacity: 1;
-  left: 270px;
+  left: 14.06vw;                             /* 270px → vw */
 }
 
 /**
@@ -404,17 +404,17 @@
 .premiumHeader {
   /* POSITIONING */
   position: absolute;
-  top: 25px;
+  top: 1.3vw;                                /* 25px → vw */
   left: 50%;
   transform: translateX(-50%);
   z-index: 15;
   
   /* TYPOGRAPHY */
   font-family: 'Cinzel', serif;
-  font-size: 30px;
+  font-size: 1.5625vw;                       /* 30px → vw */
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 3px;
+  letter-spacing: 0.1875rem;                 /* 3px → rem */
   white-space: nowrap;
   
   /* GRADIENT TEXT EFFECT */
@@ -425,7 +425,7 @@
   background-size: 300% 300%;
   
   /* GLOW EFFECTS */
-  filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.8));
+  filter: drop-shadow(0 0 0.75rem rgba(212, 175, 55, 0.8));
   
   /* ANIMATION */
   animation: shine 4s ease-in-out infinite;
@@ -438,7 +438,7 @@
  */
 .idWindowContainer {
   /* LAYOUT */
-  padding: 80px 40px 60px 40px;  /* Space for header and label */
+  padding: 4.17vw 2.08vw 3.125vw 2.08vw;    /* 80px 40px 60px 40px → vw */
   height: 100%;
   display: flex;
   align-items: flex-start;
@@ -454,7 +454,7 @@
 .idWindow {
   /* SIZING */
   width: 100%;
-  height: 320px;
+  height: 16.67vw;                           /* 320px → vw */
   
   /* POSITIONING */
   position: relative;
@@ -465,8 +465,8 @@
   overflow: hidden;
   
   /* APPEARANCE */
-  border: 2px solid rgba(255, 255, 255, 0.4);
-  border-radius: 12px;
+  border: 0.125rem solid rgba(255, 255, 255, 0.4);
+  border-radius: 0.75rem;                    /* 12px → rem */
   
   /* INITIAL STATE */
   opacity: 0;
@@ -488,25 +488,25 @@
 .idWindowFrame {
   /* POSITIONING */
   position: absolute;
-  top: 8px;
-  left: 10px;
-  right: 10px;
-  bottom: 8px;
+  top: 0.42vw;                               /* 8px → vw */
+  left: 0.52vw;                              /* 10px → vw */
+  right: 0.52vw;                             /* 10px → vw */
+  bottom: 0.42vw;                            /* 8px → vw */
   z-index: 15;
   
   /* BORDERS */
-  border: 1px dashed rgba(255, 255, 255, 0.8);  /* Inner dashed border around frame */
-  border-radius: 8px;
+  border: 0.0625rem dashed rgba(255, 255, 255, 0.8);
+  border-radius: 0.5rem;                     /* 8px → rem */
  
   /* PLASTIC COVER EFFECT */
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(212, 175, 55, 0.15) 100%);  /* Subtle golden tint overlay on plastic */
-  backdrop-filter: blur(2px);  /* Blur effect */
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(212, 175, 55, 0.15) 100%);
+  backdrop-filter: blur(0.125rem);           /* 2px → rem */
   
   /* INNER BORDER SHADOW */
-  box-shadow: inset 0 3px 12px rgba(255, 255, 255, 0.5);
+  box-shadow: inset 0 0.1875rem 0.75rem rgba(255, 255, 255, 0.5);
   
   /* INTERACTIONS */
-  pointer-events: none;  /* Allow clicking through to card */
+  pointer-events: none;
 }
 
 /**
@@ -536,7 +536,7 @@
       rgba(255, 255, 255, 0.3) 75%, 
       transparent 80%
     );
-  border-radius: 8px;
+  border-radius: 0.5rem;                     /* 8px → rem */
 }
 
 .idWindowFrame::after {
@@ -571,14 +571,14 @@
 .idSectionLabel {
   /* POSITIONING */
   position: absolute;
-  bottom: 20px;
+  bottom: 1.04vw;                            /* 20px → vw */
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
   
   /* TYPOGRAPHY */
   font: var(--luxury-font);
-  letter-spacing: 2px;
+  letter-spacing: 0.125rem;                  /* 2px → rem */
   text-transform: uppercase;
   
   /* APPEARANCE */
@@ -594,12 +594,12 @@
   /* PSEUDO-ELEMENT SETUP */
   content: '';
   position: absolute;
-  bottom: 25px;
-  right: 25px;
+  bottom: 1.3vw;                             /* 25px → vw */
+  right: 1.3vw;                              /* 25px → vw */
   
   /* SIZING */
-  width: 80px;
-  height: 80px;
+  width: 4.17vw;                             /* 80px → vw */
+  height: 4.17vw;                            /* 80px → vw */
   
   /* IMAGE */
   background: url('/src/assets/ClassicMode/hollowKnightEmblem.png') no-repeat center center;
@@ -617,8 +617,8 @@
     brightness(2.5)      /* Brighten the image */
     contrast(1.3)        /* Increase contrast */
     saturate(1.2)        /* Boost color saturation */
-    drop-shadow(0 0 12px rgba(255, 255, 255, 0.8))      /* White outer glow */
-    drop-shadow(0 0 6px rgba(212, 175, 55, 1));         /* Gold inner glow */
+    drop-shadow(0 0 0.75rem rgba(255, 255, 255, 0.8))   /* White outer glow */
+    drop-shadow(0 0 0.375rem rgba(212, 175, 55, 1));    /* Gold inner glow */
   
   /* INTERACTIONS */
   cursor: pointer;
@@ -633,12 +633,12 @@
   /* PSEUDO-ELEMENT SETUP */
   content: '⚜';
   position: absolute;
-  top: 12px;
-  right: 15px;
+  top: 0.625vw;                              /* 12px → vw */
+  right: 0.78vw;                             /* 15px → vw */
   z-index: 25;
   
   /* TYPOGRAPHY */
-  font-size: 15px;
+  font-size: 0.78vw;                         /* 15px → vw */
   
   /* APPEARANCE */
   color: #d4af37;
@@ -674,14 +674,14 @@
 
 .cardSlot:nth-child(1) {
   position: absolute;
-  top: 100px;
+  top: 5.21vw;                               /* 100px → vw */
   height: 68%;
   z-index: 3;
 }
 
 .cardSlot:nth-child(2) {
   position: absolute;
-  top: 200px;
+  top: 10.42vw;                              /* 200px → vw */
   height: 55%;
   z-index: 5;
   overflow: visible;
@@ -700,10 +700,10 @@
 .cardSlot::before {
   content: '';
   position: absolute;
-  top: 1px;
+  top: 0.0625rem;                            /* 1px → rem */
   left: 0;
   right: 0;
-  height: 1px;
+  height: 0.0625rem;                         /* 1px → rem */
   background: linear-gradient(90deg, rgba(139, 69, 19, 0.4) 0%, rgba(212, 175, 55, 0.9) 50%, rgba(139, 69, 19, 0.4) 100%);
   z-index: 3;
 }
@@ -722,24 +722,24 @@
 .cardSlot::after {
   content: '';
   position: absolute;
-  top: 2px;
+  top: 0.125rem;                             /* 2px → rem */
   left: 0;
   right: 0;
   height: 100%;
   background: 
     /* Fine leather grain dot pattern */
-    radial-gradient(circle at 30% 30%, rgba(35, 35, 35, 0.3) 1px, transparent 1px),
-    radial-gradient(circle at 70% 70%, rgba(30, 30, 30, 0.25) 1px, transparent 1px),
+    radial-gradient(circle at 30% 30%, rgba(35, 35, 35, 0.3) 0.052vw, transparent 0.052vw),
+    radial-gradient(circle at 70% 70%, rgba(30, 30, 30, 0.25) 0.052vw, transparent 0.052vw),
     /* Pocket depth shadow gradient */
     linear-gradient(180deg, rgba(40, 40, 40, 0.3) 0%, rgba(10, 10, 10, 0.8) 35%, rgba(0, 0, 0, 0.95) 100%),
     /* Base dark leather gradient */
     linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
-  background-size: 3px 3px, 4px 4px, 100% 100%, 100% 100%;
-  border-radius: 0 0 8px 0;
+  background-size: 0.156vw 0.156vw, 0.21vw 0.21vw, 100% 100%, 100% 100%;
+  border-radius: 0 0 0.5rem 0;               /* 8px → rem */
   box-shadow: 
     /* Pocket depth for the edges */
-    inset 0 8px 20px rgba(0, 0, 0, 0.8),
-    inset 0 2px 6px rgba(0, 0, 0, 0.4);
+    inset 0 0.5rem 1.25rem rgba(0, 0, 0, 0.8),
+    inset 0 0.125rem 0.375rem rgba(0, 0, 0, 0.4);
   z-index: 2;
   transition: all 0.3s ease;
 }
@@ -752,14 +752,14 @@
 .cardLabel {
   /* POSITIONING */
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 0.78vw;                               /* 15px → vw */
+  right: 0.78vw;                             /* 15px → vw */
   z-index: 10;
   
   /* TYPOGRAPHY */
   font: var(--luxury-font);
-  font-size: 10px;
-  letter-spacing: 2px;
+  font-size: 0.52vw;                         /* 10px → vw */
+  letter-spacing: 0.125rem;                  /* 2px → rem */
   text-transform: uppercase;
   
   /* APPEARANCE */
@@ -787,7 +787,7 @@
 
 /* First card (GymCard) */
 .card:nth-child(1) {
-  top: -75px;
+  top: -3.91vw;                              /* -75px → vw */
   z-index: 0;
 }
 
@@ -803,7 +803,7 @@
  */
 .preciseHoverZone {
   /* APPEARANCE */
-  border-radius: 6px;
+  border-radius: 0.375rem;                   /* 6px → rem */
   
   /* INTERACTIONS */
   pointer-events: all;  /* Enable mouse events */
@@ -820,12 +820,12 @@
 
 /* Gym card hover - lifts first card */
 .gymCardHover .cardSlot:nth-child(1) .card {
-  transform: translateY(-15px) scale(0.9);
+  transform: translateY(-0.78vw) scale(0.9); /* -15px → vw */
 }
 
 /* Credentials card hover - lifts second card */
 .credentialsCardHover .cardSlot:nth-child(2) .card {
-  transform: translateY(-15px) scale(0.95);
+  transform: translateY(-0.78vw) scale(0.95); /* -15px → vw */
 }
 
 /* Hollow Knight hover - scales emblem */
@@ -871,7 +871,7 @@
   }
   50% { 
     opacity: 0.6;
-    transform: rotate(-25deg) translateY(-12px) scale(1.08);
+    transform: rotate(-25deg) translateY(-0.625vw) scale(1.08); /* -12px → vw */
   }
 }
 
@@ -899,7 +899,7 @@
   
   /* APPEARANCE */
   background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(0.5rem);             /* 8px → rem */
   
   /* LAYERING */
   z-index: 9999;
@@ -930,12 +930,12 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 500px;
+  width: 26.04vw;                            /* 500px → vw */
   
   /* APPEARANCE */
   background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
-  border: 2px solid #d4af37;
-  border-radius: 15px;
+  border: 0.125rem solid #d4af37;
+  border-radius: 0.9375rem;                  /* 15px → rem */
   padding: 2rem;
   
   /* INTERACTIONS */
@@ -961,14 +961,14 @@
   padding-bottom: 1rem;
   
   /* APPEARANCE */
-  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+  border-bottom: 0.0625rem solid rgba(212, 175, 55, 0.3);
 }
 
 .hoverPopupIcon {
   /* SIZING */
-  width: 80px;
-  height: 80px;
-  padding: 10px;
+  width: 4.17vw;                             /* 80px → vw */
+  height: 4.17vw;                            /* 80px → vw */
+  padding: 0.52vw;                           /* 10px → vw */
   
   /* LAYOUT */
   display: flex;
@@ -977,9 +977,9 @@
   flex-shrink: 0;
   
   /* APPEARANCE */
-  border-radius: 10px;
-  border: 2px solid #d4af37;
-  box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+  border-radius: 0.625rem;                   /* 10px → rem */
+  border: 0.125rem solid #d4af37;
+  box-shadow: 0 0 1.25rem rgba(212, 175, 55, 0.6);
   background: #000;
 }
 
@@ -990,19 +990,19 @@
   
   /* APPEARANCE */
   object-fit: contain;
-  border-radius: 8px;
+  border-radius: 0.5rem;                     /* 8px → rem */
   filter: brightness(3);
 }
 
 .hoverPopupTitle {
   /* TYPOGRAPHY */
-  font: 700 24px/1.2 'Cinzel', serif;
+  font: 700 1.25vw/1.2 'Cinzel', serif;      /* 24px → vw */
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.0625rem;                 /* 1px → rem */
   
   /* APPEARANCE */
   color: var(--popup-gold);
-  text-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+  text-shadow: 0 0 0.625rem rgba(212, 175, 55, 0.8);
   
   /* SPACING */
   margin: 0 0 0.5rem 0;
@@ -1010,7 +1010,7 @@
 
 .hoverPopupSubtitle {
   /* TYPOGRAPHY */
-  font: 400 16px/1.4 'Cormorant Garamond', serif;
+  font: 400 0.83vw/1.4 'Cormorant Garamond', serif;  /* 16px → vw */
   font-style: italic;
   
   /* APPEARANCE */
@@ -1028,7 +1028,7 @@
 
 .hoverPopupDescription {
   /* TYPOGRAPHY */
-  font: 600 14px/1.6 'Cormorant Garamond', serif;
+  font: 600 0.73vw/1.6 'Cormorant Garamond', serif;  /* 14px → vw */
   
   /* SPACING */
   margin: 0 0 1rem 0;
@@ -1062,8 +1062,8 @@
   
   /* APPEARANCE */
   background: rgba(212, 175, 55, 0.1);
-  border-radius: 5px;
-  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 0.3125rem;                  /* 5px → rem */
+  border: 0.0625rem solid rgba(212, 175, 55, 0.2);
 }
 
 .popupStatLabel {
@@ -1071,9 +1071,9 @@
   flex-shrink: 0;
   
   /* TYPOGRAPHY */
-  font: 700 12px/1 'Cinzel', serif;
+  font: 700 0.625vw/1 'Cinzel', serif;       /* 12px → vw */
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.03125rem;                /* 0.5px → rem */
   
   /* APPEARANCE */
   color: var(--popup-gold);
@@ -1081,7 +1081,7 @@
 
 .popupStatValue {
   /* TYPOGRAPHY */
-  font: 500 12px/1 'Cormorant Garamond', serif;
+  font: 500 0.625vw/1 'Cormorant Garamond', serif;  /* 12px → vw */
   text-align: right;
   
   /* APPEARANCE */
@@ -1095,15 +1095,15 @@
  */
 .cardPopup {
   /* SPACING */
-  padding: 40px 60px;
+  padding: 2.08vw 3.125vw;                   /* 40px 60px → vw */
   
   /* APPEARANCE */
   background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-  border: 2px solid #d4af37;
-  border-radius: 20px;
+  border: 0.125rem solid #d4af37;
+  border-radius: 1.25rem;                    /* 20px → rem */
   box-shadow: 
-    0 20px 60px rgba(0, 0, 0, 0.8),
-    inset 0 1px 0 rgba(212, 175, 55, 0.3);
+    0 1.25rem 3.75rem rgba(0, 0, 0, 0.8),
+    inset 0 0.0625rem 0 rgba(212, 175, 55, 0.3);
 }
 
 .cardPopupContainer {
@@ -1111,7 +1111,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
+  gap: 1.5625vw;                             /* 30px → vw */
   height: 100%;
   text-align: center;
 }
@@ -1129,14 +1129,14 @@
   /* APPEARANCE */
   background: transparent;
   border: none;
-  border-radius: 15px;
-  backdrop-filter: blur(2px);
+  border-radius: 0.9375rem;                  /* 15px → rem */
+  backdrop-filter: blur(0.125rem);           /* 2px → rem */
 }
 
 .cardInfo {
   /* SIZING */
   flex: 1;
-  max-width: 500px;
+  max-width: 26.04vw;                        /* 500px → vw */
   
   /* LAYOUT */
   display: flex;
@@ -1175,8 +1175,8 @@
   
   /* APPEARANCE */
   background: rgba(212, 175, 55, 0.1);
-  border-radius: 5px;
-  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 0.3125rem;                  /* 5px → rem */
+  border: 0.0625rem solid rgba(212, 175, 55, 0.2);
 }
 
 .popupStatLabel {
@@ -1184,9 +1184,9 @@
   flex-shrink: 0;
   
   /* TYPOGRAPHY */
-  font: 700 12px/1 'Cinzel', serif;
+  font: 700 0.625vw/1 'Cinzel', serif;       /* 12px → vw */
   text-transform: uppercase;
-  letter-spacing: 0.6px;
+  letter-spacing: 0.0375rem;                 /* 0.6px → rem */
   
   /* APPEARANCE */
   color: #d4af37;
@@ -1194,7 +1194,7 @@
 
 .popupStatValue {
   /* TYPOGRAPHY */
-  font: 500 12px/1 'Cormorant Garamond', serif;
+  font: 500 0.625vw/1 'Cormorant Garamond', serif;  /* 12px → vw */
   text-align: right;
   
   /* APPEARANCE */
@@ -1207,36 +1207,36 @@
  */
 .cardTitle {
   /* TYPOGRAPHY */
-  font: 700 28px/1.2 'Cinzel', serif;
+  font: 700 1.46vw/1.2 'Cinzel', serif;      /* 28px → vw */
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.0625rem;                 /* 1px → rem */
   
   /* APPEARANCE */
   color: var(--popup-gold);
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.3);
   
   /* SPACING */
-  margin: 0 0 12px 0;
+  margin: 0 0 0.625vw 0;                     /* 12px → vw */
 }
 
 .cardSubtitle {
   /* TYPOGRAPHY */
-  font: 400 18px/1.4 'Cormorant Garamond', serif;
+  font: 400 0.9375vw/1.4 'Cormorant Garamond', serif;  /* 18px → vw */
   font-style: italic;
   
   /* APPEARANCE */
   color: var(--popup-subtitle-color);
   
   /* SPACING */
-  margin: 0 0 20px 0;
+  margin: 0 0 1.04vw 0;                      /* 20px → vw */
 }
 
 .cardDescription {
   /* SIZING */
-  max-width: 450px;
+  max-width: 23.44vw;                        /* 450px → vw */
   
   /* TYPOGRAPHY */
-  font: 400 16px/1.6 'Cormorant Garamond', serif;
+  font: 400 0.83vw/1.6 'Cormorant Garamond', serif;  /* 16px → vw */
   text-align: center;
   
   /* APPEARANCE */
@@ -1252,11 +1252,50 @@
  */
 @keyframes popupSlideUp {
   from {
-    transform: translate(-50%, calc(-50% + 40px)) scale(0.92);
+    transform: translate(-50%, calc(-50% + 2.08vw)) scale(0.92);  /* 40px → vw */
     opacity: 0;
   }
   to {
     transform: translate(-50%, -50%) scale(1);
     opacity: 1;
+  }
+}
+
+/**
+ * MOBILE RESPONSIVE STYLES
+ * ========================
+ * Scale down wallet mobile landscape view
+ */
+@media (max-height: 600px) and (orientation: landscape) {
+  /* Wallet exterior */
+  .luxuryWallet {
+    margin-top: -2rem;
+  }
+
+  .hoverPopup {
+    scale: 1.3;
+    top: 60%;
+    left: 55%;
+  }
+  
+  /* Increase card labels on mobile */
+  .cardLabel {
+    font-size: 0.6rem;
+  }
+  
+  /* Hide underline in emblem popup header */
+  .hoverPopupHeader {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  
+  /* Hide extra details in hover popup on mobile */
+  .hoverPopupSubtitle,
+  .hoverPopupDescription,
+  .cardSubtitle,
+  .cardDescription,
+  .popupStats {
+    display: none;
   }
 }

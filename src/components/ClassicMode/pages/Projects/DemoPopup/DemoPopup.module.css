@@ -33,7 +33,7 @@
   
   /* APPEARANCE */
   background: rgba(0, 0, 0, 0.9);
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(0.94rem);
   
   /* LAYOUT */
   display: flex;
@@ -52,11 +52,11 @@
 
 /* Content container with separate zoom animation */
 .demoPopup .popupContent {
-  animation: contentZoomIn 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; /* Bounce effect on open */
+  animation: contentZoomIn 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; /* Bounce effect on open */
 }
 
 .demoPopup.closing .popupContent {
-  animation: contentZoomOut 0.6s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards; /* Smooth zoom out on close */
+  animation: contentZoomOut 0.6s forwards; /* Smooth zoom out on close */
 }
 
 /**
@@ -69,22 +69,22 @@
 @keyframes backgroundFadeIn {
   from {
     opacity: 0;
-    backdrop-filter: blur(0px);
+    backdrop-filter: blur(0);
   }
   to {
     opacity: 1;
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(0.94rem);
   }
 }
 
 @keyframes backgroundFadeOut {
   from {
     opacity: 1;
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(0.94rem);
   }
   to {
     opacity: 0;
-    backdrop-filter: blur(0px);
+    backdrop-filter: blur(0);
   }
 }
 
@@ -101,11 +101,18 @@
 }
 
 @keyframes contentZoomIn {
-  from {
-    transform: scale(0.7) rotate(8deg);
+  0% {
+    transform: scale(0) rotate(-12deg);
     opacity: 0;
   }
-  to {
+  50% {
+    transform: scale(1.08) rotate(2deg);
+    opacity: 1;
+  }
+  75% {
+    transform: scale(0.97) rotate(-1deg);
+  }
+  100% {
     transform: scale(1) rotate(0deg);
     opacity: 1;
   }
@@ -118,7 +125,7 @@
 .popupContent {
   /* POSITIONING */
   position: relative;
-  margin-top: 100px;
+  margin-top: 5.21vw;
   
   /* SIZING */
   max-width: 35vw;
@@ -126,7 +133,7 @@
   width: auto;
   
   /* LAYOUT */
-  padding: 40px;
+  padding: 2.08vw;
   display: flex;
   flex-direction: column;
   overflow: visible;
@@ -135,12 +142,12 @@
   /* Five-layer frame effect:
    * Gold border → black gap → yellow border → black gap → soft gold glow border
    */
-  border: 3px solid var(--gold-primary);
+  border: 0.19rem solid var(--gold-primary);
   box-shadow: 
-    inset 0 0 0 8px var(--bg-medium),
-    inset 0 0 0 10px var(--gold-secondary),
-    inset 0 0 0 18px #0f0f0f,
-    inset 0 0 0 20px rgba(212, 175, 55, 0.3);
+    inset 0 0 0 0.5rem var(--bg-medium),
+    inset 0 0 0 0.63rem var(--gold-secondary),
+    inset 0 0 0 1.13rem #0f0f0f,
+    inset 0 0 0 1.25rem rgba(212, 175, 55, 0.3);
 }
 
 /**
@@ -150,31 +157,31 @@
 .popupTitle {
   /* POSITIONING */
   position: absolute;
-  top: -30px;
+  top: -1.56vw;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
   
   /* TYPOGRAPHY */
-  font: 700 20px/1.2 'Cinzel', serif;
+  font: 700 1.04vw/1.2 'Cinzel', serif;
   color: var(--gold-primary);
-  letter-spacing: 2px;
+  letter-spacing: 0.1vw;
 }
 
 /* Diamond decorators */
 .popupTitle::before,
 .popupTitle::after {
   content: '◆';
-  font-size: 14px;
+  font-size: 0.73vw;
   opacity: 0.8;
 }
 
 .popupTitle::before {
-  margin-right: 15px;
+  margin-right: 0.78vw;
 }
 
 .popupTitle::after {
-  margin-left: 15px;
+  margin-left: 0.78vw;
 }
 
 /**
@@ -184,15 +191,15 @@
 .popupFooter {
   /* POSITIONING */
   position: absolute;
-  bottom: -30px;
+  bottom: -1.56vw;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
   
   /* TYPOGRAPHY */
-  font: 900 14px/1 'Cinzel', serif;
+  font: 900 0.73vw/1 'Cinzel', serif;
   color: var(--gold-primary);
-  letter-spacing: 3px;
+  letter-spacing: 0.16vw;
 }
 
 /* Dash decorators */
@@ -222,7 +229,7 @@
   height: auto;
   
   /* DISPLAY */
-  border-radius: 4px;
+  border-radius: 0.25rem;
 }
 
 /**
@@ -245,8 +252,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(-8deg);
-  width: calc(100% + 120px);
-  height: calc(100% + 120px);
+  width: calc(100% + 6.25vw);
+  height: calc(100% + 6.25vw);
   z-index: -3;
 }
 
@@ -255,17 +262,17 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(12deg);
-  width: calc(100% + 75px);
-  height: calc(100% + 75px);
+  width: calc(100% + 3.91vw);
+  height: calc(100% + 3.91vw);
   z-index: -2;
 }
 
 /* Innermost frame */
 .backdropFrameContainer:nth-child(4) {
-  top: -40px;
-  left: -40px;
-  right: -40px;
-  bottom: -40px;
+  top: -2.08vw;
+  left: -2.08vw;
+  right: -2.08vw;
+  bottom: -2.08vw;
   z-index: -1;
 }
 
@@ -273,7 +280,7 @@
   width: 100%;
   height: 100%;
   background: transparent;
-  border: 2px solid rgba(212, 175, 55, 0.4);
+  border: 0.13rem solid rgba(212, 175, 55, 0.4);
 }
 
 .backdropFrameContainer:nth-child(2) .backdropFrame {
@@ -282,14 +289,14 @@
 
 .backdropFrameContainer:nth-child(3) .backdropFrame {
   border-color: rgba(212, 175, 55, 0.5);
-  box-shadow: 0 0 40px rgba(212, 175, 55, 0.15);
+  box-shadow: 0 0 2.5rem rgba(212, 175, 55, 0.15);
   animation: floatRotate 6s ease-in-out infinite reverse;
 }
 
 .backdropFrameContainer:nth-child(4) .backdropFrame {
-  border: 3px solid var(--gold-primary);
+  border: 0.19rem solid var(--gold-primary);
   background: transparent;
-  box-shadow: 0 0 80px rgba(212, 175, 55, 0.25);
+  box-shadow: 0 0 5rem rgba(212, 175, 55, 0.25);
   animation: floatRotate 10s ease-in-out infinite;
 }
 
@@ -316,13 +323,13 @@
 .closeButton {
   /* POSITIONING */
   position: absolute;
-  top: -25px;
-  right: -25px;
+  top: -1.3vw;
+  right: -1.3vw;
   z-index: 100;
   
   /* SIZING */
-  width: 50px;
-  height: 50px;
+  width: 2.6vw;
+  height: 2.6vw;
   
   /* LAYOUT */
   display: flex;
@@ -335,19 +342,19 @@
    * Dark radial gradient background → gold outer border → small inner gold border
    */
   background: radial-gradient(circle at center, var(--bg-medium) 0%, var(--bg-dark) 100%);
-  border: 3px solid var(--gold-primary);
+  border: 0.19rem solid var(--gold-primary);
   transform: rotate(45deg);  /* Diamond shape */
   transition: all 0.3s ease;
   box-shadow: 
-    inset 0 0 0 2px var(--bg-medium),
-    inset 0 0 0 4px var(--gold-secondary),
-    0 0 20px rgba(212, 175, 55, 0.3);
+    inset 0 0 0 0.13rem var(--bg-medium),
+    inset 0 0 0 0.25rem var(--gold-secondary),
+    0 0 1.25rem rgba(212, 175, 55, 0.3);
 }
 
 /* X text styling */
 .closeButton span {
   transform: rotate(-45deg);  /* Counter-rotate for upright X */
-  font-size: 28px;
+  font-size: 1.46vw;
   font-weight: 300;
   color: var(--gold-primary);
   line-height: 1;
@@ -360,8 +367,8 @@
   background: radial-gradient(circle at center, var(--gold-primary) 0%, var(--gold-secondary) 100%);
   transform: rotate(45deg) scale(1.1);
   box-shadow: 
-    inset 0 0 0 2px var(--bg-medium),
-    inset 0 0 0 4px var(--bg-dark);
+    inset 0 0 0 0.13rem var(--bg-medium),
+    inset 0 0 0 0.25rem var(--bg-dark);
 }
 
 .closeButton:hover span {

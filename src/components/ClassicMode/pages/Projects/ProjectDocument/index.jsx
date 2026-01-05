@@ -33,7 +33,7 @@
  */
 
 // DEPENDENCIES
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import classes from './ProjectDocument.module.css';
 
 /**
@@ -52,6 +52,19 @@ const ProjectDocument = ({
 }) => {
   // State to control entrance animation - starts true, becomes false after animation
   const [isEntering, setIsEntering] = useState(true);
+  
+  // Detect mobile landscape view
+  const isMobile = useMemo(() => 
+    window.matchMedia('(max-height: 600px) and (orientation: landscape)').matches,
+    []
+  );
+  
+  // Limit tech stack to 5 items on mobile
+  const displayedTechStack = useMemo(() => 
+    isMobile ? project.techStack.slice(0, 5) : project.techStack,
+    [isMobile, project.techStack]
+  );
+  
   // Calculate inline styles for stacking/fanning
   const documentStyle = {
     // In fanned mode, reverse index order (to appear from leftmost-rightmost in fanned mode)
@@ -108,7 +121,7 @@ const ProjectDocument = ({
         <div className={classes.techSection}>
           <h4 className={classes.techTitle}>Technologies Used:</h4>
           <div className={classes.techList}>
-            {project.techStack.map((tech, techIndex) => (
+            {displayedTechStack.map((tech, techIndex) => (
               <span key={techIndex} className={classes.techItem}>
                 {tech}
               </span>

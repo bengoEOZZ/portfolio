@@ -7,35 +7,39 @@
 .sparkle {
   /* LAYOUT & POSITIONING */
   position: absolute;                /* Position on icon */
-  width: 1.5px;                      /* Dot size */
-  height: 1.5px;                     /* Circular */
+  width: 0.082vw;                    /* Dot size - 1.575px → vw */
+  height: 0.082vw;                   /* Circular - 1.575px → vw */
   z-index: 10;                       /* Above icons */
   
   /* APPEARANCE */
   background: #f4e4bc;               /* Champagne center dot */
   border-radius: 50%;                /* Round dot */
   box-shadow: 
-    0 0 3px rgba(244, 228, 188, 0.8),       /* Center glow */
+    0 0 0.164vw rgba(244, 228, 188, 0.8),       /* Center glow - 3.15px → vw */
     /* Horizontal beam (left to right) */
-    -3px 0 0 -0.5px transparent,            /* Far left fade */
-    -2px 0 0 -0.5px #f4e4bc,                /* Left outer */
-    -1px 0 0 -0.5px #f4e4bc,                /* Left inner */
-    1px 0 0 -0.5px #f4e4bc,                 /* Right inner */
-    2px 0 0 -0.5px #f4e4bc,                 /* Right outer */
-    3px 0 0 -0.5px transparent,             /* Far right fade */
+    -0.164vw 0 0 -0.027vw transparent,            /* Far left fade - -3.15px -0.525px → vw */
+    -0.109vw 0 0 -0.027vw #f4e4bc,              /* Left outer - -2.1px -0.525px → vw */
+    -0.055vw 0 0 -0.027vw #f4e4bc,              /* Left inner - -1.05px -0.525px → vw */
+    0.055vw 0 0 -0.027vw #f4e4bc,               /* Right inner - 1.05px -0.525px → vw */
+    0.109vw 0 0 -0.027vw #f4e4bc,               /* Right outer - 2.1px -0.525px → vw */
+    0.164vw 0 0 -0.027vw transparent,             /* Far right fade - 3.15px -0.525px → vw */
     /* Vertical beam (top to bottom) */
-    0 -3px 0 -0.5px transparent,            /* Top fade */
-    0 -2px 0 -0.5px #f4e4bc,                /* Top outer */
-    0 -1px 0 -0.5px #f4e4bc,                /* Top inner */
-    0 1px 0 -0.5px #f4e4bc,                 /* Bottom inner */
-    0 2px 0 -0.5px #f4e4bc,                 /* Bottom outer */
-    0 3px 0 -0.5px transparent;             /* Bottom fade - creates cross sparkle */
+    0 -0.164vw 0 -0.027vw transparent,            /* Top fade - -3.15px -0.525px → vw */
+    0 -0.109vw 0 -0.027vw #f4e4bc,              /* Top outer - -2.1px -0.525px → vw */
+    0 -0.055vw 0 -0.027vw #f4e4bc,              /* Top inner - -1.05px -0.525px → vw */
+    0 0.055vw 0 -0.027vw #f4e4bc,               /* Bottom inner - 1.05px -0.525px → vw */
+    0 0.109vw 0 -0.027vw #f4e4bc,               /* Bottom outer - 2.1px -0.525px → vw */
+    0 0.164vw 0 -0.027vw transparent;             /* Bottom fade - creates cross sparkle - 3.15px -0.525px → vw */
   
   /* INTERACTIONS */
   opacity: 0;                        /* Hidden by default */
   transform: scale(0);               /* Start small */
   pointer-events: none;              /* Don't block clicks */
   transition: all 0.3s ease;         /* Smooth appearance */
+  
+  /* CONTINUOUS ANIMATION */
+  animation: iconSparkle var(--duration, 3s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
 }
 
 /**

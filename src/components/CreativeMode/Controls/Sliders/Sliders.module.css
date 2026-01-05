@@ -22,7 +22,7 @@
     font-family: 'Orbitron', sans-serif;
     font-size: 0.9vw;  /* 17px → vw */
     color: #00d4ff;
-    text-shadow: 0 0 0.52vw rgba(0, 212, 255, 0.8); /* 10px → vw */
+    text-shadow: 0 0 0.625rem rgba(0, 212, 255, 0.8); /* 10px → rem */
     text-align: center;
     
     /* INITIAL STATE FOR ANIMATION */
@@ -52,10 +52,10 @@
 .slider {
     /* SIZING */
     width: 97.5%; 
-    height: 1.11vh;  /* 12px → vh */
+    height: 4.7%;                       /* Slider track height relative to container */
     
     /* LAYOUT & POSITIONING */
-    margin: 0.93vh auto;  /* 10px → vh */
+    margin: 4% auto;                    /* Vertical spacing relative to container */
     display: block;
     
     /* APPEARANCE RESET */
@@ -64,8 +64,8 @@
     
     /* APPEARANCE */
     background: linear-gradient(90deg, #1a1a2e, #0f3460); /* Dark gradient background */
-    border-radius: 0.52vw;  /* 10px → vw */
-    box-shadow: 0 0 0.52vw rgba(0, 212, 255, 0.5); /* 10px → vw */
+    border-radius: 0.625rem;  /* 10px → rem */
+    box-shadow: 0 0 0.625rem rgba(0, 212, 255, 0.5); /* 10px → rem */
     
     /* INTERACTIONS */
     transition: background 0.3s, box-shadow 0.3s;
@@ -81,7 +81,7 @@
     /* Brighter gradient on hover */
     
     /* ENHANCED GLOW */
-    box-shadow: 0 0 1.04vw rgba(0, 212, 255, 0.8); /* 20px → vw */
+    box-shadow: 0 0 1.25rem rgba(0, 212, 255, 0.8); /* 20px → rem */
     /* Increased cyan glow intensity */
 }
 
@@ -101,9 +101,9 @@
     
     /* APPEARANCE */
     background: radial-gradient(circle, #00d4ff, #007bff);
-    border: 0.08vw solid #00d4ff;  /* 1.5px → vw */
+    border: 0.09375rem solid #00d4ff;  /* 1.5px → rem */
     border-radius: 50%;
-    box-shadow: 0 0 0.78vw rgba(0, 212, 255, 0.8); /* 15px → vw */
+    box-shadow: 0 0 0.9375rem rgba(0, 212, 255, 0.8); /* 15px → rem */
     
     /* INTERACTIONS */
     cursor: pointer;
@@ -132,9 +132,9 @@
  * Each position centers thumb on corresponding word label
  */
 .weatherSlider .slider[data-value="0"]::-webkit-slider-thumb { --thumb-offset: calc(0%); }    /* Season */
-.weatherSlider .slider[data-value="1"]::-webkit-slider-thumb { --thumb-offset: calc(2.5%); }  /* Clear */
-.weatherSlider .slider[data-value="2"]::-webkit-slider-thumb { --thumb-offset: calc(0%); }    /* Rainy */
-.weatherSlider .slider[data-value="3"]::-webkit-slider-thumb { --thumb-offset: calc(-2.5%); }   /* Windy */
+.weatherSlider .slider[data-value="1"]::-webkit-slider-thumb { --thumb-offset: calc(3%); }  /* Clear */
+.weatherSlider .slider[data-value="2"]::-webkit-slider-thumb { --thumb-offset: calc(-1%); }    /* Rainy */
+.weatherSlider .slider[data-value="3"]::-webkit-slider-thumb { --thumb-offset: calc(-4%); }   /* Windy */
 .weatherSlider .slider[data-value="4"]::-webkit-slider-thumb { --thumb-offset: calc(0%); }    /* Cloudy */
 
 /**
@@ -147,7 +147,7 @@
     /* Enlarges thumb by 20% for better interaction feedback */
     
     /* ENHANCED GLOW */
-    box-shadow: 0 0 1.3vw rgba(0, 212, 255, 1); /* 25px → vw */
+    box-shadow: 0 0 1.5625rem rgba(0, 212, 255, 1); /* 25px → rem */
     /* Full opacity cyan glow on hover */
 }
 
@@ -159,7 +159,7 @@
     /* LAYOUT & POSITIONING */
     display: flex;                      /* Horizontal layout */
     justify-content: space-between;     /* Even spacing */
-    margin-top: 0.46vh;  /* 5px → vh */
+    margin-top: 2%;                     /* Spacing relative to container */
     
     /* TYPOGRAPHY */
     font-size: 0.8vw;  /* 15.36px → vw */
@@ -173,7 +173,7 @@
  */
 .sliderLabels span {
     /* LAYOUT & POSITIONING */
-    padding: 0 0.42vw;  /* 8px → vw */
+    padding: 0 1.8%;                    /* Horizontal padding relative to container */
     text-align: center;
 }
 
@@ -186,12 +186,12 @@
     0% {
         opacity: 0;
         transform: translateX(5.21vw) scale(0.8);  /* 100px → vw */
-        filter: blur(0.52vw); /* 10px → vw */
+        filter: blur(0.625rem); /* 10px → rem */
     }
     60% {
         opacity: 0.8;
         transform: translateX(-0.52vw) scale(1.05); /* -10px → vw */
-        filter: blur(0.1vw); /* 2px → vw */
+        filter: blur(0.125rem); /* 2px → rem */
     }
     80% {
         opacity: 1;
@@ -203,4 +203,21 @@
         transform: translateX(0) scale(1);
         filter: blur(0px);
     }
+}
+
+/**
+ * MOBILE LANDSCAPE STYLES
+ * =======================
+ * Increase slider size for mobile landscape view
+ */
+@media (max-height: 600px) and (orientation: landscape) {
+  .slider {
+    height: 0.5rem;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    width: 0.7rem;
+    height: 0.7rem;
+  }
+
 }

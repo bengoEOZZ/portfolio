@@ -9,26 +9,26 @@
  */
 .btn {
   /* LAYOUT & SPACING */
-  padding: 20px 45px;              /* Refined padding */
-  font-size: 1.8rem;               /* Size */
-  font-weight: 600;                /* Semi-bold */
+  padding: 2.25vh 2.344vw;        /* 20px 45px → vh vw */
+  font-size: 3vh;                 /* 1.8rem / 28.8px → vh */
+  font-weight: 600;               /* Semi-bold */
   
   /* TYPOGRAPHY */
   font-family: 'Georgia', 'Times New Roman', serif;
   text-transform: uppercase;       /* Uppercase */
-  letter-spacing: 2px;             /* A bit of letter spacing */
+  letter-spacing: 0.104vw;         /* 2px → vw */
   
   /* APPEARANCE */
-  color: #ffffff;                  /* Pure white text */
-  border-radius: 8px;                /* Subtle rounded corners */
-  border: 3px solid #d1d5db;       /* Softer light gray border */
+  color: #ffffff;                /* Pure white text */
+  border-radius: 0.5rem;           /* 8px → rem */
+  border: 0.1875rem solid #d1d5db; /* 3px → rem */
 
   /* ADVANCED COSMIC BACKGROUND */
   background: 
     /* Star field overlay */
-    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.8) 1px, transparent 1px),
-    radial-gradient(circle at 60% 80%, rgba(255, 255, 255, 0.6) 1px, transparent 1px),
-    radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.7) 1px, transparent 1px),
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.8) 0.052vw, transparent 0.052vw),  /* 1px → vw */
+    radial-gradient(circle at 60% 80%, rgba(255, 255, 255, 0.6) 0.052vw, transparent 0.052vw),  /* 1px → vw */
+    radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.7) 0.052vw, transparent 0.052vw),  /* 1px → vw */
     /* Cosmic gradient */
     linear-gradient(135deg, 
       #0a0f1c 0%,                  /* Deep space blue */
@@ -75,7 +75,7 @@
 .btn::before {
   content: '';                    /* Required for pseudo-element to render */
   position: absolute;             /* Position relative to .btn container */
-  top: 0px;
+  top: 0;                         /* 0px */
   left: -100%;                    /* Start completely off-screen to the left */
   width: 100%;                    /* Full width of button */
   height: 100%;
@@ -115,8 +115,8 @@
 
   /* PARTICLE FIELD */
   background: 
-    radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.5) 1px, transparent 2px),
-    radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.4) 1px, transparent 2px);
+    radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.5) 0.052vw, transparent 0.104vw),  /* 1px 2px → vw */
+    radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.4) 0.052vw, transparent 0.104vw);  /* 1px 2px → vw */
   
   /* PARTICLE ROTATION */
   animation: stellarRotation 12s linear infinite; /* Slow constant rotation of particle field */
@@ -141,9 +141,9 @@
   /* INTENSIFIED BACKGROUND */
   background: 
     /* Enhanced star field (more prominent) */
-    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 1) 1.5px, transparent 1.5px),
-    radial-gradient(circle at 60% 80%, rgba(255, 255, 255, 0.8) 1.5px, transparent 1.5px),
-    radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.9) 1.5px, transparent 1.5px),
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 1) 0.078vw, transparent 0.078vw),    /* 1.5px → vw */
+    radial-gradient(circle at 60% 80%, rgba(255, 255, 255, 0.8) 0.078vw, transparent 0.078vw),  /* 1.5px → vw */
+    radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.9) 0.078vw, transparent 0.078vw),  /* 1.5px → vw */
     /* Enhanced cosmic gradient */
     linear-gradient(135deg, 
       #0f172a 0%,
@@ -155,10 +155,10 @@
   
   /* ENHANCED GLOW */
   box-shadow:
-    0 0 100px rgba(159, 168, 218, 0.3);
+    0 0 6.25rem rgba(159, 168, 218, 0.3);  /* 100px → rem */
   
   /* ENHANCED ELEVATION */
-  transform: translateY(-8px) scale(1.03);
+  transform: translateY(-0.741vh) scale(1.03);  /* -8px → vh */
 
   /* FASTER FLOATING ANIMATION */
   animation: celestialFloatHover 3s ease-in-out infinite;
@@ -175,19 +175,19 @@
  */
 @keyframes celestialFloat {
   0%, 100% {
-    transform: translateY(0px) rotate(0deg);        /* Rest position - no lift, no rotation */
+    transform: translateY(0) rotate(0deg);  /* Rest position - no lift, no rotation */
   }
   
   25% {
-    transform: translateY(-3px) rotate(0.5deg);     /* Quarter lift with slight right tilt */
+    transform: translateY(-0.278vh) rotate(0.5deg);  /* -3px → vh */
   }
   
   50% {
-    transform: translateY(-6px) rotate(0deg) scale(1.01); /* Peak lift with subtle scale */
+    transform: translateY(-0.556vh) rotate(0deg) scale(1.01);  /* -6px → vh */
   }
   
   75% {
-    transform: translateY(-3px) rotate(-0.5deg);    /* Quarter lift with slight left tilt */
+    transform: translateY(-0.278vh) rotate(-0.5deg);  /* -3px → vh */
   }
 }
 
@@ -197,15 +197,15 @@
  */
 @keyframes celestialFloatHover {
   0%, 100% {
-    transform: translateY(-8px) scale(1.03) rotate(0deg); /* Elevated rest position with scale */
+    transform: translateY(-0.741vh) scale(1.03) rotate(0deg);  /* -8px → vh */
   }
   
   33% {
-    transform: translateY(-12px) scale(1.04) rotate(1deg); /* Higher lift with right tilt */
+    transform: translateY(-1.111vh) scale(1.04) rotate(1deg);  /* -12px → vh */
   }
   
   66% {
-    transform: translateY(-10px) scale(1.035) rotate(-1deg); /* Mid-lift with left tilt */
+    transform: translateY(-0.926vh) scale(1.035) rotate(-1deg);  /* -10px → vh */
   }
 }
 

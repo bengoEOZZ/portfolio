@@ -11,7 +11,7 @@
 .pageHeader {
   /* LAYOUT & POSITIONING */
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.52vw;                    /* Scales with zoom */
 }
 
 /**
@@ -110,19 +110,19 @@
  */
 .pageTitle {
   /* TYPOGRAPHY */
-  font: 700 48px/1.2 'Cinzel', serif;
+  font: 700 2.5vw/1.2 'Cinzel', serif;     /* 48px → vw */
   color: #2c2c2c;
-  letter-spacing: 2px;
+  letter-spacing: 0.125rem;                 /* 2px → rem */
   
   /* LAYOUT & POSITIONING */
-  margin: 0 0 1rem 0;
+  margin: 0 0 0.52vw 0;                     /* Scales with zoom */
   
   /* APPEARANCE */
   background: linear-gradient(135deg, #d4af37 0%, #f4e4bc 50%, #d4af37 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+  text-shadow: 0 0 1.875rem rgba(212, 175, 55, 0.4);  /* 30px → rem */
   
   /* ANIMATIONS */
   animation: luxuryEntrance 0.8s ease-out, subtleGlow 4s ease-in-out 1s infinite;
@@ -135,16 +135,16 @@
  */
 .titleUnderline {
   /* SIZING */
-  width: 120px;
-  height: 3px;
+  width: 6.25vw;                            /* 120px → vw */
+  height: 0.1875rem;                        /* 3px → rem */
   
   /* LAYOUT & POSITIONING */
-  margin: 0 auto 1.5rem auto;
+  margin: 0 auto 0.78vw auto;               /* Scales with zoom */
   
   /* APPEARANCE */
   background: linear-gradient(90deg, transparent, #BFA850, transparent);
-  border-radius: 2px;
-  box-shadow: 0 0 10px rgba(191, 168, 80, 0.6);
+  border-radius: 0.125rem;                  /* 2px → rem */
+  box-shadow: 0 0 0.625rem rgba(191, 168, 80, 0.6);  /* 10px → rem */
   
   /* ANIMATIONS */
   animation: underlineExpand 1s ease-out 0.4s backwards;
@@ -157,12 +157,12 @@
  */
 .pageSubtitle {
   /* TYPOGRAPHY */
-  font: 400 18px/1.6 'Cormorant Garamond', serif;
+  font: 400 0.94vw/1.6 'Cormorant Garamond', serif;  /* 18px → vw */
   color: #bbb;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.03125rem;               /* 0.5px → rem */
   
   /* LAYOUT & POSITIONING */
-  max-width: 600px;
+  max-width: 31.25vw;                       /* 600px → vw */
   margin: 0 auto;
   
   /* ANIMATIONS */
@@ -182,7 +182,7 @@
 @keyframes luxuryEntrance {
   0% {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(1.25rem);         /* 20px → rem */
   }
   100% {
     opacity: 1;
@@ -197,11 +197,11 @@
  */
 @keyframes subtleGlow {
   0%, 100% {
-    text-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+    text-shadow: 0 0 1.875rem rgba(212, 175, 55, 0.4);  /* 30px → rem */
   }
   50% {
-    text-shadow: 0 0 40px rgba(212, 175, 55, 0.7),
-                 0 0 60px rgba(255, 215, 0, 0.3);
+    text-shadow: 0 0 2.5rem rgba(212, 175, 55, 0.7),    /* 40px → rem */
+                 0 0 3.75rem rgba(255, 215, 0, 0.3);   /* 60px → rem */
   }
 }
 
@@ -216,7 +216,7 @@
     opacity: 0;
   }
   100% {
-    width: 120px;
+    width: 6.25vw;                          /* 120px → vw */
     opacity: 1;
   }
 }
@@ -231,13 +231,13 @@
     transform: translateY(0) translateX(0);
   }
   25% { 
-    transform: translateY(-3px) translateX(2px);
+    transform: translateY(-0.1875rem) translateX(0.125rem);  /* -3px 2px → rem */
   }
   50% { 
-    transform: translateY(-5px) translateX(0);
+    transform: translateY(-0.3125rem) translateX(0);         /* -5px → rem */
   }
   75% { 
-    transform: translateY(-3px) translateX(-2px);
+    transform: translateY(-0.1875rem) translateX(-0.125rem); /* -3px -2px → rem */
   }
 }
 
@@ -254,5 +254,30 @@
   50% { 
     opacity: 1;
     transform: scale(1.2) rotate(180deg);
+  }
+}
+
+/**
+ * MOBILE RESPONSIVE STYLES
+ * ========================
+ * Enhanced spacing and larger text for better mobile readability.
+ */
+@media (max-height: 600px) and (orientation: landscape) {
+  .pageHeader {
+    margin-top: -2rem;
+  }
+  
+  .pageTitle {
+    font-size: 2rem;
+  }
+  
+  .titleUnderline {
+    margin: 0 auto 1.5rem auto;
+  }
+  
+  .pageSubtitle {
+    margin-top: -1rem;
+    font-size: 1rem;
+    max-width: none;
   }
 }

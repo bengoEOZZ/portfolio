@@ -11,9 +11,9 @@
 .navCards {
   /* LAYOUT & POSITIONING */
   position: fixed;
-  bottom: 80px;
+  bottom: 4.17vw;                    /* 80px → vw */
   width: 100vw;
-  height: 200px;
+  height: 10.42vw;                   /* 200px → vw */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,7 +22,7 @@
   /* APPEARANCE */
   opacity: 0;
   transform-style: preserve-3d;
-  perspective: 1000px;
+  perspective: 52.08vw;              /* 1000px → vw */
   
   /* ANIMATIONS */
   animation: luxuryBeltEntry 1.5s ease-out 1.0s both, wave 4s ease-in-out infinite 3s;
@@ -43,7 +43,7 @@
   z-index: 7;
   
   /* SIZING */
-  height: 180px;
+  height: 9.38vw;                    /* 180px → vw */
   width: 120vw;
   
   /* APPEARANCE - X Shine Effect */
@@ -72,15 +72,15 @@
   z-index: 1;
   
   /* SIZING */
-  height: 160px;
+  height: 8.33vw;                    /* 160px → vw */
   width: 120vw;
   
   /* APPEARANCE */
   background: 
     linear-gradient(180deg, #1a0f08 0%, #2d1710 5%, #4a2416 15%, #6b3319 25%, #8b4513 35%, #a0522d 45%,
       #cd853f 50%, #daa520 55%, #cd853f 60%, #a0522d 65%, #8b4513 75%, #6b3319 85%, #4a2416 95%, #1a0f08 100%);
-  border: 8px solid #FFD700;
-  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.8), 0 0 80px rgba(255, 215, 0, 0.4);
+  border: 0.42vw solid #FFD700;      /* 8px → vw */
+  box-shadow: 0 2.5rem 7.5rem rgba(0, 0, 0, 0.8), 0 0 5rem rgba(255, 215, 0, 0.4); /* 40px 120px, 80px → rem */
   
   /* ANIMATIONS */
   animation: beltEntry 2s ease-out 1.2s both, beltWave 3s ease-in-out infinite 3s;
@@ -101,15 +101,15 @@
   z-index: 2;
   
   /* SIZING */
-  height: 160px;
+  height: 8.33vw;                    /* 160px → vw */
   width: 120vw;
   
   /* APPEARANCE */
   background: 
     linear-gradient(90deg, transparent 0%, #FFD700 2%, transparent 4%, transparent 8%, #FFD700 10%, transparent 12%),
     linear-gradient(90deg, transparent 0%, #FFD700 2%, transparent 4%, transparent 8%, #FFD700 10%, transparent 12%);
-  background-size: 40px 2px, 40px 2px;
-  background-position: 0 20px, 0 calc(100% - 20px);
+  background-size: 2.08vw 0.1vw, 2.08vw 0.1vw;           /* 40px 2px → vw */
+  background-position: 0 1.04vw, 0 calc(100% - 1.04vw); /* 20px → vw */
   background-repeat: repeat-x;
   opacity: 0.8;
   
@@ -134,15 +134,15 @@
   justify-content: center;
   
   /* SIZING */
-  width: 280px;
-  height: 200px;
+  width: 14.58vw;                    /* 280px → vw */
+  height: 10.42vw;                   /* 200px → vw */
   
   /* APPEARANCE */
   background: radial-gradient(ellipse at center, #FFD700 0%, #F4D03F 15%, #FFD700 30%, #d4af37 45%, #B8860B 60%,
               #8B4513 75%, #d4af37 85%, #FFD700 100%);
-  border: 8px solid #8B4513;
-  border-radius: 35px;
-  box-shadow: 0 0 100px rgba(255, 215, 0, 0.6), inset 0 12px 0 rgba(255, 255, 255, 0.5), inset 0 -12px 0 rgba(0, 0, 0, 0.5);
+  border: 0.42vw solid #8B4513;      /* 8px → vw */
+  border-radius: 1.82vw;             /* 35px → vw */
+  box-shadow: 0 0 6.25rem rgba(255, 215, 0, 0.6), inset 0 0.75rem 0 rgba(255, 255, 255, 0.5), inset 0 -0.75rem 0 rgba(0, 0, 0, 0.5); /* 100px, 12px → rem */
   opacity: 0;
   overflow: hidden;
   
@@ -168,14 +168,14 @@
   transform: translate(-50%, -50%);
   
   /* SIZING */
-  width: 120px;
-  height: 120px;
+  width: 6.25vw;                     /* 120px → vw */
+  height: 6.25vw;                    /* 120px → vw */
   
   /* APPEARANCE */
   background: radial-gradient(circle, rgba(139, 69, 19, 0.9) 0%, rgba(139, 69, 19, 0.7) 30%, rgba(212, 175, 55, 0.3) 50%, transparent 80%);
-  border: 6px solid #8B4513;
+  border: 0.31vw solid #8B4513;      /* 6px → vw */
   border-radius: 50%;
-  box-shadow: inset 0 6px 0 rgba(255, 255, 255, 0.4), inset 0 -6px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0.375rem 0 rgba(255, 255, 255, 0.4), inset 0 -0.375rem 0 rgba(0, 0, 0, 0.5); /* 6px → rem */
 }
 
 /**
@@ -192,10 +192,10 @@
   z-index: 10;
   
   /* TYPOGRAPHY */
-  font-size: 45px;
+  font-size: 2.34vw;                 /* 45px → vw */
   font-weight: bold;
   color: #d4af37;
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.8), 0 0 30px rgba(212, 175, 55, 0.8);
+  text-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.8), 0 0 1.875rem rgba(212, 175, 55, 0.8); /* 4px 8px, 30px → rem */
 }
 
 /**
@@ -213,17 +213,17 @@
   z-index: 20;
   
   /* SIZING */
-  width: 140px;
-  height: 100px;
+  width: 7.29vw;                     /* 140px → vw */
+  height: 5.21vw;                    /* 100px → vw */
   flex-shrink: 0;
   
   /* APPEARANCE */
   background: linear-gradient(135deg, #FFD700 0%, #F4D03F 15%, #FFD700 30%, #d4af37 45%, #B8860B 60%, #8B4513 70%, #d4af37 80%, #F4D03F 90%, #FFD700 100%);
-  border: 4px solid #8B4513;
-  border-radius: 15px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 4px 0 rgba(255, 255, 255, 0.4), inset 0 -4px 0 rgba(0, 0, 0, 0.3);
+  border: 0.21vw solid #8B4513;      /* 4px → vw */
+  border-radius: 0.78vw;             /* 15px → vw */
+  box-shadow: 0 1.25rem 3.125rem rgba(0, 0, 0, 0.5), inset 0 0.25rem 0 rgba(255, 255, 255, 0.4), inset 0 -0.25rem 0 rgba(0, 0, 0, 0.3); /* 20px 50px, 4px → rem */
   opacity: 0;
-  transform: translateY(30px) scale(0.9);
+  transform: translateY(1.56vw) scale(0.9);
   overflow: hidden;
   
   /* INTERACTIONS */
@@ -243,22 +243,22 @@
 .navCard:nth-child(2) { 
   animation: cardEntryLeft 1s cubic-bezier(0.34, 1.56, 0.64, 1) 2.5s forwards, cardWave 3.8s ease-in-out infinite 6s;
   order: 1; 
-  margin-right: 100px; 
+  margin-right: 5.21vw;              /* 100px → vw */
 }
 .navCard:nth-child(3) { 
   animation: cardEntryLeft 1s cubic-bezier(0.34, 1.56, 0.64, 1) 2.8s forwards, cardWave 3.8s ease-in-out infinite 6.3s;
   order: 2; 
-  margin-right: 200px; 
+  margin-right: 10.42vw;             /* 200px → vw */
 }
 .navCard:nth-child(5) { 
   animation: cardEntryRight 1s cubic-bezier(0.34, 1.56, 0.64, 1) 3.1s forwards, cardWave 3.8s ease-in-out infinite 6.6s;
   order: 4; 
-  margin-left: 200px; 
+  margin-left: 10.42vw;              /* 200px → vw */
 }
 .navCard:nth-child(6) { 
   animation: cardEntryRight 1s cubic-bezier(0.34, 1.56, 0.64, 1) 3.4s forwards, cardWave 3.8s ease-in-out infinite 6.9s;
   order: 5; 
-  margin-left: 100px; 
+  margin-left: 5.21vw;               /* 100px → vw */
 }
 
 /**
@@ -279,7 +279,7 @@
   
   /* APPEARANCE */
   background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.6) 48%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0.6) 52%, transparent 70%);
-  border-radius: 15px;
+  border-radius: 0.78vw;             /* 15px → vw */
   
   /* ANIMATIONS */
   animation: luxurySparkle 6s ease-in-out infinite;
@@ -292,8 +292,8 @@
  */
 .navCard:hover {
   /* APPEARANCE */
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 4px 0 rgba(255, 255, 255, 0.4), inset 0 -4px 0 rgba(0, 0, 0, 0.3);
+  transform: translateY(-0.42vw) scale(1.03);
+  box-shadow: 0 1.25rem 3.125rem rgba(0, 0, 0, 0.5), inset 0 0.25rem 0 rgba(255, 255, 255, 0.4), inset 0 -0.25rem 0 rgba(0, 0, 0, 0.3); /* 20px 50px, 4px → rem */
   background: linear-gradient(135deg, 
     #FFD700 0%, 
     #FFFFFF 20%, 
@@ -312,8 +312,8 @@
 }
 
 .navCard:hover .cardLabel {
-  letter-spacing: 3px;
-  transform: translateY(-1px);
+  letter-spacing: 0.16vw;
+  transform: translateY(-0.05vw);
 }
 
 /**
@@ -328,12 +328,12 @@
   
   /* TYPOGRAPHY */
   font-family: 'Georgia', 'Times New Roman', serif;
-  font-size: 26px;
+  font-size: 1.35vw;                 /* 26px → vw */
   font-weight: 800;
   font-style: italic;
   color: #2C1810;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3);
-  margin-bottom: 6px;
+  text-shadow: 0 0.0625rem 0 rgba(255, 255, 255, 0.4), 0 0.125rem 0.25rem rgba(0, 0, 0, 0.3); /* 1px, 2px 4px → rem */
+  margin-bottom: 0.31vw;             /* 6px → vw */
   
   /* INTERACTIONS */
   transition: all 0.4s ease;
@@ -352,12 +352,12 @@
   z-index: 2;
   
   /* TYPOGRAPHY */
-  font-size: 12px;
+  font-size: 0.63vw;                 /* 12px → vw */
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 0.1vw;             /* 2px → vw */
   color: #4A2C17;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+  text-shadow: 0 0.0625rem 0 rgba(255, 255, 255, 0.3); /* 1px → rem */
   
   /* APPEARANCE */
   opacity: 0.9;
@@ -367,10 +367,10 @@
 }
 
 .navCard:hover .cardLabel {
-  letter-spacing: 3px;
+  letter-spacing: 0.16vw;
   opacity: 1;
   color: #2C1810;
-  transform: translateY(-1px);
+  transform: translateY(-0.05vw);
 }
 
 /**
@@ -473,8 +473,8 @@
  * Main container entrance from bottom.
  */
 @keyframes luxuryBeltEntry {
-  0% { opacity: 0; transform: translateY(80px) scale(0.9); }
-  50% { opacity: 0.7; transform: translateY(-10px) scale(1.02); }
+  0% { opacity: 0; transform: translateY(4.17vw) scale(0.9); }
+  50% { opacity: 0.7; transform: translateY(-0.52vw) scale(1.02); }
   100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
@@ -484,8 +484,8 @@
  * Leather strap entrance with blur effect.
  */
 @keyframes beltEntry {
-  0% { opacity: 0; transform: translateY(-50%) scaleX(0.5); filter: blur(10px); }
-  50% { opacity: 0.8; transform: translateY(-50%) scaleX(1.05); filter: blur(2px); }
+  0% { opacity: 0; transform: translateY(-50%) scaleX(0.5); filter: blur(0.63rem); }
+  50% { opacity: 0.8; transform: translateY(-50%) scaleX(1.05); filter: blur(0.13rem); }
   100% { opacity: 1; transform: translateY(-50%) scaleX(1); filter: blur(0); }
 }
 
@@ -518,11 +518,11 @@
 @keyframes cardEntryLeft {
   0% { 
     opacity: 0; 
-    transform: translateX(-40px) translateY(6px) scale(0.85) rotateZ(-5deg); 
+    transform: translateX(-2.08vw) translateY(0.31vw) scale(0.85) rotateZ(-5deg); 
   }
   60% { 
     opacity: 1; 
-    transform: translateX(2px) translateY(-1px) scale(1.01) rotateZ(1deg); 
+    transform: translateX(0.1vw) translateY(-0.05vw) scale(1.01) rotateZ(1deg); 
   }
   100% { 
     opacity: 1; 
@@ -538,11 +538,11 @@
 @keyframes cardEntryRight {
   0% { 
     opacity: 0; 
-    transform: translateX(40px) translateY(6px) scale(0.85) rotateZ(5deg); 
+    transform: translateX(2.08vw) translateY(0.31vw) scale(0.85) rotateZ(5deg); 
   }
   60% { 
     opacity: 1; 
-    transform: translateX(-2px) translateY(-1px) scale(1.01) rotateZ(-1deg); 
+    transform: translateX(-0.1vw) translateY(-0.05vw) scale(1.01) rotateZ(-1deg); 
   }
   100% { 
     opacity: 1; 
@@ -666,11 +666,11 @@
 @keyframes beltFadeOut {
   from {
     opacity: 1;
-    transform: translateY(0px);
+    transform: translateY(0);
   }
   to {
     opacity: 0;
-    transform: translateY(50px);
+    transform: translateY(2.6vw);
   }
 }
 
@@ -682,15 +682,15 @@
 @keyframes cardExitLeft {
   0% { 
     opacity: 1; 
-    transform: translateY(0px) translateX(0px) scale(1) rotateZ(0deg);
+    transform: translateY(0) translateX(0) scale(1) rotateZ(0deg);
   }
   50% {
     opacity: 0.7;
-    transform: translateY(-10px) translateX(-20px) scale(0.95) rotateZ(-5deg);
+    transform: translateY(-0.52vw) translateX(-1.04vw) scale(0.95) rotateZ(-5deg);
   }
   100% { 
     opacity: 0; 
-    transform: translateY(30px) translateX(-80px) scale(0.8) rotateZ(-15deg);
+    transform: translateY(1.56vw) translateX(-4.17vw) scale(0.8) rotateZ(-15deg);
   }
 }
 
@@ -702,14 +702,14 @@
 @keyframes cardExitRight {
   0% { 
     opacity: 1; 
-    transform: translateY(0px) translateX(0px) scale(1) rotateZ(0deg);
+    transform: translateY(0) translateX(0) scale(1) rotateZ(0deg);
   }
   50% {
     opacity: 0.7;
-    transform: translateY(-10px) translateX(20px) scale(0.95) rotateZ(5deg);
+    transform: translateY(-0.52vw) translateX(1.04vw) scale(0.95) rotateZ(5deg);
   }
   100% { 
     opacity: 0; 
-    transform: translateY(30px) translateX(80px) scale(0.8) rotateZ(15deg);
+    transform: translateY(1.56vw) translateX(4.17vw) scale(0.8) rotateZ(15deg);
   }
 }

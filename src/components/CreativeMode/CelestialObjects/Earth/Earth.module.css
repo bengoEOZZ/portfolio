@@ -103,40 +103,40 @@
         opacity: 0.9;
         transform: translateX(-150vw) translateY(-75vh) rotate(-30deg) scale(0.5);
         filter: 
-            brightness(17.5) blur(8.33vh) /* 90px → vh */ hue-rotate(150deg) saturate(10)
-            drop-shadow(0 0 11.11vh #ff6500) /* 120px → vh */
-            drop-shadow(0 0 23.15vh #ff8000); /* 250px → vh */
+            brightness(17.5) blur(5.625rem) /* 90px → rem */ hue-rotate(150deg) saturate(10)
+            drop-shadow(0 0 1.875rem #ff6500) /* 30px */
+            drop-shadow(0 0 3.90625rem #ff8000); /* 62.5px */
         /* Ultra-bright fiery meteor with extreme blur and orange glow */
     }
     35% {          /* Midway through entry - bright */
         opacity: 1;
         transform: translateX(-50vw) translateY(-25vh) rotate(-10deg) scale(0.8);
-        filter: brightness(12) blur(5.56vh) /* 60px → vh */ hue-rotate(120deg) saturate(6)
-            drop-shadow(0 0 9.26vh #ff8500) /* 100px → vh */
-            drop-shadow(0 0 18.52vh #ffa000); /* 200px → vh */
+        filter: brightness(12) blur(3.75rem) /* 60px → rem */ hue-rotate(120deg) saturate(6)
+            drop-shadow(0 0 1.5625rem #ff8500) /* 25px */
+            drop-shadow(0 0 3.125rem #ffa000); /* 50px */
         /* Still blazing hot with reduced blur and lighter orange glow */
     }
     55% {        /* Just before settling - slightly overshoot position */
-        transform: translateX(1.85vh) /* 20px → vh */ translateY(3.7vh) /* 40px → vh */ rotate(5deg) scale(1.15);
-        filter: brightness(5) blur(2.78vh) /* 30px → vh */ hue-rotate(60deg) saturate(2.7)
-            drop-shadow(0 0 7.41vh #ffaa00) /* 80px → vh */
-            drop-shadow(0 0 13.89vh #ffcc00); /* 150px → vh */
+        transform: translateX(1.25rem) /* 20px → rem */ translateY(2.5rem) /* 40px → rem */ rotate(5deg) scale(1.15);
+        filter: brightness(5) blur(1.875rem) /* 30px → rem */ hue-rotate(60deg) saturate(2.7)
+            drop-shadow(0 0 1.25rem #ffaa00) /* 20px */
+            drop-shadow(0 0 2.34375rem #ffcc00); /* 37.5px */
         /* Cooling to yellow-orange with reduced intensity */
     }
 
     /* REBOUND & SETTLE */
     70% {       /* Settling into position - slight rebound effect */
-        transform: translateX(-1.39vh) /* -15px → vh */ translateY(-1.85vh) /* -20px → vh */ rotate(-2deg) scale(1.05);
-        filter: brightness(3) blur(1.39vh) /* 15px → vh */ hue-rotate(30deg) saturate(1.56)
-            drop-shadow(0 0 5.56vh #ffcc33) /* 60px → vh */
-            drop-shadow(0 0 9.26vh #ffdd66); /* 100px → vh */
+        transform: translateX(-0.9375rem) /* -15px → rem */ translateY(-1.25rem) /* -20px → rem */ rotate(-2deg) scale(1.05);
+        filter: brightness(3) blur(0.9375rem) /* 15px → rem */ hue-rotate(30deg) saturate(1.56)
+            drop-shadow(0 0 0.9375rem #ffcc33) /* 15px */
+            drop-shadow(0 0 1.5625rem #ffdd66); /* 25px */
         /* Further cooling with softer yellow glow */
     }
     85% {       /* Another slight rebound effect */
-        transform: translateX(0.74vh) /* 8px → vh */ translateY(0.93vh) /* 10px → vh */ rotate(1deg) scale(1.02);
-        filter: brightness(1.8) blur(0.74vh) /* 8px → vh */ hue-rotate(10deg) saturate(1.21)
-            drop-shadow(0 0 3.7vh #ffdd99) /* 40px → vh */
-            drop-shadow(0 0 6.48vh #ffeeaa); /* 70px → vh */
+        transform: translateX(0.5rem) /* 8px → rem */ translateY(0.625rem) /* 10px → rem */ rotate(1deg) scale(1.02);
+        filter: brightness(1.8) blur(0.5rem) /* 8px → rem */ hue-rotate(10deg) saturate(1.21)
+            drop-shadow(0 0 0.625rem #ffdd99) /* 10px */
+            drop-shadow(0 0 1.09375rem #ffeeaa); /* 17.5px */
         /* Nearly cooled with pale yellow glow */
     }
     100% {      /* Final position - settle into normal Earth appearance */
@@ -156,7 +156,7 @@
     0% {        /* Tiny molten seed (0.1x scale, 0° rotation) */
         transform: rotate(0deg) scale(0.1);
         filter: 
-            blur(18.52vh) /* 200px → vh */
+            blur(12.5rem) /* 200px → rem */
             hue-rotate(180deg)
             contrast(2);
         opacity: 0.3;
@@ -164,36 +164,36 @@
     }
     10% {       /* Small growth (0.3x scale, 180° - half rotation) */
         transform: rotate(180deg) scale(0.3);
-        filter: blur(13.89vh) /* 150px → vh */ hue-rotate(150deg) contrast(1.8);
+        filter: blur(9.375rem) /* 150px → rem */ hue-rotate(150deg) contrast(1.8);
         opacity: 0.5;
         /* Rapid accretion with cooling colors */
     }
     25% {       /* Rapid expansion (0.6x scale, 540° - 1.5 rotations) */
         transform: rotate(540deg) scale(0.6);
-        filter: blur(9.26vh) /* 100px → vh */ hue-rotate(90deg) contrast(1.5);
+        filter: blur(6.25rem) /* 100px → rem */ hue-rotate(90deg) contrast(1.5);
         opacity: 0.8;
         /* Major planetary growth phase */
     }
     45% {       /* Near full size (0.85x scale, 1080° - 3 full rotations) */
         transform: rotate(1080deg) scale(0.85);
-        filter: blur(5.56vh) /* 60px → vh */ hue-rotate(45deg) contrast(1.3);
+        filter: blur(3.75rem) /* 60px → rem */ hue-rotate(45deg) contrast(1.3);
         opacity: 0.95;
         /* Approaching final size with clearer appearance */
     }
     65% {       /* Slight overshoot (1.05x scale, 1440° - 4 rotations) */
         transform: rotate(1440deg) scale(1.05);
-        filter: blur(2.78vh) /* 30px → vh */ hue-rotate(20deg) contrast(1.1);
+        filter: blur(1.875rem) /* 30px → rem */ hue-rotate(20deg) contrast(1.1);
         opacity: 1;
         /* Overshoots target size slightly */
     }
     80% {       /* Small rebound (1.02x scale, 1620° - 4.5 rotations) */
         transform: rotate(1620deg) scale(1.02);
-        filter: blur(1.39vh) /* 15px → vh */ hue-rotate(10deg) contrast(1.05);
+        filter: blur(0.9375rem) /* 15px → rem */ hue-rotate(10deg) contrast(1.05);
         /* Bounces back from overshoot */
     }
     90% {       /* Fine adjustment (1.01x scale, 1710° - 4.75 rotations) */
         transform: rotate(1710deg) scale(1.01);
-        filter: blur(0.46vh) /* 5px → vh */ hue-rotate(5deg) contrast(1.02);
+        filter: blur(0.3125rem) /* 5px → rem */ hue-rotate(5deg) contrast(1.02);
         /* Final stabilization adjustments */
     }
     100% {      /* Perfect size & position (1x scale, 1800° - 5 full rotations) */
@@ -220,8 +220,8 @@
  * Creates gentle vertical bobbing motion.
  */
 @keyframes earthFloat {
-    0%, 100% { transform: translateY(0px); }      /* Base position */
-    50% { transform: translateY(-1.39vh); }       /* -15px → vh */ /* Floats up 15px at midpoint */
+    0%, 100% { transform: translateY(0); }        /* Base position */
+    50% { transform: translateY(-0.9375rem); }    /* -15px → rem - Floats up 15px at midpoint */
 }
 
 /**

@@ -50,7 +50,7 @@ const projectsData = [
     id: 1,
     title: "Portfolio Website",
     type: "Web Development",
-    description: "A dual-mode portfolio featuring ClassicMode and CreativeMode interfaces. The project is a Single Page Application (SPA) that transforms the traditional portfolio concept into an interactive experience. Just wanted to create something fun and engaging to showcase myself, basically.",
+    description: "A dual-mode portfolio featuring Classic and Creative interfaces. The project is a Single Page Application (SPA) that transforms the traditional portfolio concept into an interactive experience. Just wanted to create something fun and engaging to showcase myself, basically.",
     techStack: ["React", "JavaScript", "CSS Modules", "Vite"],
     status: "In Development",
     year: "PRESENT",
@@ -285,7 +285,8 @@ const Projects = () => {
                   onClick={prevDocument}
                   disabled={activeDocument === 0}  // Disable when at first document
                 >
-                  ← Previous
+                  <span className={classes.navButtonTextFull}>← Previous</span>
+                  <span className={classes.navButtonTextShort}>← Prev</span>
                 </button>
                 
                 <button 

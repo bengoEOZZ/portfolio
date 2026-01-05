@@ -14,7 +14,7 @@
  */
 
 // DEPENDENCIES
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import classes from './App.module.css';
 import CreativeMode from './components/CreativeMode';
 import ClassicMode from './components/ClassicMode';
@@ -25,6 +25,9 @@ import Contact from './components/ClassicMode/pages/Contact';
 import ButtonClassic from './components/Home/ButtonClassic';
 import ButtonCreative from './components/Home/ButtonCreative';
 import CodeRemarks from './components/Home/CodeRemarks';
+import HomeClassicBackground from './components/Home/HomeClassicBackground';
+import HomeCreativeBackground from './components/Home/HomeCreativeBackground';
+import RotateScreen from './components/RotateScreen';
 
 /**
  * APP COMPONENT
@@ -34,13 +37,59 @@ import CodeRemarks from './components/Home/CodeRemarks';
 function App() {
     return (
         <Router>
+            <AppContent />
+        </Router>
+    );
+}
+
+/**
+ * APP CONTENT COMPONENT
+ * =====================
+ * Inner component that handles RotateScreen variant selection
+ */
+function AppContent() {
+    const location = useLocation();
+    
+    // Determine the RotateScreen variant based on current route
+    const getRotateScreenVariant = () => {
+        if (location.pathname.startsWith('/creative')) return 'creative';
+        if (location.pathname.startsWith('/classic')) return 'classic';
+        return 'home'; // Default for home page
+    };
+
+    return (
+        <>
+            {/* Portrait orientation overlay - variant changes based on route */}
+            <RotateScreen variant={getRotateScreenVariant()} />
+            
             <Routes>
                 <Route path="/" element={
                     <div className={classes.body}>
-                        <h1 className={classes.header}> Choose Your Mode</h1>
+                        {/* ========== CLASSIC SIDE BACKGROUND ========== */}
+                        <HomeClassicBackground />
+                        
+                        {/* ========== CREATIVE SIDE BACKGROUND ========== */}
+                        <HomeCreativeBackground />
+                        
+                        {/* ========== CENTER PORTAL DIVIDER ========== */}
+                        <div className={classes.centerDivider}></div>
+                        {/* Center Portal Vortex */}
+                        <div className={classes.portalVortex}>
+                            <div className={classes.portalRing}></div>
+                            <div className={classes.portalRing}></div>
+                            <div className={classes.portalRing}></div>
+                            <div className={classes.portalRing}></div>
+                            <div className={classes.portalCore}></div>
+                        </div>
+                        
+                        {/* ========== MAIN CONTENT ========== */}
+                        <h1 className={classes.header}>benjamin-tiong.dev</h1>
                         <div className={classes.buttons}>
                             <ButtonClassic to="/classic">Classic</ButtonClassic>
-                            <ButtonCreative to="/creative">Creative</ButtonCreative>
+                            <div className={classes.creativeContainer}>
+                                <ButtonCreative to="/creative">Creative</ButtonCreative>
+                                <p className={classes.epilepsyWarning}>*EPILEPSY WARNING*</p>
+                            </div>
                         </div>
                         <CodeRemarks />
                     </div>
@@ -53,7 +102,7 @@ function App() {
                     <Route path="contact" element={<Contact />} />
                 </Route>
             </Routes>
-        </Router>
+        </>
     );
 }
 
