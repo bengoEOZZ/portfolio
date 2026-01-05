@@ -33,3 +33,20 @@ body {
   /* LAYOUT RESET */
   margin: 0;                       /* Removes default browser margin */
 }
+
+/**
+ * MOBILE OVERFLOW STYLES
+ * ======================
+ * Adds extra scrollable space at the bottom on mobile devices
+ */
+@media (max-width: 768px) {
+  body {
+    /* Add 10% extra height for comfortable scrolling on mobile */
+    min-height: 110vh;
+    padding-bottom: 10vh;          /* Extra padding at bottom for overflow scroll */
+  }
+  
+  #root {
+    min-height: 110vh;             /* Ensure root container also extends */
+  }
+}

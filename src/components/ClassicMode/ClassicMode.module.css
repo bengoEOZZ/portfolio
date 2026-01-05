@@ -114,3 +114,23 @@
     transform: translateY(1.875rem);  /* 30px → rem */
   }
 }
+
+/**
+ * MOBILE RESPONSIVE STYLES
+ * ========================
+ */
+@media (max-height: 600px) and (orientation: landscape) {
+  .body {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: auto;
+    min-height: 100vh;
+  }
+  
+  .container {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: auto;
+    min-height: 100vh;
+  }
+}
