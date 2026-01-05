@@ -33,3 +33,25 @@ body {
   /* LAYOUT RESET */
   margin: 0;                       /* Removes default browser margin */
 }
+
+/**
+ * MOBILE LANDSCAPE STYLES
+ * =======================
+ * Disable scrolling on mobile to prevent address bar from showing/hiding
+ */
+@media (max-height: 600px) and (orientation: landscape) {
+  html,
+  body {
+    overflow: hidden;              /* Prevents scrolling */
+    position: fixed;               /* Locks viewport */
+    width: 100%;
+    height: 100%;
+    touch-action: none;            /* Prevents touch scroll gestures */
+  }
+  
+  #root {
+    overflow: hidden;              /* Prevents scrolling in root container */
+    height: 100vh;
+    width: 100vw;
+  }
+}

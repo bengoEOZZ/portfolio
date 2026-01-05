@@ -771,7 +771,7 @@
 @media (max-height: 600px) and (orientation: landscape) {
   /* Move documents up on mobile */
   .projectDocument {
-    top: -4vw;
+    top: -2rem;
   }
   
   /* Hide description text on mobile */

@@ -111,8 +111,8 @@
   position: relative;
   
   /* SIZING */
-  width: 120px;
-  height: 120px;
+  width: 7.5rem; /* 120px → rem */
+  height: 7.5rem; /* 120px → rem */
   
   /* SPACING */
   margin: 0 auto 2rem;
@@ -127,16 +127,16 @@
   transform: translate(-50%, -50%);
   
   /* SIZING */
-  width: 50px;
-  height: 90px;
+  width: 3.125rem; /* 50px → rem */
+  height: 5.625rem; /* 90px → rem */
   
   /* APPEARANCE */
   background: linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 100%);
-  border: 3px solid #BFA850; /* Gold border for Classic theme */
-  border-radius: 10px;
+  border: 0.1875rem solid #BFA850; /* 3px → rem | Gold border for Classic theme */
+  border-radius: 0.625rem; /* 10px → rem */
   box-shadow: 
-    0 0 30px rgba(191, 168, 80, 0.3), /* Gold glow */
-    inset 0 0 20px rgba(0, 0, 0, 0.5); /* Inner depth */
+    0 0 1.875rem rgba(191, 168, 80, 0.3), /* 30px → rem | Gold glow */
+    inset 0 0 1.25rem rgba(0, 0, 0, 0.5); /* 20px → rem | Inner depth */
   
   /* ANIMATIONS */
   animation: phoneRotate 3s ease-in-out infinite;
@@ -146,14 +146,14 @@
 .phoneScreen {
   /* LAYOUT & POSITIONING */
   position: absolute;
-  top: 8px;
-  left: 5px;
-  right: 5px;
-  bottom: 15px;
+  top: 0.5rem; /* 8px → rem */
+  left: 0.3125rem; /* 5px → rem */
+  right: 0.3125rem; /* 5px → rem */
+  bottom: 0.9375rem; /* 15px → rem */
   
   /* APPEARANCE */
   background: linear-gradient(180deg, #BFA850 0%, #8B6914 100%); /* Gold gradient */
-  border-radius: 4px;
+  border-radius: 0.25rem; /* 4px → rem */
   opacity: 0.8; /* Slightly transparent for depth */
 }
 
@@ -161,17 +161,17 @@
 .phoneNotch {
   /* LAYOUT & POSITIONING */
   position: absolute;
-  bottom: 5px;
+  bottom: 0.3125rem; /* 5px → rem */
   left: 50%;
   transform: translateX(-50%);
   
   /* SIZING */
-  width: 20px;
-  height: 4px;
+  width: 1.25rem; /* 20px → rem */
+  height: 0.25rem; /* 4px → rem */
   
   /* APPEARANCE */
   background: #BFA850; /* Gold accent matching theme */
-  border-radius: 2px;
+  border-radius: 0.125rem; /* 2px → rem */
   opacity: 0.6; /* Subtle visibility */
 }
 
@@ -205,8 +205,8 @@
   transform: translate(-50%, -50%);
   
   /* SIZING */
-  width: 100px;
-  height: 100px;
+  width: 6.25rem; /* 100px → rem */
+  height: 6.25rem; /* 100px → rem */
   
   /* APPEARANCE */
   color: #BFA850; /* Gold color for Classic theme */
@@ -260,7 +260,7 @@
   margin: 0 0 1rem 0;
   
   /* APPEARANCE */
-  text-shadow: 0 0 20px rgba(191, 168, 80, 0.5); /* Gold glow */
+  text-shadow: 0 0 1.25rem rgba(191, 168, 80, 0.5); /* 20px → rem | Gold glow */
   
   /* ANIMATIONS */
   animation: textGlow 3s ease-in-out infinite;
@@ -297,8 +297,8 @@
 /* Decorative Line Separator */
 .decorativeLine {
   /* SIZING */
-  width: 100px;
-  height: 2px;
+  width: 6.25rem; /* 100px → rem */
+  height: 0.125rem; /* 2px → rem */
   
   /* APPEARANCE */
   background: linear-gradient(90deg, transparent, #BFA850, transparent); /* Fade in/out */
@@ -333,18 +333,18 @@
   position: absolute;
   
   /* SIZING */
-  width: 60px;
-  height: 60px;
+  width: 3.75rem; /* 60px → rem */
+  height: 3.75rem; /* 60px → rem */
   
   /* APPEARANCE */
-  border: 2px solid rgba(191, 168, 80, 0.3); /* Subtle gold border */
+  border: 0.125rem solid rgba(191, 168, 80, 0.3); /* 2px → rem | Subtle gold border */
 }
 
 /* Top Left Corner */
 .topLeft {
   /* POSITIONING */
-  top: 20px;
-  left: 20px;
+  top: 1.25rem; /* 20px → rem */
+  left: 1.25rem; /* 20px → rem */
   
   /* BORDER REMOVAL - Creates L-shape */
   border-right: none;
@@ -354,8 +354,8 @@
 /* Top Right Corner */
 .topRight {
   /* POSITIONING */
-  top: 20px;
-  right: 20px;
+  top: 1.25rem; /* 20px → rem */
+  right: 1.25rem; /* 20px → rem */
   
   /* BORDER REMOVAL - Creates mirrored L-shape */
   border-left: none;
@@ -365,8 +365,8 @@
 /* Bottom Left Corner */
 .bottomLeft {
   /* POSITIONING */
-  bottom: 20px;
-  left: 20px;
+  bottom: 1.25rem; /* 20px → rem */
+  left: 1.25rem; /* 20px → rem */
   
   /* BORDER REMOVAL - Creates inverted L-shape */
   border-right: none;
@@ -376,8 +376,8 @@
 /* Bottom Right Corner */
 .bottomRight {
   /* POSITIONING */
-  bottom: 20px;
-  right: 20px;
+  bottom: 1.25rem; /* 20px → rem */
+  right: 1.25rem; /* 20px → rem */
   
   /* BORDER REMOVAL - Creates mirrored inverted L-shape */
   border-left: none;
@@ -440,12 +440,12 @@
 /* HOME - Phone Device Styling - Mixed gradient */
 .home .phone {
   /* APPEARANCE */
-  border: 3px solid;
+  border: 0.1875rem solid; /* 3px → rem */
   border-image: linear-gradient(135deg, #BFA850, #6495ED) 1;
   box-shadow: 
-    0 0 20px rgba(191, 168, 80, 0.3),
-    0 0 20px rgba(100, 149, 237, 0.3),
-    inset 0 0 20px rgba(0, 0, 0, 0.5);
+    0 0 1.25rem rgba(191, 168, 80, 0.3), /* 20px → rem */
+    0 0 1.25rem rgba(100, 149, 237, 0.3), /* 20px → rem */
+    inset 0 0 1.25rem rgba(0, 0, 0, 0.5); /* 20px → rem */
 }
 
 .home .phoneScreen {
@@ -513,7 +513,7 @@
 .classic .title {
   /* APPEARANCE */
   color: #BFA850;                  /* Gold text */
-  text-shadow: 0 0 20px rgba(191, 168, 80, 0.5);
+  text-shadow: 0 0 1.25rem rgba(191, 168, 80, 0.5); /* 20px → rem */
   /* Subtle gold glow effect */
 }
 
@@ -593,8 +593,8 @@
   position: absolute;
   
   /* SIZING */
-  width: 3px;
-  height: 3px;
+  width: 0.1875rem; /* 3px → rem */
+  height: 0.1875rem; /* 3px → rem */
   
   /* APPEARANCE */
   background: white;
@@ -624,7 +624,7 @@
 .creative .title {
   /* TYPOGRAPHY */
   color: #6495ED;
-  text-shadow: 0 0 20px rgba(100, 149, 237, 0.6);
+  text-shadow: 0 0 1.25rem rgba(100, 149, 237, 0.6); /* 20px → rem */
   font-family: 'Cinzel', 'Georgia', serif;
   letter-spacing: 0.1em;
 }
@@ -656,8 +656,8 @@
   /* APPEARANCE */
   border-color: #6495ED;
   box-shadow: 
-    0 0 30px rgba(100, 149, 237, 0.4),
-    inset 0 0 20px rgba(0, 0, 0, 0.5);
+    0 0 1.875rem rgba(100, 149, 237, 0.4), /* 30px → rem */
+    inset 0 0 1.25rem rgba(0, 0, 0, 0.5); /* 20px → rem */
 }
 
 .creative .phoneScreen {
@@ -691,8 +691,8 @@
   z-index: 0; /* Behind main content */
   
   /* SIZING */
-  width: 60px;
-  height: 60px;
+  width: 3.75rem; /* 60px → rem */
+  height: 3.75rem; /* 60px → rem */
   
   /* APPEARANCE */
   opacity: 0.7; /* Subtle presence */
@@ -707,16 +707,16 @@
   transform: translate(-50%, -50%);
   
   /* SIZING */
-  width: 35px;
-  height: 35px;
+  width: 2.1875rem; /* 35px → rem */
+  height: 2.1875rem; /* 35px → rem */
   
   /* APPEARANCE */
   background: linear-gradient(135deg, #6495ED 0%, #4169E1 50%, #1a3a8a 100%); /* Blue planet gradient */
   border-radius: 50%;
   box-shadow: 
-    inset -8px -8px 15px rgba(0, 0, 0, 0.4), /* Shadow side */
-    inset 4px 4px 10px rgba(100, 180, 255, 0.3), /* Light side */
-    0 0 25px rgba(100, 149, 237, 0.4); /* Outer glow */
+    inset -0.5rem -0.5rem 0.9375rem rgba(0, 0, 0, 0.4), /* 8px 8px 15px → rem | Shadow side */
+    inset 0.25rem 0.25rem 0.625rem rgba(100, 180, 255, 0.3), /* 4px 4px 10px → rem | Light side */
+    0 0 1.5625rem rgba(100, 149, 237, 0.4); /* 25px → rem | Outer glow */
 }
 
 /* Saturn Ring */
@@ -728,13 +728,13 @@
   transform: translate(-50%, -50%) rotateX(70deg); /* 3D tilt effect */
   
   /* SIZING */
-  width: 60px;
-  height: 60px;
+  width: 3.75rem; /* 60px → rem */
+  height: 3.75rem; /* 60px → rem */
   
   /* APPEARANCE */
-  border: 3px solid rgba(100, 149, 237, 0.5); /* Blue ring */
+  border: 0.1875rem solid rgba(100, 149, 237, 0.5); /* 3px → rem | Blue ring */
   border-radius: 50%;
   box-shadow: 
-    0 0 10px rgba(100, 149, 237, 0.3), /* Outer glow */
-    inset 0 0 10px rgba(100, 149, 237, 0.2); /* Inner glow */
+    0 0 0.625rem rgba(100, 149, 237, 0.3), /* 10px → rem | Outer glow */
+    inset 0 0 0.625rem rgba(100, 149, 237, 0.2); /* 10px → rem | Inner glow */
 }
