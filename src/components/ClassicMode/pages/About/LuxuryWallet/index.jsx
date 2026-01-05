@@ -303,10 +303,11 @@ const LuxuryWallet = ({ isOpen, onToggle, skipCards = false }) => {
         <div 
           className={`${classes.walletWrapper} ${isEntering ? classes.entering : ''}`}
           onAnimationEnd={() => setIsEntering(false)}
+          onClick={handleWalletClick}
         >
-          {/* Main container - ref enables 3D tracking, onClick toggles open/close */}
+          {/* Main container - ref enables 3D tracking */}
           <div ref={walletContainerRef} className={`${classes.walletContainer}
-            ${isOpen ? classes.walletOpen : ''}`} onClick={handleWalletClick} >
+            ${isOpen ? classes.walletOpen : ''}`}>
 
           {/* WALLET EXTERIOR - Closed leather wallet with BT monogram */}
           <div className={classes.luxuryWallet}>

@@ -53,6 +53,7 @@
   /* 3D SPACE SETUP */
   perspective: 52.08vw;          /* 1000px → vw */
   transform-style: preserve-3d;  /* Enable 3D transforms for children */
+  cursor: pointer;
 }
 
 .walletWrapper.entering {
@@ -87,7 +88,6 @@
 .walletContainer {
   /* LAYOUT & POSITIONING */
   position: relative;
-  cursor: pointer;
   
   /* 3D TRANSFORM SETUP */
   transform-style: preserve-3d;
@@ -155,15 +155,14 @@
   transition: transform 0.8s ease, opacity 0.8s ease, box-shadow 0.3s ease;
   opacity: 1;
   z-index: 10;
-  cursor: pointer;
 }
 
-.walletContainer:hover .luxuryWallet {
+.walletWrapper:hover .luxuryWallet {
   box-shadow: 
     /* Original */
     var(--wallet-shadow),
     /* Original */
-    inset 0 2px 4px rgba(255, 255, 255, 0.1),
+    inset 0 0.125rem 0.25rem rgba(255, 255, 255, 0.1),
     /* Hover: Gold glow on hover */
     var(--gold-glow);
 }
@@ -172,6 +171,7 @@
 .walletOpen .luxuryWallet {
   transform: perspective(52.08vw) rotateY(-160deg) translateX(-4.69vw);
   opacity: 0;
+  pointer-events: none;  /* Disable all interactions when open */
 }
 
 /**
@@ -370,6 +370,7 @@
   
   /* ANIMATION */
   transition: all 0.8s ease;
+  cursor: default;
 }
 
 /* Left interior - slides in from left */
@@ -619,9 +620,6 @@
     saturate(1.2)        /* Boost color saturation */
     drop-shadow(0 0 0.75rem rgba(255, 255, 255, 0.8))   /* White outer glow */
     drop-shadow(0 0 0.375rem rgba(212, 175, 55, 1));    /* Gold inner glow */
-  
-  /* INTERACTIONS */
-  cursor: pointer;
 }
 
 /**
@@ -807,6 +805,7 @@
   
   /* INTERACTIONS */
   pointer-events: all;  /* Enable mouse events */
+  cursor: pointer;      /* Pointer cursor for hover zones */
   
   /* ANIMATION */
   transition: all 0.2s ease;
