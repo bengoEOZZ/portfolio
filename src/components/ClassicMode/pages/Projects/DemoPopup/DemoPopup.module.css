@@ -375,3 +375,14 @@
   color: var(--bg-dark);
   font-weight: 600;
 }
+
+/*
+ * MOBILE LANDSCAPE STYLES
+ * =======================
+ * Optimizations for mobile landscape view
+ */
+@media (max-height: 600px) and (orientation: landscape) {
+  .demoPopup {
+    margin-top: -60vh;
+  }
+}
