@@ -102,15 +102,15 @@ const HOVER_DATA = {
  */
 const HOVER_ZONES = {
   gymCard: { 
-    position: { top: '2.34vw', left: '1.82vw', width: '24.74vw', height: '3.13vw' },  /* 45px, 35px, 475px, 60px → vw */
+    position: { top: '2.34vw', left: '16vw', width: '24.74vw', height: '3.13vw' },  /* 45px, 35px, 475px, 60px → vw */
     hoverClass: 'gymCardHover'
   },
   credentialsCard: { 
-    position: { top: '7.29vw', left: '1.3vw', width: '26.04vw', height: '3.13vw' },   /* 140px, 25px, 500px, 60px → vw */
+    position: { top: '7.29vw', left: '15.5vw', width: '26.04vw', height: '3.13vw' },   /* 140px, 25px, 500px, 60px → vw */
     hoverClass: 'credentialsCardHover'
   },
   hollowKnight: { 
-    position: { bottom: '1.3vw', right: '1.3vw', width: '4.17vw', height: '4.17vw' }, /* 25px, 25px, 80px, 80px → vw */
+    position: { bottom: '1.3vw', left: '36vw', width: '4.17vw', height: '4.17vw' }, /* 25px, 25px, 80px, 80px → vw */
     hoverClass: 'hollowKnightHover'
   }
 };
@@ -159,7 +159,8 @@ const HoverZone = React.memo(({ itemKey, onHover, onLeave, isOpen }) => {
       onMouseLeave={handleMouseLeave}  // Reset card position and hide popup
       style={{ 
         position: 'absolute',  // Position over card in wallet
-        zIndex: 30,            // Above cards but below popup
+        zIndex: 9999,          // Above all 3D transformed elements
+        backgroundColor: 'rgba(255, 0, 0, 0.3)',  // Debug visualization
         ...config.position     // top/left/width/height from HOVER_ZONES config
       }}
     />
@@ -358,19 +359,19 @@ const LuxuryWallet = ({ isOpen, onToggle, skipCards = false }) => {
                 <div className={classes.cardLabel}>CREDENTIALS</div>
               </div>
             </div>
-            
-            {/* HOVER ZONES - Invisible trigger areas over Cards and Hollow Knight icon */}
-            {Object.keys(HOVER_ZONES).map(key => (
-              <HoverZone 
-                key={key}                          // Unique key for React list rendering
-                itemKey={key}                      // (gymCard, credentialsCard, hollowKnight)
-                onHover={handleItemHover}          // Callback to show popup when mouse enters
-                onLeave={handleItemLeave}          // Callback to hide popup when mouse leaves
-                isOpen={isOpen}                    // Only allow hover interactions when wallet is open
-              />
-            ))}
           </div>
         </div>
+        
+        {/* HOVER ZONES - Outside 3D context to avoid perspective issues */}
+        {isOpen && Object.keys(HOVER_ZONES).map(key => (
+          <HoverZone 
+            key={key}
+            itemKey={key}
+            onHover={handleItemHover}
+            onLeave={handleItemLeave}
+            isOpen={isOpen}
+          />
+        ))}
       </div>
     </div>
     </>
