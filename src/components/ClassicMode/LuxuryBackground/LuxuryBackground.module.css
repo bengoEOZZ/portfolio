@@ -240,3 +240,27 @@
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.8); }
 }
+
+/**
+ * MOBILE LANDSCAPE STYLES
+ * =======================
+ * Reduce time display size for mobile landscape view
+ */
+@media (max-height: 600px) and (orientation: landscape) {
+  /* Disable animations for performance */
+  .luxuryBackground::after {
+    animation: none;
+  }
+  
+  .backgroundRing {
+    animation: none;
+  }
+  
+  .backgroundGlowDot {
+    animation: none;
+  }
+  
+  .cornerLight.active {
+    animation: none;
+  }
+}

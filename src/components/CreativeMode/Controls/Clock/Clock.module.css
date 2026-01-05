@@ -67,6 +67,7 @@
     /* INTERACTIONS */
     cursor: pointer;                    /* Indicates interactivity */
     touch-action: none;                 /* Prevent default touch behaviors for better mobile support */
+    user-select: none;                  /* Prevent text/element selection */
     
     /* APPEARANCE */
     filter: drop-shadow(0 0 0.234375rem /* 3.75px */ rgba(255, 223, 0, 0.8)) 
@@ -253,9 +254,13 @@
  * Reduce time display size for mobile landscape view
  */
 @media (max-height: 600px) and (orientation: landscape) {
-  .timeDisplay {
-    font-size: 0.5rem;
-    padding: 0.4rem 0.8rem;
-    width: auto;
-  }
+    .clockContainer {
+        animation: clockEntry 3s 1.5s forwards;
+    }
+
+    .timeDisplay {
+        font-size: 0.5rem;
+        padding: 0.4rem 0.8rem;
+        width: auto;
+    }
 }

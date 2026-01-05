@@ -452,3 +452,18 @@
         opacity: 1;
     }
 }
+
+/**
+ * MOBILE RESPONSIVE STYLES
+ * ========================
+ */
+@media (max-height: 600px) and (orientation: landscape) {
+    /* Disable hover effects for performance */
+    .btn:hover .btnIcon {
+        animation: none;
+    }
+    
+    .btn:hover .btnText {
+        animation: none;
+    }
+}
