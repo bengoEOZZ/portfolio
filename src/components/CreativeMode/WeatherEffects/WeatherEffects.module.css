@@ -829,20 +829,6 @@
   
   .clouds i::before,
   .clouds i::after {
-    filter: blur(0.1rem);
-  }
-  
-  /* Disable shadows and intensive effects */
-  .raindrop,
-  .snowflake,
-  .leaf {
-    box-shadow: none;
-    filter: none;
-    will-change: transform;
-  }
-  
-  /* Disable transitions on weather elements */
-  .wind {
-    transition: none;
+    filter: blur(0.2rem);
   }
 }

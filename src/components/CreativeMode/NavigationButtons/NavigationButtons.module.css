@@ -508,11 +508,11 @@
         animation-delay: 3.4s !important;
         left: 15% !important;
         top: 50% !important;
-        z-index: -5 !important;
     }
     
     .btnOrbitContainer[data-index="0"] .btnIcon {
         filter: brightness(0.7);
+        z-index: -5;
     }
     
     .btnOrbitContainer[data-index="0"] .btn {
