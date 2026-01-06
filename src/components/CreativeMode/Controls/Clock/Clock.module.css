@@ -254,13 +254,27 @@
  * Reduce time display size for mobile landscape view
  */
 @media (max-height: 600px) and (orientation: landscape) {
-    .clockContainer {
-        animation: clockEntry 3s 1.5s forwards;
-    }
-
     .timeDisplay {
         font-size: 0.5rem;
-        padding: 0.4rem 0.8rem;
+        padding: 0.3rem 0.6rem;
         width: auto;
+        text-shadow: none;
+    }
+    
+    /* Disable intensive filters and shadows for mobile performance */
+    .clockFace {
+        filter: none;
+        box-shadow: none;
+    }
+    
+    .hourHand,
+    .minuteHand,
+    .clockCenterDot {
+        filter: none;
+    }
+    
+    /* Disable transitions on interactive elements */
+    .clockHand {
+        transition: none;
     }
 }

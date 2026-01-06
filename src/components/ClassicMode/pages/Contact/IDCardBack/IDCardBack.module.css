@@ -586,7 +586,7 @@
  */
 @media (max-height: 600px) and (orientation: landscape) {
   .contactValue {
-    font-size: 0.6rem;
+    font-size: 0.55rem;
   }
   
   .contactIcon {
@@ -599,10 +599,18 @@
   
   .premiumBadge {
     font-size: 0;
+    animation: none;
   }
   
   .premiumBadge::after {
     content: 'PREMIUM';
     font-size: 0.45rem;
+  }
+  
+  /* Disable animations for better mobile performance */
+  .titleText,
+  .monogramLetter,
+  .monogramGlow {
+    animation: none;
   }
 }

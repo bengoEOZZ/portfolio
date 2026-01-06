@@ -34,7 +34,7 @@
 
 /* Weather slider positioning and delay */
 .weatherSlider {
-    top: 40vh;  /* 350px → vh */
+    top: 39vh;  /* 350px → vh */
     animation-delay: 2.5s;              /* Starts after clock materializes */
 }
 
@@ -52,7 +52,7 @@
 .slider {
     /* SIZING */
     width: 97.5%; 
-    height: 4.7%;                       /* Slider track height relative to container */
+    height: 1.2vh;                       /* Slider track height relative to container */
     
     /* LAYOUT & POSITIONING */
     margin: 4% auto;                    /* Vertical spacing relative to container */
@@ -96,8 +96,8 @@
     appearance: none;
     
     /* SIZING */
-    width: 0.78vw;  /* 15px → vw */
-    height: 1.39vh;  /* 15px → vh */
+    width: 1vw;  /* 15px → vw */
+    height: 1vw;  /* 15px → vh */
     
     /* APPEARANCE */
     background: radial-gradient(circle, #00d4ff, #007bff);
@@ -112,6 +112,11 @@
     /* PRECISION POSITIONING: Override default thumb positioning to center on labels */
     position: relative;
     margin-left: var(--thumb-offset, 0px);
+}
+
+/* Smooth snap-back transition when not dragging */
+.slider:not(.dragging)::-webkit-slider-thumb {
+    transition: all 0.2s ease-out;
 }
 
 /**
@@ -213,11 +218,18 @@
 @media (max-height: 600px) and (orientation: landscape) {
   .slider {
     height: 0.5rem;
+    box-shadow: none;
+    transition: none;
   }
   
   .slider::-webkit-slider-thumb {
     width: 0.7rem;
     height: 0.7rem;
+    box-shadow: none;
+    transition: none;
   }
-
+  
+  .sliderContainer {
+    text-shadow: none;
+  }
 }

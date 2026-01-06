@@ -24,8 +24,10 @@ function HelloText() {
                 I'm <strong>Benjamin Tiong</strong>, 
                 a software developer whose work orbits around the possibilities of code and innovation.
                 Dive into my universe, and discover more about me.<br/>
-                <strong> Click and Hold</strong> the clock hand or adjust the weather/seasonal controls 
-                to witness how time transforms the celestial cycle of the Sun, Moon, and Earth.
+                <span className={classes.desktopOnly}>
+                    <strong> Click and Hold</strong> the clock hand or adjust the weather/seasonal controls 
+                    to witness how time transforms the celestial cycle of the Sun, Moon, and Earth.
+                </span>
             </p>
         </div>
     );

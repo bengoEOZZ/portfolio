@@ -375,3 +375,37 @@
   color: var(--bg-dark);
   font-weight: 600;
 }
+
+/**
+ * MOBILE RESPONSIVE STYLES
+ * ========================
+ */
+@media (max-height: 600px) and (orientation: landscape) {
+  /* Disable backdrop-filter for better mobile performance */
+  .demoPopup {
+    backdrop-filter: none;
+  }
+  
+  /* Disable backdrop-filter animations */
+  @keyframes backgroundFadeIn {
+    from {
+      opacity: 0;
+      backdrop-filter: none;
+    }
+    to {
+      opacity: 1;
+      backdrop-filter: none;
+    }
+  }
+  
+  @keyframes backgroundFadeOut {
+    from {
+      opacity: 1;
+      backdrop-filter: none;
+    }
+    to {
+      opacity: 0;
+      backdrop-filter: none;
+    }
+  }
+}

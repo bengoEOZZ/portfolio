@@ -159,9 +159,15 @@
     
     .header {
         border-bottom: 0.3rem solid #007bff;
+        text-shadow: none;
     }
   
     .text {
         margin-top: 0.3rem;
+        font-size: 0.6rem;
+    }
+    
+    .desktopOnly {
+        display: none;
     }
 }

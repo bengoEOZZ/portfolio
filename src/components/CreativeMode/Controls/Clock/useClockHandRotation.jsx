@@ -83,16 +83,6 @@ const useClockHandRotation = () => {
     const handleMouseUp = () => {
         setIsHolding(false);
     };
-    
-    const handleTouchStart = (e) => {
-        e.preventDefault(); // Prevent default touch behavior
-        setIsHolding(true);
-    };
-    
-    const handleTouchEnd = (e) => {
-        e.preventDefault(); // Prevent default touch behavior
-        setIsHolding(false);
-    };
 
     /**
      * PHASE 3: CONTINUOUS ROTATION MANAGEMENT
@@ -139,9 +129,7 @@ const useClockHandRotation = () => {
     return {
         rotation,           // Current rotation angle for visual positioning
         handleMouseDown,    // Mouse press handler to start rotation
-        handleMouseUp,      // Mouse release handler to stop rotation
-        handleTouchStart,   // Touch start handler for mobile support
-        handleTouchEnd      // Touch end handler for mobile support
+        handleMouseUp       // Mouse release handler to stop rotation
     };
 };
 

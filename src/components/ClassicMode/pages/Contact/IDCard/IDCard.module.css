@@ -225,3 +225,14 @@
     /* Gradient fully shifted right */
   }
 }
+
+/**
+ * MOBILE RESPONSIVE STYLES
+ * ========================
+ */
+@media (max-height: 600px) and (orientation: landscape) {
+  /* Disable animations for better mobile performance */
+  .name {
+    animation: none;
+  }
+}

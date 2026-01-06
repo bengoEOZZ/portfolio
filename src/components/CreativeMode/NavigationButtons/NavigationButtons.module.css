@@ -466,4 +466,14 @@
     .btn:hover .btnText {
         animation: none;
     }
+    
+    /* Disable shadows and filters */
+    .btnText {
+        text-shadow: none;
+    }
+    
+    .btnIcon,
+    .btnGlow {
+        filter: none;
+    }
 }

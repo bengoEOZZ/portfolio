@@ -820,5 +820,14 @@
   .documentStamp {
     font-size: 0.4rem;
   }
+
+  /* Disable animations on mobile */
+  .documentTitle h2 {
+    animation: none;
+  }
+
+  .alwaysActive {
+    animation: none;
+  }
 }
 

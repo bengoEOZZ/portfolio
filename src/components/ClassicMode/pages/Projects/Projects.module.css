@@ -498,6 +498,12 @@
     display: none;
   }
   
+  /* Disable backdrop-filter for better mobile performance */
+  .controlsSection {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
   /* NAVIGATION CONTROLS STYLES */
   .stackInfo {
     font-size: 0.75rem;

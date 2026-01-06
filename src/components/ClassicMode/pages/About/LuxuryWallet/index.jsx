@@ -103,14 +103,17 @@ const HOVER_DATA = {
 const HOVER_ZONES = {
   gymCard: { 
     position: { top: '2.34vw', left: '16vw', width: '24.74vw', height: '3.13vw' },  /* 45px, 35px, 475px, 60px → vw */
+    mobilePosition: { top: '-1vw', left: '16vw', width: '24.74vw', height: '3.13vw' },  /* Adjust as needed */
     hoverClass: 'gymCardHover'
   },
   credentialsCard: { 
     position: { top: '7.29vw', left: '15.5vw', width: '26.04vw', height: '3.13vw' },   /* 140px, 25px, 500px, 60px → vw */
+    mobilePosition: { top: '4vw', left: '15.5vw', width: '26.04vw', height: '3.13vw' },  /* Adjust as needed */
     hoverClass: 'credentialsCardHover'
   },
   hollowKnight: { 
     position: { bottom: '1.3vw', left: '36vw', width: '4.17vw', height: '4.17vw' }, /* 25px, 25px, 80px, 80px → vw */
+    mobilePosition: { bottom: '1.3vw', left: '36.5vw', width: '4.17vw', height: '4.17vw' },  /* Adjust as needed */
     hoverClass: 'hollowKnightHover'
   }
 };
@@ -123,6 +126,14 @@ const HOVER_ZONES = {
 const HoverZone = React.memo(({ itemKey, onHover, onLeave, isOpen }) => {
   // Get hover configuration for this zone
   const config = HOVER_ZONES[itemKey];
+  
+  // Detect mobile to use appropriate positioning
+  const isMobile = useMemo(() => {
+    return window.matchMedia('(max-height: 600px) and (orientation: landscape)').matches;
+  }, []);
+  
+  // Use mobile position if available and on mobile, otherwise use desktop position
+  const position = isMobile && config.mobilePosition ? config.mobilePosition : config.position;
   
   // Handle mouse entering the hover zone
   const handleMouseEnter = useCallback(() => {
@@ -160,7 +171,8 @@ const HoverZone = React.memo(({ itemKey, onHover, onLeave, isOpen }) => {
       style={{ 
         position: 'absolute',  // Position over card in wallet
         zIndex: 9999,          // Above all 3D transformed elements
-        ...config.position     // top/left/width/height from HOVER_ZONES config
+        backgroundColor: 'rgba(255, 0, 0, 0.3)',  // Debug visualization
+        ...position            // top/left/width/height from HOVER_ZONES config (mobile or desktop)
       }}
     />
   );
