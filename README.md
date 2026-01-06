@@ -7,6 +7,7 @@
 - **Routing**: React Router DOM
 - **Styling**: CSS Modules
 - **Assets**: SVG icons and images
+- **Responsive Design**: Desktop & Mobile (landscape) optimized
 
 ## Credits
 
@@ -17,7 +18,7 @@
 - Icon from Hollow Knight © Team Cherry
 
 **./assets/ClassicMode/dustinessEmblem.png**
-- Emblem from Konosuba anime © Natsume Akatsuki/KADOKAWA
+- Emblem from Konosuba Anime © Natsume Akatsuki/KADOKAWA
 
 **Company Logos & Brand Assets**
 - All company logos and brand assets are property of their respective owners and are used for identification purposes only
@@ -50,6 +51,7 @@
 - **Creative Innovation**: Pushes boundaries with artistic expression and experimentation
 - **Professional Showcase**: Balances creativity with technical competence
 - **Dual Approach**: Offers both creative and professional presentation modes
+- **Mobile Responsive**: Optimized performance for mobile landscape orientation with adaptive layouts
 
 ---
 
@@ -231,18 +233,28 @@ Portfolio Application/
 - **Dynamic Weather Simulations**: Seasonal-specific animations with particle variety
 - **Time-Responsive Visual Effects**: Smooth celestial transitions with adaptive changes
 - **Mathematical Animations**: Trigonometric calculations for orbital and rotational effects
+- **Mobile Optimizations**: Static positioning for navigation buttons with floating animations on mobile
 
 **ClassicMode Animations:**
 - **3D Interactive Elements**: Mouse-tracking tilt effects and flip card animations
 - **Luxury Visual Effects**: Golden shimmer sweeps, sparkle particles, and glow effects
 - **Mathematical Background**: Flowing curves with dynamic wave animations
 - **Coordinated Transitions**: State-based entrance/exit animations with onAnimationEnd cleanup
+- **Mobile Performance**: Disabled intensive animations (sparkles, shimmer, pulse effects) for mobile devices
 
 **Shared Animation Techniques:**
 - **Keyframe Animations**: Sophisticated CSS animations
 - **GPU Acceleration**: Transform and opacity animations with will-change hints
 - **Interactive Visual Feedback**: Real-time animations responding to user interactions
 - **Performance-Optimized**: Hardware-accelerated effects ensuring 60fps smooth experience
+- **Responsive Scaling**: Adaptive sizing and layout adjustments for mobile landscape view
+
+### Mobile Optimization & Responsive Design
+- **Landscape-Optimized Layout**: Custom media queries targeting mobile landscape orientation (@media max-height: 600px)
+- **Performance Tuning**: Animation disabling for CPU-intensive effects on mobile devices
+- **Adaptive Scaling**: Dynamic component sizing using viewport units (vw/vh) and rem for fluid responsiveness
+- **Touch-Friendly Controls**: Increased button sizes and simplified interactions for mobile interfaces
+- **Visual Simplification**: Reduced visual complexity (shadows, filters, text-shadows) for better mobile rendering
 
 ### Project Organization
 - **Modular File Structure**: Clear hierarchy with components, hooks, and assets folders
