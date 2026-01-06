@@ -171,7 +171,7 @@ const HoverZone = React.memo(({ itemKey, onHover, onLeave, isOpen }) => {
       style={{ 
         position: 'absolute',  // Position over card in wallet
         zIndex: 9999,          // Above all 3D transformed elements
-        backgroundColor: 'rgba(255, 0, 0, 0.3)',  // Debug visualization
+        //backgroundColor: 'rgba(255, 0, 0, 0.3)',  // Debug visualization
         ...position            // top/left/width/height from HOVER_ZONES config (mobile or desktop)
       }}
     />

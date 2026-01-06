@@ -328,4 +328,17 @@
   .membershipStatus {
     display: none;
   }
+  
+  /* Disable animations for mobile performance */
+  .gymCard {
+    animation: none;
+  }
+  
+  .membership {
+    animation: none;
+  }
+  
+  .shimmer {
+    display: none;
+  }
 }

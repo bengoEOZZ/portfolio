@@ -309,7 +309,19 @@
     75% { rotate: 10deg; }
 }
 
-
+/**
+ * BUTTON FLOAT ANIMATION - GENTLE VERTICAL MOTION
+ * ================================================
+ * Moon-style floating for navigation buttons.
+ */
+@keyframes buttonFloat {
+    0%, 100% { 
+        transform: translateY(0); 
+    }
+    50% { 
+        transform: translateY(-1.25rem); /* Floats up 20px at midpoint */
+    }
+}
 
 /**
  * SUPER GLITCH ANIMATION - EXTREME CHROMATIC ABERRATION
@@ -470,10 +482,89 @@
     /* Disable shadows and filters */
     .btnText {
         text-shadow: none;
+        font-size: 0.5rem;
     }
     
     .btnIcon,
     .btnGlow {
         filter: none;
+    }
+
+    .btnIcon {
+        scale: 1.25;
+    }
+    
+    /* DISABLE ORBIT ANIMATION - Use static positioning for mobile performance */
+    .btnOrbitContainer {
+        animation: entryFade 1.5s ease-out forwards !important;
+        translate: none !important;
+        scale: 1 !important;
+        z-index: 10 !important;
+        transform: translate(-120%, -50%) !important;
+    }
+    
+    /* About (leftmost) - position, delay, brightness */
+    .btnOrbitContainer[data-index="0"] {
+        animation-delay: 3.4s !important;
+        left: 15% !important;
+        top: 50% !important;
+        z-index: -5 !important;
+    }
+    
+    .btnOrbitContainer[data-index="0"] .btnIcon {
+        filter: brightness(0.7);
+    }
+    
+    .btnOrbitContainer[data-index="0"] .btn {
+        animation: wobble 4s ease-in-out infinite, buttonFloat 5.5s ease-in-out infinite !important;
+        animation-delay: 0s, 0s !important;
+    }
+    
+    /* Coding (second) - position, delay, brightness */
+    .btnOrbitContainer[data-index="1"] {
+        animation-delay: 3.6s !important;
+        left: 20% !important;
+        top: 75% !important;
+    }
+    
+    .btnOrbitContainer[data-index="1"] .btnIcon {
+        filter: brightness(1);
+    }
+    
+    .btnOrbitContainer[data-index="1"] .btn {
+        animation: wobble 4s ease-in-out infinite, buttonFloat 6.8s ease-in-out infinite !important;
+        animation-delay: 1s, 0.7s !important;
+    }
+    
+    /* Projects (third) - position, delay, brightness */
+    .btnOrbitContainer[data-index="2"] {
+        animation-delay: 3.8s !important;
+        left: 48% !important;
+        top: 75% !important;
+    }
+    
+    .btnOrbitContainer[data-index="2"] .btnIcon {
+        filter: brightness(1.1);
+    }
+    
+    .btnOrbitContainer[data-index="2"] .btn {
+        animation: wobble 4s ease-in-out infinite, buttonFloat 6.2s ease-in-out infinite !important;
+        animation-delay: 2s, 1.4s !important;
+    }
+    
+    /* Contact (rightmost) - position, delay, brightness */
+    .btnOrbitContainer[data-index="3"] {
+        animation-delay: 4s !important;
+        left: 65% !important;
+        top: 50% !important;
+    }
+    
+    .btnOrbitContainer[data-index="3"] .btnIcon {
+        filter: brightness(0.9);
+    }
+    
+    .btnOrbitContainer[data-index="3"] .btn {
+        animation: wobble 4s ease-in-out infinite, buttonFloat 7.2s ease-in-out infinite !important;
+        animation-delay: 3s, 2.1s !important;
     }
 }
