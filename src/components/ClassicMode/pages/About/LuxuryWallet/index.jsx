@@ -213,6 +213,17 @@ const LuxuryWallet = ({ isOpen, onToggle, skipCards = false }) => {
     if (isMobile && isOpen) {
       return; // Do nothing if wallet is already open on mobile
     }
+    // Clear hover state and CSS classes when closing the wallet
+    if (isOpen) {
+      setHoverItem(null);
+      // Remove all hover classes from the right interior
+      const rightInterior = document.querySelector(`.${classes.walletRightInterior}`);
+      if (rightInterior) {
+        Object.values(HOVER_ZONES).forEach(zone => {
+          rightInterior.classList.remove(classes[zone.hoverClass]);
+        });
+      }
+    }
     // On desktop or when opening on mobile, proceed normally
     onToggle();
   }, [isMobile, isOpen, onToggle]);
