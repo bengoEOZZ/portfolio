@@ -14,7 +14,7 @@
  */
 
 // DEPENDENCIES
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import classes from './App.module.css';
 import CreativeMode from './components/CreativeMode';
 import ClassicMode from './components/ClassicMode';
@@ -95,12 +95,15 @@ function AppContent() {
                     </div>
                 } />
                 <Route path="/creative" element={<CreativeMode />} />
+                <Route path="/creative/*" element={<Navigate to="/creative" replace />} />
                 <Route path="/classic" element={<ClassicMode />}>
                     <Route path="about" element={<About />} />
                     <Route path="coding" element={<Coding />} />
                     <Route path="projects" element={<Projects />} />
                     <Route path="contact" element={<Contact />} />
+                    <Route path="*" element={<Navigate to="/classic" replace />} />
                 </Route>
+                <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
         </>
     );
