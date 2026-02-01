@@ -19,7 +19,7 @@
  * • Hover effects → Document lifts up with gold glow (disabled during transitions)
  */
 
-import React, { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import classes from './Projects.module.css';
 import ProjectDocument from './ProjectDocument';
 import DemoPopup from './DemoPopup';
@@ -27,14 +27,12 @@ import PageHeader from '../PageHeader';
 
 // Import GIF demos
 import qbnbDemo from '../../../../assets/ClassicMode/gifs/QBNB.gif';
-import qbuzzDemo from '../../../../assets/ClassicMode/gifs/QBUZZ.gif';
 import glowstickGuyDemo from '../../../../assets/ClassicMode/gifs/glowstickGuy.gif';
 import stressfullEscapeDemo from '../../../../assets/ClassicMode/gifs/StressfulEscape.gif';
 
 // Map demo GIF imports to project IDs
 const demoGifs = {
   qbnbDemo,
-  qbuzzDemo,
   glowstickGuyDemo,
   stressfullEscapeDemo
 };
@@ -59,6 +57,17 @@ const projectsData = [
   },
   {
     id: 2,
+    title: "Moon Treatz - Macaron Catering",
+    type: "Full-Stack Application",
+    description: "Home-made macaron catering business website featuring an interactive animated logo (you can pet it), weekly special gallery with carousel navigation, comprehensive flavour showcase with filtering, animated decorations (butterflies, clouds, macarons), etc.",
+    techStack: ["React", "TypeScript", "Framer Motion", "Vite"],
+    status: "In Development", 
+    year: "2024",
+    githubUrl: "https://github.com/luk-ryan/moon-treatz",
+    liveUrl: "https://moontreatz.ca"
+  },
+  {
+    id: 3,
     title: "QB&B - Housing Web Application",
     type: "Full-Stack Application", 
     description: "AirBnB-inspired vacation rental platform allowing users to create property listings, handle bookings, process payments, and leave reviews. Features comprehensive security testing including SQL injection prevention and Docker containerization for deployment.",
@@ -68,16 +77,6 @@ const projectsData = [
     githubUrl: "https://github.com/bengoEOZZ/qbnb",
     detailsUrl: "https://drive.google.com/drive/folders/1FuHbQLe9E0qtCp0x5RY_UJNd8m1BgzMp",
     demoGif: "qbnbDemo"
-  },
-  {
-    id: 3,
-    title: "QBUZZ - Trivia Game Application",
-    type: "Full-Stack Application",
-    description: "Cross-platform trivia game with buzzer system for team competitions. Features dynamic question management with cloud-based question banks, team/individual play modes, real-time score syncing, and smart buzzer lockout functionality for competitive gaming.",
-    techStack: ["Python", "Jinja2", "FastAPI", "WebSockets", "HTML/CSS", "JavaScript"],
-    status: "Completed", 
-    year: "2024",
-    demoGif: "qbuzzDemo"
   },
   {
     id: 4,
@@ -165,12 +164,17 @@ const Projects = () => {
     setActiveDocument(prev => (prev - 1));
   }, [projects.length]);
 
-  // Handle Live Demo button click - Opens popup with project GIF
+  // Handle Live Demo button click - Opens popup with project GIF or opens live website
   const handleLiveDemoClick = useCallback((project) => {
     if (project.id === 1) {
       return; // Portfolio project has no demo
     }
-    // Open popup with project GIF
+    // If project has a live URL, open it in a new tab
+    if (project.liveUrl) {
+      window.open(project.liveUrl, '_blank', 'noopener,noreferrer');
+      return;
+    }
+    // Otherwise, open popup with project GIF
     setPopupState({
       isOpen: true,
       isClosing: false,

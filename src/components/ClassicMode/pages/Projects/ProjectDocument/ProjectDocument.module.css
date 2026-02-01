@@ -90,7 +90,7 @@
   
   /* TRANSITIONS */
   transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Cubic Bezier for bounce effect */
-  cursor: pointer;
+  cursor: default;
   overflow: hidden;
   z-index: calc(5 - var(--document-index));
 }
@@ -140,12 +140,22 @@
   filter: blur(0);             /* Sharp focus for active document */
   opacity: 1;                    /* Full opacity for active state */
   z-index: 50;                   /* Bring to front above all other cards */
+  cursor: default;               /* Keep default cursor on active document */
   transition: 
     transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), /* Faster, more dramatic bounce */
     box-shadow 0.5s ease,
     filter 0.6s ease,            /* Smooth focus transition from blur to sharp */
     opacity 0.6s ease,           /* Smooth opacity fade masks z-index change */
     z-index 0s 0.1s;             /* Z-index changes mid-animation */
+}
+
+/**
+ * ACTIVE HOVER STATE
+ * ==================
+ * Keep default cursor even when hovering over active document.
+ */
+.projectDocument.active:hover {
+  cursor: default;
 }
 
 /**
@@ -164,6 +174,7 @@
     var(--border-gold-double),   /* Layered gold borders */
     var(--shadow-glow);          /* Gold glow effect */
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Faster bounce for immediate response */
+  cursor: pointer;
 }
 
 /**

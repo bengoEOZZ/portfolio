@@ -159,21 +159,23 @@
   z-index: 2;
 }
 
-.giantStar::before,
+.giantStar::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(90deg, transparent, white, transparent);
+  animation: giantStarPulse 2s ease-in-out infinite;
+}
+
 .giantStar::after {
   content: '';
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: linear-gradient(
-    90deg, 
-    transparent, 
-    rgba(100, 149, 237, 0.5),
-    white,
-    rgba(100, 149, 237, 0.5),
-    transparent
-  );
+  background: linear-gradient(45deg, transparent, white, transparent);
   animation: giantStarPulse 2s ease-in-out infinite;
 }
 
