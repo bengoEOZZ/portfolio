@@ -13,6 +13,7 @@
 4. [Component Architecture](#4-component-architecture)
 5. [SVG & Visual Effects](#5-svg--visual-effects)
 6. [User Experience Patterns](#6-user-experience-patterns)
+7. [Mobile Optimizations](#7-mobile-optimizations)
 ---
 
 ## 1. Custom React Hooks
@@ -1278,7 +1279,7 @@ const handleMenuItemClick = (path, index) => {
 
 ---
 
-### 6.6 Range Sliders with Snap Behavior
+### 6.3 Range Sliders with Snap Behavior
 
 **Files:** `src/components/CreativeMode/Controls/Sliders/index.jsx`
 
@@ -1322,7 +1323,7 @@ const handleSeasonEnd = () => {
 
 ---
 
-### 6.7 Precise Hover Zones
+### 6.4 Precise Hover Zones
 
 **File:** `src/components/ClassicMode/pages/About/LuxuryWallet/index.jsx`
 
@@ -1373,71 +1374,105 @@ const [hoveredItem, setHoveredItem] = useState(null);
 
 ---
 
-### 6.8 Modal Popup with Backdrop Frames
+---
 
-**File:** `src/components/ClassicMode/pages/Projects/DemoPopup/index.jsx`
+## 7. Mobile Optimizations
 
-Full-screen modal popup with layered decorative frames and smooth animations.
+### 7.1 Portrait Orientation Overlay
 
-#### Pattern
+**File:** `src/components/RotateScreen/index.jsx`
 
-```javascript
-// STATE MANAGEMENT
-const [isOpen, setIsOpen] = useState(false);
-const [isClosing, setIsClosing] = useState(false);
+The whole portfolio is landscape-only. Rather than trying to make everything reflow for portrait, a full-screen overlay intercepts it — pure CSS, no JS resize listeners needed.
 
-// CLOSE WITH ANIMATION
-const handleClose = () => {
-  setIsClosing(true);                    // Trigger exit animation
-  setTimeout(() => {
-    setIsOpen(false);                    // Remove from DOM
-    setIsClosing(false);                 // Reset state
-  }, 300);                               // Match CSS animation duration
-};
+#### How It Works
 
-// RENDER
-{isOpen && (
-  <div 
-    className={`${classes.overlay} ${isClosing ? classes.closing : ''}`}
-    onClick={handleClose}                // Click outside to close
-  >
-    <div 
-      className={classes.content}
-      onClick={(e) => e.stopPropagation()} // Prevent close when clicking content
-    >
-      {/* Decorative backdrop frames */}
-      <div className={classes.backdropFrame}></div>
-      <div className={classes.backdropFrame}></div>
-      <div className={classes.backdropFrame}></div>
-      
-      {/* Actual content */}
-      <img src={demoGif} />
-      <button onClick={handleClose}>×</button>
-    </div>
-  </div>
-)}
+```css
+/* RotateScreen.module.css */
+/* The overlay is hidden by default and only appears in portrait */
+@media screen and (orientation: portrait) {
+  .rotateOverlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 99999;  /* Covers everything — nav, modals, animations */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+/* The browser re-evaluates the media query automatically on every orientation change */
 ```
 
-**CSS:**
+The component is always mounted but invisible in landscape. Rotating to portrait triggers the CSS — instant, zero overhead.
+
+#### Route-Aware Theming
+
+The overlay changes its color scheme based on which mode the user is currently in:
+
+```javascript
+// App.jsx — reads the current route and picks the matching variant
+const getRotateScreenVariant = () => {
+  if (location.pathname.startsWith('/creative')) return 'creative'; // Blue space theme
+  if (location.pathname.startsWith('/classic'))  return 'classic';  // Gold luxury theme
+  return 'home';  // Blended gradient (default)
+};
+
+<RotateScreen variant={getRotateScreenVariant()} />
+```
+
+```javascript
+// RotateScreen/index.jsx — variant controls subtitle text and CSS class
+<p className={classes.subtitle}>
+  {variant === 'creative'
+    ? 'The cosmos awaits in landscape mode.'
+    : variant === 'classic'
+    ? 'For the best experience, please rotate to landscape.'
+    : 'Choose your experience in landscape mode.'}
+</p>
+```
+
+Stars and a Saturn decoration are added for creative/home variants — same random particle technique as the weather system.
+
+---
+
+### 7.2 Disabling 3D Effects on Mobile
+
+**File:** `src/hooks/ClassicMode/use3DMouseTracking.js`
+
+3D tilt tracking is a mouse feature — it makes no sense on touch devices and wastes event listener memory. Rather than feature-detecting touch, the hook detects the landscape mobile viewport shape instead (short height, wide width):
+
+```javascript
+const isMobile = window.matchMedia(
+  '(max-height: 600px) and (orientation: landscape)'
+).matches;
+// Catches phones in landscape (e.g. 844×390) while excluding desktop windows
+// that might be short (a 1920×500 browser window would NOT match because
+// landscape mobile typically has max-height around 390-430px, not 500+)
+
+if (isMobile) return;  // Skip attaching any listeners — hook exits early
+```
+
+**Why `matchMedia` over `ontouchstart`:**
+- `ontouchstart` exists on some hybrid laptops with touch screens — false positives
+- The viewport shape check is more accurate for "is this actually a phone in your hand"
+
+---
+
+### 7.3 Mobile Scroll Space
+
+**File:** `src/index.css`
+
+Classic Mode pages have content that can overflow on small landscape phones. Adding a small buffer prevents content from being hidden behind mobile browser chrome (address bar, bottom nav bar):
+
 ```css
-.overlay {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: radial-gradient(ellipse, rgba(0,0,0,0.8), rgba(0,0,0,0.95));
-  backdrop-filter: blur(15px);
-  animation: fadeIn 0.3s ease-out;
-}
+@media (max-width: 768px) {
+  body {
+    min-height: 110vh;   /* 10% extra height so content isn't cut off */
+    padding-bottom: 10vh; /* Extra space at bottom for browser chrome overlap */
+  }
 
-.overlay.closing {
-  animation: fadeOut 0.3s ease-out;
-}
-
-.content {
-  animation: slideUp 0.3s ease-out;
-}
-
-.closing .content {
-  animation: slideDown 0.3s ease-out;
+  #root {
+    min-height: 110vh;   /* Root container extends to match */
+  }
 }
 ```
 
@@ -1448,7 +1483,6 @@ const handleClose = () => {
 ### Performance
 1. **Pre-calculate** everything possible
 2. Use **GPU-accelerated** properties (`transform`, `opacity`)
-3. **Debounce** expensive operations
 4. **Memoize** complex calculations
 5. **Conditional** event listeners
 
