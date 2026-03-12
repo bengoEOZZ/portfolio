@@ -13,8 +13,6 @@
 4. [Component Architecture](#4-component-architecture)
 5. [SVG & Visual Effects](#5-svg--visual-effects)
 6. [User Experience Patterns](#6-user-experience-patterns)
-7. [State Management Patterns](#7-state-management-patterns)
-
 ---
 
 ## 1. Custom React Hooks
@@ -30,8 +28,8 @@ Creates realistic 3D tilt effects that follow mouse movement on cards, images, a
 ```
 mouseX = (e.clientX - centerX) / rect.width * intensity
 
-1. (e.clientX - centerX) → Mouse distance from element center (pixels)
-2. / rect.width           → Normalize to -0.5 to +0.5 range
+1. (e.clientX - centerX)   → Mouse distance from element center (pixels)
+2. / rect.width            → Normalize to -0.5 to +0.5 range
 3. * intensity             → Scale to rotation degrees (e.g., -15° to +15°)
 ```
 
@@ -140,7 +138,7 @@ Centralized page transition control for coordinating fade-out animations across 
 
 ```javascript
 export const usePageTransition = () => {
-  const [transitioning, setTransitioning] = useState(false);  // Is transition happening?
+  const [transitioning, setTransitioning] = useState(false);   // Is transition happening?
   const [isExiting, setIsExiting] = useState(false);           // Should components fade out?
 
   const startTransition = (callback, duration = 600) => {
@@ -268,8 +266,18 @@ const ANIMATION_CONFIG = {
 
 // Pre-calculate opacity change per frame (instead of computing every frame)
 const ANIMATION_STEP = 1 / (ANIMATION_CONFIG.FADE_DURATION / (1000 / ANIMATION_CONFIG.ANIMATION_FPS));
-// = 1 / (1000 / 16.67) = 1 / 60 = 0.0167 per frame
-// Over 60 frames: 0 → 0.0167 → 0.0334 → ... → 1.0 (then reverses)
+// Breaking it down:
+//   1000 / ANIMATION_FPS  = 1000 / 60 = 16.67ms  → how long one frame lasts
+//   FADE_DURATION / 16.67 = 1000 / 16.67 = 60     → total frames in the fade
+//   1 / 60               = 0.0167                 → opacity added per frame
+//
+// What it produces (full fade-in sequence):
+//   Frame 1:  opacity = 0 + 0.0167 = 0.0167
+//   Frame 2:  opacity = 0.0167 + 0.0167 = 0.0334
+//   Frame 30: opacity ≈ 0.50  (halfway)
+//   Frame 60: opacity ≈ 1.00  (fully visible → direction flips to -1)
+//   Frame 61: opacity = 1.00 - 0.0167 = 0.9833  (now fading out)
+//   ... repeats forever (ping-pong)
 ```
 
 #### Smart DOM Caching
@@ -279,29 +287,40 @@ const ANIMATION_STEP = 1 / (ANIMATION_CONFIG.FADE_DURATION / (1000 / ANIMATION_C
 
 ```javascript
 const polygonCacheRef = useRef({});
-// Cache structure: { 'MORNING': { ray1: [<polygon>, ...], ray2: [...] }, ... }
+// useRef stores the cache without triggering re-renders when updated.
+// Cache shape after first call with 'MORNING':
+// {
+//   MORNING: {
+//     ray1: [<polygon id="ray1-1">, <polygon id="ray1-2">, ...],
+//     ray2: [<polygon id="ray2-1">, <polygon id="ray2-2">, ...],
+//     ...
+//   }
+// }
 
 const getPolygonCache = (timePeriod) => {
+  // Only build the cache if this time period hasn't been cached yet.
   if (!polygonCacheRef.current[timePeriod]) {
     polygonCacheRef.current[timePeriod] = {};
+
+    // PRECOMPUTED_PATTERNS[timePeriod] looks like:
+    // { ray1: [1, 2, 3, 4], ray2: [1, 2, ..., 15], ray3: [1, ..., 40], ... }
     const patterns = PRECOMPUTED_PATTERNS[timePeriod];
 
     Object.keys(patterns).forEach(rayKey => {
-      const rayNum = rayKey.replace('ray', '');  // 'ray1' → '1'
-      const indices = patterns[rayKey];           // e.g., [1, 2, 3, 4]
+      const rayNum = rayKey.replace('ray', '');   // 'ray1' → '1' (used to build SVG id: "ray1-23")
+      const indices = patterns[rayKey];           // the list of polygon numbers for this group, e.g. [1, 2, 3, 4]
 
-      // Find each polygon in the DOM, filter out any that don't exist
       polygonCacheRef.current[timePeriod][rayKey] = indices
+        // For each index, find the matching <polygon> element in the SVG
         .map(i => document.querySelector(`polygon[id="ray${rayNum}-${i}"]`))
-        .filter(Boolean);  // Remove nulls (elements that weren't found)
+        .filter(Boolean); //.filter(Boolean) removes any null results so we only store real DOM nodes
     });
   }
-  return polygonCacheRef.current[timePeriod];
-  // Second call with same timePeriod skips all DOM queries - instant!
-};
 
-// Performance: First call = 323 querySelector calls (one-time)
-// Subsequent calls = just return cached array (instant, 0 DOM queries)
+  return polygonCacheRef.current[timePeriod];
+  // Performance: First call = 323 querySelector calls (one-time)
+  // Subsequent calls = just return cached array (instant, 0 DOM queries)
+};
 ```
 
 #### Ping-Pong Opacity Animation
@@ -336,12 +355,13 @@ const updateAnimations = () => {
       state.direction = 1;   // Start fading IN
     }
 
-    activeAnimations++;
+    activeAnimations++;  // Count how many rays are still animating
   });
 
   if (activeAnimations > 0) {
-    rafRef.current = requestAnimationFrame(updateAnimations);
+    rafRef.current = requestAnimationFrame(updateAnimations);  // Keep looping while rays are active
   }
+  // When activeAnimations hits 0, the loop stops itself — no manual cleanup needed
 };
 ```
 
@@ -382,7 +402,7 @@ Interactive clock with smooth rotation — click and hold to spin, release to st
 #### Interval-based Continuous Rotation
 
 ```javascript
-const [rotation, setRotation] = useState(0);  // Current angle in degrees
+const [rotation, setRotation] = useState(0);   // Current angle in degrees
 const intervalRef = useRef(null);              // Store interval ID for cleanup
 
 const handleMouseDown = () => {
@@ -595,7 +615,7 @@ Y Position = sin(angle) × 250px  +  sin(15 × angle) × 5px
 #### Complete Implementation
 
 ```css
-/* CSS CUSTOM PROPERTIES (Houdini API) */
+/* CSS CUSTOM PROPERTIES */
 @property --angle {
   syntax: '<angle>';
   inherits: true;
@@ -682,7 +702,7 @@ Delay = -(desired_angle / 360) × orbit_duration
 - `cos()` and `sin()` create circular/elliptical motion
 - High-frequency wobble (×15) adds organic movement
 - `sin(angle)` creates smooth depth transitions (front/back)
-- CSS Houdini `@property` enables animating custom properties
+- CSS `@property` enables animating custom properties
 - Negative `animation-delay` starts animation mid-cycle
 
 ---
@@ -876,49 +896,20 @@ useEffect(() => {
 
 ```javascript
 let lastTime = 0;
-const frameTime = 1000 / 60;  // Target 60 FPS
+const frameTime = 1000 / 60;  // 16.67ms — one frame at 60 FPS
 
 function animate(currentTime) {
   if (currentTime - lastTime < frameTime) {
     requestAnimationFrame(animate);
-    return;  // Skip frame if too soon
+    return;  // Not enough time has passed — skip this frame
   }
-  lastTime = currentTime;
+  lastTime = currentTime;  // Record when this frame ran
   updatePositions();
-  requestAnimationFrame(animate);
+  requestAnimationFrame(animate);  // Schedule next frame
 }
 ```
 
 Syncs with browser refresh rate, prevents wasted CPU cycles.
-
----
-
-### 3.5 Debouncing Resize Events
-
-Only recalculate after user **stops** resizing (not on every pixel).
-
-```javascript
-useEffect(() => {
-  let timeoutId;
-
-  const handleResize = () => {
-    clearTimeout(timeoutId);  // Cancel previous timer
-    timeoutId = setTimeout(() => {
-      recalculateLayout();    // Runs 250ms after LAST resize event
-    }, 250);
-  };
-
-  window.addEventListener('resize', handleResize);
-  return () => {
-    window.removeEventListener('resize', handleResize);
-    clearTimeout(timeoutId);
-  };
-}, []);
-```
-
-**How it works:** Each resize event resets the 250ms timer. Only when resizing stops does the timer expire and trigger the recalculation. Result: 1 recalculation instead of 120.
-
-**Common durations:** 50-100ms (autocomplete), 150-250ms (resize/scroll), 500-1000ms (API calls)
 
 ---
 
@@ -928,7 +919,7 @@ useEffect(() => {
 
 **File:** Multiple hooks
 
-Centralizing magic numbers and configuration for maintainability.
+Centralizing numbers and configuration for maintainability.
 
 ```javascript
 // ✅ GOOD: Centralized configuration
@@ -944,56 +935,20 @@ const CONFIG = {
 };
 
 function useAnimation() {
-  // Use CONFIG.ROTATION_SPEED instead of magic 0.01
+  // Use CONFIG.ROTATION_SPEED instead of a random 0.01
   const speed = CONFIG.ROTATION_SPEED;
   // ...
 }
 ```
 
 **Benefits:**
-- ✅ Single source of truth
 - ✅ Easy to adjust all related values
 - ✅ Self-documenting code
 - ✅ Enables A/B testing
 
 ---
 
-### 4.2 Icon Component Mapping
-
-**File:** `src/components/ClassicMode/NavigationBar/Briefcase/index.jsx`
-
-```javascript
-const ICON_COMPONENTS = {
-  wallet: (
-    <div className={classes.wallet}>
-      <div className={classes.walletBack}></div>
-      <div className={classes.walletFlap}></div>
-      <div className={classes.walletClasp}></div>
-    </div>
-  ),
-  cardDeck: (
-    <div className={classes.cardDeck}>
-      <div className={classes.card}></div>
-      <div className={classes.card}></div>
-      <div className={classes.card}></div>
-    </div>
-  ),
-  // ...
-};
-
-// Usage
-const icon = ICON_COMPONENTS[menuItem.icon];
-```
-
-**Pattern Benefits:**
-- Clean separation of data and presentation
-- Easy to add new icons
-- Type-safe with TypeScript
-- Reusable icon library
-
----
-
-### 4.3 Menu Items Configuration
+### 4.2 Menu Items Configuration
 
 ```javascript
 const MENU_ITEMS = [
@@ -1023,64 +978,6 @@ const MENU_ITEMS = [
 
 ---
 
-### 4.4 Reusable Sparkle Component
-
-**File:** `src/components/ClassicMode/Sparkle/index.jsx`
-
-```javascript
-const Sparkle = ({ 
-  style = {}, 
-  animationDelay = '0s', 
-  duration = '3s' 
-}) => {
-  return (
-    <div 
-      className={classes.sparkle}
-      style={{
-        ...style,
-        '--delay': animationDelay,
-        '--duration': duration
-      }}
-    />
-  );
-};
-```
-
-**Usage:**
-
-```javascript
-<Sparkle 
-  style={{ top: '10%', left: '20%' }}
-  animationDelay="0.5s"
-  duration="2s"
-/>
-```
-
----
-
-### 4.5 Philosophical Code Remarks Pattern
-
-**File:** `src/components/Home/CodeRemarks/index.jsx`
-
-Expressing ideas through code syntax—creative and educational.
-
-```javascript
-const remarks = [
-  'if (user.isCurious) { explore(); }',
-  'try { learn(); } catch (failure) { grow(); }',
-  'if (world.needsChange) { buildSolution(); }',
-  'do { expandPerspective(); } while (truth.isVast);',
-  'for (idea in ideas) { innovate(idea); }'
-];
-```
-
-**Creative Applications:**
-- Loading states: `while (loading) { displaySpinner(); }`
-- Error messages: `throw new Error('User too awesome!')`
-- About sections: `const skills = ['React', 'Node', 'CSS'];`
-
----
-
 ## 5. SVG & Visual Effects
 
 ### 5.1 Dynamic SVG Path Generation
@@ -1089,20 +986,22 @@ const remarks = [
 
 Creating animated backgrounds with real-time calculated SVG paths.
 
-```javascript
+**SVG Structure:**
+
+```jsx
 <svg width="100%" height="100%" viewBox="-200 0 1800 700">
   <defs>
+    {/* Gradient fades transparent → gold → transparent: glow that vanishes at edges */}
     <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stopColor="rgba(191, 168, 80, 0)" />
-      <stop offset="50%" stopColor="rgba(191, 168, 80, 0.4)" />
-      <stop offset="100%" stopColor="rgba(191, 168, 80, 0)" />
+      <stop offset="0%"   stopColor="rgba(191, 168, 80, 0)" />    {/* Left: invisible */}
+      <stop offset="50%"  stopColor="rgba(191, 168, 80, 0.4)" />  {/* Centre: gold */}
+      <stop offset="100%" stopColor="rgba(191, 168, 80, 0)" />    {/* Right: invisible */}
     </linearGradient>
   </defs>
-  
   <path
-    d={calculatePath(time)}
+    d={calculatePath(time)}       {/* Recalculated each frame via requestAnimationFrame */}
     fill="none"
-    stroke="url(#goldGradient)"
+    stroke="url(#goldGradient)"   {/* Paint the stroke with the gradient defined above */}
     strokeWidth="2"
   />
 </svg>
@@ -1113,77 +1012,210 @@ Creating animated backgrounds with real-time calculated SVG paths.
 ```javascript
 const calculatePath = (time) => {
   const points = [];
+
   for (let x = 0; x < width; x += 10) {
+    // x steps across the SVG width in 10px increments — each becomes one point on the line.
+    // More points = smoother curve, but slower to compute. 10px is a good balance.
+
     const y = Math.sin((x + time) * 0.01) * amplitude;
-    points.push(`${x},${y}`);
+    //                  └──────────┘└───┘   └───────┘
+    //                     phase    scale     height
+    //
+    // (x + time)  — x varies per point; time increases each frame.
+    //               Adding them together shifts the wave left as time grows → scroll effect.
+    //
+    // * 0.01      — sin() expects radians. Without scaling, the wave would complete
+    //               a full cycle every 6px (way too fast). 0.01 stretches one cycle
+    //               across ~628px, giving a gentle, wide wave.
+    //
+    // * amplitude — controls how tall the wave is in pixels.
+    //               amplitude = 50 → wave peaks 50px above/below center.
+
+    points.push(`${x},${y}`);  // Each point is "x,y" — SVG coordinate pair
   }
+
+  // SVG path string format: "M x,y L x,y L x,y ..."
+  // M = Move to first point (no line drawn)
+  // L = Line to each subsequent point
+  // Result: a continuous polyline traced across the SVG
   return `M ${points.join(' L ')}`;
 };
+// Called every requestAnimationFrame with an incrementing `time` value.
+// Each call shifts the wave slightly, producing smooth scrolling motion.
 ```
 
 ---
 
-### 5.2 SVG Gradient Patterns
+### 5.2 Creative Mode Layered Entrance
 
-```svg
-<defs>
-  <!-- Radial gradient for glows -->
-  <radialGradient id="glow">
-    <stop offset="0%" stopColor="rgba(255, 215, 0, 1)" />
-    <stop offset="100%" stopColor="rgba(255, 215, 0, 0)" />
-  </radialGradient>
-  
-  <!-- Multi-stop for complex effects -->
-  <linearGradient id="sunset" x1="0%" y1="0%" x2="0%" y2="100%">
-    <stop offset="0%" stopColor="#ff6b6b" />
-    <stop offset="50%" stopColor="#ffd93d" />
-    <stop offset="100%" stopColor="#6bcf7f" />
-  </linearGradient>
-</defs>
+**Files:** `Earth.module.css`, `Sun.module.css`, `Clock.module.css`, `Sliders.module.css`, `HelloText.module.css`, `NavigationButtons.module.css`
+
+Every element in Creative Mode has a deliberate entrance so the scene builds up in stages — Earth crashes in, then the Sun is born, then the controls slide in, then text drifts down from space, and finally the orbit buttons flicker into existence.
+
+#### The Entrance Ladder
+
+```
+0s    → Starfield (instant, always visible)
+0.5s  → Sun: stellarBirthSequence begins (4s cosmic explosion)
+        Sun rays: entry flash, then hand off to JS animation
+0s    → Earth container: earthMeteorEntry (3.5s blazing meteor crash)
+        Earth SVG: earthSpinEntry (2s spin + formation)
+1.5s  → Clock: clockEntry (3s bouncy materialization)
+2.5s  → Weather slider: sliderSlideInEntry (2.2s slide from right)
+2.8s  → Season slider: same slide, 300ms staggered after weather
+3s    → HelloText: textEntry (2.5s spacey drop-in)
+3.4s  → Orbit button 0: entryFade (glitchy hologram flicker)
+3.6s  → Orbit button 1: entryFade
+3.8s  → Orbit button 2: entryFade
+4s    → Orbit button 3: entryFade
 ```
 
----
+#### Earth — Blazing Meteor Crash
 
-### 5.3 Weather Particle Systems
+```css
+/* The float container carries the whole Earth in on a diagonal trajectory */
+.earthFloatContainer {
+  animation:
+    earthMeteorEntry 3.5s forwards,      /* Crashes in from top-left */
+    earthFloat 6s ease-in-out infinite 3.5s;  /* Gentle float after landing */
+}
 
-**File:** `src/components/CreativeMode/WeatherEffects/index.jsx`
-
-Generating hundreds of particles efficiently.
-
-```javascript
-const generateSnowflakes = (count) => {
-  return Array.from({ length: count }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: Math.random() * -20,
-    size: Math.random() * 3 + 1,
-    delay: Math.random() * 5,
-    duration: Math.random() * 3 + 2
-  }));
-};
-
-const snowflakes = useMemo(() => 
-  generateSnowflakes(100), 
-  []
-);
-
-return (
-  <div className={classes.particleContainer}>
-    {snowflakes.map(flake => (
-      <div
-        key={flake.id}
-        className={classes.snowflake}
-        style={{
-          left: `${flake.x}%`,
-          '--size': `${flake.size}px`,
-          '--delay': `${flake.delay}s`,
-          '--duration': `${flake.duration}s`
-        }}
-      />
-    ))}
-  </div>
-);
+@keyframes earthMeteorEntry {
+  0% {
+    transform: translateX(-150vw) translateY(-75vh) rotate(-30deg) scale(0.5);
+    filter: brightness(17.5) blur(90px) hue-rotate(150deg) saturate(10)
+            drop-shadow(0 0 30px #ff6500);
+    /* Way off screen — blazing orange fireball with extreme blur */
+  }
+  55% {
+    transform: translateX(20px) translateY(40px) rotate(5deg) scale(1.15);
+    filter: brightness(5) blur(30px) hue-rotate(60deg);
+    /* Overshoots position — still hot yellow */
+  }
+  100% {
+    transform: translateX(0) translateY(0) rotate(0deg) scale(1);
+    filter: brightness(1) blur(0px) hue-rotate(0deg) saturate(1);
+    /* Cooled, settled — natural Earth colors */
+  }
+}
+/* Meanwhile the Earth SVG inside spins from a tiny molten seed: */
+/* earthSpinEntry: scale(0.1) blur(200px) → scale(1) over 2s */
 ```
+
+#### Sun — Cosmic Birth Sequence
+
+```css
+.sunContainer {
+  animation:
+    stellarBirthSequence 4s both 0.5s,  /* Epic 8-phase formation */
+    sunBlur 4s ease-in-out infinite 4s; /* Continuous heat-shimmer after */
+}
+
+@keyframes stellarBirthSequence {
+  0%  { transform: scale(0.01); filter: brightness(50) blur(300px) hue-rotate(270deg); }
+  /* Tiny point of white light — looks like a Big Bang */
+  8%  { transform: scale(0.1);  filter: brightness(20) blur(200px) hue-rotate(240deg); }
+  /* Cool plasma colors (cyan/magenta) */
+  35% { transform: scale(0.6);  filter: brightness(10) blur(100px) hue-rotate(120deg); }
+  /* Solar ignition — shifting toward orange/red */
+  70% { transform: scale(1.2);  filter: brightness(3) blur(30px) hue-rotate(30deg); }
+  /* Overshoots final size at peak intensity */
+  100%{ transform: scale(1);    filter: brightness(1) blur(0); }
+  /* Stable sun — natural color, no blur */
+}
+/* Rays flash in (sunraysEntry: scale→glow→fade) then JS takes over opacity control */
+```
+
+#### Clock — Bouncy Materialization
+
+```css
+.clockContainer {
+  opacity: 0;
+  animation:
+    clockEntry 3s 1.5s forwards,           /* Appears at 1.5s */
+    clockFloat 25s ease-in-out 4.5s infinite;  /* Floats endlessly after */
+}
+
+@keyframes clockEntry {
+  0%  { transform: scale(0) rotate(180deg); filter: blur(10px) brightness(0.3); }
+  /* Tiny spinning dark point */
+  40% { transform: scale(1.1) rotate(-10deg); filter: blur(2px) brightness(1.2); }
+  /* Overshoots with counter-rotation */
+  60% { transform: scale(0.95) rotate(5deg); }
+  /* Bounces back — slight wobble */
+  100%{ transform: scale(1) rotate(0deg); filter: blur(0); }
+}
+/* Time display has its own holographic entry: scaleY(0.1) thin line → expands vertically */
+```
+
+#### Sliders — Slide in from Right
+
+```css
+.sliderContainer {
+  opacity: 0;
+  animation: sliderSlideInEntry 2.2s forwards;
+}
+.weatherSlider { animation-delay: 2.5s; }  /* Slightly after clock settles */
+.seasonSlider  { animation-delay: 2.8s; }  /* 300ms behind weather */
+
+@keyframes sliderSlideInEntry {
+  0%  { transform: translateX(100px) scale(0.8); filter: blur(10px); }
+  60% { transform: translateX(-10px) scale(1.05); }  /* Overshoot left */
+  80% { transform: translateX(5px) scale(0.98); }    /* Bounce back */
+  100%{ transform: translateX(0) scale(1); filter: blur(0); }
+}
+```
+
+#### HelloText — Drops in from Space
+
+```css
+.container {
+  opacity: 0;
+  animation:
+    textEntry 2.5s 3s forwards,             /* Spacey entrance at 3s */
+    textFloat 20s ease-in-out 5.5s infinite; /* Ongoing floating */
+}
+
+@keyframes textEntry {
+  0%  {
+    transform: translateY(-80px) translateX(-30px) scale(0.7) rotate(-5deg);
+    filter: blur(15px) brightness(0.3);  /* Blurry, dim, tilted — like a distant object */
+  }
+  70% {
+    transform: translateY(-10px) scale(1.05) rotate(1deg);
+    filter: blur(3px) brightness(1.1);   /* Slight overshoot */
+  }
+  100%{
+    transform: translateY(0) scale(1) rotate(0deg);
+    filter: blur(0) brightness(1);       /* Settled */
+  }
+}
+```
+
+#### Orbit Buttons — Holographic Glitch Flicker
+
+```css
+/* Each button materializes 200ms apart, already in orbit position */
+.btnOrbitContainer[data-index="0"] { animation-delay: 3.4s, 3.4s; }  /* orbit starts too */
+.btnOrbitContainer[data-index="1"] { animation-delay: 3.6s, -1.6s; } /* pre-positioned at 90° */
+.btnOrbitContainer[data-index="2"] { animation-delay: 3.8s, -6.6s; } /* pre-positioned at 180° */
+.btnOrbitContainer[data-index="3"] { animation-delay: 4.0s,-11.6s; } /* pre-positioned at 270° */
+
+@keyframes entryFade {
+  /* Rapid flicker phase — interference noise */
+  0%, 3%, 6%, 9%, 12% { opacity: 0; filter: blur(20px) brightness(3.5) saturate(5); }
+  2%, 5%, 8%, 11%      { opacity: 0.4; filter: blur(15px) brightness(3) contrast(3); }
+  /* Slow stabilizing — glitch calms down */
+  45% { opacity: 0.75; filter: blur(8px) brightness(2) saturate(3); }
+  70% { opacity: 0.9;  filter: blur(4px) brightness(1.6); }
+  100%{ opacity: 1;    filter: brightness(var(--depth-brightness)); }
+  /* Fully materialized — depth-based brightness takes over */
+}
+```
+
+**Why `both` and `forwards` matter:**
+- `both` = hold `opacity: 0` before the delay expires, hold final state after. Prevents a flash before the animation starts.
+- `forwards` = keep final keyframe after animation ends. Without it the element snaps back to `opacity: 0`.
 
 ---
 
@@ -1195,22 +1227,25 @@ return (
 
 ```javascript
 useEffect(() => {
-  if (!isOpen) return;
+  if (!isOpen) return;  // Skip attaching the listener when the menu is closed
   
   const handleClickOutside = (e) => {
     if (containerRef.current && 
         !containerRef.current.contains(e.target)) {
+      // e.target = the clicked element; .contains() returns true if it's inside the menu
+      // If it's outside, close
       onClose();
     }
   };
   
-  // Use mousedown, not click (fires earlier)
+  // mousedown fires before click — closes the menu before any click handlers on children run
   document.addEventListener('mousedown', handleClickOutside);
   
   return () => {
+    // Remove the global listener when the menu closes or the component unmounts
     document.removeEventListener('mousedown', handleClickOutside);
   };
-}, [isOpen]);
+}, [isOpen]);  // Re-runs when isOpen changes: attaches on open, cleans up on close
 ```
 
 **Why `mousedown` instead of `click`?**
@@ -1239,77 +1274,6 @@ const handleMenuItemClick = (path, index) => {
     navigate(path);
   }, totalDelay);
 };
-```
-
----
-
-### 6.3 Mobile Detection and Adaptation
-
-**File:** `use3DMouseTracking.js`
-
-```javascript
-const isMobile = window.matchMedia(
-  '(max-height: 600px) and (orientation: landscape)'
-).matches;
-
-if (isMobile) {
-  // Disable 3D effects
-  return;
-}
-```
-
-**Other Detection Patterns:**
-
-```javascript
-// Touch device
-const isTouchDevice = 'ontouchstart' in window;
-
-// Reduced motion preference
-const prefersReducedMotion = window.matchMedia(
-  '(prefers-reduced-motion: reduce)'
-).matches;
-
-// Dark mode
-const prefersDark = window.matchMedia(
-  '(prefers-color-scheme: dark)'
-).matches;
-```
-
----
-
-### 6.4 Shake Animation on Interaction
-
-```css
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-  20%, 40%, 60%, 80% { transform: translateX(5px); }
-}
-
-.briefcase:active {
-  animation: shake 0.6s ease-in-out;
-}
-```
-
----
-
-### 6.5 Entrance Delay Strategy
-
-Preventing sensory overload on page load.
-
-```javascript
-const ENTRANCE_DELAYS = {
-  background: 0,
-  mainContent: 500,
-  navigation: 1000,
-  weatherEffects: 3000,
-  sparkles: 2000
-};
-
-// In CSS
-.weatherEffects {
-  animation: fadeIn 0.5s ease-in 3s forwards;
-}
 ```
 
 ---
@@ -1479,144 +1443,6 @@ const handleClose = () => {
 
 ---
 
-### 6.9 3D Card Flip
-
-**File:** `src/components/ClassicMode/pages/Contact/index.jsx`
-
-Interactive card that flips on click to reveal back side, with 3D mouse tracking on both faces.
-
-#### Pattern
-
-```javascript
-// FLIP STATE
-const [isFlipped, setIsFlipped] = useState(false);
-
-// 3D TRACKING WITH FLIP
-use3DMouseTracking(
-  cardRef,
-  {
-    intensity: 15,
-    baseTransform: isFlipped ? 'rotateY(180deg)' : '',  // Maintain flip while tracking
-  },
-  [isFlipped]  // Re-initialize when flip changes
-);
-
-// FLIP HANDLER
-const handleFlip = () => setIsFlipped(!isFlipped);
-
-// RENDER
-<div className={`${classes.card} ${isFlipped ? classes.flipped : ''}`} ref={cardRef}>
-  {/* Front face */}
-  <div className={classes.cardFront}>
-    <div className={classes.flipIndicator} onClick={handleFlip}></div>
-    <IDCard />
-  </div>
-  
-  {/* Back face (rotated 180deg in CSS) */}
-  <div className={classes.cardBack}>
-    <div className={classes.flipIndicator} onClick={handleFlip}></div>
-    <IDCardBack />
-  </div>
-</div>
-```
-
-**CSS:**
-```css
-.card {
-  position: relative;
-  transform-style: preserve-3d;    /* Enable 3D space */
-  transition: transform 0.6s;
-}
-
-.card.flipped {
-  transform: rotateY(180deg);      /* Flip 180° on Y-axis */
-}
-
-.cardFront, .cardBack {
-  position: absolute;
-  backface-visibility: hidden;     /* Hide back when facing away */
-}
-
-.cardBack {
-  transform: rotateY(180deg);      /* Pre-rotate back face */
-}
-```
-
-**Key Points:**
-- `preserve-3d` enables 3D transforms
-- `backface-visibility: hidden` prevents see-through effect
-- Back face pre-rotated 180° so it appears correct when card flips
-- 3D mouse tracking works on both sides using `baseTransform`
-
----
-
-## 7. State Management Patterns
-
-### 7.1 Centralized Transition State
-
-```javascript
-// Parent component
-const { isExiting, startTransition } = usePageTransition();
-
-// Pass down to all children
-<NavigationBar 
-  isExiting={isExiting}
-  onNavigate={(path) => startTransition(() => navigate(path))}
-/>
-<Content isExiting={isExiting} />
-<Footer isExiting={isExiting} />
-```
-
----
-
-### 7.2 Ref-Based Animation Control
-
-```javascript
-const animationRef = useRef(null);
-
-const startAnimation = () => {
-  // Cancel any existing animation
-  if (animationRef.current) {
-    cancelAnimationFrame(animationRef.current);
-  }
-  
-  // Start new animation
-  const animate = () => {
-    updateFrame();
-    animationRef.current = requestAnimationFrame(animate);
-  };
-  
-  animationRef.current = requestAnimationFrame(animate);
-};
-
-const stopAnimation = () => {
-  if (animationRef.current) {
-    cancelAnimationFrame(animationRef.current);
-    animationRef.current = null;
-  }
-};
-```
-
----
-
-### 7.3 Boolean State Composition
-
-```javascript
-const [isMenuOpen, setIsMenuOpen] = useState(false);
-const [isShaking, setIsShaking] = useState(false);
-const [isClosing, setIsClosing] = useState(false);
-
-// Computed class names
-const className = classNames({
-  [classes.briefcase]: true,
-  [classes.open]: isMenuOpen,
-  [classes.shaking]: isShaking,
-  [classes.closing]: isClosing
-});
-```
-
----
-
 ## Key Takeaways
 
 ### Performance
@@ -1653,25 +1479,6 @@ const className = classNames({
 3. **Staggered closing** for polish
 4. **Shake animations** for feedback
 5. **Progressive enhancement** approach
-
----
-
-## Further Learning
-
-**React Performance:**
-- React DevTools Profiler
-- React.memo() for component memoization
-- useCallback() for function memoization
-
-**CSS Animations:**
-- Cubic-bezier easing functions
-- Will-change property for optimization
-- Intersection Observer for scroll animations
-
-**Advanced Patterns:**
-- Compound components
-- Render props pattern
-- Higher-order components
 
 ---
 
